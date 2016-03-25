@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Birthday Reminder</string>
+    <string name="action_settings">Settings</string>
+    <string name="tab1">Soon</string>
+    <string name="tab2">All</string>
+    <string name="tab3">Calendar</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="last_name">Last name</string>
+</resources>
