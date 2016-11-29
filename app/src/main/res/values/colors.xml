@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <!-- Material design colors -->
+    <color name="colorPrimary">#9C27B0</color>
+    <color name="colorPrimaryDark">#7B1FA2</color>
+    <color name="colorAccent">#68EFAD</color>
     <color name="black_color">#000</color>
-    <color name="textColor">#575757</color>
-    <color name="tab_indicator">#fff</color>
+    <color name="white_color">#fff</color>
+
+    <color name="primaryText">#212121</color>
+    <color name="secondaryText">#757575</color>
+    <color name="disabled_color">#9E9E9E</color>
+    <color name="dividerColor">#E0E0E0</color>
+
+    <color name="background_color">#FAFAFA</color>
+    <color name="dialog_background_color">#F5F5F5</color>
+    <color name="transparent">#80FFFFFF</color>
+
 </resources>
