@@ -10,13 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class DetailActivity extends AppCompatActivity {
+import com.djonique.birdays.adapters.AllFragmentAdapter;
 
-    public static final String DETAIL_NAME = "DetailName";
-    public static final String DETAIL_PHONE = "DetailPhone";
-    public static final String DETAIL_EMAIL = "DetailEmail";
-    public static final String DETAIL_DATE = "DetailDate";
-    public static final String DETAIL_AGE = "DetailAge";
+public class DetailActivity extends AppCompatActivity {
 
     TextView tvName, tvPhone, tvEmail, tvDate, tvAge;
 
@@ -43,23 +39,23 @@ public class DetailActivity extends AppCompatActivity {
         tvAge = ((TextView) findViewById(R.id.tvDetailAge));
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra(DETAIL_NAME);
+        String name = intent.getStringExtra(AllFragmentAdapter.DETAIL_NAME);
         tvName.setText(name);
 
-        long phoneNumber = intent.getLongExtra(DETAIL_PHONE, 0);
+        long phoneNumber = intent.getLongExtra(AllFragmentAdapter.DETAIL_PHONE, 0);
         if (phoneNumber == 0) {
             tvPhone.setText(R.string.undefined);
         } else tvPhone.setText(String.valueOf(phoneNumber));
 
-        String email = intent.getStringExtra(DETAIL_EMAIL);
+        String email = intent.getStringExtra(AllFragmentAdapter.DETAIL_EMAIL);
         if (email.equals(" ")) {
             tvEmail.setText(R.string.undefined);
         } else tvEmail.setText(email);
 
-        long date = intent.getLongExtra(DETAIL_DATE, 0);
+        long date = intent.getLongExtra(AllFragmentAdapter.DETAIL_DATE, 0);
         tvDate.setText(Utils.getDate(date));
 
-        int age = intent.getIntExtra(DETAIL_AGE, 0);
+        int age = intent.getIntExtra(AllFragmentAdapter.DETAIL_AGE, 0);
         tvAge.setText(String.valueOf(age));
     }
 

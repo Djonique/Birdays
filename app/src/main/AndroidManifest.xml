@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.djonique.birdays">
+          package="com.djonique.birdays">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -23,18 +23,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.djonique.birdays.SplashScreen"
+        <activity
+            android:name="com.djonique.birdays.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name="com.djonique.birdays.DetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="">
+        <activity
+            android:name="com.djonique.birdays.DetailActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.fragments.AllFragment;
-import com.djonique.birdays.fragments.FavoritesFragment;
+import com.djonique.birdays.fragments.FamousFragment;
 import com.djonique.birdays.fragments.MonthFragment;
 
 import java.util.Calendar;
@@ -16,18 +16,18 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     public static final int MONTH_FRAGMENT_POSITION = 0;
     public static final int ALL_FRAGMENT_POSITION = 1;
-    public static final int FAVORITES_FRAGMENT_POSITION = 2;
+    public static final int FAMOUS_FRAGMENT_POSITION = 2;
     private Context context;
     private MonthFragment mf;
     private AllFragment af;
-    private FavoritesFragment ff;
+    private FamousFragment ff;
 
     public PagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
         mf = new MonthFragment();
         af = new AllFragment();
-        ff = new FavoritesFragment();
+        ff = new FamousFragment();
 
     }
 
@@ -58,7 +58,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return context.getString(R.string.all);
             case 2:
-                return context.getString(R.string.favorites);
+                return context.getString(R.string.famous);
         }
         return null;
     }

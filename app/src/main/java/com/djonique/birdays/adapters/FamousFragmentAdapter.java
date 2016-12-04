@@ -1,4 +1,4 @@
 package com.djonique.birdays.adapters;
 
-public class FavoritesFragmentAdapter {
+public class FamousFragmentAdapter {
 }

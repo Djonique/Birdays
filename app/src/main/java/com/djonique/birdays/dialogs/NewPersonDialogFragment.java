@@ -14,13 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.Calendar;
-
 import com.djonique.birdays.R;
 import com.djonique.birdays.Utils;
 import com.djonique.birdays.model.Person;
 
-public class NewPersonDialogFragment extends DialogFragment implements com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+import java.util.Calendar;
+
+public class NewPersonDialogFragment extends DialogFragment implements
+        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     public static final String DATE_PICKER_FRAGMENT_TAG = "DatePickerFragment";
     private EditText etDate;
@@ -157,7 +158,8 @@ public class NewPersonDialogFragment extends DialogFragment implements com.wdull
     }
 
     @Override
-    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int yearPicked, int monthOfYear, int dayOfMonth) {
+    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view,
+                          int yearPicked, int monthOfYear, int dayOfMonth) {
         year = yearPicked;
         month = monthOfYear;
         day = dayOfMonth;

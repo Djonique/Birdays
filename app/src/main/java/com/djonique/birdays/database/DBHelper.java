@@ -13,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DB_NAME = "myDB";
     public static final String DB_PERSONS = "personsDB";
-    public static final String DB_FAVORITES = "favoritesDB";
+    public static final String DB_FAMOUS = "famousDB";
 
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_DATE = "date";
@@ -34,16 +34,11 @@ public class DBHelper extends SQLiteOpenHelper {
             + COLUMN_LOWER_CASE_NAME + " TEXT"
             + ");";
 
-    /* public static final String DB_FAVORITES_CREATE = "CREATE TABLE " + DB_PERSONS + " ("
+    public static final String DB_FAMOUS_CREATE = "CREATE TABLE " + DB_PERSONS + " ("
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NAME + " TEXT, "
             + COLUMN_DATE + " INTEGER, "
-            + COLUMN_AGE + " INTEGER, "
-            + COLUMN_PHONE + " INTEGER, "
-            + COLUMN_EMAIL + " TEXT, "
-            + COLUMN_TIME_STAMP + " INTEGER, "
-            + COLUMN_LOWER_CASE_NAME + " TEXT"
-            + ");"; */
+            + ");";
 
     public static final String SELECTION_TIME_STAMP = COLUMN_TIME_STAMP + " = ?";
     public static final String SELECTION_LIKE_NAME = COLUMN_LOWER_CASE_NAME + " LIKE ?";
@@ -58,13 +53,13 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DB_PERSONS_CREATE);
-        // db.execSQL(DB_FAVORITES_CREATE);
+        db.execSQL(DB_FAMOUS_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE" + DB_PERSONS);
-        // db.execSQL("DROP TABLE" + DB_FAVORITES);
+        db.execSQL("DROP TABLE" + DB_FAMOUS);
         onCreate(db);
     }
 
@@ -80,17 +75,12 @@ public class DBHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert(DB_PERSONS, null, cv);
     }
 
-    /* public void addFavorite(Person person) {
+     public void addFamous(Person person) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, person.getName());
         cv.put(COLUMN_DATE, person.getDate());
-        cv.put(COLUMN_AGE, person.getAge());
-        cv.put(COLUMN_PHONE, person.getPhoneNumber());
-        cv.put(COLUMN_EMAIL, person.getEmail());
-        cv.put(COLUMN_TIME_STAMP, person.getTimeStamp());
-        cv.put(COLUMN_LOWER_CASE_NAME, person.getLowerCaseName());
-        getWritableDatabase().insert(DB_FAVORITES, null, cv);
-    } */
+        getWritableDatabase().insert(DB_FAMOUS, null, cv);
+     }
 
     public DBQueryManager query() {
         return dbQueryManager;

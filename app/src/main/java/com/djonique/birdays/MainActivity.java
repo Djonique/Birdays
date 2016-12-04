@@ -18,12 +18,12 @@ import com.djonique.birdays.adapters.PagerAdapter;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.dialogs.NewPersonDialogFragment;
 import com.djonique.birdays.fragments.AllFragment;
-import com.djonique.birdays.fragments.FavoritesFragment;
+import com.djonique.birdays.fragments.FamousFragment;
 import com.djonique.birdays.fragments.MonthFragment;
 import com.djonique.birdays.model.Person;
 
-
-public class MainActivity extends AppCompatActivity implements NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener {
+public class MainActivity extends AppCompatActivity implements
+        NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener {
 
     public static final String NEW_PERSON_DIALOG_TAG = "NewPersonDialogFragment";
     public DBHelper dbHelper;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NewPersonDialogFr
 
     MonthFragment monthFragment;
     AllFragment allFragment;
-    FavoritesFragment favoritesFragment;
+    FamousFragment famousFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NewPersonDialogFr
 
         monthFragment = ((MonthFragment) pagerAdapter.getItem(PagerAdapter.MONTH_FRAGMENT_POSITION));
         allFragment = ((AllFragment) pagerAdapter.getItem(PagerAdapter.ALL_FRAGMENT_POSITION));
-        favoritesFragment = ((FavoritesFragment) pagerAdapter.getItem(PagerAdapter.FAVORITES_FRAGMENT_POSITION));
+        famousFragment = ((FamousFragment) pagerAdapter.getItem(PagerAdapter.FAMOUS_FRAGMENT_POSITION));
 
         searchView = ((SearchView) findViewById(R.id.searchView));
 
@@ -121,9 +121,7 @@ public class MainActivity extends AppCompatActivity implements NewPersonDialogFr
 
     @Override
     public void onPersonAddedCancel() {
-
     }
-
 
     @Override
     public void onRecordDeleted(long timeStamp) {

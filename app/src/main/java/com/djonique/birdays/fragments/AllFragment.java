@@ -13,15 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.djonique.birdays.MainActivity;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.AllFragmentAdapter;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.model.Item;
 import com.djonique.birdays.model.Person;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AllFragment extends Fragment {
 
@@ -77,7 +77,8 @@ public class AllFragment extends Fragment {
         for (int i = 0; i < adapter.getItemCount(); i++) {
             if (adapter.getItem(i).isPerson()) {
                 Person person = ((Person) adapter.getItem(i));
-                if (newPerson.getDate() < person.getDate()) {
+
+                if (newPerson.getMonth(newPerson.getDate()) < person.getMonth(person.getDate())) {
                     position = i;
                     break;
                 }

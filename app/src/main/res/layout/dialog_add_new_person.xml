@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@color/background_color">
+    android:padding="24dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,10 +51,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/background_color"
             android:contentDescription="@string/add_from_contacts"
-            android:src="@drawable/ic_contacts_black_24dp"
-            android:tint="@color/colorPrimary" />
+            android:src="@drawable/add_from_contacts_icon"
+            android:background="@android:color/transparent"/>
 
     </LinearLayout>
 
@@ -80,26 +78,26 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/background_color"
-            android:contentDescription="@string/add_from_contacts"
-            android:src="@drawable/ic_contacts_black_24dp"
-            android:tint="@color/colorPrimary" />
+        <!--<ImageButton-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:contentDescription="@string/add_from_contacts"-->
+            <!--android:src="@drawable/add_from_contacts_icon"-->
+            <!--android:clickable="true"-->
+            <!--android:background="@android:color/transparent"/>-->
 
     </LinearLayout>
 
     <EditText
-        android:layout_width="110dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/etDate"
-        android:inputType="none"
+        android:inputType="date"
         android:textSize="16sp"
         android:focusableInTouchMode="false"
         android:cursorVisible="false"
-        android:hint="Date"
+        android:hint="@string/pick_date"
         android:layout_marginTop="16dp"
         style="@android:style/Widget.Holo.Spinner"/>
 </LinearLayout>

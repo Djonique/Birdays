@@ -2,15 +2,14 @@ package com.djonique.birdays.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.djonique.birdays.DetailActivity;
 import com.djonique.birdays.R;
@@ -18,6 +17,9 @@ import com.djonique.birdays.Utils;
 import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.model.Item;
 import com.djonique.birdays.model.Person;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.ListViewHolder> {
 
@@ -81,7 +83,10 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         holder.tvName.setText(person.getName());
         if (person.getDate() != 0) {
             holder.tvDate.setText(Utils.getDate(person.getDate()));
-            String age = getAllFragment().getString(R.string.age_text) + Integer.toString(person.getAge());
+            String age = Integer.toString(person.getAge());
+            GradientDrawable ageCircle = (GradientDrawable) holder.tvAge.getBackground();
+            int ageCircleColor = getAgeCircleColor(person.getAge());
+            ageCircle.setColor(ageCircleColor);
             holder.tvAge.setText(age);
         }
 
@@ -95,7 +100,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
                     public void run() {
                         getAllFragment().removePersonDialog(holder.getLayoutPosition());
                     }
-                }, 1000);
+                }, 500);
 
                 return true;
             }
@@ -113,6 +118,19 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
                 context.startActivity(intent);
             }
         });
+    }
+
+    private int getAgeCircleColor(int age) {
+        int ageCircleColorResID;
+        if (age < 10) ageCircleColorResID = R.color.age1;
+        else if (age >= 10 && age < 20) ageCircleColorResID = R.color.age2;
+        else if (age >= 20 && age < 30) ageCircleColorResID = R.color.age3;
+        else if (age >= 30 && age < 40) ageCircleColorResID = R.color.age4;
+        else if (age >= 40 && age < 50) ageCircleColorResID = R.color.age5;
+        else if (age >= 50 && age < 60) ageCircleColorResID = R.color.age6;
+        else if (age >= 60 && age < 70) ageCircleColorResID = R.color.age7;
+        else ageCircleColorResID = R.color.age8;
+        return ContextCompat.getColor(context, ageCircleColorResID);
     }
 
     @Override
@@ -139,4 +157,6 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
             notifyDataSetChanged();
         }
     }
+
+
 }

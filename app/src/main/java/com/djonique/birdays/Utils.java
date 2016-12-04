@@ -1,29 +1,31 @@
 package com.djonique.birdays;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Utils {
 
-    // TODO разобраться с Locale
     public static String getDate(long date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        return sdf.format(date);
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
+        return dateFormat.format(date);
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+//        return sdf.format(date);
     }
 
     // TODO не меняется возраст после даты дня рождения, возможно надо обновлять возраст в БД при каждой загрузке.
     public static int getAge(int year, int month, int day) {
-        Calendar dob = Calendar.getInstance();
+        Calendar dayOfBirthday = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
 
-        dob.set(year, month, day);
+        dayOfBirthday.set(year, month, day);
 
-        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+        int age = today.get(Calendar.YEAR) - dayOfBirthday.get(Calendar.YEAR);
 
-        if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
+        if (today.get(Calendar.MONTH) < dayOfBirthday.get(Calendar.MONTH)) {
             age--;
-        } else if ((today.get(Calendar.MONTH) == dob.get(Calendar.MONTH)) &&
-                (today.get(Calendar.DAY_OF_MONTH) < dob.get(Calendar.DAY_OF_MONTH))) {
+        } else if ((today.get(Calendar.MONTH) == dayOfBirthday.get(Calendar.MONTH)) &&
+                (today.get(Calendar.DAY_OF_MONTH) < dayOfBirthday.get(Calendar.DAY_OF_MONTH))) {
             age--;
         }
 
@@ -31,16 +33,14 @@ public class Utils {
     }
 
     public static boolean isCurrentMonth(long date) {
-
         boolean thisMonth = false;
 
         Calendar today = Calendar.getInstance();
-        Calendar personsBD = Calendar.getInstance();
+        Calendar dayOfBirthday = Calendar.getInstance();
 
-        personsBD.setTimeInMillis(date);
+        dayOfBirthday.setTimeInMillis(date);
 
-
-        if (personsBD.get(Calendar.MONTH) == today.get(Calendar.MONTH)) {
+        if (dayOfBirthday.get(Calendar.MONTH) == today.get(Calendar.MONTH)) {
             thisMonth = true;
         }
 

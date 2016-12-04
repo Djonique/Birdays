@@ -1,5 +1,4 @@
 <resources>
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -45,6 +44,7 @@
     <style name="secondaryTextStyle">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/secondaryText</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="AppCompatTheme" parent="@style/Theme.AppCompat.Light">
@@ -56,5 +56,4 @@
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>
     </style>
-
 </resources>

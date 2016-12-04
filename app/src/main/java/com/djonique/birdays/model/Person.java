@@ -1,5 +1,6 @@
 package com.djonique.birdays.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Person implements Item {
@@ -13,6 +14,11 @@ public class Person implements Item {
 
     public Person() {
         this.timeStamp = new Date().getTime();
+    }
+
+    public Person(String name, long date) {
+        this.name = name;
+        this.date = date;
     }
 
     public Person(String name, long date, int age, long phoneNumber, String email, long timeStamp,
@@ -85,6 +91,12 @@ public class Person implements Item {
     @Override
     public boolean isPerson() {
         return true;
+    }
+
+    public int getMonth (long date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date);
+        return calendar.get(Calendar.MONTH);
     }
 }
 

@@ -11,16 +11,16 @@
     <!-- fragment text -->
     <string name="soon">This month</string>
     <string name="all">All</string>
-    <string name="favorites">Favorites</string>
+    <string name="famous">Famous</string>
 
     <!-- inApp text -->
     <string name="name">Name</string>
     <string name="add_from_contacts">Add from contacts</string>
-    <string name="phone">phone</string>
-    <string name="email">email</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
     <string name="add_new_record">New record</string>
     <string name="record_added">Record added</string>
-    <string name="age_text">"age: "</string>
+    <string name="age_text">"Age: "</string>
     <string name="happy_birthday">Happy Birthday!</string>
     <string name="send_email">Send email</string>
     <string name="ok_button">OK</string>
@@ -46,5 +46,6 @@
     <string name="undefined">Undefined</string>
     <string name="date">date</string>
     <string name="age">age</string>
+    <string name="pick_date">Pick date</string>
 
 </resources>
