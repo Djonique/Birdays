@@ -65,7 +65,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
 
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_description,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.description_list_view,
                 parent, false);
         context = parent.getContext();
         return new ListViewHolder(view);
@@ -81,19 +81,16 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         final Person person = ((Person) item);
 
         holder.tvName.setText(person.getName());
-        if (person.getDate() != 0) {
-            holder.tvDate.setText(Utils.getDate(person.getDate()));
-            String age = Integer.toString(person.getAge());
-            GradientDrawable ageCircle = (GradientDrawable) holder.tvAge.getBackground();
-            int ageCircleColor = getAgeCircleColor(person.getAge());
-            ageCircle.setColor(ageCircleColor);
-            holder.tvAge.setText(age);
-        }
+        holder.tvDate.setText(Utils.getDate(person.getDate()));
+        String age = Integer.toString(person.getAge());
+        GradientDrawable ageCircle = (GradientDrawable) holder.tvAge.getBackground();
+        int ageCircleColor = ContextCompat.getColor(context, Utils.getAgeCircleColor(person.getAge()));
+        ageCircle.setColor(ageCircleColor);
+        holder.tvAge.setText(age);
 
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -120,31 +117,16 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         });
     }
 
-    private int getAgeCircleColor(int age) {
-        int ageCircleColorResID;
-        if (age < 10) ageCircleColorResID = R.color.age1;
-        else if (age >= 10 && age < 20) ageCircleColorResID = R.color.age2;
-        else if (age >= 20 && age < 30) ageCircleColorResID = R.color.age3;
-        else if (age >= 30 && age < 40) ageCircleColorResID = R.color.age4;
-        else if (age >= 40 && age < 50) ageCircleColorResID = R.color.age5;
-        else if (age >= 50 && age < 60) ageCircleColorResID = R.color.age6;
-        else if (age >= 60 && age < 70) ageCircleColorResID = R.color.age7;
-        else ageCircleColorResID = R.color.age8;
-        return ContextCompat.getColor(context, ageCircleColorResID);
-    }
-
     @Override
     public int getItemCount() {
         return items.size();
     }
 
     public static class ListViewHolder extends RecyclerView.ViewHolder {
-
         TextView tvName, tvDate, tvAge;
 
         public ListViewHolder(View itemView) {
             super(itemView);
-
             tvName = (TextView) itemView.findViewById(R.id.tvListName);
             tvDate = (TextView) itemView.findViewById(R.id.tvListDate);
             tvAge = (TextView) itemView.findViewById(R.id.tvListAge);
@@ -157,6 +139,4 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
             notifyDataSetChanged();
         }
     }
-
-
 }

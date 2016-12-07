@@ -79,8 +79,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
                     android:contentDescription="@string/phone"
-                    android:src="@drawable/ic_phone_grey600_24dp"
-                    android:tint="@color/colorPrimary" />
+                    android:src="@drawable/ic_call_purple_24dp" />
 
                 <TextView
                     android:id="@+id/tvDetailPhoneDescription"
@@ -114,8 +113,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
                     android:contentDescription="@string/email"
-                    android:src="@drawable/ic_email_grey600_24dp"
-                    android:tint="@color/colorPrimary" />
+                    android:src="@drawable/ic_email_purple_24dp" />
 
                 <TextView
                     android:id="@+id/tvDetailEmail"

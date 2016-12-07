@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,9 +50,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View container = inflater.inflate(R.layout.dialog_add_new_person, null);
+        View container = inflater.inflate(R.layout.fragment_dialog, null);
 
-        etDate = (EditText) container.findViewById(R.id.etDate);
 
         final TextInputLayout tilName = (TextInputLayout) container.findViewById(R.id.tilName);
         final EditText etName = tilName.getEditText();
@@ -62,6 +62,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
         final TextInputLayout tilEmail = (TextInputLayout) container.findViewById(R.id.tilEmail);
         final EditText etEmail = tilEmail.getEditText();
 
+        final TextInputLayout tilDate = ((TextInputLayout) container.findViewById(R.id.tilDate));
+        etDate = (EditText) container.findViewById(R.id.etDate);
         calendar = Calendar.getInstance();
 
         final Person person = new Person();
@@ -72,7 +74,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
             @Override
             public void onClick(View v) {
                 if (etDate.length() == 0) {
-                    etDate.setText(" ");
+                    etDate.setText("");
                 }
                 com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd =
                         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.newInstance(
@@ -89,19 +91,24 @@ public class NewPersonDialogFragment extends DialogFragment implements
         builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                assert etName != null;
-                String name = etName.getText().toString();
-                person.setName(name);
-                person.setLowerCaseName(name.toLowerCase());
-                if (etDate.length() != 0) {
+                String name;
+                if (etName != null) {
+                    name = etName.getText().toString();
+                    person.setName(name);
+                    person.setLowerCaseName(name.toLowerCase());
+                }
+
+                if (!isEmptyDate()) {
                     long time = calendar.getTimeInMillis();
                     person.setDate(time);
                     int age = Utils.getAge(year, month, day);
                     person.setAge(age);
                 }
+
                 if (etPhone != null && etPhone.length() != 0) {
                     person.setPhoneNumber(Long.parseLong(etPhone.getText().toString()));
                 } else person.setPhoneNumber(0);
+
                 if (etEmail != null && etEmail.length() != 0) {
                     person.setEmail(etEmail.getText().toString());
                 } else person.setEmail(" ");
@@ -123,6 +130,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
             @Override
             public void onShow(DialogInterface dialog) {
                 final Button positiveButton = ((AlertDialog) dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+
                 if (etName != null && etName.length() == 0) {
                     positiveButton.setEnabled(false);
                     tilName.setError(getString(R.string.error_hint));
@@ -139,7 +147,9 @@ public class NewPersonDialogFragment extends DialogFragment implements
                                 positiveButton.setEnabled(false);
                                 tilName.setError(getString(R.string.error_hint));
                             } else {
-                                positiveButton.setEnabled(true);
+                                if (!isEmptyDate() && isRightDate()) {
+                                    positiveButton.setEnabled(true);
+                                }
                                 tilName.setErrorEnabled(false);
                             }
                         }
@@ -151,9 +161,33 @@ public class NewPersonDialogFragment extends DialogFragment implements
                     });
                 }
 
+                etDate.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        if (!isEmptyDate() && isRightDate()) {
+                            positiveButton.setEnabled(true);
+                            tilDate.setErrorEnabled(false);
+                        } else if (isEmptyDate()) {
+                            positiveButton.setEnabled(false);
+                            tilDate.setError("Wrong date");
+                        } else if (!isRightDate()) {
+                            positiveButton.setEnabled(false);
+                            tilDate.setError("You aren't Vanga");
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
             }
         });
-
         return alertDialog;
     }
 
@@ -174,5 +208,14 @@ public class NewPersonDialogFragment extends DialogFragment implements
         void onPersonAdded(Person person);
 
         void onPersonAddedCancel();
+    }
+
+    private boolean isEmptyDate() {
+        return TextUtils.isEmpty(etDate.getText().toString());
+    }
+
+    private boolean isRightDate() {
+        long today = Calendar.getInstance().getTimeInMillis();
+        return today >= calendar.getTimeInMillis();
     }
 }

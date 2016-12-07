@@ -98,6 +98,18 @@ public class Person implements Item {
         calendar.setTimeInMillis(date);
         return calendar.get(Calendar.MONTH);
     }
+
+    public int getDay (long date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date);
+        return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    public int getYear (long date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date);
+        return calendar.get(Calendar.YEAR);
+    }
 }
 
 

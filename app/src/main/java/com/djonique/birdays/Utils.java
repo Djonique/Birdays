@@ -46,4 +46,17 @@ public class Utils {
 
         return thisMonth;
     }
+
+    public static int getAgeCircleColor(int age) {
+        int ageCircleColorResID;
+        if (age < 10) ageCircleColorResID = R.color.age1;
+        else if (age >= 10 && age < 20) ageCircleColorResID = R.color.age2;
+        else if (age >= 20 && age < 30) ageCircleColorResID = R.color.age3;
+        else if (age >= 30 && age < 40) ageCircleColorResID = R.color.age4;
+        else if (age >= 40 && age < 50) ageCircleColorResID = R.color.age5;
+        else if (age >= 50 && age < 60) ageCircleColorResID = R.color.age6;
+        else if (age >= 60 && age < 70) ageCircleColorResID = R.color.age7;
+        else ageCircleColorResID = R.color.age8;
+        return ageCircleColorResID;
+    }
 }

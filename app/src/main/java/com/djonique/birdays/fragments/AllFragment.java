@@ -81,6 +81,11 @@ public class AllFragment extends Fragment {
                 if (newPerson.getMonth(newPerson.getDate()) < person.getMonth(person.getDate())) {
                     position = i;
                     break;
+                } else if (newPerson.getMonth(newPerson.getDate()) == person.getMonth(person.getDate())) {
+                    if (newPerson.getDay(newPerson.getDate()) < person.getDay(person.getDate())) {
+                        position = i;
+                        break;
+                    }
                 }
             }
         }
@@ -109,14 +114,12 @@ public class AllFragment extends Fragment {
     public void removePersonDialog(final int location) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-
         Item item = adapter.getItem(location);
 
         // TODO доработать текст сообщения
 
         Person personText = ((Person) item);
         builder.setMessage(getString(R.string.delete_record_text) + " " + personText.getName());
-
 
         if (item.isPerson()) {
             Person person = ((Person) item);
@@ -158,7 +161,6 @@ public class AllFragment extends Fragment {
                     });
 
                     snackbar.show();
-
                     dialog.dismiss();
                 }
             });

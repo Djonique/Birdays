@@ -67,7 +67,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         context = parent.getContext();
 
         View view = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.card_view_description, parent, false);
+                R.layout.description_card_view, parent, false);
 
         return new CardViewHolder(view);
     }
@@ -78,19 +78,18 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         final Person person = (Person) item;
 
         holder.tvName.setText(person.getName());
-        if (person.getDate() != 0) {
-            holder.tvDate.setText(Utils.getDate(person.getDate()));
-            String age = context.getString(R.string.age_text) + Integer.toString(person.getAge());
-            holder.tvAge.setText(age);
-        }
+        holder.tvDate.setText(Utils.getDate(person.getDate()));
+        String age = context.getString(R.string.age_text) + Integer.toString(person.getAge());
+        holder.tvAge.setText(age);
 
         if (person.getPhoneNumber() != 0) {
-
+            holder.btnPhone.setColorFilter(Color.rgb(156, 39, 176));
+            holder.btnSMS.setColorFilter(Color.rgb(156, 39, 176));
             holder.btnPhone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Animation animation = AnimationUtils.loadAnimation(context, R.anim.icon_click_anim);
-                    holder.btnPhone.startAnimation(animation);
+                    //Animation animation = AnimationUtils.loadAnimation(context, R.anim.icon_click_anim);
+                    //holder.btnPhone.startAnimation(animation);
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(TEL + person.getPhoneNumber()));
                     context.startActivity(intent);
                 }
@@ -99,8 +98,8 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnSMS.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Animation animation = AnimationUtils.loadAnimation(context, R.anim.icon_click_anim);
-                    holder.btnSMS.startAnimation(animation);
+                    //Animation animation = AnimationUtils.loadAnimation(context, R.anim.icon_click_anim);
+                    //holder.btnSMS.startAnimation(animation);
                     long phoneNumber = person.getPhoneNumber();
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setType(TYPE_SMS);
@@ -112,17 +111,20 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
         } else {
             holder.btnPhone.setEnabled(true);
-            holder.btnSMS.setEnabled(true);
             holder.btnPhone.setColorFilter(Color.rgb(224, 224, 224));
+            holder.btnPhone.setClickable(false);
+            holder.btnSMS.setEnabled(true);
             holder.btnSMS.setColorFilter(Color.rgb(224, 224, 224));
+            holder.btnSMS.setClickable(false);
         }
 
         if (!person.getEmail().equals(" ")) {
+            holder.btnEmail.setColorFilter(Color.rgb(156, 39, 176));
             holder.btnEmail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Animation animation = AnimationUtils.loadAnimation(context, R.anim.icon_click_anim);
-                    holder.btnEmail.startAnimation(animation);
+                    //Animation animation = AnimationUtils.loadAnimation(context, R.anim.icon_click_anim);
+                    //holder.btnEmail.startAnimation(animation);
                     String email = person.getEmail();
                     Intent intent = new Intent(Intent.ACTION_SENDTO);
                     intent.setType(TYPE_EMAIL);
@@ -135,6 +137,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         } else {
             holder.btnEmail.setEnabled(true);
             holder.btnEmail.setColorFilter(Color.rgb(224, 224, 224));
+            holder.btnEmail.setClickable(false);
         }
     }
 
@@ -143,7 +146,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         return items.size();
     }
 
-     public void removePerson(long timeStamp) {
+    public void removePerson(long timeStamp) {
 
         for (int i = 0; i < getItemCount(); i++) {
             Item item = getItem(i);
