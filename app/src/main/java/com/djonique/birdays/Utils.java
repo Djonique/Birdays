@@ -32,6 +32,24 @@ public class Utils {
         return age;
     }
 
+    public static int getAge(long date) {
+        Calendar birthdayDate = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        birthdayDate.setTimeInMillis(date);
+
+        int age = today.get(Calendar.YEAR) - birthdayDate.get(Calendar.YEAR);
+
+        if (today.get(Calendar.MONTH) < birthdayDate.get(Calendar.MONTH)) {
+            age--;
+        } else if ((today.get(Calendar.MONTH) == birthdayDate.get(Calendar.MONTH)) &&
+                (today.get(Calendar.DAY_OF_MONTH) < birthdayDate.get(Calendar.DAY_OF_MONTH))) {
+            age--;
+        }
+
+        return age;
+    }
+
     public static boolean isCurrentMonth(long date) {
         boolean thisMonth = false;
 

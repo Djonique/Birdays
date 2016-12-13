@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_DATE = "date";
-    public static final String COLUMN_AGE = "age";
+    // public static final String COLUMN_AGE = "age";
     public static final String COLUMN_PHONE = "phone";
     public static final String COLUMN_EMAIL = "email";
     public static final String COLUMN_TIME_STAMP = "time_stamp";
@@ -27,7 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NAME + " TEXT, "
             + COLUMN_DATE + " INTEGER, "
-            + COLUMN_AGE + " INTEGER, "
+            // + COLUMN_AGE + " INTEGER, "
             + COLUMN_PHONE + " INTEGER, "
             + COLUMN_EMAIL + " TEXT, "
             + COLUMN_TIME_STAMP + " INTEGER, "
@@ -67,7 +67,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, person.getName());
         cv.put(COLUMN_DATE, person.getDate());
-        cv.put(COLUMN_AGE, person.getAge());
+        //cv.put(COLUMN_AGE, person.getAge());
         cv.put(COLUMN_PHONE, person.getPhoneNumber());
         cv.put(COLUMN_EMAIL, person.getEmail());
         cv.put(COLUMN_TIME_STAMP, person.getTimeStamp());

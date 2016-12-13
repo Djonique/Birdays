@@ -223,7 +223,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_star_white_24dp"
+        android:src="@drawable/ic_create_white_24dp"
         app:layout_anchor="@id/rootRelative"
         app:layout_anchorGravity="bottom|right|end" />
 

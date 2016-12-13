@@ -80,13 +80,16 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         Item item = getItem(position);
         final Person person = ((Person) item);
 
+        long date = person.getDate();
+        final int age = Utils.getAge(date);
+
         holder.tvName.setText(person.getName());
-        holder.tvDate.setText(Utils.getDate(person.getDate()));
-        String age = Integer.toString(person.getAge());
+        holder.tvDate.setText(Utils.getDate(date));
+
         GradientDrawable ageCircle = (GradientDrawable) holder.tvAge.getBackground();
-        int ageCircleColor = ContextCompat.getColor(context, Utils.getAgeCircleColor(person.getAge()));
+        int ageCircleColor = ContextCompat.getColor(context, Utils.getAgeCircleColor(age));
         ageCircle.setColor(ageCircleColor);
-        holder.tvAge.setText(age);
+        holder.tvAge.setText(Integer.toString(age));
 
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -111,7 +114,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
                 intent.putExtra(DETAIL_PHONE, person.getPhoneNumber());
                 intent.putExtra(DETAIL_EMAIL, person.getEmail());
                 intent.putExtra(DETAIL_DATE, person.getDate());
-                intent.putExtra(DETAIL_AGE, person.getAge());
+                intent.putExtra(DETAIL_AGE, age);
                 context.startActivity(intent);
             }
         });

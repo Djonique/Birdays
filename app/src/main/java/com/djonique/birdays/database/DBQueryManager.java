@@ -9,6 +9,8 @@ import com.djonique.birdays.model.Person;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.djonique.birdays.R.string.age;
+
 public class DBQueryManager {
 
     private SQLiteDatabase database;
@@ -26,12 +28,12 @@ public class DBQueryManager {
         if (c.moveToFirst()) {
             String name = c.getString(c.getColumnIndex(DBHelper.COLUMN_NAME));
             long date = c.getLong(c.getColumnIndex(DBHelper.COLUMN_DATE));
-            int age = c.getInt(c.getColumnIndex(DBHelper.COLUMN_AGE));
+            // int age = c.getInt(c.getColumnIndex(DBHelper.COLUMN_AGE));
             long phone = c.getLong(c.getColumnIndex(DBHelper.COLUMN_PHONE));
             String email = c.getString(c.getColumnIndex(DBHelper.COLUMN_EMAIL));
             String lowerCaseName = c.getString(c.getColumnIndex(DBHelper.COLUMN_LOWER_CASE_NAME));
 
-            person = new Person(name, date, age, phone, email, timeStamp, lowerCaseName);
+            person = new Person(name, date, phone, email, timeStamp, lowerCaseName);
         }
         c.close();
 
@@ -48,13 +50,13 @@ public class DBQueryManager {
             do {
                 String name = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_NAME));
                 long date = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_DATE));
-                int age = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_AGE));
+                //int age = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_AGE));
                 long phone = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_PHONE));
                 String email = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_EMAIL));
                 long timeStamp = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_TIME_STAMP));
                 String lowerCaseName = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_LOWER_CASE_NAME));
 
-                Person person = new Person(name, date, age, phone, email, timeStamp, lowerCaseName);
+                Person person = new Person(name, date, phone, email, timeStamp, lowerCaseName);
                 persons.add(person);
 
             } while (cursor.moveToNext());
@@ -74,13 +76,13 @@ public class DBQueryManager {
             do {
                 String name = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_NAME));
                 long date = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_DATE));
-                int age = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_AGE));
+                //int age = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_AGE));
                 long phone = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_PHONE));
                 String email = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_EMAIL));
                 long timeStamp = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_TIME_STAMP));
                 String lowerCaseName = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_LOWER_CASE_NAME));
 
-                Person person = new Person(name, date, age, phone, email, timeStamp, lowerCaseName);
+                Person person = new Person(name, date, phone, email, timeStamp, lowerCaseName);
                 persons.add(person);
 
             } while (cursor.moveToNext());
@@ -101,14 +103,14 @@ public class DBQueryManager {
             do {
                 String name = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_NAME));
                 long date = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_DATE));
-                int age = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_AGE));
+                //int age = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_AGE));
                 long phone = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_PHONE));
                 String email = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_EMAIL));
                 long timeStamp = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_TIME_STAMP));
                 String lowerCaseName = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_LOWER_CASE_NAME));
 
                 if (Utils.isCurrentMonth(date)) {
-                    Person person = new Person(name, date, age, phone, email, timeStamp, lowerCaseName);
+                    Person person = new Person(name, date, phone, email, timeStamp, lowerCaseName);
                     persons.add(person);
                 }
 
@@ -129,14 +131,14 @@ public class DBQueryManager {
             do {
                 String name = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_NAME));
                 long date = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_DATE));
-                int age = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_AGE));
+                //int age = cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_AGE));
                 long phone = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_PHONE));
                 String email = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_EMAIL));
                 long timeStamp = cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_TIME_STAMP));
                 String lowerCaseName = cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_LOWER_CASE_NAME));
 
                 if (Utils.isCurrentMonth(date)) {
-                    Person person = new Person(name, date, age, phone, email, timeStamp,lowerCaseName);
+                    Person person = new Person(name, date, phone, email, timeStamp,lowerCaseName);
                     persons.add(person);
                 }
 

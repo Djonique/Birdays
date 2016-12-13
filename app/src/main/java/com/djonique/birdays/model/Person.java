@@ -6,7 +6,7 @@ import java.util.Date;
 public class Person implements Item {
     private String name;
     private long date;
-    private int age;
+    //private int age;
     private long phoneNumber;
     private String email;
     private long timeStamp;
@@ -21,11 +21,10 @@ public class Person implements Item {
         this.date = date;
     }
 
-    public Person(String name, long date, int age, long phoneNumber, String email, long timeStamp,
+    public Person(String name, long date, long phoneNumber, String email, long timeStamp,
                   String lowerCaseName) {
         this.name = name;
         this.date = date;
-        this.age = age;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.timeStamp = timeStamp;
@@ -62,14 +61,6 @@ public class Person implements Item {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public long getTimeStamp() {

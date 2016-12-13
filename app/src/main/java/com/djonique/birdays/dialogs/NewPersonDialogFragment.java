@@ -101,8 +101,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (!isEmptyDate()) {
                     long time = calendar.getTimeInMillis();
                     person.setDate(time);
-                    int age = Utils.getAge(year, month, day);
-                    person.setAge(age);
+                    //int age = Utils.getAge(year, month, day);
+                    //person.setAge(age);
                 }
 
                 if (etPhone != null && etPhone.length() != 0) {

@@ -53,7 +53,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:contentDescription="@string/add_from_contacts"
-            android:src="@drawable/add_from_contacts_icon"/>
+            android:src="@drawable/ic_contacts_purple_24dp"/>
 
     </LinearLayout>
 

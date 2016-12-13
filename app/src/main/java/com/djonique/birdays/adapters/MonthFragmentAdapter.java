@@ -78,8 +78,10 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         final Person person = (Person) item;
 
         holder.tvName.setText(person.getName());
-        holder.tvDate.setText(Utils.getDate(person.getDate()));
-        String age = context.getString(R.string.age_text) + Integer.toString(person.getAge());
+
+        long date = person.getDate();
+        holder.tvDate.setText(Utils.getDate(date));
+        String age = context.getString(R.string.age_text) + Integer.toString(Utils.getAge(date));
         holder.tvAge.setText(age);
 
         if (person.getPhoneNumber() != 0) {
