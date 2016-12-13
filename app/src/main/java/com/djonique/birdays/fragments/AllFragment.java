@@ -81,7 +81,8 @@ public class AllFragment extends Fragment {
                 if (newPerson.getMonth(newPerson.getDate()) < person.getMonth(person.getDate())) {
                     position = i;
                     break;
-                } else if (newPerson.getMonth(newPerson.getDate()) == person.getMonth(person.getDate())) {
+                } else if (newPerson.getMonth(newPerson.getDate()) ==
+                        person.getMonth(person.getDate())) {
                     if (newPerson.getDay(newPerson.getDate()) < person.getDay(person.getDate())) {
                         position = i;
                         break;
@@ -116,8 +117,6 @@ public class AllFragment extends Fragment {
 
         Item item = adapter.getItem(location);
 
-        // TODO доработать текст сообщения
-
         Person personText = ((Person) item);
         builder.setMessage(getString(R.string.delete_record_text) + " " + personText.getName());
 
@@ -145,20 +144,21 @@ public class AllFragment extends Fragment {
                         }
                     });
 
-                    snackbar.getView().addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-                        @Override
-                        public void onViewAttachedToWindow(View v) {
+                    snackbar.getView().addOnAttachStateChangeListener(
+                            new View.OnAttachStateChangeListener() {
+                                @Override
+                                public void onViewAttachedToWindow(View v) {
 
-                        }
+                                }
 
-                        @Override
-                        public void onViewDetachedFromWindow(View v) {
-                            if (isRemoved[0]) {
-                                activity.dbHelper.removePerson(timeStamp);
-                                deletingRecordListener.onRecordDeleted(timeStamp);
-                            }
-                        }
-                    });
+                                @Override
+                                public void onViewDetachedFromWindow(View v) {
+                                    if (isRemoved[0]) {
+                                        activity.dbHelper.removePerson(timeStamp);
+                                        deletingRecordListener.onRecordDeleted(timeStamp);
+                                    }
+                                }
+                            });
 
                     snackbar.show();
                     dialog.dismiss();
@@ -176,18 +176,18 @@ public class AllFragment extends Fragment {
         builder.show();
     }
 
-    public interface DeletingRecordListener{
-        void onRecordDeleted(long timeStamp);
-    }
-
     public void findPerson(String name) {
         adapter.removeAllPersons();
         List<Person> persons = new ArrayList<>();
         persons.addAll(activity.dbHelper.query().getSearchPerson(DBHelper.SELECTION_LIKE_NAME,
-                new String[] {"%" + name + "%"}, DBHelper.COLUMN_NAME));
+                new String[]{"%" + name + "%"}, DBHelper.COLUMN_NAME));
 
         for (int i = 0; i < persons.size(); i++) {
             addPerson(persons.get(i), false);
         }
+    }
+
+    public interface DeletingRecordListener {
+        void onRecordDeleted(long timeStamp);
     }
 }

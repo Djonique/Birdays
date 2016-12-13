@@ -6,7 +6,6 @@ import java.util.Date;
 public class Person implements Item {
     private String name;
     private long date;
-    //private int age;
     private long phoneNumber;
     private String email;
     private long timeStamp;
@@ -67,10 +66,6 @@ public class Person implements Item {
         return timeStamp;
     }
 
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
-    }
-
     public String getLowerCaseName() {
         return lowerCaseName;
     }
@@ -84,22 +79,16 @@ public class Person implements Item {
         return true;
     }
 
-    public int getMonth (long date) {
+    public int getMonth(long date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
         return calendar.get(Calendar.MONTH);
     }
 
-    public int getDay (long date) {
+    public int getDay(long date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
         return calendar.get(Calendar.DAY_OF_MONTH);
-    }
-
-    public int getYear (long date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(date);
-        return calendar.get(Calendar.YEAR);
     }
 }
 

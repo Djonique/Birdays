@@ -5,16 +5,11 @@
     <color name="colorPrimary">#9C27B0</color>
     <color name="colorPrimaryDark">#7B1FA2</color>
     <color name="colorAccent">#68EFAD</color>
-    <color name="black_color">#000</color>
-    <color name="white_color">#fff</color>
 
     <color name="primaryText">#212121</color>
     <color name="secondaryText">#757575</color>
-    <color name="disabled_color">#9E9E9E</color>
+    <color name="disabled">#9E9E9E</color>
     <color name="dividerColor">#E0E0E0</color>
-
-    <color name="background_color">#FAFAFA</color>
-    <color name="dialog_background_color">#F5F5F5</color>
     <color name="transparent">#80FFFFFF</color>
 
     <color name="age1">#F06292</color>

@@ -27,7 +27,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
     public static final String DATE_PICKER_FRAGMENT_TAG = "DatePickerFragment";
     private EditText etDate;
     private Calendar calendar;
-    private int year, month, day;
     private AddingPersonListener addingPersonListener;
 
     @Override
@@ -101,8 +100,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (!isEmptyDate()) {
                     long time = calendar.getTimeInMillis();
                     person.setDate(time);
-                    //int age = Utils.getAge(year, month, day);
-                    //person.setAge(age);
                 }
 
                 if (etPhone != null && etPhone.length() != 0) {
@@ -129,7 +126,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                final Button positiveButton = ((AlertDialog) dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+                final Button positiveButton =
+                        ((AlertDialog) dialog).getButton(DialogInterface.BUTTON_POSITIVE);
 
                 if (etName != null && etName.length() == 0) {
                     positiveButton.setEnabled(false);
@@ -194,20 +192,10 @@ public class NewPersonDialogFragment extends DialogFragment implements
     @Override
     public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view,
                           int yearPicked, int monthOfYear, int dayOfMonth) {
-        year = yearPicked;
-        month = monthOfYear;
-        day = dayOfMonth;
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, day);
+        calendar.set(Calendar.YEAR, yearPicked);
+        calendar.set(Calendar.MONTH, monthOfYear);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         etDate.setText(Utils.getDate(calendar.getTimeInMillis()));
-    }
-
-    public interface AddingPersonListener {
-
-        void onPersonAdded(Person person);
-
-        void onPersonAddedCancel();
     }
 
     private boolean isEmptyDate() {
@@ -217,5 +205,12 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private boolean isRightDate() {
         long today = Calendar.getInstance().getTimeInMillis();
         return today >= calendar.getTimeInMillis();
+    }
+
+    public interface AddingPersonListener {
+
+        void onPersonAdded(Person person);
+
+        void onPersonAddedCancel();
     }
 }

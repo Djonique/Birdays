@@ -9,12 +9,9 @@ public class Utils {
     public static String getDate(long date) {
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
         return dateFormat.format(date);
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-//        return sdf.format(date);
     }
 
-    // TODO не меняется возраст после даты дня рождения, возможно надо обновлять возраст в БД при каждой загрузке.
-    public static int getAge(int year, int month, int day) {
+    /*public static int getAge(int year, int month, int day) {
         Calendar dayOfBirthday = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
 
@@ -31,7 +28,7 @@ public class Utils {
 
         return age;
     }
-
+*/
     public static int getAge(long date) {
         Calendar birthdayDate = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
@@ -46,7 +43,6 @@ public class Utils {
                 (today.get(Calendar.DAY_OF_MONTH) < birthdayDate.get(Calendar.DAY_OF_MONTH))) {
             age--;
         }
-
         return age;
     }
 

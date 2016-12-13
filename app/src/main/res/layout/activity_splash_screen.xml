@@ -1,16 +1,16 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SplashFragment"
     android:background="@android:color/white">
 
     <TextView
+        android:id="@+id/tvSplashScreen"
+        style="@style/SplashTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/splash_screen_text"
-        android:id="@+id/tvSplashScreen"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        style="@style/SplashTextStyle"/>
+        android:layout_centerVertical="true"
+        android:text="@string/splash_screen_text"/>
 </RelativeLayout>

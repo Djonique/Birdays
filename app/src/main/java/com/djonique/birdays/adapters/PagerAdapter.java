@@ -17,29 +17,28 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public static final int MONTH_FRAGMENT_POSITION = 0;
     public static final int ALL_FRAGMENT_POSITION = 1;
     public static final int FAMOUS_FRAGMENT_POSITION = 2;
+    private MonthFragment monthFragment;
+    private AllFragment allFragment;
+    private FamousFragment famousFragment;
     private Context context;
-    private MonthFragment mf;
-    private AllFragment af;
-    private FamousFragment ff;
 
     public PagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
-        mf = new MonthFragment();
-        af = new AllFragment();
-        ff = new FamousFragment();
-
+        monthFragment = new MonthFragment();
+        allFragment = new AllFragment();
+        famousFragment = new FamousFragment();
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return mf;
+                return monthFragment;
             case 1:
-                return af;
+                return allFragment;
             case 2:
-                return ff;
+                return famousFragment;
             default:
                 return null;
         }
@@ -63,51 +62,9 @@ public class PagerAdapter extends FragmentPagerAdapter {
         return null;
     }
 
-    public String getMonth() {
-
-        String month = context.getString(R.string.month);
+    private String getMonth() {
+        String[] months = context.getResources().getStringArray(R.array.months);
         Calendar today = Calendar.getInstance();
-
-        switch (today.get(Calendar.MONTH)) {
-            case 0:
-                month = context.getString(R.string.january);
-                break;
-            case 1:
-                month = context.getString(R.string.february);
-                break;
-            case 2:
-                month = context.getString(R.string.march);
-                break;
-            case 3:
-                month = context.getString(R.string.april);
-                break;
-            case 4:
-                month = context.getString(R.string.may);
-                break;
-            case 5:
-                month = context.getString(R.string.june);
-                break;
-            case 6:
-                month = context.getString(R.string.july);
-                break;
-            case 7:
-                month = context.getString(R.string.august);
-                break;
-            case 8:
-                month = context.getString(R.string.september);
-                break;
-            case 9:
-                month = context.getString(R.string.october);
-                break;
-            case 10:
-                month = context.getString(R.string.november);
-                break;
-            case 11:
-                month = context.getString(R.string.december);
-                break;
-            default:
-                return month;
-        }
-        return month;
+        return months[today.get(Calendar.MONTH)];
     }
 }

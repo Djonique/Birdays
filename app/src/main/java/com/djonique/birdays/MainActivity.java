@@ -27,16 +27,10 @@ public class MainActivity extends AppCompatActivity implements
 
     public static final String NEW_PERSON_DIALOG_TAG = "NewPersonDialogFragment";
     public DBHelper dbHelper;
-    private TabLayout tabLayout;
-    private Toolbar toolbar;
-    private FloatingActionButton fab;
-    private FragmentManager fragmentManager;
-    private PagerAdapter pagerAdapter;
-    private SearchView searchView;
-
     MonthFragment monthFragment;
     AllFragment allFragment;
     FamousFragment famousFragment;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,31 +38,30 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         dbHelper = new DBHelper(getApplicationContext());
-
         fragmentManager = getFragmentManager();
+
         initUI();
     }
 
     private void initUI() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), MainActivity.this);
-
-        assert viewPager != null;
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(2);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
 
-        monthFragment = ((MonthFragment) pagerAdapter.getItem(PagerAdapter.MONTH_FRAGMENT_POSITION));
+        monthFragment = ((MonthFragment)
+                pagerAdapter.getItem(PagerAdapter.MONTH_FRAGMENT_POSITION));
         allFragment = ((AllFragment) pagerAdapter.getItem(PagerAdapter.ALL_FRAGMENT_POSITION));
-        famousFragment = ((FamousFragment) pagerAdapter.getItem(PagerAdapter.FAMOUS_FRAGMENT_POSITION));
+        famousFragment = ((FamousFragment)
+                pagerAdapter.getItem(PagerAdapter.FAMOUS_FRAGMENT_POSITION));
 
-        searchView = ((SearchView) findViewById(R.id.searchView));
+        SearchView searchView = ((SearchView) findViewById(R.id.searchView));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -85,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

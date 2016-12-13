@@ -20,22 +20,22 @@
     <TextView
         android:id="@+id/tvListName"
         style="@style/primaryTextStyle"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="56dp"
         android:layout_marginStart="56dp"/>
 
     <TextView
         android:id="@+id/tvListDate"
-        android:layout_below="@+id/tvListName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         style="@style/secondaryTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvListName"
         android:layout_marginLeft="56dp"
         android:layout_marginStart="56dp"
         android:text="@string/undefined"/>

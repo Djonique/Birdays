@@ -125,6 +125,13 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         return items.size();
     }
 
+    public void removeAllPersons() {
+        if (getItemCount() != 0) {
+            items = new ArrayList<>();
+            notifyDataSetChanged();
+        }
+    }
+
     public static class ListViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvDate, tvAge;
 
@@ -133,13 +140,6 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
             tvName = (TextView) itemView.findViewById(R.id.tvListName);
             tvDate = (TextView) itemView.findViewById(R.id.tvListDate);
             tvAge = (TextView) itemView.findViewById(R.id.tvListAge);
-        }
-    }
-
-    public void removeAllPersons() {
-        if (getItemCount() != 0) {
-            items = new ArrayList<>();
-            notifyDataSetChanged();
         }
     }
 }

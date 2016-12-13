@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -34,8 +35,8 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginStart="72dp"
                     android:text="@string/name"
-                    android:textColor="@color/white_color"
-                    android:textSize="34sp" />
+                    android:textColor="@android:color/white"
+                    android:textSize="34sp"/>
             </ScrollView>
 
         </RelativeLayout>
@@ -66,7 +67,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="72dp"
                     android:layout_marginStart="72dp"
-                    android:text="New Text" />
+                    android:text="New Text"/>
 
                 <ImageView
                     android:id="@+id/ivPhoneIcon"
@@ -79,7 +80,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
                     android:contentDescription="@string/phone"
-                    android:src="@drawable/ic_call_purple_24dp" />
+                    android:src="@drawable/ic_call_purple_24dp"/>
 
                 <TextView
                     android:id="@+id/tvDetailPhoneDescription"
@@ -89,7 +90,7 @@
                     android:layout_alignLeft="@+id/tvDetailPhone"
                     android:layout_alignStart="@+id/tvDetailPhone"
                     android:layout_below="@+id/tvDetailPhone"
-                    android:text="@string/phone" />
+                    android:text="@string/phone"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -113,7 +114,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
                     android:contentDescription="@string/email"
-                    android:src="@drawable/ic_email_purple_24dp" />
+                    android:src="@drawable/ic_email_purple_24dp"/>
 
                 <TextView
                     android:id="@+id/tvDetailEmail"
@@ -125,7 +126,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="72dp"
                     android:layout_marginStart="72dp"
-                    android:text="New Text" />
+                    android:text="New Text"/>
 
                 <TextView
                     android:id="@+id/tvDetailEmailDescription"
@@ -135,7 +136,7 @@
                     android:layout_alignLeft="@+id/tvDetailEmail"
                     android:layout_alignStart="@+id/tvDetailEmail"
                     android:layout_below="@+id/tvDetailEmail"
-                    android:text="@string/email" />
+                    android:text="@string/email"/>
             </RelativeLayout>
 
             <View
@@ -147,7 +148,7 @@
                 android:layout_marginLeft="72dp"
                 android:layout_marginStart="72dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/dividerColor" />
+                android:background="@color/dividerColor"/>
 
             <RelativeLayout
                 android:id="@+id/rlDate"
@@ -166,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="72dp"
                     android:layout_marginStart="72dp"
-                    android:text="New Text" />
+                    android:text="New Text"/>
 
                 <TextView
                     android:id="@+id/tvDetailDateDescription"
@@ -176,7 +177,7 @@
                     android:layout_alignLeft="@+id/tvDetailDate"
                     android:layout_alignStart="@+id/tvDetailDate"
                     android:layout_below="@+id/tvDetailDate"
-                    android:text="@string/date" />
+                    android:text="@string/date"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -195,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="72dp"
                     android:layout_marginStart="72dp"
-                    android:text="New Text" />
+                    android:text="New Text"/>
 
                 <TextView
                     android:id="@+id/tvDetailAgeDescription"
@@ -205,7 +206,7 @@
                     android:layout_alignLeft="@+id/tvDetailAge"
                     android:layout_alignStart="@+id/tvDetailAge"
                     android:layout_below="@+id/tvDetailAge"
-                    android:text="@string/age" />
+                    android:text="@string/age"/>
             </RelativeLayout>
 
         </RelativeLayout>
@@ -213,7 +214,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbarDetail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 
@@ -221,10 +222,10 @@
         android:id="@+id/fabDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:src="@drawable/ic_create_white_24dp"
         app:layout_anchor="@id/rootRelative"
-        app:layout_anchorGravity="bottom|right|end" />
+        app:layout_anchorGravity="bottom|right|end"/>
 
 </android.support.design.widget.CoordinatorLayout>
