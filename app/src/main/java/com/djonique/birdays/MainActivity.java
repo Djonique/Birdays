@@ -31,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements
     AllFragment allFragment;
     FamousFragment famousFragment;
     private FragmentManager fragmentManager;
+    private FloatingActionButton fab;
+
+    public FloatingActionButton getFab() {
+        return fab;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,25 @@ public class MainActivity extends AppCompatActivity implements
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(2);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == PagerAdapter.FAMOUS_FRAGMENT_POSITION) {
+                    fab.hide();
+                } else fab.show();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
@@ -77,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
