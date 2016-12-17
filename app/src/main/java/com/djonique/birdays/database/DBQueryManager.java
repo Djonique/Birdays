@@ -13,7 +13,7 @@ public class DBQueryManager {
 
     private SQLiteDatabase database;
 
-    public DBQueryManager(SQLiteDatabase database) {
+    DBQueryManager(SQLiteDatabase database) {
         this.database = database;
     }
 
@@ -94,8 +94,7 @@ public class DBQueryManager {
 
         List<Person> persons = new ArrayList<>();
 
-        Cursor cursor = database.query(DBHelper.DB_PERSONS, null, null, null, null,
-                null, null);
+        Cursor cursor = database.query(DBHelper.DB_PERSONS, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -148,11 +147,10 @@ public class DBQueryManager {
         return persons;
     }
 
-    public List<Person> getFamousPerson(String selection, String[] selectionArgs, String orderBy) {
+    public List<Person> getFamousPerson() {
         List<Person> persons = new ArrayList<>();
 
-        Cursor cursor = database.query(DBHelper.DB_FAMOUS, null, selection, selectionArgs, null,
-                null, orderBy);
+        Cursor cursor = database.query(DBHelper.DB_FAMOUS, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {

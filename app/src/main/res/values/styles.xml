@@ -1,6 +1,5 @@
 <resources>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!--main app colors-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -32,11 +31,6 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">?android:textColorSecondary</item>
         <item name="textAllCaps">true</item>
-    </style>
-
-    <style name="SplashTextStyle">
-        <item name="android:textColor">@color/secondaryText</item>
-        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="primaryTextStyle">

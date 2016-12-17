@@ -38,7 +38,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         items = new ArrayList<>();
     }
 
-    public AllFragment getAllFragment() {
+    private AllFragment getAllFragment() {
         return allFragment;
     }
 
@@ -65,15 +65,14 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
 
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.description_list_view,
-                parent, false);
         context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.description_list_view,
+                parent, false);
         return new ListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ListViewHolder holder, final int position) {
-
         holder.itemView.setEnabled(true);
         View itemView = holder.itemView;
 
@@ -89,7 +88,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         GradientDrawable ageCircle = (GradientDrawable) holder.tvAge.getBackground();
         int ageCircleColor = ContextCompat.getColor(context, Utils.getAgeCircleColor(age));
         ageCircle.setColor(ageCircleColor);
-        holder.tvAge.setText(Integer.toString(age));
+        holder.tvAge.setText(String.valueOf(age));
 
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -132,10 +131,10 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         }
     }
 
-    public static class ListViewHolder extends RecyclerView.ViewHolder {
+    static class ListViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvDate, tvAge;
 
-        public ListViewHolder(View itemView) {
+        ListViewHolder(View itemView) {
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tvListName);
             tvDate = (TextView) itemView.findViewById(R.id.tvListDate);

@@ -9,20 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.djonique.birdays.MainActivity;
-import com.djonique.birdays.database.DBHelper;
-import com.djonique.birdays.model.Person;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.MonthFragmentAdapter;
+import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.model.Person;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MonthFragment extends Fragment {
 
     public MainActivity activity;
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager manager;
     private MonthFragmentAdapter adapter;
 
     @Override
@@ -40,13 +38,11 @@ public class MonthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-
-        manager = new LinearLayoutManager(getActivity());
-
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(manager);
 
-        adapter = new MonthFragmentAdapter(this);
+        adapter = new MonthFragmentAdapter();
         recyclerView.setAdapter(adapter);
 
         return view;

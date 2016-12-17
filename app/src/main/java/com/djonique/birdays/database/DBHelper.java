@@ -10,18 +10,18 @@ import com.djonique.birdays.model.Person;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
-    private static final String DB_NAME = "myDB";
+    public static final String COLUMN_NAME = "name";
     static final String DB_PERSONS = "personsDB";
     static final String DB_FAMOUS = "famousDB";
-
-    public static final String COLUMN_NAME = "name";
     static final String COLUMN_DATE = "date";
     static final String COLUMN_PHONE = "phone";
     static final String COLUMN_EMAIL = "email";
     static final String COLUMN_TIME_STAMP = "time_stamp";
     static final String COLUMN_LOWER_CASE_NAME = "lower_case_name";
-
+    public static final String SELECTION_LIKE_NAME = COLUMN_LOWER_CASE_NAME + " LIKE ?";
+    static final String SELECTION_TIME_STAMP = COLUMN_TIME_STAMP + " = ?";
+    private static final int DATABASE_VERSION = 1;
+    private static final String DB_NAME = "myDB";
     private static final String DB_PERSONS_CREATE = "CREATE TABLE " + DB_PERSONS + " ("
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NAME + " TEXT, "
@@ -31,33 +31,29 @@ public class DBHelper extends SQLiteOpenHelper {
             + COLUMN_TIME_STAMP + " INTEGER, "
             + COLUMN_LOWER_CASE_NAME + " TEXT"
             + ");";
-
-    private static final String DB_FAMOUS_CREATE = "CREATE TABLE " + DB_PERSONS + " ("
+    private static final String DB_FAMOUS_CREATE = "CREATE TABLE " + DB_FAMOUS + " ("
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NAME + " TEXT, "
-            + COLUMN_DATE + " INTEGER, "
+            + COLUMN_DATE + " INTEGER"
             + ");";
-
-    static final String SELECTION_TIME_STAMP = COLUMN_TIME_STAMP + " = ?";
-    public static final String SELECTION_LIKE_NAME = COLUMN_LOWER_CASE_NAME + " LIKE ?";
-
     private DBQueryManager dbQueryManager;
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
-        dbQueryManager = new DBQueryManager(getReadableDatabase());
+        dbQueryManager = new DBQueryManager(getWritableDatabase());
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DB_PERSONS_CREATE);
         db.execSQL(DB_FAMOUS_CREATE);
+        initFamousDB(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE" + DB_PERSONS);
-        db.execSQL("DROP TABLE" + DB_FAMOUS);
+        db.execSQL("DROP TABLE IF EXISTS " + DB_PERSONS);
+        db.execSQL("DROP TABLE IF EXISTS " + DB_FAMOUS);
         onCreate(db);
     }
 
@@ -72,11 +68,11 @@ public class DBHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert(DB_PERSONS, null, cv);
     }
 
-    public void addFamous(Person person) {
+    private void addFamous(SQLiteDatabase db, Person person) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, person.getName());
         cv.put(COLUMN_DATE, person.getDate());
-        getWritableDatabase().insert(DB_FAMOUS, null, cv);
+        db.insert(DB_FAMOUS, null, cv);
     }
 
     public DBQueryManager query() {
@@ -85,5 +81,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void removePerson(long timeStamp) {
         getWritableDatabase().delete(DB_PERSONS, SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)});
+    }
+
+    private void initFamousDB(SQLiteDatabase db) {
+        // 16 december
+        addFamous(db, new Person("Ludwig van Beethoven", -6281193600000L));
+        // 17 december
+        addFamous(db, new Person("Humphry Davy", -6028646400000L));
+        addFamous(db, new Person("Jorge Mario Bergoglio (Franciscus)", -1042675200000L));
+        addFamous(db, new Person("Milla Jovovich", 188006400000L));
     }
 }

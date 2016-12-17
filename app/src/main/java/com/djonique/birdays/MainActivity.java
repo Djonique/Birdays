@@ -32,10 +32,7 @@ public class MainActivity extends AppCompatActivity implements
     FamousFragment famousFragment;
     private FragmentManager fragmentManager;
     private FloatingActionButton fab;
-
-    public FloatingActionButton getFab() {
-        return fab;
-    }
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +64,11 @@ public class MainActivity extends AppCompatActivity implements
             public void onPageSelected(int position) {
                 if (position == PagerAdapter.FAMOUS_FRAGMENT_POSITION) {
                     fab.hide();
-                } else fab.show();
+                    searchView.setVisibility(View.INVISIBLE);
+                } else {
+                    fab.show();
+                    searchView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements
         famousFragment = ((FamousFragment)
                 pagerAdapter.getItem(PagerAdapter.FAMOUS_FRAGMENT_POSITION));
 
-        SearchView searchView = ((SearchView) findViewById(R.id.searchView));
+        searchView = ((SearchView) findViewById(R.id.searchView));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -121,11 +122,7 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
     @Override

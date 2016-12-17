@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.Utils;
-import com.djonique.birdays.fragments.MonthFragment;
 import com.djonique.birdays.model.Item;
 import com.djonique.birdays.model.Person;
 
@@ -29,14 +28,14 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     private static final String ADDRESS = "address";
     private static final String SMSTO = "smsto:";
     private static final String TEL = "tel: ";
-    MonthFragment monthFragment;
+
     private Context context;
     private List<Item> items;
+
     private int disabled = Color.rgb(224, 224, 224);
     private int enabled = Color.rgb(156, 39, 176);
 
-    public MonthFragmentAdapter(MonthFragment monthFragment) {
-        this.monthFragment = monthFragment;
+    public MonthFragmentAdapter() {
         items = new ArrayList<>();
     }
 
@@ -62,17 +61,14 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         context = parent.getContext();
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(
+        View view = LayoutInflater.from(context).inflate(
                 R.layout.description_card_view, parent, false);
-
         return new CardViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final MonthFragmentAdapter.CardViewHolder holder, int position) {
+    public void onBindViewHolder(final CardViewHolder holder, int position) {
         final Item item = items.get(position);
         final Person person = (Person) item;
 
@@ -161,13 +157,13 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         }
     }
 
-    public static class CardViewHolder extends RecyclerView.ViewHolder {
+    static class CardViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         TextView tvName, tvDate, tvAge;
         ImageButton btnPhone, btnEmail, btnSMS;
 
 
-        public CardViewHolder(View itemView) {
+        CardViewHolder(View itemView) {
             super(itemView);
             cardView = (CardView) itemView.findViewById(R.id.cardView);
             tvName = (TextView) itemView.findViewById(R.id.tvName);

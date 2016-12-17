@@ -1,6 +1,6 @@
 package com.djonique.birdays.fragments;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,18 +26,15 @@ import java.util.List;
 public class AllFragment extends Fragment {
 
     public MainActivity activity;
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager manager;
     private AllFragmentAdapter adapter;
     private DeletingRecordListener deletingRecordListener;
 
     @Override
-    // TODO разобраться с депрекейтед
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
         try {
-            deletingRecordListener = (DeletingRecordListener) activity;
+            deletingRecordListener = activity;
         } catch (ClassCastException e) {
             throw new ClassCastException();
         }
@@ -58,14 +55,11 @@ public class AllFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-
-        manager = new LinearLayoutManager(getActivity());
-
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(manager);
 
         adapter = new AllFragmentAdapter(this);
-
         recyclerView.setAdapter(adapter);
 
         return view;

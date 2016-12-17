@@ -11,24 +11,6 @@ public class Utils {
         return dateFormat.format(date);
     }
 
-    /*public static int getAge(int year, int month, int day) {
-        Calendar dayOfBirthday = Calendar.getInstance();
-        Calendar today = Calendar.getInstance();
-
-        dayOfBirthday.set(year, month, day);
-
-        int age = today.get(Calendar.YEAR) - dayOfBirthday.get(Calendar.YEAR);
-
-        if (today.get(Calendar.MONTH) < dayOfBirthday.get(Calendar.MONTH)) {
-            age--;
-        } else if ((today.get(Calendar.MONTH) == dayOfBirthday.get(Calendar.MONTH)) &&
-                (today.get(Calendar.DAY_OF_MONTH) < dayOfBirthday.get(Calendar.DAY_OF_MONTH))) {
-            age--;
-        }
-
-        return age;
-    }
-*/
     public static int getAge(long date) {
         Calendar birthdayDate = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
