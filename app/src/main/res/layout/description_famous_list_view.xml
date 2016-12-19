@@ -10,10 +10,11 @@
         android:id="@+id/tvListName"
         style="@style/primaryTextStyle"
         android:layout_width="wrap_content"
-        android:layout_height="22dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        android:fontFamily="sans-serif"/>
 
     <TextView
         android:id="@+id/tvListDate"
@@ -22,5 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/tvListName"/>
+        android:layout_below="@+id/tvListName"
+        android:fontFamily="sans-serif"/>
 </RelativeLayout>
