@@ -136,8 +136,8 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
 
         ListViewHolder(View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.tvListName);
-            tvDate = (TextView) itemView.findViewById(R.id.tvListDate);
+            tvName = (TextView) itemView.findViewById(R.id.tvPersonName);
+            tvDate = (TextView) itemView.findViewById(R.id.tvPersonDate);
             tvAge = (TextView) itemView.findViewById(R.id.tvListAge);
         }
     }

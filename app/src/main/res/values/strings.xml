@@ -1,5 +1,4 @@
 <resources>
-
     <!-- app splashscreen and toolbar text -->
     <string name="app_name">Birdays</string>
     <!--<string name="birthdays">Birthdays</string>-->

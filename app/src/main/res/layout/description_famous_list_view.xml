@@ -7,22 +7,16 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/tvListName"
+        android:id="@+id/tvFamousName"
         style="@style/primaryTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:fontFamily="sans-serif"/>
+        android:layout_alignParentTop="true"/>
 
     <TextView
-        android:id="@+id/tvListDate"
+        android:id="@+id/tvFamousDate"
         style="@style/secondaryTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/tvListName"
-        android:fontFamily="sans-serif"/>
+        android:layout_below="@+id/tvFamousName"/>
 </RelativeLayout>

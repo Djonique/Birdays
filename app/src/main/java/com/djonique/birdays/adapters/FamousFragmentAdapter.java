@@ -81,8 +81,8 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
 
         ListViewHolder(View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.tvListName);
-            tvDate = (TextView) itemView.findViewById(R.id.tvListDate);
+            tvName = (TextView) itemView.findViewById(R.id.tvFamousName);
+            tvDate = (TextView) itemView.findViewById(R.id.tvFamousDate);
         }
     }
 }
