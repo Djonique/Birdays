@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
+        final PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(2);
 
@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements
             }
 
             @Override
-            public void onPageSelected(int position) {
+            public void onPageSelected(final int position) {
+
                 if (position == PagerAdapter.FAMOUS_FRAGMENT_POSITION) {
                     fab.hide();
                     searchView.setVisibility(View.INVISIBLE);
@@ -73,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
 

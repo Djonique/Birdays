@@ -39,9 +39,8 @@ public class MonthFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(manager);
-
         adapter = new MonthFragmentAdapter();
         recyclerView.setAdapter(adapter);
 
@@ -52,7 +51,6 @@ public class MonthFragment extends Fragment {
         int position = -1;
 
         for (int i = 0; i < adapter.getItemCount(); i++) {
-
             Person person = ((Person) adapter.getItem(i));
             if (newPerson.getDate() < person.getDate()) {
                 position = i;

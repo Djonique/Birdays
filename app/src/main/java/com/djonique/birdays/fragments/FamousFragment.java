@@ -19,7 +19,7 @@ import com.djonique.birdays.model.Person;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FamousFragment extends Fragment{
+public class FamousFragment extends Fragment {
 
     private MainActivity activity;
     private FamousFragmentAdapter adapter;
@@ -56,9 +56,8 @@ public class FamousFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(manager);
-
         adapter = new FamousFragmentAdapter();
         recyclerView.setAdapter(adapter);
 

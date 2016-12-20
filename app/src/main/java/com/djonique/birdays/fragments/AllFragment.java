@@ -34,7 +34,7 @@ public class AllFragment extends Fragment {
         super.onAttach(context);
 
         try {
-            deletingRecordListener = activity;
+            deletingRecordListener = (MainActivity) getActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException();
         }
@@ -56,9 +56,8 @@ public class AllFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(manager);
-
         adapter = new AllFragmentAdapter(this);
         recyclerView.setAdapter(adapter);
 
@@ -116,9 +115,7 @@ public class AllFragment extends Fragment {
 
         if (item.isPerson()) {
             Person person = ((Person) item);
-
             final long timeStamp = person.getTimeStamp();
-
             final boolean[] isRemoved = {false};
 
             builder.setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
@@ -153,12 +150,10 @@ public class AllFragment extends Fragment {
                                     }
                                 }
                             });
-
                     snackbar.show();
                     dialog.dismiss();
                 }
             });
-
             builder.setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -166,7 +161,6 @@ public class AllFragment extends Fragment {
                 }
             });
         }
-
         builder.show();
     }
 
