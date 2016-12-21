@@ -14,16 +14,16 @@
         android:background="@drawable/age_circle"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:shadowColor="@android:color/black"
-        android:shadowRadius="2"
+        android:shadowColor="@color/secondaryText"
         android:shadowDx="2"
-        android:shadowDy="2"/>
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/tvPersonName"
-        style="@style/primaryTextStyle"
+        style="@style/primaryListTextStyle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"

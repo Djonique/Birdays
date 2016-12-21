@@ -26,29 +26,17 @@
 
             <TextView
                 android:id="@+id/tvName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/primaryText"
-                android:textSize="24sp"/>
+                style="@style/primaryCardTextStyle"/>
 
             <TextView
                 android:id="@+id/tvDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvName"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/secondaryText"
-                android:textSize="14sp"/>
+                style="@style/secondaryTextStyle"
+                android:layout_below="@+id/tvName"/>
 
             <TextView
                 android:id="@+id/tvAge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvDate"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/secondaryText"
-                android:textSize="14sp"/>
+                style="@style/secondaryTextStyle"
+                android:layout_below="@+id/tvDate"/>
 
         </RelativeLayout>
 
@@ -66,11 +54,7 @@
 
             <ImageButton
                 android:id="@+id/btnEmail"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
+                style="@style/cardImageButtonStyle"
                 android:src="@drawable/ic_email_purple_24dp"/>
 
             <View
@@ -81,11 +65,7 @@
 
             <ImageButton
                 android:id="@+id/btnSMS"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
+                style="@style/cardImageButtonStyle"
                 android:src="@drawable/ic_chat_purple_24dp"/>
 
             <View
@@ -96,11 +76,7 @@
 
             <ImageButton
                 android:id="@+id/btnPhone"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
+                style="@style/cardImageButtonStyle"
                 android:src="@drawable/ic_call_purple_24dp"/>
         </LinearLayout>
     </LinearLayout>

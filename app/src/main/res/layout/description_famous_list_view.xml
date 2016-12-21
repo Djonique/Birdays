@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tvFamousName"
-        style="@style/primaryTextStyle"
+        style="@style/primaryListTextStyle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"/>
