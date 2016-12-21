@@ -13,25 +13,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.Utils;
 import com.djonique.birdays.model.Item;
 import com.djonique.birdays.model.Person;
+import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdapter.CardViewHolder> {
 
-    private static final String TYPE_EMAIL = "message/rfc822";
-    private static final String MAILTO = "mailto:";
-    private static final String TYPE_SMS = "vnd.android-dir/mms-sms";
-    private static final String ADDRESS = "address";
-    private static final String SMSTO = "smsto:";
-    private static final String TEL = "tel: ";
+public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdapter.CardViewHolder> {
 
     private Context context;
     private List<Item> items;
-
     private int disabled = Color.rgb(224, 224, 224);
     private int enabled = Color.rgb(156, 39, 176);
 
@@ -85,7 +79,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnPhone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(TEL + person.getPhoneNumber()));
+                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(ConstantManager.TEL + person.getPhoneNumber()));
                     context.startActivity(intent);
                 }
             });
@@ -95,9 +89,9 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                 public void onClick(View v) {
                     long phoneNumber = person.getPhoneNumber();
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setType(TYPE_SMS);
-                    intent.putExtra(ADDRESS, phoneNumber);
-                    intent.setData(Uri.parse(SMSTO + phoneNumber));
+                    intent.setType(ConstantManager.TYPE_SMS);
+                    intent.putExtra(ConstantManager.ADDRESS, phoneNumber);
+                    intent.setData(Uri.parse(ConstantManager.SMSTO + phoneNumber));
                     context.startActivity(intent);
                 }
             });
@@ -118,10 +112,10 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                 public void onClick(View v) {
                     String email = person.getEmail();
                     Intent intent = new Intent(Intent.ACTION_SENDTO);
-                    intent.setType(TYPE_EMAIL);
+                    intent.setType(ConstantManager.TYPE_EMAIL);
                     intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
                     intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.happy_birthday));
-                    intent.setData(Uri.parse(MAILTO + email));
+                    intent.setData(Uri.parse(ConstantManager.MAILTO + email));
                     context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_email)));
                 }
             });

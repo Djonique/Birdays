@@ -14,7 +14,7 @@
             android:id="@+id/rootRelative"
             android:layout_width="match_parent"
             android:layout_height="192dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/color_primary"
             android:orientation="vertical"
             android:paddingBottom="8dp"
             android:paddingTop="48dp">
@@ -148,7 +148,7 @@
                 android:layout_marginLeft="72dp"
                 android:layout_marginStart="72dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/dividerColor"/>
+                android:background="@color/divider_color"/>
 
             <RelativeLayout
                 android:id="@+id/rlDate"

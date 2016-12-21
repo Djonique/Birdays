@@ -1,4 +1,4 @@
-package com.djonique.birdays;
+package com.djonique.birdays.behaviors;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

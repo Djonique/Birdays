@@ -1,12 +1,22 @@
 package com.djonique.birdays.dialogs;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -16,25 +26,27 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.Utils;
 import com.djonique.birdays.model.Person;
+import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Utils;
 
 import java.util.Calendar;
+
+
 
 public class NewPersonDialogFragment extends DialogFragment implements
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
-    public static final String DATE_PICKER_FRAGMENT_TAG = "DatePickerFragment";
-    private EditText etDate;
+    private EditText etPhone, etEmail, etDate;
     private Calendar calendar;
     private AddingPersonListener addingPersonListener;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
         try {
-            addingPersonListener = (AddingPersonListener) activity;
+            addingPersonListener = (AddingPersonListener) getActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException();
         }
@@ -56,10 +68,28 @@ public class NewPersonDialogFragment extends DialogFragment implements
         final EditText etName = tilName.getEditText();
 
         final TextInputLayout tilPhone = (TextInputLayout) container.findViewById(R.id.tilPhone);
-        final EditText etPhone = tilPhone.getEditText();
+        etPhone = tilPhone.getEditText();
+
+        Button addFromContactsButton =
+                ((Button) container.findViewById(R.id.addFromContactsDialogButton));
+        addFromContactsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ContextCompat.checkSelfPermission(getActivity(),
+                        Manifest.permission.READ_CONTACTS) ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                    startActivityForResult(intent, ConstantManager.REQUEST_READ_CONTACTS);
+                } else {
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{Manifest.permission.READ_CONTACTS},
+                            ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE);
+                }
+            }
+        });
 
         final TextInputLayout tilEmail = (TextInputLayout) container.findViewById(R.id.tilEmail);
-        final EditText etEmail = tilEmail.getEditText();
+        etEmail = tilEmail.getEditText();
 
         final TextInputLayout tilDate = ((TextInputLayout) container.findViewById(R.id.tilDate));
         etDate = (EditText) container.findViewById(R.id.etDate);
@@ -83,7 +113,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                                 calendar.get(Calendar.DAY_OF_MONTH)
                         );
 
-                dpd.show(getFragmentManager(), DATE_PICKER_FRAGMENT_TAG);
+                dpd.show(getFragmentManager(), ConstantManager.DATE_PICKER_FRAGMENT_TAG);
             }
         });
 
@@ -103,6 +133,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 }
 
                 if (etPhone != null && etPhone.length() != 0) {
+                    // TODO: 21.12.2016 БД должна хранить телефон в стринге
                     person.setPhoneNumber(Long.parseLong(etPhone.getText().toString()));
                 } else person.setPhoneNumber(0);
 
@@ -205,6 +236,59 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private boolean isRightDate() {
         long today = Calendar.getInstance().getTimeInMillis();
         return today >= calendar.getTimeInMillis();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Uri contactData = data.getData();
+            ContentResolver contentResolver = getActivity().getContentResolver();
+            Cursor cursor = contentResolver.query(contactData, null, null, null, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    String id = cursor.getString(
+                            cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                    etPhone.setText(getPhoneFromContacts(contentResolver, cursor, id));
+                    etEmail.setText(getEmailFromContacts(contentResolver, id));
+                }
+            }
+            cursor.close();
+        }
+    }
+
+    // Retrieves phone number from picked contact
+    private String getPhoneFromContacts(ContentResolver contentResolver, Cursor cursor, String id) {
+        String phoneNumber = "";
+        if (Integer.parseInt(cursor.getString(
+                cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+            Cursor phoneCursor = contentResolver.query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null,
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                    new String[]{id}, null);
+            if (phoneCursor.moveToFirst()) {
+                phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex
+                        (ContactsContract.CommonDataKinds.Phone.NUMBER));
+            }
+            phoneCursor.close();
+        }
+        return phoneNumber;
+    }
+
+    // Retrieves email from picked contact
+    private String getEmailFromContacts(ContentResolver contentResolver, String id) {
+        String email = "";
+        Cursor emailCursor = contentResolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI,
+                null,
+                ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?",
+                new String[]{id}, null);
+        if (emailCursor.moveToFirst()) {
+            email = emailCursor.getString(
+                    emailCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.DATA));
+        }
+        emailCursor.close();
+        return email;
     }
 
     public interface AddingPersonListener {

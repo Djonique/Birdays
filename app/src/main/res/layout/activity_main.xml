@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.djonique.birdays.MainActivity">
+    tools:context="com.djonique.birdays.activities.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -56,6 +56,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:elevation="6dp"
         android:src="@drawable/ic_add_white_24dp"
-        app:layout_behavior="com.djonique.birdays.ScrollAwareFABBehavior"/>
+        app:layout_behavior="com.djonique.birdays.behaviors.ScrollAwareFABBehavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

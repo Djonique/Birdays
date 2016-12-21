@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.djonique.birdays.DetailActivity;
+import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.R;
-import com.djonique.birdays.Utils;
+import com.djonique.birdays.utils.Utils;
 import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.model.Item;
 import com.djonique.birdays.model.Person;

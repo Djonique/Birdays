@@ -1,4 +1,4 @@
-package com.djonique.birdays;
+package com.djonique.birdays.activities;
 
 import android.app.DialogFragment;
 import android.app.FragmentManager;
@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.PagerAdapter;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.dialogs.NewPersonDialogFragment;
@@ -21,11 +22,12 @@ import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.fragments.FamousFragment;
 import com.djonique.birdays.fragments.MonthFragment;
 import com.djonique.birdays.model.Person;
+import com.djonique.birdays.utils.ConstantManager;
+
 
 public class MainActivity extends AppCompatActivity implements
         NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener {
 
-    public static final String NEW_PERSON_DIALOG_TAG = "NewPersonDialogFragment";
     public DBHelper dbHelper;
     MonthFragment monthFragment;
     AllFragment allFragment;
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
                 DialogFragment newPersonDialogFragment = new NewPersonDialogFragment();
-                newPersonDialogFragment.show(fragmentManager, NEW_PERSON_DIALOG_TAG);
+                newPersonDialogFragment.show(fragmentManager, ConstantManager.NEW_PERSON_DIALOG_TAG);
             }
         });
     }

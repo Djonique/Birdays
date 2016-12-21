@@ -3,5 +3,5 @@
     android:shape="line">
     <stroke
         android:width="1px"
-        android:color="@color/dividerColor" />
+        android:color="@color/divider_color" />
 </shape>

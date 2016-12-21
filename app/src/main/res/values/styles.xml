@@ -1,11 +1,11 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
         <!--ripple effect color-->
-        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/color_accent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -35,7 +35,7 @@
     </style>
 
     <style name="primaryTextStyle">
-        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textColor">@color/primary_text</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">sans-serif</item>
@@ -51,7 +51,7 @@
 
     <style name="secondaryTextStyle">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/secondaryText</item>
+        <item name="android:textColor">@color/secondary_text</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">sans-serif</item>

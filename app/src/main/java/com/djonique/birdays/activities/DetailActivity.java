@@ -1,4 +1,4 @@
-package com.djonique.birdays;
+package com.djonique.birdays.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.AllFragmentAdapter;
+import com.djonique.birdays.utils.Utils;
 
 public class DetailActivity extends AppCompatActivity {
 

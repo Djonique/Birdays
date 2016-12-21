@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.djonique.birdays.MainActivity;
+import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.MonthFragmentAdapter;
 import com.djonique.birdays.database.DBHelper;

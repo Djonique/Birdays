@@ -14,7 +14,7 @@
         android:background="@drawable/age_circle"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:shadowColor="@color/secondaryText"
+        android:shadowColor="@color/secondary_text"
         android:shadowDx="2"
         android:shadowDy="2"
         android:shadowRadius="2"

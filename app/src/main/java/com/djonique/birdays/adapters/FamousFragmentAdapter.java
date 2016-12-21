@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.Utils;
+import com.djonique.birdays.utils.Utils;
 import com.djonique.birdays.model.Item;
 import com.djonique.birdays.model.Person;
 

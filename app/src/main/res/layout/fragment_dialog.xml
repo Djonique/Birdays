@@ -38,9 +38,9 @@
         android:id="@+id/addFromContactsDialogButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="?attr/selectableItemBackground"
         android:text="@string/add_from_contacts"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/color_accent"
         android:textSize="14sp"/>
 
     <!--Email-->

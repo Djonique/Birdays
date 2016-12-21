@@ -1,4 +1,6 @@
-package com.djonique.birdays;
+package com.djonique.birdays.utils;
+
+import com.djonique.birdays.R;
 
 import java.text.DateFormat;
 import java.util.Calendar;
