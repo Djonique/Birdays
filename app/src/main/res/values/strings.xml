@@ -23,7 +23,7 @@
     <string name="send_email">Send email</string>
     <string name="ok_button">OK</string>
     <string name="cancel_button">Cancel</string>
-    <string name="error_hint">Please, enter the name</string>
+    <string name="error_hint">Please enter the name</string>
     <string name="delete_record_text">Are you sure you want to delete this record:</string>
     <string name="record_removed">Record removed</string>
 
