@@ -2,6 +2,8 @@ package com.djonique.birdays.activities;
 
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -24,7 +26,6 @@ import com.djonique.birdays.fragments.MonthFragment;
 import com.djonique.birdays.model.Person;
 import com.djonique.birdays.utils.ConstantManager;
 
-
 public class MainActivity extends AppCompatActivity implements
         NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener {
 
@@ -35,11 +36,22 @@ public class MainActivity extends AppCompatActivity implements
     private FragmentManager fragmentManager;
     private FloatingActionButton fab;
     private SearchView searchView;
+    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
+
+        if (savedInstanceState == null) {
+            monthFragment = ((MonthFragment)
+                    pagerAdapter.getItem(PagerAdapter.MONTH_FRAGMENT_POSITION));
+            allFragment = ((AllFragment) pagerAdapter.getItem(PagerAdapter.ALL_FRAGMENT_POSITION));
+            famousFragment = ((FamousFragment)
+                    pagerAdapter.getItem(PagerAdapter.FAMOUS_FRAGMENT_POSITION));
+        }
 
         dbHelper = new DBHelper(getApplicationContext());
         fragmentManager = getFragmentManager();
@@ -52,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        final PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(2);
 
@@ -82,14 +93,7 @@ public class MainActivity extends AppCompatActivity implements
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
 
-        monthFragment = ((MonthFragment)
-                pagerAdapter.getItem(PagerAdapter.MONTH_FRAGMENT_POSITION));
-        allFragment = ((AllFragment) pagerAdapter.getItem(PagerAdapter.ALL_FRAGMENT_POSITION));
-        famousFragment = ((FamousFragment)
-                pagerAdapter.getItem(PagerAdapter.FAMOUS_FRAGMENT_POSITION));
-
         searchView = ((SearchView) findViewById(R.id.searchView));
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -98,8 +102,12 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                allFragment.findPerson(newText);
-                monthFragment.findPerson(newText);
+                if (allFragment != null) {
+                    allFragment.findPerson(newText);
+                }
+                if (monthFragment != null) {
+                    monthFragment.findPerson(newText);
+                }
                 return false;
             }
         });
@@ -122,9 +130,19 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.menu_github:
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(getString(R.string.github_url))));
+                break;
+            case R.id.menu_rate_app:
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=com.wonder")));
+                break;
+            case R.id.menu_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

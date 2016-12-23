@@ -33,13 +33,14 @@ import com.djonique.birdays.utils.Utils;
 import java.util.Calendar;
 
 
-
 public class NewPersonDialogFragment extends DialogFragment implements
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
-    private EditText etPhone, etEmail, etDate;
-    private Calendar calendar;
     private AddingPersonListener addingPersonListener;
+    private EditText etName, etPhone, etEmail, etDate;
+    private Calendar calendar;
+    private String name, email;
+    private long date, phone;
 
     @Override
     public void onAttach(Context context) {
@@ -55,17 +56,24 @@ public class NewPersonDialogFragment extends DialogFragment implements
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        /*if (savedInstanceState != null) {
+            name = savedInstanceState.getString(ConstantManager.NAME);
+            phone = savedInstanceState.getLong(ConstantManager.PHONE);
+            email = savedInstanceState.getString(ConstantManager.EMAIL);
+            date = savedInstanceState.getLong(ConstantManager.DATE);
+        }*/
 
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.add_new_record);
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        calendar = Calendar.getInstance();
+        final Person person = new Person();
 
+        LayoutInflater inflater = getActivity().getLayoutInflater();
         View container = inflater.inflate(R.layout.fragment_dialog, null);
 
-
         final TextInputLayout tilName = (TextInputLayout) container.findViewById(R.id.tilName);
-        final EditText etName = tilName.getEditText();
+        etName = tilName.getEditText();
 
         final TextInputLayout tilPhone = (TextInputLayout) container.findViewById(R.id.tilPhone);
         etPhone = tilPhone.getEditText();
@@ -78,7 +86,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (ContextCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.READ_CONTACTS) ==
                         PackageManager.PERMISSION_GRANTED) {
-                    Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                    Intent intent = new Intent(Intent.ACTION_PICK,
+                            ContactsContract.Contacts.CONTENT_URI);
                     startActivityForResult(intent, ConstantManager.REQUEST_READ_CONTACTS);
                 } else {
                     ActivityCompat.requestPermissions(getActivity(),
@@ -93,12 +102,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
         final TextInputLayout tilDate = ((TextInputLayout) container.findViewById(R.id.tilDate));
         etDate = (EditText) container.findViewById(R.id.etDate);
-        calendar = Calendar.getInstance();
-
-        final Person person = new Person();
-
-        builder.setView(container);
-
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,10 +120,10 @@ public class NewPersonDialogFragment extends DialogFragment implements
             }
         });
 
+        builder.setView(container);
         builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String name;
                 if (etName != null) {
                     name = etName.getText().toString();
                     person.setName(name);
@@ -128,17 +131,19 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 }
 
                 if (!isEmptyDate()) {
-                    long time = calendar.getTimeInMillis();
-                    person.setDate(time);
+                    date = calendar.getTimeInMillis();
+                    person.setDate(date);
                 }
 
                 if (etPhone != null && etPhone.length() != 0) {
                     // TODO: 21.12.2016 БД должна хранить телефон в стринге
-                    person.setPhoneNumber(Long.parseLong(etPhone.getText().toString()));
+                    phone = Long.parseLong(etPhone.getText().toString());
+                    person.setPhoneNumber(phone);
                 } else person.setPhoneNumber(0);
 
                 if (etEmail != null && etEmail.length() != 0) {
-                    person.setEmail(etEmail.getText().toString());
+                    email = etEmail.getText().toString();
+                    person.setEmail(email);
                 } else person.setEmail(" ");
                 addingPersonListener.onPersonAdded(person);
                 dialog.dismiss();
@@ -289,6 +294,14 @@ public class NewPersonDialogFragment extends DialogFragment implements
         }
         emailCursor.close();
         return email;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString(ConstantManager.NAME, name);
+        outState.putLong(ConstantManager.PHONE, phone);
+        outState.putString(ConstantManager.EMAIL, email);
+        outState.putLong(ConstantManager.DATE, date);
     }
 
     public interface AddingPersonListener {

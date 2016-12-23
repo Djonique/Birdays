@@ -3,8 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.djonique.birdays.activities.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:id="@+id/menu_rate_app"
+        android:orderInCategory="1"
+        android:title="@string/menu_rate_app"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_share"
+        android:orderInCategory="2"
+        android:title="@string/menu_share"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_github"
+        android:orderInCategory="3"
+        android:title="@string/github_menu"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_login"
+        android:orderInCategory="98"
+        android:title="@string/menu_login"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_settings"
+        android:orderInCategory="99"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_about"
+        android:orderInCategory="100"
+        android:title="@string/menu_about"
+        app:showAsAction="never"/>
 </menu>
