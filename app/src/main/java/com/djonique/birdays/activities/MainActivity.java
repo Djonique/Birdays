@@ -5,7 +5,9 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,8 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+import com.djonique.birdays.AlarmHelper;
+import com.djonique.birdays.MyApplication;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.PagerAdapter;
 import com.djonique.birdays.database.DBHelper;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements
     private FloatingActionButton fab;
     private SearchView searchView;
     private PagerAdapter pagerAdapter;
+    private AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
+
+        AlarmHelper.getInstance().init(getApplicationContext());
+
+
 
         if (savedInstanceState == null) {
             monthFragment = ((MonthFragment)
@@ -59,7 +67,21 @@ public class MainActivity extends AppCompatActivity implements
         initUI();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.activityResumed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyApplication.activityPaused();
+    }
+
     private void initUI() {
+
+        appBarLayout = ((AppBarLayout) findViewById(R.id.appbar));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -75,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onPageSelected(final int position) {
+
+                appBarLayout.setExpanded(true, true);
 
                 if (position == PagerAdapter.FAMOUS_FRAGMENT_POSITION) {
                     fab.hide();
@@ -149,7 +173,9 @@ public class MainActivity extends AppCompatActivity implements
     public void onPersonAdded(Person person) {
         monthFragment.addPerson(person);
         allFragment.addPerson(person, true);
-        Toast.makeText(this, R.string.record_added, Toast.LENGTH_SHORT).show();
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.container),
+                R.string.record_added, Snackbar.LENGTH_SHORT);
+        snackbar.show();
     }
 
     @Override

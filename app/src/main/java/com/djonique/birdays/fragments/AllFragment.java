@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.djonique.birdays.AlarmHelper;
 import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.AllFragmentAdapter;
@@ -28,6 +29,8 @@ public class AllFragment extends Fragment {
     public MainActivity activity;
     private AllFragmentAdapter adapter;
     private DeletingRecordListener deletingRecordListener;
+
+    private AlarmHelper alarmHelper;
 
     @Override
     public void onAttach(Context context) {
@@ -48,6 +51,8 @@ public class AllFragment extends Fragment {
             activity = (MainActivity) getActivity();
             addPersonFromDB();
         }
+
+        alarmHelper = AlarmHelper.getInstance();
     }
 
     @Nullable
@@ -145,6 +150,7 @@ public class AllFragment extends Fragment {
                                 @Override
                                 public void onViewDetachedFromWindow(View v) {
                                     if (isRemoved[0]) {
+                                        alarmHelper.removeAlarm(timeStamp);
                                         activity.dbHelper.removePerson(timeStamp);
                                         deletingRecordListener.onRecordDeleted(timeStamp);
                                     }

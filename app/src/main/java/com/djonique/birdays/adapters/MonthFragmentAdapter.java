@@ -65,12 +65,11 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     public void onBindViewHolder(final CardViewHolder holder, int position) {
         final Item item = items.get(position);
         final Person person = (Person) item;
+        long date = person.getDate();
+        String age = context.getString(R.string.age_text) + Integer.toString(Utils.getAge(date));
 
         holder.tvName.setText(person.getName());
-
-        long date = person.getDate();
         holder.tvDate.setText(Utils.getDate(date));
-        String age = context.getString(R.string.age_text) + Integer.toString(Utils.getAge(date));
         holder.tvAge.setText(age);
 
         if (person.getPhoneNumber() != 0) {
@@ -79,7 +78,8 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnPhone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(ConstantManager.TEL + person.getPhoneNumber()));
+                    Intent intent = new Intent(Intent.ACTION_DIAL,
+                            Uri.parse(ConstantManager.TEL + person.getPhoneNumber()));
                     context.startActivity(intent);
                 }
             });
@@ -155,7 +155,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         CardView cardView;
         TextView tvName, tvDate, tvAge;
         ImageButton btnPhone, btnEmail, btnSMS;
-
 
         CardViewHolder(View itemView) {
             super(itemView);

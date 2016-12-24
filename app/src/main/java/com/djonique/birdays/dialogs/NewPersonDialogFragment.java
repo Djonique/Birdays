@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,13 +24,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.djonique.birdays.AlarmHelper;
 import com.djonique.birdays.R;
 import com.djonique.birdays.model.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
 
 import java.util.Calendar;
-
 
 public class NewPersonDialogFragment extends DialogFragment implements
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
@@ -43,11 +42,11 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private long date, phone;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
 
         try {
-            addingPersonListener = (AddingPersonListener) getActivity();
+            addingPersonListener = (AddingPersonListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException();
         }
@@ -133,6 +132,9 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (!isEmptyDate()) {
                     date = calendar.getTimeInMillis();
                     person.setDate(date);
+
+                    AlarmHelper alarmHelper = AlarmHelper.getInstance();
+                    alarmHelper.setAlarm(person);
                 }
 
                 if (etPhone != null && etPhone.length() != 0) {
@@ -296,13 +298,13 @@ public class NewPersonDialogFragment extends DialogFragment implements
         return email;
     }
 
-    @Override
+  /*  @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putString(ConstantManager.NAME, name);
         outState.putLong(ConstantManager.PHONE, phone);
         outState.putString(ConstantManager.EMAIL, email);
         outState.putLong(ConstantManager.DATE, date);
-    }
+    }*/
 
     public interface AddingPersonListener {
 
