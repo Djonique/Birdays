@@ -10,12 +10,14 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
 import com.djonique.birdays.activities.MainActivity;
+import com.djonique.birdays.utils.Utils;
 
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
         String string = intent.getStringExtra("name");
+        long date = intent.getLongExtra("date", 0);
         long timeStamp = intent.getLongExtra("time_stamp", 0);
 
         Intent resultIntent = new Intent(context, MainActivity.class);
@@ -29,18 +31,20 @@ public class AlarmReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, (int) timeStamp, resultIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setContentTitle("Birdays");
-        builder.setContentText(string);
-        builder.setSmallIcon(R.drawable.ic_add_white_24dp);
-        builder.setDefaults(Notification.DEFAULT_ALL);
-        builder.setContentIntent(pendingIntent);
+        if (Utils.isCurrentDay(date)) {
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+            builder.setContentTitle("Birdays");
+            builder.setContentText(string);
+            builder.setSmallIcon(R.drawable.ic_add_white_24dp);
+            builder.setDefaults(Notification.DEFAULT_ALL);
+            builder.setContentIntent(pendingIntent);
 
-        Notification notification = builder.build();
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+            Notification notification = builder.build();
+            notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
-        NotificationManager notificationManager =
-                ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
-        notificationManager.notify((int) timeStamp, notification);
+            NotificationManager notificationManager =
+                    ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+            notificationManager.notify((int) timeStamp, notification);
+        }
     }
 }

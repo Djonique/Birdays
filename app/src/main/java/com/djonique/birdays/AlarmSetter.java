@@ -10,7 +10,6 @@ import com.djonique.birdays.model.Person;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class AlarmSetter extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {

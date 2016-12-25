@@ -45,6 +45,21 @@ public class Utils {
         return thisMonth;
     }
 
+    public static boolean isCurrentDay(long date) {
+        boolean thisDay = false;
+
+        Calendar today = Calendar.getInstance();
+        Calendar dayOfBirthday = Calendar.getInstance();
+
+        dayOfBirthday.setTimeInMillis(date);
+
+        if (dayOfBirthday.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH)) {
+            thisDay = true;
+        }
+
+        return thisDay;
+    }
+
     public static int getAgeCircleColor(int age) {
         int ageCircleColorResID;
         if (age < 10) ageCircleColorResID = R.color.age1;

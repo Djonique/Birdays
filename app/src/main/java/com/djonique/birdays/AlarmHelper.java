@@ -31,6 +31,7 @@ public class AlarmHelper {
     public void setAlarm(Person person) {
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra("name", person.getName());
+        intent.putExtra("date", person.getDate());
         intent.putExtra("time_stamp", person.getTimeStamp());
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
