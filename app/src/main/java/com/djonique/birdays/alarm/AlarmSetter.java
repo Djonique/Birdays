@@ -1,4 +1,4 @@
-package com.djonique.birdays;
+package com.djonique.birdays.alarm;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

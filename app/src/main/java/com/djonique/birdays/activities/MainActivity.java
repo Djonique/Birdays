@@ -17,8 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.djonique.birdays.AlarmHelper;
-import com.djonique.birdays.MyApplication;
+import com.djonique.birdays.alarm.AlarmHelper;
+import com.djonique.birdays.utils.MyApplication;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.PagerAdapter;
 import com.djonique.birdays.database.DBHelper;
@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity implements
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
 
         AlarmHelper.getInstance().init(getApplicationContext());
-
-
 
         if (savedInstanceState == null) {
             monthFragment = ((MonthFragment)
@@ -163,8 +161,13 @@ public class MainActivity extends AppCompatActivity implements
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://play.google.com/store/apps/details?id=com.wonder")));
                 break;
-            case R.id.menu_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
+            case R.id.menu_share:
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,
+                        "https://play.google.com/store/apps/details?id=com.wonder");
+                startActivity(Intent.createChooser(intent, getString(R.string.app_name)));
+
         }
         return super.onOptionsItemSelected(item);
     }

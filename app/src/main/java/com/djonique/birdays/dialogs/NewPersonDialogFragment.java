@@ -24,7 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.djonique.birdays.AlarmHelper;
+import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.R;
 import com.djonique.birdays.model.Person;
 import com.djonique.birdays.utils.ConstantManager;

@@ -53,7 +53,8 @@ public class Utils {
 
         dayOfBirthday.setTimeInMillis(date);
 
-        if (dayOfBirthday.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH)) {
+        if (dayOfBirthday.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH) &&
+                isCurrentMonth(date)) {
             thisDay = true;
         }
 
