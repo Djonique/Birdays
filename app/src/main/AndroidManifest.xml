@@ -34,7 +34,8 @@
                 android:value="com.djonique.birdays.activities.MainActivity"/>
         </activity>
         <receiver android:name=".alarm.AlarmReceiver"
-                  android:process=":remote"/>
+                  android:process=":remote">
+        </receiver>
         <receiver android:name=".alarm.AlarmSetter">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>

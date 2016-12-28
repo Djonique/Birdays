@@ -36,8 +36,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (Utils.isCurrentDay(date)) {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
             builder.setContentTitle("Birdays");
+            builder.setTicker(string);
+            builder.setWhen(date);
             builder.setContentText(string);
-            builder.setSmallIcon(R.drawable.ic_add_white_24dp);
+            builder.setSmallIcon(R.mipmap.ic_launcher);
             builder.setDefaults(Notification.DEFAULT_ALL);
             builder.setContentIntent(pendingIntent);
 

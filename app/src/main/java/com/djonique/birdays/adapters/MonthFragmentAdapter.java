@@ -27,7 +27,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     private Context context;
     private List<Item> items;
     private int disabled = Color.rgb(224, 224, 224);
-    private int enabled = Color.rgb(156, 39, 176);
+    private int enabled = Color.rgb(104, 239, 173);
 
     public MonthFragmentAdapter() {
         items = new ArrayList<>();
@@ -97,12 +97,8 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             });
 
         } else {
-            holder.btnPhone.setEnabled(true);
-            holder.btnPhone.setColorFilter(disabled);
-            holder.btnPhone.setClickable(false);
-            holder.btnSMS.setEnabled(true);
-            holder.btnSMS.setColorFilter(disabled);
-            holder.btnSMS.setClickable(false);
+            disableButton(holder.btnPhone);
+            disableButton(holder.btnSMS);
         }
 
         if (!person.getEmail().equals(" ")) {
@@ -120,9 +116,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                 }
             });
         } else {
-            holder.btnEmail.setEnabled(true);
-            holder.btnEmail.setColorFilter(disabled);
-            holder.btnEmail.setClickable(false);
+            disableButton(holder.btnEmail);
         }
     }
 
@@ -162,10 +156,19 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvDate = (TextView) itemView.findViewById(R.id.tvDate);
             tvAge = (TextView) itemView.findViewById(R.id.tvAge);
-            btnPhone = (ImageButton) itemView.findViewById(R.id.btnPhone);
             btnEmail = (ImageButton) itemView.findViewById(R.id.btnEmail);
+            btnEmail.setImageResource(R.drawable.ic_email_purple_24dp);
             btnSMS = (ImageButton) itemView.findViewById(R.id.btnSMS);
+            btnSMS.setImageResource(R.drawable.ic_chat_purple_24dp);
+            btnPhone = (ImageButton) itemView.findViewById(R.id.btnPhone);
+            btnPhone.setImageResource(R.drawable.ic_call_purple_24dp);
         }
+    }
+
+    private void disableButton(ImageButton button) {
+        button.setEnabled(true);
+        button.setColorFilter(disabled);
+        button.setClickable(false);
     }
 }
 
