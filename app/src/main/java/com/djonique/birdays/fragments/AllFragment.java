@@ -29,7 +29,6 @@ public class AllFragment extends Fragment {
     public MainActivity activity;
     private AllFragmentAdapter adapter;
     private DeletingRecordListener deletingRecordListener;
-
     private AlarmHelper alarmHelper;
 
     @Override

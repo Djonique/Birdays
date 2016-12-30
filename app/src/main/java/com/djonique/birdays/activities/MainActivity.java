@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void initUI() {
-
         appBarLayout = ((AppBarLayout) findViewById(R.id.appbar));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -159,13 +158,12 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             case R.id.menu_rate_app:
                 startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://play.google.com/store/apps/details?id=com.wonder")));
+                        Uri.parse(getString(R.string.googleplay_app_link))));
                 break;
             case R.id.menu_share:
                 Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT,
-                        "https://play.google.com/store/apps/details?id=com.wonder");
+                intent.setType(ConstantManager.TEXT_PLAIN);
+                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.googleplay_app_link));
                 startActivity(Intent.createChooser(intent, getString(R.string.app_name)));
 
         }

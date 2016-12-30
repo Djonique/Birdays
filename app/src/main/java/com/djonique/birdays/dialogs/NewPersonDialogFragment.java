@@ -55,13 +55,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        /*if (savedInstanceState != null) {
-            name = savedInstanceState.getString(ConstantManager.NAME);
-            phone = savedInstanceState.getLong(ConstantManager.PHONE);
-            email = savedInstanceState.getString(ConstantManager.EMAIL);
-            date = savedInstanceState.getLong(ConstantManager.DATE);
-        }*/
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.add_new_record);
 
@@ -210,10 +203,10 @@ public class NewPersonDialogFragment extends DialogFragment implements
                             tilDate.setErrorEnabled(false);
                         } else if (isEmptyDate()) {
                             positiveButton.setEnabled(false);
-                            tilDate.setError("Wrong date");
+                            tilDate.setError(getString(R.string.wrong_date));
                         } else if (!isRightDate()) {
                             positiveButton.setEnabled(false);
-                            tilDate.setError("You aren't Vanga");
+                            tilDate.setError(getString(R.string.not_vanga));
                         }
                     }
 
@@ -297,14 +290,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
         emailCursor.close();
         return email;
     }
-
-  /*  @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putString(ConstantManager.NAME, name);
-        outState.putLong(ConstantManager.PHONE, phone);
-        outState.putString(ConstantManager.EMAIL, email);
-        outState.putLong(ConstantManager.DATE, date);
-    }*/
 
     public interface AddingPersonListener {
 

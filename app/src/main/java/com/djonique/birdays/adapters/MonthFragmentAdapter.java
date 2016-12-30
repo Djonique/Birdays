@@ -10,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.model.Item;
 import com.djonique.birdays.model.Person;
 import com.djonique.birdays.utils.ConstantManager;
@@ -71,6 +73,15 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         holder.tvName.setText(person.getName());
         holder.tvDate.setText(Utils.getDate(date));
         holder.tvAge.setText(age);
+
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
+                context.startActivity(intent);
+            }
+        });
 
         if (person.getPhoneNumber() != 0) {
             holder.btnPhone.setColorFilter(enabled);
@@ -145,14 +156,22 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         }
     }
 
+    private void disableButton(ImageButton button) {
+        button.setEnabled(true);
+        button.setColorFilter(disabled);
+        button.setClickable(false);
+    }
+
     static class CardViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
+        RelativeLayout relativeLayout;
         TextView tvName, tvDate, tvAge;
         ImageButton btnPhone, btnEmail, btnSMS;
 
         CardViewHolder(View itemView) {
             super(itemView);
             cardView = (CardView) itemView.findViewById(R.id.cardView);
+            relativeLayout = ((RelativeLayout) itemView.findViewById(R.id.relativeLayout));
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvDate = (TextView) itemView.findViewById(R.id.tvDate);
             tvAge = (TextView) itemView.findViewById(R.id.tvAge);
@@ -163,12 +182,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             btnPhone = (ImageButton) itemView.findViewById(R.id.btnPhone);
             btnPhone.setImageResource(R.drawable.ic_call_purple_24dp);
         }
-    }
-
-    private void disableButton(ImageButton button) {
-        button.setEnabled(true);
-        button.setColorFilter(disabled);
-        button.setClickable(false);
     }
 }
 

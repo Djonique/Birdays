@@ -11,23 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.R;
-import com.djonique.birdays.utils.Utils;
+import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.model.Item;
 import com.djonique.birdays.model.Person;
+import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.ListViewHolder> {
-
-    public static final String DETAIL_NAME = "DetailName";
-    public static final String DETAIL_PHONE = "DetailPhone";
-    public static final String DETAIL_EMAIL = "DetailEmail";
-    public static final String DETAIL_DATE = "DetailDate";
-    public static final String DETAIL_AGE = "DetailAge";
 
     private List<Item> items;
     private AllFragment allFragment;
@@ -86,7 +81,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         holder.tvDate.setText(Utils.getDate(date));
 
         GradientDrawable ageCircle = (GradientDrawable) holder.tvAge.getBackground();
-        int ageCircleColor = ContextCompat.getColor(context, Utils.getAgeCircleColor(age));
+        int ageCircleColor = ContextCompat.getColor(context, getAgeCircleColor(age));
         ageCircle.setColor(ageCircleColor);
         holder.tvAge.setText(String.valueOf(age));
 
@@ -109,11 +104,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra(DETAIL_NAME, person.getName());
-                intent.putExtra(DETAIL_PHONE, person.getPhoneNumber());
-                intent.putExtra(DETAIL_EMAIL, person.getEmail());
-                intent.putExtra(DETAIL_DATE, person.getDate());
-                intent.putExtra(DETAIL_AGE, age);
+                intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
                 context.startActivity(intent);
             }
         });
@@ -140,5 +131,18 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
             tvDate = (TextView) itemView.findViewById(R.id.tvPersonDate);
             tvAge = (TextView) itemView.findViewById(R.id.tvListAge);
         }
+    }
+
+    private int getAgeCircleColor(int age) {
+        int ageCircleColorResID;
+        if (age < 10) ageCircleColorResID = R.color.age1;
+        else if (age >= 10 && age < 20) ageCircleColorResID = R.color.age2;
+        else if (age >= 20 && age < 30) ageCircleColorResID = R.color.age3;
+        else if (age >= 30 && age < 40) ageCircleColorResID = R.color.age4;
+        else if (age >= 40 && age < 50) ageCircleColorResID = R.color.age5;
+        else if (age >= 50 && age < 60) ageCircleColorResID = R.color.age6;
+        else if (age >= 60 && age < 70) ageCircleColorResID = R.color.age7;
+        else ageCircleColorResID = R.color.age8;
+        return ageCircleColorResID;
     }
 }
