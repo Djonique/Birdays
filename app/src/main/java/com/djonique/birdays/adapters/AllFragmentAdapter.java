@@ -122,17 +122,6 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         }
     }
 
-    static class ListViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvDate, tvAge;
-
-        ListViewHolder(View itemView) {
-            super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.tvPersonName);
-            tvDate = (TextView) itemView.findViewById(R.id.tvPersonDate);
-            tvAge = (TextView) itemView.findViewById(R.id.tvListAge);
-        }
-    }
-
     private int getAgeCircleColor(int age) {
         int ageCircleColorResID;
         if (age < 10) ageCircleColorResID = R.color.age1;
@@ -144,5 +133,16 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
         else if (age >= 60 && age < 70) ageCircleColorResID = R.color.age7;
         else ageCircleColorResID = R.color.age8;
         return ageCircleColorResID;
+    }
+
+    static class ListViewHolder extends RecyclerView.ViewHolder {
+        TextView tvName, tvDate, tvAge;
+
+        ListViewHolder(View itemView) {
+            super(itemView);
+            tvName = (TextView) itemView.findViewById(R.id.tvPersonName);
+            tvDate = (TextView) itemView.findViewById(R.id.tvPersonDate);
+            tvAge = (TextView) itemView.findViewById(R.id.tvListAge);
+        }
     }
 }

@@ -41,7 +41,7 @@ public class MonthFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(manager);
-        adapter = new MonthFragmentAdapter();
+        adapter = new MonthFragmentAdapter(activity);
         recyclerView.setAdapter(adapter);
 
         return view;

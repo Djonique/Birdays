@@ -28,7 +28,7 @@
             android:name=".activities.DetailActivity"
             android:label=""
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.DetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.djonique.birdays.activities.MainActivity"/>
