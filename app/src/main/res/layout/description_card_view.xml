@@ -20,29 +20,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
+            android:paddingBottom="16dp"
             android:paddingEnd="16dp"
             android:paddingLeft="24dp"
             android:paddingRight="16dp"
             android:paddingStart="24dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp">
+            android:paddingTop="16dp">
 
             <TextView
                 android:id="@+id/tvName"
-                style="@style/primaryCardTextStyle"/>
+                style="@style/Primary.CardView"/>
 
             <TextView
                 android:id="@+id/tvDate"
-                style="@style/secondaryTextStyle"
+                style="@style/Secondary.TextView"
                 android:layout_below="@+id/tvName"/>
 
             <TextView
                 android:id="@+id/tvAge"
-                style="@style/secondaryTextStyle"
+                style="@style/Secondary.TextView"
                 android:layout_below="@+id/tvDate"/>
-
         </RelativeLayout>
 
+        <!--Divider-->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -59,6 +59,7 @@
                 style="@style/cardImageButtonStyle"
                 android:contentDescription="@string/send_email"/>
 
+            <!--Divider-->
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
@@ -70,6 +71,7 @@
                 style="@style/cardImageButtonStyle"
                 android:contentDescription="@string/send_sms"/>
 
+            <!--Divider-->
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"

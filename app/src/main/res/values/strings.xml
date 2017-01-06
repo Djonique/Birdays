@@ -28,8 +28,8 @@
     <string name="record_removed">Record removed</string>
 
     <string name="undefined">Undefined</string>
-    <string name="date">date</string>
-    <string name="age">age</string>
+    <string name="date">Date</string>
+    <string name="age">Age</string>
     <string name="pick_date">Pick date</string>
     <string name="menu_about">About</string>
     <string name="menu_rate_app">Rate app</string>
@@ -130,4 +130,8 @@
     <string name="wrong_date">Wrong date</string>
     <string name="not_vanga">You aren\'t Vanga</string>
     <string name="googleplay_app_link">https://play.google.com/store/apps/details?id=com.wonder</string>
+    <string name="season_picture">Season picture</string>
+    <string name="calendar">Calendar</string>
+    <string name="unknown_year">I don\'t know year</string>
+    <string name="chat">Chat</string>
 </resources>

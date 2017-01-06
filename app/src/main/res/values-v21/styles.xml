@@ -5,7 +5,26 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/color_primary_dark</item>
     </style>
+
     <style name="AppTheme.DetailActivity" parent="AppTheme.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+    </style>
+
+    <style name="Material.Primary.TextView" parent="Primary.TextView">
+        <item name="android:layout_marginLeft">56dp</item>
+        <item name="android:layout_marginStart">56dp</item>
+    </style>
+
+    <style name="Material.Secondary.TextView" parent="Secondary.TextView">
+        <item name="android:layout_marginLeft">56dp</item>
+        <item name="android:layout_marginStart">56dp</item>
+    </style>
+
+    <style name="detailActivityIcons">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
     </style>
 </resources>

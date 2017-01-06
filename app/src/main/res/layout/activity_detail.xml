@@ -25,6 +25,7 @@
                 android:id="@+id/image_detail"
                 android:layout_width="match_parent"
                 android:layout_height="256dp"
+                android:contentDescription="@string/season_picture"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"/>
@@ -46,140 +47,113 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="28dp">
 
+            <!--Date-->
             <RelativeLayout
                 android:id="@+id/rlDate"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:padding="16dp">
+                style="@style/detailActivityRL">
+
+                <ImageView
+                    android:id="@+id/ivCalendarIcon"
+                    style="@style/detailActivityIcons"
+                    android:contentDescription="@string/calendar"
+                    app:srcCompat="@drawable/ic_calendar_purple_24dp"/>
 
                 <TextView
                     android:id="@+id/tvDetailDate"
-                    style="@style/primaryTextStyle"
-                    android:layout_marginLeft="56dp"
-                    android:layout_marginStart="56dp"/>
+                    style="@style/Material.Primary.TextView"/>
 
                 <TextView
                     android:id="@+id/tvDetailDateDescription"
-                    style="@style/secondaryTextStyle"
-                    android:layout_alignLeft="@+id/tvDetailDate"
-                    android:layout_alignStart="@+id/tvDetailDate"
+                    style="@style/Material.Secondary.TextView"
                     android:layout_below="@+id/tvDetailDate"
                     android:text="@string/date"/>
             </RelativeLayout>
 
+            <!--Age-->
             <RelativeLayout
                 android:id="@+id/rlAge"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/rlDate"
-                android:padding="16dp">
+                style="@style/detailActivityRL"
+                android:layout_below="@+id/rlDate">
 
                 <TextView
                     android:id="@+id/tvDetailAge"
-                    style="@style/primaryTextStyle"
-                    android:layout_marginLeft="56dp"
-                    android:layout_marginStart="56dp"/>
+                    style="@style/Material.Primary.TextView"/>
 
                 <TextView
                     android:id="@+id/tvDetailAgeDescription"
-                    style="@style/secondaryTextStyle"
-                    android:layout_alignLeft="@+id/tvDetailAge"
-                    android:layout_alignStart="@+id/tvDetailAge"
+                    style="@style/Material.Secondary.TextView"
                     android:layout_below="@+id/tvDetailAge"
                     android:text="@string/age"/>
             </RelativeLayout>
 
+            <!--Divider-->
             <View
                 android:id="@+id/viewDivider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/rlAge"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="72dp"
                 android:layout_marginStart="72dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/divider_color"/>
 
+            <!--Phone number-->
             <RelativeLayout
                 android:id="@+id/rlPhone"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:layout_below="@+id/viewDivider"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/tvDetailPhone"
-                    style="@style/primaryTextStyle"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginLeft="56dp"
-                    android:layout_marginStart="56dp"/>
+                style="@style/detailActivityRL"
+                android:layout_below="@+id/viewDivider">
 
                 <ImageView
                     android:id="@+id/ivPhoneIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    style="@style/detailActivityIcons"
                     android:contentDescription="@string/phone"
                     app:srcCompat="@drawable/ic_call_purple_24dp"/>
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/chat"
+                    app:srcCompat="@drawable/ic_chat_purple_24dp"/>
+
+                <TextView
+                    android:id="@+id/tvDetailPhone"
+                    style="@style/Material.Primary.TextView"/>
+
                 <TextView
                     android:id="@+id/tvDetailPhoneDescription"
-                    style="@style/secondaryTextStyle"
-                    android:layout_alignLeft="@+id/tvDetailPhone"
-                    android:layout_alignStart="@+id/tvDetailPhone"
+                    style="@style/Material.Secondary.TextView"
                     android:layout_below="@+id/tvDetailPhone"
                     android:text="@string/phone"/>
             </RelativeLayout>
 
+            <!--Email-->
             <RelativeLayout
                 android:id="@+id/rlEmail"
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/rlPhone"
-                android:orientation="horizontal"
-                android:padding="16dp">
+                style="@style/detailActivityRL"
+                android:layout_below="@+id/rlPhone">
 
                 <ImageView
                     android:id="@+id/ivEmailIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    style="@style/detailActivityIcons"
                     android:contentDescription="@string/email"
                     app:srcCompat="@drawable/ic_email_purple_24dp"/>
 
                 <TextView
                     android:id="@+id/tvDetailEmail"
-                    style="@style/primaryTextStyle"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="56dp"
-                    android:layout_marginStart="56dp"
-                    android:text="New Text"/>
+                    style="@style/Material.Primary.TextView"/>
 
                 <TextView
                     android:id="@+id/tvDetailEmailDescription"
-                    style="@style/secondaryTextStyle"
-                    android:layout_alignLeft="@+id/tvDetailEmail"
-                    android:layout_alignStart="@+id/tvDetailEmail"
+                    style="@style/Material.Secondary.TextView"
                     android:layout_below="@+id/tvDetailEmail"
                     android:text="@string/email"/>
             </RelativeLayout>

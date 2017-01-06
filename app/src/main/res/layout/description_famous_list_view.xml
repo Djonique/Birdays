@@ -8,15 +8,10 @@
 
     <TextView
         android:id="@+id/tvFamousName"
-        style="@style/primaryListTextStyle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"/>
+        style="@style/Primary.TextView"/>
 
     <TextView
         android:id="@+id/tvFamousDate"
-        style="@style/secondaryTextStyle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        style="@style/Secondary.TextView"
         android:layout_below="@+id/tvFamousName"/>
 </RelativeLayout>

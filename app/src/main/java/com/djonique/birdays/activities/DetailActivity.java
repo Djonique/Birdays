@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.djonique.birdays.R;
@@ -21,8 +23,12 @@ import java.util.Calendar;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private TextView tvPhone, tvEmail, tvDate, tvAge;
+    private TextView tvDate, tvAge, tvPhone, tvEmail;
     private ImageView imageView;
+    private RelativeLayout rlEmail, rlPhone;
+    private View view;
+
+    private long date;
 
     private int winterImages[] = {R.drawable.img_winter_0,
             R.drawable.img_winter_1,
@@ -56,22 +62,16 @@ public class DetailActivity extends AppCompatActivity {
         long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
         DBHelper dbHelper = new DBHelper(getApplicationContext());
         Person person = dbHelper.query().getPerson(timeStamp);
-        long date = person.getDate();
+
+        date = person.getDate();
+        long phoneNumber = person.getPhoneNumber();
+        String email = person.getEmail();
 
         Toolbar toolbar = ((Toolbar) findViewById(R.id.toolbar_detail));
         toolbar.setTitle(person.getName());
         setSupportActionBar(toolbar);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(date);
-        int month = calendar.get(Calendar.MONTH);
-        if (month >= 0 && month < 2 || month == 11) {
-            setPicture(imageView, winterImages);
-        } else if (month >= 2 && month < 5) {
-            setPicture(imageView, springImages);
-        } else if (month >= 5 && month < 8) {
-            setPicture(imageView, summerImages);
-        } else setPicture(imageView, autumnImages);
+        setSeasonImage();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -79,19 +79,39 @@ public class DetailActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
         }
 
-        tvPhone.setText(String.valueOf(person.getPhoneNumber()));
-        tvEmail.setText(person.getEmail());
+        if (phoneNumber == 0 && email.equals(" ")) {
+            view.setVisibility(View.INVISIBLE);
+            rlPhone.setVisibility(View.INVISIBLE);
+            rlEmail.setVisibility(View.INVISIBLE);
+        }
+        if (phoneNumber == 0) {
+            rlPhone.setVisibility(View.INVISIBLE);
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlEmail.getLayoutParams();
+            params.addRule(RelativeLayout.BELOW, R.id.viewDivider);
+            rlEmail.setLayoutParams(params);
+        } else {
+            tvPhone.setText(String.valueOf(person.getPhoneNumber()));
+        }
+
+        if (email.equals(" ")) {
+            rlEmail.setVisibility(View.INVISIBLE);
+        } else {
+            tvEmail.setText(person.getEmail());
+        }
+
         tvDate.setText(Utils.getDate(date));
         tvAge.setText(String.valueOf(Utils.getAge(date)));
     }
 
     private void initUI() {
         imageView = ((ImageView) findViewById(R.id.image_detail));
-        tvPhone = ((TextView) findViewById(R.id.tvDetailPhone));
-        tvEmail = ((TextView) findViewById(R.id.tvDetailEmail));
         tvDate = ((TextView) findViewById(R.id.tvDetailDate));
         tvAge = ((TextView) findViewById(R.id.tvDetailAge));
-
+        tvPhone = ((TextView) findViewById(R.id.tvDetailPhone));
+        tvEmail = ((TextView) findViewById(R.id.tvDetailEmail));
+        rlEmail = ((RelativeLayout) findViewById(R.id.rlEmail));
+        rlPhone = ((RelativeLayout) findViewById(R.id.rlPhone));
+        view = findViewById(R.id.viewDivider);
     }
 
     @Override
@@ -113,5 +133,18 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setPicture(ImageView imageView, int[] pictures) {
         imageView.setImageResource(pictures[(int) (Math.random() * 5)]);
+    }
+
+    private void setSeasonImage() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date);
+        int month = calendar.get(Calendar.MONTH);
+        if (month >= 0 && month < 2 || month == 11) {
+            setPicture(imageView, winterImages);
+        } else if (month >= 2 && month < 5) {
+            setPicture(imageView, springImages);
+        } else if (month >= 5 && month < 8) {
+            setPicture(imageView, summerImages);
+        } else setPicture(imageView, autumnImages);
     }
 }
