@@ -23,7 +23,7 @@ import java.util.Calendar;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private TextView tvDate, tvAge, tvPhone, tvEmail;
+    private TextView tvDate, tvZodiac, tvZodiacImage, tvAge, tvPhone, tvEmail;
     private ImageView imageView;
     private RelativeLayout rlEmail, rlPhone;
     private View view;
@@ -79,6 +79,11 @@ public class DetailActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
         }
 
+        tvDate.setText(Utils.getDate(date));
+        tvZodiac.setText(Utils.getZodiac(date));
+        tvZodiacImage.setText(Utils.getZodiacImage(date));
+        tvAge.setText(String.valueOf(Utils.getAge(date)));
+
         if (phoneNumber == 0 && email.equals(" ")) {
             view.setVisibility(View.INVISIBLE);
             rlPhone.setVisibility(View.INVISIBLE);
@@ -99,13 +104,13 @@ public class DetailActivity extends AppCompatActivity {
             tvEmail.setText(person.getEmail());
         }
 
-        tvDate.setText(Utils.getDate(date));
-        tvAge.setText(String.valueOf(Utils.getAge(date)));
     }
 
     private void initUI() {
         imageView = ((ImageView) findViewById(R.id.image_detail));
         tvDate = ((TextView) findViewById(R.id.tvDetailDate));
+        tvZodiac = ((TextView) findViewById(R.id.tvZodiac));
+        tvZodiacImage = ((TextView) findViewById(R.id.tvZodiacImage));
         tvAge = ((TextView) findViewById(R.id.tvDetailAge));
         tvPhone = ((TextView) findViewById(R.id.tvDetailPhone));
         tvEmail = ((TextView) findViewById(R.id.tvDetailEmail));

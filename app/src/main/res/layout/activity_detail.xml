@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/image_detail"
                 android:layout_width="match_parent"
-                android:layout_height="256dp"
+                android:layout_height="280dp"
                 android:contentDescription="@string/season_picture"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
@@ -48,12 +48,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="28dp">
+            android:layout_marginTop="36dp">
 
             <!--Date-->
             <RelativeLayout
                 android:id="@+id/rlDate"
-                style="@style/detailActivityRL">
+                style="@style/materialRL">
 
                 <ImageView
                     android:id="@+id/ivCalendarIcon"
@@ -66,24 +66,48 @@
                     style="@style/Material.Primary.TextView"/>
 
                 <TextView
-                    android:id="@+id/tvDetailDateDescription"
                     style="@style/Material.Secondary.TextView"
                     android:layout_below="@+id/tvDetailDate"
                     android:text="@string/date"/>
             </RelativeLayout>
 
+            <!--Zodiac-->
+            <RelativeLayout
+                android:id="@+id/rlZodiac"
+                style="@style/materialRL"
+                android:layout_below="@+id/rlDate">
+
+                <TextView
+                    android:id="@+id/tvZodiacImage"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:textColor="@color/color_primary"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/tvZodiac"
+                    style="@style/Material.Primary.TextView"/>
+
+                <TextView
+                    style="@style/Material.Secondary.TextView"
+                    android:layout_below="@+id/tvZodiac"
+                    android:text="@string/zodiac"/>
+            </RelativeLayout>
+
             <!--Age-->
             <RelativeLayout
                 android:id="@+id/rlAge"
-                style="@style/detailActivityRL"
-                android:layout_below="@+id/rlDate">
+                style="@style/materialRL"
+                android:layout_below="@+id/rlZodiac">
 
                 <TextView
                     android:id="@+id/tvDetailAge"
                     style="@style/Material.Primary.TextView"/>
 
                 <TextView
-                    android:id="@+id/tvDetailAgeDescription"
                     style="@style/Material.Secondary.TextView"
                     android:layout_below="@+id/tvDetailAge"
                     android:text="@string/age"/>
@@ -104,7 +128,7 @@
             <!--Phone number-->
             <RelativeLayout
                 android:id="@+id/rlPhone"
-                style="@style/detailActivityRL"
+                style="@style/materialRL"
                 android:layout_below="@+id/viewDivider">
 
                 <ImageView
@@ -129,7 +153,6 @@
                     style="@style/Material.Primary.TextView"/>
 
                 <TextView
-                    android:id="@+id/tvDetailPhoneDescription"
                     style="@style/Material.Secondary.TextView"
                     android:layout_below="@+id/tvDetailPhone"
                     android:text="@string/phone"/>
@@ -138,7 +161,7 @@
             <!--Email-->
             <RelativeLayout
                 android:id="@+id/rlEmail"
-                style="@style/detailActivityRL"
+                style="@style/materialRL"
                 android:layout_below="@+id/rlPhone">
 
                 <ImageView
@@ -152,7 +175,6 @@
                     style="@style/Material.Primary.TextView"/>
 
                 <TextView
-                    android:id="@+id/tvDetailEmailDescription"
                     style="@style/Material.Secondary.TextView"
                     android:layout_below="@+id/tvDetailEmail"
                     android:text="@string/email"/>

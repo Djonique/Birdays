@@ -77,7 +77,7 @@
         <item name="android:layout_marginTop">8dp</item>
     </style>
 
-    <style name="detailActivityRL">
+    <style name="materialRL">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">72dp</item>
         <item name="android:padding">16dp</item>
