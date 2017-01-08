@@ -84,7 +84,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             }
         });
 
-        if (person.getPhoneNumber() != 0) {
+        if (person.getPhoneNumber() != null) {
             holder.btnPhone.setColorFilter(enabled);
             holder.btnSMS.setColorFilter(enabled);
             holder.btnPhone.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +99,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnSMS.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    long phoneNumber = person.getPhoneNumber();
+                    String phoneNumber = person.getPhoneNumber();
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setType(ConstantManager.TYPE_SMS);
                     intent.putExtra(ConstantManager.ADDRESS, phoneNumber);
@@ -113,7 +113,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             disableButton(holder.btnSMS);
         }
 
-        if (!person.getEmail().equals(" ")) {
+        if (person.getEmail() != null) {
             holder.btnEmail.setColorFilter(enabled);
             holder.btnEmail.setOnClickListener(new View.OnClickListener() {
                 @Override

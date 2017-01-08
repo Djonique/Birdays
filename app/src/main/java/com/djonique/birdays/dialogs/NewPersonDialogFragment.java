@@ -38,8 +38,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private AddingPersonListener addingPersonListener;
     private EditText etName, etPhone, etEmail, etDate;
     private Calendar calendar;
-    private String name, email;
-    private long date, phone;
+    private String name, phone, email;
+    private long date;
 
     @Override
     public void onAttach(Activity activity) {
@@ -132,14 +132,14 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                 if (etPhone != null && etPhone.length() != 0) {
                     // TODO: 21.12.2016 БД должна хранить телефон в стринге
-                    phone = Long.parseLong(etPhone.getText().toString());
+                    phone = etPhone.getText().toString();
                     person.setPhoneNumber(phone);
-                } else person.setPhoneNumber(0);
+                } else person.setPhoneNumber(null);
 
                 if (etEmail != null && etEmail.length() != 0) {
                     email = etEmail.getText().toString();
                     person.setEmail(email);
-                } else person.setEmail(" ");
+                } else person.setEmail(null);
                 addingPersonListener.onPersonAdded(person);
                 dialog.dismiss();
             }

@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements
 
                 if (position == PagerAdapter.FAMOUS_FRAGMENT_POSITION) {
                     fab.hide();
-                    searchView.setVisibility(View.INVISIBLE);
+                    searchView.setVisibility(View.GONE);
                 } else {
                     fab.show();
                     searchView.setVisibility(View.VISIBLE);

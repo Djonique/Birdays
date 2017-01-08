@@ -6,7 +6,7 @@ import java.util.Date;
 public class Person implements Item {
     private String name;
     private long date;
-    private long phoneNumber;
+    private String phoneNumber;
     private String email;
     private long timeStamp;
     private String lowerCaseName;
@@ -20,7 +20,7 @@ public class Person implements Item {
         this.date = date;
     }
 
-    public Person(String name, long date, long phoneNumber, String email, long timeStamp,
+    public Person(String name, long date, String phoneNumber, String email, long timeStamp,
                   String lowerCaseName) {
         this.name = name;
         this.date = date;
@@ -46,11 +46,11 @@ public class Person implements Item {
         this.date = date;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

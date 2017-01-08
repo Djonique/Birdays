@@ -23,8 +23,8 @@ import java.util.Calendar;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private TextView tvDate, tvZodiac, tvZodiacImage, tvAge, tvPhone, tvEmail;
     private ImageView imageView;
+    private TextView tvDate, tvZodiac, tvZodiacImage, tvAge, tvPhone, tvEmail;
     private RelativeLayout rlEmail, rlPhone;
     private View view;
 
@@ -64,7 +64,7 @@ public class DetailActivity extends AppCompatActivity {
         Person person = dbHelper.query().getPerson(timeStamp);
 
         date = person.getDate();
-        long phoneNumber = person.getPhoneNumber();
+        String phoneNumber = person.getPhoneNumber();
         String email = person.getEmail();
 
         Toolbar toolbar = ((Toolbar) findViewById(R.id.toolbar_detail));
@@ -84,12 +84,12 @@ public class DetailActivity extends AppCompatActivity {
         tvZodiacImage.setText(Utils.getZodiacImage(date));
         tvAge.setText(String.valueOf(Utils.getAge(date)));
 
-        if (phoneNumber == 0 && email.equals(" ")) {
+        if (phoneNumber == null && email.equals(" ")) {
             view.setVisibility(View.INVISIBLE);
             rlPhone.setVisibility(View.INVISIBLE);
             rlEmail.setVisibility(View.INVISIBLE);
         }
-        if (phoneNumber == 0) {
+        if (phoneNumber == null) {
             rlPhone.setVisibility(View.INVISIBLE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlEmail.getLayoutParams();
             params.addRule(RelativeLayout.BELOW, R.id.viewDivider);
