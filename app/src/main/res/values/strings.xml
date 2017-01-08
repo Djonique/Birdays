@@ -135,4 +135,6 @@
     <string name="unknown_year">I don\'t know year</string>
     <string name="chat">Chat</string>
     <string name="zodiac">Zodiac</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_edit">Edit</string>
 </resources>
