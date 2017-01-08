@@ -84,7 +84,7 @@ public class DetailActivity extends AppCompatActivity {
         tvZodiacImage.setText(Utils.getZodiacImage(date));
         tvAge.setText(String.valueOf(Utils.getAge(date)));
 
-        if (phoneNumber == null && email.equals(" ")) {
+        if (phoneNumber == null && email == null) {
             view.setVisibility(View.INVISIBLE);
             rlPhone.setVisibility(View.INVISIBLE);
             rlEmail.setVisibility(View.INVISIBLE);
@@ -98,7 +98,7 @@ public class DetailActivity extends AppCompatActivity {
             tvPhone.setText(String.valueOf(person.getPhoneNumber()));
         }
 
-        if (email.equals(" ")) {
+        if (email == null) {
             rlEmail.setVisibility(View.INVISIBLE);
         } else {
             tvEmail.setText(person.getEmail());

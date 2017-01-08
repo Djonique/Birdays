@@ -14,8 +14,6 @@ public class DBQueryManager {
     private SQLiteDatabase database;
     private Person person;
     private List<Person> persons;
-    private String name, phoneNumber, email, lowerCaseName;
-    private long date, timeStamp;
 
     DBQueryManager(SQLiteDatabase database) {
         this.database = database;
@@ -27,11 +25,11 @@ public class DBQueryManager {
                 new String[]{Long.toString(timeStamp)}, null, null, null);
 
         if (cursor.moveToFirst()) {
-            name = getName(cursor);
-            date = getDate(cursor);
-            phoneNumber = getPhoneNumber(cursor);
-            email = getEmail(cursor);
-            lowerCaseName = getLowerCaseName(cursor);
+            String name = getName(cursor);
+            long date = getDate(cursor);
+            String phoneNumber = getPhoneNumber(cursor);
+            String email = getEmail(cursor);
+            String lowerCaseName = getLowerCaseName(cursor);
 
             person = new Person(name, date, phoneNumber, email, timeStamp, lowerCaseName);
         }
@@ -48,12 +46,12 @@ public class DBQueryManager {
 
         if (cursor.moveToFirst()) {
             do {
-                name = getName(cursor);
-                date = getDate(cursor);
-                phoneNumber = getPhoneNumber(cursor);
-                email = getEmail(cursor);
-                timeStamp = getTimeStamp(cursor);
-                lowerCaseName = getLowerCaseName(cursor);
+                String name = getName(cursor);
+                long date = getDate(cursor);
+                String phoneNumber = getPhoneNumber(cursor);
+                String email = getEmail(cursor);
+                long timeStamp = getTimeStamp(cursor);
+                String lowerCaseName = getLowerCaseName(cursor);
 
                 person = new Person(name, date, phoneNumber, email, timeStamp, lowerCaseName);
                 persons.add(person);
@@ -73,12 +71,12 @@ public class DBQueryManager {
 
         if (cursor.moveToFirst()) {
             do {
-                name = getName(cursor);
-                date = getDate(cursor);
-                phoneNumber = getPhoneNumber(cursor);
-                email = getEmail(cursor);
-                timeStamp = getTimeStamp(cursor);
-                lowerCaseName = getLowerCaseName(cursor);
+                String name = getName(cursor);
+                long date = getDate(cursor);
+                String phoneNumber = getPhoneNumber(cursor);
+                String email = getEmail(cursor);
+                long timeStamp = getTimeStamp(cursor);
+                String lowerCaseName = getLowerCaseName(cursor);
 
                 person = new Person(name, date, phoneNumber, email, timeStamp, lowerCaseName);
                 persons.add(person);
@@ -97,12 +95,12 @@ public class DBQueryManager {
 
         if (cursor.moveToFirst()) {
             do {
-                name = getName(cursor);
-                date = getDate(cursor);
-                phoneNumber = getPhoneNumber(cursor);
-                email = getEmail(cursor);
-                timeStamp = getTimeStamp(cursor);
-                lowerCaseName = getLowerCaseName(cursor);
+                String name = getName(cursor);
+                long date = getDate(cursor);
+                String phoneNumber = getPhoneNumber(cursor);
+                String email = getEmail(cursor);
+                long timeStamp = getTimeStamp(cursor);
+                String lowerCaseName = getLowerCaseName(cursor);
 
                 if (Utils.isCurrentMonth(date)) {
                     person = new Person(name, date, phoneNumber, email, timeStamp, lowerCaseName);
@@ -124,12 +122,12 @@ public class DBQueryManager {
 
         if (cursor.moveToFirst()) {
             do {
-                name = getName(cursor);
-                date = getDate(cursor);
-                phoneNumber = getPhoneNumber(cursor);
-                email = getEmail(cursor);
-                timeStamp = getTimeStamp(cursor);
-                lowerCaseName = getLowerCaseName(cursor);
+                String name = getName(cursor);
+                long date = getDate(cursor);
+                String phoneNumber = getPhoneNumber(cursor);
+                String email = getEmail(cursor);
+                long timeStamp = getTimeStamp(cursor);
+                String lowerCaseName = getLowerCaseName(cursor);
 
                 if (Utils.isCurrentMonth(date)) {
                     person = new Person(name, date, phoneNumber, email, timeStamp, lowerCaseName);
@@ -149,8 +147,8 @@ public class DBQueryManager {
 
         if (cursor.moveToFirst()) {
             do {
-                name = getName(cursor);
-                date = getDate(cursor);
+                String name = getName(cursor);
+                long date = getDate(cursor);
 
                 if (Utils.isCurrentMonth(date)) {
                     person = new Person(name, date);
