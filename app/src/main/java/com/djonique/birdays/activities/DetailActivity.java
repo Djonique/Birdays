@@ -131,6 +131,8 @@ public class DetailActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.onBackPressed();
+                finish();
+                overridePendingTransition(R.anim.main_fade_in, R.anim.detail_fade_out);
                 break;
         }
         return true;

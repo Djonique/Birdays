@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.activities.DetailActivity;
+import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.model.Item;
 import com.djonique.birdays.model.Person;
 import com.djonique.birdays.utils.ConstantManager;
@@ -81,6 +82,9 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
                 context.startActivity(intent);
+                if (context instanceof MainActivity) {
+                    ((MainActivity) context).overridePendingTransition(R.anim.detail_fade_in, R.anim.main_fade_out);
+                }
             }
         });
 
