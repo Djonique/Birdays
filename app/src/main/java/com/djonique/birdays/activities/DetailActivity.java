@@ -129,10 +129,13 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
+            case R.id.menu_detail_edit:
+                startActivity(new Intent(this, EditActivity.class));
+                overridePendingTransition(R.anim.detail_edit_in, R.anim.detail_edit_out);
+                break;
             case android.R.id.home:
                 this.onBackPressed();
-                finish();
-                overridePendingTransition(R.anim.main_fade_in, R.anim.detail_fade_out);
+                overridePendingTransition(R.anim.detail_main_in, R.anim.detail_main_out);
                 break;
         }
         return true;

@@ -108,7 +108,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
                 intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
                 context.startActivity(intent);
                 if (context instanceof MainActivity) {
-                    ((MainActivity) context).overridePendingTransition(R.anim.detail_fade_in, R.anim.main_fade_out);
+                    ((MainActivity) context).overridePendingTransition(R.anim.main_detail_in, R.anim.main_detail_out);
                 }
             }
         });

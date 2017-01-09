@@ -33,6 +33,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.djonique.birdays.activities.MainActivity"/>
         </activity>
+        <activity android:name=".activities.EditActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.djonique.birdays.activities.DetailActivity"/>
+        </activity>
         <receiver android:name=".alarm.AlarmReceiver"
                   android:process=":remote">
         </receiver>
