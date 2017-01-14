@@ -13,10 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.djonique.birdays.alarm.AlarmHelper;
-import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.R;
+import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.adapters.AllFragmentAdapter;
+import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.model.Item;
 import com.djonique.birdays.model.Person;
@@ -178,6 +178,10 @@ public class AllFragment extends Fragment {
         for (int i = 0; i < persons.size(); i++) {
             addPerson(persons.get(i), false);
         }
+    }
+
+    public AllFragmentAdapter getAdapter() {
+        return adapter;
     }
 
     public interface DeletingRecordListener {

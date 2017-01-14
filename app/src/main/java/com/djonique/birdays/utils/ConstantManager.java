@@ -1,6 +1,5 @@
 package com.djonique.birdays.utils;
 
-
 public interface ConstantManager {
 
     // MainActivity
@@ -22,6 +21,12 @@ public interface ConstantManager {
     String SMSTO = "smsto:";
     String TEL = "tel: ";
 
-    // DetailActivity intent
+    // AllFragment
     String TIME_STAMP = "time_stamp";
+    String SELECTED_ITEM = "selected_item";
+    int DETAIL_ACTIVITY = 101;
+
+    // DetailActivity intent
+    int EDIT_ACTIVITY = 102;
+    String POSITION = "position";
 }

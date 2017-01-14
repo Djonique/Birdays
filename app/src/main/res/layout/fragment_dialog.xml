@@ -17,7 +17,6 @@
             style="@style/dialogTextStyle"
             android:hint="@string/name"
             android:inputType="textCapWords"/>
-
     </android.support.design.widget.TextInputLayout>
 
     <!--Phone-->
@@ -31,7 +30,6 @@
             style="@style/dialogTextStyle"
             android:hint="@string/phone"
             android:inputType="phone"/>
-
     </android.support.design.widget.TextInputLayout>
 
     <Button

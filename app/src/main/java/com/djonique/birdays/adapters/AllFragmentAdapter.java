@@ -106,7 +106,8 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<AllFragmentAdapter.
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
-                context.startActivity(intent);
+                intent.putExtra(ConstantManager.SELECTED_ITEM, holder.getAdapterPosition());
+                allFragment.startActivityForResult(intent, ConstantManager.DETAIL_ACTIVITY);
                 if (context instanceof MainActivity) {
                     ((MainActivity) context).overridePendingTransition(R.anim.main_detail_in, R.anim.main_detail_out);
                 }

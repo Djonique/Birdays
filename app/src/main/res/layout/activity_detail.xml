@@ -12,14 +12,13 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/image_detail"
+                android:id="@+id/ivPicture"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:contentDescription="@string/season_picture"
@@ -41,18 +40,17 @@
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
 
             <!--Date-->
             <RelativeLayout
-                android:id="@+id/rlDate"
                 style="@style/materialRL">
 
                 <ImageView
-                    android:id="@+id/ivCalendarIcon"
                     style="@style/detailActivityIcons"
                     android:contentDescription="@string/calendar"
                     app:srcCompat="@drawable/ic_calendar_purple_24dp"/>
@@ -69,9 +67,7 @@
 
             <!--Zodiac-->
             <RelativeLayout
-                android:id="@+id/rlZodiac"
-                style="@style/materialRL"
-                android:layout_below="@+id/rlDate">
+                style="@style/materialRL">
 
                 <TextView
                     android:id="@+id/tvZodiacImage"
@@ -80,7 +76,6 @@
                     android:layout_gravity="center_vertical"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
-                    android:textColor="@color/color_primary"
                     android:textSize="24sp"/>
 
                 <TextView
@@ -96,8 +91,7 @@
             <!--Age-->
             <RelativeLayout
                 android:id="@+id/rlAge"
-                style="@style/materialRL"
-                android:layout_below="@+id/rlZodiac">
+                style="@style/materialRL">
 
                 <TextView
                     android:id="@+id/tvDetailAge"
@@ -114,7 +108,6 @@
                 android:id="@+id/viewDivider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@+id/rlAge"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="72dp"
                 android:layout_marginStart="72dp"
@@ -124,58 +117,85 @@
             <!--Phone number-->
             <RelativeLayout
                 android:id="@+id/rlPhone"
-                style="@style/materialRL"
-                android:layout_below="@+id/viewDivider">
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/ivPhoneIcon"
-                    style="@style/detailActivityIcons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/phone"
+                    android:padding="24dp"
                     app:srcCompat="@drawable/ic_call_purple_24dp"/>
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/ivChatIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/chat"
+                    android:padding="24dp"
                     app:srcCompat="@drawable/ic_chat_purple_24dp"/>
 
                 <TextView
                     android:id="@+id/tvDetailPhone"
-                    style="@style/Material.Primary.TextView"/>
+                    style="@style/Primary.TextView"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginStart="72dp"/>
 
                 <TextView
-                    style="@style/Material.Secondary.TextView"
+                    style="@style/Secondary.TextView"
                     android:layout_below="@+id/tvDetailPhone"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginStart="72dp"
                     android:text="@string/phone"/>
             </RelativeLayout>
 
             <!--Email-->
             <RelativeLayout
                 android:id="@+id/rlEmail"
-                style="@style/materialRL"
-                android:layout_below="@+id/rlPhone">
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/ivEmailIcon"
-                    style="@style/detailActivityIcons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/email"
+                    android:padding="24dp"
                     app:srcCompat="@drawable/ic_email_purple_24dp"/>
 
                 <TextView
                     android:id="@+id/tvDetailEmail"
-                    style="@style/Material.Primary.TextView"/>
+                    style="@style/Primary.TextView"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginStart="72dp"/>
 
                 <TextView
-                    style="@style/Material.Secondary.TextView"
+                    style="@style/Secondary.TextView"
                     android:layout_below="@+id/tvDetailEmail"
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginStart="72dp"
                     android:text="@string/email"/>
             </RelativeLayout>
-
-        </RelativeLayout>
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_anchor="@id/appbar_detail"
+        app:layout_anchorGravity="bottom|right|end"
+        app:srcCompat="@drawable/ic_edit_white_24dp"/>
 </android.support.design.widget.CoordinatorLayout>

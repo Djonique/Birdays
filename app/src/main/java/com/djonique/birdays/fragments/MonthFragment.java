@@ -1,5 +1,6 @@
 package com.djonique.birdays.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -47,6 +48,12 @@ public class MonthFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
+
     public void addPerson(Person newPerson) {
         int position = -1;
 
@@ -88,5 +95,11 @@ public class MonthFragment extends Fragment {
         for (int i = 0; i < persons.size(); i++) {
             addPerson(persons.get(i));
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        adapter.notifyDataSetChanged();
     }
 }

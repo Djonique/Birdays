@@ -187,6 +187,22 @@ public class MainActivity extends AppCompatActivity implements
     public void onRecordDeleted(long timeStamp) {
         monthFragment.deleteRecord(timeStamp);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) return;
+        if (resultCode == RESULT_OK) {
+            int position = data.getIntExtra(ConstantManager.POSITION, 0);
+            allFragment.removePersonDialog(position);
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        allFragment.addPersonFromDB();
+        monthFragment.addPersonFromDB();
+    }
 }
 
 

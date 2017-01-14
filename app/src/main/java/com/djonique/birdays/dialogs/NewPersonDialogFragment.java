@@ -17,15 +17,14 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.R;
+import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.model.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
@@ -122,16 +121,14 @@ public class NewPersonDialogFragment extends DialogFragment implements
                     person.setLowerCaseName(name.toLowerCase());
                 }
 
-                if (!isEmptyDate()) {
-                    date = calendar.getTimeInMillis();
-                    person.setDate(date);
+                if (!Utils.isEmptyDate(etDate)) {
+                    person.setDate(calendar.getTimeInMillis());
 
                     AlarmHelper alarmHelper = AlarmHelper.getInstance();
                     alarmHelper.setAlarm(person);
                 }
 
                 if (etPhone != null && etPhone.length() != 0) {
-                    // TODO: 21.12.2016 БД должна хранить телефон в стринге
                     phone = etPhone.getText().toString();
                     person.setPhoneNumber(phone);
                 } else person.setPhoneNumber(null);
@@ -176,7 +173,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                                 positiveButton.setEnabled(false);
                                 tilName.setError(getString(R.string.error_hint));
                             } else {
-                                if (!isEmptyDate() && isRightDate()) {
+                                if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar)) {
                                     positiveButton.setEnabled(true);
                                 }
                                 tilName.setErrorEnabled(false);
@@ -198,13 +195,13 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        if (!isEmptyDate() && isRightDate()) {
+                        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar)) {
                             positiveButton.setEnabled(true);
                             tilDate.setErrorEnabled(false);
-                        } else if (isEmptyDate()) {
+                        } else if (Utils.isEmptyDate(etDate)) {
                             positiveButton.setEnabled(false);
                             tilDate.setError(getString(R.string.wrong_date));
-                        } else if (!isRightDate()) {
+                        } else if (!Utils.isRightDate(calendar)) {
                             positiveButton.setEnabled(false);
                             tilDate.setError(getString(R.string.not_vanga));
                         }
@@ -227,15 +224,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
         calendar.set(Calendar.MONTH, monthOfYear);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         etDate.setText(Utils.getDate(calendar.getTimeInMillis()));
-    }
-
-    private boolean isEmptyDate() {
-        return TextUtils.isEmpty(etDate.getText().toString());
-    }
-
-    private boolean isRightDate() {
-        long today = Calendar.getInstance().getTimeInMillis();
-        return today >= calendar.getTimeInMillis();
     }
 
     @Override

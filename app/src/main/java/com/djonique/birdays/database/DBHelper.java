@@ -68,6 +68,17 @@ public class DBHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert(DB_PERSONS, null, cv);
     }
 
+    public void updateRec(Person person) {
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_NAME, person.getName());
+        cv.put(COLUMN_DATE, person.getDate());
+        cv.put(COLUMN_PHONE_NUMBER, person.getPhoneNumber());
+        cv.put(COLUMN_EMAIL, person.getEmail());
+        cv.put(COLUMN_LOWER_CASE_NAME, person.getLowerCaseName());
+        getWritableDatabase().update(DB_PERSONS, cv, SELECTION_TIME_STAMP,
+                new String[] {String.valueOf(person.getTimeStamp())});
+    }
+
     private void addFamous(SQLiteDatabase db, Person person) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, person.getName());

@@ -3,6 +3,7 @@ package com.djonique.birdays.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,8 +28,11 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvDate, tvZodiac, tvZodiacImage, tvAge, tvPhone, tvEmail;
     private RelativeLayout rlEmail, rlPhone;
     private View view;
+    private Toolbar toolbar;
+    private Intent mainIntent;
 
-    private long date;
+    private long date, timeStamp;
+    private int position;
 
     private int winterImages[] = {R.drawable.img_winter_0,
             R.drawable.img_winter_1,
@@ -56,18 +60,19 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        mainIntent = new Intent();
+
         initUI();
 
         Intent intent = getIntent();
-        long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
+        timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
+        position = intent.getIntExtra(ConstantManager.SELECTED_ITEM, 0);
         DBHelper dbHelper = new DBHelper(getApplicationContext());
-        Person person = dbHelper.query().getPerson(timeStamp);
 
+        Person person = dbHelper.query().getPerson(timeStamp);
         date = person.getDate();
         String phoneNumber = person.getPhoneNumber();
         String email = person.getEmail();
-
-        Toolbar toolbar = ((Toolbar) findViewById(R.id.toolbar_detail));
         toolbar.setTitle(person.getName());
         setSupportActionBar(toolbar);
 
@@ -90,10 +95,7 @@ public class DetailActivity extends AppCompatActivity {
             rlEmail.setVisibility(View.INVISIBLE);
         }
         if (phoneNumber == null) {
-            rlPhone.setVisibility(View.INVISIBLE);
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlEmail.getLayoutParams();
-            params.addRule(RelativeLayout.BELOW, R.id.viewDivider);
-            rlEmail.setLayoutParams(params);
+            rlPhone.setVisibility(View.GONE);
         } else {
             tvPhone.setText(String.valueOf(person.getPhoneNumber()));
         }
@@ -103,11 +105,10 @@ public class DetailActivity extends AppCompatActivity {
         } else {
             tvEmail.setText(person.getEmail());
         }
-
     }
 
     private void initUI() {
-        imageView = ((ImageView) findViewById(R.id.image_detail));
+        imageView = ((ImageView) findViewById(R.id.ivPicture));
         tvDate = ((TextView) findViewById(R.id.tvDetailDate));
         tvZodiac = ((TextView) findViewById(R.id.tvZodiac));
         tvZodiacImage = ((TextView) findViewById(R.id.tvZodiacImage));
@@ -117,6 +118,17 @@ public class DetailActivity extends AppCompatActivity {
         rlEmail = ((RelativeLayout) findViewById(R.id.rlEmail));
         rlPhone = ((RelativeLayout) findViewById(R.id.rlPhone));
         view = findViewById(R.id.viewDivider);
+        toolbar = ((Toolbar) findViewById(R.id.toolbar_detail));
+        FloatingActionButton fab = ((FloatingActionButton) findViewById(R.id.fab_detail));
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EditActivity.class);
+                intent.putExtra(ConstantManager.TIME_STAMP, timeStamp);
+                startActivityForResult(intent, ConstantManager.EDIT_ACTIVITY);
+                overridePendingTransition(R.anim.detail_edit_in, R.anim.detail_edit_out);
+            }
+        });
     }
 
     @Override
@@ -129,13 +141,19 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
-            case R.id.menu_detail_edit:
-                startActivity(new Intent(this, EditActivity.class));
-                overridePendingTransition(R.anim.detail_edit_in, R.anim.detail_edit_out);
-                break;
             case android.R.id.home:
-                this.onBackPressed();
-                overridePendingTransition(R.anim.detail_main_in, R.anim.detail_main_out);
+                onBackPressed();
+                break;
+            case R.id.menu_detail_delete:
+                mainIntent.putExtra(ConstantManager.POSITION, position);
+                setResult(RESULT_OK, mainIntent);
+                finish();
+                break;
+            case R.id.menu_detail_share:
+                Intent intentShare = new Intent(Intent.ACTION_SEND);
+                intentShare.setType(ConstantManager.TEXT_PLAIN);
+                intentShare.putExtra(Intent.EXTRA_TEXT, getString(R.string.menu_share));
+                startActivity(Intent.createChooser(intentShare, getString(R.string.app_name)));
                 break;
         }
         return true;
@@ -156,5 +174,24 @@ public class DetailActivity extends AppCompatActivity {
         } else if (month >= 5 && month < 8) {
             setPicture(imageView, summerImages);
         } else setPicture(imageView, autumnImages);
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_CANCELED, mainIntent);
+        finish();
+        overridePendingTransition(R.anim.detail_main_in, R.anim.detail_main_out);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) return;
+        if (resultCode == RESULT_OK) {
+            Intent refresh = new Intent(this, DetailActivity.class);
+            refresh.putExtra(ConstantManager.TIME_STAMP, timeStamp);
+            startActivity(refresh);
+            this.finish();
+        }
     }
 }

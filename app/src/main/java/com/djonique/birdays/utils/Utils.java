@@ -1,5 +1,8 @@
 package com.djonique.birdays.utils;
 
+import android.text.TextUtils;
+import android.widget.EditText;
+
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -38,6 +41,15 @@ public class Utils {
             age--;
         }
         return age;
+    }
+
+    public static boolean isEmptyDate(EditText editText) {
+        return TextUtils.isEmpty(editText.getText().toString());
+    }
+
+    public static boolean isRightDate(Calendar calendar) {
+        long today = Calendar.getInstance().getTimeInMillis();
+        return today >= calendar.getTimeInMillis();
     }
 
     public static boolean isCurrentMonth(long date) {
