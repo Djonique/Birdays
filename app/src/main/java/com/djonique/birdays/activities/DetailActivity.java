@@ -26,7 +26,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private TextView tvDate, tvZodiac, tvZodiacImage, tvAge, tvPhone, tvEmail;
-    private RelativeLayout rlEmail, rlPhone;
+    private RelativeLayout rlEmail, rlPhone, rlAge;
     private View view;
     private Toolbar toolbar;
     private Intent mainIntent;
@@ -71,6 +71,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Person person = dbHelper.query().getPerson(timeStamp);
         date = person.getDate();
+        boolean unknownYear = person.isYearUnknown();
         String phoneNumber = person.getPhoneNumber();
         String email = person.getEmail();
         toolbar.setTitle(person.getName());
@@ -84,10 +85,16 @@ public class DetailActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
         }
 
-        tvDate.setText(Utils.getDate(date));
         tvZodiac.setText(Utils.getZodiac(date));
         tvZodiacImage.setText(Utils.getZodiacImage(date));
-        tvAge.setText(String.valueOf(Utils.getAge(date)));
+
+        if (unknownYear) {
+            tvDate.setText(Utils.getUnknownDate(date));
+            rlAge.setVisibility(View.GONE);
+        } else {
+            tvDate.setText(Utils.getDate(date));
+            tvAge.setText(String.valueOf(Utils.getAge(date)));
+        }
 
         if (phoneNumber == null && email == null) {
             view.setVisibility(View.INVISIBLE);
@@ -117,6 +124,7 @@ public class DetailActivity extends AppCompatActivity {
         tvEmail = ((TextView) findViewById(R.id.tvDetailEmail));
         rlEmail = ((RelativeLayout) findViewById(R.id.rlEmail));
         rlPhone = ((RelativeLayout) findViewById(R.id.rlPhone));
+        rlAge = ((RelativeLayout) findViewById(R.id.rlAge));
         view = findViewById(R.id.viewDivider);
         toolbar = ((Toolbar) findViewById(R.id.toolbar_detail));
         FloatingActionButton fab = ((FloatingActionButton) findViewById(R.id.fab_detail));
@@ -148,6 +156,7 @@ public class DetailActivity extends AppCompatActivity {
                 mainIntent.putExtra(ConstantManager.POSITION, position);
                 setResult(RESULT_OK, mainIntent);
                 finish();
+                overridePendingTransition(R.anim.detail_main_in, R.anim.detail_main_out);
                 break;
             case R.id.menu_detail_share:
                 Intent intentShare = new Intent(Intent.ACTION_SEND);

@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.djonique.birdays.R;
@@ -26,6 +27,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
 
     Calendar calendar;
     private EditText etName, etDate, etPhone, etEmail;
+    private CheckBox checkBox;
     private DBHelper dbHelper;
     private Person person;
     private TextInputLayout tilEditDate, tilEditName;
@@ -42,17 +44,24 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         Intent intent = getIntent();
         long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
         person = dbHelper.query().getPerson(timeStamp);
+        boolean unknownYear = person.isYearUnknown();
 
-        etName = ((EditText) findViewById(R.id.etEditName));
-        etDate = ((EditText) findViewById(R.id.etEditDate));
+        tilEditName = ((TextInputLayout) findViewById(R.id.tilEditName));
+        tilEditDate = ((TextInputLayout) findViewById(R.id.tilEditDate));
+        etDate = tilEditDate.getEditText();
+        etName = tilEditName.getEditText();
         etPhone = ((EditText) findViewById(R.id.etEditPhone));
         etEmail = ((EditText) findViewById(R.id.etEditEmail));
-        tilEditDate = ((TextInputLayout) findViewById(R.id.tilEditDate));
-        tilEditName = ((TextInputLayout) findViewById(R.id.tilEditName));
+        checkBox = ((CheckBox) findViewById(R.id.cbEdit));
 
         etName.setText(person.getName());
         etName.setSelection(etName.getText().length());
-        etDate.setText(Utils.getDate(person.getDate()));
+        if (unknownYear) {
+            etDate.setText(Utils.getUnknownDate(person.getDate()));
+        } else {
+            etDate.setText(Utils.getDate(person.getDate()));
+        }
+        checkBox.setChecked(unknownYear);
         etPhone.setText(person.getPhoneNumber());
         etEmail.setText(person.getEmail());
 
@@ -79,8 +88,8 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
                 updatePerson();
                 Intent update = new Intent();
                 setResult(RESULT_OK, update);
-                overridePendingTransition(R.anim.edit_detail_in, R.anim.edit_detail_out);
                 finish();
+                overridePendingTransition(R.anim.edit_detail_in, R.anim.edit_detail_out);
             }
         });
 
@@ -164,6 +173,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     private void updatePerson() {
         person.setName(updateText(etName));
         person.setDate(calendar.getTimeInMillis());
+        person.setYearUnknown(checkBox.isChecked());
         person.setPhoneNumber(updateText(etPhone));
         person.setEmail(updateText(etEmail));
         dbHelper.updateRec(person);

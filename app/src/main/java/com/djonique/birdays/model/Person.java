@@ -4,8 +4,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Person implements Item {
+
     private String name;
     private long date;
+    private boolean unknownYear;
     private String phoneNumber;
     private String email;
     private long timeStamp;
@@ -20,10 +22,16 @@ public class Person implements Item {
         this.date = date;
     }
 
-    public Person(String name, long date, String phoneNumber, String email, long timeStamp,
+    public Person(String name,
+                  long date,
+                  boolean unknownYear,
+                  String phoneNumber,
+                  String email,
+                  long timeStamp,
                   String lowerCaseName) {
         this.name = name;
         this.date = date;
+        this.unknownYear = unknownYear;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.timeStamp = timeStamp;
@@ -44,6 +52,14 @@ public class Person implements Item {
 
     public void setDate(long date) {
         this.date = date;
+    }
+
+    public boolean isYearUnknown() {
+        return unknownYear;
+    }
+
+    public void setYearUnknown(boolean unknownYear) {
+        this.unknownYear = unknownYear;
     }
 
     public String getPhoneNumber() {

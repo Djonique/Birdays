@@ -27,11 +27,12 @@ public class DBQueryManager {
         if (cursor.moveToFirst()) {
             String name = getName(cursor);
             long date = getDate(cursor);
+            boolean isYearKnown = getYearUnknown(cursor);
             String phoneNumber = getPhoneNumber(cursor);
             String email = getEmail(cursor);
             String lowerCaseName = getLowerCaseName(cursor);
 
-            person = new Person(name, date, phoneNumber, email, timeStamp, lowerCaseName);
+            person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp, lowerCaseName);
         }
         cursor.close();
 
@@ -48,12 +49,13 @@ public class DBQueryManager {
             do {
                 String name = getName(cursor);
                 long date = getDate(cursor);
+                boolean isYearKnown = getYearUnknown(cursor);
                 String phoneNumber = getPhoneNumber(cursor);
                 String email = getEmail(cursor);
                 long timeStamp = getTimeStamp(cursor);
                 String lowerCaseName = getLowerCaseName(cursor);
 
-                person = new Person(name, date, phoneNumber, email, timeStamp, lowerCaseName);
+                person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp, lowerCaseName);
                 persons.add(person);
 
             } while (cursor.moveToNext());
@@ -73,12 +75,13 @@ public class DBQueryManager {
             do {
                 String name = getName(cursor);
                 long date = getDate(cursor);
+                boolean isYearKnown = getYearUnknown(cursor);
                 String phoneNumber = getPhoneNumber(cursor);
                 String email = getEmail(cursor);
                 long timeStamp = getTimeStamp(cursor);
                 String lowerCaseName = getLowerCaseName(cursor);
 
-                person = new Person(name, date, phoneNumber, email, timeStamp, lowerCaseName);
+                person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp, lowerCaseName);
                 persons.add(person);
 
             } while (cursor.moveToNext());
@@ -97,13 +100,14 @@ public class DBQueryManager {
             do {
                 String name = getName(cursor);
                 long date = getDate(cursor);
+                boolean isYearKnown = getYearUnknown(cursor);
                 String phoneNumber = getPhoneNumber(cursor);
                 String email = getEmail(cursor);
                 long timeStamp = getTimeStamp(cursor);
                 String lowerCaseName = getLowerCaseName(cursor);
 
                 if (Utils.isCurrentMonth(date)) {
-                    person = new Person(name, date, phoneNumber, email, timeStamp, lowerCaseName);
+                    person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp, lowerCaseName);
                     persons.add(person);
                 }
             } while (cursor.moveToNext());
@@ -124,13 +128,14 @@ public class DBQueryManager {
             do {
                 String name = getName(cursor);
                 long date = getDate(cursor);
+                boolean isYearKnown = getYearUnknown(cursor);
                 String phoneNumber = getPhoneNumber(cursor);
                 String email = getEmail(cursor);
                 long timeStamp = getTimeStamp(cursor);
                 String lowerCaseName = getLowerCaseName(cursor);
 
                 if (Utils.isCurrentMonth(date)) {
-                    person = new Person(name, date, phoneNumber, email, timeStamp, lowerCaseName);
+                    person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp, lowerCaseName);
                     persons.add(person);
                 }
             } while (cursor.moveToNext());
@@ -167,6 +172,10 @@ public class DBQueryManager {
 
     private long getDate(Cursor cursor) {
         return cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_DATE));
+    }
+
+    private boolean getYearUnknown(Cursor cursor) {
+        return cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_IS_YEAR_KNOWN)) == 1;
     }
 
     private String getPhoneNumber(Cursor cursor) {

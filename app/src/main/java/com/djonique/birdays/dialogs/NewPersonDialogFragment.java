@@ -21,6 +21,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.djonique.birdays.R;
@@ -36,9 +37,10 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
     private AddingPersonListener addingPersonListener;
     private EditText etName, etPhone, etEmail, etDate;
+    private CheckBox cbKnownYear;
     private Calendar calendar;
     private String name, phone, email;
-    private long date;
+    private boolean unknownYear;
 
     @Override
     public void onAttach(Activity activity) {
@@ -111,6 +113,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
             }
         });
 
+        cbKnownYear = ((CheckBox) container.findViewById(R.id.cbKnownYear));
+
         builder.setView(container);
         builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
             @Override
@@ -127,6 +131,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
                     AlarmHelper alarmHelper = AlarmHelper.getInstance();
                     alarmHelper.setAlarm(person);
                 }
+
+                if (cbKnownYear != null) person.setYearUnknown(cbKnownYear.isChecked());
 
                 if (etPhone != null && etPhone.length() != 0) {
                     phone = etPhone.getText().toString();
@@ -151,6 +157,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         });
 
         AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {

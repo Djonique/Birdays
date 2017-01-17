@@ -107,4 +107,9 @@
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>
     </style>
+
+    <style name="DialogAnimation">
+        <item name="@android:windowEnterAnimation">@anim/grow_in</item>
+        <item name="@android:windowExitAnimation">@anim/grow_out</item>
+    </style>
 </resources>

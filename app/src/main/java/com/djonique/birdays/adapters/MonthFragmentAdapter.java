@@ -68,11 +68,19 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         final Item item = items.get(position);
         final Person person = (Person) item;
         long date = person.getDate();
-        String age = context.getString(R.string.age_text) + Integer.toString(Utils.getAge(date));
+        boolean unknownYear = person.isYearUnknown();
 
         holder.tvName.setText(person.getName());
-        holder.tvDate.setText(Utils.getDate(date));
-        holder.tvAge.setText(age);
+
+        if (unknownYear) {
+            holder.tvDate.setText(Utils.getUnknownDate(date));
+            holder.tvAge.setVisibility(View.GONE);
+        } else {
+            holder.tvDate.setText(Utils.getDate(date));
+            String age = context.getString(R.string.age_text) + Integer.toString(Utils.getAge(date));
+            holder.tvAge.setVisibility(View.VISIBLE);
+            holder.tvAge.setText(age);
+        }
 
         if (person.getPhoneNumber() != null) {
             holder.btnPhone.setColorFilter(enabled);

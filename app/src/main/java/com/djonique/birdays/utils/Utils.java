@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.widget.EditText;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -15,6 +16,15 @@ public class Utils {
     public static String getDate(long date) {
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
         return dateFormat.format(date);
+    }
+
+    public static String getUnknownDate(long date) {
+        Locale locale = Locale.getDefault();
+        SimpleDateFormat sdf = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.DEFAULT, locale));
+        String pattern = sdf.toPattern();
+        String yearlessPattern = pattern.replaceAll("([^\\p{Alpha}']|('[\\p{Alpha}]+'))*y+([^\\p{Alpha}']|('[\\p{Alpha}]+'))*", "");
+        SimpleDateFormat yearlessFormat = new SimpleDateFormat(yearlessPattern, locale);
+        return yearlessFormat.format(date);
     }
 
     private static int getDay(Calendar calendar) {
@@ -115,7 +125,6 @@ public class Utils {
             case Calendar.DECEMBER:
                 zodiac = getDay(dayOfBirthday) <= 21 ? "Sagittarius" : "Capricorn";
                 break;
-
         }
         return zodiac;
     }
@@ -161,7 +170,10 @@ public class Utils {
                 zodiacImage = "\u2653";
                 break;
         }
-
         return zodiacImage;
+    }
+
+    public static int boolToInt(boolean isYearKnown) {
+        return isYearKnown ? 1 : 0;
     }
 }

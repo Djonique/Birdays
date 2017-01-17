@@ -85,6 +85,7 @@
             </LinearLayout>
 
             <CheckBox
+                android:id="@+id/cbEdit"
                 style="@style/primaryTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

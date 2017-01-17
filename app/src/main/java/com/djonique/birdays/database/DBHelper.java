@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
 import com.djonique.birdays.model.Person;
+import com.djonique.birdays.utils.Utils;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -14,6 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
     static final String DB_PERSONS = "personsDB";
     static final String DB_FAMOUS = "famousDB";
     static final String COLUMN_DATE = "date";
+    static final String COLUMN_IS_YEAR_KNOWN = "is_year_known";
     static final String COLUMN_PHONE_NUMBER = "phone";
     static final String COLUMN_EMAIL = "email";
     static final String COLUMN_TIME_STAMP = "time_stamp";
@@ -26,6 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NAME + " TEXT, "
             + COLUMN_DATE + " INTEGER, "
+            + COLUMN_IS_YEAR_KNOWN + " INTEGER, "
             + COLUMN_PHONE_NUMBER + " TEXT, "
             + COLUMN_EMAIL + " TEXT, "
             + COLUMN_TIME_STAMP + " INTEGER, "
@@ -61,6 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, person.getName());
         cv.put(COLUMN_DATE, person.getDate());
+        cv.put(COLUMN_IS_YEAR_KNOWN, Utils.boolToInt(person.isYearUnknown()));
         cv.put(COLUMN_PHONE_NUMBER, person.getPhoneNumber());
         cv.put(COLUMN_EMAIL, person.getEmail());
         cv.put(COLUMN_TIME_STAMP, person.getTimeStamp());
@@ -72,6 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, person.getName());
         cv.put(COLUMN_DATE, person.getDate());
+        cv.put(COLUMN_IS_YEAR_KNOWN, Utils.boolToInt(person.isYearUnknown()));
         cv.put(COLUMN_PHONE_NUMBER, person.getPhoneNumber());
         cv.put(COLUMN_EMAIL, person.getEmail());
         cv.put(COLUMN_LOWER_CASE_NAME, person.getLowerCaseName());
