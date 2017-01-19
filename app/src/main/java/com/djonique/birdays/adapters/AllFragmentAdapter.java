@@ -7,6 +7,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,9 +72,12 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public void removePerson(int location) {
-        if (location >= 0 && location <= (getItemCount() - 1)) {
+        if (location >= 0 && location < getItemCount()) {
+            Log.d("TAG", String.valueOf(getItemCount()) + location);
             items.remove(location);
             notifyItemRemoved(location);
+            // TODO: 19.01.2017 indexofboundexception
+            Log.d("TAG", String.valueOf(getItemCount()) + location);
             if (location - 1 >= 0 && !getItem(location - 1).isPerson()) {
                 if (!getItem(location).isPerson() && !getItem(location - 1).isPerson()) {
                     Separator separator = (Separator) getItem(location - 1);

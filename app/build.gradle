@@ -29,5 +29,6 @@ dependencies {
     compile 'com.android.support:support-v4:25.0.1'
     compile 'com.android.support:support-vector-drawable:25.1.0'
     compile 'com.wdullaer:materialdatetimepicker:2.3.0'
+    compile 'com.google.android.gms:play-services-ads:10.0.1'
     testCompile 'junit:junit:4.12'
 }

@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,10 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.djonique.birdays.alarm.AlarmHelper;
-import com.djonique.birdays.utils.MyApplication;
+import com.djonique.birdays.Ads;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.PagerAdapter;
+import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.dialogs.NewPersonDialogFragment;
 import com.djonique.birdays.fragments.AllFragment;
@@ -28,6 +29,7 @@ import com.djonique.birdays.fragments.FamousFragment;
 import com.djonique.birdays.fragments.MonthFragment;
 import com.djonique.birdays.model.Person;
 import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.MyApplication;
 
 public class MainActivity extends AppCompatActivity implements
         NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener {
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Ads.showBanner(this);
+
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
 
         AlarmHelper.getInstance().init(getApplicationContext());
@@ -63,6 +67,11 @@ public class MainActivity extends AppCompatActivity implements
         fragmentManager = getFragmentManager();
 
         initUI();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
     }
 
     @Override
