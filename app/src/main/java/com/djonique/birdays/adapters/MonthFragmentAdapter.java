@@ -28,7 +28,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     private Context context;
     private List<Item> items;
     private int disabled = Color.rgb(224, 224, 224);
-    private int enabled = Color.rgb(104, 239, 173);
+    private int enabled = Color.rgb(156, 39, 176);
 
     public MonthFragmentAdapter(Context context) {
         this.context = context;

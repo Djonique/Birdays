@@ -1,166 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.djonique.birdays.activities.EditActivity">
 
-    <android.support.v4.widget.NestedScrollView
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/container_edit"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        tools:context="com.djonique.birdays.activities.EditActivity">
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="8dp">
+            android:layout_height="match_parent">
 
-            <!--Name-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="8dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="@string/calendar"
-                    app:srcCompat="@drawable/ic_person_purple_24dp"/>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/tilEditName"
+                <!--Name-->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginStart="24dp">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                    <EditText
-                        android:id="@+id/etEditName"
-                        style="@style/dialogTextStyle"
-                        android:hint="@string/name"
-                        android:inputType="textCapWords"/>
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/calendar"
+                        app:srcCompat="@drawable/ic_person_purple_24dp"/>
 
-            <!--Date-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="@string/calendar"
-                    app:srcCompat="@drawable/ic_calendar_purple_24dp"/>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/tilEditDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginStart="24dp">
-
-                    <EditText
-                        android:id="@+id/etEditDate"
-                        style="@android:style/Widget.Holo.Spinner"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/tilEditName"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="16dp"
-                        android:cursorVisible="false"
-                        android:focusableInTouchMode="false"
-                        android:hint="@string/pick_date"
-                        android:inputType="date"
-                        android:textSize="16sp"/>
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp">
 
-            <CheckBox
-                android:id="@+id/cbEdit"
-                style="@style/primaryTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="72dp"
-                android:layout_marginStart="72dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/unknown_year"/>
+                        <EditText
+                            android:id="@+id/etEditName"
+                            style="@style/dialogTextStyle"
+                            android:hint="@string/name"
+                            android:inputType="textCapWords"/>
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
 
-            <!--Phone number-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="@string/phone"
-                    app:srcCompat="@drawable/ic_call_purple_24dp"/>
-
-                <android.support.design.widget.TextInputLayout
+                <!--Date-->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginStart="24dp">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
-                    <EditText
-                        android:id="@+id/etEditPhone"
-                        style="@style/dialogTextStyle"
-                        android:hint="@string/phone"
-                        android:inputType="phone"/>
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/calendar"
+                        app:srcCompat="@drawable/ic_calendar_purple_24dp"/>
 
-            <!--Email-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/tilEditDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="@string/email"
-                    app:srcCompat="@drawable/ic_email_purple_24dp"/>
+                        <EditText
+                            android:id="@+id/etEditDate"
+                            style="@android:style/Widget.Holo.Spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:cursorVisible="false"
+                            android:focusableInTouchMode="false"
+                            android:hint="@string/pick_date"
+                            android:inputType="date"
+                            android:textSize="16sp"/>
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <CheckBox
+                    android:id="@+id/cbEdit"
+                    style="@style/primaryTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginStart="24dp">
+                    android:layout_marginLeft="72dp"
+                    android:layout_marginStart="72dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/unknown_year"/>
 
-                    <EditText
-                        android:id="@+id/etEditEmail"
-                        style="@style/dialogTextStyle"
-                        android:hint="@string/email"
-                        android:inputType="textEmailAddress"/>
-                </android.support.design.widget.TextInputLayout>
+                <!--Phone number-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/phone"
+                        app:srcCompat="@drawable/ic_call_purple_24dp"/>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp">
+
+                        <EditText
+                            android:id="@+id/etEditPhone"
+                            style="@style/dialogTextStyle"
+                            android:hint="@string/phone"
+                            android:inputType="phone"/>
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <!--Email-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="@string/email"
+                        app:srcCompat="@drawable/ic_email_purple_24dp"/>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginStart="24dp">
+
+                        <EditText
+                            android:id="@+id/etEditEmail"
+                            style="@style/dialogTextStyle"
+                            android:hint="@string/email"
+                            android:inputType="textEmailAddress"/>
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+        </android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_edit"
-        android:layout_width="wrap_content"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_check_grey_24dp"/>
+    </android.support.design.widget.CoordinatorLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/banner_edit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_check_white_24dp"/>
-</android.support.design.widget.CoordinatorLayout>
+        android:layout_alignParentBottom="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/banner_id"/>
+</RelativeLayout>

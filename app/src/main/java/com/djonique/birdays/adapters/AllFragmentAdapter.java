@@ -7,7 +7,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +27,6 @@ import java.util.List;
 
 public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Item> items;
-    private AllFragment allFragment;
-    private Context context;
-
     private static final int TYPE_PERSON = 0;
     private static final int TYPE_SEPARATOR = 1;
 
@@ -47,6 +42,10 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public boolean containsSeparatorOctober;
     public boolean containsSeparatorNovember;
     public boolean containsSeparatorDecember;
+
+    private List<Item> items;
+    private AllFragment allFragment;
+    private Context context;
 
     public AllFragmentAdapter(AllFragment allFragment) {
         this.allFragment = allFragment;
@@ -73,13 +72,15 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public void removePerson(int location) {
         if (location >= 0 && location < getItemCount()) {
-            Log.d("TAG", String.valueOf(getItemCount()) + location);
             items.remove(location);
             notifyItemRemoved(location);
-            // TODO: 19.01.2017 indexofboundexception
-            Log.d("TAG", String.valueOf(getItemCount()) + location);
             if (location - 1 >= 0 && !getItem(location - 1).isPerson()) {
-                if (!getItem(location).isPerson() && !getItem(location - 1).isPerson()) {
+                if (location != getItemCount() && !getItem(location).isPerson() && !getItem(location - 1).isPerson()) {
+                    Separator separator = (Separator) getItem(location - 1);
+                    checkSeparator(separator.getType());
+                    items.remove(location - 1);
+                    notifyItemRemoved(location - 1);
+                } else if (location == getItemCount() && !getItem(location - 1).isPerson()) {
                     Separator separator = (Separator) getItem(location - 1);
                     checkSeparator(separator.getType());
                     items.remove(location - 1);
@@ -176,7 +177,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             if (unknownYear) {
                 listViewHolder.tvDate.setText(Utils.getUnknownDate(date));
-                int ageCircleColor = ContextCompat.getColor(context, android.R.color.holo_red_light);
+                int ageCircleColor = ContextCompat.getColor(context, R.color.disabled);
                 ageCircle.setColor(ageCircleColor);
                 listViewHolder.tvAge.setText("?");
             } else {
@@ -259,6 +260,15 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return ageCircleColorResID;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (getItem(position).isPerson()) {
+            return TYPE_PERSON;
+        } else {
+            return TYPE_SEPARATOR;
+        }
+    }
+
     private static class ListViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvDate, tvAge;
 
@@ -276,15 +286,6 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         SeparatorViewHolder(View itemView) {
             super(itemView);
             type = ((TextView) itemView.findViewById(R.id.tvSeparator));
-        }
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        if (getItem(position).isPerson()) {
-            return TYPE_PERSON;
-        } else {
-            return TYPE_SEPARATOR;
         }
     }
 }

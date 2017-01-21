@@ -1,30 +1,27 @@
 package com.djonique.birdays;
 
 
-import android.app.Activity;
 import android.view.View;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-public class Ads {
+public class Ad {
 
-    public static void showBanner(final Activity activity) {
-        final AdView banner = ((AdView) activity.findViewById(R.id.banner));
+    public static void showBanner(final View view, final AdView banner) {
         banner.loadAd(new AdRequest.Builder().build());
 
         banner.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                setupContentViewPadding(activity, banner.getHeight());
+                setupContentViewPadding(view, banner.getHeight());
             }
         });
     }
 
-    private static void setupContentViewPadding(Activity activity, int padding) {
-        View view = activity.findViewById(R.id.container);
+    private static void setupContentViewPadding(View view, int padding) {
         view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(),
                 padding);
     }

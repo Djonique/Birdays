@@ -1,11 +1,9 @@
 package com.djonique.birdays.activities;
 
 import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,7 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.djonique.birdays.Ads;
+import com.djonique.birdays.Ad;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.PagerAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
@@ -30,31 +28,47 @@ import com.djonique.birdays.fragments.MonthFragment;
 import com.djonique.birdays.model.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.MyApplication;
+import com.google.android.gms.ads.AdView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnPageChange;
 
 public class MainActivity extends AppCompatActivity implements
         NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener {
 
     public DBHelper dbHelper;
+    @BindView(R.id.appbar)
+    AppBarLayout appBarLayout;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.searchView)
+    SearchView searchView;
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
     MonthFragment monthFragment;
     AllFragment allFragment;
     FamousFragment famousFragment;
-    private FragmentManager fragmentManager;
-    private FloatingActionButton fab;
-    private SearchView searchView;
-    private PagerAdapter pagerAdapter;
-    private AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Ads.showBanner(this);
+        ButterKnife.bind(this);
 
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
+        dbHelper = new DBHelper(getApplicationContext());
+
+        Ad.showBanner(findViewById(R.id.container), (AdView) findViewById(R.id.banner));
 
         AlarmHelper.getInstance().init(getApplicationContext());
 
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
         if (savedInstanceState == null) {
             monthFragment = ((MonthFragment)
                     pagerAdapter.getItem(PagerAdapter.MONTH_FRAGMENT_POSITION));
@@ -63,67 +77,12 @@ public class MainActivity extends AppCompatActivity implements
                     pagerAdapter.getItem(PagerAdapter.FAMOUS_FRAGMENT_POSITION));
         }
 
-        dbHelper = new DBHelper(getApplicationContext());
-        fragmentManager = getFragmentManager();
-
-        initUI();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        MyApplication.activityResumed();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MyApplication.activityPaused();
-    }
-
-    private void initUI() {
-        appBarLayout = ((AppBarLayout) findViewById(R.id.appbar));
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(2);
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(final int position) {
-
-                appBarLayout.setExpanded(true, true);
-
-                if (position == PagerAdapter.FAMOUS_FRAGMENT_POSITION) {
-                    fab.hide();
-                    searchView.setVisibility(View.GONE);
-                } else {
-                    fab.show();
-                    searchView.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
 
-        searchView = ((SearchView) findViewById(R.id.searchView));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -141,15 +100,25 @@ public class MainActivity extends AppCompatActivity implements
                 return false;
             }
         });
+    }
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment newPersonDialogFragment = new NewPersonDialogFragment();
-                newPersonDialogFragment.show(fragmentManager, ConstantManager.NEW_PERSON_DIALOG_TAG);
-            }
-        });
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.activityResumed();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        allFragment.addPersonFromDB();
+        monthFragment.addPersonFromDB();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyApplication.activityPaused();
     }
 
     @Override
@@ -180,6 +149,15 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null) return;
+        if (resultCode == RESULT_OK) {
+            int position = data.getIntExtra(ConstantManager.POSITION, 0);
+            allFragment.removePersonDialog(position);
+        }
+    }
+
+    @Override
     public void onPersonAdded(Person person) {
         monthFragment.addPerson(person);
         allFragment.addPerson(person, true);
@@ -197,20 +175,22 @@ public class MainActivity extends AppCompatActivity implements
         monthFragment.deleteRecord(timeStamp);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data == null) return;
-        if (resultCode == RESULT_OK) {
-            int position = data.getIntExtra(ConstantManager.POSITION, 0);
-            allFragment.removePersonDialog(position);
+    @OnPageChange(R.id.viewPager)
+    void onPageSelected(int position) {
+        appBarLayout.setExpanded(true, true);
+        if (position == PagerAdapter.FAMOUS_FRAGMENT_POSITION) {
+            fab.hide();
+            searchView.setVisibility(View.GONE);
+        } else {
+            fab.show();
+            searchView.setVisibility(View.VISIBLE);
         }
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        allFragment.addPersonFromDB();
-        monthFragment.addPersonFromDB();
+    @OnClick(R.id.fab)
+    void showDialog() {
+        DialogFragment newPersonDialogFragment = new NewPersonDialogFragment();
+        newPersonDialogFragment.show(getFragmentManager(), ConstantManager.NEW_PERSON_DIALOG_TAG);
     }
 }
 
