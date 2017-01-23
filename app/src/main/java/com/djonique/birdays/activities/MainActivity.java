@@ -23,8 +23,6 @@ import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.dialogs.NewPersonDialogFragment;
 import com.djonique.birdays.fragments.AllFragment;
-import com.djonique.birdays.fragments.FamousFragment;
-import com.djonique.birdays.fragments.MonthFragment;
 import com.djonique.birdays.model.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.MyApplication;
@@ -51,9 +49,7 @@ public class MainActivity extends AppCompatActivity implements
     ViewPager viewPager;
     @BindView(R.id.fab)
     FloatingActionButton fab;
-    MonthFragment monthFragment;
-    AllFragment allFragment;
-    FamousFragment famousFragment;
+    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +64,7 @@ public class MainActivity extends AppCompatActivity implements
 
         AlarmHelper.getInstance().init(getApplicationContext());
 
-        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
-        if (savedInstanceState == null) {
-            monthFragment = ((MonthFragment)
-                    pagerAdapter.getItem(PagerAdapter.MONTH_FRAGMENT_POSITION));
-            allFragment = ((AllFragment) pagerAdapter.getItem(PagerAdapter.ALL_FRAGMENT_POSITION));
-            famousFragment = ((FamousFragment)
-                    pagerAdapter.getItem(PagerAdapter.FAMOUS_FRAGMENT_POSITION));
-        }
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
 
         setSupportActionBar(toolbar);
 
@@ -91,12 +80,7 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (allFragment != null) {
-                    allFragment.findPerson(newText);
-                }
-                if (monthFragment != null) {
-                    monthFragment.findPerson(newText);
-                }
+                pagerAdapter.search(newText);
                 return false;
             }
         });
@@ -111,8 +95,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onRestart() {
         super.onRestart();
-        allFragment.addPersonFromDB();
-        monthFragment.addPersonFromDB();
+        pagerAdapter.addRecordsFromDB();
     }
 
     @Override
@@ -153,14 +136,13 @@ public class MainActivity extends AppCompatActivity implements
         if (data == null) return;
         if (resultCode == RESULT_OK) {
             int position = data.getIntExtra(ConstantManager.POSITION, 0);
-            allFragment.removePersonDialog(position);
+            pagerAdapter.startDialog(position);
         }
     }
 
     @Override
     public void onPersonAdded(Person person) {
-        monthFragment.addPerson(person);
-        allFragment.addPerson(person, true);
+        pagerAdapter.addPerson(person);
         Snackbar snackbar = Snackbar.make(findViewById(R.id.container),
                 R.string.record_added, Snackbar.LENGTH_SHORT);
         snackbar.show();
@@ -172,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onRecordDeleted(long timeStamp) {
-        monthFragment.deleteRecord(timeStamp);
+        pagerAdapter.deleteRecord(timeStamp);
     }
 
     @OnPageChange(R.id.viewPager)

@@ -106,5 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
         addFamous(db, new Person("Humphry Davy", -6028646400000L));
         addFamous(db, new Person("Jorge Mario Bergoglio (Franciscus)", -1042675200000L));
         addFamous(db, new Person("Milla Jovovich", 188006400000L));
+        // 23 january
+        addFamous(db, new Person("Édouard Manet", -4353004800000L));
     }
 }

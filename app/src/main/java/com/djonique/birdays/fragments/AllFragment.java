@@ -170,7 +170,6 @@ public class AllFragment extends Fragment {
             }
         }
 
-
         if (position != -1) {
             if (separator != null) {
                 adapter.addItem(position - 1, separator);
@@ -269,12 +268,7 @@ public class AllFragment extends Fragment {
         }
     }
 
-    public AllFragmentAdapter getAdapter() {
-        return adapter;
-    }
-
     public interface DeletingRecordListener {
         void onRecordDeleted(long timeStamp);
     }
-
 }
