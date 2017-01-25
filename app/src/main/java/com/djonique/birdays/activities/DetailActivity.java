@@ -13,10 +13,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.djonique.birdays.Ad;
+import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.R;
 import com.djonique.birdays.database.DBHelper;
-import com.djonique.birdays.model.Person;
+import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.IntentHelper;
 import com.djonique.birdays.utils.Utils;

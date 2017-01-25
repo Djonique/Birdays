@@ -11,11 +11,13 @@ import android.widget.TextView;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.utils.Utils;
-import com.djonique.birdays.model.Item;
-import com.djonique.birdays.model.Person;
+import com.djonique.birdays.models.Item;
+import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.ButterKnife;
 
 public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAdapter.ListViewHolder> {
 
@@ -81,8 +83,8 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
 
         ListViewHolder(View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.tvFamousName);
-            tvDate = (TextView) itemView.findViewById(R.id.tvFamousDate);
+            tvName = ButterKnife.findById(itemView, R.id.tvFamousName);
+            tvDate = ButterKnife.findById(itemView, R.id.tvFamousDate);
         }
     }
 }

@@ -26,7 +26,7 @@ import android.widget.EditText;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
-import com.djonique.birdays.model.Person;
+import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
 
@@ -40,12 +40,12 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private CheckBox cbKnownYear;
     private Calendar calendar;
     private String name, phone, email;
-    private boolean unknownYear;
 
+
+    @SuppressWarnings("deprecation")
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
         try {
             addingPersonListener = (AddingPersonListener) activity;
         } catch (ClassCastException e) {

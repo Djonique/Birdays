@@ -16,14 +16,16 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.fragments.AllFragment;
-import com.djonique.birdays.model.Item;
-import com.djonique.birdays.model.Person;
-import com.djonique.birdays.model.Separator;
+import com.djonique.birdays.models.Item;
+import com.djonique.birdays.models.Person;
+import com.djonique.birdays.models.Separator;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.ButterKnife;
 
 public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -74,22 +76,25 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (location >= 0 && location < getItemCount()) {
             items.remove(location);
             notifyItemRemoved(location);
+
             if (location - 1 >= 0 && !getItem(location - 1).isPerson()) {
+
                 if (location != getItemCount() && !getItem(location).isPerson() && !getItem(location - 1).isPerson()) {
                     Separator separator = (Separator) getItem(location - 1);
                     checkSeparator(separator.getType());
                     items.remove(location - 1);
                     notifyItemRemoved(location - 1);
+
                 } else if (location == getItemCount() && !getItem(location - 1).isPerson()) {
                     Separator separator = (Separator) getItem(location - 1);
                     checkSeparator(separator.getType());
                     items.remove(location - 1);
                     notifyItemRemoved(location - 1);
                 }
+
             } else if (getItemCount() - 1 >= 0 && !getItem(getItemCount() - 1).isPerson()) {
                 Separator separator = (Separator) getItem(getItemCount() - 1);
                 checkSeparator(separator.getType());
-
                 int locationTemp = getItemCount() - 1;
                 items.remove(locationTemp);
                 notifyItemRemoved(locationTemp);
@@ -274,9 +279,9 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         ListViewHolder(View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.tvPersonName);
-            tvDate = (TextView) itemView.findViewById(R.id.tvPersonDate);
-            tvAge = (TextView) itemView.findViewById(R.id.tvListAge);
+            tvName = ButterKnife.findById(itemView, R.id.tvPersonName);
+            tvDate = ButterKnife.findById(itemView, R.id.tvPersonDate);
+            tvAge = ButterKnife.findById(itemView, R.id.tvListAge);
         }
     }
 
@@ -285,7 +290,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         SeparatorViewHolder(View itemView) {
             super(itemView);
-            type = ((TextView) itemView.findViewById(R.id.tvSeparator));
+            type = ButterKnife.findById(itemView, R.id.tvSeparator);
         }
     }
 }

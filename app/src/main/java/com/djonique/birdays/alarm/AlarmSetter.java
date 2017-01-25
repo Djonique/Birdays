@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.djonique.birdays.database.DBHelper;
-import com.djonique.birdays.model.Person;
+import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
 import java.util.List;

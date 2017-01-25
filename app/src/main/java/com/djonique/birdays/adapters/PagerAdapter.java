@@ -10,7 +10,7 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.fragments.FamousFragment;
 import com.djonique.birdays.fragments.MonthFragment;
-import com.djonique.birdays.model.Person;
+import com.djonique.birdays.models.Person;
 
 import java.util.Calendar;
 
@@ -106,7 +106,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
         }
     }
 
-    public void startDialog(int position) {
+    public void startRemovePersonDialog(int position) {
         if (allFragment != null) {
             allFragment.removePersonDialog(position);
         }

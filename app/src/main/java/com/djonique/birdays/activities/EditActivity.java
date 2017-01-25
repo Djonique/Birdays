@@ -11,10 +11,10 @@ import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.djonique.birdays.Ad;
+import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.R;
 import com.djonique.birdays.database.DBHelper;
-import com.djonique.birdays.model.Person;
+import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
 import com.google.android.gms.ads.AdView;

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.djonique.birdays.R;
 import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
-import com.djonique.birdays.model.Person;
+import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
 import java.util.List;

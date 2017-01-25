@@ -16,17 +16,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.djonique.birdays.Ad;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.PagerAdapter;
+import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.dialogs.NewPersonDialogFragment;
 import com.djonique.birdays.fragments.AllFragment;
-import com.djonique.birdays.model.Person;
+import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.MyApplication;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        FirebaseAnalytics.getInstance(this);
 
         dbHelper = new DBHelper(getApplicationContext());
 
@@ -136,14 +139,14 @@ public class MainActivity extends AppCompatActivity implements
         if (data == null) return;
         if (resultCode == RESULT_OK) {
             int position = data.getIntExtra(ConstantManager.POSITION, 0);
-            pagerAdapter.startDialog(position);
+            pagerAdapter.startRemovePersonDialog(position);
         }
     }
 
     @Override
     public void onPersonAdded(Person person) {
         pagerAdapter.addPerson(person);
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.container),
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.container),
                 R.string.record_added, Snackbar.LENGTH_SHORT);
         snackbar.show();
     }

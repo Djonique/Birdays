@@ -3,7 +3,7 @@ package com.djonique.birdays.database;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.djonique.birdays.model.Person;
+import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Utils;
 
 import java.util.ArrayList;

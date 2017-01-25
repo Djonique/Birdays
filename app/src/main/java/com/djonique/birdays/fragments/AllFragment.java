@@ -18,9 +18,9 @@ import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.adapters.AllFragmentAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
-import com.djonique.birdays.model.Item;
-import com.djonique.birdays.model.Person;
-import com.djonique.birdays.model.Separator;
+import com.djonique.birdays.models.Item;
+import com.djonique.birdays.models.Person;
+import com.djonique.birdays.models.Separator;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,7 +28,7 @@ import java.util.List;
 
 public class AllFragment extends Fragment {
 
-    public MainActivity activity;
+    private MainActivity activity;
     private AllFragmentAdapter adapter;
     private DeletingRecordListener deletingRecordListener;
     private AlarmHelper alarmHelper;
@@ -36,7 +36,6 @@ public class AllFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         try {
             deletingRecordListener = (MainActivity) getActivity();
         } catch (ClassCastException e) {
@@ -52,7 +51,6 @@ public class AllFragment extends Fragment {
             activity = (MainActivity) getActivity();
             addPersonFromDB();
         }
-
         alarmHelper = AlarmHelper.getInstance();
     }
 

@@ -1,9 +1,7 @@
 package com.djonique.birdays.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,21 +12,25 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.model.Item;
-import com.djonique.birdays.model.Person;
-import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.models.Item;
+import com.djonique.birdays.models.Person;
+import com.djonique.birdays.utils.IntentHelper;
 import com.djonique.birdays.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.ButterKnife;
 
 
 public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdapter.CardViewHolder> {
 
     private Context context;
     private List<Item> items;
-    private int disabled = Color.rgb(224, 224, 224);
+    private String email, phoneNumber;
+
     private int enabled = Color.rgb(156, 39, 176);
+    private int disabled = Color.rgb(224, 224, 224);
 
     public MonthFragmentAdapter(Context context) {
         this.context = context;
@@ -69,6 +71,8 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         final Person person = (Person) item;
         long date = person.getDate();
         boolean unknownYear = person.isYearUnknown();
+        email = person.getEmail();
+        phoneNumber = person.getPhoneNumber();
 
         holder.tvName.setText(person.getName());
 
@@ -82,51 +86,38 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.tvAge.setText(age);
         }
 
-        if (person.getPhoneNumber() != null) {
-            holder.btnPhone.setColorFilter(enabled);
-            holder.btnSMS.setColorFilter(enabled);
+        if (email != null) {
+            enableButton(holder.btnEmail);
+            holder.btnEmail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    IntentHelper.sendEmail(context, email);
+                }
+            });
+        } else {
+            disableButton(holder.btnEmail);
+        }
+
+        if (phoneNumber != null) {
+            enableButton(holder.btnPhone);
+            enableButton(holder.btnSMS);
             holder.btnPhone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL,
-                            Uri.parse(ConstantManager.TEL + person.getPhoneNumber()));
-                    context.startActivity(intent);
+                    IntentHelper.call(context, phoneNumber);
                 }
             });
 
             holder.btnSMS.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String phoneNumber = person.getPhoneNumber();
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setType(ConstantManager.TYPE_SMS);
-                    intent.putExtra(ConstantManager.ADDRESS, phoneNumber);
-                    intent.setData(Uri.parse(ConstantManager.SMSTO + phoneNumber));
-                    context.startActivity(intent);
+                    IntentHelper.sendSms(context, phoneNumber);
                 }
             });
 
         } else {
             disableButton(holder.btnPhone);
             disableButton(holder.btnSMS);
-        }
-
-        if (person.getEmail() != null) {
-            holder.btnEmail.setColorFilter(enabled);
-            holder.btnEmail.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String email = person.getEmail();
-                    Intent intent = new Intent(Intent.ACTION_SENDTO);
-                    intent.setType(ConstantManager.TYPE_EMAIL);
-                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                    intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.happy_birthday));
-                    intent.setData(Uri.parse(ConstantManager.MAILTO + email));
-                    context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_email)));
-                }
-            });
-        } else {
-            disableButton(holder.btnEmail);
         }
     }
 
@@ -136,7 +127,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     }
 
     public void removePerson(long timeStamp) {
-
         for (int i = 0; i < getItemCount(); i++) {
             Item item = getItem(i);
             Person person = ((Person) item);
@@ -155,8 +145,12 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         }
     }
 
+    private void enableButton(ImageButton button) {
+        button.setColorFilter(enabled);
+        button.setClickable(true);
+    }
+
     private void disableButton(ImageButton button) {
-        button.setEnabled(true);
         button.setColorFilter(disabled);
         button.setClickable(false);
     }
@@ -169,16 +163,16 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
         CardViewHolder(View itemView) {
             super(itemView);
-            cardView = (CardView) itemView.findViewById(R.id.cardView);
-            relativeLayout = ((RelativeLayout) itemView.findViewById(R.id.relativeLayout));
-            tvName = (TextView) itemView.findViewById(R.id.tvName);
-            tvDate = (TextView) itemView.findViewById(R.id.tvDate);
-            tvAge = (TextView) itemView.findViewById(R.id.tvAge);
-            btnEmail = (ImageButton) itemView.findViewById(R.id.btnEmail);
+            cardView = ButterKnife.findById(itemView, R.id.cardView);
+            relativeLayout = ButterKnife.findById(itemView, R.id.relativeLayout);
+            tvName = ButterKnife.findById(itemView, R.id.tvName);
+            tvDate = ButterKnife.findById(itemView, R.id.tvDate);
+            tvAge = ButterKnife.findById(itemView, R.id.tvAge);
+            btnEmail = ButterKnife.findById(itemView, R.id.btnEmail);
             btnEmail.setImageResource(R.drawable.ic_email_purple_24dp);
-            btnSMS = (ImageButton) itemView.findViewById(R.id.btnSMS);
+            btnSMS = ButterKnife.findById(itemView, R.id.btnSMS);
             btnSMS.setImageResource(R.drawable.ic_chat_purple_24dp);
-            btnPhone = (ImageButton) itemView.findViewById(R.id.btnPhone);
+            btnPhone = ButterKnife.findById(itemView, R.id.btnPhone);
             btnPhone.setImageResource(R.drawable.ic_call_purple_24dp);
         }
     }

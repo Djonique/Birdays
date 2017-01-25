@@ -1,4 +1,4 @@
-package com.djonique.birdays;
+package com.djonique.birdays.ads;
 
 
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.djonique.birdays.model;
+package com.djonique.birdays.models;
 
 public interface Item {
     boolean isPerson();

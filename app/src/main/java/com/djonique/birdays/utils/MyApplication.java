@@ -11,10 +11,6 @@ public class MyApplication extends Application {
         return activityVisible;
     }
 
-    public static void setActivityVisible(boolean activityVisible) {
-        activityVisible = true;
-    }
-
     public static void activityResumed() {
         activityVisible = true;
     }

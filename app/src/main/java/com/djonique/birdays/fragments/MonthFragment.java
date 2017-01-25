@@ -14,14 +14,14 @@ import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.MonthFragmentAdapter;
 import com.djonique.birdays.database.DBHelper;
-import com.djonique.birdays.model.Person;
+import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MonthFragment extends Fragment {
 
-    public MainActivity activity;
+    private MainActivity activity;
     private MonthFragmentAdapter adapter;
 
     @Override
