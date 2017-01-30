@@ -32,6 +32,21 @@ public class FamousFragment extends Fragment {
         }
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(manager);
+        adapter = new FamousFragmentAdapter();
+        recyclerView.setAdapter(adapter);
+
+        return view;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,20 +61,5 @@ public class FamousFragment extends Fragment {
         for (int i = 0; i < famous.size(); i++) {
             adapter.addItem(famous.get(i));
         }
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(manager);
-        adapter = new FamousFragmentAdapter();
-        recyclerView.setAdapter(adapter);
-
-        return view;
     }
 }

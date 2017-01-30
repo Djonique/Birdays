@@ -1,21 +1,31 @@
 package com.djonique.birdays.activities;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.R;
+import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.ContactsInfo;
 import com.djonique.birdays.utils.Utils;
 import com.google.android.gms.ads.AdView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -86,6 +96,12 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
             case android.R.id.home:
                 this.onBackPressed();
                 break;
+            case R.id.menu_edit_ok:
+                updatePerson();
+                Intent update = new Intent();
+                setResult(RESULT_OK, update);
+                finish();
+                overridePendingTransition(R.anim.edit_detail_in, R.anim.edit_detail_out);
         }
         return true;
     }
@@ -109,15 +125,6 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         checkBox.setChecked(unknownYear);
         etPhone.setText(person.getPhoneNumber());
         etEmail.setText(person.getEmail());
-    }
-
-    @OnClick(R.id.fab_edit)
-    void submit() {
-        updatePerson();
-        Intent update = new Intent();
-        setResult(RESULT_OK, update);
-        finish();
-        overridePendingTransition(R.anim.edit_detail_in, R.anim.edit_detail_out);
     }
 
     private void updatePerson() {
@@ -181,6 +188,42 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         } else if (!Utils.isRightDate(calendar)) {
             fab.hide();
             tilEditDate.setError(getString(R.string.not_vanga));
+        }
+    }
+
+    @OnClick(R.id.fab_edit)
+    void addInfo() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CONTACTS) ==
+                PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(Intent.ACTION_PICK,
+                    ContactsContract.Contacts.CONTENT_URI);
+            startActivityForResult(intent, ConstantManager.REQUEST_READ_CONTACTS);
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Uri contactData = data.getData();
+            ContentResolver contentResolver = this.getContentResolver();
+            Cursor cursor = contentResolver.query(contactData, null, null, null, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    String id = cursor.getString(
+                            cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                    etPhone.setText(ContactsInfo.retrievePhoneNumber(contentResolver, cursor, id));
+                    etEmail.setText(ContactsInfo.retrieveEmail(contentResolver, id));
+                }
+            }
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
 }

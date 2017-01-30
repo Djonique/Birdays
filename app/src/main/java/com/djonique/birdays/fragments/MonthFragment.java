@@ -59,7 +59,7 @@ public class MonthFragment extends Fragment {
 
         for (int i = 0; i < adapter.getItemCount(); i++) {
             Person person = ((Person) adapter.getItem(i));
-            if (newPerson.getDate() < person.getDate()) {
+            if (newPerson.getDay(newPerson.getDate()) < person.getDay(person.getDate())) {
                 position = i;
                 break;
             }

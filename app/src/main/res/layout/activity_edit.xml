@@ -37,7 +37,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginStart="8dp"
                         android:contentDescription="@string/calendar"
-                        app:srcCompat="@drawable/ic_person_purple_24dp"/>
+                        ads:srcCompat="@drawable/ic_person_blue_24dp"/>
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/tilEditName"
@@ -68,7 +68,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginStart="8dp"
                         android:contentDescription="@string/calendar"
-                        app:srcCompat="@drawable/ic_calendar_purple_24dp"/>
+                        ads:srcCompat="@drawable/ic_calendar_blue_24dp"/>
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/tilEditDate"
@@ -115,7 +115,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginStart="8dp"
                         android:contentDescription="@string/phone"
-                        app:srcCompat="@drawable/ic_call_purple_24dp"/>
+                        ads:srcCompat="@drawable/ic_call_blue_24dp"/>
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -145,7 +145,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginStart="8dp"
                         android:contentDescription="@string/email"
-                        app:srcCompat="@drawable/ic_email_purple_24dp"/>
+                        ads:srcCompat="@drawable/ic_email_blue_24dp"/>
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -169,7 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@drawable/ic_check_grey_24dp"/>
+            app:srcCompat="@drawable/ic_contacts_grey_24dp"/>
     </android.support.design.widget.CoordinatorLayout>
 
     <com.google.android.gms.ads.AdView

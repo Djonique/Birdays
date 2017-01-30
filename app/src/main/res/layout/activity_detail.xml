@@ -61,7 +61,7 @@
                     <ImageView
                         style="@style/detailActivityIcons"
                         android:contentDescription="@string/calendar"
-                        app:srcCompat="@drawable/ic_calendar_purple_24dp"/>
+                        ads:srcCompat="@drawable/ic_calendar_blue_24dp"/>
 
                     <TextView
                         android:id="@+id/tvDetailDate"
@@ -137,7 +137,7 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="@string/phone"
                         android:padding="24dp"
-                        app:srcCompat="@drawable/ic_call_purple_24dp"/>
+                        ads:srcCompat="@drawable/ic_call_blue_24dp"/>
 
                     <ImageButton
                         android:id="@+id/ibChatIcon"
@@ -148,7 +148,7 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="@string/chat"
                         android:padding="24dp"
-                        app:srcCompat="@drawable/ic_chat_purple_24dp"/>
+                        ads:srcCompat="@drawable/ic_chat_blue_24dp"/>
 
                     <TextView
                         android:id="@+id/tvDetailPhone"
@@ -179,7 +179,7 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="@string/email"
                         android:padding="24dp"
-                        app:srcCompat="@drawable/ic_email_purple_24dp"/>
+                        ads:srcCompat="@drawable/ic_email_blue_24dp"/>
 
                     <TextView
                         android:id="@+id/tvDetailEmail"

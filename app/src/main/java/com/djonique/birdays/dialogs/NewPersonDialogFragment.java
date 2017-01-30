@@ -1,6 +1,7 @@
 package com.djonique.birdays.dialogs;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -28,6 +29,7 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.ContactsInfo;
 import com.djonique.birdays.utils.Utils;
 
 import java.util.Calendar;
@@ -41,7 +43,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private Calendar calendar;
     private String name, phone, email;
 
-
     @SuppressWarnings("deprecation")
     @Override
     public void onAttach(Activity activity) {
@@ -53,6 +54,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -63,6 +65,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         final Person person = new Person();
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
+        @SuppressLint("InflateParams")
         View container = inflater.inflate(R.layout.fragment_dialog, null);
 
         final TextInputLayout tilName = (TextInputLayout) container.findViewById(R.id.tilName);
@@ -244,48 +247,16 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (cursor.moveToFirst()) {
                     String id = cursor.getString(
                             cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                    etPhone.setText(getPhoneFromContacts(contentResolver, cursor, id));
-                    etEmail.setText(getEmailFromContacts(contentResolver, id));
+                    etName.setText(ContactsInfo.retrieveName(contentResolver, id));
+                    etPhone.setText(ContactsInfo.retrievePhoneNumber(contentResolver, cursor, id));
+                    etEmail.setText(ContactsInfo.retrieveEmail(contentResolver, id));
                 }
             }
-            cursor.close();
-        }
-    }
-
-    // Retrieves phone number from picked contact
-    private String getPhoneFromContacts(ContentResolver contentResolver, Cursor cursor, String id) {
-        String phoneNumber = "";
-        if (Integer.parseInt(cursor.getString(
-                cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
-            Cursor phoneCursor = contentResolver.query(
-                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                    null,
-                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
-                    new String[]{id}, null);
-            if (phoneCursor.moveToFirst()) {
-                phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex
-                        (ContactsContract.CommonDataKinds.Phone.NUMBER));
+            if (cursor != null) {
+                cursor.close();
             }
-            phoneCursor.close();
         }
-        return phoneNumber;
     }
-
-    // Retrieves email from picked contact
-    private String getEmailFromContacts(ContentResolver contentResolver, String id) {
-        String email = "";
-        Cursor emailCursor = contentResolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI,
-                null,
-                ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?",
-                new String[]{id}, null);
-        if (emailCursor.moveToFirst()) {
-            email = emailCursor.getString(
-                    emailCursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Email.DATA));
-        }
-        emailCursor.close();
-        return email;
-    }
-
     public interface AddingPersonListener {
 
         void onPersonAdded(Person person);

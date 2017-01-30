@@ -155,7 +155,7 @@ public class DBQueryManager {
                 String name = getName(cursor);
                 long date = getDate(cursor);
 
-                if (Utils.isCurrentMonth(date)) {
+                if (Utils.isCurrentDay(date)) {
                     person = new Person(name, date);
                     persons.add(person);
                 }

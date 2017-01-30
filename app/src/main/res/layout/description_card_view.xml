@@ -69,7 +69,7 @@
             <ImageButton
                 android:id="@+id/btnSMS"
                 style="@style/cardImageButtonStyle"
-                android:contentDescription="@string/send_sms"/>
+                android:contentDescription="@string/chat"/>
 
             <!--Divider-->
             <View

@@ -29,7 +29,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     private List<Item> items;
     private String email, phoneNumber;
 
-    private int enabled = Color.rgb(156, 39, 176);
+    private int enabled = Color.rgb(33, 150, 243);
     private int disabled = Color.rgb(224, 224, 224);
 
     public MonthFragmentAdapter(Context context) {
@@ -81,7 +81,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.tvAge.setVisibility(View.GONE);
         } else {
             holder.tvDate.setText(Utils.getDate(date));
-            String age = context.getString(R.string.age_text) + Integer.toString(Utils.getAge(date));
+            String age = context.getString(R.string.age) + ": " + Integer.toString(Utils.getAge(date));
             holder.tvAge.setVisibility(View.VISIBLE);
             holder.tvAge.setText(age);
         }
@@ -169,11 +169,11 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             tvDate = ButterKnife.findById(itemView, R.id.tvDate);
             tvAge = ButterKnife.findById(itemView, R.id.tvAge);
             btnEmail = ButterKnife.findById(itemView, R.id.btnEmail);
-            btnEmail.setImageResource(R.drawable.ic_email_purple_24dp);
+            btnEmail.setImageResource(R.drawable.ic_email_blue_24dp);
             btnSMS = ButterKnife.findById(itemView, R.id.btnSMS);
-            btnSMS.setImageResource(R.drawable.ic_chat_purple_24dp);
+            btnSMS.setImageResource(R.drawable.ic_chat_blue_24dp);
             btnPhone = ButterKnife.findById(itemView, R.id.btnPhone);
-            btnPhone.setImageResource(R.drawable.ic_call_purple_24dp);
+            btnPhone.setImageResource(R.drawable.ic_call_blue_24dp);
         }
     }
 }

@@ -178,5 +178,3 @@ public class MainActivity extends AppCompatActivity implements
         newPersonDialogFragment.show(getFragmentManager(), ConstantManager.NEW_PERSON_DIALOG_TAG);
     }
 }
-
-
