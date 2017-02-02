@@ -25,7 +25,7 @@ import com.djonique.birdays.dialogs.NewPersonDialogFragment;
 import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
-import com.djonique.birdays.utils.MyApplication;
+import com.djonique.birdays.utils.BirdaysApplication;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        MyApplication.activityResumed();
+        BirdaysApplication.activityResumed();
     }
 
     @Override
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onPause() {
         super.onPause();
-        MyApplication.activityPaused();
+        BirdaysApplication.activityPaused();
     }
 
     @Override
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPersonAdded(Person person) {
         pagerAdapter.addPerson(person);
-                Snackbar snackbar = Snackbar.make(findViewById(R.id.container),
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.container),
                 R.string.record_added, Snackbar.LENGTH_SHORT);
         snackbar.show();
     }

@@ -31,7 +31,19 @@ public class Utils {
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
+    public static int getDay(long date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date);
+        return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
     private static int getMonth(Calendar calendar) {
+        return calendar.get(Calendar.MONTH);
+    }
+
+    public static int getMonth(long date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date);
         return calendar.get(Calendar.MONTH);
     }
 

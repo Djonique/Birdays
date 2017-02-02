@@ -166,6 +166,28 @@ public class DBQueryManager {
         return persons;
     }
 
+    public List<Person> getFamousBornThisDay(long dayOfBirthday) {
+        persons = new ArrayList<>();
+
+        Cursor cursor = database.query(DBHelper.DB_FAMOUS, null, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String name = getName(cursor);
+                long date = getDate(cursor);
+
+                if (Utils.getMonth(date) == Utils.getMonth(dayOfBirthday) &&
+                        Utils.getDay(date) == Utils.getDay(dayOfBirthday)) {
+                    person = new Person(name, date);
+                    persons.add(person);
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return persons;
+    }
+
     private String getName(Cursor cursor) {
         return cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_NAME));
     }

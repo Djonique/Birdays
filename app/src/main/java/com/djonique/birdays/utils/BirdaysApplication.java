@@ -3,7 +3,7 @@ package com.djonique.birdays.utils;
 
 import android.app.Application;
 
-public class MyApplication extends Application {
+public class BirdaysApplication extends Application {
 
     private static boolean activityVisible;
 

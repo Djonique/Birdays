@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,8 +15,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.R;
+import com.djonique.birdays.adapters.FamousFragmentAdapter;
+import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
@@ -23,6 +26,7 @@ import com.djonique.birdays.utils.Utils;
 import com.google.android.gms.ads.AdView;
 
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +58,8 @@ public class DetailActivity extends AppCompatActivity {
     View view;
     @BindView(R.id.toolbar_detail)
     Toolbar toolbar;
+    @BindView(R.id.detailRecyclerView)
+    RecyclerView recyclerView;
 
     private Intent mainIntent;
     private Person person;
@@ -62,6 +68,7 @@ public class DetailActivity extends AppCompatActivity {
     private long date, timeStamp;
     private int position;
     private boolean unknownYear;
+    private DBHelper dbHelper;
 
     private int winterImages[] = {R.drawable.img_winter_0,
             R.drawable.img_winter_1,
@@ -93,7 +100,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Ad.showBanner(findViewById(R.id.container_detail), (AdView) findViewById(R.id.banner_detail));
 
-        DBHelper dbHelper = new DBHelper(getApplicationContext());
+        dbHelper = new DBHelper(getApplicationContext());
 
         mainIntent = new Intent();
         Intent intent = getIntent();
@@ -115,6 +122,10 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         updateUI();
+
+        loadBornThisDay();
+
+        recyclerView.setFocusable(false);
     }
 
     @Override
@@ -180,9 +191,9 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         if (phoneNumber == null && email == null) {
-            view.setVisibility(View.INVISIBLE);
-            rlPhone.setVisibility(View.INVISIBLE);
-            rlEmail.setVisibility(View.INVISIBLE);
+            view.setVisibility(View.GONE);
+            rlPhone.setVisibility(View.GONE);
+            rlEmail.setVisibility(View.GONE);
         }
         if (phoneNumber == null) {
             rlPhone.setVisibility(View.GONE);
@@ -191,9 +202,20 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         if (email == null) {
-            rlEmail.setVisibility(View.INVISIBLE);
+            rlEmail.setVisibility(View.GONE);
         } else {
             tvEmail.setText(person.getEmail());
+        }
+    }
+
+    private void loadBornThisDay() {
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
+        FamousFragmentAdapter adapter = new FamousFragmentAdapter();
+        recyclerView.setAdapter(adapter);
+        List<Person> famousPersons = dbHelper.query().getFamousBornThisDay(date);
+        for (int i = 0; i < famousPersons.size(); i++) {
+            adapter.addItem(famousPersons.get(i));
         }
     }
 

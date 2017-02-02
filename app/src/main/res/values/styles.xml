@@ -90,6 +90,14 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
+    <style name="cardViewStyle" parent="CardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardCornerRadius">2dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="elevation">2dp</item>
+    </style>
+
     <style name="cardImageButtonStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -109,7 +117,7 @@
     </style>
 
     <style name="DialogAnimation">
-        <item name="@android:windowEnterAnimation">@anim/grow_in</item>
-        <item name="@android:windowExitAnimation">@anim/grow_out</item>
+        <item name="@android:windowEnterAnimation">@anim/dialog_grow_in</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_grow_out</item>
     </style>
 </resources>

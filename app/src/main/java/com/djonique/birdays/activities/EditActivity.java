@@ -15,19 +15,17 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.ContactsInfo;
 import com.djonique.birdays.utils.Utils;
-import com.google.android.gms.ads.AdView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
@@ -48,7 +46,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     @BindView(R.id.etEditDate)
     EditText etDate;
     @BindView(R.id.cbEdit)
-    CheckBox checkBox;
+    AppCompatCheckBox checkBox;
     @BindView(R.id.etEditPhone)
     EditText etPhone;
     @BindView(R.id.etEditEmail)
@@ -67,8 +65,6 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         setContentView(R.layout.activity_edit);
 
         ButterKnife.bind(this);
-
-        Ad.showBanner(findViewById(R.id.container_edit), (AdView) findViewById(R.id.banner_edit));
 
         dbHelper = new DBHelper(this);
         calendar = Calendar.getInstance();
@@ -101,7 +97,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
                 Intent update = new Intent();
                 setResult(RESULT_OK, update);
                 finish();
-                overridePendingTransition(R.anim.edit_detail_in, R.anim.edit_detail_out);
+                this.overridePendingTransition(R.anim.edit_detail_in, R.anim.edit_detail_out);
         }
         return true;
     }

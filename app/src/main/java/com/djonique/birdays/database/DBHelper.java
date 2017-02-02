@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
     static final String DB_FAMOUS = "famousDB";
     static final String SELECTION_TIME_STAMP = COLUMN_TIME_STAMP + " = ?";
     private static final String DB_NAME = "myDB";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
     private static final String DB_PERSONS_CREATE = "CREATE TABLE " + DB_PERSONS + " ("
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NAME + " TEXT, "
@@ -40,9 +40,11 @@ public class DBHelper extends SQLiteOpenHelper {
             + COLUMN_DATE + " INTEGER"
             + ");";
     private DBQueryManager dbQueryManager;
+    private Context context;
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
+        this.context = context;
         dbQueryManager = new DBQueryManager(getWritableDatabase());
     }
 
@@ -50,14 +52,23 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DB_PERSONS_CREATE);
         db.execSQL(DB_FAMOUS_CREATE);
-        initFamousDB(db);
+        DBFamous.createDB(context, db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + DB_PERSONS);
-        db.execSQL("DROP TABLE IF EXISTS " + DB_FAMOUS);
-        onCreate(db);
+        //db.execSQL("DROP TABLE IF EXISTS " + DB_PERSONS);
+        if (oldVersion == 3 && newVersion == 4) {
+            db.beginTransaction();
+            try {
+                db.execSQL("DROP TABLE IF EXISTS " + DB_FAMOUS);
+                db.execSQL(DB_FAMOUS_CREATE);
+                DBFamous.createDB(context, db);
+                db.setTransactionSuccessful();
+            } finally {
+                db.endTransaction();
+            }
+        }
     }
 
     public void addRec(Person person) {
@@ -84,29 +95,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(person.getTimeStamp())});
     }
 
-    private void addFamous(SQLiteDatabase db, Person person) {
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME, person.getName());
-        cv.put(COLUMN_DATE, person.getDate());
-        db.insert(DB_FAMOUS, null, cv);
-    }
-
     public DBQueryManager query() {
         return dbQueryManager;
     }
 
     public void removePerson(long timeStamp) {
         getWritableDatabase().delete(DB_PERSONS, SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)});
-    }
-
-    private void initFamousDB(SQLiteDatabase db) {
-        // 16 december
-        addFamous(db, new Person("Ludwig van Beethoven", -6281193600000L));
-        // 17 december
-        addFamous(db, new Person("Humphry Davy", -6028646400000L));
-        addFamous(db, new Person("Jorge Mario Bergoglio (Franciscus)", -1042675200000L));
-        addFamous(db, new Person("Milla Jovovich", 188006400000L));
-        // 23 january
-        addFamous(db, new Person("Édouard Manet", -4353004800000L));
     }
 }

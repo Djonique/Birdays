@@ -12,7 +12,7 @@ import android.util.Log;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.activities.MainActivity;
-import com.djonique.birdays.utils.MyApplication;
+import com.djonique.birdays.utils.BirdaysApplication;
 
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
@@ -25,7 +25,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Intent resultIntent = new Intent(context, MainActivity.class);
 
-        if (MyApplication.isActivityVisible()) {
+        if (BirdaysApplication.isActivityVisible()) {
             resultIntent = intent;
         }
 

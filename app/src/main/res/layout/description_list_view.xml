@@ -13,9 +13,9 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:shadowColor="@color/secondary_text"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
         android:textColor="@android:color/white"
         android:textSize="16sp"/>
 

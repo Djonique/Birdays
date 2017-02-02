@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp">
 
-    <Button
-        android:id="@+id/addFromContactsDialogButton"
-        android:layout_width="wrap_content"
+    <!-- Add from contacts -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:text="@string/add_from_contacts"
-        android:textColor="@color/color_primary"
-        android:textSize="14sp"/>
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/add_from_contacts"
+            app:srcCompat="@drawable/ic_contacts_blue_24dp"/>
+
+        <Button
+            android:id="@+id/addFromContactsDialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:text="@string/add_from_contacts"
+            android:textColor="@color/color_primary"
+            android:textSize="14sp"/>
+    </LinearLayout>
 
     <!--Name-->
     <android.support.design.widget.TextInputLayout
@@ -74,7 +93,7 @@
             android:textSize="16sp"/>
     </android.support.design.widget.TextInputLayout>
 
-    <CheckBox
+    <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/cbKnownYear"
         style="@style/primaryTextStyle"
         android:layout_width="match_parent"

@@ -57,7 +57,7 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
         holder.itemView.setEnabled(true);
         View itemView = holder.itemView;
         Item item = getItem(position);
-        final Person person = ((Person) item);
+        final Person person = (Person) item;
         final String name = person.getName();
 
         holder.tvName.setText(name);

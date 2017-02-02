@@ -72,4 +72,18 @@
     <string name="december">December</string>
 
     <string name="banner_id">ca-app-pub-5122433987000361/8152385338</string>
+
+    <!-- Famous persons -->
+    <string name="beethoven">Ludwig van Beethoven</string>
+    <string name="humphry_davy">Humphry Davy</string>
+    <string name="franciscus">Jorge Mario Bergoglio (Franciscus)</string>
+    <string name="manet">Édouard Manet</string>
+    <!-- 1 january -->
+    <string name="medici">Lorenzo di Piero de Medici il Magnifico</string>
+    <string name="giordano_bruno">Giordano Bruno</string>
+    <string name="coubertin">Pierre de Coubertin</string>
+    <string name="william_fox">William Fox</string>
+
+    <!-- 1 february -->
+    <string name="john_ford">John Ford</string>
 </resources>

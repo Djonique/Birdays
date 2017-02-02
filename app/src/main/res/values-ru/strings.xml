@@ -1,3 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- fragment text -->
+    <string name="all">Все</string>
+    <string name="famous">Известные</string>
+    <string name="happy_birthday">С Днем Рождения!</string>
+
+    <!-- menu text -->
+    <string name="menu_rate_app">Оценить</string>
+    <string name="menu_share">Поделиться</string>
+    <string name="googleplay_app_link">https://play.google.com/store/apps/details?id=com.wonder</string>
+    <string name="menu_github">Github</string>
+    <string name="github_url">https://github.com/Djonique/Birdays</string>
+    <string name="action_settings">Настройки</string>
+    <string name="menu_delete">Удалить</string>
+    <string name="menu_edit">Редактировать</string>
+
+    <!-- NewPersonDialogFragment -->
+    <string name="add_new_record">Новая запись</string>
+    <string name="add_from_contacts">Добавить из контактов</string>
+    <string name="name">Имя</string>
+    <string name="error_hint">Пожалуйста, введите имя</string>
+    <string name="phone">Телефон</string>
+    <string name="email">Email</string>
+    <string name="send_email">Отправить письмо</string>
+    <string name="pick_date">Выберите дату</string>
+    <string name="wrong_date">Неверная дата</string>
+    <string name="not_vanga">You aren\'t Vanga</string>
+    <string name="unknown_year">Я не знаю год рождения</string>
+    <string name="ok_button">OK</string>
+    <string name="cancel_button">Отмена</string>
+    <string name="record_added">Запись добавлена</string>
+    <string name="delete_record_text">Вы уверены, что хотите удалить эту запись:</string>
+    <string name="record_removed">Запись удалена</string>
+
+    <!-- DetailActivity -->
+    <string name="date">Дата</string>
+    <string name="zodiac">Зодиак</string>
+    <string name="age">Возраст</string>
+    <string name="season_picture">Изображение сезона</string>
+    <string name="calendar">Календарь</string>
+    <string name="call">Позвонить</string>
+    <string name="chat">Написать</string>
+
+    <string-array name="months">
+        <item>Январь</item>
+        <item>Февраль</item>
+        <item>Март</item>
+        <item>Апрель</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Август</item>
+        <item>Сентябрь</item>
+        <item>Октябрь</item>
+        <item>Ноябрь</item>
+        <item>Декабрь</item>
+    </string-array>
+
+    <string name="january">Январь</string>
+    <string name="february">Февраль</string>
+    <string name="march">Март</string>
+    <string name="april">Апрель</string>
+    <string name="may">Май</string>
+    <string name="june">Июнь</string>
+    <string name="july">Июль</string>
+    <string name="august">Август</string>
+    <string name="september">Сентябрь</string>
+    <string name="october">Октябрь</string>
+    <string name="november">Ноябрь</string>
+    <string name="december">Декабрь</string>
+
+    <!-- Famous persons -->
+    <string name="beethoven">Людвиг ван Бетховен</string>
+    <string name="humphry_davy">Гемфри Дэви</string>
+    <string name="franciscus">Хорхе Марио Бергольо (Франциск)</string>
+    <string name="manet">Эдуард Мане</string>
+    <!-- 1 january -->
+    <string name="medici">Лоренцо ди Пьеро де Медичи</string>
+    <string name="giordano_bruno">Джордано Бруно</string>
+    <string name="coubertin">Пьер де Кубертен</string>
+    <string name="william_fox">Уильям Фокс</string>
+
+    <!-- 1 february -->
+    <string name="john_ford">Джон Форд</string>
 </resources>

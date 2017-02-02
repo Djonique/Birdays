@@ -17,12 +17,12 @@ import android.provider.ContactsContract;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.djonique.birdays.R;
@@ -39,7 +39,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
     private AddingPersonListener addingPersonListener;
     private EditText etName, etPhone, etEmail, etDate;
-    private CheckBox cbKnownYear;
+    private AppCompatCheckBox cbKnownYear;
     private Calendar calendar;
     private String name, phone, email;
 
@@ -116,7 +116,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
             }
         });
 
-        cbKnownYear = ((CheckBox) container.findViewById(R.id.cbKnownYear));
+        cbKnownYear = ((AppCompatCheckBox) container.findViewById(R.id.cbKnownYear));
 
         builder.setView(container);
         builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
