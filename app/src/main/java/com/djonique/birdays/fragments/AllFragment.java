@@ -201,7 +201,7 @@ public class AllFragment extends Fragment {
         Item item = adapter.getItem(location);
 
         Person personText = ((Person) item);
-        builder.setMessage(getString(R.string.delete_record_text) + " " + personText.getName());
+        builder.setMessage(getString(R.string.delete_record_text) + " " + personText.getName() + "?");
 
         if (item.isPerson()) {
             Person person = ((Person) item);
@@ -217,7 +217,7 @@ public class AllFragment extends Fragment {
                     Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.container),
                             R.string.record_removed, Snackbar.LENGTH_LONG);
 
-                    snackbar.setAction(getString(R.string.cancel_button), new View.OnClickListener() {
+                    snackbar.setAction(getString(R.string.undo), new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             addPerson(activity.dbHelper.query().getPerson(timeStamp), false);

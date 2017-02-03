@@ -3,22 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.djonique.birdays.activities.MainActivity">
     <item
-        android:id="@+id/menu_rate_app"
-        android:orderInCategory="1"
-        android:title="@string/menu_rate_app"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/menu_share"
-        android:orderInCategory="2"
-        android:title="@string/menu_share"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/menu_github"
-        android:orderInCategory="3"
-        android:title="@string/menu_github"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/menu_settings"
+        android:id="@+id/action_settings"
         android:orderInCategory="99"
         android:title="@string/action_settings"
         app:showAsAction="never"/>

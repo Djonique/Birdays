@@ -2,7 +2,6 @@ package com.djonique.birdays.activities;
 
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -24,8 +23,8 @@ import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.dialogs.NewPersonDialogFragment;
 import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.models.Person;
-import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.BirdaysApplication;
+import com.djonique.birdays.utils.ConstantManager;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -115,21 +114,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_github:
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(getString(R.string.github_url))));
-                break;
-            case R.id.menu_rate_app:
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(getString(R.string.googleplay_app_link))));
-                break;
-            case R.id.menu_share:
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType(ConstantManager.TEXT_PLAIN);
-                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.googleplay_app_link));
-                startActivity(Intent.createChooser(intent, getString(R.string.app_name)));
-
+        if (item.getItemId() == R.id.action_settings){
+            startActivity(new Intent(this, SettingsActivity.class));
+            overridePendingTransition(R.anim.main_settings_in, R.anim.main_settings_out);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -179,8 +179,9 @@ public class DetailActivity extends AppCompatActivity {
     private void updateUI() {
         setSeasonImage();
 
-        tvZodiac.setText(Utils.getZodiac(date));
-        tvZodiacImage.setText(Utils.getZodiacImage(date));
+        int zodiacId = Utils.getZodiacId(date);
+        tvZodiac.setText(getString(zodiacId));
+        tvZodiacImage.setText(Utils.getZodiacImage(zodiacId));
 
         if (unknownYear) {
             tvDate.setText(Utils.getUnknownDate(date));

@@ -3,6 +3,8 @@ package com.djonique.birdays.utils;
 import android.text.TextUtils;
 import android.widget.EditText;
 
+import com.djonique.birdays.R;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -96,89 +98,89 @@ public class Utils {
         return thisDay;
     }
 
-    public static String getZodiac(long date) {
-        String zodiac = null;
+    public static int getZodiacId(long date) {
+        int resId = 0;
         dayOfBirthday.setTimeInMillis(date);
 
         switch (getMonth(dayOfBirthday)) {
             case Calendar.JANUARY:
-                zodiac = getDay(dayOfBirthday) <= 20 ? "Capricorn" : "Aquarius";
+                resId = getDay(dayOfBirthday) <= 20 ? R.string.capricorn : R.string.aquarius;
                 break;
             case Calendar.FEBRUARY:
-                zodiac = getDay(dayOfBirthday) <= 19 ? "Aquarius" : "Pisces";
+                resId = getDay(dayOfBirthday) <= 19 ? R.string.aquarius : R.string.pisces;
                 break;
             case Calendar.MARCH:
-                zodiac = getDay(dayOfBirthday) <= 20 ? "Pisces" : "Aries";
+                resId = getDay(dayOfBirthday) <= 20 ? R.string.pisces : R.string.aries;
                 break;
             case Calendar.APRIL:
-                zodiac = getDay(dayOfBirthday) <= 20 ? "Aries" : "Taurus";
+                resId = getDay(dayOfBirthday) <= 20 ? R.string.aries : R.string.taurus;
                 break;
             case Calendar.MAY:
-                zodiac = getDay(dayOfBirthday) <= 21 ? "Taurus" : "Gemini";
+                resId = getDay(dayOfBirthday) <= 21 ? R.string.taurus : R.string.gemini;
                 break;
             case Calendar.JUNE:
-                zodiac = getDay(dayOfBirthday) <= 21 ? "Gemini" : "Cancer";
+                resId = getDay(dayOfBirthday) <= 21 ? R.string.gemini : R.string.cancer;
                 break;
             case Calendar.JULY:
-                zodiac = getDay(dayOfBirthday) <= 23 ? "Cancer" : "Leo";
+                resId = getDay(dayOfBirthday) <= 23 ? R.string.cancer : R.string.leo;
                 break;
             case Calendar.AUGUST:
-                zodiac = getDay(dayOfBirthday) <= 23 ? "Leo" : "Virgo";
+                resId = getDay(dayOfBirthday) <= 23 ? R.string.leo : R.string.virgo;
                 break;
             case Calendar.SEPTEMBER:
-                zodiac = getDay(dayOfBirthday) <= 23 ? "Virgo" : "Libra";
+                resId = getDay(dayOfBirthday) <= 23 ? R.string.virgo : R.string.libra;
                 break;
             case Calendar.OCTOBER:
-                zodiac = getDay(dayOfBirthday) <= 23 ? "Libra" : "Scorpio";
+                resId = getDay(dayOfBirthday) <= 23 ? R.string.libra : R.string.scorpio;
                 break;
             case Calendar.NOVEMBER:
-                zodiac = getDay(dayOfBirthday) <= 22 ? "Scorpio" : "Sagittarius";
+                resId = getDay(dayOfBirthday) <= 22 ? R.string.scorpio : R.string.sagittarius;
                 break;
             case Calendar.DECEMBER:
-                zodiac = getDay(dayOfBirthday) <= 21 ? "Sagittarius" : "Capricorn";
+                resId = getDay(dayOfBirthday) <= 21 ? R.string.sagittarius : R.string.capricorn;
                 break;
         }
-        return zodiac;
+        return resId;
     }
 
-    public static String getZodiacImage(long date) {
+    public static String getZodiacImage(int resId) {
         String zodiacImage = null;
 
-        switch (getZodiac(date)) {
-            case "Aries":
+        switch (resId) {
+            case R.string.aries:
                 zodiacImage = "\u2648";
                 break;
-            case "Taurus":
+            case R.string.taurus:
                 zodiacImage = "\u2649";
                 break;
-            case "Gemini":
+            case R.string.gemini:
                 zodiacImage = "\u264A";
                 break;
-            case "Cancer":
+            case R.string.cancer:
                 zodiacImage = "\u264B";
                 break;
-            case "Leo":
+            case R.string.leo:
                 zodiacImage = "\u264C";
                 break;
-            case "Virgo":
+            case R.string.virgo:
                 zodiacImage = "\u264D";
                 break;
-            case "Libra":
+            case R.string.libra:
                 zodiacImage = "\u264E";
                 break;
-            case "Scorpio":
+            case R.string.scorpio:
                 zodiacImage = "\u264F";
                 break;
-            case "Sagittarius":
+            case R.string.sagittarius:
                 zodiacImage = "\u2650";
                 break;
-            case "Capricorn":
+            case R.string.capricorn:
                 zodiacImage = "\u2651";
                 break;
-            case "Aquarius":
+            case R.string.aquarius:
                 zodiacImage = "\u2652";
                 break;
-            case "Pisces":
+            case R.string.pisces:
                 zodiacImage = "\u2653";
                 break;
         }

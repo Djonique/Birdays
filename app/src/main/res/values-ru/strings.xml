@@ -7,11 +7,8 @@
     <string name="happy_birthday">С Днем Рождения!</string>
 
     <!-- menu text -->
-    <string name="menu_rate_app">Оценить</string>
+    <string name="menu_rate_app">Оценить приложение</string>
     <string name="menu_share">Поделиться</string>
-    <string name="googleplay_app_link">https://play.google.com/store/apps/details?id=com.wonder</string>
-    <string name="menu_github">Github</string>
-    <string name="github_url">https://github.com/Djonique/Birdays</string>
     <string name="action_settings">Настройки</string>
     <string name="menu_delete">Удалить</string>
     <string name="menu_edit">Редактировать</string>
@@ -22,7 +19,6 @@
     <string name="name">Имя</string>
     <string name="error_hint">Пожалуйста, введите имя</string>
     <string name="phone">Телефон</string>
-    <string name="email">Email</string>
     <string name="send_email">Отправить письмо</string>
     <string name="pick_date">Выберите дату</string>
     <string name="wrong_date">Неверная дата</string>
@@ -31,8 +27,9 @@
     <string name="ok_button">OK</string>
     <string name="cancel_button">Отмена</string>
     <string name="record_added">Запись добавлена</string>
-    <string name="delete_record_text">Вы уверены, что хотите удалить эту запись:</string>
+    <string name="delete_record_text">Вы действительно хотите удалить эту запись:</string>
     <string name="record_removed">Запись удалена</string>
+    <string name="undo">Отмена</string>
 
     <!-- DetailActivity -->
     <string name="date">Дата</string>
@@ -71,6 +68,20 @@
     <string name="november">Ноябрь</string>
     <string name="december">Декабрь</string>
 
+    <!-- Zodiacs -->
+    <string name="aries">Овен</string>
+    <string name="taurus">Телец</string>
+    <string name="gemini">Близнецы</string>
+    <string name="cancer">Рак</string>
+    <string name="leo">Лев</string>
+    <string name="virgo">Дева</string>
+    <string name="libra">Весы</string>
+    <string name="scorpio">Скорпион</string>
+    <string name="sagittarius">Стрелец</string>
+    <string name="capricorn">Козерог</string>
+    <string name="aquarius">Водолей</string>
+    <string name="pisces">Рыбы</string>
+
     <!-- Famous persons -->
     <string name="beethoven">Людвиг ван Бетховен</string>
     <string name="humphry_davy">Гемфри Дэви</string>
@@ -81,7 +92,6 @@
     <string name="giordano_bruno">Джордано Бруно</string>
     <string name="coubertin">Пьер де Кубертен</string>
     <string name="william_fox">Уильям Фокс</string>
-
     <!-- 1 february -->
     <string name="john_ford">Джон Форд</string>
 </resources>

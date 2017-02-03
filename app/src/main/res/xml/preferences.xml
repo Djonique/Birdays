@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Notifications -->
+    <PreferenceCategory
+        android:title="Уведомления">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="notification"
+            android:summary="Разрешить приложению присылать уведомления о предстоящих днях рождения"
+            android:title="Уведомления"/>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="vibration"
+            android:summary="Включить вибрацию при уведомлениях"
+            android:title="Вибрация"/>
+    </PreferenceCategory>
+
+    <!-- General -->
+    <PreferenceCategory
+        android:title="Общие">
+        <Preference
+            android:key="rate"
+            android:summary="Поставить оценку в Play Market"
+            android:title="Оценить приложение">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/play_market_app_link"/>
+        </Preference>
+        <Preference
+            android:key="share"
+            android:summary="Отправить прямую ссылку на скачивание приложения из Play Market"
+            android:title="Поделиться">
+        </Preference>
+    </PreferenceCategory>
+
+    <!-- About app -->
+    <PreferenceCategory
+        android:title="О приложении">
+        <Preference
+            android:key="github"
+            android:summary="Просмотреть открытый исходный код приложения на github.com"
+            android:title="Github">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/github_url"/>
+        </Preference>
+        <Preference
+            android:key="license"
+            android:title="Лицензии открытого ПО"/>
+        <Preference
+            android:key="version"
+            android:selectable="false"
+            android:title="Версия 0.9.0"/>
+    </PreferenceCategory>
+</PreferenceScreen>

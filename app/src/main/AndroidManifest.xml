@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
           package="com.djonique.birdays">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -36,7 +35,7 @@
             </intent-filter>
         </activity>
 
-        <!--DetailACtivity-->
+        <!--DetailActivity-->
         <activity
             android:name=".activities.DetailActivity"
             android:label=""
@@ -54,6 +53,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.djonique.birdays.activities.DetailActivity"/>
         </activity>
+
+        <!--SettingsActivity-->
+        <activity android:name=".activities.SettingsActivity"
+            android:label="@string/action_settings"/>
 
         <!--AdActivity-->
         <activity
