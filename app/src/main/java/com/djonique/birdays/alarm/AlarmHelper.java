@@ -37,7 +37,6 @@ public class AlarmHelper {
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra("name", person.getName());
         intent.putExtra("time_stamp", person.getTimeStamp());
-        //intent.putExtra("date", person.getDate());
 
         long triggerAtMillis = setupCalendarYear(person);
 

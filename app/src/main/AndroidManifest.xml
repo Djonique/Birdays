@@ -56,7 +56,18 @@
 
         <!--SettingsActivity-->
         <activity android:name=".activities.SettingsActivity"
-            android:label="@string/action_settings"/>
+            android:label="@string/action_settings">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.djonique.birdays.activities.MainActivity"/>
+        </activity>
+
+        <activity android:name=".activities.LicensesActivity"
+                  android:label="@string/licenses">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.djonique.birdays.activities.SettingsActivity"/>
+        </activity>
 
         <!--AdActivity-->
         <activity

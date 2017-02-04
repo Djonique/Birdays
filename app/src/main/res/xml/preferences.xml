@@ -6,11 +6,16 @@
         android:title="Уведомления">
         <SwitchPreference
             android:defaultValue="true"
-            android:key="notification"
+            android:key="notifications"
             android:summary="Разрешить приложению присылать уведомления о предстоящих днях рождения"
             android:title="Уведомления"/>
+        <com.djonique.birdays.TimePreference
+            android:title="Время уведомления"
+            android:key="notification_time"
+            android:dependency="notifications"/>
         <CheckBoxPreference
             android:defaultValue="true"
+            android:dependency="notifications"
             android:key="vibration"
             android:summary="Включить вибрацию при уведомлениях"
             android:title="Вибрация"/>
@@ -46,8 +51,9 @@
                 android:data="@string/github_url"/>
         </Preference>
         <Preference
-            android:key="license"
-            android:title="Лицензии открытого ПО"/>
+            android:key="licenses"
+            android:title="Лицензии открытого ПО">
+        </Preference>
         <Preference
             android:key="version"
             android:selectable="false"

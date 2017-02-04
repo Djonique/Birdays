@@ -16,8 +16,7 @@ public class Utils {
     private static Calendar dayOfBirthday = Calendar.getInstance();
 
     public static String getDate(long date) {
-        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault());
-        return dateFormat.format(date);
+        return DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault()).format(date);
     }
 
     public static String getUnknownDate(long date) {
