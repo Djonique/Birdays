@@ -111,7 +111,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
                                 calendar.get(Calendar.MONTH),
                                 calendar.get(Calendar.DAY_OF_MONTH)
                         );
-
                 dpd.show(getFragmentManager(), ConstantManager.DATE_PICKER_FRAGMENT_TAG);
             }
         });

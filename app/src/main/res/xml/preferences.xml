@@ -10,9 +10,10 @@
             android:summary="Разрешить приложению присылать уведомления о предстоящих днях рождения"
             android:title="Уведомления"/>
         <com.djonique.birdays.TimePreference
-            android:title="Время уведомления"
+            android:defaultValue="1486375200000L"
+            android:dependency="notifications"
             android:key="notification_time"
-            android:dependency="notifications"/>
+            android:title="Время уведомления"/>
         <CheckBoxPreference
             android:defaultValue="true"
             android:dependency="notifications"

@@ -6,7 +6,9 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -18,10 +20,12 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean vibrate = preferences.getBoolean("vibration", false);
+
         Log.d("ALARM", "Intent received");
         String string = intent.getStringExtra("name");
         long timeStamp = intent.getLongExtra("time_stamp", 0);
-        //long date = intent.getLongExtra("date", 0);
 
         Intent resultIntent = new Intent(context, MainActivity.class);
 
@@ -40,7 +44,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setColor(Color.rgb(104, 239, 173));
         builder.setWhen(System.currentTimeMillis());
-        builder.setDefaults(Notification.DEFAULT_ALL);
+        builder.setDefaults(Notification.DEFAULT_SOUND);
+        if (vibrate) {
+            builder.setDefaults(Notification.DEFAULT_ALL);
+        }
         builder.setContentIntent(pendingIntent);
 
         Notification notification = builder.build();

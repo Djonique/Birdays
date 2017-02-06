@@ -7,15 +7,23 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.alarm.AlarmHelper;
+import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
+
+import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity {
 
     public static final String NOTIFICATIONS = "notifications";
+    public static final String NOTIFICATION_TIME = "notification_time";
+    public static final String TAG = "SETTINGS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +90,48 @@ public class SettingsActivity extends AppCompatActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals(NOTIFICATIONS)) {
-                Preference notifications = findPreference(NOTIFICATIONS);
+            DBHelper dbHelper = new DBHelper(getActivity());
+            List<Person> persons = dbHelper.query().getPersons();
+            AlarmHelper alarmHelper = AlarmHelper.getInstance();
+            switch (key) {
+                case NOTIFICATIONS:
+                    boolean isChecked = sharedPreferences.getBoolean(NOTIFICATIONS, false);
+                    if (isChecked) {
+                        Log.d("SETTINGS", "Notification enabled");
+                        for (Person person : persons) {
+                            alarmHelper.setAlarm(person);
+                        }
+                    } else {
+                        Log.d(TAG, "Notification disabled");
+                        for (Person person : persons) {
+                            alarmHelper.removeAlarm(person.getTimeStamp());
+                        }
+                    }
+                    break;
+                case NOTIFICATION_TIME:
+                    Log.d(TAG, "Notif time changed");
+                    for (Person person : persons) {
+                        Log.d(TAG, "alarm removed " + person.getName());
+                        alarmHelper.removeAlarm(person.getTimeStamp());
+                        Log.d(TAG, "alarm added " + person.getName());
+                        alarmHelper.setAlarm(person);
+                    }
+                    break;
             }
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences()
+                    .registerOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceScreen().getSharedPreferences()
+                    .unregisterOnSharedPreferenceChangeListener(this);
         }
     }
 }
