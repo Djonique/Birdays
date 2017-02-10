@@ -10,22 +10,24 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.utils.BirdaysApplication;
+import com.djonique.birdays.utils.ConstantManager;
 
 public class AlarmReceiver extends BroadcastReceiver {
+
+    public static final String VIBRATION = "vibration";
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean vibrate = preferences.getBoolean("vibration", false);
+        boolean vibrate = preferences.getBoolean(VIBRATION, false);
 
-        Log.d("ALARM", "Intent received");
-        String string = intent.getStringExtra("name");
-        long timeStamp = intent.getLongExtra("time_stamp", 0);
+        String string = intent.getStringExtra(ConstantManager.NAME);
+        long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
 
         Intent resultIntent = new Intent(context, MainActivity.class);
 
@@ -39,7 +41,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setContentTitle("Birdays");
+        builder.setContentTitle(context.getString(R.string.app_name));
         builder.setContentText(string);
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setColor(Color.rgb(104, 239, 173));
@@ -56,6 +58,5 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationManager notificationManager =
                 ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
         notificationManager.notify((int) timeStamp, notification);
-        Log.d("ALARM", "Notification created");
     }
 }

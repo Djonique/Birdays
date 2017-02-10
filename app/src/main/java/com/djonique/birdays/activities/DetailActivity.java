@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
@@ -26,7 +24,6 @@ import com.djonique.birdays.utils.Utils;
 import com.google.android.gms.ads.AdView;
 
 import java.util.Calendar;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,41 +31,40 @@ import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity {
 
+    @BindView(R.id.toolbar_detail)
+    Toolbar toolbar;
     @BindView(R.id.ivPicture)
     ImageView imageView;
     @BindView(R.id.tvDetailDate)
     TextView tvDate;
-    @BindView(R.id.tvZodiac)
-    TextView tvZodiac;
     @BindView(R.id.tvZodiacImage)
     TextView tvZodiacImage;
+    @BindView(R.id.tvZodiac)
+    TextView tvZodiac;
+    @BindView(R.id.rlAge)
+    RelativeLayout rlAge;
     @BindView(R.id.tvDetailAge)
     TextView tvAge;
+    @BindView(R.id.cardViewDetail)
+    CardView cardView;
+    @BindView(R.id.rlPhone)
+    RelativeLayout rlPhone;
     @BindView(R.id.tvDetailPhone)
     TextView tvPhone;
     @BindView(R.id.tvDetailEmail)
     TextView tvEmail;
-    @BindView(R.id.rlAge)
-    RelativeLayout rlAge;
-    @BindView(R.id.rlPhone)
-    RelativeLayout rlPhone;
     @BindView(R.id.rlEmail)
     RelativeLayout rlEmail;
-    @BindView(R.id.viewDivider)
-    View view;
-    @BindView(R.id.toolbar_detail)
-    Toolbar toolbar;
-    @BindView(R.id.detailRecyclerView)
-    RecyclerView recyclerView;
+    /*@BindView(R.id.detailRecyclerView)
+    RecyclerView recyclerView;*/
 
-    private Intent mainIntent;
+    private DBHelper dbHelper;
     private Person person;
 
-    private String phoneNumber, email;
     private long date, timeStamp;
     private int position;
     private boolean unknownYear;
-    private DBHelper dbHelper;
+    private String phoneNumber, email;
 
     private int winterImages[] = {R.drawable.img_winter_0,
             R.drawable.img_winter_1,
@@ -102,7 +98,6 @@ public class DetailActivity extends AppCompatActivity {
 
         dbHelper = new DBHelper(getApplicationContext());
 
-        mainIntent = new Intent();
         Intent intent = getIntent();
 
         timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
@@ -123,9 +118,9 @@ public class DetailActivity extends AppCompatActivity {
 
         updateUI();
 
-        loadBornThisDay();
+        //loadBornThisDay();
 
-        recyclerView.setFocusable(false);
+        //recyclerView.setFocusable(false);
     }
 
     @Override
@@ -142,6 +137,7 @@ public class DetailActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.menu_detail_delete:
+                Intent mainIntent = new Intent();
                 mainIntent.putExtra(ConstantManager.POSITION, position);
                 setResult(RESULT_OK, mainIntent);
                 finish();
@@ -159,7 +155,6 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        setResult(RESULT_CANCELED, mainIntent);
         finish();
         overridePendingTransition(R.anim.detail_main_in, R.anim.detail_main_out);
     }
@@ -192,9 +187,7 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         if (phoneNumber == null && email == null) {
-            view.setVisibility(View.GONE);
-            rlPhone.setVisibility(View.GONE);
-            rlEmail.setVisibility(View.GONE);
+            cardView.setVisibility(View.GONE);
         }
         if (phoneNumber == null) {
             rlPhone.setVisibility(View.GONE);
@@ -209,16 +202,18 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    private void loadBornThisDay() {
+    /*private void loadBornThisDay() {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
+
         FamousFragmentAdapter adapter = new FamousFragmentAdapter();
         recyclerView.setAdapter(adapter);
+
         List<Person> famousPersons = dbHelper.query().getFamousBornThisDay(date);
         for (int i = 0; i < famousPersons.size(); i++) {
             adapter.addItem(famousPersons.get(i));
         }
-    }
+    }*/
 
     @OnClick(R.id.fab_detail)
     void starEditActivity() {
@@ -226,6 +221,10 @@ public class DetailActivity extends AppCompatActivity {
         intent.putExtra(ConstantManager.TIME_STAMP, timeStamp);
         startActivityForResult(intent, ConstantManager.EDIT_ACTIVITY);
         overridePendingTransition(R.anim.detail_edit_in, R.anim.detail_edit_out);
+    }
+
+    private void setPicture(ImageView imageView, int[] pictures) {
+        imageView.setImageResource(pictures[(int) (Math.random() * 5)]);
     }
 
     private void setSeasonImage() {
@@ -239,10 +238,6 @@ public class DetailActivity extends AppCompatActivity {
         } else if (month >= 5 && month < 8) {
             setPicture(imageView, summerImages);
         } else setPicture(imageView, autumnImages);
-    }
-
-    private void setPicture(ImageView imageView, int[] pictures) {
-        imageView.setImageResource(pictures[(int) (Math.random() * 5)]);
     }
 
     @OnClick(R.id.ibPhoneIcon)

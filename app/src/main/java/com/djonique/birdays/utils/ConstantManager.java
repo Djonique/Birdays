@@ -2,7 +2,7 @@ package com.djonique.birdays.utils;
 
 public interface ConstantManager {
 
-    // MainActivity
+    // Share
     String TEXT_PLAIN = "text/plain";
 
     // Dialog
@@ -13,14 +13,6 @@ public interface ConstantManager {
     int REQUEST_READ_CONTACTS = 1;
     int CONTACTS_REQUEST_PERMISSION_CODE = 2;
 
-    // MonthFragment
-    String TYPE_EMAIL = "message/rfc822";
-    String MAILTO = "mailto:";
-    String TYPE_SMS = "vnd.android-dir/mms-sms";
-    String ADDRESS = "address";
-    String SMSTO = "smsto:";
-    String TEL = "tel: ";
-
     // AllFragment
     String TIME_STAMP = "time_stamp";
     String SELECTED_ITEM = "selected_item";
@@ -29,4 +21,8 @@ public interface ConstantManager {
     // DetailActivity intent
     int EDIT_ACTIVITY = 102;
     String POSITION = "position";
+
+    // Alarm
+    String NAME = "name";
+    String NOTIFICATION_TIME = "notification_time";
 }

@@ -96,6 +96,7 @@
         <item name="cardCornerRadius">2dp</item>
         <item name="cardUseCompatPadding">true</item>
         <item name="elevation">2dp</item>
+        <item name="android:layout_margin">4dp</item>
     </style>
 
     <style name="cardImageButtonStyle">

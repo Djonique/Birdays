@@ -1,6 +1,5 @@
 package com.djonique.birdays.alarm;
 
-
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -8,10 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.djonique.birdays.models.Person;
-import com.djonique.birdays.utils.Utils;
+import com.djonique.birdays.utils.ConstantManager;
 
 import java.util.Calendar;
 
@@ -39,8 +37,8 @@ public class AlarmHelper {
 
     public void setAlarm(Person person) {
         Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra("name", person.getName());
-        intent.putExtra("time_stamp", person.getTimeStamp());
+        intent.putExtra(ConstantManager.NAME, person.getName());
+        intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
 
         long triggerAtMillis = setupCalendarYear(person);
 
@@ -60,27 +58,24 @@ public class AlarmHelper {
     }
 
     private long setupCalendarYear(Person person) {
-        long notifTime = preferences.getLong("notification_time", 1486375200000L);
-        Calendar notifTimeCalendar = Calendar.getInstance();
-        notifTimeCalendar.setTimeInMillis(notifTime);
-        int hour = notifTimeCalendar.get(Calendar.HOUR_OF_DAY);
-        int minute = notifTimeCalendar.get(Calendar.MINUTE);
+        long now = Calendar.getInstance().getTimeInMillis();
+
+        long notificationTime = preferences.getLong(ConstantManager.NOTIFICATION_TIME, 1486375200000L);
+        Calendar notificationTimeCalendar = Calendar.getInstance();
+        notificationTimeCalendar.setTimeInMillis(notificationTime);
+
+        int hour = notificationTimeCalendar.get(Calendar.HOUR_OF_DAY);
+        int minutes = notificationTimeCalendar.get(Calendar.MINUTE);
 
         long date = person.getDate();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
         calendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
-        Log.d("ALARM", "Year " + String.valueOf(calendar.get(Calendar.YEAR)));
         calendar.set(Calendar.HOUR_OF_DAY, hour);
-        Log.d("ALARM", "Hour " + String.valueOf(calendar.get(Calendar.HOUR_OF_DAY)));
-        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.MINUTE, minutes);
         calendar.set(Calendar.MILLISECOND, 0);
-        Log.d("ALARM", "Minute " + String.valueOf(calendar.get(Calendar.MINUTE)));
-        if (Utils.isRightDate(calendar)) {
+        if (now > calendar.getTimeInMillis()) {
             calendar.set(Calendar.YEAR, (Calendar.getInstance().get(Calendar.YEAR) + 1));
-            Log.d("ALARM", "Year " + String.valueOf(calendar.get(Calendar.YEAR)));
-            Log.d("ALARM", "Hour " + String.valueOf(calendar.get(Calendar.HOUR_OF_DAY)));
-            Log.d("ALARM", "Minute " + String.valueOf(calendar.get(Calendar.MINUTE)));
         }
         return calendar.getTimeInMillis();
     }

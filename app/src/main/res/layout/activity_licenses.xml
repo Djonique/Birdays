@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
     <LinearLayout
-        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:padding="16dp">
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             style="@style/Primary.TextView"
-            android:paddingBottom="16dp"
-            android:text="Butter Knife by Jake Wharton"/>
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Secondary.TextView"
-            android:text="@string/butter_knife_license"
-            android:paddingBottom="8dp"/>
+            android:paddingBottom="16dp"
+            android:text="@string/butter_knife_by_jake_wharton"/>
+
         <TextView
+            style="@style/Secondary.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="@string/butter_knife_license"/>
+
+        <TextView
+            style="@style/Primary.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
             android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Primary.TextView"
-            android:text="MaterialDateTimePicker by Wouter Dullaert"/>
+            android:text="@string/materialdatetimepicker_by_wouter_dullaert"/>
+
         <TextView
+            style="@style/Secondary.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Secondary.TextView"
             android:text="@string/mdtp_licence"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

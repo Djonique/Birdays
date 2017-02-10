@@ -54,8 +54,8 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     @BindView(R.id.fab_edit)
     FloatingActionButton fab;
 
-    private Calendar calendar;
     private DBHelper dbHelper;
+    private Calendar calendar;
     private Person person;
     private boolean unknownYear;
 
@@ -183,7 +183,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
             tilEditDate.setError(getString(R.string.wrong_date));
         } else if (!Utils.isRightDate(calendar)) {
             fab.hide();
-            tilEditDate.setError(getString(R.string.not_vanga));
+            tilEditDate.setError(getString(R.string.wrong_date));
         }
     }
 

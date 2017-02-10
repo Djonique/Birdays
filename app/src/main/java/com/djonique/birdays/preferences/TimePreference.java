@@ -1,4 +1,4 @@
-package com.djonique.birdays;
+package com.djonique.birdays.preferences;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,6 +7,8 @@ import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TimePicker;
+
+import com.djonique.birdays.R;
 
 import java.util.Calendar;
 import java.util.Date;

@@ -10,7 +10,7 @@
     <string name="menu_rate_app">Rate app</string>
     <string name="menu_share">Share</string>
     <string name="play_market_app_link">https://play.google.com/store/apps/details?id=com.wonder</string>
-    <string name="menu_github">Github</string>
+    <string name="menu_github">Source code</string>
     <string name="github_url">https://github.com/Djonique/Birdays</string>
     <string name="action_settings">Settings</string>
     <string name="menu_delete">Delete</string>
@@ -26,7 +26,6 @@
     <string name="send_email">Send email</string>
     <string name="pick_date">Pick date</string>
     <string name="wrong_date">Wrong date</string>
-    <string name="not_vanga">You aren\'t Vanga</string>
     <string name="unknown_year">I don\'t know year</string>
     <string name="ok_button">OK</string>
     <string name="cancel_button">Cancel</string>
@@ -43,6 +42,7 @@
     <string name="calendar">Calendar</string>
     <string name="call">Call</string>
     <string name="chat">Chat</string>
+    <string name="born_on_this_day">Born on this day:</string>
 
     <string-array name="months">
         <item>January</item>
@@ -88,6 +88,31 @@
 
     <string name="banner_id">ca-app-pub-5122433987000361/8152385338</string>
 
+    <!-- Settings -->
+    <string name="licenses">Licenses</string>
+
+    <string name="butter_knife_by_jake_wharton">Butter Knife by Jake Wharton</string>
+    <string name="butter_knife_license">
+        Copyright 2013 Jake Wharton\n\nLicensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+    </string>
+
+    <string name="materialdatetimepicker_by_wouter_dullaert">MaterialDateTimePicker by Wouter Dullaert</string>
+    <string name="mdtp_licence">
+        Copyright 2015 Wouter Dullaert\n\nLicensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+    </string>
+
     <!-- Famous persons -->
     <string name="beethoven">Ludwig van Beethoven</string>
     <string name="humphry_davy">Humphry Davy</string>
@@ -101,25 +126,4 @@
 
     <!-- 1 february -->
     <string name="john_ford">John Ford</string>
-    <string name="licenses">Licenses</string>
-
-    <string name="butter_knife_license">
-        Copyright 2013 Jake Wharton\n\nLicensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-    </string>
-
-    <string name="mdtp_licence">
-        Copyright 2015 Wouter Dullaert\n\nLicensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-    </string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- fragment text -->
     <string name="all">Все</string>
     <string name="famous">Известные</string>
@@ -9,6 +8,7 @@
     <!-- menu text -->
     <string name="menu_rate_app">Оценить приложение</string>
     <string name="menu_share">Поделиться</string>
+    <string name="menu_github">Исходный код</string>
     <string name="action_settings">Настройки</string>
     <string name="menu_delete">Удалить</string>
     <string name="menu_edit">Редактировать</string>
@@ -39,6 +39,7 @@
     <string name="calendar">Календарь</string>
     <string name="call">Позвонить</string>
     <string name="chat">Написать</string>
+    <string name="born_on_this_day">В этот день родились:</string>
 
     <string-array name="months">
         <item>Январь</item>
@@ -82,6 +83,9 @@
     <string name="aquarius">Водолей</string>
     <string name="pisces">Рыбы</string>
 
+    <!-- Settings -->
+    <string name="licenses">Licenses</string>
+
     <!-- Famous persons -->
     <string name="beethoven">Людвиг ван Бетховен</string>
     <string name="humphry_davy">Гемфри Дэви</string>
@@ -94,5 +98,4 @@
     <string name="william_fox">Уильям Фокс</string>
     <!-- 1 february -->
     <string name="john_ford">Джон Форд</string>
-    <string name="licenses">Licenses</string>
 </resources>

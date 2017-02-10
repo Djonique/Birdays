@@ -9,7 +9,7 @@
             android:key="notifications"
             android:summary="Разрешить приложению присылать уведомления о предстоящих днях рождения"
             android:title="Уведомления"/>
-        <com.djonique.birdays.TimePreference
+        <com.djonique.birdays.preferences.TimePreference
             android:defaultValue="1486375200000L"
             android:dependency="notifications"
             android:key="notification_time"
@@ -45,8 +45,8 @@
         android:title="О приложении">
         <Preference
             android:key="github"
-            android:summary="Просмотреть открытый исходный код приложения на github.com"
-            android:title="Github">
+            android:summary="Просмотреть открытый исходный код приложения на Github"
+            android:title="@string/menu_github">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="@string/github_url"/>
