@@ -1,11 +1,14 @@
 package com.djonique.birdays.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,15 +18,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
-import com.djonique.birdays.utils.IntentHelper;
 import com.djonique.birdays.utils.Utils;
 import com.google.android.gms.ads.AdView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,11 +60,12 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvEmail;
     @BindView(R.id.rlEmail)
     RelativeLayout rlEmail;
-    /*@BindView(R.id.detailRecyclerView)
-    RecyclerView recyclerView;*/
+    @BindView(R.id.detailRecyclerView)
+    RecyclerView recyclerView;
 
     private DBHelper dbHelper;
     private Person person;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     private long date, timeStamp;
     private int position;
@@ -92,6 +98,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         ButterKnife.bind(this);
 
         Ad.showBanner(findViewById(R.id.container_detail), (AdView) findViewById(R.id.banner_detail));
@@ -118,9 +126,9 @@ public class DetailActivity extends AppCompatActivity {
 
         updateUI();
 
-        //loadBornThisDay();
+        loadBornThisDay();
 
-        //recyclerView.setFocusable(false);
+        recyclerView.setFocusable(false);
     }
 
     @Override
@@ -202,7 +210,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    /*private void loadBornThisDay() {
+    private void loadBornThisDay() {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
 
@@ -213,10 +221,11 @@ public class DetailActivity extends AppCompatActivity {
         for (int i = 0; i < famousPersons.size(); i++) {
             adapter.addItem(famousPersons.get(i));
         }
-    }*/
+    }
 
     @OnClick(R.id.fab_detail)
     void starEditActivity() {
+        logEvent();
         Intent intent = new Intent(getApplicationContext(), EditActivity.class);
         intent.putExtra(ConstantManager.TIME_STAMP, timeStamp);
         startActivityForResult(intent, ConstantManager.EDIT_ACTIVITY);
@@ -240,18 +249,48 @@ public class DetailActivity extends AppCompatActivity {
         } else setPicture(imageView, autumnImages);
     }
 
+    private void logEvent() {
+        Bundle params = new Bundle();
+        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "EditActivity");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
+    }
+
+    private void logEmailEvent() {
+        mFirebaseAnalytics.logEvent("send_email", new Bundle());
+    }
+
+    private void logSMSEvent() {
+        mFirebaseAnalytics.logEvent("send_sms", new Bundle());
+    }
+
+    private void logCallEvent() {
+        mFirebaseAnalytics.logEvent("make_call", new Bundle());
+    }
+
     @OnClick(R.id.ibPhoneIcon)
     void call() {
-        IntentHelper.call(getApplicationContext(), phoneNumber);
+        logCallEvent();
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(ConstantManager.TEL + phoneNumber)));
     }
 
     @OnClick(R.id.ibChatIcon)
     void sendSMS() {
-        IntentHelper.sendSms(getApplicationContext(), phoneNumber);
+        logSMSEvent();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setType(ConstantManager.TYPE_SMS);
+        intent.putExtra(ConstantManager.ADDRESS, phoneNumber);
+        intent.setData(Uri.parse(ConstantManager.SMSTO + phoneNumber));
+        startActivity(intent);
     }
 
     @OnClick(R.id.ibEmailIcon)
     void sendEmail() {
-        IntentHelper.sendEmail(getApplicationContext(), email);
+        logEmailEvent();
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setType(ConstantManager.TYPE_EMAIL);
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.happy_birthday));
+        intent.setData(Uri.parse(ConstantManager.MAILTO + email));
+        startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
     }
 }

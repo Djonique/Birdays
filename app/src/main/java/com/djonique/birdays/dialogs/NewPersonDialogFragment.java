@@ -212,7 +212,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                             tilDate.setError(getString(R.string.wrong_date));
                         } else if (!Utils.isRightDate(calendar)) {
                             positiveButton.setEnabled(false);
-                            tilDate.setError(getString(R.string.not_vanga));
+                            tilDate.setError(getString(R.string.wrong_date));
                         }
                     }
 

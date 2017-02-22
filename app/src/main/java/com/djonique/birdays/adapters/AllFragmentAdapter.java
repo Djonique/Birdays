@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ import com.djonique.birdays.models.Person;
 import com.djonique.birdays.models.Separator;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private List<Item> items;
     private AllFragment allFragment;
     private Context context;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public AllFragmentAdapter(AllFragment allFragment) {
         this.allFragment = allFragment;
@@ -146,6 +149,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         switch (viewType) {
             case TYPE_PERSON:
                 View view = LayoutInflater.from(context).inflate(R.layout.description_list_view,
@@ -211,6 +215,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    logEvent();
                     Intent intent = new Intent(context, DetailActivity.class);
                     intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
                     intent.putExtra(ConstantManager.SELECTED_ITEM, listViewHolder.getAdapterPosition());
@@ -263,6 +268,12 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         else if (age >= 60 && age < 70) ageCircleColorResID = R.color.age7;
         else ageCircleColorResID = R.color.age8;
         return ageCircleColorResID;
+    }
+
+    private void logEvent() {
+        Bundle params = new Bundle();
+        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "DetailActivity");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
     }
 
     @Override

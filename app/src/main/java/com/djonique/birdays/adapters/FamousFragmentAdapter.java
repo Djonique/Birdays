@@ -3,6 +3,7 @@ package com.djonique.birdays.adapters;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.utils.Utils;
 import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
 
     private List<Item> items;
     private Context context;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public FamousFragmentAdapter() {
         this.items = new ArrayList<>();
@@ -47,6 +50,7 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         View view = LayoutInflater.from(context).inflate(R.layout.description_famous_list_view,
                 parent, false);
         return new ListViewHolder(view);
@@ -66,6 +70,7 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                logEvent(name);
                 Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
                 intent.putExtra(SearchManager.QUERY, name);
                 context.startActivity(intent);
@@ -76,6 +81,11 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    private void logEvent(String name) {
+        Bundle params = new Bundle();
+        mFirebaseAnalytics.logEvent("famous_person_clicked", params);
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {

@@ -15,6 +15,7 @@ import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 
@@ -55,10 +56,16 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static class BirdaysPreferenceFragment extends PreferenceFragment
             implements SharedPreferences.OnSharedPreferenceChangeListener {
+
+        private FirebaseAnalytics mFirebaseAnalytics;
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
+
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
+            logEvent();
 
             Preference share = findPreference("share");
             share.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -125,6 +132,12 @@ public class SettingsActivity extends AppCompatActivity {
             super.onPause();
             getPreferenceScreen().getSharedPreferences()
                     .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        private void logEvent() {
+            Bundle params = new Bundle();
+            params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "SettingsActivity");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
         }
     }
 }

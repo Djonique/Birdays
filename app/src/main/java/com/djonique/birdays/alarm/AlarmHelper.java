@@ -60,7 +60,7 @@ public class AlarmHelper {
     private long setupCalendarYear(Person person) {
         long now = Calendar.getInstance().getTimeInMillis();
 
-        long notificationTime = preferences.getLong(ConstantManager.NOTIFICATION_TIME, 1486375200000L);
+        long notificationTime = preferences.getLong(ConstantManager.NOTIFICATION_TIME, 645703200000L);
         Calendar notificationTimeCalendar = Calendar.getInstance();
         notificationTimeCalendar.setTimeInMillis(notificationTime);
 

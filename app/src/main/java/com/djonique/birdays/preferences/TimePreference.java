@@ -13,7 +13,7 @@ import com.djonique.birdays.R;
 import java.util.Calendar;
 import java.util.Date;
 
-
+@SuppressWarnings("ALL")
 public class TimePreference extends DialogPreference {
     private Calendar calendar;
     private TimePicker picker = null;
@@ -37,6 +37,7 @@ public class TimePreference extends DialogPreference {
     @Override
     protected View onCreateDialogView() {
         picker = new TimePicker(getContext());
+        picker.setIs24HourView(DateFormat.is24HourFormat(getContext()));
         return (picker);
     }
 

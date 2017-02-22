@@ -25,4 +25,12 @@ public interface ConstantManager {
     // Alarm
     String NAME = "name";
     String NOTIFICATION_TIME = "notification_time";
+
+    // Intents
+    String TYPE_EMAIL = "message/rfc822";
+    String MAILTO = "mailto:";
+    String TYPE_SMS = "vnd.android-dir/mms-sms";
+    String ADDRESS = "address";
+    String SMSTO = "smsto:";
+    String TEL = "tel: ";
 }
