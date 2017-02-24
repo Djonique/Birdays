@@ -95,7 +95,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnEmail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    logEmailEvent();
+                    mFirebaseAnalytics.logEvent(ConstantManager.SEND_EMAIL, new Bundle());
                     Intent intent = new Intent(Intent.ACTION_SENDTO);
                     intent.setType(ConstantManager.TYPE_EMAIL);
                     intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
@@ -114,7 +114,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnPhone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    logCallEvent();
+                    mFirebaseAnalytics.logEvent(ConstantManager.MAKE_CALL, new Bundle());
                     context.startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(ConstantManager.TEL + phoneNumber)));
                 }
             });
@@ -122,7 +122,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnSMS.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    logSMSEvent();
+                    mFirebaseAnalytics.logEvent(ConstantManager.SEND_SMS, new Bundle());
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setType(ConstantManager.TYPE_SMS);
                     intent.putExtra(ConstantManager.ADDRESS, phoneNumber);
@@ -169,18 +169,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     private void disableButton(ImageButton button) {
         button.setColorFilter(disabled);
         button.setClickable(false);
-    }
-
-    private void logEmailEvent() {
-        mFirebaseAnalytics.logEvent("send_email", new Bundle());
-    }
-
-    private void logSMSEvent() {
-        mFirebaseAnalytics.logEvent("send_sms", new Bundle());
-    }
-
-    private void logCallEvent() {
-        mFirebaseAnalytics.logEvent("make_call", new Bundle());
     }
 
     static class CardViewHolder extends RecyclerView.ViewHolder {

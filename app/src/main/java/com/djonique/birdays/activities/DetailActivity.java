@@ -251,31 +251,19 @@ public class DetailActivity extends AppCompatActivity {
 
     private void logEvent() {
         Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "EditActivity");
+        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, ConstantManager.EDIT_ACTIVITY_TAG);
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
-    }
-
-    private void logEmailEvent() {
-        mFirebaseAnalytics.logEvent("send_email", new Bundle());
-    }
-
-    private void logSMSEvent() {
-        mFirebaseAnalytics.logEvent("send_sms", new Bundle());
-    }
-
-    private void logCallEvent() {
-        mFirebaseAnalytics.logEvent("make_call", new Bundle());
     }
 
     @OnClick(R.id.ibPhoneIcon)
     void call() {
-        logCallEvent();
+        mFirebaseAnalytics.logEvent(ConstantManager.MAKE_CALL, new Bundle());
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(ConstantManager.TEL + phoneNumber)));
     }
 
     @OnClick(R.id.ibChatIcon)
     void sendSMS() {
-        logSMSEvent();
+        mFirebaseAnalytics.logEvent(ConstantManager.SEND_SMS, new Bundle());
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setType(ConstantManager.TYPE_SMS);
         intent.putExtra(ConstantManager.ADDRESS, phoneNumber);
@@ -285,7 +273,7 @@ public class DetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.ibEmailIcon)
     void sendEmail() {
-        logEmailEvent();
+        mFirebaseAnalytics.logEvent(ConstantManager.SEND_EMAIL, new Bundle());
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType(ConstantManager.TYPE_EMAIL);
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});

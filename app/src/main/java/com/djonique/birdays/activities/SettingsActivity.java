@@ -21,8 +21,6 @@ import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private final static String NOTIFICATIONS = "notifications";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,10 +65,11 @@ public class SettingsActivity extends AppCompatActivity {
             mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
             logEvent();
 
-            Preference share = findPreference("share");
+            Preference share = findPreference(getString(R.string.share_key));
             share.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
+                    mFirebaseAnalytics.logEvent(ConstantManager.SHARE_APP, new Bundle());
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType(ConstantManager.TEXT_PLAIN);
                     intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.play_market_app_link));
@@ -79,7 +78,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             });
 
-            Preference licenses = findPreference("licenses");
+            Preference licenses = findPreference(getString(R.string.licenses_key));
             licenses.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
@@ -99,8 +98,8 @@ public class SettingsActivity extends AppCompatActivity {
             List<Person> persons = dbHelper.query().getPersons();
             AlarmHelper alarmHelper = AlarmHelper.getInstance();
             switch (key) {
-                case NOTIFICATIONS:
-                    boolean isChecked = sharedPreferences.getBoolean(NOTIFICATIONS, false);
+                case ConstantManager.NOTIFICATIONS:
+                    boolean isChecked = sharedPreferences.getBoolean(getString(R.string.notifications_key), false);
                     if (isChecked) {
                         for (Person person : persons) {
                             alarmHelper.setAlarm(person);
@@ -136,7 +135,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         private void logEvent() {
             Bundle params = new Bundle();
-            params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "SettingsActivity");
+            params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, ConstantManager.SETTINGS_ACTIVITY_TAG);
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
         }
     }

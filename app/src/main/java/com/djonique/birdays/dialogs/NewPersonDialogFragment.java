@@ -31,6 +31,7 @@ import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.ContactsInfo;
 import com.djonique.birdays.utils.Utils;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Calendar;
 
@@ -42,6 +43,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private AppCompatCheckBox cbKnownYear;
     private Calendar calendar;
     private String name, phone, email;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -52,6 +54,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         } catch (ClassCastException e) {
             throw new ClassCastException();
         }
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(activity);
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -121,6 +124,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                mFirebaseAnalytics.logEvent(ConstantManager.NEW_PERSON_ADDED, new Bundle());
                 if (etName != null) {
                     name = etName.getText().toString();
                     person.setName(name);

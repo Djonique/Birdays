@@ -3,68 +3,65 @@
 
     <!-- Notifications -->
     <PreferenceCategory
-        android:title="Уведомления">
+        android:title="@string/notifications">
         <SwitchPreference
             android:defaultValue="true"
-            android:key="notifications"
-            android:summary="Разрешить приложению присылать уведомления о предстоящих днях рождения"
-            android:title="Уведомления"/>
+            android:key="@string/notifications_key"
+            android:summary="@string/allow_notification"
+            android:title="@string/notifications"/>
         <com.djonique.birdays.preferences.TimePreference
             android:defaultValue="@string/default_time_preference"
-            android:dependency="notifications"
-            android:key="notification_time"
-            android:title="Время уведомления"/>
+            android:dependency="@string/notifications_key"
+            android:key="@string/notification_time_key"
+            android:title="@string/notifications_time"/>
         <CheckBoxPreference
             android:defaultValue="true"
-            android:dependency="notifications"
-            android:key="vibration"
-            android:summary="Включить вибрацию при уведомлениях"
-            android:title="Вибрация"/>
+            android:dependency="@string/notifications_key"
+            android:key="@string/vibration_key"
+            android:title="@string/Vibration"/>
     </PreferenceCategory>
 
     <!-- General -->
     <PreferenceCategory
-        android:title="Общие">
+        android:title="@string/general">
         <Preference
-            android:key="rate"
-            android:summary="Поставить оценку в Play Market"
-            android:title="Оценить приложение">
+            android:key="@string/rate_key"
+            android:title="@string/rate_app">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="@string/play_market_app_link"/>
         </Preference>
         <Preference
-            android:key="share"
-            android:summary="Отправить прямую ссылку на скачивание приложения из Play Market"
-            android:title="Поделиться">
+            android:key="@string/share_key"
+            android:title="@string/share">
         </Preference>
     </PreferenceCategory>
 
     <!-- About app -->
     <PreferenceCategory
-        android:title="О приложении">
+        android:title="@string/about_app">
         <Preference
-            android:key="github"
-            android:summary="Просмотреть открытый исходный код приложения на Github"
+            android:key="@string/github_key"
+            android:summary="@string/view_code_github"
             android:title="@string/menu_github">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="@string/github_url"/>
         </Preference>
         <Preference
-            android:key="privacy_policy"
+            android:key="@string/privacy_policy_key"
             android:title="@string/privacy_policy">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="@string/privacy_policy_link"/>
         </Preference>
         <Preference
-            android:key="licenses"
-            android:title="Лицензии открытого ПО">
+            android:key="@string/licenses_key"
+            android:title="@string/software_licenses">
         </Preference>
         <Preference
-            android:key="version"
+            android:key="@string/version_key"
             android:selectable="false"
-            android:title="Версия 0.9.0"/>
+            android:title="@string/version"/>
     </PreferenceCategory>
 </PreferenceScreen>

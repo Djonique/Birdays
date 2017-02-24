@@ -272,7 +272,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private void logEvent() {
         Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "DetailActivity");
+        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, ConstantManager.DETAIL_ACTIVITY_TAG);
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
     }
 

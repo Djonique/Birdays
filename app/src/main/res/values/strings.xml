@@ -90,10 +90,32 @@
     <string name="detail_banner_id">ca-app-pub-5122433987000361/8105452138</string>
 
     <!-- Settings -->
+    <string name="notifications">Notifications</string>
+    <string name="allow_notification">Allow the app to send notifications of upcoming birthdays</string>
+    <string name="notifications_time">Notifications time</string>
+    <string name="default_time_preference">645703200000</string>
+    <string name="Vibration">Vibration</string>
+    <string name="general">General</string>
+    <string name="rate_app">Rate app</string>
+    <string name="share">Share</string>
+    <string name="about_app">About app</string>
+    <string name="view_code_github">View the open source code on Github</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="privacy_policy_link">https://cdn.rawgit.com/Djonique/Birdays/d2f5f433/Privacy%20policy.html</string>
+    <string name="software_licenses">Free software licenses</string>
     <string name="licenses">Licenses</string>
-    <string name="default_time_preference">645703200000</string>
+    <string name="version">App version 0.9.0</string>
+
+    <!-- Settings keys -->
+    <string name="notifications_key">notifications</string>
+    <string name="notification_time_key">notification_time</string>
+    <string name="rate_key">rate</string>
+    <string name="share_key">share</string>
+    <string name="vibration_key">vibration</string>
+    <string name="github_key">github</string>
+    <string name="privacy_policy_key">privacy_policy</string>
+    <string name="licenses_key">licenses</string>
+    <string name="version_key">version</string>
 
     <string name="butter_knife_by_jake_wharton">Butter Knife by Jake Wharton</string>
     <string name="butter_knife_license">
@@ -361,4 +383,47 @@
     <string name="bragg">Paul Bragg</string>
     <string name="truffaut">François Roland Truffaut</string>
     <string name="bob_marley">Bob Marley</string>
+    <!-- 7 february -->
+    <string name="dickens">Charles Dickens</string>
+    <string name="alfred_adler">Alfred Adler</string>
+    <string name="sinclair_lewis">Sinclair Lewis</string>
+    <string name="chizhevsky">Alexander Chizhevsky</string>
+    <string name="euler">Ulf von Euler</string>
+    <string name="desmond_doss">Desmond Doss</string>
+    <string name="kutcher">Ashton Kutcher</string>
+    <!-- 8 february -->
+    <string name="bernoulli">Daniel Bernoulli</string>
+    <string name="courtois">Bernard Courtois</string>
+    <string name="jules_verne">Jules Verne</string>
+    <string name="mendeleev">Dmitri Mendeleev</string>
+    <string name="carlson">Chester Carlson</string>
+    <string name="williams">John Williams</string>
+    <!-- 9 february -->
+    <string name="navai">Ali-Shir Nava\'i</string>
+    <string name="valisy_zhukovsky">Vasily Zhukovsky</string>
+    <string name="maybach">Wilhelm Maybach</string>
+    <string name="soseki">Natsume Sōseki</string>
+    <string name="berg">Alban Berg</string>
+    <string name="valier">Max Valier</string>
+    <string name="monod">Jacques Lucien Monod</string>
+    <!-- 10 february -->
+    <string name="molter">Johann Melchior Molter</string>
+    <string name="lamb">Charles Lamb</string>
+    <string name="navier">Claude Louis Navier</string>
+    <string name="pasternak">Boris Pasternak</string>
+    <string name="brecht">Bertolt Brecht</string>
+    <!-- 11 february -->
+    <string name="talbot">William Henry Fox Talbot</string>
+    <string name="edison">Thomas Edison</string>
+    <string name="henry">Beulah Louise Henry</string>
+    <string name="sheldon">Sidney Sheldon</string>
+    <string name="nielsen">Leslie Nielsen</string>
+    <string name="aniston">Jennifer Aniston</string>
+    <!-- 12 february -->
+    <string name="gottsched">Johann Christoph Gottsched</string>
+    <string name="darwin">Charles Robert Darwin</string>
+    <string name="lincoln">Abraham Lincoln</string>
+    <string name="roerich">Helena Roerich</string>
+    <string name="anna_pavlova">Anna Pavlova</string>
+    <string name="byung_chul">Lee Byung-chul</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.djonique.birdays.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,7 +11,6 @@ import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.fragments.FamousFragment;
 import com.djonique.birdays.fragments.MonthFragment;
 import com.djonique.birdays.models.Person;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Calendar;
 
@@ -23,25 +21,20 @@ public class PagerAdapter extends FragmentPagerAdapter {
     private MonthFragment monthFragment;
     private AllFragment allFragment;
     private Context context;
-    private FirebaseAnalytics mFirebaseAnalytics;
 
     public PagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                logEvent("MonthFragment");
                 return new MonthFragment();
             case 1:
-                logEvent("AllFragment");
                 return new AllFragment();
             case 2:
-                logEvent("FamousFragment");
                 return new FamousFragment();
             default:
                 return null;
@@ -123,11 +116,5 @@ public class PagerAdapter extends FragmentPagerAdapter {
         if (monthFragment != null) {
             monthFragment.deleteRecord(timeStamp);
         }
-    }
-
-    private void logEvent(String fragment) {
-        Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, fragment);
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
     }
 }

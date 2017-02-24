@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
 import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
@@ -70,7 +71,7 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logEvent(name);
+                mFirebaseAnalytics.logEvent(ConstantManager.FAMOUS_PERSON_CLICKED, new Bundle());
                 Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
                 intent.putExtra(SearchManager.QUERY, name);
                 context.startActivity(intent);
@@ -81,11 +82,6 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
     @Override
     public int getItemCount() {
         return items.size();
-    }
-
-    private void logEvent(String name) {
-        Bundle params = new Bundle();
-        mFirebaseAnalytics.logEvent("famous_person_clicked", params);
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
