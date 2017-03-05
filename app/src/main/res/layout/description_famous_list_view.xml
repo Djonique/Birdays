@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/materialRL"
     android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/tvFamousName"
-        style="@style/Primary.TextView"/>
+        style="@style/Primary.TextView"
+        android:maxLines="1" />
 
     <TextView
         android:id="@+id/tvFamousDate"
         style="@style/Secondary.TextView"
-        android:layout_below="@+id/tvFamousName"/>
+        android:layout_below="@+id/tvFamousName" />
 </RelativeLayout>

@@ -20,6 +20,7 @@
         android:textSize="16sp"/>
 
     <TextView
+        android:maxLines="1"
         android:id="@+id/tvPersonName"
         style="@style/Material.Primary.TextView"/>
 

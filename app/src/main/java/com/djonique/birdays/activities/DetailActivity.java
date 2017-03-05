@@ -36,6 +36,7 @@ import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity {
 
+    public static final int POSSIBLE_PICTURES = 3;
     @BindView(R.id.toolbar_detail)
     Toolbar toolbar;
     @BindView(R.id.ivPicture)
@@ -72,26 +73,18 @@ public class DetailActivity extends AppCompatActivity {
     private boolean unknownYear;
     private String phoneNumber, email;
 
-    private int winterImages[] = {R.drawable.img_winter_0,
-            R.drawable.img_winter_1,
+    private int winterImages[] = {R.drawable.img_winter_1,
             R.drawable.img_winter_2,
-            R.drawable.img_winter_3,
-            R.drawable.img_winter_4};
-    private int springImages[] = {R.drawable.img_spring_0,
-            R.drawable.img_spring_1,
+            R.drawable.img_winter_3,};
+    private int springImages[] = {R.drawable.img_spring_1,
             R.drawable.img_spring_2,
-            R.drawable.img_spring_3,
-            R.drawable.img_spring_4};
-    private int summerImages[] = {R.drawable.img_summer_0,
-            R.drawable.img_summer_1,
+            R.drawable.img_spring_3};
+    private int summerImages[] = {R.drawable.img_summer_1,
             R.drawable.img_summer_2,
-            R.drawable.img_summer_3,
-            R.drawable.img_summer_4};
-    private int autumnImages[] = {R.drawable.img_autumn_0,
-            R.drawable.img_autumn_1,
+            R.drawable.img_summer_3};
+    private int autumnImages[] = {R.drawable.img_autumn_1,
             R.drawable.img_autumn_2,
-            R.drawable.img_autumn_3,
-            R.drawable.img_autumn_4};
+            R.drawable.img_autumn_3};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -233,7 +226,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setPicture(ImageView imageView, int[] pictures) {
-        imageView.setImageResource(pictures[(int) (Math.random() * 5)]);
+        imageView.setImageResource(pictures[(int) (Math.random() * POSSIBLE_PICTURES)]);
     }
 
     private void setSeasonImage() {

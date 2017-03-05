@@ -165,8 +165,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_margin="@dimen/fab_margin_default"
         app:elevation="6dp"
-        app:pressedTranslationZ="6dp"
+        app:pressedTranslationZ="12dp"
+        app:rippleColor="@color/color_primary"
         app:srcCompat="@drawable/ic_contacts_grey_24dp"/>
 </android.support.design.widget.CoordinatorLayout>
