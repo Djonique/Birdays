@@ -15,6 +15,7 @@ import java.util.Date;
 
 @SuppressWarnings("ALL")
 public class TimePreference extends DialogPreference {
+
     private Calendar calendar;
     private TimePicker picker = null;
 

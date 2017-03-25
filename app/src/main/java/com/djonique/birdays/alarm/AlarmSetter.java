@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlarmSetter extends BroadcastReceiver {
+
     @Override
     public void onReceive(Context context, Intent intent) {
         DBHelper dbHelper = new DBHelper(context);

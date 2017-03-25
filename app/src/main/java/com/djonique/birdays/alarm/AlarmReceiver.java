@@ -44,7 +44,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setContentTitle(context.getString(R.string.app_name));
         builder.setContentText(string);
         builder.setSmallIcon(R.drawable.ic_notification);
-        builder.setColor(Color.rgb(104, 239, 173));
         builder.setWhen(System.currentTimeMillis());
         builder.setDefaults(Notification.DEFAULT_SOUND);
         if (vibrate) {

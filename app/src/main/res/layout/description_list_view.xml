@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/materialRL"
     android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/tvListAge"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
         android:layout_gravity="center_vertical"
         android:background="@drawable/age_circle"
         android:fontFamily="sans-serif-medium"
@@ -17,15 +16,15 @@
         android:shadowDy="1"
         android:shadowRadius="1"
         android:textColor="@android:color/white"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
     <TextView
-        android:maxLines="1"
         android:id="@+id/tvPersonName"
-        style="@style/Material.Primary.TextView"/>
+        style="@style/Material.Primary.TextView"
+        android:maxLines="1" />
 
     <TextView
         android:id="@+id/tvPersonDate"
         style="@style/Material.Secondary.TextView"
-        android:layout_below="@+id/tvPersonName"/>
+        android:layout_below="@+id/tvPersonName" />
 </RelativeLayout>

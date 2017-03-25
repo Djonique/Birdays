@@ -260,6 +260,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
             }
         }
     }
+
     public interface AddingPersonListener {
 
         void onPersonAdded(Person person);

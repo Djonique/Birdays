@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
     static final String DB_FAMOUS = "famousDB";
     static final String SELECTION_TIME_STAMP = COLUMN_TIME_STAMP + " = ?";
     private static final String DB_NAME = "myDB";
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 10;
     private static final String DB_PERSONS_CREATE = "CREATE TABLE " + DB_PERSONS + " ("
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NAME + " TEXT, "
@@ -57,8 +57,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("DROP TABLE IF EXISTS " + DB_PERSONS);
-        if (oldVersion == 7 && newVersion == 8) {
+        if (oldVersion == 9 && newVersion == 10) {
             db.beginTransaction();
             try {
                 db.execSQL("DROP TABLE IF EXISTS " + DB_FAMOUS);

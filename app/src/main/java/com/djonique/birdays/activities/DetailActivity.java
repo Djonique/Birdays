@@ -187,9 +187,8 @@ public class DetailActivity extends AppCompatActivity {
             tvAge.setText(String.valueOf(Utils.getAge(date)));
         }
 
-        if (phoneNumber == null && email == null) {
-            cardView.setVisibility(View.GONE);
-        }
+        if (phoneNumber == null && email == null) cardView.setVisibility(View.GONE);
+
         if (phoneNumber == null) {
             rlPhone.setVisibility(View.GONE);
         } else {

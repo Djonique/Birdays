@@ -1,6 +1,5 @@
 package com.djonique.birdays.utils;
 
-
 import android.app.Application;
 
 public class BirdaysApplication extends Application {

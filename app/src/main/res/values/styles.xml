@@ -4,7 +4,7 @@
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
-        <!--ripple effect color-->
+        <!-- ripple effect color -->
         <item name="colorControlHighlight">@color/ripple</item>
     </style>
 
@@ -13,11 +13,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.DetailActivity" parent="AppTheme.NoActionBar"/>
+    <style name="AppTheme.DetailActivity" parent="AppTheme.NoActionBar" />
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@android:color/white</item>
@@ -79,8 +79,15 @@
 
     <style name="materialRL">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_height">72sp</item>
         <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="contactsInfoRL">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">72sp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingTop">16dp</item>
     </style>
 
     <style name="dialogTextStyle">

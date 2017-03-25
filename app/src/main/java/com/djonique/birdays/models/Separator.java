@@ -1,9 +1,9 @@
 package com.djonique.birdays.models;
 
-
 import com.djonique.birdays.R;
 
 public class Separator implements Item {
+
     public static final int TYPE_JANUARY = R.string.january;
     public static final int TYPE_FEBRUARY = R.string.february;
     public static final int TYPE_MARCH = R.string.march;
@@ -29,10 +29,6 @@ public class Separator implements Item {
 
     public int getType() {
         return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 }
 

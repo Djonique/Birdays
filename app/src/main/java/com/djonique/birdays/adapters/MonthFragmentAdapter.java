@@ -31,7 +31,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     private Context context;
     private FirebaseAnalytics mFirebaseAnalytics;
     private List<Item> items;
-    private String email, phoneNumber;
 
     private int enabled = Color.rgb(33, 150, 243);
     private int disabled = Color.rgb(224, 224, 224);
@@ -75,8 +74,8 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         final Person person = (Person) item;
         long date = person.getDate();
         boolean unknownYear = person.isYearUnknown();
-        email = person.getEmail();
-        phoneNumber = person.getPhoneNumber();
+        final String email = person.getEmail();
+        final String phoneNumber = person.getPhoneNumber();
 
         holder.tvName.setText(person.getName());
 

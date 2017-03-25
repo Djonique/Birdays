@@ -1,6 +1,5 @@
 package com.djonique.birdays.ads;
 
-
 import android.view.View;
 
 import com.google.android.gms.ads.AdListener;

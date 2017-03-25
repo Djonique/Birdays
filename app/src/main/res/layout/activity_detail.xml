@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:ads="http://schemas.android.com/apk/res-auto"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/container_detail"
@@ -25,21 +24,26 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <ImageView
+                <com.djonique.birdays.views.ThreeTwoImageView
                     android:id="@+id/ivPicture"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="0dp"
                     android:contentDescription="@string/season_picture"
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax"
-                    app:layout_collapseParallaxMultiplier="0.7"/>
+                    app:layout_collapseParallaxMultiplier="0.7" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/scrim_gradient" />
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar_detail"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
@@ -56,8 +60,7 @@
                 android:background="@color/background"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.CardView
-                    style="@style/cardViewStyle">
+                <android.support.v7.widget.CardView style="@style/cardViewStyle">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -65,27 +68,25 @@
                         android:orientation="vertical">
 
                         <!--Date-->
-                        <RelativeLayout
-                            style="@style/materialRL">
+                        <RelativeLayout style="@style/materialRL">
 
                             <ImageView
                                 style="@style/detailActivityIcons"
                                 android:contentDescription="@string/calendar"
-                                app:srcCompat="@drawable/ic_calendar_blue_24dp"/>
+                                app:srcCompat="@drawable/ic_calendar_blue_24dp" />
 
                             <TextView
                                 android:id="@+id/tvDetailDate"
-                                style="@style/Material.Primary.TextView"/>
+                                style="@style/Material.Primary.TextView" />
 
                             <TextView
                                 style="@style/Material.Secondary.TextView"
                                 android:layout_below="@+id/tvDetailDate"
-                                android:text="@string/date"/>
+                                android:text="@string/date" />
                         </RelativeLayout>
 
                         <!--Zodiac-->
-                        <RelativeLayout
-                            style="@style/materialRL">
+                        <RelativeLayout style="@style/materialRL">
 
                             <TextView
                                 android:id="@+id/tvZodiacImage"
@@ -94,16 +95,16 @@
                                 android:layout_gravity="center_vertical"
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
-                                android:textSize="24sp"/>
+                                android:textSize="24sp" />
 
                             <TextView
                                 android:id="@+id/tvZodiac"
-                                style="@style/Material.Primary.TextView"/>
+                                style="@style/Material.Primary.TextView" />
 
                             <TextView
                                 style="@style/Material.Secondary.TextView"
                                 android:layout_below="@+id/tvZodiac"
-                                android:text="@string/zodiac"/>
+                                android:text="@string/zodiac" />
                         </RelativeLayout>
 
                         <!--Age-->
@@ -113,12 +114,12 @@
 
                             <TextView
                                 android:id="@+id/tvDetailAge"
-                                style="@style/Material.Primary.TextView"/>
+                                style="@style/Material.Primary.TextView" />
 
                             <TextView
                                 style="@style/Material.Secondary.TextView"
                                 android:layout_below="@+id/tvDetailAge"
-                                android:text="@string/age"/>
+                                android:text="@string/age" />
                         </RelativeLayout>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -135,10 +136,7 @@
                         <!--Phone number-->
                         <RelativeLayout
                             android:id="@+id/rlPhone"
-                            android:layout_width="match_parent"
-                            android:layout_height="72dp"
-                            android:paddingBottom="16dp"
-                            android:paddingTop="16dp">
+                            style="@style/contactsInfoRL">
 
                             <ImageButton
                                 android:id="@+id/ibPhoneIcon"
@@ -147,7 +145,7 @@
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/phone"
                                 android:padding="24dp"
-                                app:srcCompat="@drawable/ic_call_blue_24dp"/>
+                                app:srcCompat="@drawable/ic_call_blue_24dp" />
 
                             <ImageButton
                                 android:id="@+id/ibChatIcon"
@@ -158,29 +156,26 @@
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/chat"
                                 android:padding="24dp"
-                                app:srcCompat="@drawable/ic_chat_blue_24dp"/>
+                                app:srcCompat="@drawable/ic_chat_blue_24dp" />
 
                             <TextView
                                 android:id="@+id/tvDetailPhone"
                                 style="@style/Primary.TextView"
                                 android:layout_marginLeft="72dp"
-                                android:layout_marginStart="72dp"/>
+                                android:layout_marginStart="72dp" />
 
                             <TextView
                                 style="@style/Secondary.TextView"
                                 android:layout_below="@+id/tvDetailPhone"
                                 android:layout_marginLeft="72dp"
                                 android:layout_marginStart="72dp"
-                                android:text="@string/phone"/>
+                                android:text="@string/phone" />
                         </RelativeLayout>
 
                         <!--Email-->
                         <RelativeLayout
                             android:id="@+id/rlEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="72dp"
-                            android:paddingBottom="16dp"
-                            android:paddingTop="16dp">
+                            style="@style/contactsInfoRL">
 
                             <ImageButton
                                 android:id="@+id/ibEmailIcon"
@@ -189,26 +184,25 @@
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/email"
                                 android:padding="24dp"
-                                app:srcCompat="@drawable/ic_email_blue_24dp"/>
+                                app:srcCompat="@drawable/ic_email_blue_24dp" />
 
                             <TextView
                                 android:id="@+id/tvDetailEmail"
                                 style="@style/Primary.TextView"
                                 android:layout_marginLeft="72dp"
-                                android:layout_marginStart="72dp"/>
+                                android:layout_marginStart="72dp" />
 
                             <TextView
                                 style="@style/Secondary.TextView"
                                 android:layout_below="@+id/tvDetailEmail"
                                 android:layout_marginLeft="72dp"
                                 android:layout_marginStart="72dp"
-                                android:text="@string/email"/>
+                                android:text="@string/email" />
                         </RelativeLayout>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView
-                    style="@style/cardViewStyle">
+                <android.support.v7.widget.CardView style="@style/cardViewStyle">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -222,12 +216,12 @@
                             android:layout_marginRight="16dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="@string/born_on_this_day"/>
+                            android:text="@string/born_on_this_day" />
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/detailRecyclerView"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
             </LinearLayout>
@@ -240,11 +234,11 @@
             android:layout_marginEnd="@dimen/fab_margin_detail"
             android:layout_marginRight="@dimen/fab_margin_detail"
             app:elevation="6dp"
-            app:pressedTranslationZ="12dp"
-            app:rippleColor="@color/color_primary"
             app:layout_anchor="@id/appbar_detail"
             app:layout_anchorGravity="bottom|right|end"
-            app:srcCompat="@drawable/ic_edit_grey_24dp"/>
+            app:pressedTranslationZ="12dp"
+            app:rippleColor="@color/ripple"
+            app:srcCompat="@drawable/ic_edit_grey_24dp" />
     </android.support.design.widget.CoordinatorLayout>
 
     <com.google.android.gms.ads.AdView
@@ -253,5 +247,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/detail_banner_id"/>
+        ads:adUnitId="@string/detail_banner_id" />
 </RelativeLayout>

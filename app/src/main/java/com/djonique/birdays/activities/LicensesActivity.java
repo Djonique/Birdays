@@ -7,7 +7,6 @@ import android.view.MenuItem;
 
 import com.djonique.birdays.R;
 
-
 public class LicensesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
