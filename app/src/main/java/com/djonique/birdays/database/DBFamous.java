@@ -1560,593 +1560,201 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.cutugno), -835920000000L));
 
         // 8 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.fontaine), -10997078400000L));
+        addFamous(db, new Person(context.getString(R.string.zeppelin), -4149273600000L));
+        addFamous(db, new Person(context.getString(R.string.rockefeller), -4117737600000L));
+        addFamous(db, new Person(context.getString(R.string.benardos), -4023043200000L));
+        addFamous(db, new Person(context.getString(R.string.arthus_evans), -3739046400000L));
+        addFamous(db, new Person(context.getString(R.string.perls), -2413584000000L));
+        addFamous(db, new Person(context.getString(R.string.kapitsa), -2382048000000L));
 
         // 9 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.radcliffe), -6484320000000L));
+        addFamous(db, new Person(context.getString(R.string.davenport), -5285260800000L));
+        addFamous(db, new Person(context.getString(R.string.elias_howe), -4748803200000L));
+        addFamous(db, new Person(context.getString(R.string.boas), -3518035200000L));
+        addFamous(db, new Person(context.getString(R.string.chagas), -2855347200000L));
+        addFamous(db, new Person(context.getString(R.string.tom_hanks), -425433600000L));
 
         // 10 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.jean_calvin), -14530492800000L));
+        addFamous(db, new Person(context.getString(R.string.marryat), -5600620800000L));
+        addFamous(db, new Person(context.getString(R.string.pissarro), -4401561600000L));
+        addFamous(db, new Person(context.getString(R.string.tesla), -3581020800000L));
+        addFamous(db, new Person(context.getString(R.string.proust), -3107721600000L));
+        addFamous(db, new Person(context.getString(R.string.chamberlain), -1561420800000L));
 
         // 11 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.gondora), -12889411200000L));
+        addFamous(db, new Person(context.getString(R.string.lalande), -7493990400000L));
+        addFamous(db, new Person(context.getString(R.string.nelson), -2760480000000L));
+        addFamous(db, new Person(context.getString(R.string.abel), -2097878400000L));
+        addFamous(db, new Person(context.getString(R.string.brynner), -1561334400000L));
+        addFamous(db, new Person(context.getString(R.string.armani), -1119571200000L));
 
         // 12 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.bernard), -4937846400000L));
+        addFamous(db, new Person(context.getString(R.string.eastman), -3644006400000L));
+        addFamous(db, new Person(context.getString(R.string.tod_browning), -2823465600000L));
+        addFamous(db, new Person(context.getString(R.string.modigliani), -2697235200000L));
+        addFamous(db, new Person(context.getString(R.string.meruda), -2066169600000L));
+        addFamous(db, new Person(context.getString(R.string.wyeth), -1655942400000L));
+        addFamous(db, new Person(context.getString(R.string.michelle_rodriguez), 269049600000L));
 
         // 13 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.john_dee), -13962240000000L));
+        addFamous(db, new Person(context.getString(R.string.cannizzaro), -4527532800000L));
+        addFamous(db, new Person(context.getString(R.string.otto_wagner), -4054147200000L));
+        addFamous(db, new Person(context.getString(R.string.babel), -2381616000000L));
+        addFamous(db, new Person(context.getString(R.string.ascari), -1624320000000L));
+        addFamous(db, new Person(context.getString(R.string.rubik), -803779200000L));
+        addFamous(db, new Person(context.getString(R.string.benassi), -78019200000L));
 
         // 14 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.dumas), -5347900800000L));
+        addFamous(db, new Person(context.getString(R.string.klimt), -3391372800000L));
+        addFamous(db, new Person(context.getString(R.string.irving_stone), -2097619200000L));
+        addFamous(db, new Person(context.getString(R.string.bergman), -1624233600000L));
+        addFamous(db, new Person(context.getString(R.string.forrester), -1624233600000L));
+
+        // 15 july
+        addFamous(db, new Person(context.getString(R.string.rembrandt), -11469859200000L));
+        addFamous(db, new Person(context.getString(R.string.pareto), -3833049600000L));
+        addFamous(db, new Person(context.getString(R.string.harmsworth), -3296592000000L));
+        addFamous(db, new Person(context.getString(R.string.brockhouse), -1624147200000L));
+        addFamous(db, new Person(context.getString(R.string.savage), -77846400000L));
+        addFamous(db, new Person(context.getString(R.string.kruger), 206236800000L));
 
         // 16 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.assisi), -24470640000000L));
+        addFamous(db, new Person(context.getString(R.string.amundsen), -3075580800000L));
+        addFamous(db, new Person(context.getString(R.string.stanwyck), -1971216000000L));
+        addFamous(db, new Person(context.getString(R.string.laroche), -1529366400000L));
+        addFamous(db, new Person(context.getString(R.string.sheckley), -1308441600000L));
 
         // 17 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.friedrich_krupp), -5757868800000L));
+        addFamous(db, new Person(context.getString(R.string.corot), -5473785600000L));
+        addFamous(db, new Person(context.getString(R.string.nicholas), -3896035200000L));
+        addFamous(db, new Person(context.getString(R.string.lamaitre), -2381270400000L));
+        addFamous(db, new Person(context.getString(R.string.abbott), -2255040000000L));
+        addFamous(db, new Person(context.getString(R.string.sutherland), -1087516800000L));
 
         // 18 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.thackeray), -5000486400000L));
+        addFamous(db, new Person(context.getString(R.string.viardot), -4684867200000L));
+        addFamous(db, new Person(context.getString(R.string.lorentz), -3675024000000L));
+        addFamous(db, new Person(context.getString(R.string.mandela), -1623888000000L));
+        addFamous(db, new Person(context.getString(R.string.hunter_thompson), -1024272000000L));
+        addFamous(db, new Person(context.getString(R.string.branson), -614044800000L));
+        addFamous(db, new Person(context.getString(R.string.vin_diesel), -77587200000L));
 
         // 19 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.colt), -4905705600000L));
+        addFamous(db, new Person(context.getString(R.string.degas), -4274553600000L));
+        addFamous(db, new Person(context.getString(R.string.mayakovsky), -2412633600000L));
+        addFamous(db, new Person(context.getString(R.string.cronin), -2317939200000L));
+        addFamous(db, new Person(context.getString(R.string.coloane), -1876262400000L));
+        addFamous(db, new Person(context.getString(R.string.yalow), -1529107200000L));
+        addFamous(db, new Person(context.getString(R.string.cumberbatch), 206582400000L));
 
         // 20 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.petrarca), -20998915200000L));
+        addFamous(db, new Person(context.getString(R.string.owen), -5221152000000L));
+        addFamous(db, new Person(context.getString(R.string.mendel), -4653158400000L));
+        addFamous(db, new Person(context.getString(R.string.georg_muller), -3769545600000L));
+        addFamous(db, new Person(context.getString(R.string.morandi), -2507241600000L));
+        addFamous(db, new Person(context.getString(R.string.dobrev), -1749945600000L));
+        addFamous(db, new Person(context.getString(R.string.bundchen), 332899200000L));
 
         // 21 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.picard), -11027491200000L));
+        addFamous(db, new Person(context.getString(R.string.regnault), -5031763200000L));
+        addFamous(db, new Person(context.getString(R.string.reuter), -4842374400000L));
+        addFamous(db, new Person(context.getString(R.string.hemingway), -2223158400000L));
+        addFamous(db, new Person(context.getString(R.string.robin_williams), -582249600000L));
+        addFamous(db, new Person(context.getString(R.string.josh_hartnett), 269827200000L));
 
         // 22 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.soufflot), -8092656000000L));
+        addFamous(db, new Person(context.getString(R.string.gustav_hertz), -2601763200000L));
+        addFamous(db, new Person(context.getString(R.string.mathieu), -739929600000L));
+        addFamous(db, new Person(context.getString(R.string.dafoe), -455932800000L));
+        addFamous(db, new Person(context.getString(R.string.selena_gomez), 711763200000L));
 
         // 23 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.vyazemsky), -5599497600000L));
+        addFamous(db, new Person(context.getString(R.string.cilea), -3264364800000L));
+        addFamous(db, new Person(context.getString(R.string.harrelson), -266457600000L));
+        addFamous(db, new Person(context.getString(R.string.hoffman), -77155200000L));
+        addFamous(db, new Person(context.getString(R.string.lewinsky), 112233600000L));
+        addFamous(db, new Person(context.getString(R.string.daniel_radcliffe), 617155200000L));
 
         // 24 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.vidocq), -6135955200000L));
+        addFamous(db, new Person(context.getString(R.string.alexandre_dumas), -5283964800000L));
+        addFamous(db, new Person(context.getString(R.string.mucha), -3453580800000L));
+        addFamous(db, new Person(context.getString(R.string.benson), -3232742400000L));
+        addFamous(db, new Person(context.getString(R.string.lopez), -13910400000L));
 
         // 25 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.scheiner), -12446438400000L));
+        addFamous(db, new Person(context.getString(R.string.eakins), -3958416000000L));
+        addFamous(db, new Person(context.getString(R.string.davidson_black), -2696112000000L));
+        addFamous(db, new Person(context.getString(R.string.canetti), -2033510400000L));
+        addFamous(db, new Person(context.getString(R.string.leblanc), -76982400000L));
 
         // 26 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.remak), -4873564800000L));
+        addFamous(db, new Person(context.getString(R.string.shaw), -3579638400000L));
+        addFamous(db, new Person(context.getString(R.string.jung), -2980108800000L));
+        addFamous(db, new Person(context.getString(R.string.maurois), -2664489600000L));
+        addFamous(db, new Person(context.getString(R.string.kubrick), -1307577600000L));
+        addFamous(db, new Person(context.getString(R.string.jagger), -834278400000L));
+        addFamous(db, new Person(context.getString(R.string.spacey), -329356800000L));
+        addFamous(db, new Person(context.getString(R.string.bullock), -171504000000L));
+        addFamous(db, new Person(context.getString(R.string.statham), -76896000000L));
 
         // 27 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.corday), -6356534400000L));
+        addFamous(db, new Person(context.getString(R.string.carducci), -4242326400000L));
+        addFamous(db, new Person(context.getString(R.string.hans_fischer), -2790633600000L));
+        addFamous(db, new Person(context.getString(R.string.monaco), -1717804800000L));
+        addFamous(db, new Person(context.getString(R.string.nikolaj), 17884800000L));
 
         // 28 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.hooke), -10553587200000L));
+        addFamous(db, new Person(context.getString(R.string.feuerbach), -5220460800000L));
+        addFamous(db, new Person(context.getString(R.string.grisi), -4999622400000L));
+        addFamous(db, new Person(context.getString(R.string.duchamp), -2601244800000L));
+        addFamous(db, new Person(context.getString(R.string.popper), -2127945600000L));
+        addFamous(db, new Person(context.getString(R.string.burda), -1907020800000L));
+        addFamous(db, new Person(context.getString(R.string.chavez), -486950400000L));
 
         // 29 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.aivazovsky), -4810147200000L));
+        addFamous(db, new Person(context.getString(R.string.mussolini), -2727388800000L));
+        addFamous(db, new Person(context.getString(R.string.theda_bara), -2664230400000L));
+        addFamous(db, new Person(context.getString(R.string.clara_bow), -2033164800000L));
+        addFamous(db, new Person(context.getString(R.string.alonso), 365212800000L));
 
         // 30 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
+        addFamous(db, new Person(context.getString(R.string.vasari), -14465692800000L));
+        addFamous(db, new Person(context.getString(R.string.bronte), -4778524800000L));
+        addFamous(db, new Person(context.getString(R.string.henry_ford), -3358454400000L));
+        addFamous(db, new Person(context.getString(R.string.cyril_parkinson), -1906848000000L));
+        addFamous(db, new Person(context.getString(R.string.schwarzenegger), -707702400000L));
+        addFamous(db, new Person(context.getString(R.string.jean_reno), -676080000000L));
+        addFamous(db, new Person(context.getString(R.string.nolan), 18144000000L));
 
         // 31 july
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 1 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 2 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 3 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 4 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 5 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 6 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 7 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 8 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 9 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 10 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 11 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 12 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 13 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 14 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 15 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 16 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 17 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 18 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 19 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 20 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 21 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 22 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 23 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 24 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 25 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 26 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 27 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 28 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 29 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 30 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 31 august
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 1 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 2 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 3 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 4 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 5 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 6 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 7 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 8 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 9 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 10 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 11 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 12 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 13 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 14 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 15 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 16 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 17 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 18 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 19 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 20 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 21 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 22 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 23 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 24 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 25 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 26 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 27 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 28 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 29 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
-        // 30 september
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-        addFamous(db, new Person());
-
+        addFamous(db, new Person(context.getString(R.string.cramer), -8375875200000L));
+        addFamous(db, new Person(context.getString(R.string.wohler), -5346432000000L));
+        addFamous(db, new Person(context.getString(R.string.planquette), -3831667200000L));
+        addFamous(db, new Person(context.getString(R.string.milton_friedman), -1812067200000L));
+        addFamous(db, new Person(context.getString(R.string.de_funes), -1748995200000L));
+        addFamous(db, new Person(context.getString(R.string.primo_levi), -1591228800000L));
+        addFamous(db, new Person(context.getString(R.string.rowling), -139536000000L));
 
 
 

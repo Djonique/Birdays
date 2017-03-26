@@ -47,7 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.settings_main_in, R.anim.settings_main_out);
+        overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }
 
     public static class BirdaysPreferenceFragment extends PreferenceFragment
@@ -83,7 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
                     SettingsActivity activity = (SettingsActivity) getActivity();
                     if (activity != null) {
                         startActivity(new Intent(activity, LicensesActivity.class));
-                        activity.overridePendingTransition(R.anim.main_settings_in, R.anim.main_settings_out);
+                        activity.overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
                     }
                     return true;
                 }

@@ -97,7 +97,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
                 Intent update = new Intent();
                 setResult(RESULT_OK, update);
                 finish();
-                this.overridePendingTransition(R.anim.edit_detail_in, R.anim.edit_detail_out);
+                this.overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
         }
         return true;
     }
@@ -105,7 +105,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.edit_detail_in, R.anim.edit_detail_out);
+        overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }
 
     private void updateUI() {

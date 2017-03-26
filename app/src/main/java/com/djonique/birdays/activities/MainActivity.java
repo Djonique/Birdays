@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
-            overridePendingTransition(R.anim.main_settings_in, R.anim.main_settings_out);
+            overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -221,7 +221,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     intent.putExtra(ConstantManager.SELECTED_ITEM, listViewHolder.getAdapterPosition());
                     allFragment.startActivityForResult(intent, ConstantManager.DETAIL_ACTIVITY);
                     if (context instanceof MainActivity) {
-                        ((MainActivity) context).overridePendingTransition(R.anim.main_detail_in, R.anim.main_detail_out);
+                        ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
                     }
                 }
             });

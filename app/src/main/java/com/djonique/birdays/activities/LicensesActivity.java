@@ -25,6 +25,6 @@ public class LicensesActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.settings_main_in, R.anim.settings_main_out);
+        overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }
 }

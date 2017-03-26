@@ -142,7 +142,7 @@ public class DetailActivity extends AppCompatActivity {
                 mainIntent.putExtra(ConstantManager.POSITION, position);
                 setResult(RESULT_OK, mainIntent);
                 finish();
-                overridePendingTransition(R.anim.detail_main_in, R.anim.detail_main_out);
+                overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
                 break;
             case R.id.menu_detail_share:
                 Intent intentShare = new Intent(Intent.ACTION_SEND);
@@ -157,7 +157,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        overridePendingTransition(R.anim.detail_main_in, R.anim.detail_main_out);
+        overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }
 
     @Override
@@ -221,7 +221,7 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), EditActivity.class);
         intent.putExtra(ConstantManager.TIME_STAMP, timeStamp);
         startActivityForResult(intent, ConstantManager.EDIT_ACTIVITY);
-        overridePendingTransition(R.anim.detail_edit_in, R.anim.detail_edit_out);
+        overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
     }
 
     private void setPicture(ImageView imageView, int[] pictures) {

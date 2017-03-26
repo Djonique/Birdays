@@ -1453,4 +1453,177 @@
     <string name="feuchtwanger">Лион Фейхтвангер</string>
     <string name="ringo_starr">Ринго Старр</string>
     <string name="cutugno">Тото Кутуньо</string>
+    <!-- 8 july -->
+    <string name="fontaine">Жан де Лафонтен</string>
+    <string name="zeppelin">Фердинанд фон Цеппелин</string>
+    <string name="rockefeller">Джон Рокфеллер</string>
+    <string name="benardos">Николай Бенардос</string>
+    <string name="arthus_evans">Артур Эванс</string>
+    <string name="perls">Фредерик Перлз</string>
+    <string name="kapitsa">Пётр Капица</string>
+    <!-- 9 july -->
+    <string name="radcliffe">Анна Радклиф</string>
+    <string name="davenport">Томас Дэвенпорт</string>
+    <string name="elias_howe">Элиас Хоу</string>
+    <string name="boas">Франц Боас</string>
+    <string name="chagas">Карлус Шагас</string>
+    <string name="tom_hanks">Том Хэнкс</string>
+    <!-- 10 july -->
+    <string name="jean_calvin">Жан Кальвин</string>
+    <string name="marryat">Фредерик Марриет</string>
+    <string name="pissarro">Камиль Писсарро</string>
+    <string name="tesla">Никола Тесла</string>
+    <string name="proust">Марсель Пруст</string>
+    <string name="chamberlain">Оуэн Чемберлен</string>
+    <!-- 11 july -->
+    <string name="gondora">Луис де Гонгора</string>
+    <string name="lalande">Жером Лаланд</string>
+    <string name="nelson">Леонард Нельсон</string>
+    <string name="abel">Рудольф Абель</string>
+    <string name="brynner">Юл Бриннер</string>
+    <string name="armani">Джорджо Армани</string>
+    <!-- 12 july -->
+    <string name="bernard">Клод Бернар</string>
+    <string name="eastman">Джордж Истмен</string>
+    <string name="tod_browning">Тод Броунинг</string>
+    <string name="modigliani">Амедео Модильяни</string>
+    <string name="meruda">Пабло Неруда</string>
+    <string name="wyeth">Эндрю Уайет</string>
+    <string name="michelle_rodriguez">Мишель Родригес</string>
+    <!-- 13 july -->
+    <string name="john_dee">Джон Ди</string>
+    <string name="cannizzaro">Станислао Канниццаро</string>
+    <string name="otto_wagner">Отто Вагнер</string>
+    <string name="babel">Исаак Бабель</string>
+    <string name="ascari">Альберто Аскари</string>
+    <string name="rubik">Эрнё Рубик</string>
+    <string name="benassi">Бенни Бенасси</string>
+    <!-- 14 july -->
+    <string name="dumas">Жан Батист Дюма</string>
+    <string name="klimt">Густав Климт</string>
+    <string name="irving_stone">Ирвинг Стоун</string>
+    <string name="bergman">Ингмар Бергман</string>
+    <string name="forrester">Джей Форрестер</string>
+    <!-- 15 july -->
+    <string name="rembrandt">Рембрандт</string>
+    <string name="pareto">Вильфредо Парето</string>
+    <string name="harmsworth">Альфред Хармсворт</string>
+    <string name="brockhouse">Бертрам Брокхауз</string>
+    <string name="savage">Адам Сэвидж</string>
+    <string name="kruger">Диана Крюгер</string>
+    <!-- 16 july -->
+    <string name="assisi">Клара Ассизская</string>
+    <string name="amundsen">Руаль Амундсен</string>
+    <string name="stanwyck">Барбара Стэнвик</string>
+    <string name="laroche">Ги Ларош</string>
+    <string name="sheckley">Роберт Шекли</string>
+    <!-- 17 july -->
+    <string name="friedrich_krupp">Фридрих Карл Крупп</string>
+    <string name="corot">Жан Батист Камиль Коро</string>
+    <string name="nicholas">Николай Миклухо-Маклай</string>
+    <string name="lamaitre">Жорж Леметр</string>
+    <string name="abbott">Беренис Эббот</string>
+    <string name="sutherland">Дональд Сазерленд</string>
+    <!-- 18 july -->
+    <string name="thackeray">Уильям Мейкпис Теккерей</string>
+    <string name="viardot">Полина Виардо</string>
+    <string name="lorentz">Хендрик Лоренц</string>
+    <string name="mandela">Нельсон Мандела</string>
+    <string name="hunter_thompson">Хантер Стоктон Томпсон</string>
+    <string name="branson">Ричард Брэнсон</string>
+    <string name="vin_diesel">Вин Дизель</string>
+    <!-- 19 july -->
+    <string name="colt">Сэмюэл Кольт</string>
+    <string name="degas">Эдгар Дега</string>
+    <string name="mayakovsky">Владимир Маяковский</string>
+    <string name="cronin">Арчибалд Кронин</string>
+    <string name="coloane">Франсиско Колоане</string>
+    <string name="yalow">Розалин Сасмен Ялоу</string>
+    <string name="cumberbatch">Бенедикт Камбербэтч</string>
+    <!-- 20 july -->
+    <string name="petrarca">Франческо Петрарка</string>
+    <string name="owen">Ричард Оуэн</string>
+    <string name="mendel">Грегор Иоганн Мендель</string>
+    <string name="georg_muller">Георг Элиас Мюллер</string>
+    <string name="morandi">Джорджо Моранди</string>
+    <string name="dobrev">Добре Добрев</string>
+    <string name="bundchen">Жизель Бюндхен</string>
+    <!-- 21 july -->
+    <string name="picard">Жан Пикар</string>
+    <string name="regnault">Анри Виктор Реньо</string>
+    <string name="reuter">Пол Ройтер</string>
+    <string name="hemingway">Эрнест Хемингуэй</string>
+    <string name="robin_williams">Робин Уильямс</string>
+    <string name="josh_hartnett">Джош Хартнетт</string>
+    <!-- 22 july -->
+    <string name="soufflot">Жак-Жермен Суффло</string>
+    <string name="gustav_hertz">Густав Людвиг Герц</string>
+    <string name="mathieu">Мирей Матьё</string>
+    <string name="dafoe">Уиллем Дефо</string>
+    <string name="selena_gomez">Селена Гомес</string>
+    <!-- 23 july -->
+    <string name="vyazemsky">Пётр Вяземский</string>
+    <string name="cilea">Франческо Чилеа</string>
+    <string name="harrelson">Вуди Харрельсон</string>
+    <string name="hoffman">Филип Сеймур Хоффман</string>
+    <string name="lewinsky">Моника Левински</string>
+    <string name="daniel_radcliffe">Дэниэл Рэдклифф</string>
+    <!-- 24 july -->
+    <string name="vidocq">Эжен Франсуа Видок</string>
+    <string name="alexandre_dumas">Александр Дюма</string>
+    <string name="mucha">Альфонс Муха</string>
+    <string name="benson">Эдвард Фредерик Бенсон</string>
+    <string name="lopez">Дженнифер Лопес</string>
+    <!-- 25 july -->
+    <string name="scheiner">Кристоф Шейнер</string>
+    <string name="eakins">Томас Икинс</string>
+    <string name="davidson_black">Дэвидсон Блэк</string>
+    <string name="canetti">Элиас Канетти</string>
+    <string name="leblanc">Мэтт Леблан</string>
+    <!-- 26 july -->
+    <string name="remak">Роберт Ремак</string>
+    <string name="shaw">Бернард Шоу</string>
+    <string name="jung">Карл Густав Юнг</string>
+    <string name="maurois">Андре Моруа</string>
+    <string name="kubrick">Стэнли Кубрик</string>
+    <string name="jagger">Мик Джаггер</string>
+    <string name="spacey">Кевин Спейси</string>
+    <string name="bullock">Сандра Буллок</string>
+    <string name="statham">Джейсон Стейтем</string>
+    <!-- 27 july -->
+    <string name="corday">Шарлотта Корде</string>
+    <string name="carducci">Джозуэ Кардуччи</string>
+    <string name="hans_fischer">Ханс Фишер</string>
+    <string name="monaco">Марио Дель Монако</string>
+    <string name="nikolaj">Николай Костер-Вальдау</string>
+    <!-- 28 july -->
+    <string name="hooke">Роберт Гук</string>
+    <string name="feuerbach">Людвиг Андреас Фейербах</string>
+    <string name="grisi">Джулия Гризи</string>
+    <string name="duchamp">Марсель Дюшан</string>
+    <string name="popper">Карл Поппер</string>
+    <string name="burda">Энне Бурда</string>
+    <string name="chavez">Уго Чавес</string>
+    <!-- 29 july -->
+    <string name="aivazovsky">Иван Айвазовский</string>
+    <string name="mussolini">Бенито Муссолини</string>
+    <string name="theda_bara">Теда Бара</string>
+    <string name="clara_bow">Клара Боу</string>
+    <string name="alonso">Фернандо Алонсо</string>
+    <!-- 30 july -->
+    <string name="vasari">Джорджо Вазари</string>
+    <string name="bronte">Эмили Бронте</string>
+    <string name="henry_ford">Генри Форд</string>
+    <string name="cyril_parkinson">Сирил Норткот Паркинсон</string>
+    <string name="schwarzenegger">Арнольд Шварценеггер</string>
+    <string name="jean_reno">Жан Рено</string>
+    <string name="nolan">Кристофер Нолан</string>
+    <!-- 31 july -->
+    <string name="cramer">Габриэль Крамер</string>
+    <string name="wohler">Фридрих Вёлер</string>
+    <string name="planquette">Робер Планкет</string>
+    <string name="milton_friedman">Милтон Фридман</string>
+    <string name="de_funes">Луи де Фюнес</string>
+    <string name="primo_levi">Примо Леви</string>
+    <string name="rowling">Джоан Роулинг</string>
 </resources>
