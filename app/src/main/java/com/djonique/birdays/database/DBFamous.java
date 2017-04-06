@@ -2015,6 +2015,172 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.gere), -641779200000L));
         addFamous(db, new Person(context.getString(R.string.tucker), 52444800000L));
 
+        // 1 september
+        addFamous(db, new Person("William Stanley Jevons", -4239216000000L));
+        addFamous(db, new Person("Auguste Forel", -3828902400000L));
+        addFamous(db, new Person("Edgar Rice Burroughs", -2976912000000L));
+        addFamous(db, new Person("Marilyn Miller", -2251065600000L));
+        addFamous(db, new Person("Rocky Marciano", -1462233600000L));
+        addFamous(db, new Person("Gloria Estefan", -389232000000L));
+
+        // 2 september
+        addFamous(db, new Person("John Howard", -7678800000000L));
+        addFamous(db, new Person("Esteban Echeverría", -5185814400000L));
+        addFamous(db, new Person("Eugene Field", -3765744000000L));
+        addFamous(db, new Person("Frederick Soddy", -2913667200000L));
+        addFamous(db, new Person("Keanu Reeves", -168220800000L));
+        addFamous(db, new Person("Salma Hayek", -105148800000L));
+
+        // 3 september
+        addFamous(db, new Person("Louis Sullivan", -3576268800000L));
+        addFamous(db, new Person("Fritz Pregl", -3166041600000L));
+        addFamous(db, new Person("Ferdinand Porsche", -2976739200000L));
+        addFamous(db, new Person("Carl David Anderson", -2030054400000L));
+        addFamous(db, new Person("Sergei Dovlatov", -893980800000L));
+        addFamous(db, new Person("Jean-Pierre Jeunet", -515289600000L));
+        addFamous(db, new Person("Charlie Sheen", -136598400000L));
+
+        // 4 september
+        addFamous(db, new Person("Constantijn Huygens", -11780985600000L));
+        addFamous(db, new Person("François-René de Chateaubriand", -6353164800000L));
+        addFamous(db, new Person("Richard Wright", -1935273600000L));
+        addFamous(db, new Person("Kenzō Tange", -1777507200000L));
+        addFamous(db, new Person("Beyoncé", 368409600000L));
+
+        // 5 september
+        addFamous(db, new Person("Tommaso Campanella", -12663648000000L));
+        addFamous(db, new Person("Giacomo Meyerbeer", -5627318400000L));
+        addFamous(db, new Person("Aleksey Konstantinovich Tolstoy", -4806864000000L));
+        addFamous(db, new Person("Jesse James", -3860179200000L));
+        addFamous(db, new Person("Freddie Mercury", -736041600000L));
+        addFamous(db, new Person("Michael Keaton", -578275200000L));
+
+        // 6 september
+        addFamous(db, new Person("Sebastiano Serlio", -15598483200000L));
+        addFamous(db, new Person("Moses Mendelssohn", -7583760000000L));
+        addFamous(db, new Person("John Dalton", -6416150400000L));
+        addFamous(db, new Person("Hiram Berdan", -4585852800000L));
+        addFamous(db, new Person("Jane Addams", -3449779200000L));
+        addFamous(db, new Person("Louis Essen", -1935100800000L));
+
+        // 7 september
+        addFamous(db, new Person("Georges-Louis Leclerc, Comte de Buffon", -8277984000000L));
+        addFamous(db, new Person("Hermann Heinrich Gossen", -5027616000000L));
+        addFamous(db, new Person("Aleksandr Kuprin", -3134160000000L));
+        addFamous(db, new Person("Gala Dalí", -2376777600000L));
+        addFamous(db, new Person("Michael Ellis DeBakey", -1935014400000L));
+        addFamous(db, new Person("David Packard", -1808784000000L));
+
+        // 8 september
+        addFamous(db, new Person("Richard the Lionheart", -25633584000000L));
+        addFamous(db, new Person("Alexander Neckam", -25633584000000L));
+        addFamous(db, new Person("Frédéric Mistral", -4396377600000L));
+        addFamous(db, new Person("Martin Freeman", 53136000000L));
+        addFamous(db, new Person("Pink", 53136000000L));
+        addFamous(db, new Person("Wiz Khalifa", 558057600000L));
+
+        // 9 september
+        addFamous(db, new Person("Fredrik Henrik af Chapman", -7835961600000L));
+        addFamous(db, new Person("Luigi Galvani", -7331040000000L));
+        addFamous(db, new Person("Leo Tolstoy", -4459363200000L));
+        addFamous(db, new Person("Alisher Usmanov", -514771200000L));
+        addFamous(db, new Person("Hugh Grant", -293846400000L));
+        addFamous(db, new Person("Adam Sandler", -104544000000L));
+
+        // 10 september
+        addFamous(db, new Person("Charles Sanders Peirce", -4112208000000L));
+        addFamous(db, new Person("Elsa Schiaparelli", -2502748800000L));
+        addFamous(db, new Person("Arthur Compton", -2439590400000L));
+        addFamous(db, new Person("Wolf Messing", -2218752000000L));
+        addFamous(db, new Person("Karl Lagerfeld", -1145836800000L));
+        addFamous(db, new Person("Joe Perry", -609379200000L));
+        addFamous(db, new Person("Colin Firth", -293760000000L));
+        addFamous(db, new Person("Guy Ritchie", -41299200000L));
+
+        // 11 september
+        addFamous(db, new Person("James Thomson", -8498476800000L));
+        addFamous(db, new Person("Carl Zeiss", -4837881600000L));
+        addFamous(db, new Person("O. Henry", -3386275200000L));
+        addFamous(db, new Person("James Hopwood Jeans", -2912889600000L));
+        addFamous(db, new Person("Franz Beckenbauer", -767059200000L));
+
+        // 12 september
+        addFamous(db, new Person("George Hendrik Breitner", -3543955200000L));
+        addFamous(db, new Person("Irène Joliot-Curie", -2281651200000L));
+        addFamous(db, new Person("Stanisław Lem", -1524355200000L));
+        addFamous(db, new Person("Barry White", -798508800000L));
+        addFamous(db, new Person("Mylène Farmer", -262051200000L));
+        addFamous(db, new Person("Paul Walker", 116640000000L));
+
+        // 13 september
+        addFamous(db, new Person("Samuel Wilson", -6415545600000L));
+        addFamous(db, new Person("Walter Reed", -3733257600000L));
+        addFamous(db, new Person("John Boynton Priestley", -2376259200000L));
+        addFamous(db, new Person("Roald Dahl", -1682035200000L));
+        addFamous(db, new Person("Maurice Jarre", -1429574400000L));
+        addFamous(db, new Person("Jacqueline Bisset", -798422400000L));
+
+        // 14 september
+        addFamous(db, new Person("Heinrich Cornelius Agrippa", -15250636800000L));
+        addFamous(db, new Person("Peter Lely", -11085897600000L));
+        addFamous(db, new Person("Robert Cecil", -3322857600000L));
+        addFamous(db, new Person("Charles Dana Gibson", -3228249600000L));
+        addFamous(db, new Person("Sam Neill", -703728000000L));
+        addFamous(db, new Person("Amy Winehouse", 432345600000L));
+
+        // 15 september
+        addFamous(db, new Person("Marco Polo", -22571913600000L));
+        addFamous(db, new Person("James Fenimore Cooper", -5689526400000L));
+        addFamous(db, new Person("Ettore Bugatti", -2786313600000L));
+        addFamous(db, new Person("Agatha Christie", -2502316800000L));
+        addFamous(db, new Person("Jean Renoir", -2376086400000L));
+        addFamous(db, new Person("Tommy Lee Jones", -735177600000L));
+        addFamous(db, new Person("Oliver Stone", -735177600000L));
+        addFamous(db, new Person("Tom Hardy", 243129600000L));
+
+        // 16 september
+        addFamous(db, new Person("Albrecht Kossel", -3669840000000L));
+        addFamous(db, new Person("Louise Arner Boyd", -2596924800000L));
+        addFamous(db, new Person("Mercédès Jellinek", -2533766400000L));
+        addFamous(db, new Person("Alexander Korda", -2407536000000L));
+        addFamous(db, new Person("B.B. King", -1397779200000L));
+        addFamous(db, new Person("Mickey Rourke", -545702400000L));
+        addFamous(db, new Person("David Copperfield", -419472000000L));
+
+        // 17 september
+        addFamous(db, new Person("Bernhard Riemann", -4521830400000L));
+        addFamous(db, new Person("David Dunbar Buick", -3638217600000L));
+        addFamous(db, new Person("Konstantin Tsiolkovsky", -3543523200000L));
+        addFamous(db, new Person("Ken Kesey", -1082160000000L));
+        addFamous(db, new Person("Reinhold Messner", -798076800000L));
+        addFamous(db, new Person("Anastacia", -40694400000L));
+        addFamous(db, new Person("Alexander Ovechkin", 495763200000L));
+
+        // 18 september
+        addFamous(db, new Person("Samuel Johnson", -8213875200000L));
+        addFamous(db, new Person("Léon Foucault", -4742668800000L));
+        addFamous(db, new Person("Greta Garbo", -2028758400000L));
+        addFamous(db, new Person("Edwin McMillan", -1965686400000L));
+        addFamous(db, new Person("Bernard Werber", -261532800000L));
+        addFamous(db, new Person("James Gandolfini", -261532800000L));
+        addFamous(db, new Person("Mark Shuttleworth", 117158400000L));
+
+        // 19 september
+        addFamous(db, new Person("Augustin Pajou", -7551100800000L));
+        addFamous(db, new Person("William Golding", -1839369600000L));
+        addFamous(db, new Person("Jeremy Irons", -671673600000L));
+        addFamous(db, new Person("Lesley Hornby", -640137600000L));
+        addFamous(db, new Person("Aleksandr Karelin", -72144000000L));
+
+        // 20 september
+        addFamous(db, new Person("Ernesto Teodoro Moneta", -4300646400000L));
+        addFamous(db, new Person("James Dewar", -4016649600000L));
+        addFamous(db, new Person("Leo Strauss", -2217888000000L));
+        addFamous(db, new Person("Sophia Loren", -1113436800000L));
+        addFamous(db, new Person("George R. R. Martin", -671587200000L));
+
+        // 21 september
+        addFamous(db, new Person());
 
         //8 december
         addFamous(db, new Person("Georges Méliès", -3410208000000L));

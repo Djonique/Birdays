@@ -23,6 +23,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.djonique.birdays.R;
@@ -183,13 +184,13 @@ public class NewPersonDialogFragment extends DialogFragment implements
                         @Override
                         public void onTextChanged(CharSequence s, int start, int before, int count) {
                             if (s.length() == 0) {
-                                positiveButton.setEnabled(false);
                                 tilName.setError(getString(R.string.error_hint));
+                                positiveButton.setEnabled(false);
                             } else {
-                                if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar)) {
+                                tilName.setErrorEnabled(false);
+                                if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
                                     positiveButton.setEnabled(true);
                                 }
-                                tilName.setErrorEnabled(false);
                             }
                         }
 
@@ -208,21 +209,35 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar)) {
-                            positiveButton.setEnabled(true);
+                        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
                             tilDate.setErrorEnabled(false);
-                        } else if (Utils.isEmptyDate(etDate)) {
-                            positiveButton.setEnabled(false);
+                            if (etName.length() != 0) {
+                                positiveButton.setEnabled(true);
+                            }
+                        } else {
                             tilDate.setError(getString(R.string.wrong_date));
-                        } else if (!Utils.isRightDate(calendar)) {
                             positiveButton.setEnabled(false);
-                            tilDate.setError(getString(R.string.wrong_date));
                         }
                     }
 
                     @Override
                     public void afterTextChanged(Editable editable) {
 
+                    }
+                });
+
+                cbKnownYear.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
+                            tilDate.setErrorEnabled(false);
+                            if (etName.length() != 0) {
+                                positiveButton.setEnabled(true);
+                            }
+                        } else {
+                            tilDate.setError(getString(R.string.wrong_date));
+                            positiveButton.setEnabled(false);
+                        }
                     }
                 });
             }

@@ -32,6 +32,7 @@ import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
@@ -93,11 +94,17 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
                 this.onBackPressed();
                 break;
             case R.id.menu_edit_ok:
-                updatePerson();
-                Intent update = new Intent();
-                setResult(RESULT_OK, update);
-                finish();
-                this.overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
+                if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.READ_CONTACTS) ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(Intent.ACTION_PICK,
+                            ContactsContract.Contacts.CONTENT_URI);
+                    startActivityForResult(intent, ConstantManager.REQUEST_READ_CONTACTS);
+                } else {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.READ_CONTACTS},
+                            ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE);
+                }
         }
         return true;
     }
@@ -163,10 +170,10 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     @OnTextChanged(value = R.id.etEditName, callback = OnTextChanged.Callback.TEXT_CHANGED)
     void validate() {
         if (etName.length() == 0) {
-            fab.hide();
             tilEditName.setError(getString(R.string.error_hint));
+            fab.hide();
         } else {
-            if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar)) {
+            if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && checkBox.isChecked()) {
                 fab.show();
             }
             tilEditName.setErrorEnabled(false);
@@ -175,31 +182,37 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
 
     @OnTextChanged(value = R.id.etEditDate, callback = OnTextChanged.Callback.TEXT_CHANGED)
     void updateDate() {
-        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar)) {
-            fab.show();
+        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && checkBox.isChecked()) {
             tilEditDate.setErrorEnabled(false);
-        } else if (Utils.isEmptyDate(etDate)) {
-            fab.hide();
+            if (etName.length() != 0) {
+                fab.show();
+            }
+        } else {
             tilEditDate.setError(getString(R.string.wrong_date));
-        } else if (!Utils.isRightDate(calendar)) {
             fab.hide();
+        }
+    }
+
+    @OnCheckedChanged(R.id.cbEdit)
+    void checkBoxListener() {
+        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && checkBox.isChecked()) {
+            tilEditDate.setErrorEnabled(false);
+            if (etName.length() != 0) {
+                fab.show();
+            }
+        } else {
             tilEditDate.setError(getString(R.string.wrong_date));
+            fab.hide();
         }
     }
 
     @OnClick(R.id.fab_edit)
-    void addInfo() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_CONTACTS) ==
-                PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(Intent.ACTION_PICK,
-                    ContactsContract.Contacts.CONTENT_URI);
-            startActivityForResult(intent, ConstantManager.REQUEST_READ_CONTACTS);
-        } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_CONTACTS},
-                    ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE);
-        }
+    void edit() {
+        updatePerson();
+        Intent update = new Intent();
+        setResult(RESULT_OK, update);
+        finish();
+        this.overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }
 
     @Override
@@ -213,6 +226,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
                 if (cursor.moveToFirst()) {
                     String id = cursor.getString(
                             cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                    etName.setText(ContactsInfo.retrieveName(contentResolver, id));
                     etPhone.setText(ContactsInfo.retrievePhoneNumber(contentResolver, cursor, id));
                     etEmail.setText(ContactsInfo.retrieveEmail(contentResolver, id));
                 }

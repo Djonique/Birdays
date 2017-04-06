@@ -167,5 +167,5 @@
         app:elevation="6dp"
         app:pressedTranslationZ="12dp"
         app:rippleColor="@color/ripple"
-        app:srcCompat="@drawable/ic_contacts_grey_24dp" />
+        app:srcCompat="@drawable/ic_check_grey_24dp" />
 </android.support.design.widget.CoordinatorLayout>
