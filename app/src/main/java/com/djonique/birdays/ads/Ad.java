@@ -1,5 +1,6 @@
 package com.djonique.birdays.ads;
 
+import android.os.Build;
 import android.view.View;
 
 import com.google.android.gms.ads.AdListener;
@@ -15,7 +16,11 @@ public class Ad {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                setupContentViewPadding(view, banner.getHeight());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    setupContentViewPadding(view, banner.getHeight());
+                } else {
+                    setupContentViewPadding(view, banner.getHeight() - 34);
+                }
             }
         });
     }

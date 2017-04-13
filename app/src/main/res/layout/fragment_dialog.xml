@@ -4,7 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:paddingBottom="16dp"
+    android:paddingEnd="24dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingStart="24dp"
+    android:paddingTop="16dp">
 
     <!-- Add from contacts -->
     <LinearLayout
