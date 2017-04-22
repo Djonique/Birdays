@@ -133,6 +133,7 @@
     <string name="bradley_cooper">Брэдли Купер</string>
     <!-- 6 january -->
     <string name="darc">Жанна д\'Арк</string>
+    <string name="jakob_bernoulli">Якоб Бернулли</string>
     <string name="montgolfier">Жак-Этьенн Монгольфье</string>
     <string name="schliemann">Генрих Шлиман</string>
     <string name="scriabin">Александр Скрябин</string>
@@ -365,7 +366,7 @@
     <string name="monod">Жак Люсьен Моно</string>
     <!-- 10 february -->
     <string name="molter">Иоганн Мельхиор Мольтер</string>
-    <string name="lamb">Чарлз Лэм</string>
+    <string name="lamb">Чарльз Лэм</string>
     <string name="navier">Анри Навье</string>
     <string name="pasternak">Борис Пастернак</string>
     <string name="brecht">Бертольт Брехт</string>
@@ -378,7 +379,7 @@
     <string name="aniston">Дженнифер Энистон</string>
     <!-- 12 february -->
     <string name="gottsched">Иоганн Кристоф Готтшед</string>
-    <string name="darwin">Чарлз Роберт Дарвин</string>
+    <string name="darwin">Чарльз Роберт Дарвин</string>
     <string name="lincoln">Авраам Линкольн</string>
     <string name="roerich">Елена Рерих</string>
     <string name="anna_pavlova">Анна Павлова</string>
@@ -481,7 +482,7 @@
     <string name="constantine">Константин I Великий</string>
     <string name="longfellow">Генри Уодсворт Лонгфелло</string>
     <string name="ge">Николай Ге</string>
-    <string name="best">Чарлз Герберт Бест</string>
+    <string name="best">Чарльз Герберт Бест</string>
     <string name="steinbeck">Джон Стейнбек</string>
     <string name="taylor">Элизабет Тэйлор</string>
     <!-- 28 february -->
@@ -775,6 +776,7 @@
     <string name="selmi">Франческо Сельми</string>
     <string name="christiansen">Оле Кирк Кристиансен</string>
     <string name="holiday">Билли Холидей</string>
+    <string name="coppola">Фрэнсис Форд Коппола</string>
     <string name="chan">Джеки Чан</string>
     <string name="crowe">Рассел Кроу</string>
     <!-- 8 april -->
@@ -1112,7 +1114,7 @@
     <string name="doyle">Артур Конан Дойль</string>
     <string name="olivier">Лоренс Оливье</string>
     <string name="herge">Эрже</string>
-    <string name="herbert_brown">Герберт Чарлз Браун</string>
+    <string name="herbert_brown">Герберт Чарльз Браун</string>
     <string name="campbell">Наоми Кэмпбелл</string>
     <!-- 23 may -->
     <string name="linnaeus">Карл Линней</string>
@@ -1226,7 +1228,7 @@
     <string name="brummell">Джордж Браммел</string>
     <string name="auer">Леопольд Ауэр</string>
     <string name="mackintosh">Чарльз Ренни Макинтош</string>
-    <string name="barkla">Чарлз Гловер Баркла</string>
+    <string name="barkla">Чарльз Гловер Баркла</string>
     <string name="mulliken">Роберт Сандерсон Малликен</string>
     <string name="apgar">Вирджиния Апгар</string>
     <string name="martin">Дин Мартин</string>
@@ -1579,7 +1581,7 @@
     <string name="eakins">Томас Икинс</string>
     <string name="davidson_black">Дэвидсон Блэк</string>
     <string name="canetti">Элиас Канетти</string>
-    <string name="leblanc">Мэтт Леблан</string>
+    <string name="leblanc">Мэтт ЛеБлан</string>
     <!-- 26 july -->
     <string name="remak">Роберт Ремак</string>
     <string name="shaw">Бернард Шоу</string>
@@ -2001,7 +2003,7 @@
     <string name="george_bentham">Джордж Бентам</string>
     <string name="ciurlionis">Микалоюс Чюрлёнис</string>
     <string name="muni">Пол Муни</string>
-    <string name="huggins">Чарлз Брентон Хаггинс</string>
+    <string name="huggins">Чарльз Брентон Хаггинс</string>
     <string name="dean_reed">Дин Рид</string>
     <!-- 23 september -->
     <string name="fizeau">Арман Ипполит Луи Физо</string>
@@ -2380,7 +2382,7 @@
     <!-- 14 november -->
     <string name="fulton">Роберт Фултон</string>
     <string name="bichat">Мари Франсуа Ксавье Биша</string>
-    <string name="lyell">Чарлз Лайель</string>
+    <string name="lyell">Чарльз Лайель</string>
     <string name="monet">Клод Моне</string>
     <string name="banting">Фредерик Бантинг</string>
     <string name="lindgren">Астрид Линдгрен</string>
@@ -2500,4 +2502,230 @@
     <string name="ridley_scott">Ридли Скотт</string>
     <string name="idol">Билли Айдол</string>
     <string name="stiller">Бен Стиллер</string>
+    <!-- 1 december -->
+    <string name="falconet">Этьен Морис Фальконе</string>
+    <string name="tussaud">Мария Тюссо</string>
+    <string name="lobachevsky">Николай Лобачевский</string>
+    <string name="zhukov">Георгий Жуков</string>
+    <string name="allen">Вуди Аллен</string>
+    <string name="escobar">Пабло Эскобар</string>
+    <!-- 2 december -->
+    <string name="joseph_bell">Джозеф Белл</string>
+    <string name="seuratl">Жорж Сёра</string>
+    <string name="callas">Мария Каллас</string>
+    <string name="versace">Джанни Версаче</string>
+    <string name="liu">Люси Лью</string>
+    <string name="furtado">Нелли Фуртадо</string>
+    <string name="spears">Бритни Спирс</string>
+    <!-- 3 december -->
+    <string name="hill">Роуленд Хилл</string>
+    <string name="rota">Нино Рота</string>
+    <string name="osbourne">Оззи Осборн</string>
+    <string name="julianne_moore">Джулианна Мур</string>
+    <string name="seyfried">Аманда Сайфрид</string>
+    <!-- 4 december -->
+    <string name="chapelain">Жан Шаплен</string>
+    <string name="carlyle">Томас Карлейль</string>
+    <string name="adler">Роберт Адлер</string>
+    <string name="bridges">Джефф Бриджес</string>
+    <string name="bubka">Сергей Бубка</string>
+    <!-- 5 december -->
+    <string name="tyutchev">Фёдор Тютчев</string>
+    <string name="lang">Фриц Ланг</string>
+    <string name="disney">Уолт Дисней</string>
+    <string name="heisenberg">Вернер Гейзенберг</string>
+    <string name="carreras">Хосе Каррерас</string>
+    <string name="kaas">Патрисия Каас</string>
+    <!-- 6 december -->
+    <string name="nicolas_leblanc">Никола Леблан</string>
+    <string name="gay_lussac">Жозеф Луи Гей-Люссак</string>
+    <string name="veqilharxhi">Наум Векилхарджи</string>
+    <string name="bazille">Фредерик Базиль</string>
+    <string name="crali">Туллио Крали</string>
+    <string name="nick_park">Николас Вулстэн Парк</string>
+    <!-- 7 december -->
+    <string name="bernini">Джованни Лоренцо Бернини</string>
+    <string name="schwann">Теодор Шванн</string>
+    <string name="mascagni">Пьетро Масканьи</string>
+    <string name="yosano">Акико Ёсано</string>
+    <string name="waits">Том Уэйтс</string>
+    <string name="emily_browning">Эмили Браунинг</string>
+    <!-- 8 december -->
+    <string name="dholbach">Поль Анри Гольбах</string>
+    <string name="menzel">Адольф фон Менцель</string>
+    <string name="bjornson">Бьёрнстьерне Бьёрнсон</string>
+    <string name="reynaud">Эмиль Рейно</string>
+    <string name="melies">Жорж Мельес</string>
+    <string name="morrison">Джим Моррисон</string>
+    <string name="basinger">Ким Бейсингер</string>
+    <string name="somerhalder">Иэн Сомерхолдер</string>
+    <!-- 9 december -->
+    <string name="milton">Джон Мильтон</string>
+    <string name="winckelmann">Иоганн Иоахим Винкельман</string>
+    <string name="scheele">Карл Вильгельм Шееле</string>
+    <string name="berthollet">Клод Луи Бертолле</string>
+    <string name="grace_hopper">Грейс Хоппер</string>
+    <string name="dench">Джуди Денч</string>
+    <string name="malkovich">Джон Малкович</string>
+    <!-- 10 december -->
+    <string name="lovelace">Ада Лавлейс</string>
+    <string name="nekrasov">Николай Некрасов</string>
+    <string name="sachs">Нелли Закс</string>
+    <string name="tarasov">Анатолий Тарасов</string>
+    <string name="michael_duncan">Майкл Кларк Дункан</string>
+    <string name="branagh">Кеннет Брана</string>
+    <string name="molko">Брайан Молко</string>
+    <!-- 11 december -->
+    <string name="berlioz">Гектор Берлиоз</string>
+    <string name="musset">Альфред де Мюссе</string>
+    <string name="koch">Роберт Кох</string>
+    <string name="born">Макс Борн</string>
+    <string name="gardel">Карлос Гардель</string>
+    <string name="marais">Жан Маре</string>
+    <!-- 12 december -->
+    <string name="karamzin">Николай Карамзин</string>
+    <string name="serebriakova">Зинаида Серебрякова</string>
+    <string name="ozu">Ясудзиро Одзу</string>
+    <string name="sinatra">Фрэнк Синатра</string>
+    <string name="noyce">Роберт Нойс</string>
+    <string name="konyukhov">Фёдор Конюхов</string>
+    <!-- 13 december -->
+    <string name="gozzi">Карло Гоцци</string>
+    <string name="heine">Генрих Гейне</string>
+    <string name="werner_siemens">Вернер фон Сименс</string>
+    <string name="birkeland">Кристиан Биркеланд</string>
+    <string name="buscemi">Стив Бушеми</string>
+    <string name="foxx">Джейми Фокс</string>
+    <string name="amy_lee">Эми Ли</string>
+    <string name="taylor_swift">Тейлор Свифт</string>
+    <!-- 14 december -->
+    <string name="nostradamus">Нострадамус</string>
+    <string name="brahe">Тихо Браге</string>
+    <string name="ueshiba">Морихэй Уэсиба</string>
+    <string name="basov">Николай Басов</string>
+    <string name="kapoor">Радж Капур</string>
+    <!-- 15 december -->
+    <string name="carey">Генри Чарльз Кэри</string>
+    <string name="bolyai">Янош Бойяи</string>
+    <string name="eiffel">Гюстав Эйфель</string>
+    <string name="becquerel">Антуан Анри Беккерель</string>
+    <string name="zamenhof">Людвик Лазарь Заменгоф</string>
+    <string name="getty">Пол Гетти</string>
+    <!-- 16 december -->
+    <string name="austen">Джейн Остин</string>
+    <string name="walras">Леон Вальрас</string>
+    <string name="bergmann">Эрнст фон Бергманн</string>
+    <string name="kandinsky">Василий Кандинский</string>
+    <string name="linder">Макс Линдер</string>
+    <string name="arthur_clarke">Артур Чарльз Кларк</string>
+    <string name="paul_van_dyk">Пол ван Дайк</string>
+    <!-- 17 december -->
+    <string name="cimarosa">Доменико Чимароза</string>
+    <string name="beethoven">Людвиг ван Бетховен</string>
+    <string name="davy">Гемфри Дэви</string>
+    <string name="ganelin">Вячеслав Ганелин</string>
+    <string name="darryl_way">Дэррил Уэй</string>
+    <string name="jovovich">Милла Йовович</string>
+    <!-- 18 december -->
+    <string name="polhem">Кристофер Польхем</string>
+    <string name="joseph_thomson">Джозеф Джон Томсон</string>
+    <string name="stalin">Иосиф Сталин</string>
+    <string name="spielberg">Стивен Спилберг</string>
+    <string name="liotta">Рэй Лиотта</string>
+    <string name="brad_pitt">Брэд Питт</string>
+    <string name="holmes">Кэти Холмс</string>
+    <string name="aguilera">Кристина Агилера</string>
+    <!-- 19 december -->
+    <string name="michelson">Альберт Абрахам Майкельсон</string>
+    <string name="joze_lima">Хосе Лесама Лима</string>
+    <string name="piaf">Эдит Пиаф</string>
+    <string name="schweiger">Тиль Швайгер</string>
+    <string name="milano">Алисса Милано</string>
+    <string name="jake_gyllenhaal">Джейк Джилленхол</string>
+    <!-- 20 december -->
+    <string name="heyrovsky">Ярослав Гейровский</string>
+    <string name="balandin">Алексей Баландин</string>
+    <string name="graaff">Роберт Ван де Грааф</string>
+    <string name="bohm">Дэвид Бом</string>
+    <string name="uri_geller">Ури Геллер</string>
+    <string name="jonah_hill">Джона Хилл</string>
+    <!-- 21 december -->
+    <string name="robert_brown">Роберт Броун</string>
+    <string name="hermann_muller">Герман Джозеф Мёллер</string>
+    <string name="boll">Генрих Теодор Бёлль</string>
+    <string name="monterroso">Аугусто Монтерросо</string>
+    <string name="jane_fonda">Джейн Фонда</string>
+    <string name="zappa">Фрэнк Заппа</string>
+    <string name="samuel_jackson">Сэмюэл Лерой Джексон</string>
+    <!-- 22 december  -->
+    <string name="liotard">Жан Этьен Лиотар</string>
+    <string name="fabre">Жан Анри Фабр</string>
+    <string name="puccini">Джакомо Пуччини</string>
+    <string name="elizondo">Гектор Элизондо</string>
+    <string name="fiennes">Рэйф Файнс</string>
+    <string name="paradis">Ванесса Паради</string>
+    <!-- 23 december -->
+    <string name="champollion">Жан-Франсуа Шампольон</string>
+    <string name="bryullov">Карл Брюллов</string>
+    <string name="dino_risi">Дино Ризи</string>
+    <string name="baker">Чет Бейкер</string>
+    <string name="bosque">Висенте дель Боске</string>
+    <string name="bruni">Карла Бруни</string>
+    <!-- 24 december -->
+    <string name="joule">Джеймс Джоуль</string>
+    <string name="howard_hughes">Говард Хьюз</string>
+    <string name="chase">Джеймс Хедли Чейз</string>
+    <string name="gardner">Ава Гарднер</string>
+    <string name="ricky_martin">Рики Мартин</string>
+    <string name="stephenie_meyer">Стефани Майер</string>
+    <!-- 25 december -->
+    <string name="chevrolet">Луи Шевроле</string>
+    <string name="rosenzweig">Франц Розенцвейг</string>
+    <string name="hilton">Конрад Хилтон</string>
+    <string name="bogart">Хамфри Богарт</string>
+    <string name="castaneda">Карлос Кастанеда</string>
+    <string name="lennox">Энни Леннокс</string>
+    <string name="buuren">Армин ван Бюрен</string>
+    <!-- 26 december -->
+    <string name="dinglinger">Иоганн Мельхиор Динглингер</string>
+    <string name="babbage">Чарльз Бэббидж</string>
+    <string name="henry_miller">Генри Миллер</string>
+    <string name="zedong">Мао Цзэдун</string>
+    <string name="ulrich">Ларс Ульрих</string>
+    <string name="jared_leto">Джаред Лето</string>
+    <!-- 27 december -->
+    <string name="kepler">Иоганн Кеплер</string>
+    <string name="cayley">Джордж Кейли</string>
+    <string name="pasteur">Луи Пастер</string>
+    <string name="tretyakov">Павел Третьяков</string>
+    <string name="dietrich">Марлен Дитрих</string>
+    <string name="depardieu">Жерар Депардье</string>
+    <!-- 28 december -->
+    <string name="eddington">Артур Стэнли Эддингтон</string>
+    <string name="murnau">Фридрих Вильгельм Мурнау</string>
+    <string name="john_neumann">Джон фон Нейман</string>
+    <string name="denzel_washington">Дензел Вашингтон</string>
+    <string name="torvalds">Линус Торвальдс</string>
+    <string name="sienna_miller">Сиенна Миллер</string>
+    <!-- 29 december -->
+    <string name="pompadour">Маркиза де Помпадур</string>
+    <string name="siqueiros">Хосе Давид Альфаро Сикейрос</string>
+    <string name="voight">Джон Войт</string>
+    <string name="dexter_holland">Декстер Холланд</string>
+    <string name="jude_law">Джуд Лоу</string>
+    <!-- 30 december -->
+    <string name="jablonskis">Йонас Яблонскис</string>
+    <string name="kipling">Редьярд Киплинг</string>
+    <string name="patti_smith">Патти Смит</string>
+    <string name="jay_kay">Джей Кей</string>
+    <string name="tiger_woods">Тайгер Вудс</string>
+    <string name="lebron_james">Леброн Джеймс</string>
+    <!-- 31 december -->
+    <string name="boldini">Джованни Больдини</string>
+    <string name="matisse">Анри Матисс</string>
+    <string name="hopkins">Энтони Хопкинс</string>
+    <string name="ferguson">Алекс Фергюсон</string>
+    <string name="kingsley">Бен Кингсли</string>
+    <string name="willis">Конни Уиллис</string>
+    <string name="val_kilmer">Вэл Килмер</string>
 </resources>
