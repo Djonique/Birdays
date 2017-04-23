@@ -157,6 +157,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.ehrenfest), -2838672000000L));
         addFamous(db, new Person(context.getString(R.string.milne), -2775513600000L));
         addFamous(db, new Person(context.getString(R.string.kitano), -724377600000L));
+        addFamous(db, new Person(context.getString(R.string.costner), -471916800000L));
         addFamous(db, new Person(context.getString(R.string.guardiola), 33004800000L));
 
         // 19 january
@@ -202,6 +203,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.hoffmann), -6120057600000L));
         addFamous(db, new Person(context.getString(R.string.surikov), -3847996800000L));
         addFamous(db, new Person(context.getString(R.string.shechtman), -913161600000L));
+        addFamous(db, new Person(context.getString(R.string.kinski), -282009600000L));
 
         // 25 january
         addFamous(db, new Person(context.getString(R.string.lagrange), -7382275200000L));
@@ -366,6 +368,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.ferris), -3499027200000L));
         addFamous(db, new Person(context.getString(R.string.germi), -1763424000000L));
         addFamous(db, new Person(context.getString(R.string.sergey_kapitsa), -1321660800000L));
+        addFamous(db, new Person(context.getString(R.string.alan_parker), -816739200000L));
 
         // 15 february
         addFamous(db, new Person(context.getString(R.string.galilei), -12807417600000L));
@@ -389,6 +392,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.john_watson), -3025382400000L));
         addFamous(db, new Person(context.getString(R.string.fisher), -2520460800000L));
         addFamous(db, new Person(context.getString(R.string.michael_bay), -153705600000L));
+        addFamous(db, new Person(context.getString(R.string.denise_richards), 35596800000L));
 
         // 18 february
         addFamous(db, new Person(context.getString(R.string.volta), -7096118400000L));
@@ -428,6 +432,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.janssen), -4602873600000L));
         addFamous(db, new Person(context.getString(R.string.hertz), -3561408000000L));
         addFamous(db, new Person(context.getString(R.string.bronsted), -2867184000000L));
+        addFamous(db, new Person(context.getString(R.string.drew_barrymore), 162259200000L));
 
         // 23 february
         addFamous(db, new Person(context.getString(R.string.handel), -8989056000000L));
@@ -486,9 +491,9 @@ class DBFamous {
 
         // 1 march
         addFamous(db, new Person(context.getString(R.string.botticelli), -16561497600000L));
-        addFamous(db, new Person(context.getString(R.string.chopin), -2867184000000L));
+        addFamous(db, new Person(context.getString(R.string.chopin), -5044032000000L));
         addFamous(db, new Person(context.getString(R.string.akutagawa), -2456265600000L));
-        addFamous(db, new Person(context.getString(R.string.miller), -2077747200000L));
+        addFamous(db, new Person(context.getString(R.string.miller), -2077660800000L));
         addFamous(db, new Person(context.getString(R.string.snyder), -121132800000L));
         addFamous(db, new Person(context.getString(R.string.bieber), 762480000000L));
 
@@ -554,6 +559,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.barragan), -2140128000000L));
         addFamous(db, new Person(context.getString(R.string.kohn), -1477440000000L));
         addFamous(db, new Person(context.getString(R.string.gagarin), -1130284800000L));
+        addFamous(db, new Person(context.getString(R.string.binoche), -183513600000L));
 
         // 10 march
         addFamous(db, new Person(context.getString(R.string.schlegel), -6242313600000L));
@@ -611,6 +617,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.beijerinck), -3748896000000L));
         addFamous(db, new Person(context.getString(R.string.yayser), -3685737600000L));
         addFamous(db, new Person(context.getString(R.string.damadian), -1066521600000L));
+        addFamous(db, new Person(context.getString(R.string.bertolucci), -940291200000L));
         addFamous(db, new Person(context.getString(R.string.stallman), -530064000000L));
 
         // 17 march
@@ -636,6 +643,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.haworth), -2738793600000L));
         addFamous(db, new Person(context.getString(R.string.joliot_curie), -2202336000000L));
         addFamous(db, new Person(context.getString(R.string.molina), -845424000000L));
+        addFamous(db, new Person(context.getString(R.string.bruce_willis), -466732800000L));
 
         // 20 march
         addFamous(db, new Person(context.getString(R.string.ibsen), -4474310400000L));
@@ -648,8 +656,9 @@ class DBFamous {
         // 21 march
         addFamous(db, new Person(context.getString(R.string.fourier), -6367593600000L));
         addFamous(db, new Person(context.getString(R.string.mozhaysky), -4568918400000L));
-        addFamous(db, new Person(context.getString(R.string.senna), -308707200000L));
         addFamous(db, new Person(context.getString(R.string.gilbert), -1192320000000L));
+        addFamous(db, new Person(context.getString(R.string.oldman), -371865600000L));
+        addFamous(db, new Person(context.getString(R.string.senna), -308707200000L));
         addFamous(db, new Person(context.getString(R.string.ronaldinho), 322444800000L));
 
         // 22 march
@@ -696,6 +705,8 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.anfinsen), -1696809600000L));
         addFamous(db, new Person(context.getString(R.string.nimoy), -1223510400000L));
         addFamous(db, new Person(context.getString(R.string.tinto_brass), -1160352000000L));
+        addFamous(db, new Person(context.getString(R.string.tyler), -686966400000L));
+        addFamous(db, new Person(context.getString(R.string.knightley), 480643200000L));
 
         // 27 march
         addFamous(db, new Person(context.getString(R.string.hittorf), -4599936000000L));
@@ -740,6 +751,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.haydn), -7502803200000L));
         addFamous(db, new Person(context.getString(R.string.chukovsky), -2769292800000L));
         addFamous(db, new Person(context.getString(R.string.william_bragg), -2516832000000L));
+        addFamous(db, new Person(context.getString(R.string.walken), -844387200000L));
 
         // 1 april
         addFamous(db, new Person(context.getString(R.string.harvey), -12361680000000L));
@@ -783,6 +795,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.dupre), -5009472000000L));
         addFamous(db, new Person(context.getString(R.string.nadar), -4725388800000L));
         addFamous(db, new Person(context.getString(R.string.lister), -4504550400000L));
+        addFamous(db, new Person(context.getString(R.string.hailey), -1569715200000L));
 
         // 6 april
         addFamous(db, new Person(context.getString(R.string.gosse), -5040921600000L));
@@ -890,6 +903,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.boisbaudran), -4156272000000L));
         addFamous(db, new Person(context.getString(R.string.goldstein), -937440000000L));
         addFamous(db, new Person(context.getString(R.string.sokolov), -621907200000L));
+        addFamous(db, new Person(context.getString(R.string.eric_roberts), -432518400000L));
         addFamous(db, new Person(context.getString(R.string.tennant), 40780800000L));
 
         // 19 april
@@ -898,6 +912,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.fechner), -5323795200000L));
         addFamous(db, new Person(context.getString(R.string.hughes), -2199657600000L));
         addFamous(db, new Person(context.getString(R.string.seaborg), -1820966400000L));
+        addFamous(db, new Person(context.getString(R.string.judd), -53740800000L));
         addFamous(db, new Person(context.getString(R.string.christensen), 356486400000L));
 
         // 20 april
@@ -929,6 +944,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.mabokov), -2230934400000L));
         addFamous(db, new Person(context.getString(R.string.oppenheimer), -2073168000000L));
         addFamous(db, new Person(context.getString(R.string.mingus), -1505174400000L));
+        addFamous(db, new Person(context.getString(R.string.nicholson), -1031788800000L));
 
         // 23 april
         addFamous(db, new Person(context.getString(R.string.planck), -3524688000000L));
@@ -956,6 +972,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.fitzgerald), -1662681600000L));
         addFamous(db, new Person(context.getString(R.string.al_pacino), -936835200000L));
         addFamous(db, new Person(context.getString(R.string.cruyff), -715996800000L));
+        addFamous(db, new Person(context.getString(R.string.zellweger), -21686400000L));
 
         // 26 april
         addFamous(db, new Person(context.getString(R.string.aurelius), -58338921600000L));
@@ -983,6 +1000,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.lamborghini), -1693958400000L));
         addFamous(db, new Person(context.getString(R.string.harper_lee), -1378425600000L));
         addFamous(db, new Person(context.getString(R.string.yves_klein), -1315267200000L));
+        addFamous(db, new Person(context.getString(R.string.cruz), 136339200000L));
 
         // 29 april
         addFamous(db, new Person(context.getString(R.string.drais), -5827766400000L));
@@ -990,6 +1008,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.hearst), -3366403200000L));
         addFamous(db, new Person(context.getString(R.string.urey), -2419632000000L));
         addFamous(db, new Person(context.getString(R.string.jack_williamson), -1946332800000L));
+        addFamous(db, new Person(context.getString(R.string.pfeiffer), -368496000000L));
         addFamous(db, new Person(context.getString(R.string.thurman), 10195200000L));
 
         // 30 april
@@ -1095,11 +1114,12 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.hind), -4627584000000L));
         addFamous(db, new Person(context.getString(R.string.pirquet), -3018124800000L));
         addFamous(db, new Person(context.getString(R.string.giauque), -2355436800000L));
-        addFamous(db, new Person(context.getString(R.string.voznesensky), -1156291200000L));
         addFamous(db, new Person(context.getString(R.string.devi), -2229206400000L));
+        addFamous(db, new Person(context.getString(R.string.voznesensky), -1156291200000L));
 
         // 13 may
         addFamous(db, new Person(context.getString(R.string.nevsky), -23624092800000L));
+        addFamous(db, new Person(context.getString(R.string.daudet), -4090953600000L));
         addFamous(db, new Person(context.getString(R.string.ross), -3554496000000L));
         addFamous(db, new Person(context.getString(R.string.braque), -2765577600000L));
         addFamous(db, new Person(context.getString(R.string.wonder), -619747200000L));
@@ -1113,6 +1133,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.lucas), -808963200000L));
         addFamous(db, new Person(context.getString(R.string.zemeckis), -556502400000L));
         addFamous(db, new Person(context.getString(R.string.tim_roth), -272505600000L));
+        addFamous(db, new Person(context.getString(R.string.blanchett), -20044800000L));
         addFamous(db, new Person(context.getString(R.string.zuckerberg), 453340800000L));
 
         // 15 may
@@ -1375,6 +1396,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.landsteiner), -3204576000000L));
         addFamous(db, new Person(context.getString(R.string.tokarev), -3109968000000L));
         addFamous(db, new Person(context.getString(R.string.church), -2100211200000L));
+        addFamous(db, new Person(context.getString(R.string.guevara), -1311206400000L));
         addFamous(db, new Person(context.getString(R.string.graf), -17366400000L));
 
         // 15 june
@@ -1586,6 +1608,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.boas), -3518035200000L));
         addFamous(db, new Person(context.getString(R.string.chagas), -2855347200000L));
         addFamous(db, new Person(context.getString(R.string.tom_hanks), -425433600000L));
+        addFamous(db, new Person(context.getString(R.string.love), -172972800000L));
 
         // 10 july
         addFamous(db, new Person(context.getString(R.string.jean_calvin), -14530492800000L));
@@ -1618,6 +1641,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.otto_wagner), -4054147200000L));
         addFamous(db, new Person(context.getString(R.string.babel), -2381616000000L));
         addFamous(db, new Person(context.getString(R.string.ascari), -1624320000000L));
+        addFamous(db, new Person(context.getString(R.string.ford), -866937600000L));
         addFamous(db, new Person(context.getString(R.string.rubik), -803779200000L));
         addFamous(db, new Person(context.getString(R.string.benassi), -78019200000L));
 
@@ -1791,8 +1815,8 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.lilly), 302486400000L));
 
         // 4 august
-        addFamous(db, new Person(context.getString(R.string.john_venn), -4273171200000L));
         addFamous(db, new Person(context.getString(R.string.shelley), -5598460800000L));
+        addFamous(db, new Person(context.getString(R.string.john_venn), -4273171200000L));
         addFamous(db, new Person(context.getString(R.string.hamsun), -3484252800000L));
         addFamous(db, new Person(context.getString(R.string.armstrong), -2190412800000L));
         addFamous(db, new Person(context.getString(R.string.thornton), -454809600000L));
@@ -1835,6 +1859,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.piaget), -2316124800000L));
         addFamous(db, new Person(context.getString(R.string.travers), -2221516800000L));
         addFamous(db, new Person(context.getString(R.string.jansson), -1748217600000L));
+        addFamous(db, new Person(context.getString(R.string.griffith), -391219200000L));
         addFamous(db, new Person(context.getString(R.string.houston), -201916800000L));
         addFamous(db, new Person(context.getString(R.string.tautou), 208396800000L));
 
@@ -2299,6 +2324,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.piranesi), -7865337600000L));
         addFamous(db, new Person(context.getString(R.string.pottier), -4835894400000L));
         addFamous(db, new Person(context.getString(R.string.boussenard), -3857673600000L));
+        addFamous(db, new Person(context.getString(R.string.sarandon), -733536000000L));
         addFamous(db, new Person(context.getString(R.string.waltz), -417916800000L));
         addFamous(db, new Person(context.getString(R.string.silverstone), 213235200000L));
         addFamous(db, new Person(context.getString(R.string.dakota_johnson), 623462400000L));
@@ -2554,7 +2580,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.reni), -12437625600000L));
         addFamous(db, new Person(context.getString(R.string.bove), -5842972800000L));
         addFamous(db, new Person(context.getString(R.string.shakurantala_devi), -1267315200000L));
-        addFamous(db, new Person(context.getString(R.string.mcconaughey), -1267315200000L));
+        addFamous(db, new Person(context.getString(R.string.mcconaughey), -5011200000L));
         addFamous(db, new Person(context.getString(R.string.figo), 89683200000L));
 
         // 5 november
