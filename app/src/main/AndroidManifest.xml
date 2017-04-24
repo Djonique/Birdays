@@ -12,6 +12,7 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="@xml/mybackupscheme"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -65,6 +66,7 @@
                 android:value="com.djonique.birdays.activities.MainActivity" />
         </activity>
 
+        <!--LicensesActivity-->
         <activity
             android:name=".activities.LicensesActivity"
             android:label="@string/licenses">
