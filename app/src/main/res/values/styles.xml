@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
@@ -127,5 +127,10 @@
     <style name="DialogAnimation">
         <item name="@android:windowEnterAnimation">@anim/dialog_grow_in</item>
         <item name="@android:windowExitAnimation">@anim/dialog_grow_out</item>
+    </style>
+
+    <style name="CollapsingToolbarStyle">
+        <item name="collapsedTitleGravity">left|center_horizontal</item>
+        <item name="expandedTitleGravity">left|bottom</item>
     </style>
 </resources>

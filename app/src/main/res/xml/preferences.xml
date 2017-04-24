@@ -38,7 +38,6 @@
     <PreferenceCategory android:title="@string/about_app">
         <Preference
             android:key="@string/github_key"
-            android:summary="@string/view_code_github"
             android:title="@string/menu_github">
             <intent
                 android:action="android.intent.action.VIEW"

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Birdays</string>
 
@@ -99,12 +100,11 @@
     <string name="rate_app">Rate app</string>
     <string name="share">Share</string>
     <string name="about_app">About app</string>
-    <string name="view_code_github">View the open source code on Github</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="privacy_policy_link">https://cdn.rawgit.com/Djonique/Birdays/d2f5f433/Privacy%20policy.html</string>
     <string name="software_licenses">Free software licenses</string>
     <string name="licenses">Licenses</string>
-    <string name="version">App version 0.9.0</string>
+    <string name="version">App version 1.0.0</string>
 
     <!-- Settings keys -->
     <string name="notifications_key">notifications</string>
