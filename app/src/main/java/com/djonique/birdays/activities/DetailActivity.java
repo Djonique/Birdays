@@ -1,3 +1,19 @@
+/*
+ * Copyright 2017 Evgeny Timofeev
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.djonique.birdays.activities;
 
 import android.content.Intent;
@@ -172,6 +188,9 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Updates UI depending on person's info
+     */
     private void updateUI() {
         setSeasonImage();
 
@@ -202,6 +221,9 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Loads list of famous persons born certain day
+     */
     private void loadBornThisDay() {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
@@ -224,10 +246,16 @@ public class DetailActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
     }
 
+    /**
+     * Sets random picture into ImageView
+     */
     private void setPicture(ImageView imageView, int[] pictures) {
         imageView.setImageResource(pictures[(int) (Math.random() * POSSIBLE_PICTURES)]);
     }
 
+    /**
+     * Chooses certain image depending on month
+     */
     private void setSeasonImage() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
@@ -241,6 +269,9 @@ public class DetailActivity extends AppCompatActivity {
         } else setPicture(imageView, autumnImages);
     }
 
+    /**
+     * Logs Firebase event
+     */
     private void logEvent() {
         Bundle params = new Bundle();
         params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, ConstantManager.EDIT_ACTIVITY_TAG);
