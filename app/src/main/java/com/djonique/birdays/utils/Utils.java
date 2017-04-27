@@ -31,12 +31,13 @@ public class Utils {
     private static Calendar today = Calendar.getInstance();
     private static Calendar dayOfBirthday = Calendar.getInstance();
 
-    // returns date
     public static String getDate(long date) {
         return DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault()).format(date);
     }
 
-    // returns date without year
+    /**
+     * Returns date without year
+     */
     public static String getUnknownDate(long date) {
         Locale locale = Locale.getDefault();
         SimpleDateFormat sdf = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.DEFAULT, locale));
@@ -70,7 +71,9 @@ public class Utils {
         return calendar.get(Calendar.MONTH);
     }
 
-    // returns age of person
+    /**
+     * Returns age
+     */
     public static int getAge(long date) {
         dayOfBirthday.setTimeInMillis(date);
 
@@ -85,18 +88,21 @@ public class Utils {
         return age;
     }
 
-    // checks if EditText is empty
     public static boolean isEmptyDate(EditText editText) {
         return TextUtils.isEmpty(editText.getText().toString());
     }
 
-    // checks if date of persons birthday is not in the future
+    /**
+     * Checks if date of person's birthday is not in the future
+     */
     public static boolean isRightDate(Calendar calendar) {
         long today = Calendar.getInstance().getTimeInMillis();
         return today >= calendar.getTimeInMillis();
     }
 
-    // checks if today is the same month with given date
+    /**
+     * Checks if today is the same month with given date
+     */
     public static boolean isCurrentMonth(long date) {
         boolean thisMonth = false;
 
@@ -108,7 +114,9 @@ public class Utils {
         return thisMonth;
     }
 
-    // checks if today is the same day with given date
+    /**
+     * Checks if today is the same day with given date
+     */
     public static boolean isCurrentDay(long date) {
         boolean thisDay = false;
 
@@ -120,7 +128,9 @@ public class Utils {
         return thisDay;
     }
 
-    // returns zodiac name of certain date
+    /**
+     * Returns zodiac name of certain date
+     */
     public static int getZodiacId(long date) {
         int resId = 0;
         dayOfBirthday.setTimeInMillis(date);
@@ -166,7 +176,9 @@ public class Utils {
         return resId;
     }
 
-    // returns image of certain zodiac
+    /**
+     * Returns image of certain zodiac
+     */
     public static String getZodiacImage(int resId) {
         String zodiacImage = null;
         switch (resId) {
@@ -210,7 +222,9 @@ public class Utils {
         return zodiacImage;
     }
 
-    // converts boolean to int
+    /**
+     * Converts boolean to int
+     */
     public static int boolToInt(boolean isYearKnown) {
         return isYearKnown ? 1 : 0;
     }

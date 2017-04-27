@@ -181,6 +181,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (data == null) return;
         if (resultCode == RESULT_OK) {
+            // Refreshes activity after editing
             Intent refresh = new Intent(this, DetailActivity.class);
             refresh.putExtra(ConstantManager.TIME_STAMP, timeStamp);
             startActivity(refresh);
@@ -269,9 +270,6 @@ public class DetailActivity extends AppCompatActivity {
         } else setPicture(imageView, autumnImages);
     }
 
-    /**
-     * Logs Firebase event
-     */
     private void logEvent() {
         Bundle params = new Bundle();
         params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, ConstantManager.EDIT_ACTIVITY_TAG);

@@ -59,7 +59,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private EditText etName, etPhone, etEmail, etDate;
     private AppCompatCheckBox cbKnownYear;
     private Calendar calendar;
-    private String name, phone, email;
+    private String name;
+    private long date;
     private FirebaseAnalytics mFirebaseAnalytics;
 
     @SuppressWarnings("deprecation")
@@ -158,14 +159,17 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (cbKnownYear != null) person.setYearUnknown(cbKnownYear.isChecked());
 
                 if (etPhone != null && etPhone.length() != 0) {
-                    phone = etPhone.getText().toString();
-                    person.setPhoneNumber(phone);
-                } else person.setPhoneNumber(null);
+                    person.setPhoneNumber(etPhone.getText().toString());
+                } else {
+                    person.setPhoneNumber(null);
+                }
 
                 if (etEmail != null && etEmail.length() != 0) {
-                    email = etEmail.getText().toString();
-                    person.setEmail(email);
-                } else person.setEmail(null);
+                    person.setEmail(etEmail.getText().toString());
+                } else {
+                    person.setEmail(null);
+                }
+
                 addingPersonListener.onPersonAdded(person);
                 dialog.dismiss();
             }
@@ -245,6 +249,15 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 cbKnownYear.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                        // If date isn't picked does nothing, if picked checks state of CheckBox
+                        if (cbKnownYear.isChecked() && !Utils.isEmptyDate(etDate)) {
+                            etDate.setText(Utils.getUnknownDate(date));
+                        } else if (!cbKnownYear.isChecked() && !Utils.isEmptyDate(etDate)) {
+                            etDate.setText(Utils.getDate(date));
+                        }
+
+                        // Doesn't allow to add Person if conditions are not met and shows error
                         if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
                             tilDate.setErrorEnabled(false);
                             if (etName.length() != 0) {
@@ -267,7 +280,13 @@ public class NewPersonDialogFragment extends DialogFragment implements
         calendar.set(Calendar.YEAR, yearPicked);
         calendar.set(Calendar.MONTH, monthOfYear);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        etDate.setText(Utils.getDate(calendar.getTimeInMillis()));
+        date = calendar.getTimeInMillis();
+        // Checks state of CheckBox whenever date is picked
+        if (!cbKnownYear.isChecked()) {
+            etDate.setText(Utils.getDate(date));
+        } else {
+            etDate.setText(Utils.getUnknownDate(date));
+        }
     }
 
     @Override

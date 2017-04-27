@@ -16,7 +16,6 @@
 
 package com.djonique.birdays.ads;
 
-import android.os.Build;
 import android.view.View;
 
 import com.google.android.gms.ads.AdListener;
@@ -26,8 +25,8 @@ import com.google.android.gms.ads.AdView;
 public class Ad {
 
     /**
-    * Loads AdMob banner
-    */
+     * Loads AdMob banner
+     */
     public static void showBanner(final View view, final AdView banner) {
         banner.loadAd(new AdRequest.Builder().build());
 
@@ -35,18 +34,14 @@ public class Ad {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    setupContentViewPadding(view, banner.getHeight());
-                } else {
-                    setupContentViewPadding(view, banner.getHeight() - 36);
-                }
+                setupContentViewPadding(view, banner.getHeight());
             }
         });
     }
 
     /**
      * Sets up bottom padding of view under AdMob banner
-    */
+     */
     private static void setupContentViewPadding(View view, int padding) {
         view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(),
                 padding);

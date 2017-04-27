@@ -75,6 +75,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     private Calendar calendar;
     private Person person;
     private boolean unknownYear;
+    private long date;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -131,14 +132,18 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }
 
+    /**
+     * Updates UI depending on person's info
+     */
     private void updateUI() {
         etName.setText(person.getName());
         etName.setSelection(etName.getText().length());
 
+        date = person.getDate();
         if (unknownYear) {
-            etDate.setText(Utils.getUnknownDate(person.getDate()));
+            etDate.setText(Utils.getUnknownDate(date));
         } else {
-            etDate.setText(Utils.getDate(person.getDate()));
+            etDate.setText(Utils.getDate(date));
         }
 
         checkBox.setChecked(unknownYear);
@@ -147,7 +152,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
     /**
-     * Updates info after editing
+     * Updates person's info after editing
      */
     private void updatePerson() {
         person.setName(updateText(etName));
@@ -159,7 +164,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
     /**
-     * Utils method to update text in updatePerson() method
+     * Uses to update text in updatePerson() method
      */
     private String updateText(EditText editText) {
         String result = null;
@@ -186,7 +191,13 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, monthOfYear);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        etDate.setText(Utils.getDate(calendar.getTimeInMillis()));
+        date = calendar.getTimeInMillis();
+        // Checks state of CheckBox whenever date is picked
+        if (!checkBox.isChecked()) {
+            etDate.setText(Utils.getDate(date));
+        } else {
+            etDate.setText(Utils.getUnknownDate(date));
+        }
     }
 
     @OnTextChanged(value = R.id.etEditName, callback = OnTextChanged.Callback.TEXT_CHANGED)
@@ -217,6 +228,11 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
 
     @OnCheckedChanged(R.id.cbEdit)
     void checkBoxListener() {
+        if (checkBox.isChecked()) {
+            etDate.setText(Utils.getUnknownDate(date));
+        } else {
+            etDate.setText(Utils.getDate(date));
+        }
         if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && checkBox.isChecked()) {
             tilEditDate.setErrorEnabled(false);
             if (etName.length() != 0) {
@@ -241,6 +257,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
+            // Loads data from Contacts
             Uri contactData = data.getData();
             ContentResolver contentResolver = this.getContentResolver();
             Cursor cursor = contentResolver.query(contactData, null, null, null, null);

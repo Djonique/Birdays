@@ -273,6 +273,9 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
+    /**
+     * Selects certain color depending on person's age
+     */
     private int getAgeCircleColor(int age) {
         int ageCircleColorResID;
         if (age < 10) ageCircleColorResID = R.color.age1;
