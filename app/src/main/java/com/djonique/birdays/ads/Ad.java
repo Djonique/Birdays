@@ -16,7 +16,9 @@
 
 package com.djonique.birdays.ads;
 
+import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -25,9 +27,27 @@ import com.google.android.gms.ads.AdView;
 public class Ad {
 
     /**
-     * Loads AdMob banner
+     * Loads AdMob banner into MainActivity
      */
-    public static void showBanner(final View view, final AdView banner) {
+    public static void showMainBanner(final View view, final AdView banner, final View fab) {
+        banner.loadAd(new AdRequest.Builder().build());
+
+        banner.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                setupContentViewPadding(view, banner.getHeight());
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    setBottomMargin(fab, - (banner.getHeight() / 4));
+                }
+            }
+        });
+    }
+
+    /**
+     * Loads AdMob banner into DetailActivity
+     */
+    public static void showDetailBanner(final View view, final AdView banner) {
         banner.loadAd(new AdRequest.Builder().build());
 
         banner.setAdListener(new AdListener() {
@@ -45,5 +65,13 @@ public class Ad {
     private static void setupContentViewPadding(View view, int padding) {
         view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(),
                 padding);
+    }
+
+    private static void setBottomMargin(View view, int margin) {
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            params.bottomMargin = margin;
+            view.requestLayout();
+        }
     }
 }

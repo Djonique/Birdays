@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements
 
         dbHelper = new DBHelper(getApplicationContext());
 
-        Ad.showBanner(findViewById(R.id.container), (AdView) findViewById(R.id.banner));
+        Ad.showMainBanner(findViewById(R.id.container), (AdView) findViewById(R.id.banner), fab);
 
         AlarmHelper.getInstance().init(getApplicationContext());
 

@@ -111,7 +111,7 @@ public class DetailActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        Ad.showBanner(findViewById(R.id.container_detail), (AdView) findViewById(R.id.banner_detail));
+        Ad.showDetailBanner(findViewById(R.id.container_detail), (AdView) findViewById(R.id.banner_detail));
 
         dbHelper = new DBHelper(getApplicationContext());
 
