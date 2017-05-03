@@ -25,28 +25,28 @@
         android:layout_height="wrap_content"
         android:background="@color/background"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/default_padding">
 
         <TextView
             style="@style/Primary.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
+            android:paddingBottom="@dimen/default_padding"
             android:text="@string/butter_knife_by_jake_wharton" />
 
         <TextView
             style="@style/Secondary.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
+            android:paddingBottom="@dimen/licenses_text_view_bottom_padding"
             android:text="@string/butter_knife_license" />
 
         <TextView
             style="@style/Primary.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
             android:text="@string/materialdatetimepicker_by_wouter_dullaert" />
 
         <TextView

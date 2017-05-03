@@ -33,21 +33,21 @@
             android:layout_height="match_parent"
             android:background="@color/background"
             android:orientation="vertical"
-            android:paddingTop="8dp">
+            android:paddingTop="@dimen/edit_linear_layout_padding_top">
 
             <!--Name-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="@dimen/default_padding">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="@dimen/edit_image_padding"
+                    android:layout_marginStart="@dimen/edit_image_padding"
                     android:contentDescription="@string/calendar"
                     app:srcCompat="@drawable/ic_person_blue_24dp" />
 
@@ -55,8 +55,8 @@
                     android:id="@+id/tilEditName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginStart="24dp">
+                    android:layout_marginLeft="@dimen/edit_text_view_left_padding"
+                    android:layout_marginStart="@dimen/edit_text_view_left_padding">
 
                     <EditText
                         android:id="@+id/etEditName"
@@ -71,14 +71,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="@dimen/default_padding">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="@dimen/edit_image_padding"
+                    android:layout_marginStart="@dimen/edit_image_padding"
                     android:contentDescription="@string/calendar"
                     app:srcCompat="@drawable/ic_calendar_blue_24dp" />
 
@@ -86,20 +86,20 @@
                     android:id="@+id/tilEditDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginStart="24dp">
+                    android:layout_marginLeft="@dimen/edit_text_view_left_padding"
+                    android:layout_marginStart="@dimen/edit_text_view_left_padding">
 
                     <EditText
                         android:id="@+id/etEditDate"
                         style="@android:style/Widget.Holo.Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/default_padding"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
                         android:hint="@string/pick_date"
                         android:inputType="date"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/edit_date_text_size" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -108,11 +108,11 @@
                 style="@style/primaryTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginLeft="72dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginStart="72dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/default_padding"
+                android:layout_marginLeft="@dimen/edit_left_cb_padding"
+                android:layout_marginRight="@dimen/default_padding"
+                android:layout_marginStart="@dimen/edit_left_cb_padding"
+                android:layout_marginTop="@dimen/default_padding"
                 android:text="@string/unknown_year" />
 
             <!--Phone number-->
@@ -120,22 +120,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="@dimen/default_padding">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="@dimen/edit_image_padding"
+                    android:layout_marginStart="@dimen/edit_image_padding"
                     android:contentDescription="@string/phone"
                     app:srcCompat="@drawable/ic_call_blue_24dp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginStart="24dp">
+                    android:layout_marginLeft="@dimen/edit_text_view_left_padding"
+                    android:layout_marginStart="@dimen/edit_text_view_left_padding">
 
                     <EditText
                         android:id="@+id/etEditPhone"
@@ -150,22 +150,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="@dimen/default_padding">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="@dimen/edit_image_padding"
+                    android:layout_marginStart="@dimen/edit_image_padding"
                     android:contentDescription="@string/email"
                     app:srcCompat="@drawable/ic_email_blue_24dp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginStart="24dp">
+                    android:layout_marginLeft="@dimen/edit_text_view_left_padding"
+                    android:layout_marginStart="@dimen/edit_text_view_left_padding">
 
                     <EditText
                         android:id="@+id/etEditEmail"

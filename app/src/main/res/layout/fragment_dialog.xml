@@ -21,18 +21,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:paddingEnd="24dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp"
-    android:paddingStart="24dp"
-    android:paddingTop="16dp">
+    android:paddingBottom="@dimen/dialog_vertical_padding"
+    android:paddingEnd="@dimen/dialog_horizontal_padding"
+    android:paddingLeft="@dimen/dialog_horizontal_padding"
+    android:paddingRight="@dimen/dialog_horizontal_padding"
+    android:paddingStart="@dimen/dialog_horizontal_padding"
+    android:paddingTop="@dimen/dialog_vertical_padding">
 
     <!-- Add from contacts -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/dialog_linear_layout_bottom_margin"
         android:orientation="horizontal">
 
         <ImageView
@@ -52,7 +52,7 @@
             android:gravity="center"
             android:text="@string/add_from_contacts"
             android:textColor="@color/color_primary"
-            android:textSize="14sp" />
+            android:textSize="@dimen/dialog_button_text_size" />
     </LinearLayout>
 
     <!--Name-->
@@ -106,12 +106,12 @@
             style="@android:style/Widget.Holo.Spinner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/dialog_date_top_margin"
             android:cursorVisible="false"
             android:focusableInTouchMode="false"
             android:hint="@string/pick_date"
             android:inputType="date"
-            android:textSize="16sp" />
+            android:textSize="@dimen/primary_text" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatCheckBox
@@ -119,6 +119,6 @@
         style="@style/primaryTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/dialog_cb_top_margin"
         android:text="@string/unknown_year" />
 </LinearLayout>

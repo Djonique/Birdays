@@ -38,7 +38,7 @@ public class Ad {
                 super.onAdLoaded();
                 setupContentViewPadding(view, banner.getHeight());
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    setBottomMargin(fab, - (banner.getHeight() / 4));
+                    setBottomMargin(fab, -(banner.getHeight() / 4));
                 }
             }
         });

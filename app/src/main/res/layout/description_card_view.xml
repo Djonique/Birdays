@@ -30,17 +30,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
-            android:paddingBottom="16dp"
-            android:paddingEnd="16dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="16dp"
-            android:paddingStart="24dp"
-            android:paddingTop="16dp">
+            android:paddingBottom="@dimen/card_default_padding"
+            android:paddingEnd="@dimen/card_default_padding"
+            android:paddingLeft="@dimen/card_left_padding"
+            android:paddingRight="@dimen/card_default_padding"
+            android:paddingStart="@dimen/card_left_padding"
+            android:paddingTop="@dimen/card_default_padding">
 
             <TextView
                 android:id="@+id/tvName"
                 style="@style/Primary.CardView"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="@dimen/card_text_view_bottom_margin" />
 
             <TextView
                 android:id="@+id/tvDate"

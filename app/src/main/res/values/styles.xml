@@ -39,8 +39,8 @@
 
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@android:color/white</item>
-        <item name="tabSelectedTextColor">@android:color/background_light</item>
-        <item name="tabTextColor">@android:color/background_light</item>
+        <item name="tabSelectedTextColor">@android:color/white</item>
+        <item name="tabTextColor">@color/tab_text</item>
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabPaddingStart">12dp</item>
         <item name="tabPaddingEnd">12dp</item>
@@ -49,7 +49,7 @@
     </style>
 
     <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/tab_text_size</item>
         <item name="android:textColor">?android:textColorSecondary</item>
         <item name="textAllCaps">true</item>
     </style>
@@ -62,15 +62,15 @@
     </style>
 
     <style name="Primary.TextView" parent="primaryTextStyle">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/primary_text</item>
     </style>
 
     <style name="Primary.CardView" parent="primaryTextStyle">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/primary_card_text</item>
     </style>
 
     <style name="Material.Primary.TextView" parent="Primary.TextView">
-        <item name="android:layout_marginLeft">56dp</item>
+        <item name="android:layout_marginLeft">@dimen/default_left_margin</item>
     </style>
 
     <style name="secondaryTextStyle">
@@ -81,35 +81,35 @@
     </style>
 
     <style name="Secondary.TextView" parent="secondaryTextStyle">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/secondary_text</item>
     </style>
 
     <style name="Material.Secondary.TextView" parent="Secondary.TextView">
-        <item name="android:layout_marginLeft">56dp</item>
+        <item name="android:layout_marginLeft">@dimen/default_left_margin</item>
     </style>
 
     <style name="detailActivityIcons">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingLeft">@dimen/detail_activity_icon_padding</item>
+        <item name="android:paddingTop">@dimen/detail_activity_icon_padding</item>
     </style>
 
     <style name="materialRL">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">72sp</item>
-        <item name="android:padding">16dp</item>
+        <item name="android:layout_height">@dimen/default_layout_height</item>
+        <item name="android:padding">@dimen/default_padding</item>
     </style>
 
     <style name="contactsInfoRL">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">72sp</item>
-        <item name="android:paddingBottom">16dp</item>
-        <item name="android:paddingTop">16dp</item>
+        <item name="android:layout_height">@dimen/default_layout_height</item>
+        <item name="android:paddingBottom">@dimen/default_padding</item>
+        <item name="android:paddingTop">@dimen/default_padding</item>
     </style>
 
     <style name="dialogTextStyle">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/primary_text</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:fontFamily">sans-serif</item>
@@ -121,7 +121,7 @@
         <item name="cardCornerRadius">2dp</item>
         <item name="cardUseCompatPadding">true</item>
         <item name="elevation">2dp</item>
-        <item name="android:layout_margin">4dp</item>
+        <item name="android:layout_margin">@dimen/card_layout_margin</item>
     </style>
 
     <style name="cardImageButtonStyle">

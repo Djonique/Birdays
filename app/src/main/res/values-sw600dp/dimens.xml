@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2017 Evgeny Timofeev
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<resources>
+    <!-- default dimens -->
+    <dimen name="default_padding">24dp</dimen>
+    <dimen name="default_layout_height">96sp</dimen>
+    <dimen name="default_left_margin">72dp</dimen>
+
+    <!-- fab dimens -->
+    <dimen name="fab_margin_default">24dp</dimen>
+
+    <!-- card dimens -->
+    <dimen name="card_layout_margin">8dp</dimen>
+    <dimen name="card_default_padding">24dp</dimen>
+    <dimen name="card_left_padding">36dp</dimen>
+    <dimen name="card_text_view_bottom_margin">12dp</dimen>
+
+    <!-- text size -->
+    <dimen name="primary_text">20sp</dimen>
+    <dimen name="secondary_text">16sp</dimen>
+    <dimen name="separator_text">20sp</dimen>
+    <dimen name="primary_card_text">34sp</dimen>
+
+    <!-- age circle -->
+    <dimen name="age_circle_size">48sp</dimen>
+    <dimen name="age_circle_text_size">20sp</dimen>
+
+    <!-- MainActivity -->
+    <dimen name="tab_layout_height">56dp</dimen>
+    <dimen name="tab_text_size">16sp</dimen>
+
+    <!-- DetailActivity -->
+    <dimen name="detail_activity_icon_padding">12dp</dimen>
+    <dimen name="zodiac_image_size">48dp</dimen>
+    <dimen name="detail_icon_padding">36dp</dimen>
+    <dimen name="detail_text_view_padding">96dp</dimen>
+    <dimen name="detail_famous_text_view_padding">24dp</dimen>
+
+    <!-- EditActivity -->
+    <dimen name="edit_image_padding">12dp</dimen>
+    <dimen name="edit_text_view_left_padding">36dp</dimen>
+    <dimen name="edit_date_text_size">20sp</dimen>
+    <dimen name="edit_left_cb_padding">96dp</dimen>
+    <dimen name="edit_linear_layout_padding_top">12dp</dimen>
+
+    <!-- LicensesActivity -->
+    <dimen name="licenses_text_view_bottom_padding">12dp</dimen>
+
+    <!-- dialog -->
+    <dimen name="dialog_vertical_padding">24dp</dimen>
+    <dimen name="dialog_horizontal_padding">24dp</dimen>
+    <dimen name="dialog_linear_layout_bottom_margin">12dp</dimen>
+    <dimen name="dialog_button_text_size">16sp</dimen>
+    <dimen name="dialog_date_top_margin">24dp</dimen>
+    <dimen name="dialog_cb_top_margin">24dp</dimen>
+</resources>

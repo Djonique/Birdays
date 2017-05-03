@@ -56,7 +56,7 @@
                 android:id="@+id/tabLayout"
                 style="@style/MyCustomTabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/tab_layout_height"
                 android:background="?attr/colorPrimary"
                 app:tabGravity="fill" />
         </android.support.design.widget.AppBarLayout>

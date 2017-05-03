@@ -17,6 +17,57 @@
 -->
 
 <resources>
+    <!-- default dimens -->
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="default_layout_height">72sp</dimen>
+    <dimen name="default_left_margin">56dp</dimen>
+
+    <!-- fab dimens -->
     <dimen name="fab_margin_default">16dp</dimen>
     <dimen name="fab_margin_detail">0dp</dimen>
+
+    <!-- card dimens -->
+    <dimen name="card_layout_margin">4dp</dimen>
+    <dimen name="card_default_padding">16dp</dimen>
+    <dimen name="card_left_padding">24dp</dimen>
+    <dimen name="card_text_view_bottom_margin">8dp</dimen>
+
+    <!-- text size -->
+    <dimen name="primary_text">16sp</dimen>
+    <dimen name="secondary_text">14sp</dimen>
+    <dimen name="separator_text">16sp</dimen>
+    <dimen name="primary_card_text">24sp</dimen>
+
+    <!-- age circle -->
+    <dimen name="age_circle_size">40sp</dimen>
+    <dimen name="age_circle_text_size">16sp</dimen>
+
+    <!-- MainActivity -->
+    <dimen name="tab_layout_height">48dp</dimen>
+    <dimen name="tab_text_size">14sp</dimen>
+
+    <!-- DetailActivity -->
+    <dimen name="detail_activity_icon_padding">8dp</dimen>
+    <dimen name="zodiac_image_size">40dp</dimen>
+    <dimen name="detail_icon_padding">24dp</dimen>
+    <dimen name="detail_text_view_padding">72dp</dimen>
+    <dimen name="detail_famous_text_view_padding">16dp</dimen>
+
+    <!-- EditActivity -->
+    <dimen name="edit_image_padding">8dp</dimen>
+    <dimen name="edit_text_view_left_padding">24dp</dimen>
+    <dimen name="edit_date_text_size">16sp</dimen>
+    <dimen name="edit_left_cb_padding">72dp</dimen>
+    <dimen name="edit_linear_layout_padding_top">8dp</dimen>
+
+    <!-- LicensesActivity -->
+    <dimen name="licenses_text_view_bottom_padding">8dp</dimen>
+
+    <!-- dialog -->
+    <dimen name="dialog_vertical_padding">16dp</dimen>
+    <dimen name="dialog_horizontal_padding">24dp</dimen>
+    <dimen name="dialog_linear_layout_bottom_margin">8dp</dimen>
+    <dimen name="dialog_button_text_size">14sp</dimen>
+    <dimen name="dialog_date_top_margin">16dp</dimen>
+    <dimen name="dialog_cb_top_margin">16dp</dimen>
 </resources>

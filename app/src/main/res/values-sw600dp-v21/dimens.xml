@@ -16,12 +16,7 @@
     limitations under the License.
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/materialRL"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/tvSeparator"
-        style="@style/Material.Secondary.TextView"
-        android:textSize="@dimen/separator_text" />
-</RelativeLayout>
+<resources>
+    <dimen name="fab_margin_default">24dp</dimen>
+    <dimen name="fab_margin_detail">24dp</dimen>
+</resources>
