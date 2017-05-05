@@ -87,7 +87,7 @@ public class DetailActivity extends AppCompatActivity {
     private long date, timeStamp;
     private int position;
     private boolean unknownYear;
-    private String phoneNumber, email;
+    private String name, phoneNumber, email, shortDate;
 
     private int winterImages[] = {R.drawable.img_winter_1,
             R.drawable.img_winter_2,
@@ -120,12 +120,14 @@ public class DetailActivity extends AppCompatActivity {
         timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
         position = intent.getIntExtra(ConstantManager.SELECTED_ITEM, 0);
         person = dbHelper.query().getPerson(timeStamp);
+        name = person.getName();
         date = person.getDate();
+        shortDate = Utils.getUnknownDate(date);
         unknownYear = person.isYearUnknown();
         phoneNumber = person.getPhoneNumber();
         email = person.getEmail();
 
-        toolbar.setTitle(person.getName());
+        toolbar.setTitle(name);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -163,7 +165,11 @@ public class DetailActivity extends AppCompatActivity {
             case R.id.menu_detail_share:
                 Intent intentShare = new Intent(Intent.ACTION_SEND);
                 intentShare.setType(ConstantManager.TEXT_PLAIN);
-                intentShare.putExtra(Intent.EXTRA_TEXT, getString(R.string.menu_share));
+                intentShare.putExtra(Intent.EXTRA_TEXT, name
+                        + getString(R.string.is_celebrating_bd)
+                        + shortDate
+                        + "\n\n"
+                        + getString(R.string.play_market_app_link));
                 startActivity(Intent.createChooser(intentShare, getString(R.string.app_name)));
                 break;
         }

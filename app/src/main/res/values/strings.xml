@@ -17,7 +17,7 @@
 -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Birdays</string>
+    <string name="app_name" translatable="false">Birdays</string>
 
     <!-- fragment text -->
     <string name="all">All</string>
@@ -27,9 +27,9 @@
     <!-- menu text -->
     <string name="menu_rate_app">Rate app</string>
     <string name="menu_share">Share</string>
-    <string name="play_market_app_link">https://play.google.com/store/apps/details?id=com.wonder</string>
+    <string name="play_market_app_link" translatable="false">https://play.google.com/store/apps/details?id=com.djonique.birdays</string>
     <string name="menu_github">Source code</string>
-    <string name="github_url">https://github.com/Djonique/Birdays</string>
+    <string name="github_url" translatable="false">https://github.com/Djonique/Birdays</string>
     <string name="action_settings">Settings</string>
     <string name="menu_delete">Delete</string>
     <string name="menu_edit">Edit</string>
@@ -40,7 +40,7 @@
     <string name="name">Name</string>
     <string name="error_hint">Please enter the name</string>
     <string name="phone">Phone</string>
-    <string name="email">Email</string>
+    <string name="email" translatable="false">Email</string>
     <string name="send_email">Send email</string>
     <string name="pick_date">Pick date</string>
     <string name="wrong_date">Wrong date</string>
@@ -61,6 +61,7 @@
     <string name="call">Call</string>
     <string name="chat">Chat</string>
     <string name="born_on_this_day">Born on this day:</string>
+    <string name="is_celebrating_bd">\u0020is celebrating Birthday on\u0020</string>
 
     <string-array name="months">
         <item>January</item>
@@ -104,38 +105,39 @@
     <string name="aquarius">Aquarius</string>
     <string name="pisces">Pisces</string>
 
-    <string name="main_banner_id">ca-app-pub-5122433987000361/8152385338</string>
-    <string name="detail_banner_id">ca-app-pub-5122433987000361/8105452138</string>
+    <string name="main_banner_id" translatable="false">ca-app-pub-5122433987000361/8152385338</string>
+    <string name="detail_banner_id" translatable="false">ca-app-pub-5122433987000361/8105452138</string>
 
     <!-- Settings -->
     <string name="notifications">Notifications</string>
     <string name="allow_notification">Allow the app to send notifications of upcoming birthdays</string>
     <string name="notifications_time">Notifications time</string>
-    <string name="default_time_preference">645703200000</string>
+    <string name="default_time_preference" translatable="false">645703200000</string>
     <string name="Vibration">Vibration</string>
     <string name="general">General</string>
     <string name="rate_app">Rate app</string>
     <string name="share">Share</string>
+    <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Just create an entry in the Birdays application and it will remind you of an important holiday!\n\n</string>
     <string name="about_app">About app</string>
     <string name="privacy_policy">Privacy policy</string>
-    <string name="privacy_policy_link">https://cdn.rawgit.com/Djonique/Birdays/380ec8cc/PRIVACY%20POLICY.html</string>
+    <string name="privacy_policy_link" translatable="false">https://cdn.rawgit.com/Djonique/Birdays/380ec8cc/PRIVACY%20POLICY.html</string>
     <string name="software_licenses">Free software licenses</string>
     <string name="licenses">Licenses</string>
-    <string name="version">App version 1.0.0</string>
+    <string name="version">App version 1.0.1</string>
 
     <!-- Settings keys -->
-    <string name="notifications_key">notifications</string>
-    <string name="notification_time_key">notification_time</string>
-    <string name="rate_key">rate_app</string>
-    <string name="share_key">share</string>
-    <string name="vibration_key">vibration</string>
-    <string name="github_key">github</string>
-    <string name="privacy_policy_key">privacy_policy</string>
-    <string name="licenses_key">licenses</string>
-    <string name="version_key">version</string>
+    <string name="notifications_key" translatable="false">notifications</string>
+    <string name="notification_time_key" translatable="false">notification_time</string>
+    <string name="rate_key" translatable="false">rate_app</string>
+    <string name="share_key" translatable="false">share</string>
+    <string name="vibration_key" translatable="false">vibration</string>
+    <string name="github_key" translatable="false">github</string>
+    <string name="privacy_policy_key" translatable="false">privacy_policy</string>
+    <string name="licenses_key" translatable="false">licenses</string>
+    <string name="version_key" translatable="false">version</string>
 
-    <string name="butter_knife_by_jake_wharton">Butter Knife by Jake Wharton</string>
-    <string name="butter_knife_license">
+    <string name="butter_knife_by_jake_wharton" translatable="false">Butter Knife by Jake Wharton</string>
+    <string name="butter_knife_license" translatable="false">
         Copyright 2013 Jake Wharton\n\nLicensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
         You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software
@@ -145,8 +147,8 @@
         limitations under the License.
     </string>
 
-    <string name="materialdatetimepicker_by_wouter_dullaert">MaterialDateTimePicker by Wouter Dullaert</string>
-    <string name="mdtp_licence">
+    <string name="materialdatetimepicker_by_wouter_dullaert" translatable="false">MaterialDateTimePicker by Wouter Dullaert</string>
+    <string name="mdtp_licence" translatable="false">
         Copyright 2015 Wouter Dullaert\n\nLicensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
         You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software
@@ -1529,7 +1531,7 @@
     <string name="bill_haley">Bill Haley</string>
     <string name="stallone">Sylvester Stallone</string>
     <string name="rush">Geoffrey Rush</string>
-    <string name="cent">50 Cent</string>
+    <string name="cent" translatable="false">50 Cent</string>
     <string name="eva_green">Eva Green</string>
     <!-- 7 july -->
     <string name="jacquard">Joseph Marie Jacquard</string>
@@ -1988,8 +1990,8 @@
     <string name="neckam">Alexander Neckam</string>
     <string name="mistral">Frédéric Mistral</string>
     <string name="martin_freeman">Martin Freeman</string>
-    <string name="pink">Pink</string>
-    <string name="wiz_khalifa">Wiz Khalifa</string>
+    <string name="pink" translatable="false">Pink</string>
+    <string name="wiz_khalifa" translatable="false">Wiz Khalifa</string>
     <!-- 9 september -->
     <string name="frederik_chapman">Fredrik Henrik af Chapman</string>
     <string name="galvani">Luigi Galvani</string>
@@ -2129,7 +2131,7 @@
     <string name="larry_wall">Larry Wall</string>
     <string name="welsh">Irvine Welsh</string>
     <string name="paltrow">Gwyneth Paltrow</string>
-    <string name="wayne">Lil Wayne</string>
+    <string name="wayne" translatable="false">Lil Wayne</string>
     <!-- 28 september -->
     <string name="merimee">Prosper Mérimée</string>
     <string name="moissan">Henri Moissan</string>
@@ -2264,7 +2266,7 @@
     <string name="nietzsche">Friedrich Nietzsche</string>
     <string name="ilf">Ilya Ilf</string>
     <string name="puzo">Mario Puzo</string>
-    <string name="fm_2030">FM-2030</string>
+    <string name="fm_2030" translatable="false">FM-2030</string>
     <!-- 16 october -->
     <string name="haller">Albrecht von Haller</string>
     <string name="wilde">Oscar Wilde</string>
@@ -2276,7 +2278,7 @@
     <string name="orlov">Grigory Orlov</string>
     <string name="saint_simon">Claude Henri de Rouvroy, comte de Saint-Simon</string>
     <string name="jordan">Robert Jordan</string>
-    <string name="eminem">Eminem</string>
+    <string name="eminem" translatable="false">Eminem</string>
     <string name="raikkonen">Kimi Räikkönen</string>
     <string name="felicity_jones">Felicity Jones</string>
     <!-- 18 october -->
@@ -2301,7 +2303,7 @@
     <string name="chadwick">James Chadwick</string>
     <string name="bernat">Enric Bernat</string>
     <string name="jelinek">Elfriede Jelinek</string>
-    <string name="snoop_dogg">Snoop Dogg</string>
+    <string name="snoop_dogg" translatable="false">Snoop Dogg</string>
     <!-- 21 october -->
     <string name="coleridge">Samuel Taylor Coleridge</string>
     <string name="nobel">Alfred Nobel</string>
@@ -2332,7 +2334,7 @@
     <string name="swarovski">Daniel Swarovski</string>
     <string name="raikin">Arkady Raikin</string>
     <string name="rooney">Wayne Rooney</string>
-    <string name="drake">Drake</string>
+    <string name="drake" translatable="false">Drake</string>
     <!-- 25 october -->
     <string name="galois">Évariste Galois</string>
     <string name="johann_strauss">Johann Strauss</string>
@@ -2623,7 +2625,7 @@
     <string name="adler">Robert Adler</string>
     <string name="bridges">Jeff Bridges</string>
     <string name="bubka">Sergey Bubka</string>
-    <string name="jay_z">Jay Z</string>
+    <string name="jay_z" translatable="false">Jay Z</string>
     <!-- 5 december -->
     <string name="tyutchev">Fyodor Tyutchev</string>
     <string name="lang">Fritz Lang</string>
@@ -2823,5 +2825,5 @@
     <string name="kingsley">Ben Kingsley</string>
     <string name="willis">Connie Willis</string>
     <string name="val_kilmer">Val Kilmer</string>
-    <string name="psy">PSY</string>
+    <string name="psy" translatable="false">PSY</string>
 </resources>

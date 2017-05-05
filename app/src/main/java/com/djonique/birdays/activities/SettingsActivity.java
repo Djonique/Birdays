@@ -86,7 +86,7 @@ public class SettingsActivity extends AppCompatActivity {
                     mFirebaseAnalytics.logEvent(ConstantManager.SHARE_APP, new Bundle());
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType(ConstantManager.TEXT_PLAIN);
-                    intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.play_market_app_link));
+                    intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + getString(R.string.play_market_app_link));
                     startActivity(Intent.createChooser(intent, getString(R.string.app_name)));
                     return true;
                 }
