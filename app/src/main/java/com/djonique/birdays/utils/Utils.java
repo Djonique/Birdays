@@ -25,6 +25,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class Utils {
 
@@ -69,6 +70,10 @@ public class Utils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
         return calendar.get(Calendar.MONTH);
+    }
+
+    public static long getTimeOffset() {
+        return TimeZone.getDefault().getOffset(today.getTimeInMillis());
     }
 
     /**

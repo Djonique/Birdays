@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.TimePicker;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.utils.Utils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -93,13 +94,13 @@ public class TimePreference extends DialogPreference {
             if (defaultValue == null) {
                 calendar.setTimeInMillis(getPersistedLong(System.currentTimeMillis()));
             } else {
-                calendar.setTimeInMillis(Long.parseLong(getPersistedString((String) defaultValue)));
+                calendar.setTimeInMillis(Long.parseLong(getPersistedString((String) defaultValue)) - Utils.getTimeOffset());
             }
         } else {
             if (defaultValue == null) {
                 calendar.setTimeInMillis(System.currentTimeMillis());
             } else {
-                calendar.setTimeInMillis(Long.parseLong((String) defaultValue));
+                calendar.setTimeInMillis(Long.parseLong((String) defaultValue) - Utils.getTimeOffset());
             }
         }
         setSummary(getSummary());

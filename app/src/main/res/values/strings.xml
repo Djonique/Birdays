@@ -111,7 +111,7 @@
     <!-- Settings -->
     <string name="notifications">Notifications</string>
     <string name="allow_notification">Allow the app to send notifications of upcoming birthdays</string>
-    <string name="notifications_time">Notifications time</string>
+    <string name="notifications_time">Notification time</string>
     <string name="default_time_preference" translatable="false">645703200000</string>
     <string name="Vibration">Vibration</string>
     <string name="general">General</string>
@@ -123,7 +123,7 @@
     <string name="privacy_policy_link" translatable="false">https://cdn.rawgit.com/Djonique/Birdays/380ec8cc/PRIVACY%20POLICY.html</string>
     <string name="software_licenses">Free software licenses</string>
     <string name="licenses">Licenses</string>
-    <string name="version">App version 1.0.1</string>
+    <string name="version">Build version 1.0.2</string>
 
     <!-- Settings keys -->
     <string name="notifications_key" translatable="false">notifications</string>
