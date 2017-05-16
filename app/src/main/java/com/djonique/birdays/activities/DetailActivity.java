@@ -32,6 +32,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
@@ -188,6 +189,7 @@ public class DetailActivity extends AppCompatActivity {
         if (data == null) return;
         if (resultCode == RESULT_OK) {
             // Refreshes activity after editing
+            Toast.makeText(this, R.string.record_edited, Toast.LENGTH_SHORT).show();
             Intent refresh = new Intent(this, DetailActivity.class);
             refresh.putExtra(ConstantManager.TIME_STAMP, timeStamp);
             startActivity(refresh);

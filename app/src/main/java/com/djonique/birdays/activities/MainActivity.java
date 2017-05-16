@@ -149,9 +149,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPersonAdded(Person person) {
         pagerAdapter.addPerson(person);
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.container),
-                R.string.record_added, Snackbar.LENGTH_SHORT);
-        snackbar.show();
+        Snackbar.make(findViewById(R.id.container), R.string.record_added, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

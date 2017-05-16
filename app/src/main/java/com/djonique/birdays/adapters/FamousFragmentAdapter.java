@@ -17,6 +17,7 @@
 package com.djonique.birdays.adapters;
 
 import android.app.SearchManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,12 +26,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.utils.ConstantManager;
-import com.djonique.birdays.utils.Utils;
 import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
+import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Utils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
@@ -90,7 +92,11 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
                 mFirebaseAnalytics.logEvent(ConstantManager.FAMOUS_PERSON_CLICKED, new Bundle());
                 Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
                 intent.putExtra(SearchManager.QUERY, name);
-                context.startActivity(intent);
+                try {
+                    context.startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(context, R.string.famous_search_error_text, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

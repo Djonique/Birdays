@@ -21,6 +21,7 @@
     <string name="all">Все</string>
     <string name="famous">Известные</string>
     <string name="happy_birthday">С Днем Рождения!</string>
+    <string name="famous_search_error_text">На телефоне не установлено приложение для выполнения веб-поиска</string>
 
     <!-- menu text -->
     <string name="menu_rate_app">Оценить приложение</string>
@@ -57,6 +58,9 @@
     <string name="chat">Написать</string>
     <string name="born_on_this_day">В этот день родились:</string>
     <string name="is_celebrating_bd">\u0020празднует день рождения\u0020</string>
+
+    <!-- EditActivity -->
+    <string name="record_edited">Запись отредактирована</string>
 
     <string-array name="months">
         <item>Январь</item>

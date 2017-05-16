@@ -23,6 +23,7 @@
     <string name="all">All</string>
     <string name="famous">Famous</string>
     <string name="happy_birthday">Happy Birthday!</string>
+    <string name="famous_search_error_text">Phone does not have a web search app to perform action</string>
 
     <!-- menu text -->
     <string name="menu_rate_app">Rate app</string>
@@ -62,6 +63,9 @@
     <string name="chat">Chat</string>
     <string name="born_on_this_day">Born on this day:</string>
     <string name="is_celebrating_bd">\u0020is celebrating Birthday on\u0020</string>
+
+    <!-- EditActivity -->
+    <string name="record_edited">Record edited</string>
 
     <string-array name="months">
         <item>January</item>
