@@ -97,18 +97,18 @@ public class AllFragment extends Fragment {
                     break;
                 } else if (newPerson.getMonth(newPerson.getDate()) == person.getMonth(person.getDate())) {
                     if (newPerson.getDay(newPerson.getDate()) <= person.getDay(person.getDate())) {
-                        // Если дата раньше
+                        // If date before
                         position = i;
                         break;
-                    } else { // Если дата позже
-                        if (adapter.getItemCount() > (i + 1) && adapter.getItem(i + 1).isPerson()) { // Если дальше не адартер, а запись
+                    } else { // If date after
+                        if (adapter.getItemCount() > (i + 1) && adapter.getItem(i + 1).isPerson()) { // If after person, not adapter
                             Person person1 = ((Person) adapter.getItem(i + 1));
                             if (newPerson.getDay(newPerson.getDate()) <= person1.getDay(person1.getDate())) {
-                                // Если дата раньше, если позже - надо продолжить цикл
+                                // If date before, else if date after - continue
                                 position = i + 1;
                                 break;
                             }
-                        } else { // Если дальше не запись, а адаптер
+                        } else { // If after adapter, not person
                             position = i + 1;
                             break;
                         }
