@@ -127,7 +127,7 @@
     <string name="privacy_policy_link" translatable="false">https://cdn.rawgit.com/Djonique/Birdays/380ec8cc/PRIVACY%20POLICY.html</string>
     <string name="software_licenses">Free software licenses</string>
     <string name="licenses">Licenses</string>
-    <string name="version">Build version 1.0.3</string>
+    <string name="version">Build version 1.0.4</string>
 
     <!-- Settings keys -->
     <string name="notifications_key" translatable="false">notifications</string>
