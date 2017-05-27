@@ -37,6 +37,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
@@ -247,6 +248,9 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     @OnClick(R.id.fab_edit)
     void edit() {
         updatePerson();
+        AlarmHelper alarmHelper = AlarmHelper.getInstance();
+        alarmHelper.removeAlarm(person.getTimeStamp());
+        alarmHelper.setAlarm(person);
         Intent update = new Intent();
         setResult(RESULT_OK, update);
         finish();
