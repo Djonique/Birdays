@@ -22,6 +22,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.models.Person;
+import com.djonique.birdays.utils.Utils;
 
 import static com.djonique.birdays.database.DBHelper.COLUMN_DATE;
 import static com.djonique.birdays.database.DBHelper.COLUMN_NAME;
@@ -30,9 +31,15 @@ import static com.djonique.birdays.database.DBHelper.DB_FAMOUS;
 class DBFamous {
 
     private static void addFamous(SQLiteDatabase db, Person person) {
+        long offset = Utils.getTimeOffset();
+        int twelveHourOffset = 43200000;
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, person.getName());
-        cv.put(COLUMN_DATE, person.getDate());
+        if (offset <= 0) {
+            cv.put(COLUMN_DATE, person.getDate() + twelveHourOffset);
+        } else {
+            cv.put(COLUMN_DATE, person.getDate());
+        }
         db.insert(DB_FAMOUS, null, cv);
     }
 

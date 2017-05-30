@@ -26,6 +26,7 @@ import android.preference.PreferenceManager;
 
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Utils;
 
 import java.util.Calendar;
 
@@ -75,8 +76,8 @@ public class AlarmHelper {
 
     private long setupCalendarYear(Person person) {
         long now = Calendar.getInstance().getTimeInMillis();
-
-        long notificationTime = preferences.getLong(ConstantManager.NOTIFICATION_TIME, 645703200000L);
+        long defaultValue = 645703200000L - Utils.getTimeOffset();
+        long notificationTime = preferences.getLong(ConstantManager.NOTIFICATION_TIME, defaultValue);
         Calendar notificationTimeCalendar = Calendar.getInstance();
         notificationTimeCalendar.setTimeInMillis(notificationTime);
 

@@ -161,27 +161,6 @@ public class DBQueryManager {
         return persons;
     }
 
-    public List<Person> getFamousPerson() {
-        persons = new ArrayList<>();
-
-        Cursor cursor = database.query(DBHelper.DB_FAMOUS, null, null, null, null, null, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                String name = getName(cursor);
-                long date = getDate(cursor);
-
-                if (Utils.isCurrentDay(date)) {
-                    person = new Person(name, date);
-                    persons.add(person);
-                }
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-
-        return persons;
-    }
-
     public List<Person> getFamousBornThisDay(long dayOfBirthday) {
         persons = new ArrayList<>();
 

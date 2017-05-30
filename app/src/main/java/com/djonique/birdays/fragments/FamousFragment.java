@@ -31,6 +31,7 @@ import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class FamousFragment extends Fragment {
@@ -72,7 +73,8 @@ public class FamousFragment extends Fragment {
     private void addFamousFromDB() {
         adapter.removeAllPersons();
         List<Person> famous = new ArrayList<>();
-        famous.addAll(activity.dbHelper.query().getFamousPerson());
+
+        famous.addAll(activity.dbHelper.query().getFamousBornThisDay(Calendar.getInstance().getTimeInMillis()));
 
         for (int i = 0; i < famous.size(); i++) {
             adapter.addItem(famous.get(i));
