@@ -54,6 +54,12 @@
     <!-- About app -->
     <PreferenceCategory android:title="@string/about_app">
         <Preference
+            android:title="@string/twitter">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://twitter.com/birdaysapp" />
+        </Preference>
+        <Preference
             android:key="@string/github_key"
             android:title="@string/menu_github">
             <intent
