@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2017 Evgeny Timofeev
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Notifications -->
+    <PreferenceCategory android:layout="@layout/preference_category_notifications">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/notifications_key"
+            android:summary="@string/allow_notification"
+            android:title="@string/notifications" />
+        <com.djonique.birdays.preferences.TimePreference
+            android:defaultValue="@string/default_time_preference"
+            android:dependency="@string/notifications_key"
+            android:key="@string/notification_time_key"
+            android:title="@string/notifications_time" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="@string/notifications_key"
+            android:key="@string/vibration_key"
+            android:title="@string/Vibration" />
+    </PreferenceCategory>
+
+    <!-- General -->
+    <PreferenceCategory android:layout="@layout/preference_category_general">
+        <Preference
+            android:key="@string/rate_key"
+            android:title="@string/rate_app">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/play_market_app_link" />
+        </Preference>
+        <Preference
+            android:key="@string/share_key"
+            android:title="@string/share" />
+    </PreferenceCategory>
+
+    <!-- About app -->
+    <PreferenceCategory android:layout="@layout/preference_category_about_app">
+        <Preference
+            android:key="@string/github_key"
+            android:title="@string/menu_github">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/github_url" />
+        </Preference>
+        <Preference
+            android:key="@string/privacy_policy_key"
+            android:title="@string/privacy_policy">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/privacy_policy_link" />
+        </Preference>
+        <Preference
+            android:key="@string/licenses_key"
+            android:title="@string/software_licenses" />
+        <Preference
+            android:key="@string/version_key"
+            android:selectable="false"
+            android:title="@string/version" />
+    </PreferenceCategory>
+</PreferenceScreen>
