@@ -17,7 +17,9 @@
 -->
 
 <full-backup-content>
-    <exclude
+    <include
         domain="database"
-        path="famous.db" />
+        path="my_db.db" />
+    <exclude domain="sharedpref" />
+    <exclude domain="external" />
 </full-backup-content>

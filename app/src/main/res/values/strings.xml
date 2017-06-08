@@ -123,7 +123,7 @@
     <string name="share">Share</string>
     <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Just create an entry in the Birdays application and it will remind you of an important holiday!\n\n</string>
     <string name="about_app">About app</string>
-    <string name="twitter" translatable="false">Twitter</string>
+    <string name="twitter">Birdays on Twitter</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="privacy_policy_link" translatable="false">https://cdn.rawgit.com/Djonique/Birdays/380ec8cc/PRIVACY%20POLICY.html</string>
     <string name="software_licenses">Free software licenses</string>
