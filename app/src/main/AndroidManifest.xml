@@ -27,7 +27,7 @@
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification" />
 
-        <!--MainActivity-->
+        <!-- MainActivity -->
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
 
-        <!--DetailActivity-->
+        <!-- DetailActivity -->
         <activity
             android:name=".activities.DetailActivity"
             android:label=""
@@ -48,7 +48,7 @@
                 android:value="com.djonique.birdays.activities.MainActivity" />
         </activity>
 
-        <!--EditActivity-->
+        <!-- EditActivity -->
         <activity
             android:name=".activities.EditActivity"
             android:windowSoftInputMode="adjustResize">
@@ -57,7 +57,7 @@
                 android:value="com.djonique.birdays.activities.DetailActivity" />
         </activity>
 
-        <!--SettingsActivity-->
+        <!-- SettingsActivity -->
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/action_settings">
@@ -66,7 +66,7 @@
                 android:value="com.djonique.birdays.activities.MainActivity" />
         </activity>
 
-        <!--LicensesActivity-->
+        <!-- LicensesActivity -->
         <activity
             android:name=".activities.LicensesActivity"
             android:label="@string/licenses">
@@ -75,18 +75,18 @@
                 android:value="com.djonique.birdays.activities.SettingsActivity" />
         </activity>
 
-        <!--AdActivity-->
+        <!-- AdActivity -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
 
-        <!--AlarmReceiver-->
+        <!-- AlarmReceiver -->
         <receiver
             android:name=".alarm.AlarmReceiver"
             android:process=":remote" />
 
-        <!--AlarmSetter-->
+        <!-- AlarmSetter -->
         <receiver android:name=".alarm.AlarmSetter">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

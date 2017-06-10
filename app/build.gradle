@@ -9,8 +9,8 @@ android {
         applicationId "com.djonique.birdays"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 7
-        versionName "1.0.5"
+        versionCode 8
+        versionName "1.0.6"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
