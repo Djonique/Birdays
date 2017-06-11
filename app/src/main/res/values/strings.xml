@@ -140,6 +140,15 @@
         <item>Before 2 weeks</item>
     </string-array>
 
+    <string-array name="additional_notification_entry_values">
+        <item>0</item>
+        <item>86400000</item>
+        <item>172800000</item>
+        <item>259200000</item>
+        <item>604800000</item>
+        <item>1209600000</item>
+    </string-array>
+
     <string-array name="additional_notification_greetings">
         <item>today</item>
         <item>tomorrow</item>
@@ -161,15 +170,7 @@
     <string name="licenses_key" translatable="false">licenses</string>
     <string name="version_key" translatable="false">version</string>
 
-    <string-array name="additional_notification_entry_values">
-        <item>0</item>
-        <item>86400000</item>
-        <item>172800000</item>
-        <item>259200000</item>
-        <item>604800000</item>
-        <item>1209600000</item>
-    </string-array>
-
+    <!-- Licenses -->
     <string name="butter_knife_by_jake_wharton" translatable="false">Butter Knife by Jake Wharton</string>
     <string name="butter_knife_license" translatable="false">
         Copyright 2013 Jake Wharton\n\nLicensed under the Apache License, Version 2.0 (the "License");
@@ -184,6 +185,17 @@
     <string name="materialdatetimepicker_by_wouter_dullaert" translatable="false">MaterialDateTimePicker by Wouter Dullaert</string>
     <string name="mdtp_licence" translatable="false">
         Copyright 2015 Wouter Dullaert\n\nLicensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+    </string>
+    
+    <string name="ratethisapp_by_keisuke_kobayashi" translatable="false">RateThisApp by Keisuke Kobayashi</string>
+    <string name="rta_license" translatable="false">
+        Copyright 2013-2017 Keisuke Kobayashi\n\nLicensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
         You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software
         distributed under the License is distributed on an "AS IS" BASIS,

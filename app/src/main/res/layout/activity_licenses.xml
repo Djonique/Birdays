@@ -54,5 +54,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mdtp_licence" />
+
+        <TextView
+            style="@style/Primary.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/ratethisapp_by_keisuke_kobayashi" />
+
+        <TextView
+            style="@style/Secondary.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rta_license" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

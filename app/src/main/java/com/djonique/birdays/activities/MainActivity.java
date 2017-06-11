@@ -17,6 +17,7 @@
 package com.djonique.birdays.activities;
 
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -43,6 +44,7 @@ import com.djonique.birdays.utils.BirdaysApplication;
 import com.djonique.birdays.utils.ConstantManager;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.kobakei.ratethisapp.RateThisApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +54,8 @@ import butterknife.OnPageChange;
 public class MainActivity extends AppCompatActivity implements
         NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener {
 
+    public static final int INSTALL_DAYS = 7;
+    public static final int LAUNCH_TIMES = 5;
     public DBHelper dbHelper;
     @BindView(R.id.appbar)
     AppBarLayout appBarLayout;
@@ -75,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements
         ButterKnife.bind(this);
 
         FirebaseAnalytics.getInstance(this);
+
+        rateThisAppInit(this);
 
         dbHelper = new DBHelper(getApplicationContext());
 
@@ -177,5 +183,13 @@ public class MainActivity extends AppCompatActivity implements
     void showDialog() {
         DialogFragment newPersonDialogFragment = new NewPersonDialogFragment();
         newPersonDialogFragment.show(getFragmentManager(), ConstantManager.NEW_PERSON_DIALOG_TAG);
+    }
+
+    // "Rate this app" dialog initialization
+    private void rateThisAppInit(Context context) {
+        RateThisApp.onCreate(context);
+        RateThisApp.Config config = new RateThisApp.Config(INSTALL_DAYS, LAUNCH_TIMES);
+        RateThisApp.init(config);
+        RateThisApp.showRateDialogIfNeeded(context);
     }
 }
