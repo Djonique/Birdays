@@ -35,6 +35,13 @@
             android:dependency="@string/notifications_key"
             android:key="@string/vibration_key"
             android:title="@string/Vibration" />
+        <!--<ListPreference
+            android:defaultValue="0"
+            android:entries="@array/additional_notification_entries"
+            android:entryValues="@array/additional_notification_entry_values"
+            android:key="@string/additional_notification_key"
+            android:summary="%s"
+            android:title="@string/additional_notification" />-->
     </PreferenceCategory>
 
     <!-- General -->
@@ -53,8 +60,7 @@
 
     <!-- About app -->
     <PreferenceCategory android:layout="@layout/preference_category_about_app">
-        <Preference
-            android:title="@string/twitter">
+        <Preference android:title="@string/twitter">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://twitter.com/birdaysapp" />

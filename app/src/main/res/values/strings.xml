@@ -118,6 +118,7 @@
     <string name="notifications_time">Notification time</string>
     <string name="default_time_preference" translatable="false">645703200000</string>
     <string name="Vibration">Vibration</string>
+    <string name="additional_notification">Additional notification</string>
     <string name="general">General</string>
     <string name="rate_app">Rate app</string>
     <string name="share">Share</string>
@@ -130,9 +131,28 @@
     <string name="licenses">Licenses</string>
     <string name="version">Build version 1.0.6</string>
 
+    <string-array name="additional_notification_entries">
+        <item>Never</item>
+        <item>Before 1 day</item>
+        <item>Before 2 days</item>
+        <item>Before 3 days</item>
+        <item>Before 1 week</item>
+        <item>Before 2 weeks</item>
+    </string-array>
+
+    <string-array name="additional_notification_greetings">
+        <item>today</item>
+        <item>tomorrow</item>
+        <item>in 2 days</item>
+        <item>in 3 days</item>
+        <item>in a week</item>
+        <item>in 2 weeks</item>
+    </string-array>
+
     <!-- Settings keys -->
     <string name="notifications_key" translatable="false">notifications</string>
     <string name="notification_time_key" translatable="false">notification_time</string>
+    <string name="additional_notification_key" translatable="false">additional_notification</string>
     <string name="rate_key" translatable="false">rate_app</string>
     <string name="share_key" translatable="false">share</string>
     <string name="vibration_key" translatable="false">vibration</string>
@@ -140,6 +160,15 @@
     <string name="privacy_policy_key" translatable="false">privacy_policy</string>
     <string name="licenses_key" translatable="false">licenses</string>
     <string name="version_key" translatable="false">version</string>
+
+    <string-array name="additional_notification_entry_values">
+        <item>0</item>
+        <item>86400000</item>
+        <item>172800000</item>
+        <item>259200000</item>
+        <item>604800000</item>
+        <item>1209600000</item>
+    </string-array>
 
     <string name="butter_knife_by_jake_wharton" translatable="false">Butter Knife by Jake Wharton</string>
     <string name="butter_knife_license" translatable="false">

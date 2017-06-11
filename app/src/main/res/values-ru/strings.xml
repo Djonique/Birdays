@@ -109,6 +109,7 @@
     <string name="allow_notification">Разрешить приложению присылать уведомления о предстоящих днях рождения</string>
     <string name="notifications_time">Время уведомления</string>
     <string name="Vibration">Вибрация</string>
+    <string name="additional_notification">Дополнительное уведомление</string>
     <string name="general">Общие</string>
     <string name="rate_app">Оценить приложение</string>
     <string name="share">Поделиться</string>
@@ -119,6 +120,24 @@
     <string name="software_licenses">Лицензии открытого ПО</string>
     <string name="licenses">Лицензии</string>
     <string name="version">Версия сборки 1.0.6</string>
+
+    <string-array name="additional_notification_entries">
+        <item>Никогда</item>
+        <item>За 1 день</item>
+        <item>За 2 дня</item>
+        <item>За 3 дня</item>
+        <item>За неделю</item>
+        <item>За 2 недели</item>
+    </string-array>
+
+    <string-array name="additional_notification_greetings">
+        <item>сегодня</item>
+        <item>завтра</item>
+        <item>послезавтра</item>
+        <item>через 3 дня</item>
+        <item>через неделю</item>
+        <item>через 2 недели</item>
+    </string-array>
 
     <!-- Famous persons -->
     <!-- 1 january -->

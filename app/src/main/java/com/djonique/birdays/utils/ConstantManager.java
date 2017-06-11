@@ -42,6 +42,7 @@ public interface ConstantManager {
     String NAME = "name";
     String NOTIFICATIONS = "notifications";
     String NOTIFICATION_TIME = "notification_time";
+    String ADDITIONAL_NOTIFICATION = "additional_notification";
 
     // Intents
     String TYPE_EMAIL = "message/rfc822";
