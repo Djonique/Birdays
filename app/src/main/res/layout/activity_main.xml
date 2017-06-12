@@ -73,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin_default"
+            app:backgroundTint="@color/fab_color"
             app:elevation="6dp"
             app:layout_behavior="com.djonique.birdays.behaviors.ScrollAwareFABBehavior"
             app:pressedTranslationZ="12dp"
