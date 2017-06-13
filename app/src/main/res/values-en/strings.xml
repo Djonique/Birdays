@@ -130,15 +130,6 @@
         <item>Before 2 weeks</item>
     </string-array>
 
-    <string-array name="additional_notification_entry_values">
-        <item>0</item>
-        <item>86400000</item>
-        <item>172800000</item>
-        <item>259200000</item>
-        <item>604800000</item>
-        <item>1209600000</item>
-    </string-array>
-
     <string-array name="additional_notification_greetings">
         <item>today</item>
         <item>tomorrow</item>
