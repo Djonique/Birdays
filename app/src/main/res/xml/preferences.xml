@@ -35,13 +35,14 @@
             android:dependency="@string/notifications_key"
             android:key="@string/vibration_key"
             android:title="@string/Vibration" />
-        <!--<ListPreference
+        <ListPreference
             android:defaultValue="0"
+            android:dependency="@string/notifications_key"
             android:entries="@array/additional_notification_entries"
             android:entryValues="@array/additional_notification_entry_values"
             android:key="@string/additional_notification_key"
             android:summary="%s"
-            android:title="@string/additional_notification" />-->
+            android:title="@string/additional_notification" />
     </PreferenceCategory>
 
     <!-- General -->

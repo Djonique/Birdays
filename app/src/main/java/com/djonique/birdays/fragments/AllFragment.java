@@ -244,14 +244,12 @@ public class AllFragment extends Fragment {
                     snackbar.getView().addOnAttachStateChangeListener(
                             new View.OnAttachStateChangeListener() {
                                 @Override
-                                public void onViewAttachedToWindow(View v) {
-
-                                }
+                                public void onViewAttachedToWindow(View v) {}
 
                                 @Override
                                 public void onViewDetachedFromWindow(View v) {
                                     if (isRemoved[0]) {
-                                        alarmHelper.removeAlarm(timeStamp);
+                                        alarmHelper.removeAlarms(timeStamp);
                                         activity.dbHelper.removePerson(timeStamp);
                                         deletingRecordListener.onRecordDeleted(timeStamp);
                                     }

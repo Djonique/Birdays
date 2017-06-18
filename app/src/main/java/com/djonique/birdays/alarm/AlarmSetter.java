@@ -39,7 +39,7 @@ public class AlarmSetter extends BroadcastReceiver {
         persons.addAll(dbHelper.query().getPersons());
 
         for (Person person : persons) {
-            alarmHelper.setAlarm(person);
+            alarmHelper.setAlarms(person);
         }
     }
 }

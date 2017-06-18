@@ -58,6 +58,8 @@
     <string name="chat">Написать</string>
     <string name="born_on_this_day">В этот день родились:</string>
     <string name="is_celebrating_bd">\u0020празднует день рождения\u0020</string>
+    <string name="notification_greetings">\u0020сегодня празднует ДР!</string>
+    <string name="additional_notification_greetings">\u0020празднует ДР\u0020</string>
 
     <!-- EditActivity -->
     <string name="record_edited">Запись отредактирована</string>
@@ -113,13 +115,13 @@
     <string name="general">Общие</string>
     <string name="rate_app">Оценить приложение</string>
     <string name="share">Поделиться</string>
-    <string name="share_text">Забываете поздравить родных, друзей или коллег с днем рождения? Просто создайте запись в приложении Birdays и оно напомнит Вам о важном празднике!\n\n</string>
+    <string name="share_text">Забываете поздравить родных, друзей или коллег с днем рождения? Birdays напомнит Вам о важном празднике!\n\n</string>
     <string name="about_app">О приложении</string>
     <string name="twitter">Birdays в Твиттере</string>
     <string name="privacy_policy">Политика конфиденциальности</string>
     <string name="software_licenses">Лицензии открытого ПО</string>
     <string name="licenses">Лицензии</string>
-    <string name="version">Версия сборки 1.0.6</string>
+    <string name="version">Версия сборки 1.1.0</string>
 
     <string-array name="additional_notification_entries">
         <item>Никогда</item>

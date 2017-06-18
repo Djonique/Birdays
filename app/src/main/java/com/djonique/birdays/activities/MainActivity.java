@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements
         NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener {
 
     public static final int INSTALL_DAYS = 7;
-    public static final int LAUNCH_TIMES = 5;
+    public static final int LAUNCH_TIMES = 7;
     public DBHelper dbHelper;
     @BindView(R.id.appbar)
     AppBarLayout appBarLayout;

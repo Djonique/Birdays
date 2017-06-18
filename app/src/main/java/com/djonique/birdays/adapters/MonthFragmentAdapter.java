@@ -96,7 +96,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         holder.tvName.setText(person.getName());
 
         if (unknownYear) {
-            holder.tvDate.setText(Utils.getUnknownDate(date));
+            holder.tvDate.setText(Utils.getDateWithoutYear(date));
             holder.tvAge.setVisibility(View.GONE);
         } else {
             holder.tvDate.setText(Utils.getDate(date));
@@ -137,7 +137,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnSMS.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mFirebaseAnalytics.logEvent(ConstantManager.SEND_SMS, new Bundle());
+                    mFirebaseAnalytics.logEvent(ConstantManager.SEND_MESSAGE, new Bundle());
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setType(ConstantManager.TYPE_SMS);
                     intent.putExtra(ConstantManager.ADDRESS, phoneNumber);
@@ -208,5 +208,3 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         }
     }
 }
-
-

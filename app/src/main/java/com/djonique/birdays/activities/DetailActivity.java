@@ -53,7 +53,6 @@ import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity {
 
-    public static final int POSSIBLE_PICTURES = 3;
     @BindView(R.id.toolbar_detail)
     Toolbar toolbar;
     @BindView(R.id.ivPicture)
@@ -74,34 +73,20 @@ public class DetailActivity extends AppCompatActivity {
     RelativeLayout rlPhone;
     @BindView(R.id.tvDetailPhone)
     TextView tvPhone;
-    @BindView(R.id.tvDetailEmail)
-    TextView tvEmail;
     @BindView(R.id.rlEmail)
     RelativeLayout rlEmail;
+    @BindView(R.id.tvDetailEmail)
+    TextView tvEmail;
     @BindView(R.id.detailRecyclerView)
     RecyclerView recyclerView;
 
     private DBHelper dbHelper;
     private Person person;
     private FirebaseAnalytics mFirebaseAnalytics;
-
     private long date, timeStamp;
     private int position;
     private boolean unknownYear;
     private String name, phoneNumber, email, shortDate;
-
-    private int winterImages[] = {R.drawable.img_winter_1,
-            R.drawable.img_winter_2,
-            R.drawable.img_winter_3,};
-    private int springImages[] = {R.drawable.img_spring_1,
-            R.drawable.img_spring_2,
-            R.drawable.img_spring_3};
-    private int summerImages[] = {R.drawable.img_summer_1,
-            R.drawable.img_summer_2,
-            R.drawable.img_summer_3};
-    private int autumnImages[] = {R.drawable.img_autumn_1,
-            R.drawable.img_autumn_2,
-            R.drawable.img_autumn_3};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,7 +108,7 @@ public class DetailActivity extends AppCompatActivity {
         person = dbHelper.query().getPerson(timeStamp);
         name = person.getName();
         date = person.getDate();
-        shortDate = Utils.getUnknownDate(date);
+        shortDate = Utils.getDateWithoutYear(date);
         unknownYear = person.isYearUnknown();
         phoneNumber = person.getPhoneNumber();
         email = person.getEmail();
@@ -207,7 +192,7 @@ public class DetailActivity extends AppCompatActivity {
         tvZodiacImage.setText(Utils.getZodiacImage(zodiacId));
 
         if (unknownYear) {
-            tvDate.setText(Utils.getUnknownDate(date));
+            tvDate.setText(Utils.getDateWithoutYear(date));
             rlAge.setVisibility(View.GONE);
         } else {
             tvDate.setText(Utils.getDate(date));
@@ -255,26 +240,23 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     /**
-     * Sets random picture into ImageView
-     */
-    private void setPicture(ImageView imageView, int[] pictures) {
-        imageView.setImageResource(pictures[(int) (Math.random() * POSSIBLE_PICTURES)]);
-    }
-
-    /**
-     * Chooses certain image depending on month
+     * Sets up image depending on month
      */
     private void setSeasonImage() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
         int month = calendar.get(Calendar.MONTH);
         if (month >= 0 && month < 2 || month == 11) {
-            setPicture(imageView, winterImages);
+            setPicture(imageView, R.drawable.img_winter);
         } else if (month >= 2 && month < 5) {
-            setPicture(imageView, springImages);
+            setPicture(imageView, R.drawable.img_spring);
         } else if (month >= 5 && month < 8) {
-            setPicture(imageView, summerImages);
-        } else setPicture(imageView, autumnImages);
+            setPicture(imageView, R.drawable.img_summer);
+        } else setPicture(imageView, R.drawable.img_autumn);
+    }
+
+    private void setPicture(ImageView imageView, int drawable) {
+        imageView.setImageResource(drawable);
     }
 
     private void logEvent() {
@@ -284,14 +266,14 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.ibPhoneIcon)
-    void call() {
+    void makeCall() {
         mFirebaseAnalytics.logEvent(ConstantManager.MAKE_CALL, new Bundle());
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(ConstantManager.TEL + phoneNumber)));
     }
 
     @OnClick(R.id.ibChatIcon)
-    void sendSMS() {
-        mFirebaseAnalytics.logEvent(ConstantManager.SEND_SMS, new Bundle());
+    void sendMessage() {
+        mFirebaseAnalytics.logEvent(ConstantManager.SEND_MESSAGE, new Bundle());
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setType(ConstantManager.TYPE_SMS);
         intent.putExtra(ConstantManager.ADDRESS, phoneNumber);

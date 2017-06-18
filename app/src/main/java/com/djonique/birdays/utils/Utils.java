@@ -39,7 +39,7 @@ public class Utils {
     /**
      * Returns date without year
      */
-    public static String getUnknownDate(long date) {
+    public static String getDateWithoutYear(long date) {
         Locale locale = Locale.getDefault();
         SimpleDateFormat sdf = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.DEFAULT, locale));
         String pattern = sdf.toPattern();
@@ -117,20 +117,6 @@ public class Utils {
             thisMonth = true;
         }
         return thisMonth;
-    }
-
-    /**
-     * Checks if today is the same day with given date
-     */
-    public static boolean isCurrentDay(long date) {
-        boolean thisDay = false;
-
-        dayOfBirthday.setTimeInMillis(date);
-
-        if (getDay(dayOfBirthday) == getDay(today) && isCurrentMonth(date)) {
-            thisDay = true;
-        }
-        return thisDay;
     }
 
     /**

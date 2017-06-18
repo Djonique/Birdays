@@ -142,7 +142,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
 
         date = person.getDate();
         if (unknownYear) {
-            etDate.setText(Utils.getUnknownDate(date));
+            etDate.setText(Utils.getDateWithoutYear(date));
         } else {
             etDate.setText(Utils.getDate(date));
         }
@@ -197,7 +197,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         if (!checkBox.isChecked()) {
             etDate.setText(Utils.getDate(date));
         } else {
-            etDate.setText(Utils.getUnknownDate(date));
+            etDate.setText(Utils.getDateWithoutYear(date));
         }
     }
 
@@ -207,7 +207,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
             tilEditName.setError(getString(R.string.error_hint));
             fab.hide();
         } else {
-            if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && checkBox.isChecked()) {
+            if (isFieldsValid()) {
                 fab.show();
             }
             tilEditName.setErrorEnabled(false);
@@ -216,7 +216,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
 
     @OnTextChanged(value = R.id.etEditDate, callback = OnTextChanged.Callback.TEXT_CHANGED)
     void updateDate() {
-        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && checkBox.isChecked()) {
+        if (isFieldsValid()) {
             tilEditDate.setErrorEnabled(false);
             if (etName.length() != 0) {
                 fab.show();
@@ -230,11 +230,11 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     @OnCheckedChanged(R.id.cbEdit)
     void checkBoxListener() {
         if (checkBox.isChecked()) {
-            etDate.setText(Utils.getUnknownDate(date));
+            etDate.setText(Utils.getDateWithoutYear(date));
         } else {
             etDate.setText(Utils.getDate(date));
         }
-        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && checkBox.isChecked()) {
+        if (isFieldsValid()) {
             tilEditDate.setErrorEnabled(false);
             if (etName.length() != 0) {
                 fab.show();
@@ -245,12 +245,16 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         }
     }
 
+    private boolean isFieldsValid() {
+        return !Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && checkBox.isChecked();
+    }
+
     @OnClick(R.id.fab_edit)
     void edit() {
         updatePerson();
         AlarmHelper alarmHelper = AlarmHelper.getInstance();
-        alarmHelper.removeAlarm(person.getTimeStamp());
-        alarmHelper.setAlarm(person);
+        alarmHelper.removeAlarms(person.getTimeStamp());
+        alarmHelper.setAlarms(person);
         Intent update = new Intent();
         setResult(RESULT_OK, update);
         finish();

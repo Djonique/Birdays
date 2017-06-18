@@ -201,7 +201,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             GradientDrawable ageCircle = (GradientDrawable) listViewHolder.tvAge.getBackground();
 
             if (unknownYear) {
-                listViewHolder.tvDate.setText(Utils.getUnknownDate(date));
+                listViewHolder.tvDate.setText(Utils.getDateWithoutYear(date));
                 int ageCircleColor = ContextCompat.getColor(context, R.color.disabled);
                 ageCircle.setColor(ageCircleColor);
                 listViewHolder.tvAge.setText("?");

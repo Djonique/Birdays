@@ -33,13 +33,11 @@ import com.djonique.birdays.utils.ConstantManager;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
-    public static final String VIBRATION = "vibration";
-
     @Override
     public void onReceive(Context context, Intent intent) {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean vibrate = preferences.getBoolean(VIBRATION, false);
+        boolean vibrate = preferences.getBoolean(ConstantManager.VIBRATION, false);
 
         String string = intent.getStringExtra(ConstantManager.NAME);
         long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);

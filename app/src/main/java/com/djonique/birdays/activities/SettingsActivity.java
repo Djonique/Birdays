@@ -19,6 +19,7 @@ package com.djonique.birdays.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBar;
@@ -104,6 +105,16 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 }
             });
+
+            Preference additionalNotification = findPreference(ConstantManager.ADDITIONAL_NOTIFICATION);
+            additionalNotification.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    ((ListPreference) preference).setValue(newValue.toString());
+                    preference.setSummary(((ListPreference) preference).getEntry());
+                    return true;
+                }
+            });
         }
 
         @Override
@@ -116,18 +127,24 @@ public class SettingsActivity extends AppCompatActivity {
                     boolean isChecked = sharedPreferences.getBoolean(getString(R.string.notifications_key), false);
                     if (isChecked) {
                         for (Person person : persons) {
-                            alarmHelper.setAlarm(person);
+                            alarmHelper.setAlarms(person);
                         }
                     } else {
                         for (Person person : persons) {
-                            alarmHelper.removeAlarm(person.getTimeStamp());
+                            alarmHelper.removeAlarms(person.getTimeStamp());
                         }
                     }
                     break;
                 case ConstantManager.NOTIFICATION_TIME:
                     for (Person person : persons) {
-                        alarmHelper.removeAlarm(person.getTimeStamp());
-                        alarmHelper.setAlarm(person);
+                        alarmHelper.removeAlarms(person.getTimeStamp());
+                        alarmHelper.setAlarms(person);
+                    }
+                    break;
+                case ConstantManager.ADDITIONAL_NOTIFICATION:
+                    for (Person person : persons) {
+                        alarmHelper.removeAlarms(person.getTimeStamp());
+                        alarmHelper.setAlarms(person);
                     }
                     break;
             }

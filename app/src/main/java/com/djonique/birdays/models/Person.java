@@ -123,5 +123,3 @@ public class Person implements Item {
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
 }
-
-

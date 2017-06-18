@@ -47,4 +47,3 @@ public class Separator implements Item {
         return type;
     }
 }
-

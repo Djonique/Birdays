@@ -42,6 +42,7 @@ public interface ConstantManager {
     String NAME = "name";
     String NOTIFICATIONS = "notifications";
     String NOTIFICATION_TIME = "notification_time";
+    String VIBRATION = "vibration";
     String ADDITIONAL_NOTIFICATION = "additional_notification";
 
     // Intents
@@ -55,7 +56,7 @@ public interface ConstantManager {
     // Firebase Analytics
     String NEW_PERSON_ADDED = "new_person_added";
     String MAKE_CALL = "make_call";
-    String SEND_SMS = "send_sms";
+    String SEND_MESSAGE = "send_sms";
     String SEND_EMAIL = "send_email";
     String FAMOUS_PERSON_CLICKED = "famous_person_clicked";
     String SHARE_APP = "share_app";

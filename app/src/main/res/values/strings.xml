@@ -63,6 +63,8 @@
     <string name="chat">Chat</string>
     <string name="born_on_this_day">Born on this day:</string>
     <string name="is_celebrating_bd">\u0020is celebrating Birthday on\u0020</string>
+    <string name="notification_greetings">\'s Birthday is today!</string>
+    <string name="additional_notification_greetings">\'s Birthday is\u0020</string>
 
     <!-- EditActivity -->
     <string name="record_edited">Record edited</string>
@@ -122,14 +124,14 @@
     <string name="general">General</string>
     <string name="rate_app">Rate app</string>
     <string name="share">Share</string>
-    <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Just create an entry in the Birdays application and it will remind you of an important holiday!\n\n</string>
+    <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Birdays will remind you of an important holiday!\n\n</string>
     <string name="about_app">About app</string>
     <string name="twitter">Birdays on Twitter</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="privacy_policy_link" translatable="false">https://cdn.rawgit.com/Djonique/Birdays/380ec8cc/PRIVACY%20POLICY.html</string>
     <string name="software_licenses">Free software licenses</string>
     <string name="licenses">Licenses</string>
-    <string name="version">Build version 1.0.6</string>
+    <string name="version">Build version 1.1.0</string>
 
     <string-array name="additional_notification_entries">
         <item>Never</item>

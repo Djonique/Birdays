@@ -153,7 +153,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                     person.setDate(calendar.getTimeInMillis());
 
                     AlarmHelper alarmHelper = AlarmHelper.getInstance();
-                    alarmHelper.setAlarm(person);
+                    alarmHelper.setAlarms(person);
                 }
 
                 if (cbKnownYear != null) person.setYearUnknown(cbKnownYear.isChecked());
@@ -197,9 +197,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                     etName.addTextChangedListener(new TextWatcher() {
                         @Override
-                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                        }
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
                         @Override
                         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -215,17 +213,13 @@ public class NewPersonDialogFragment extends DialogFragment implements
                         }
 
                         @Override
-                        public void afterTextChanged(Editable s) {
-
-                        }
+                        public void afterTextChanged(Editable s) {}
                     });
                 }
 
                 etDate.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                    }
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -241,9 +235,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                     }
 
                     @Override
-                    public void afterTextChanged(Editable editable) {
-
-                    }
+                    public void afterTextChanged(Editable editable) {}
                 });
 
                 cbKnownYear.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -252,7 +244,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                         // If date isn't picked does nothing, if picked checks state of CheckBox
                         if (cbKnownYear.isChecked() && !Utils.isEmptyDate(etDate)) {
-                            etDate.setText(Utils.getUnknownDate(date));
+                            etDate.setText(Utils.getDateWithoutYear(date));
                         } else if (!cbKnownYear.isChecked() && !Utils.isEmptyDate(etDate)) {
                             etDate.setText(Utils.getDate(date));
                         }
@@ -285,7 +277,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         if (!cbKnownYear.isChecked()) {
             etDate.setText(Utils.getDate(date));
         } else {
-            etDate.setText(Utils.getUnknownDate(date));
+            etDate.setText(Utils.getDateWithoutYear(date));
         }
     }
 

@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.djonique.birdays.R;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
@@ -32,8 +33,11 @@ import java.util.Calendar;
 
 public class AlarmHelper {
 
+    private static final int REQUEST_CODE_OFFSET = 99;
     @SuppressLint("StaticFieldLeak")
     private static AlarmHelper instance;
+    private long defaultNotificationTime = 645703200000L - Utils.getTimeOffset();
+    private long additionalNotificationOffset;
     private Context context;
     private AlarmManager alarmManager;
     private SharedPreferences preferences;
@@ -52,12 +56,12 @@ public class AlarmHelper {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public void setAlarm(Person person) {
+    private void setAlarm(Person person) {
         Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(ConstantManager.NAME, person.getName());
+        intent.putExtra(ConstantManager.NAME, person.getName() + context.getString(R.string.notification_greetings));
         intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
 
-        long triggerAtMillis = setupCalendarYear(person);
+        long triggerAtMillis = setupCalendarYear(person, 0);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
                 (int) person.getTimeStamp(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -65,7 +69,44 @@ public class AlarmHelper {
         alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
     }
 
-    public void removeAlarm(long timeStamp) {
+    private void setAdditionalAlarm(Person person) {
+        additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION, "0"));
+
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        intent.putExtra(ConstantManager.NAME, person.getName() + context.getString(R.string.additional_notification_greetings) + makeGreetings(additionalNotificationOffset));
+        intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
+
+        long triggerAtMillis = setupCalendarYear(person, additionalNotificationOffset);
+
+        int requestCode = (int) person.getTimeStamp() + REQUEST_CODE_OFFSET;
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
+                requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+    }
+
+    public void setAlarms(Person person) {
+        setAlarm(person);
+        additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION, "0"));
+        if (additionalNotificationOffset != 0) {
+            setAdditionalAlarm(person);
+        }
+    }
+
+    private String makeGreetings(long offset) {
+        String[] dates = context.getResources().getStringArray(R.array.additional_notification_greetings);
+        String[] entryValues = context.getResources().getStringArray(R.array.additional_notification_entry_values);
+        String greetings = null;
+        for (int i = 1; i < entryValues.length; i++) {
+            if (offset == Long.parseLong(entryValues[i])) {
+                greetings = dates[i];
+            }
+        }
+        return greetings;
+    }
+
+    private void removeAlarm(long timeStamp) {
         Intent intent = new Intent(context, AlarmReceiver.class);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, (int) timeStamp, intent,
@@ -74,25 +115,46 @@ public class AlarmHelper {
         alarmManager.cancel(pendingIntent);
     }
 
-    private long setupCalendarYear(Person person) {
+    private void removeAdditionalAlarm(long timeStamp) {
+        Intent intent = new Intent(context, AlarmReceiver.class);
+
+        int requestCode = (int) timeStamp + REQUEST_CODE_OFFSET;
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        alarmManager.cancel(pendingIntent);
+    }
+
+    public void removeAlarms(long timeStamp) {
+        removeAlarm(timeStamp);
+        additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION, "0"));
+        if (additionalNotificationOffset != 0) {
+            removeAdditionalAlarm(timeStamp);
+        }
+    }
+
+    private long setupCalendarYear(Person person, long offset) {
         long now = Calendar.getInstance().getTimeInMillis();
-        long defaultValue = 645703200000L - Utils.getTimeOffset();
-        long notificationTime = preferences.getLong(ConstantManager.NOTIFICATION_TIME, defaultValue);
+        long notificationTime = preferences.getLong(ConstantManager.NOTIFICATION_TIME, defaultNotificationTime);
         Calendar notificationTimeCalendar = Calendar.getInstance();
         notificationTimeCalendar.setTimeInMillis(notificationTime);
 
+        // Notification time setup
         int hour = notificationTimeCalendar.get(Calendar.HOUR_OF_DAY);
         int minutes = notificationTimeCalendar.get(Calendar.MINUTE);
 
-        long date = person.getDate();
+        long date = person.getDate() - offset;
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
-        calendar.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
+        calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minutes);
         calendar.set(Calendar.MILLISECOND, 0);
         if (now > calendar.getTimeInMillis()) {
-            calendar.set(Calendar.YEAR, (Calendar.getInstance().get(Calendar.YEAR) + 1));
+            calendar.set(Calendar.YEAR, year + 1);
         }
         return calendar.getTimeInMillis();
     }
