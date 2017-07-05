@@ -41,6 +41,13 @@
             android:paddingBottom="@dimen/default_padding"
             android:text="@string/help_description" />
 
+        <TextView
+            style="@style/Primary.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/default_padding"
+            android:text="@string/help_delay_text" />
+
         <!-- Open settings button -->
         <include layout="@layout/open_settings_button" />
 

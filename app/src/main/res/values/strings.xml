@@ -22,7 +22,7 @@
     <!-- MainActivity -->
     <string name="loading_contacts">Loading contacts…</string>
     <string name="loading_contacts_error">Impossible to import from contacts, nonstandard birthday date format</string>
-    <string name="permission_required">Permission is required for auto loading from Contacts</string>
+    <string name="permission_required">Permission is required for loading from Contacts</string>
     <string name="snackbar_allow_text">Allow</string>
 
     <!-- fragment text -->
@@ -145,7 +145,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Why alarm is not working?</string>
-    <string name="help_description">Some phones have Power Saving Mode that could block app
+    <string name="help_description">Some devices have Power Saving Mode that could block app
         background processes or disable application from running on startup.\nTo make alarm work
         correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled
         for Birdays app (Settings → Apps → Birdays).\n\n2. Turn off your Power Saving Mode or add
@@ -153,16 +153,17 @@
         installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»),
         which could block app background processes, add Birdays to their whitelist.
     </string>
+    <string name="help_delay_text">Please note that on some devices notifications could work with some delay.</string>
     <string name="help_settings">Open settings</string>
-    <string name="huawei_header">for Huawei owners</string>
-    <string name="huawei_description">Open phone «Settings», go to «Power saving» and open
+    <string name="huawei_header">For Huawei owners</string>
+    <string name="huawei_description">Open device «Settings», go to «Power saving» and open
         «Protected apps». Make sure that this feature is enabled for Birdays.
     </string>
-    <string name="samsung_header">for Samsung owners</string>
+    <string name="samsung_header">For Samsung owners</string>
     <string name="samsung_description">Open «Smart Manager», tap on battery, then on «Detail».
         Disable this feature for Birdays app.
     </string>
-    <string name="help_email_description">If alarm still does not work, please contact me at birdaysapp@gmail.com</string>
+    <string name="help_email_description">If alarm still not working, please contact me at birdaysapp@gmail.com</string>
     <string name="help_send_email">Send email</string>
 
     <string-array name="additional_notification_entries">
@@ -197,10 +198,10 @@
     <string name="notification_time_key" translatable="false">notification_time</string>
     <string name="vibration_key" translatable="false">vibration</string>
     <string name="additional_notification_key" translatable="false">additional_notification</string>
-    <string name="help_key">help_key</string>
+    <string name="help_key" translatable="false">help_key</string>
     <string name="rate_key" translatable="false">rate_app</string>
     <string name="share_key" translatable="false">share</string>
-    <string name="twitter_key">twitter_key</string>
+    <string name="twitter_key" translatable="false">twitter_key</string>
     <string name="github_key" translatable="false">github</string>
     <string name="privacy_policy_key" translatable="false">privacy_policy</string>
     <string name="licenses_key" translatable="false">licenses</string>
