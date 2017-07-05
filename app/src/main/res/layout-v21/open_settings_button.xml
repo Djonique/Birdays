@@ -16,12 +16,10 @@
     limitations under the License.
 -->
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</android.support.design.widget.CoordinatorLayout>
+<android.support.v7.widget.AppCompatButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/help_open_settings_button"
+    style="@style/HelpButtonStyle"
+    android:backgroundTint="@android:color/white"
+    android:padding="@dimen/default_padding"
+    android:text="@string/help_settings"
+    android:textColor="@color/color_primary" />

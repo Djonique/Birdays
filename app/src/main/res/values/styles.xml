@@ -17,12 +17,10 @@
 -->
 
 <resources>
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
-        <!-- ripple effect color -->
         <item name="colorControlHighlight">@color/ripple</item>
     </style>
 
@@ -150,5 +148,20 @@
     <style name="CollapsingToolbarStyle">
         <item name="collapsedTitleGravity">left|center_horizontal</item>
         <item name="expandedTitleGravity">left|bottom</item>
+    </style>
+
+    <style name="BottomSheetIcons">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">32dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    
+    <style name="HelpButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">@dimen/default_padding</item>
     </style>
 </resources>

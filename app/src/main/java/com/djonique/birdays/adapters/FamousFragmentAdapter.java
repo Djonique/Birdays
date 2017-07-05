@@ -95,7 +95,7 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
                 try {
                     context.startActivity(intent);
                 } catch (ActivityNotFoundException e) {
-                    Toast.makeText(context, R.string.famous_search_error_text, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.famous_search_error, Toast.LENGTH_SHORT).show();
                 }
             }
         });

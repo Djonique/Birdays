@@ -16,12 +16,13 @@
     limitations under the License.
 -->
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.AppCompatButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/addFromContactsDialogButton"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</android.support.design.widget.CoordinatorLayout>
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="@dimen/addfromcontacts_button_bottom_margin"
+    android:backgroundTint="@android:color/white"
+    android:padding="@dimen/default_padding"
+    android:text="@string/add_from_contacts"
+    android:textColor="@color/color_primary" />

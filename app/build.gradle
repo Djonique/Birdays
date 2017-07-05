@@ -10,8 +10,8 @@ android {
         applicationId "com.djonique.birdays"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 8
-        versionName "1.1.0"
+        versionCode 9
+        versionName "1.2.0"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -37,6 +37,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.wdullaer:materialdatetimepicker:2.3.0'
     compile 'io.github.kobakei:ratethisapp:1.2.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 }

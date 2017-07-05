@@ -128,40 +128,40 @@ public class Utils {
 
         switch (getMonth(dayOfBirthday)) {
             case Calendar.JANUARY:
-                resId = getDay(dayOfBirthday) <= 20 ? R.string.capricorn : R.string.aquarius;
+                resId = getDay(dayOfBirthday) < 21 ? R.string.capricorn : R.string.aquarius;
                 break;
             case Calendar.FEBRUARY:
-                resId = getDay(dayOfBirthday) <= 19 ? R.string.aquarius : R.string.pisces;
+                resId = getDay(dayOfBirthday) < 20 ? R.string.aquarius : R.string.pisces;
                 break;
             case Calendar.MARCH:
-                resId = getDay(dayOfBirthday) <= 20 ? R.string.pisces : R.string.aries;
+                resId = getDay(dayOfBirthday) < 21 ? R.string.pisces : R.string.aries;
                 break;
             case Calendar.APRIL:
-                resId = getDay(dayOfBirthday) <= 20 ? R.string.aries : R.string.taurus;
+                resId = getDay(dayOfBirthday) < 21 ? R.string.aries : R.string.taurus;
                 break;
             case Calendar.MAY:
-                resId = getDay(dayOfBirthday) <= 21 ? R.string.taurus : R.string.gemini;
+                resId = getDay(dayOfBirthday) < 22 ? R.string.taurus : R.string.gemini;
                 break;
             case Calendar.JUNE:
-                resId = getDay(dayOfBirthday) <= 21 ? R.string.gemini : R.string.cancer;
+                resId = getDay(dayOfBirthday) < 22 ? R.string.gemini : R.string.cancer;
                 break;
             case Calendar.JULY:
-                resId = getDay(dayOfBirthday) <= 23 ? R.string.cancer : R.string.leo;
+                resId = getDay(dayOfBirthday) < 23 ? R.string.cancer : R.string.leo;
                 break;
             case Calendar.AUGUST:
-                resId = getDay(dayOfBirthday) <= 23 ? R.string.leo : R.string.virgo;
+                resId = getDay(dayOfBirthday) < 23 ? R.string.leo : R.string.virgo;
                 break;
             case Calendar.SEPTEMBER:
-                resId = getDay(dayOfBirthday) <= 23 ? R.string.virgo : R.string.libra;
+                resId = getDay(dayOfBirthday) < 24 ? R.string.virgo : R.string.libra;
                 break;
             case Calendar.OCTOBER:
-                resId = getDay(dayOfBirthday) <= 23 ? R.string.libra : R.string.scorpio;
+                resId = getDay(dayOfBirthday) < 24 ? R.string.libra : R.string.scorpio;
                 break;
             case Calendar.NOVEMBER:
-                resId = getDay(dayOfBirthday) <= 22 ? R.string.scorpio : R.string.sagittarius;
+                resId = getDay(dayOfBirthday) < 23 ? R.string.scorpio : R.string.sagittarius;
                 break;
             case Calendar.DECEMBER:
-                resId = getDay(dayOfBirthday) <= 21 ? R.string.sagittarius : R.string.capricorn;
+                resId = getDay(dayOfBirthday) < 22 ? R.string.sagittarius : R.string.capricorn;
                 break;
         }
         return resId;
@@ -218,5 +218,29 @@ public class Utils {
      */
     public static int boolToInt(boolean isYearKnown) {
         return isYearKnown ? 1 : 0;
+    }
+
+    /**
+     * Formats contacts birthday date from "yyyy-MM-dd" to long
+     */
+    public static long formatDateToLong(String dateString) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(0);
+        String[] dateArray = dateString.split("-");
+
+        if (dateArray[0].equals("")) {
+            calendar.set(Calendar.MONTH, Integer.parseInt(dateArray[2]) - 1);
+            calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dateArray[3]));
+        } else if (Integer.parseInt(dateArray[2]) < 32) {
+            calendar.set(Calendar.YEAR, Integer.parseInt(dateArray[0]));
+            calendar.set(Calendar.MONTH, Integer.parseInt(dateArray[1]) - 1);
+            calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dateArray[2]));
+        }
+        return calendar.getTimeInMillis();
+    }
+
+    public static boolean isYearKnown(String dateString) {
+        String[] dateArray = dateString.split("-");
+        return dateArray[0].equals("");
     }
 }

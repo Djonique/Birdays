@@ -33,6 +33,7 @@ import android.provider.ContactsContract;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -89,14 +90,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
         @SuppressLint("InflateParams")
         View container = inflater.inflate(R.layout.fragment_dialog, null);
 
-        final TextInputLayout tilName = (TextInputLayout) container.findViewById(R.id.tilName);
-        etName = tilName.getEditText();
-
-        final TextInputLayout tilPhone = (TextInputLayout) container.findViewById(R.id.tilPhone);
-        etPhone = tilPhone.getEditText();
-
-        Button addFromContactsButton =
-                ((Button) container.findViewById(R.id.addFromContactsDialogButton));
+        AppCompatButton addFromContactsButton =
+                ((AppCompatButton) container.findViewById(R.id.addFromContactsDialogButton));
         addFromContactsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,6 +108,12 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 }
             }
         });
+
+        final TextInputLayout tilName = (TextInputLayout) container.findViewById(R.id.tilName);
+        etName = tilName.getEditText();
+
+        final TextInputLayout tilPhone = (TextInputLayout) container.findViewById(R.id.tilPhone);
+        etPhone = tilPhone.getEditText();
 
         final TextInputLayout tilEmail = (TextInputLayout) container.findViewById(R.id.tilEmail);
         etEmail = tilEmail.getEditText();
@@ -151,9 +152,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                 if (!Utils.isEmptyDate(etDate)) {
                     person.setDate(calendar.getTimeInMillis());
-
-                    AlarmHelper alarmHelper = AlarmHelper.getInstance();
-                    alarmHelper.setAlarms(person);
+                    AlarmHelper.getInstance().setAlarms(person);
                 }
 
                 if (cbKnownYear != null) person.setYearUnknown(cbKnownYear.isChecked());
@@ -197,7 +196,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                     etName.addTextChangedListener(new TextWatcher() {
                         @Override
-                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        }
 
                         @Override
                         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -213,13 +213,15 @@ public class NewPersonDialogFragment extends DialogFragment implements
                         }
 
                         @Override
-                        public void afterTextChanged(Editable s) {}
+                        public void afterTextChanged(Editable s) {
+                        }
                     });
                 }
 
                 etDate.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    }
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -235,7 +237,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
                     }
 
                     @Override
-                    public void afterTextChanged(Editable editable) {}
+                    public void afterTextChanged(Editable editable) {
+                    }
                 });
 
                 cbKnownYear.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -292,9 +295,9 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (cursor.moveToFirst()) {
                     String id = cursor.getString(
                             cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                    etName.setText(ContactsInfo.retrieveName(contentResolver, id));
-                    etPhone.setText(ContactsInfo.retrievePhoneNumber(contentResolver, cursor, id));
-                    etEmail.setText(ContactsInfo.retrieveEmail(contentResolver, id));
+                    etName.setText(ContactsInfo.getContactName(contentResolver, id));
+                    etPhone.setText(ContactsInfo.getContactPhoneNumber(contentResolver, id));
+                    etEmail.setText(ContactsInfo.getContactEmail(contentResolver, id));
                 }
             }
             if (cursor != null) {

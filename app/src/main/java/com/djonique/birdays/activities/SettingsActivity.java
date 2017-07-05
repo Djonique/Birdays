@@ -24,7 +24,6 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.djonique.birdays.R;
@@ -51,14 +50,14 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) onBackPressed();
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -79,6 +78,19 @@ public class SettingsActivity extends AppCompatActivity {
 
             mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
             logEvent();
+
+            Preference help = findPreference(getString(R.string.help_key));
+            help.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    SettingsActivity activity = (SettingsActivity) getActivity();
+                    if (activity != null) {
+                        startActivity(new Intent(activity, HelpActivity.class));
+                        activity.overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
+                    }
+                    return true;
+                }
+            });
 
             Preference share = findPreference(getString(R.string.share_key));
             share.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

@@ -43,6 +43,10 @@
             android:key="@string/additional_notification_key"
             android:summary="%s"
             android:title="@string/additional_notification" />
+        <Preference
+            android:key="@string/help_key"
+            android:summary="@string/tap_here"
+            android:title="@string/help" />
     </PreferenceCategory>
 
     <!-- General -->
@@ -61,7 +65,9 @@
 
     <!-- About app -->
     <PreferenceCategory android:layout="@layout/preference_category_about_app">
-        <Preference android:title="@string/twitter">
+        <Preference
+            android:key="@string/twitter_key"
+            android:title="@string/twitter">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://twitter.com/birdaysapp" />

@@ -18,12 +18,16 @@ package com.djonique.birdays.utils;
 
 public interface ConstantManager {
 
+    // MainActivity
+    String WRONG_CONTACTS_FORMAT = "WRONG_CONTACTS_FORMAT";
+
     // Share
     String TEXT_PLAIN = "text/plain";
 
     // Dialog
     String NEW_PERSON_DIALOG_TAG = "NEW_PERSON_DIALOG_TAG";
     String DATE_PICKER_FRAGMENT_TAG = "DATE_PICKER_FRAGMENT_TAG";
+    String BOTTOM_SHEET_DIALOG_TAG = "BOTTOM_SHEET_DIALOG_TAG";
 
     // Permission requests
     int REQUEST_READ_CONTACTS = 1;
@@ -46,6 +50,7 @@ public interface ConstantManager {
     String ADDITIONAL_NOTIFICATION = "additional_notification";
 
     // Intents
+    String PACKAGE = "package:";
     String TYPE_EMAIL = "message/rfc822";
     String MAILTO = "mailto:";
     String TYPE_SMS = "vnd.android-dir/mms-sms";

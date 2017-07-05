@@ -16,23 +16,27 @@
     limitations under the License.
 -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.djonique.birdays.activities.MainActivity">
-    <!--<item
-        android:id="@+id/action_sync"
-        android:orderInCategory="1"
-        android:title="@string/action_sync"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_backup"
-        android:orderInCategory="2"
-        android:title="Backup"
-        app:showAsAction="never" />-->
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="99"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
-</menu>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <!-- Facebook -->
+    <ImageView
+        android:id="@+id/sync_fb"
+        style="@style/BottomSheetIcons"
+        app:srcCompat="@drawable/ic_facebook_24dp" />
+
+    <!-- vk.com -->
+    <ImageView
+        android:id="@+id/sync_vk"
+        style="@style/BottomSheetIcons"
+        app:srcCompat="@drawable/ic_vk_com_24dp" />
+
+    <!-- ok.ru -->
+    <ImageView
+        android:id="@+id/sync_ok"
+        style="@style/BottomSheetIcons"
+        app:srcCompat="@drawable/ic_ok_ru_24dp" />
+</LinearLayout>

@@ -66,7 +66,7 @@
     <!-- dialog -->
     <dimen name="dialog_vertical_padding">16dp</dimen>
     <dimen name="dialog_horizontal_padding">24dp</dimen>
-    <dimen name="dialog_linear_layout_bottom_margin">8dp</dimen>
+    <dimen name="addfromcontacts_button_bottom_margin">8dp</dimen>
     <dimen name="dialog_button_text_size">14sp</dimen>
     <dimen name="dialog_date_top_margin">16dp</dimen>
     <dimen name="dialog_cb_top_margin">16dp</dimen>

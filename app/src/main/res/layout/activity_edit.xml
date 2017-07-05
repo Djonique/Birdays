@@ -31,7 +31,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background"
             android:orientation="vertical"
             android:paddingTop="@dimen/edit_linear_layout_padding_top">
 

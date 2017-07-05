@@ -19,11 +19,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Birdays</string>
 
+    <!-- MainActivity -->
+    <string name="loading_contacts">Loading contacts…</string>
+    <string name="loading_contacts_error">Impossible to import from contacts, nonstandard birthday date format</string>
+    <string name="permission_required">Permission is required for auto loading from Contacts</string>
+    <string name="snackbar_allow_text">Allow</string>
+
     <!-- fragment text -->
     <string name="all">All</string>
     <string name="famous">Famous</string>
     <string name="happy_birthday">Happy Birthday!</string>
-    <string name="famous_search_error_text">Phone does not have a web search app to perform action</string>
+    <string name="famous_search_error">Phone does not have a web search app to perform action</string>
 
     <!-- menu text -->
     <string name="menu_rate_app">Rate app</string>
@@ -31,6 +37,7 @@
     <string name="play_market_app_link" translatable="false">https://play.google.com/store/apps/details?id=com.djonique.birdays</string>
     <string name="menu_github">Source code</string>
     <string name="github_url" translatable="false">https://github.com/Djonique/Birdays</string>
+    <string name="action_sync">Synchronization</string>
     <string name="action_settings">Settings</string>
     <string name="menu_delete">Delete</string>
     <string name="menu_edit">Edit</string>
@@ -54,7 +61,7 @@
     <string name="undo">Undo</string>
 
     <!-- DetailActivity -->
-    <string name="date">Date</string>
+    <string name="date">Birthday</string>
     <string name="zodiac">Zodiac</string>
     <string name="age">Age</string>
     <string name="season_picture">Season picture</string>
@@ -67,6 +74,7 @@
     <string name="additional_notification_greetings">\'s Birthday is\u0020</string>
 
     <!-- EditActivity -->
+    <string name="editing_label">Editing</string>
     <string name="record_edited">Record edited</string>
 
     <string-array name="months">
@@ -121,6 +129,8 @@
     <string name="default_time_preference" translatable="false">645703200000</string>
     <string name="Vibration">Vibration</string>
     <string name="additional_notification">Additional notification</string>
+    <string name="help">Help</string>
+    <string name="tap_here">Tap here if you don\'t receive notifications</string>
     <string name="general">General</string>
     <string name="rate_app">Rate app</string>
     <string name="share">Share</string>
@@ -131,7 +141,29 @@
     <string name="privacy_policy_link" translatable="false">https://cdn.rawgit.com/Djonique/Birdays/380ec8cc/PRIVACY%20POLICY.html</string>
     <string name="software_licenses">Free software licenses</string>
     <string name="licenses">Licenses</string>
-    <string name="version">Build version 1.1.0</string>
+    <string name="version">Build version 1.2.0</string>
+
+    <!-- HelpActivity -->
+    <string name="help_header">Why alarm is not working?</string>
+    <string name="help_description">Some phones have Power Saving Mode that could block app
+        background processes or disable application from running on startup.\nTo make alarm work
+        correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled
+        for Birdays app (Settings → Apps → Birdays).\n\n2. Turn off your Power Saving Mode or add
+        Birdays to the whitelist (Settings → Battery → Battery optimization).\n\n3. If you have
+        installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»),
+        which could block app background processes, add Birdays to their whitelist.
+    </string>
+    <string name="help_settings">Open settings</string>
+    <string name="huawei_header">for Huawei owners</string>
+    <string name="huawei_description">Open phone «Settings», go to «Power saving» and open
+        «Protected apps». Make sure that this feature is enabled for Birdays.
+    </string>
+    <string name="samsung_header">for Samsung owners</string>
+    <string name="samsung_description">Open «Smart Manager», tap on battery, then on «Detail».
+        Disable this feature for Birdays app.
+    </string>
+    <string name="help_email_description">If alarm still does not work, please contact me at birdaysapp@gmail.com</string>
+    <string name="help_send_email">Send email</string>
 
     <string-array name="additional_notification_entries">
         <item>Never</item>
@@ -163,10 +195,12 @@
     <!-- Settings keys -->
     <string name="notifications_key" translatable="false">notifications</string>
     <string name="notification_time_key" translatable="false">notification_time</string>
+    <string name="vibration_key" translatable="false">vibration</string>
     <string name="additional_notification_key" translatable="false">additional_notification</string>
+    <string name="help_key">help_key</string>
     <string name="rate_key" translatable="false">rate_app</string>
     <string name="share_key" translatable="false">share</string>
-    <string name="vibration_key" translatable="false">vibration</string>
+    <string name="twitter_key">twitter_key</string>
     <string name="github_key" translatable="false">github</string>
     <string name="privacy_policy_key" translatable="false">privacy_policy</string>
     <string name="licenses_key" translatable="false">licenses</string>
@@ -194,7 +228,7 @@
         See the License for the specific language governing permissions and
         limitations under the License.
     </string>
-    
+
     <string name="ratethisapp_by_keisuke_kobayashi" translatable="false">RateThisApp by Keisuke Kobayashi</string>
     <string name="rta_license" translatable="false">
         Copyright 2013-2017 Keisuke Kobayashi\n\nLicensed under the Apache License, Version 2.0 (the "License");

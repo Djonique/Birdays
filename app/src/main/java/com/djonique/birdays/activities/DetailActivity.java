@@ -92,10 +92,8 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
         ButterKnife.bind(this);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         Ad.showDetailBanner(findViewById(R.id.container_detail), (AdView) findViewById(R.id.banner_detail));
 

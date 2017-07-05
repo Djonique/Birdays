@@ -16,18 +16,26 @@
 
 package com.djonique.birdays.activities;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.utils.ConstantManager;
 
-public class LicensesActivity extends AppCompatActivity {
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class HelpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_licenses);
+        setContentView(R.layout.activity_help);
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -45,5 +53,21 @@ public class LicensesActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
+    }
+
+    @OnClick(R.id.help_open_settings_button)
+    void openSettings() {
+        startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
+    }
+
+    @OnClick(R.id.help_send_email_button)
+    void sendEmail() {
+        String email = "birdaysapp@gmail.com";
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setType(ConstantManager.TYPE_EMAIL);
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+        intent.putExtra(Intent.EXTRA_SUBJECT, Build.MANUFACTURER + " " + Build.MODEL);
+        intent.setData(Uri.parse(ConstantManager.MAILTO + email));
+        startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
     }
 }

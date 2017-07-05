@@ -42,6 +42,20 @@ public class Person implements Item {
                   long date,
                   boolean unknownYear,
                   String phoneNumber,
+                  String email) {
+        this.name = name;
+        this.date = date;
+        this.unknownYear = unknownYear;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.timeStamp = new Date().getTime();
+        this.lowerCaseName = name.toLowerCase();
+    }
+
+    public Person(String name,
+                  long date,
+                  boolean unknownYear,
+                  String phoneNumber,
                   String email,
                   long timeStamp,
                   String lowerCaseName) {
@@ -121,5 +135,17 @@ public class Person implements Item {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
         return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!Person.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+        Person person = (Person) obj;
+        return this.lowerCaseName.equals(person.lowerCaseName);
     }
 }

@@ -25,7 +25,6 @@
     <color name="tab_text">#BBDEFB</color>
     <color name="primary_text">#DF000000</color>
     <color name="secondary_text">#8A000000</color>
-    <color name="background">#FAFAFA</color>
     <color name="disabled">#61000000</color>
     <color name="divider_color">#1F000000</color>
     <color name="scrim_color">#4d000000</color>

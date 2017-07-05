@@ -17,16 +17,23 @@
 -->
 
 <resources>
+    <!-- MainActivity -->
+    <string name="loading_contacts">Загрузка контактов…</string>
+    <string name="loading_contacts_error">Невозможно импортировать контакты, нестандартный формат хранения даты</string>
+    <string name="permission_required">Разрешение необходимо для автоматической загрузки из справочника контактов</string>
+    <string name="snackbar_allow_text">Разрешить</string>
+
     <!-- fragment text -->
     <string name="all">Все</string>
     <string name="famous">Известные</string>
     <string name="happy_birthday">С Днем Рождения!</string>
-    <string name="famous_search_error_text">На телефоне не установлено приложение для выполнения веб-поиска</string>
+    <string name="famous_search_error">На телефоне не установлено приложение для выполнения веб-поиска</string>
 
     <!-- menu text -->
     <string name="menu_rate_app">Оценить приложение</string>
     <string name="menu_share">Поделиться</string>
     <string name="menu_github">Исходный код</string>
+    <string name="action_sync">Синхронизация</string>
     <string name="action_settings">Настройки</string>
     <string name="menu_delete">Удалить</string>
     <string name="menu_edit">Редактировать</string>
@@ -49,7 +56,7 @@
     <string name="undo">Отмена</string>
 
     <!-- DetailActivity -->
-    <string name="date">Дата</string>
+    <string name="date">День рождения</string>
     <string name="zodiac">Зодиак</string>
     <string name="age">Возраст</string>
     <string name="season_picture">Изображение сезона</string>
@@ -62,6 +69,7 @@
     <string name="additional_notification_greetings">\u0020празднует ДР\u0020</string>
 
     <!-- EditActivity -->
+    <string name="editing_label">Редактирование</string>
     <string name="record_edited">Запись отредактирована</string>
 
     <string-array name="months">
@@ -112,6 +120,8 @@
     <string name="notifications_time">Время уведомления</string>
     <string name="Vibration">Вибрация</string>
     <string name="additional_notification">Дополнительное уведомление</string>
+    <string name="help">Помощь</string>
+    <string name="tap_here">Нажмите здесь, если Вам не приходят уведомления</string>
     <string name="general">Общие</string>
     <string name="rate_app">Оценить приложение</string>
     <string name="share">Поделиться</string>
@@ -121,7 +131,31 @@
     <string name="privacy_policy">Политика конфиденциальности</string>
     <string name="software_licenses">Лицензии открытого ПО</string>
     <string name="licenses">Лицензии</string>
-    <string name="version">Версия сборки 1.1.0</string>
+    <string name="version">Версия сборки 1.2.0</string>
+
+    <!-- HelpActivity -->
+    <string name="help_header">Почему мне не приходят уведомления?</string>
+    <string name="help_description">Некоторые телефоны имеют режим сбережения энергии,
+        который блокирует работу приложения в фоновом режиме или запрещает автозапуск.\nЧтобы
+        уведомления работали корректно, выполните несколько простых действий:\n\n1. Убедитесь,
+        что для приложения Birdays разрешены уведомления (Настройки → Приложения → Birdays).\n\n2.
+        Отключите режим энергосбережения или добавьте приложение в белый список. (Настройки →
+        Батарея → Экономия заряда батареи).\n\n3. Если у Вас установлены менеджеры задач,
+        приложения для очистки памяти или сбережения энергии
+        («Battery Saver», «Clean Master» или др.), которые блокируют работу в фоновом режиме,
+        добавьте приложение Birdays в их список защищенных приложений.
+    </string>
+    <string name="help_settings">Открыть настройки</string>
+    <string name="huawei_header">Для владельцев Huawei</string>
+    <string name="huawei_description">Откройте настройки телефона, перейдите в «Энергосбережение»,
+        затем откройте вкладку «Защищенные приложения» и отметьте в списке Birdays.
+    </string>
+    <string name="samsung_header">Для владельцев Samsung</string>
+    <string name="samsung_description">Найдите приложение «Smart Manager», нажмите на батарею,
+        затем на «Подробно». Убедитесь, что для приложения Birdays отключено энергосбережение.
+    </string>
+    <string name="help_email_description">Если уведомления по-прежнему не приходят, пожалуйста, напишите мне на почту birdaysapp@gmail.com</string>
+    <string name="help_send_email">Отправить письмо</string>
 
     <string-array name="additional_notification_entries">
         <item>Никогда</item>

@@ -26,19 +26,53 @@
         android:orientation="vertical"
         android:padding="@dimen/default_padding">
 
+        <!-- Header -->
         <TextView
             style="@style/Primary.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/default_padding"
-            android:text="@string/butter_knife_by_jake_wharton" />
+            android:text="@string/help_header" />
 
         <TextView
             style="@style/Secondary.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/licenses_text_view_bottom_padding"
-            android:text="@string/butter_knife_license" />
+            android:paddingBottom="@dimen/default_padding"
+            android:text="@string/help_description" />
+
+        <!-- Open settings button -->
+        <include layout="@layout/open_settings_button" />
+
+        <!-- Huawei -->
+        <TextView
+            style="@style/Primary.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/huawei_header" />
+
+        <TextView
+            style="@style/Secondary.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/huawei_description" />
+
+        <!-- Samsung -->
+        <TextView
+            style="@style/Primary.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/samsung_header" />
+
+        <TextView
+            style="@style/Secondary.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/samsung_description" />
 
         <TextView
             style="@style/Primary.TextView"
@@ -46,26 +80,10 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/default_padding"
             android:paddingTop="@dimen/default_padding"
-            android:text="@string/materialdatetimepicker_by_wouter_dullaert" />
+            android:text="@string/help_email_description" />
 
-        <TextView
-            style="@style/Secondary.TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mdtp_licence" />
+        <!-- Send email button -->
+        <include layout="@layout/send_email_button" />
 
-        <TextView
-            style="@style/Primary.TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/default_padding"
-            android:paddingTop="@dimen/default_padding"
-            android:text="@string/ratethisapp_by_keisuke_kobayashi" />
-
-        <TextView
-            style="@style/Secondary.TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/rta_license" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
