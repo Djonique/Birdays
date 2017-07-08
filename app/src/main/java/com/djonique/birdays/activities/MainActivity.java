@@ -18,18 +18,14 @@ package com.djonique.birdays.activities;
 
 import android.Manifest;
 import android.app.DialogFragment;
-import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -58,13 +54,11 @@ import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.BirdaysApplication;
 import com.djonique.birdays.utils.ConstantManager;
-import com.djonique.birdays.utils.ContactsInfo;
-import com.djonique.birdays.utils.Utils;
+import com.djonique.birdays.utils.ContactsHelper;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kobakei.ratethisapp.RateThisApp;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -95,8 +89,6 @@ public class MainActivity extends AppCompatActivity implements
     CoordinatorLayout container;
 
     private PagerAdapter pagerAdapter;
-    private ProgressDialog progressDialog;
-    private List<Person> alarmList, dbPersons;
     private SharedPreferences preferences;
 
     @Override
@@ -113,14 +105,13 @@ public class MainActivity extends AppCompatActivity implements
         Ad.showMainBanner(findViewById(R.id.container), (AdView) findViewById(R.id.banner), fab);
 
         dbHelper = new DBHelper(this);
-        alarmList = new ArrayList<>();
-        dbPersons = dbHelper.query().getPersons();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean contactsLoaded = preferences.getBoolean(ConstantManager.CONTACTS_LOADED, false);
         boolean wrongContactsFormat = preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false);
 
-        if (!wrongContactsFormat) {
-            new MyAsyncTask().execute();
+        if (!wrongContactsFormat && !contactsLoaded) {
+            loadContacts();
         }
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
@@ -243,81 +234,71 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Loads persons from Contacts
+     * Loads all persons with Birthdays from Contacts, compares them with persons from Database and
+     * saves them into DB, sets alarm for added persons
      */
-    private void getPersonsFromContacts() {
+    private void loadContacts() {
+        ContentResolver contentResolver = getContentResolver();
+        List<Person> dbPersons = dbHelper.query().getPersons();
+        AlarmHelper alarmHelper = AlarmHelper.getInstance();
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            ContentResolver contentResolver = getContentResolver();
-            Cursor cursor = ContactsInfo.getContacts(contentResolver);
+        if (permissionGranted()) {
+            try {
+                List<Person> contacts = ContactsHelper.getAllContactsWithBirthdays(contentResolver);
 
-            while (cursor.moveToNext()) {
-                String id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.CONTACT_ID));
-                String name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-                String dateString = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.START_DATE));
-                long date;
-                try {
-                    date = Utils.formatDateToLong(dateString);
-                } catch (Exception e) {
-                    continue;
+                for (Person person : contacts) {
+                    if (!isPersonAlreadyInDB(person, dbPersons)) {
+                        dbHelper.addRec(person);
+                        alarmHelper.setAlarms(person);
+                    }
                 }
-                if (date == 0) continue;
-
-                boolean isYearKnown = Utils.isYearKnown(dateString);
-                String phoneNumber = ContactsInfo.getContactPhoneNumber(contentResolver, id);
-                String email = ContactsInfo.getContactEmail(contentResolver, id);
-
-                Person person = new Person(name, date, isYearKnown, phoneNumber, email);
-
-                if (!isPersonAlreadyInDB(person, dbPersons)) {
-                    dbHelper.addRec(person);
-                    alarmList.add(person);
-                }
+                viewPager.getAdapter().notifyDataSetChanged();
+                preferences.edit().putBoolean(ConstantManager.CONTACTS_LOADED, true).apply();
+                Toast.makeText(MainActivity.this, "Контакты загружены", Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                preferences.edit().putBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, true).apply();
+                Toast.makeText(MainActivity.this, R.string.loading_contacts_error, Toast.LENGTH_LONG).show();
             }
-            cursor.close();
         } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS},
-                    ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE);
-
-            Snackbar.make(container, R.string.permission_required,
-                    Snackbar.LENGTH_LONG)
-                    .setAction(R.string.snackbar_allow_text, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            openApplicationSettings();
-                        }
-                    })
-                    .show();
+            requestPermission();
         }
+    }
+
+    /**
+     * Checks if permission for reading contacts is granted
+     */
+    private boolean permissionGranted() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+                == PackageManager.PERMISSION_GRANTED;
+    }
+
+    /**
+     * Requests reading contacts permission if it is not granted
+     */
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS},
+                ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE);
+
+        Snackbar.make(container, R.string.permission_required,
+                Snackbar.LENGTH_LONG)
+                .setAction(R.string.snackbar_allow_text, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        openApplicationSettings();
+                    }
+                })
+                .show();
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         if (requestCode == ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                new MyAsyncTask().execute();
+                loadContacts();
             }
-        }
-    }
-
-    /**
-     * Starts progress dialog
-     */
-    private void startProgressDialog() {
-        progressDialog = new ProgressDialog(MainActivity.this);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage(getString(R.string.loading_contacts));
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
-
-    /**
-     * Stops progress dialog
-     */
-    private void dismissProgressDialog() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
         }
     }
 
@@ -336,56 +317,10 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     /**
-     * Sets up alarms for new added persons
+     * Opens application settings
      */
-    private void setAlarmsAfterSync() {
-        if (!alarmList.isEmpty()) {
-            for (Person person : alarmList) {
-                AlarmHelper.getInstance().setAlarms(person);
-            }
-        }
-    }
-
     public void openApplicationSettings() {
         startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.parse(ConstantManager.PACKAGE + getPackageName())));
-    }
-
-    /**
-     * AsyncTask to load and compare persons from Contacts
-     */
-    private class MyAsyncTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            startProgressDialog();
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                getPersonsFromContacts();
-            } catch (Exception e) {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, true);
-                editor.apply();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(MainActivity.this, R.string.loading_contacts_error, Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            viewPager.getAdapter().notifyDataSetChanged();
-            setAlarmsAfterSync();
-            dismissProgressDialog();
-        }
     }
 }

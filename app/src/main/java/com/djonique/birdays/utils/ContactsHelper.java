@@ -21,7 +21,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
-public class ContactsInfo {
+import com.djonique.birdays.models.Person;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ContactsHelper {
 
     /**
      * Returns name from certain contact
@@ -82,9 +87,41 @@ public class ContactsInfo {
     }
 
     /**
-     * Returns all contacts with specified Birthdays
+     * Returns all contacts with Birthdays
      */
-    public static Cursor getContacts(ContentResolver contentResolver) {
+    public static List<Person> getAllContactsWithBirthdays(ContentResolver contentResolver) {
+
+        List<Person> contacts = new ArrayList<>();
+
+        Cursor cursor = ContactsHelper.getContactsCursor(contentResolver);
+
+        while (cursor.moveToNext()) {
+            String id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.CONTACT_ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+            String dateString = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.START_DATE));
+            long date;
+            try {
+                date = Utils.formatDateToLong(dateString);
+            } catch (Exception e) {
+                continue;
+            }
+            if (date == 0) continue;
+
+            boolean isYearKnown = Utils.isYearKnown(dateString);
+            String phoneNumber = ContactsHelper.getContactPhoneNumber(contentResolver, id);
+            String email = ContactsHelper.getContactEmail(contentResolver, id);
+
+            Person person = new Person(name, date, isYearKnown, phoneNumber, email);
+            contacts.add(person);
+        }
+        cursor.close();
+        return contacts;
+    }
+
+    /**
+     * Returns cursor with contacts with specified Birthdays
+     */
+    private static Cursor getContactsCursor(ContentResolver contentResolver) {
         Uri uri = ContactsContract.Data.CONTENT_URI;
 
         String[] projection = new String[]{

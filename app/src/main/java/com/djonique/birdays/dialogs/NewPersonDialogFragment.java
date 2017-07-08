@@ -47,7 +47,7 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
-import com.djonique.birdays.utils.ContactsInfo;
+import com.djonique.birdays.utils.ContactsHelper;
 import com.djonique.birdays.utils.Utils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -295,9 +295,9 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (cursor.moveToFirst()) {
                     String id = cursor.getString(
                             cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                    etName.setText(ContactsInfo.getContactName(contentResolver, id));
-                    etPhone.setText(ContactsInfo.getContactPhoneNumber(contentResolver, id));
-                    etEmail.setText(ContactsInfo.getContactEmail(contentResolver, id));
+                    etName.setText(ContactsHelper.getContactName(contentResolver, id));
+                    etPhone.setText(ContactsHelper.getContactPhoneNumber(contentResolver, id));
+                    etEmail.setText(ContactsHelper.getContactEmail(contentResolver, id));
                 }
             }
             if (cursor != null) {

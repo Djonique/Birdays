@@ -19,6 +19,7 @@ package com.djonique.birdays.utils;
 public interface ConstantManager {
 
     // MainActivity
+    String CONTACTS_LOADED = "CONTACTS_LOADED";
     String WRONG_CONTACTS_FORMAT = "WRONG_CONTACTS_FORMAT";
 
     // Share
@@ -34,13 +35,13 @@ public interface ConstantManager {
     int CONTACTS_REQUEST_PERMISSION_CODE = 2;
 
     // AllFragment
-    String TIME_STAMP = "time_stamp";
-    String SELECTED_ITEM = "selected_item";
+    String TIME_STAMP = "TIME_STAMP";
+    String SELECTED_ITEM = "SELECTED_ITEM";
     int DETAIL_ACTIVITY = 101;
 
     // DetailActivity intent
     int EDIT_ACTIVITY = 102;
-    String POSITION = "position";
+    String POSITION = "POSITION";
 
     // Alarm
     String NAME = "name";

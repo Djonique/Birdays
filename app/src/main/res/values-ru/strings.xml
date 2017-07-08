@@ -131,7 +131,7 @@
     <string name="privacy_policy">Политика конфиденциальности</string>
     <string name="software_licenses">Лицензии открытого ПО</string>
     <string name="licenses">Лицензии</string>
-    <string name="version">Версия сборки 1.2.0</string>
+    <string name="version">Версия сборки 1.2.1</string>
 
     <!-- HelpActivity -->
     <string name="help_header">Почему мне не приходят уведомления?</string>
