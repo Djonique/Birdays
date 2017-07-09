@@ -19,7 +19,7 @@ package com.djonique.birdays.utils;
 public interface ConstantManager {
 
     // MainActivity
-    String CONTACTS_LOADED = "CONTACTS_LOADED";
+    String CONTACTS_UPLOADED = "CONTACTS_UPLOADED";
     String WRONG_CONTACTS_FORMAT = "WRONG_CONTACTS_FORMAT";
 
     // Share

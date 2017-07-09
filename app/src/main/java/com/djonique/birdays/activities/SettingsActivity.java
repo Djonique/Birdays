@@ -18,10 +18,13 @@ package com.djonique.birdays.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -31,6 +34,7 @@ import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.ContactsHelper;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
@@ -66,19 +70,53 @@ public class SettingsActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                if (!preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false)) {
+                    ContactsHelper.loadContacts(getContentResolver(), this, preferences);
+                }
+            }
+        }
+    }
+
     public static class BirdaysPreferenceFragment extends PreferenceFragment
             implements SharedPreferences.OnSharedPreferenceChangeListener {
 
         private FirebaseAnalytics mFirebaseAnalytics;
+        private SharedPreferences preferences;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
-
             mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
+
             logEvent();
 
+            preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+            /*
+            * Sets summary for additional notification
+            */
+            Preference additionalNotification = findPreference(ConstantManager.ADDITIONAL_NOTIFICATION);
+            additionalNotification.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    ((ListPreference) preference).setValue(newValue.toString());
+                    preference.setSummary(((ListPreference) preference).getEntry());
+                    return true;
+                }
+            });
+
+            /*
+            * Opens HelpActivity
+            */
             Preference help = findPreference(getString(R.string.help_key));
             help.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -92,6 +130,23 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             });
 
+            /*
+            * Contacts synchronization
+            */
+            Preference contactsSync = findPreference(getString(R.string.contacts_sync_key));
+            contactsSync.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    if (!preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false)) {
+                        ContactsHelper.loadContacts(getActivity().getContentResolver(), getActivity(), preferences);
+                    }
+                    return true;
+                }
+            });
+
+            /*
+            * Share app
+            */
             Preference share = findPreference(getString(R.string.share_key));
             share.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -105,6 +160,9 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             });
 
+            /*
+            * Opens LicensesActivity
+            */
             Preference licenses = findPreference(getString(R.string.licenses_key));
             licenses.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -114,16 +172,6 @@ public class SettingsActivity extends AppCompatActivity {
                         startActivity(new Intent(activity, LicensesActivity.class));
                         activity.overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
                     }
-                    return true;
-                }
-            });
-
-            Preference additionalNotification = findPreference(ConstantManager.ADDITIONAL_NOTIFICATION);
-            additionalNotification.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    ((ListPreference) preference).setValue(newValue.toString());
-                    preference.setSummary(((ListPreference) preference).getEntry());
                     return true;
                 }
             });

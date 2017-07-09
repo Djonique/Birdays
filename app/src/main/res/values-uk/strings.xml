@@ -18,7 +18,7 @@
 
 <resources>
     <!-- MainActivity -->
-    <string name="loading_contacts">Загрузка контактов…</string>
+    <string name="contacts_uploaded">Контакты загружены</string>
     <string name="loading_contacts_error">Невозможно импортировать контакты, нестандартный формат хранения даты</string>
     <string name="permission_required">Разрешение необходимо для загрузки из контактов</string>
     <string name="snackbar_allow_text">Разрешить</string>
@@ -123,6 +123,8 @@
     <string name="help">Помощь</string>
     <string name="tap_here">Нажмите здесь, если Вам не приходят уведомления</string>
     <string name="general">Общие</string>
+    <string name="contacts_sync_summary">Нажмите, чтобы синхронизировать контакты из адресной книги</string>
+    <string name="contacts_sync_title">Синхронизация контактов</string>
     <string name="rate_app">Оценить приложение</string>
     <string name="share">Поделиться</string>
     <string name="share_text">Забываете поздравить родных, друзей или коллег с днем рождения? Birdays напомнит Вам о важном празднике!\n\n</string>

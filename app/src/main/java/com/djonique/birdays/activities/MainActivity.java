@@ -16,9 +16,7 @@
 
 package com.djonique.birdays.activities;
 
-import android.Manifest;
 import android.app.DialogFragment;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,8 +31,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -42,7 +38,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.PagerAdapter;
@@ -58,8 +53,6 @@ import com.djonique.birdays.utils.ContactsHelper;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kobakei.ratethisapp.RateThisApp;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements
     FloatingActionButton fab;
     @BindView(R.id.container)
     CoordinatorLayout container;
+    @BindView(R.id.banner)
+    AdView adView;
 
     private PagerAdapter pagerAdapter;
     private SharedPreferences preferences;
@@ -102,17 +97,9 @@ public class MainActivity extends AppCompatActivity implements
 
         rateThisAppInit(this);
 
-        Ad.showMainBanner(findViewById(R.id.container), (AdView) findViewById(R.id.banner), fab);
+        Ad.showMainBanner(container, adView, fab);
 
         dbHelper = new DBHelper(this);
-
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean contactsLoaded = preferences.getBoolean(ConstantManager.CONTACTS_LOADED, false);
-        boolean wrongContactsFormat = preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false);
-
-        if (!wrongContactsFormat && !contactsLoaded) {
-            loadContacts();
-        }
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
 
@@ -121,6 +108,13 @@ public class MainActivity extends AppCompatActivity implements
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(viewPager);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (!preferences.getBoolean(ConstantManager.CONTACTS_UPLOADED, false)) {
+            ContactsHelper.loadContacts(getContentResolver(), MainActivity.this, preferences);
+            refreshAdapter(viewPager);
+        }
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -223,6 +217,12 @@ public class MainActivity extends AppCompatActivity implements
         newPersonDialogFragment.show(getFragmentManager(), ConstantManager.NEW_PERSON_DIALOG_TAG);
     }
 
+    private void refreshAdapter(ViewPager viewPager) {
+        if (viewPager != null) {
+            viewPager.getAdapter().notifyDataSetChanged();
+        }
+    }
+
     /**
      * «Rate this app» dialog initialization
      */
@@ -233,63 +233,6 @@ public class MainActivity extends AppCompatActivity implements
         RateThisApp.showRateDialogIfNeeded(context);
     }
 
-    /**
-     * Loads all persons with Birthdays from Contacts, compares them with persons from Database and
-     * saves them into DB, sets alarm for added persons
-     */
-    private void loadContacts() {
-        ContentResolver contentResolver = getContentResolver();
-        List<Person> dbPersons = dbHelper.query().getPersons();
-        AlarmHelper alarmHelper = AlarmHelper.getInstance();
-
-        if (permissionGranted()) {
-            try {
-                List<Person> contacts = ContactsHelper.getAllContactsWithBirthdays(contentResolver);
-
-                for (Person person : contacts) {
-                    if (!isPersonAlreadyInDB(person, dbPersons)) {
-                        dbHelper.addRec(person);
-                        alarmHelper.setAlarms(person);
-                    }
-                }
-                viewPager.getAdapter().notifyDataSetChanged();
-                preferences.edit().putBoolean(ConstantManager.CONTACTS_LOADED, true).apply();
-                Toast.makeText(MainActivity.this, "Контакты загружены", Toast.LENGTH_LONG).show();
-            } catch (Exception e) {
-                preferences.edit().putBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, true).apply();
-                Toast.makeText(MainActivity.this, R.string.loading_contacts_error, Toast.LENGTH_LONG).show();
-            }
-        } else {
-            requestPermission();
-        }
-    }
-
-    /**
-     * Checks if permission for reading contacts is granted
-     */
-    private boolean permissionGranted() {
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-                == PackageManager.PERMISSION_GRANTED;
-    }
-
-    /**
-     * Requests reading contacts permission if it is not granted
-     */
-    private void requestPermission() {
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS},
-                ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE);
-
-        Snackbar.make(container, R.string.permission_required,
-                Snackbar.LENGTH_LONG)
-                .setAction(R.string.snackbar_allow_text, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        openApplicationSettings();
-                    }
-                })
-                .show();
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -297,23 +240,22 @@ public class MainActivity extends AppCompatActivity implements
         if (requestCode == ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                loadContacts();
+                if (!preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false)) {
+                    ContactsHelper.loadContacts(getContentResolver(), MainActivity.this, preferences);
+                    refreshAdapter(viewPager);
+                }
+            } else {
+                Snackbar.make(container, R.string.permission_required,
+                        Snackbar.LENGTH_LONG)
+                        .setAction(R.string.snackbar_allow_text, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                openApplicationSettings();
+                            }
+                        })
+                        .show();
             }
         }
-    }
-
-    /**
-     * Checks if person with the same name already exists in database
-     */
-    private boolean isPersonAlreadyInDB(Person person, List<Person> list) {
-        boolean found = false;
-        for (Person dbPerson : list) {
-            if (person.equals(dbPerson)) {
-                found = true;
-                break;
-            }
-        }
-        return found;
     }
 
     /**

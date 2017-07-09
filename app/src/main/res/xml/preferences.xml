@@ -52,6 +52,10 @@
     <!-- General -->
     <PreferenceCategory android:title="@string/general">
         <Preference
+            android:key="@string/contacts_sync_key"
+            android:summary="@string/contacts_sync_summary"
+            android:title="@string/contacts_sync_title" />
+        <Preference
             android:key="@string/rate_key"
             android:title="@string/rate_app">
             <intent

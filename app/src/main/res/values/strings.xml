@@ -20,7 +20,7 @@
     <string name="app_name" translatable="false">Birdays</string>
 
     <!-- MainActivity -->
-    <string name="loading_contacts">Loading contacts…</string>
+    <string name="contacts_uploaded">Contacts uploaded</string>
     <string name="loading_contacts_error">Impossible to import from contacts, nonstandard birthday date format</string>
     <string name="permission_required">Permission is required for loading from Contacts</string>
     <string name="snackbar_allow_text">Allow</string>
@@ -119,9 +119,6 @@
     <string name="aquarius">Aquarius</string>
     <string name="pisces">Pisces</string>
 
-    <string name="main_banner_id" translatable="false">ca-app-pub-5122433987000361/8152385338</string>
-    <string name="detail_banner_id" translatable="false">ca-app-pub-5122433987000361/8105452138</string>
-
     <!-- Settings -->
     <string name="notifications">Notifications</string>
     <string name="allow_notification">Allow the app to send notifications of upcoming birthdays</string>
@@ -132,6 +129,8 @@
     <string name="help">Help</string>
     <string name="tap_here">Tap here if you don\'t receive notifications</string>
     <string name="general">General</string>
+    <string name="contacts_sync_summary">Tap here to synchronize contacts from your device</string>
+    <string name="contacts_sync_title">Contacts synchronization</string>
     <string name="rate_app">Rate app</string>
     <string name="share">Share</string>
     <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Birdays will remind you of an important holiday!\n\n</string>
@@ -199,6 +198,7 @@
     <string name="vibration_key" translatable="false">vibration</string>
     <string name="additional_notification_key" translatable="false">additional_notification</string>
     <string name="help_key" translatable="false">help_key</string>
+    <string name="contacts_sync_key" translatable="false">contacts_sync_key</string>
     <string name="rate_key" translatable="false">rate_app</string>
     <string name="share_key" translatable="false">share</string>
     <string name="twitter_key" translatable="false">twitter_key</string>

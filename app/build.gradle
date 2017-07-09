@@ -13,6 +13,8 @@ android {
         versionCode 10
         versionName "1.2.1"
         vectorDrawables.useSupportLibrary = true
+        resValue "string", "main_banner_id", "ca-app-pub-5122433987000361/8152385338"
+        resValue "string", "detail_banner_id", "ca-app-pub-5122433987000361/8105452138"
     }
     buildTypes {
         release {

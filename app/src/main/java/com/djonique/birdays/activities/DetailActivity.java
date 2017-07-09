@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -79,6 +80,10 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvEmail;
     @BindView(R.id.detailRecyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.container_detail)
+    CoordinatorLayout container;
+    @BindView(R.id.banner_detail)
+    AdView adView;
 
     private DBHelper dbHelper;
     private Person person;
@@ -95,7 +100,7 @@ public class DetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        Ad.showDetailBanner(findViewById(R.id.container_detail), (AdView) findViewById(R.id.banner_detail));
+        Ad.showDetailBanner(container, adView);
 
         dbHelper = new DBHelper(getApplicationContext());
 

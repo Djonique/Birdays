@@ -231,7 +231,7 @@ public class AllFragment extends Fragment {
                     adapter.removePerson(location);
                     isRemoved[0] = true;
                     Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.container),
-                            R.string.record_removed, Snackbar.LENGTH_LONG);
+                            R.string.record_removed, Snackbar.LENGTH_SHORT);
 
                     snackbar.setAction(getString(R.string.undo), new View.OnClickListener() {
                         @Override

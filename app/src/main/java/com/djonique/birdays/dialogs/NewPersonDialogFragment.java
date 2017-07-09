@@ -16,7 +16,6 @@
 
 package com.djonique.birdays.dialogs;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,14 +24,11 @@ import android.app.DialogFragment;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.text.Editable;
@@ -48,6 +44,7 @@ import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.ContactsHelper;
+import com.djonique.birdays.utils.PermissionHelper;
 import com.djonique.birdays.utils.Utils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -95,16 +92,12 @@ public class NewPersonDialogFragment extends DialogFragment implements
         addFromContactsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ContextCompat.checkSelfPermission(getActivity(),
-                        Manifest.permission.READ_CONTACTS) ==
-                        PackageManager.PERMISSION_GRANTED) {
+                if (PermissionHelper.permissionGranted(getActivity())) {
                     Intent intent = new Intent(Intent.ACTION_PICK,
                             ContactsContract.Contacts.CONTENT_URI);
                     startActivityForResult(intent, ConstantManager.REQUEST_READ_CONTACTS);
                 } else {
-                    ActivityCompat.requestPermissions(getActivity(),
-                            new String[]{Manifest.permission.READ_CONTACTS},
-                            ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE);
+                    PermissionHelper.requestPermission(getActivity());
                 }
             }
         });
@@ -190,33 +183,35 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 final Button positiveButton =
                         ((AlertDialog) dialog).getButton(DialogInterface.BUTTON_POSITIVE);
 
+                if (etDate != null && etDate.length() == 0) positiveButton.setEnabled(false);
+
                 if (etName != null && etName.length() == 0) {
                     positiveButton.setEnabled(false);
                     tilName.setError(getString(R.string.error_hint));
+                }
 
-                    etName.addTextChangedListener(new TextWatcher() {
-                        @Override
-                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                        }
+                etName.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
 
-                        @Override
-                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-                            if (s.length() == 0) {
-                                tilName.setError(getString(R.string.error_hint));
-                                positiveButton.setEnabled(false);
-                            } else {
-                                tilName.setErrorEnabled(false);
-                                if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
-                                    positiveButton.setEnabled(true);
-                                }
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (s.length() == 0) {
+                            tilName.setError(getString(R.string.error_hint));
+                            positiveButton.setEnabled(false);
+                        } else {
+                            tilName.setErrorEnabled(false);
+                            if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
+                                positiveButton.setEnabled(true);
                             }
                         }
+                    }
 
-                        @Override
-                        public void afterTextChanged(Editable s) {
-                        }
-                    });
-                }
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                    }
+                });
 
                 etDate.addTextChangedListener(new TextWatcher() {
                     @Override

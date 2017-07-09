@@ -20,10 +20,12 @@ import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.models.Person;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -90,7 +92,16 @@ public class Utils {
                 getDay(today) < getDay(dayOfBirthday)) {
             age--;
         }
-        return age;
+        return age + 1;
+    }
+
+    public static String getDifferenceBetweenDates(long date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date);
+        int diffMonths = today.get(Calendar.MONTH) - calendar.get(Calendar.MONTH);
+        int numberOfDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        int diffDays = numberOfDaysInMonth - calendar.get(Calendar.DAY_OF_MONTH) + today.get(Calendar.DAY_OF_MONTH);
+        return "Will be in " + diffMonths + " months and " + diffDays + " days";
     }
 
     public static boolean isEmptyDate(EditText editText) {
@@ -223,7 +234,7 @@ public class Utils {
     /**
      * Formats contacts birthday date from "yyyy-MM-dd" to long
      */
-    public static long formatDateToLong(String dateString) {
+    static long formatDateToLong(String dateString) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
         String[] dateArray = dateString.split("-");
@@ -239,8 +250,22 @@ public class Utils {
         return calendar.getTimeInMillis();
     }
 
-    public static boolean isYearKnown(String dateString) {
+    static boolean isYearKnown(String dateString) {
         String[] dateArray = dateString.split("-");
         return dateArray[0].equals("");
+    }
+
+    /**
+     * Checks if person with the same name already exists in database
+     */
+    static boolean isPersonAlreadyInDB(Person person, List<Person> list) {
+        boolean found = false;
+        for (Person dbPerson : list) {
+            if (person.equals(dbPerson)) {
+                found = true;
+                break;
+            }
+        }
+        return found;
     }
 }

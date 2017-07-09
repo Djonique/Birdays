@@ -16,11 +16,18 @@
 
 package com.djonique.birdays.utils;
 
+import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.widget.Toast;
 
+import com.djonique.birdays.R;
+import com.djonique.birdays.alarm.AlarmHelper;
+import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
@@ -89,7 +96,7 @@ public class ContactsHelper {
     /**
      * Returns all contacts with Birthdays
      */
-    public static List<Person> getAllContactsWithBirthdays(ContentResolver contentResolver) {
+    private static List<Person> getAllContactsWithBirthdays(ContentResolver contentResolver) {
 
         List<Person> contacts = new ArrayList<>();
 
@@ -138,5 +145,37 @@ public class ContactsHelper {
                         + ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY;
         String[] selectionArgs = new String[]{ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE};
         return contentResolver.query(uri, projection, where, selectionArgs, null);
+    }
+
+    /**
+     * Loads all persons with Birthdays from Contacts, compares them with persons from Database and
+     * saves them into DB, sets alarm for added persons
+     */
+    public static void loadContacts(ContentResolver contentResolver,
+                                    Context context,
+                                    SharedPreferences preferences) {
+        DBHelper dbHelper = new DBHelper(context);
+        List<Person> dbPersons = dbHelper.query().getPersons();
+        AlarmHelper alarmHelper = AlarmHelper.getInstance();
+
+        if (PermissionHelper.permissionGranted(context)) {
+            try {
+                List<Person> contacts = ContactsHelper.getAllContactsWithBirthdays(contentResolver);
+
+                for (Person person : contacts) {
+                    if (!Utils.isPersonAlreadyInDB(person, dbPersons)) {
+                        dbHelper.addRec(person);
+                        alarmHelper.setAlarms(person);
+                    }
+                }
+                preferences.edit().putBoolean(ConstantManager.CONTACTS_UPLOADED, true).apply();
+                Toast.makeText(context, R.string.contacts_uploaded, Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                preferences.edit().putBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, true).apply();
+                Toast.makeText(context, R.string.loading_contacts_error, Toast.LENGTH_LONG).show();
+            }
+        } else {
+            PermissionHelper.requestPermission(((Activity) context));
+        }
     }
 }
