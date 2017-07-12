@@ -175,16 +175,4 @@
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin_default"
-        app:backgroundTint="@color/fab_color"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp"
-        app:rippleColor="@color/ripple"
-        app:srcCompat="@drawable/ic_check_grey_24dp" />
 </android.support.design.widget.CoordinatorLayout>

@@ -16,6 +16,7 @@
 
 package com.djonique.birdays.utils;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.widget.EditText;
 
@@ -95,13 +96,21 @@ public class Utils {
         return age + 1;
     }
 
-    public static String getDifferenceBetweenDates(long date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(date);
-        int diffMonths = today.get(Calendar.MONTH) - calendar.get(Calendar.MONTH);
-        int numberOfDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-        int diffDays = numberOfDaysInMonth - calendar.get(Calendar.DAY_OF_MONTH) + today.get(Calendar.DAY_OF_MONTH);
-        return "Will be in " + diffMonths + " months and " + diffDays + " days";
+    public static String daysLeft(Context context, long date) {
+        Calendar birthday = Calendar.getInstance();
+        birthday.setTimeInMillis(date);
+        if (getMonth(today) == getMonth(birthday)
+                && getDay(today) == getDay(birthday)) return context.getString(R.string.today);
+        birthday.set(Calendar.HOUR_OF_DAY, 10);
+        today.set(Calendar.HOUR_OF_DAY, 9);
+        if (getMonth(today) < getMonth(birthday)
+                || (getMonth(today) == getMonth(birthday) && getDay(today) <= getDay(birthday))) {
+            birthday.set(Calendar.YEAR, today.get(Calendar.YEAR));
+        } else {
+            birthday.set(Calendar.YEAR, today.get(Calendar.YEAR) + 1);
+        }
+        long diffDays = (birthday.getTimeInMillis() - today.getTimeInMillis()) / (1000*60*60*24);
+        return String.valueOf(diffDays);
     }
 
     public static boolean isEmptyDate(EditText editText) {
@@ -112,8 +121,7 @@ public class Utils {
      * Checks if date of person's birthday is not in the future
      */
     public static boolean isRightDate(Calendar calendar) {
-        long today = Calendar.getInstance().getTimeInMillis();
-        return today >= calendar.getTimeInMillis();
+        return Calendar.getInstance().getTimeInMillis() >= calendar.getTimeInMillis();
     }
 
     /**
@@ -267,5 +275,15 @@ public class Utils {
             }
         }
         return found;
+    }
+
+    public static String setLetters(String fullName) {
+        String[] names = fullName.split(" ");
+        String letters = "";
+        for (int i = 0; i < names.length; i ++) {
+            if (i == 2) break;
+            letters += names[i].charAt(0);
+        }
+        return letters;
     }
 }

@@ -18,7 +18,6 @@ package com.djonique.birdays.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -35,6 +34,7 @@ import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.ContactsHelper;
+import com.djonique.birdays.utils.PermissionHelper;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
@@ -74,13 +74,10 @@ public class SettingsActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-                if (!preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false)) {
-                    ContactsHelper.loadContacts(getContentResolver(), this, preferences);
-                }
+        if (requestCode == ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE && PermissionHelper.permissionGranted(this)) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            if (!preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false)) {
+                ContactsHelper.loadContacts(getContentResolver(), this, preferences);
             }
         }
     }

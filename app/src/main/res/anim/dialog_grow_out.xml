@@ -18,7 +18,7 @@
 
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <scale
-        android:duration="300"
+        android:duration="@android:integer/config_shortAnimTime"
         android:fromXScale="1.0"
         android:fromYScale="1.0"
         android:pivotX="50%"
@@ -26,7 +26,7 @@
         android:toXScale="0.7"
         android:toYScale="0.7" />
     <alpha
-        android:duration="300"
+        android:duration="@android:integer/config_shortAnimTime"
         android:fromAlpha="1.0"
         android:toAlpha="0.0" />
 </set>

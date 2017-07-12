@@ -100,9 +100,11 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.tvAge.setVisibility(View.GONE);
         } else {
             holder.tvDate.setText(Utils.getDate(date));
-            String age = context.getString(R.string.age) + ": " + Integer.toString(Utils.getAge(date));
+            String daysLeft = Utils.daysLeft(context, date);
+            String today = context.getString(R.string.today);
             holder.tvAge.setVisibility(View.VISIBLE);
-            holder.tvAge.setText(age);
+            holder.tvAge.setText(daysLeft.equals(today) ?
+                    today : context.getString(R.string.days_left) + ": " + daysLeft);
         }
 
         if (email != null) {

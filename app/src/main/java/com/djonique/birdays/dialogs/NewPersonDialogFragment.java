@@ -220,7 +220,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
+                        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar)
+                                || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
                             tilDate.setErrorEnabled(false);
                             if (etName.length() != 0) {
                                 positiveButton.setEnabled(true);

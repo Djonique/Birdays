@@ -58,7 +58,8 @@
     <!-- DetailActivity -->
     <string name="date">День рождения</string>
     <string name="zodiac">Зодиак</string>
-    <string name="age">Возраст</string>
+    <string name="days_left">Дней осталось</string>
+    <string name="today">Сегодня</string>
     <string name="season_picture">Изображение сезона</string>
     <string name="calendar">Календарь</string>
     <string name="call">Позвонить</string>

@@ -42,14 +42,7 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <com.djonique.birdays.views.ThreeTwoImageView
-                    android:id="@+id/ivPicture"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:contentDescription="@string/season_picture"
-                    android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax"
-                    app:layout_collapseParallaxMultiplier="0.7" />
+                <include layout="@layout/toolbar_detail_image" />
 
                 <View
                     android:layout_width="match_parent"
@@ -87,10 +80,15 @@
                         <!--Date-->
                         <RelativeLayout style="@style/materialRL">
 
-                            <ImageView
-                                style="@style/detailActivityIcons"
-                                android:contentDescription="@string/calendar"
-                                app:srcCompat="@drawable/ic_calendar_blue_24dp" />
+                            <TextView
+                                android:id="@+id/tvDetailAge"
+                                android:layout_width="@dimen/zodiac_image_size"
+                                android:layout_height="@dimen/zodiac_image_size"
+                                android:layout_gravity="center_vertical"
+                                android:fontFamily="sans-serif-medium"
+                                android:gravity="center"
+                                android:textColor="@color/color_primary"
+                                android:textSize="24sp" />
 
                             <TextView
                                 android:id="@+id/tvDetailDate"
@@ -100,6 +98,26 @@
                                 style="@style/Material.Secondary.TextView"
                                 android:layout_below="@+id/tvDetailDate"
                                 android:text="@string/date" />
+                        </RelativeLayout>
+
+                        <!--Age-->
+                        <RelativeLayout
+                            android:id="@+id/rlAge"
+                            style="@style/materialRL">
+
+                            <ImageView
+                                style="@style/detailActivityIcons"
+                                android:contentDescription="@string/calendar"
+                                app:srcCompat="@drawable/ic_calendar_blue_24dp" />
+
+                            <TextView
+                                android:id="@+id/tvDaysLeft"
+                                style="@style/Material.Primary.TextView" />
+
+                            <TextView
+                                style="@style/Material.Secondary.TextView"
+                                android:layout_below="@+id/tvDaysLeft"
+                                android:text="@string/days_left" />
                         </RelativeLayout>
 
                         <!--Zodiac-->
@@ -123,21 +141,6 @@
                                 style="@style/Material.Secondary.TextView"
                                 android:layout_below="@+id/tvZodiac"
                                 android:text="@string/zodiac" />
-                        </RelativeLayout>
-
-                        <!--Age-->
-                        <RelativeLayout
-                            android:id="@+id/rlAge"
-                            style="@style/materialRL">
-
-                            <TextView
-                                android:id="@+id/tvDetailAge"
-                                style="@style/Material.Primary.TextView" />
-
-                            <TextView
-                                style="@style/Material.Secondary.TextView"
-                                android:layout_below="@+id/tvDetailAge"
-                                android:text="@string/age" />
                         </RelativeLayout>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>

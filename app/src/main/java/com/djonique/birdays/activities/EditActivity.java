@@ -19,10 +19,10 @@ package com.djonique.birdays.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
@@ -58,14 +58,13 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     EditText etPhone;
     @BindView(R.id.etEditEmail)
     EditText etEmail;
-    @BindView(R.id.fab_edit)
-    FloatingActionButton fab;
 
     private DBHelper dbHelper;
-    private Calendar calendar;
     private Person person;
-    private boolean unknownYear;
+    private Calendar calendar;
     private long date;
+    private boolean unknownYear;
+    private boolean hide = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,17 +72,24 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         setContentView(R.layout.activity_edit);
         ButterKnife.bind(this);
 
-        dbHelper = new DBHelper(this);
-        calendar = Calendar.getInstance();
-
         Intent intent = getIntent();
         long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
+
+        dbHelper = new DBHelper(this);
         person = dbHelper.query().getPerson(timeStamp);
         unknownYear = person.isYearUnknown();
 
-        updateUI();
-
+        calendar = Calendar.getInstance();
         calendar.setTimeInMillis(person.getDate());
+
+        updateUI();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_edit, menu);
+        if (hide) menu.findItem(R.id.menu_edit_ok).setVisible(false);
+        return true;
     }
 
     @Override
@@ -92,6 +98,12 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
             case android.R.id.home:
                 onBackPressed();
                 return true;
+            case R.id.menu_edit_ok:
+                updatePerson();
+                setAlarms(person);
+                setResult(RESULT_OK, new Intent());
+                finish();
+                this.overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -145,6 +157,12 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         return result;
     }
 
+    private void setAlarms(Person person) {
+        AlarmHelper alarmHelper = AlarmHelper.getInstance();
+        alarmHelper.removeAlarms(person.getTimeStamp());
+        alarmHelper.setAlarms(person);
+    }
+
     @OnClick(R.id.etEditDate)
     void pickDate() {
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd =
@@ -175,13 +193,14 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     void validateName() {
         if (etName.length() == 0) {
             tilEditName.setError(getString(R.string.error_hint));
-            fab.hide();
+            hide = true;
         } else {
             if (areFieldsValid()) {
-                fab.show();
+                hide = false;
             }
             tilEditName.setErrorEnabled(false);
         }
+        invalidateOptionsMenu();
     }
 
     @OnTextChanged(value = R.id.etEditDate, callback = OnTextChanged.Callback.TEXT_CHANGED)
@@ -189,12 +208,13 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         if (areFieldsValid()) {
             tilEditDate.setErrorEnabled(false);
             if (etName.length() != 0) {
-                fab.show();
+                hide = false;
             }
         } else {
             tilEditDate.setError(getString(R.string.wrong_date));
-            fab.hide();
+            hide = true;
         }
+        invalidateOptionsMenu();
     }
 
     @OnCheckedChanged(R.id.cbEdit)
@@ -207,28 +227,17 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         if (areFieldsValid()) {
             tilEditDate.setErrorEnabled(false);
             if (etName.length() != 0) {
-                fab.show();
+                hide = false;
             }
         } else {
             tilEditDate.setError(getString(R.string.wrong_date));
-            fab.hide();
+            hide = true;
         }
+        invalidateOptionsMenu();
     }
 
     private boolean areFieldsValid() {
-        return !Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar)
-                || !Utils.isEmptyDate(etDate) && checkBox.isChecked();
-    }
-
-    @OnClick(R.id.fab_edit)
-    void edit() {
-        updatePerson();
-        AlarmHelper alarmHelper = AlarmHelper.getInstance();
-        alarmHelper.removeAlarms(person.getTimeStamp());
-        alarmHelper.setAlarms(person);
-        Intent update = new Intent();
-        setResult(RESULT_OK, update);
-        finish();
-        this.overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
+        return (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar))
+                || (!Utils.isEmptyDate(etDate) && checkBox.isChecked());
     }
 }

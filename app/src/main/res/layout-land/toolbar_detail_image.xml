@@ -16,7 +16,11 @@
     limitations under the License.
 -->
 
-<translate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="250"
-    android:fromXDelta="0"
-    android:toXDelta="100%p" />
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ivPicture"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:contentDescription="@string/season_picture"
+    android:scaleType="centerCrop"
+    app:layout_collapseMode="parallax" />

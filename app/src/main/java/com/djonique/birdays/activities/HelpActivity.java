@@ -62,7 +62,7 @@ public class HelpActivity extends AppCompatActivity {
 
     @OnClick(R.id.help_send_email_button)
     void sendEmail() {
-        String email = "birdaysapp@gmail.com";
+        String email = getString(R.string.birdays_email);
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType(ConstantManager.TYPE_EMAIL);
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});

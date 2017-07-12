@@ -63,7 +63,8 @@
     <!-- DetailActivity -->
     <string name="date">Birthday</string>
     <string name="zodiac">Zodiac</string>
-    <string name="age">Age</string>
+    <string name="days_left">Days left</string>
+    <string name="today">Today</string>
     <string name="season_picture">Season picture</string>
     <string name="calendar">Calendar</string>
     <string name="call">Call</string>
@@ -164,6 +165,7 @@
     </string>
     <string name="help_email_description">If alarm still not working, please contact me at birdaysapp@gmail.com</string>
     <string name="help_send_email">Send email</string>
+    <string name="birdays_email" translatable="false">birdaysapp@gmail.com</string>
 
     <string-array name="additional_notification_entries">
         <item>Never</item>

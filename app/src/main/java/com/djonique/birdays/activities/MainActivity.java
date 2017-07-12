@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements
         NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener {
 
     public static final int INSTALL_DAYS = 7;
-    public static final int LAUNCH_TIMES = 7;
+    public static final int LAUNCH_TIMES = 5;
     public DBHelper dbHelper;
 
     @BindView(R.id.appbar)
@@ -93,11 +93,9 @@ public class MainActivity extends AppCompatActivity implements
         ButterKnife.bind(this);
         FirebaseAnalytics.getInstance(this);
 
-        AlarmHelper.getInstance().init(getApplicationContext());
+        AlarmHelper.getInstance().init(this);
 
         rateThisAppInit(this);
-
-        Ad.showMainBanner(container, adView, fab);
 
         dbHelper = new DBHelper(this);
 
@@ -128,6 +126,8 @@ public class MainActivity extends AppCompatActivity implements
                 return false;
             }
         });
+
+        Ad.showMainBanner(container, adView, fab);
     }
 
     @Override

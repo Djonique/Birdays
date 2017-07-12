@@ -202,9 +202,9 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             if (unknownYear) {
                 listViewHolder.tvDate.setText(Utils.getDateWithoutYear(date));
-                int ageCircleColor = ContextCompat.getColor(context, R.color.disabled);
+                int ageCircleColor = ContextCompat.getColor(context, R.color.fab_color);
                 ageCircle.setColor(ageCircleColor);
-                listViewHolder.tvAge.setText("?");
+                listViewHolder.tvAge.setText(Utils.setLetters(person.getName()));
             } else {
                 final int age = Utils.getAge(date);
                 listViewHolder.tvDate.setText(Utils.getDate(date));

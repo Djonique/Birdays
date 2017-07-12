@@ -68,6 +68,8 @@ public class DetailActivity extends AppCompatActivity {
     RelativeLayout rlAge;
     @BindView(R.id.tvDetailAge)
     TextView tvAge;
+    @BindView(R.id.tvDaysLeft)
+    TextView tvDaysLeft;
     @BindView(R.id.cardViewDetail)
     CardView cardView;
     @BindView(R.id.rlPhone)
@@ -91,7 +93,7 @@ public class DetailActivity extends AppCompatActivity {
     private long date, timeStamp;
     private int position;
     private boolean unknownYear;
-    private String name, phoneNumber, email, shortDate;
+    private String name, phoneNumber, email;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,18 +102,14 @@ public class DetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        Ad.showDetailBanner(container, adView);
-
-        dbHelper = new DBHelper(getApplicationContext());
-
         Intent intent = getIntent();
-
         timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
         position = intent.getIntExtra(ConstantManager.SELECTED_ITEM, 0);
+
+        dbHelper = new DBHelper(this);
         person = dbHelper.query().getPerson(timeStamp);
         name = person.getName();
         date = person.getDate();
-        shortDate = Utils.getDateWithoutYear(date);
         unknownYear = person.isYearUnknown();
         phoneNumber = person.getPhoneNumber();
         email = person.getEmail();
@@ -119,15 +117,15 @@ public class DetailActivity extends AppCompatActivity {
         toolbar.setTitle(name);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 
         updateUI();
 
         loadBornThisDay();
 
         recyclerView.setFocusable(false);
+
+        Ad.showDetailBanner(container, adView);
     }
 
     @Override
@@ -155,7 +153,7 @@ public class DetailActivity extends AppCompatActivity {
                 intentShare.setType(ConstantManager.TEXT_PLAIN);
                 intentShare.putExtra(Intent.EXTRA_TEXT, name
                         + getString(R.string.is_celebrating_bd)
-                        + shortDate
+                        + Utils.getDateWithoutYear(date)
                         + "\n\n"
                         + getString(R.string.play_market_app_link));
                 startActivity(Intent.createChooser(intentShare, getString(R.string.app_name)));
@@ -190,13 +188,15 @@ public class DetailActivity extends AppCompatActivity {
     private void updateUI() {
         setSeasonImage();
 
+        tvDaysLeft.setText(Utils.daysLeft(this, date));
+
         int zodiacId = Utils.getZodiacId(date);
         tvZodiac.setText(getString(zodiacId));
         tvZodiacImage.setText(Utils.getZodiacImage(zodiacId));
 
         if (unknownYear) {
             tvDate.setText(Utils.getDateWithoutYear(date));
-            rlAge.setVisibility(View.GONE);
+            tvAge.setVisibility(View.GONE);
         } else {
             tvDate.setText(Utils.getDate(date));
             tvAge.setText(String.valueOf(Utils.getAge(date)));
@@ -236,7 +236,7 @@ public class DetailActivity extends AppCompatActivity {
     @OnClick(R.id.fab_detail)
     void starEditActivity() {
         logEvent();
-        Intent intent = new Intent(getApplicationContext(), EditActivity.class);
+        Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra(ConstantManager.TIME_STAMP, timeStamp);
         startActivityForResult(intent, ConstantManager.EDIT_ACTIVITY);
         overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
@@ -250,16 +250,12 @@ public class DetailActivity extends AppCompatActivity {
         calendar.setTimeInMillis(date);
         int month = calendar.get(Calendar.MONTH);
         if (month >= 0 && month < 2 || month == 11) {
-            setPicture(imageView, R.drawable.img_winter);
+            imageView.setImageResource(R.drawable.img_winter);
         } else if (month >= 2 && month < 5) {
-            setPicture(imageView, R.drawable.img_spring);
+            imageView.setImageResource(R.drawable.img_spring);
         } else if (month >= 5 && month < 8) {
-            setPicture(imageView, R.drawable.img_summer);
-        } else setPicture(imageView, R.drawable.img_autumn);
-    }
-
-    private void setPicture(ImageView imageView, int drawable) {
-        imageView.setImageResource(drawable);
+            imageView.setImageResource(R.drawable.img_summer);
+        } else imageView.setImageResource(R.drawable.img_autumn);
     }
 
     private void logEvent() {
