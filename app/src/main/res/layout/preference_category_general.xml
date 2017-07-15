@@ -23,6 +23,6 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:text="@string/general"
-    android:textColor="@color/color_primary"
+    android:textColor="@color/color_accent"
     android:textSize="14sp"
     android:textStyle="bold" />
