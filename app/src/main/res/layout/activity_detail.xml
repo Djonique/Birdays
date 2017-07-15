@@ -254,7 +254,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/fab_margin_detail"
             android:layout_marginRight="@dimen/fab_margin_detail"
-            app:backgroundTint="@color/fab_color"
+            app:backgroundTint="@color/accent_green_200"
             app:elevation="6dp"
             app:layout_anchor="@id/appbar_detail"
             app:layout_anchorGravity="bottom|right|end"

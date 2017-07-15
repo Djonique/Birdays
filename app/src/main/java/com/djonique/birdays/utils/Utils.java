@@ -109,7 +109,7 @@ public class Utils {
         } else {
             birthday.set(Calendar.YEAR, today.get(Calendar.YEAR) + 1);
         }
-        long diffDays = (birthday.getTimeInMillis() - today.getTimeInMillis()) / (1000*60*60*24);
+        long diffDays = (birthday.getTimeInMillis() - today.getTimeInMillis()) / (1000 * 60 * 60 * 24);
         return String.valueOf(diffDays);
     }
 
@@ -280,7 +280,7 @@ public class Utils {
     public static String setLetters(String fullName) {
         String[] names = fullName.split(" ");
         String letters = "";
-        for (int i = 0; i < names.length; i ++) {
+        for (int i = 0; i < names.length; i++) {
             if (i == 2) break;
             letters += names[i].charAt(0);
         }

@@ -21,7 +21,7 @@
     <color name="color_primary">#2196F3</color>
     <color name="color_primary_dark">#1976D2</color>
     <color name="color_accent">#43AF84</color>
-    <color name="fab_color">#68EFAD</color>
+    <color name="accent_green_200">#68EFAD</color>
     <color name="tab_text">#BBDEFB</color>
     <color name="primary_text">#DF000000</color>
     <color name="secondary_text">#8A000000</color>

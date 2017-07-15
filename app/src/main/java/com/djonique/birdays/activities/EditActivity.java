@@ -138,7 +138,9 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
      * Updates person's info after editing
      */
     private void updatePerson() {
-        person.setName(updateText(etName));
+        String name = updateText(etName);
+        person.setName(name);
+        person.setLowerCaseName(name.toLowerCase());
         person.setDate(calendar.getTimeInMillis());
         person.setYearUnknown(checkBox.isChecked());
         person.setPhoneNumber(updateText(etPhone));
@@ -150,7 +152,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
      * Uses to update text in updatePerson() method
      */
     private String updateText(EditText editText) {
-        String result = null;
+        String result = "";
         if (editText != null && editText.length() != 0) {
             result = editText.getText().toString();
         }
