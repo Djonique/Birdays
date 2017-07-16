@@ -284,6 +284,6 @@ public class Utils {
             if (i == 2) break;
             letters += names[i].charAt(0);
         }
-        return letters;
+        return letters.toUpperCase();
     }
 }

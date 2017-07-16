@@ -97,15 +97,15 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
         if (unknownYear) {
             holder.tvDate.setText(Utils.getDateWithoutYear(date));
-            holder.tvAge.setVisibility(View.GONE);
         } else {
             holder.tvDate.setText(Utils.getDate(date));
-            String daysLeft = Utils.daysLeft(context, date);
-            String today = context.getString(R.string.today);
-            holder.tvAge.setVisibility(View.VISIBLE);
-            holder.tvAge.setText(daysLeft.equals(today) ?
-                    today : context.getString(R.string.days_left) + ": " + daysLeft);
         }
+
+        String daysLeft = Utils.daysLeft(context, date);
+        String today = context.getString(R.string.today);
+        holder.tvAge.setVisibility(View.VISIBLE);
+        holder.tvAge.setText(daysLeft.equals(today) ?
+                today : context.getString(R.string.days_left) + ": " + daysLeft);
 
         if (email != null) {
             enableButton(holder.btnEmail);
