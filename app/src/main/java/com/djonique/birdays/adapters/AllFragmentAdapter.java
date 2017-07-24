@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -218,14 +217,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            getAllFragment().removePersonDialog(listViewHolder.getLayoutPosition());
-                        }
-                    }, 500);
-
+                    getAllFragment().removePersonDialog(listViewHolder.getLayoutPosition());
                     return true;
                 }
             });
@@ -236,8 +228,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     logEvent();
                     Intent intent = new Intent(context, DetailActivity.class);
                     intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
-                    intent.putExtra(ConstantManager.SELECTED_ITEM, listViewHolder.getAdapterPosition());
-                    allFragment.startActivityForResult(intent, ConstantManager.DETAIL_ACTIVITY);
+                    allFragment.startActivity(intent);
                     if (context instanceof MainActivity) {
                         ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
                     }

@@ -153,13 +153,13 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (etPhone != null && etPhone.length() != 0) {
                     person.setPhoneNumber(etPhone.getText().toString());
                 } else {
-                    person.setPhoneNumber(null);
+                    person.setPhoneNumber("");
                 }
 
                 if (etEmail != null && etEmail.length() != 0) {
                     person.setEmail(etEmail.getText().toString());
                 } else {
-                    person.setEmail(null);
+                    person.setEmail("");
                 }
 
                 addingPersonListener.onPersonAdded(person);

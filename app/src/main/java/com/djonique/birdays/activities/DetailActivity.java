@@ -16,12 +16,14 @@
 
 package com.djonique.birdays.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +40,7 @@ import android.widget.Toast;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.ads.Ad;
+import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
@@ -91,7 +94,6 @@ public class DetailActivity extends AppCompatActivity {
     private Person person;
     private FirebaseAnalytics mFirebaseAnalytics;
     private long date, timeStamp;
-    private int position;
     private boolean unknownYear;
     private String name, phoneNumber, email;
 
@@ -104,7 +106,6 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
-        position = intent.getIntExtra(ConstantManager.SELECTED_ITEM, 0);
 
         dbHelper = new DBHelper(this);
         person = dbHelper.query().getPerson(timeStamp);
@@ -142,11 +143,7 @@ public class DetailActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.menu_detail_delete:
-                Intent mainIntent = new Intent();
-                mainIntent.putExtra(ConstantManager.POSITION, position);
-                setResult(RESULT_OK, mainIntent);
-                finish();
-                overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
+                deleteDialog(person);
                 break;
             case R.id.menu_detail_share:
                 Intent intentShare = new Intent(Intent.ACTION_SEND);
@@ -202,19 +199,23 @@ public class DetailActivity extends AppCompatActivity {
             tvAge.setText(String.valueOf(Utils.getAge(date)));
         }
 
-        if (phoneNumber == null && email == null) cardView.setVisibility(View.GONE);
+        if (isStringEmpty(phoneNumber) && isStringEmpty(email)) cardView.setVisibility(View.GONE);
 
-        if (phoneNumber == null) {
+        if (isStringEmpty(phoneNumber)) {
             rlPhone.setVisibility(View.GONE);
         } else {
             tvPhone.setText(String.valueOf(person.getPhoneNumber()));
         }
 
-        if (email == null) {
+        if (isStringEmpty(email)) {
             rlEmail.setVisibility(View.GONE);
         } else {
             tvEmail.setText(person.getEmail());
         }
+    }
+
+    private boolean isStringEmpty(String text) {
+        return text == null || text.equals("");
     }
 
     /**
@@ -257,6 +258,29 @@ public class DetailActivity extends AppCompatActivity {
             imageView.setImageResource(R.drawable.img_summer);
         } else imageView.setImageResource(R.drawable.img_autumn);
     }
+
+    private void deleteDialog(final Person person) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.delete_record_text) + " " + person.getName() + "?");
+        builder.setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AlarmHelper.getInstance().removeAlarms(timeStamp);
+                dbHelper.removePerson(timeStamp);
+                dialog.dismiss();
+                finish();
+                overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
+            }
+        });
+        builder.setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
 
     private void logEvent() {
         Bundle params = new Bundle();

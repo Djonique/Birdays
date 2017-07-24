@@ -31,6 +31,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.activities.DetailActivity;
+import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
@@ -107,7 +109,19 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         holder.tvAge.setText(daysLeft.equals(today) ?
                 today : context.getString(R.string.days_left) + ": " + daysLeft);
 
-        if (email != null) {
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
+                context.startActivity(intent);
+                if (context instanceof MainActivity) {
+                    ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
+                }
+            }
+        });
+
+        if (email != null && !email.equals("")) {
             enableButton(holder.btnEmail);
             holder.btnEmail.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,7 +139,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             disableButton(holder.btnEmail);
         }
 
-        if (phoneNumber != null) {
+        if (phoneNumber != null && !phoneNumber.equals("")) {
             enableButton(holder.btnPhone);
             enableButton(holder.btnSMS);
             holder.btnPhone.setOnClickListener(new View.OnClickListener() {
