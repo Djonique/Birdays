@@ -23,11 +23,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.activities.MainActivity;
+import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.utils.BirdaysApplication;
 import com.djonique.birdays.utils.ConstantManager;
 
@@ -42,7 +44,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         String string = intent.getStringExtra(ConstantManager.NAME);
         long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
 
-        Intent resultIntent = new Intent(context, MainActivity.class);
+        Intent resultIntent = new Intent(context, DetailActivity.class);
+        resultIntent.putExtra(ConstantManager.TIME_STAMP, timeStamp);
 
         if (BirdaysApplication.isActivityVisible()) {
             resultIntent = intent;
@@ -50,17 +53,18 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, (int) timeStamp,
-                resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = TaskStackBuilder.create(context)
+                .addNextIntentWithParentStack(resultIntent)
+                .getPendingIntent(((int) timeStamp), PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setContentTitle(context.getString(R.string.app_name));
         builder.setContentText(string);
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setWhen(System.currentTimeMillis());
-        builder.setDefaults(Notification.DEFAULT_SOUND);
+        builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
         if (vibrate) {
-            builder.setDefaults(Notification.DEFAULT_ALL);
+            builder.setVibrate(new long[] {1000});
         }
         builder.setContentIntent(pendingIntent);
 
