@@ -282,7 +282,7 @@ public class Utils {
         String letters = "";
         for (int i = 0; i < names.length; i++) {
             if (i == 2) break;
-            letters += names[i].charAt(0);
+            if (names[i].length() > 0) letters += names[i].charAt(0);
         }
         return letters.toUpperCase();
     }

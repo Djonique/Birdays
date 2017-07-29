@@ -16,8 +16,7 @@
     limitations under the License.
 -->
 
-<translate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="250"
-    android:fromXDelta="100%p"
-    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
-    android:toXDelta="0" />
+<layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
+    android:animation="@anim/item_animation_slide_from_bottom"
+    android:animationOrder="normal"
+    android:delay="20%" />

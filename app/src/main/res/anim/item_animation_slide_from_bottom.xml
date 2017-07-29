@@ -16,8 +16,20 @@
     limitations under the License.
 -->
 
-<translate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="250"
-    android:fromXDelta="100%p"
-    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
-    android:toXDelta="0" />
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="@android:integer/config_longAnimTime">
+
+    <translate
+        android:fromYDelta="90%p"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:toYDelta="0" />
+
+    <scale
+        android:fromXScale="0.9"
+        android:fromYScale="0.9"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toXScale="1.0"
+        android:toYScale="1.0" />
+</set>

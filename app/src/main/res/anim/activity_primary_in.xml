@@ -16,9 +16,9 @@
     limitations under the License.
 -->
 
-<set xmlns:android="http://schemas.android.com/apk/res/android">
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="250">
     <scale
-        android:duration="250"
         android:fromXScale="0.8"
         android:fromYScale="0.8"
         android:pivotX="50%"
@@ -26,7 +26,6 @@
         android:toXScale="1.0"
         android:toYScale="1.0" />
     <alpha
-        android:duration="250"
         android:fromAlpha="0"
         android:toAlpha="1.0" />
 </set>
