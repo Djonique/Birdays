@@ -128,6 +128,9 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         Ad.showMainBanner(container, adView, fab);
+
+        // App starts from AllFragment
+        viewPager.setCurrentItem(1);
     }
 
     @Override
