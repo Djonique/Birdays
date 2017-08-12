@@ -25,7 +25,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -33,7 +32,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/BirdaysTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <meta-data
             android:name="com.google.android.gms.version"
@@ -48,7 +47,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/BirdaysTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -60,32 +59,36 @@
             android:name=".activities.DetailActivity"
             android:label=""
             android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.DetailActivity" />
+            android:theme="@style/BirdaysTheme.NoActionBar" />
 
         <!-- EditActivity -->
         <activity
             android:name=".activities.EditActivity"
             android:label="@string/editing_label"
             android:parentActivityName=".activities.DetailActivity"
+            android:theme="@style/BirdaysTheme"
             android:windowSoftInputMode="stateHidden" />
 
         <!-- SettingsActivity -->
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/action_settings"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/BirdaysTheme" />
 
         <!-- HelpActivity-->
         <activity
             android:name=".activities.HelpActivity"
             android:label="@string/help"
-            android:parentActivityName=".activities.SettingsActivity" />
+            android:parentActivityName=".activities.SettingsActivity"
+            android:theme="@style/BirdaysTheme" />
 
         <!-- LicensesActivity -->
         <activity
             android:name=".activities.LicensesActivity"
             android:label="@string/licenses"
-            android:parentActivityName=".activities.SettingsActivity" />
+            android:parentActivityName=".activities.SettingsActivity"
+            android:theme="@style/BirdaysTheme" />
 
         <!-- AdActivity -->
         <activity
@@ -104,5 +107,17 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <!-- BirdaysWidget -->
+        <!--<receiver
+            android:name=".widget.BirdaysWidget"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget" />
+        </receiver>-->
     </application>
 </manifest>

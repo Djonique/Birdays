@@ -38,8 +38,6 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAdapter.ListViewHolder> {
 
     private List<Item> items;
@@ -111,8 +109,8 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
 
         ListViewHolder(View itemView) {
             super(itemView);
-            tvName = ButterKnife.findById(itemView, R.id.tvFamousName);
-            tvDate = ButterKnife.findById(itemView, R.id.tvFamousDate);
+            tvName = ((TextView) itemView.findViewById(R.id.textview_famous_name));
+            tvDate = ((TextView) itemView.findViewById(R.id.textview_famous_date));
         }
     }
 }

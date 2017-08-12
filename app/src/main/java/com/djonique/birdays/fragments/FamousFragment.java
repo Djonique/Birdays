@@ -45,7 +45,7 @@ public class FamousFragment extends Fragment {
 
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
-            addFamousFromDB();
+            addFamousPersonsFromDB();
         }
     }
 
@@ -70,7 +70,7 @@ public class FamousFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    private void addFamousFromDB() {
+    private void addFamousPersonsFromDB() {
         adapter.removeAllPersons();
         List<Person> famous = new ArrayList<>();
 

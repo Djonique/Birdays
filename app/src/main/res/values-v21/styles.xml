@@ -17,14 +17,12 @@
 -->
 
 <resources>
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@color/color_primary_dark</item>
-    </style>
 
-    <style name="AppTheme.DetailActivity" parent="AppTheme.NoActionBar">
+    <style name="BirdaysTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="colorControlHighlight">@color/ripple</item>
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
     </style>
 

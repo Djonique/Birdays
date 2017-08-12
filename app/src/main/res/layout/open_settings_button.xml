@@ -17,8 +17,8 @@
 -->
 
 <Button xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/help_open_settings_button"
+    android:id="@+id/button_help_settings"
     style="@style/HelpButtonStyle"
-    android:background="@color/color_primary"
+    android:background="@color/button_background_v16"
     android:text="@string/help_settings"
-    android:textColor="@android:color/white" />
+    android:textColor="@color/button_text_v16" />

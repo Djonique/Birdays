@@ -111,10 +111,10 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     public void addRecordsFromDB() {
         if (monthFragment != null) {
-            monthFragment.addPersonFromDB();
+            monthFragment.addMonthPersonsFromDB();
         }
         if (allFragment != null) {
-            allFragment.addPersonFromDB();
+            allFragment.addAllPersonsFromDB();
         }
     }
 
@@ -124,12 +124,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
         }
         if (allFragment != null) {
             allFragment.addPerson(person, true);
-        }
-    }
-
-    public void startRemovePersonDialog(int position) {
-        if (allFragment != null) {
-            allFragment.removePersonDialog(position);
         }
     }
 

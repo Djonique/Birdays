@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/ic_contacts_blue_24dp" />
 
     <Button
-        android:id="@+id/addFromContactsDialogButton"
+        android:id="@+id/button_dialog_afc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -39,6 +39,6 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
         android:text="@string/add_from_contacts"
-        android:textColor="@color/color_primary"
+        android:textColor="@color/main_blue_500"
         android:textSize="@dimen/dialog_button_text_size" />
 </LinearLayout>

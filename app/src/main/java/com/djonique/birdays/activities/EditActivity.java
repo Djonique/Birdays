@@ -17,7 +17,9 @@
 package com.djonique.birdays.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -44,19 +46,19 @@ import butterknife.OnTextChanged;
 
 public class EditActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    @BindView(R.id.tilEditName)
+    @BindView(R.id.til_edit_name)
     TextInputLayout tilEditName;
-    @BindView(R.id.etEditName)
+    @BindView(R.id.edittext_edit_name)
     EditText etName;
-    @BindView(R.id.tilEditDate)
+    @BindView(R.id.til_edit_date)
     TextInputLayout tilEditDate;
-    @BindView(R.id.etEditDate)
+    @BindView(R.id.edittext_edit_date)
     EditText etDate;
-    @BindView(R.id.cbEdit)
+    @BindView(R.id.checkbox_edit)
     AppCompatCheckBox checkBox;
-    @BindView(R.id.etEditPhone)
-    EditText etPhone;
-    @BindView(R.id.etEditEmail)
+    @BindView(R.id.edittext_edit_phone)
+    EditText etPhoneNumber;
+    @BindView(R.id.edittext_edit_email)
     EditText etEmail;
 
     private DBHelper dbHelper;
@@ -130,7 +132,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         }
 
         checkBox.setChecked(unknownYear);
-        etPhone.setText(person.getPhoneNumber());
+        etPhoneNumber.setText(person.getPhoneNumber());
         etEmail.setText(person.getEmail());
     }
 
@@ -143,7 +145,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         person.setLowerCaseName(name.toLowerCase());
         person.setDate(calendar.getTimeInMillis());
         person.setYearUnknown(checkBox.isChecked());
-        person.setPhoneNumber(updateText(etPhone));
+        person.setPhoneNumber(updateText(etPhoneNumber));
         person.setEmail(updateText(etEmail));
         dbHelper.updateRec(person);
     }
@@ -165,8 +167,9 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         alarmHelper.setAlarms(person);
     }
 
-    @OnClick(R.id.etEditDate)
+    @OnClick(R.id.edittext_edit_date)
     void pickDate() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd =
                 com.wdullaer.materialdatetimepicker.date.DatePickerDialog.newInstance(
                         EditActivity.this,
@@ -174,6 +177,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
                         calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH)
                 );
+        dpd.setThemeDark(preferences.getBoolean(ConstantManager.NIGHT_MODE_KEY, false));
         dpd.show(getFragmentManager(), ConstantManager.DATE_PICKER_FRAGMENT_TAG);
     }
 
@@ -191,13 +195,13 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         }
     }
 
-    @OnTextChanged(value = R.id.etEditName, callback = OnTextChanged.Callback.TEXT_CHANGED)
+    @OnTextChanged(value = R.id.edittext_edit_name, callback = OnTextChanged.Callback.TEXT_CHANGED)
     void validateName() {
         if (etName.length() == 0) {
             tilEditName.setError(getString(R.string.error_hint));
             hide = true;
         } else {
-            if (areFieldsValid()) {
+            if (fieldsValid()) {
                 hide = false;
             }
             tilEditName.setErrorEnabled(false);
@@ -205,9 +209,9 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         invalidateOptionsMenu();
     }
 
-    @OnTextChanged(value = R.id.etEditDate, callback = OnTextChanged.Callback.TEXT_CHANGED)
+    @OnTextChanged(value = R.id.edittext_edit_date, callback = OnTextChanged.Callback.TEXT_CHANGED)
     void validateDate() {
-        if (areFieldsValid()) {
+        if (fieldsValid()) {
             tilEditDate.setErrorEnabled(false);
             if (etName.length() != 0) {
                 hide = false;
@@ -219,14 +223,14 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         invalidateOptionsMenu();
     }
 
-    @OnCheckedChanged(R.id.cbEdit)
+    @OnCheckedChanged(R.id.checkbox_edit)
     void checkBoxListener() {
         if (checkBox.isChecked()) {
             etDate.setText(Utils.getDateWithoutYear(date));
         } else {
             etDate.setText(Utils.getDate(date));
         }
-        if (areFieldsValid()) {
+        if (fieldsValid()) {
             tilEditDate.setErrorEnabled(false);
             if (etName.length() != 0) {
                 hide = false;
@@ -238,7 +242,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         invalidateOptionsMenu();
     }
 
-    private boolean areFieldsValid() {
+    private boolean fieldsValid() {
         return (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar))
                 || (!Utils.isEmptyDate(etDate) && checkBox.isChecked());
     }

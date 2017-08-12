@@ -27,8 +27,8 @@
         android:interpolator="@android:anim/decelerate_interpolator"
         android:toAlpha="1" />
     <scale
-        android:fromXScale="105%"
-        android:fromYScale="105%"
+        android:fromXScale="110%"
+        android:fromYScale="110%"
         android:interpolator="@android:anim/decelerate_interpolator"
         android:pivotX="50%"
         android:pivotY="50%"

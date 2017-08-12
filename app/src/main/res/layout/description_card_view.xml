@@ -17,7 +17,7 @@
 -->
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cardView"
+    android:id="@+id/cardview_card"
     style="@style/cardViewStyle">
 
     <LinearLayout
@@ -26,7 +26,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/relativeLayout"
+            android:id="@+id/relativelayout_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/selectableItemBackground"
@@ -38,19 +38,24 @@
             android:paddingTop="@dimen/card_default_padding">
 
             <TextView
-                android:id="@+id/tvName"
+                android:id="@+id/textview_card_name"
                 style="@style/Primary.CardView"
                 android:layout_marginBottom="@dimen/card_text_view_bottom_margin" />
 
             <TextView
-                android:id="@+id/tvDate"
+                android:id="@+id/textview_card_date"
                 style="@style/Secondary.TextView"
-                android:layout_below="@+id/tvName" />
+                android:layout_below="@+id/textview_card_name" />
 
             <TextView
-                android:id="@+id/tvAge"
+                android:id="@+id/textview_card_age"
                 style="@style/Secondary.TextView"
-                android:layout_below="@+id/tvDate" />
+                android:layout_below="@+id/textview_card_date" />
+
+            <TextView
+                android:id="@+id/textview_card_left"
+                style="@style/Secondary.TextView"
+                android:layout_below="@+id/textview_card_age" />
         </RelativeLayout>
 
         <!--Divider-->
@@ -65,7 +70,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/btnEmail"
+                android:id="@+id/imagebutton_card_email"
                 style="@style/cardImageButtonStyle"
                 android:contentDescription="@string/send_email" />
 
@@ -76,7 +81,7 @@
                 android:background="@color/divider_color" />
 
             <ImageButton
-                android:id="@+id/btnSMS"
+                android:id="@+id/imagebutton_card_chat"
                 style="@style/cardImageButtonStyle"
                 android:contentDescription="@string/chat" />
 
@@ -87,7 +92,7 @@
                 android:background="@color/divider_color" />
 
             <ImageButton
-                android:id="@+id/btnPhone"
+                android:id="@+id/imagebutton_card_call"
                 style="@style/cardImageButtonStyle"
                 android:contentDescription="@string/call" />
         </LinearLayout>

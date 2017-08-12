@@ -65,7 +65,7 @@ public class AllFragment extends Fragment {
 
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
-            addPersonFromDB();
+            addAllPersonsFromDB();
         }
         alarmHelper = AlarmHelper.getInstance();
     }
@@ -201,7 +201,7 @@ public class AllFragment extends Fragment {
         }
     }
 
-    public void addPersonFromDB() {
+    public void addAllPersonsFromDB() {
         adapter.removeAllPersons();
         List<Person> persons = new ArrayList<>();
         persons.addAll(activity.dbHelper.query().getPersons());
@@ -217,7 +217,7 @@ public class AllFragment extends Fragment {
         Item item = adapter.getItem(location);
 
         Person personText = ((Person) item);
-        builder.setMessage(getString(R.string.delete_record_text) + " " + personText.getName() + "?");
+        builder.setMessage(getString(R.string.delete_record_text) + personText.getName() + "?");
 
         if (item.isPerson()) {
             Person person = ((Person) item);
@@ -230,7 +230,7 @@ public class AllFragment extends Fragment {
 
                     adapter.removePerson(location);
                     isRemoved[0] = true;
-                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.container),
+                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.container_main),
                             R.string.record_removed, Snackbar.LENGTH_SHORT);
 
                     snackbar.setAction(getString(R.string.undo), new View.OnClickListener() {
@@ -244,7 +244,8 @@ public class AllFragment extends Fragment {
                     snackbar.getView().addOnAttachStateChangeListener(
                             new View.OnAttachStateChangeListener() {
                                 @Override
-                                public void onViewAttachedToWindow(View v) {}
+                                public void onViewAttachedToWindow(View v) {
+                                }
 
                                 @Override
                                 public void onViewDetachedFromWindow(View v) {

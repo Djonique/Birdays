@@ -16,6 +16,7 @@
 
 package com.djonique.birdays.activities;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -47,6 +48,7 @@ import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.kobakei.ratethisapp.RateThisApp;
 
 import java.util.Calendar;
 import java.util.List;
@@ -57,45 +59,48 @@ import butterknife.OnClick;
 
 public class DetailActivity extends AppCompatActivity {
 
-    @BindView(R.id.toolbar_detail)
-    Toolbar toolbar;
-    @BindView(R.id.ivPicture)
-    ImageView imageView;
-    @BindView(R.id.tvDetailDate)
-    TextView tvDate;
-    @BindView(R.id.tvZodiacImage)
-    TextView tvZodiacImage;
-    @BindView(R.id.tvZodiac)
-    TextView tvZodiac;
-    @BindView(R.id.rlAge)
-    RelativeLayout rlAge;
-    @BindView(R.id.tvDetailAge)
-    TextView tvAge;
-    @BindView(R.id.tvDaysLeft)
-    TextView tvDaysLeft;
-    @BindView(R.id.cardViewDetail)
-    CardView cardView;
-    @BindView(R.id.rlPhone)
-    RelativeLayout rlPhone;
-    @BindView(R.id.tvDetailPhone)
-    TextView tvPhone;
-    @BindView(R.id.rlEmail)
-    RelativeLayout rlEmail;
-    @BindView(R.id.tvDetailEmail)
-    TextView tvEmail;
-    @BindView(R.id.detailRecyclerView)
-    RecyclerView recyclerView;
+    private static final int INSTALL_DAYS = 7;
+    private static final int LAUNCH_TIMES = 5;
     @BindView(R.id.container_detail)
     CoordinatorLayout container;
+    @BindView(R.id.toolbar_detail)
+    Toolbar toolbar;
+    @BindView(R.id.imageview_detail_picture)
+    ImageView ivSeasonPicture;
+    @BindView(R.id.textview_detail_age)
+    TextView tvAge;
+    @BindView(R.id.textview_detail_date)
+    TextView tvDate;
+    @BindView(R.id.textview_detail_left)
+    TextView tvDaysLeft;
+    @BindView(R.id.relativelayout_detail_since)
+    RelativeLayout rlDaysSinceBirthday;
+    @BindView(R.id.textview_detail_since)
+    TextView tvDaysSinceBirthday;
+    @BindView(R.id.imageview_detail_zodiac)
+    ImageView ivZodiacSign;
+    @BindView(R.id.textview_detail_zodiac)
+    TextView tvZodiacSign;
+    @BindView(R.id.cardview_detail_info)
+    CardView cardViewInfo;
+    @BindView(R.id.relativelayout_detail_phone)
+    RelativeLayout rlPhoneNumber;
+    @BindView(R.id.textview_detail_phone)
+    TextView tvPhoneNumber;
+    @BindView(R.id.relativelayout_detail_email)
+    RelativeLayout rlEmail;
+    @BindView(R.id.textview_detail_email)
+    TextView tvEmail;
+    @BindView(R.id.recyclerview_detail)
+    RecyclerView recyclerView;
     @BindView(R.id.banner_detail)
     AdView adView;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     private DBHelper dbHelper;
     private Person person;
-    private FirebaseAnalytics mFirebaseAnalytics;
-    private long date, timeStamp;
-    private boolean unknownYear;
+    private long timeStamp, date;
     private String name, phoneNumber, email;
+    private boolean unknownYear;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -127,6 +132,8 @@ public class DetailActivity extends AppCompatActivity {
         recyclerView.setFocusable(false);
 
         Ad.showDetailBanner(container, adView);
+
+        rateThisAppInit(this);
     }
 
     @Override
@@ -143,7 +150,7 @@ public class DetailActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.menu_detail_delete:
-                deleteDialog(person);
+                deletePersonDialog(person);
                 break;
             case R.id.menu_detail_share:
                 Intent intentShare = new Intent(Intent.ACTION_SEND);
@@ -187,34 +194,37 @@ public class DetailActivity extends AppCompatActivity {
 
         tvDaysLeft.setText(Utils.daysLeft(this, date));
 
-        int zodiacId = Utils.getZodiacId(date);
-        tvZodiac.setText(getString(zodiacId));
-        tvZodiacImage.setText(Utils.getZodiacImage(zodiacId));
-
         if (unknownYear) {
             tvDate.setText(Utils.getDateWithoutYear(date));
             tvAge.setVisibility(View.GONE);
+            rlDaysSinceBirthday.setVisibility(View.GONE);
         } else {
             tvDate.setText(Utils.getDate(date));
             tvAge.setText(String.valueOf(Utils.getAge(date)));
+            tvDaysSinceBirthday.setText(Utils.daysSinceBirthday(date));
         }
 
-        if (isStringEmpty(phoneNumber) && isStringEmpty(email)) cardView.setVisibility(View.GONE);
+        int zodiacId = Utils.getZodiacId(date);
+        tvZodiacSign.setText(getString(zodiacId));
+        ivZodiacSign.setImageResource(Utils.getZodiacImage(zodiacId));
 
-        if (isStringEmpty(phoneNumber)) {
-            rlPhone.setVisibility(View.GONE);
+        if (isEmpty(phoneNumber) && isEmpty(email))
+            cardViewInfo.setVisibility(View.GONE);
+
+        if (isEmpty(phoneNumber)) {
+            rlPhoneNumber.setVisibility(View.GONE);
         } else {
-            tvPhone.setText(String.valueOf(person.getPhoneNumber()));
+            tvPhoneNumber.setText(String.valueOf(person.getPhoneNumber()));
         }
 
-        if (isStringEmpty(email)) {
+        if (isEmpty(email)) {
             rlEmail.setVisibility(View.GONE);
         } else {
             tvEmail.setText(person.getEmail());
         }
     }
 
-    private boolean isStringEmpty(String text) {
+    private boolean isEmpty(String text) {
         return text == null || text.equals("");
     }
 
@@ -251,17 +261,17 @@ public class DetailActivity extends AppCompatActivity {
         calendar.setTimeInMillis(date);
         int month = calendar.get(Calendar.MONTH);
         if (month >= 0 && month < 2 || month == 11) {
-            imageView.setImageResource(R.drawable.img_winter);
+            ivSeasonPicture.setImageResource(R.drawable.img_winter);
         } else if (month >= 2 && month < 5) {
-            imageView.setImageResource(R.drawable.img_spring);
+            ivSeasonPicture.setImageResource(R.drawable.img_spring);
         } else if (month >= 5 && month < 8) {
-            imageView.setImageResource(R.drawable.img_summer);
-        } else imageView.setImageResource(R.drawable.img_autumn);
+            ivSeasonPicture.setImageResource(R.drawable.img_summer);
+        } else ivSeasonPicture.setImageResource(R.drawable.img_autumn);
     }
 
-    private void deleteDialog(final Person person) {
+    private void deletePersonDialog(final Person person) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.delete_record_text) + " " + person.getName() + "?");
+        builder.setMessage(getString(R.string.delete_record_text) + person.getName() + "?");
         builder.setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -281,6 +291,15 @@ public class DetailActivity extends AppCompatActivity {
         builder.show();
     }
 
+    /**
+     * «Rate this app» dialog initialization
+     */
+    private void rateThisAppInit(Context context) {
+        RateThisApp.onCreate(context);
+        RateThisApp.Config config = new RateThisApp.Config(INSTALL_DAYS, LAUNCH_TIMES);
+        RateThisApp.init(config);
+        RateThisApp.showRateDialogIfNeeded(context);
+    }
 
     private void logEvent() {
         Bundle params = new Bundle();
@@ -288,13 +307,13 @@ public class DetailActivity extends AppCompatActivity {
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
     }
 
-    @OnClick(R.id.ibPhoneIcon)
+    @OnClick(R.id.imagebutton_detail_phone)
     void makeCall() {
         mFirebaseAnalytics.logEvent(ConstantManager.MAKE_CALL, new Bundle());
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(ConstantManager.TEL + phoneNumber)));
     }
 
-    @OnClick(R.id.ibChatIcon)
+    @OnClick(R.id.imagebutton_detail_chat)
     void sendMessage() {
         mFirebaseAnalytics.logEvent(ConstantManager.SEND_MESSAGE, new Bundle());
         Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -304,7 +323,7 @@ public class DetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @OnClick(R.id.ibEmailIcon)
+    @OnClick(R.id.imagebutton_detail_email)
     void sendEmail() {
         mFirebaseAnalytics.logEvent(ConstantManager.SEND_EMAIL, new Bundle());
         Intent intent = new Intent(Intent.ACTION_SENDTO);

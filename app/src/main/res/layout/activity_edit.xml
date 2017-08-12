@@ -19,7 +19,6 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_edit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.djonique.birdays.activities.EditActivity">
@@ -51,14 +50,14 @@
                     app:srcCompat="@drawable/ic_person_blue_24dp" />
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/tilEditName"
+                    android:id="@+id/til_edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/edit_text_view_left_padding"
                     android:layout_marginStart="@dimen/edit_text_view_left_padding">
 
                     <EditText
-                        android:id="@+id/etEditName"
+                        android:id="@+id/edittext_edit_name"
                         style="@style/dialogTextStyle"
                         android:hint="@string/name"
                         android:inputType="textCapWords" />
@@ -82,17 +81,17 @@
                     app:srcCompat="@drawable/ic_calendar_blue_24dp" />
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/tilEditDate"
+                    android:id="@+id/til_edit_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/edit_text_view_left_padding"
                     android:layout_marginStart="@dimen/edit_text_view_left_padding">
 
                     <EditText
-                        android:id="@+id/etEditDate"
+                        android:id="@+id/edittext_edit_date"
                         style="@android:style/Widget.Holo.Spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/default_padding"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
@@ -103,7 +102,7 @@
             </LinearLayout>
 
             <android.support.v7.widget.AppCompatCheckBox
-                android:id="@+id/cbEdit"
+                android:id="@+id/checkbox_edit"
                 style="@style/primaryTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,7 +126,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/edit_image_padding"
                     android:layout_marginStart="@dimen/edit_image_padding"
-                    android:contentDescription="@string/phone"
+                    android:contentDescription="@string/phone_number"
                     app:srcCompat="@drawable/ic_call_blue_24dp" />
 
                 <android.support.design.widget.TextInputLayout
@@ -137,9 +136,9 @@
                     android:layout_marginStart="@dimen/edit_text_view_left_padding">
 
                     <EditText
-                        android:id="@+id/etEditPhone"
+                        android:id="@+id/edittext_edit_phone"
                         style="@style/dialogTextStyle"
-                        android:hint="@string/phone"
+                        android:hint="@string/phone_number"
                         android:inputType="phone" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -167,7 +166,7 @@
                     android:layout_marginStart="@dimen/edit_text_view_left_padding">
 
                     <EditText
-                        android:id="@+id/etEditEmail"
+                        android:id="@+id/edittext_edit_email"
                         style="@style/dialogTextStyle"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress" />

@@ -17,8 +17,8 @@
 -->
 
 <Button xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/help_send_email_button"
+    android:id="@+id/button_help_email"
     style="@style/HelpButtonStyle"
-    android:background="@color/color_primary"
-    android:text="@string/help_send_email"
-    android:textColor="@android:color/white" />
+    android:background="@color/button_background_v16"
+    android:text="@string/send_email"
+    android:textColor="@color/button_text_v16" />

@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.models.Person;
@@ -70,7 +71,7 @@ public class AlarmHelper {
     }
 
     private void setAdditionalAlarm(Person person) {
-        additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION, "0"));
+        additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION_KEY, "0"));
 
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(ConstantManager.NAME, person.getName() + context.getString(R.string.additional_notification_greetings) + makeGreetings(additionalNotificationOffset));
@@ -87,10 +88,14 @@ public class AlarmHelper {
     }
 
     public void setAlarms(Person person) {
-        setAlarm(person);
-        additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION, "0"));
-        if (additionalNotificationOffset != 0) {
-            setAdditionalAlarm(person);
+        try {
+            setAlarm(person);
+            additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION_KEY, "0"));
+            if (additionalNotificationOffset != 0) {
+                setAdditionalAlarm(person);
+            }
+        } catch (SecurityException e) {
+            Toast.makeText(context, R.string.security_exception, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -128,7 +133,7 @@ public class AlarmHelper {
 
     public void removeAlarms(long timeStamp) {
         removeAlarm(timeStamp);
-        additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION, "0"));
+        additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION_KEY, "0"));
         if (additionalNotificationOffset != 0) {
             removeAdditionalAlarm(timeStamp);
         }
@@ -136,7 +141,7 @@ public class AlarmHelper {
 
     private long setupCalendarYear(Person person, long offset) {
         long now = Calendar.getInstance().getTimeInMillis();
-        long notificationTime = preferences.getLong(ConstantManager.NOTIFICATION_TIME, defaultNotificationTime);
+        long notificationTime = preferences.getLong(ConstantManager.NOTIFICATION_TIME_KEY, defaultNotificationTime);
         Calendar notificationTimeCalendar = Calendar.getInstance();
         notificationTimeCalendar.setTimeInMillis(notificationTime);
 

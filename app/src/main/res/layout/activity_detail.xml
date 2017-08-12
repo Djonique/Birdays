@@ -59,7 +59,6 @@
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nested"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
@@ -81,29 +80,26 @@
                         <RelativeLayout style="@style/materialRL">
 
                             <TextView
-                                android:id="@+id/tvDetailAge"
+                                android:id="@+id/textview_detail_age"
                                 android:layout_width="@dimen/zodiac_image_size"
                                 android:layout_height="@dimen/zodiac_image_size"
                                 android:layout_gravity="center_vertical"
-                                android:fontFamily="sans-serif-medium"
                                 android:gravity="center"
-                                android:textColor="@color/color_primary"
+                                android:textColor="@color/main_blue_500"
                                 android:textSize="24sp" />
 
                             <TextView
-                                android:id="@+id/tvDetailDate"
+                                android:id="@+id/textview_detail_date"
                                 style="@style/Material.Primary.TextView" />
 
                             <TextView
                                 style="@style/Material.Secondary.TextView"
-                                android:layout_below="@+id/tvDetailDate"
+                                android:layout_below="@+id/textview_detail_date"
                                 android:text="@string/date" />
                         </RelativeLayout>
 
-                        <!--Age-->
-                        <RelativeLayout
-                            android:id="@+id/rlAge"
-                            style="@style/materialRL">
+                        <!-- DaysLeft -->
+                        <RelativeLayout style="@style/materialRL">
 
                             <ImageView
                                 style="@style/detailActivityIcons"
@@ -111,42 +107,57 @@
                                 app:srcCompat="@drawable/ic_calendar_blue_24dp" />
 
                             <TextView
-                                android:id="@+id/tvDaysLeft"
+                                android:id="@+id/textview_detail_left"
                                 style="@style/Material.Primary.TextView" />
 
                             <TextView
                                 style="@style/Material.Secondary.TextView"
-                                android:layout_below="@+id/tvDaysLeft"
+                                android:layout_below="@+id/textview_detail_left"
                                 android:text="@string/days_left" />
+                        </RelativeLayout>
+
+                        <!-- DaysSinceBirthdays -->
+                        <RelativeLayout
+                            android:id="@+id/relativelayout_detail_since"
+                            style="@style/materialRL">
+
+                            <ImageView
+                                style="@style/detailActivityIcons"
+                                android:contentDescription="@string/calendar"
+                                app:srcCompat="@drawable/ic_calendar_range_blue_24dp" />
+
+                            <TextView
+                                android:id="@+id/textview_detail_since"
+                                style="@style/Material.Primary.TextView" />
+
+                            <TextView
+                                style="@style/Material.Secondary.TextView"
+                                android:layout_below="@+id/textview_detail_since"
+                                android:text="@string/days_since_birth" />
                         </RelativeLayout>
 
                         <!--Zodiac-->
                         <RelativeLayout style="@style/materialRL">
 
-                            <TextView
-                                android:id="@+id/tvZodiacImage"
-                                android:layout_width="@dimen/zodiac_image_size"
-                                android:layout_height="@dimen/zodiac_image_size"
-                                android:layout_gravity="center_vertical"
-                                android:fontFamily="sans-serif-medium"
-                                android:gravity="center"
-                                android:textColor="@color/color_primary"
-                                android:textSize="24sp" />
+                            <ImageView
+                                android:id="@+id/imageview_detail_zodiac"
+                                style="@style/detailActivityIcons"
+                                android:contentDescription="@string/zodiac_sign" />
 
                             <TextView
-                                android:id="@+id/tvZodiac"
+                                android:id="@+id/textview_detail_zodiac"
                                 style="@style/Material.Primary.TextView" />
 
                             <TextView
                                 style="@style/Material.Secondary.TextView"
-                                android:layout_below="@+id/tvZodiac"
-                                android:text="@string/zodiac" />
+                                android:layout_below="@+id/textview_detail_zodiac"
+                                android:text="@string/zodiac_sign" />
                         </RelativeLayout>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/cardViewDetail"
+                    android:id="@+id/cardview_detail_info"
                     style="@style/cardViewStyle">
 
                     <LinearLayout
@@ -154,22 +165,22 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <!--Phone number-->
+                        <!-- Phone number -->
                         <RelativeLayout
-                            android:id="@+id/rlPhone"
+                            android:id="@+id/relativelayout_detail_phone"
                             style="@style/contactsInfoRL">
 
                             <ImageButton
-                                android:id="@+id/ibPhoneIcon"
+                                android:id="@+id/imagebutton_detail_phone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="?attr/selectableItemBackgroundBorderless"
-                                android:contentDescription="@string/phone"
+                                android:contentDescription="@string/phone_number"
                                 android:padding="@dimen/detail_icon_padding"
                                 app:srcCompat="@drawable/ic_call_blue_24dp" />
 
                             <ImageButton
-                                android:id="@+id/ibChatIcon"
+                                android:id="@+id/imagebutton_detail_chat"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
@@ -180,26 +191,26 @@
                                 app:srcCompat="@drawable/ic_chat_blue_24dp" />
 
                             <TextView
-                                android:id="@+id/tvDetailPhone"
+                                android:id="@+id/textview_detail_phone"
                                 style="@style/Primary.TextView"
                                 android:layout_marginLeft="@dimen/detail_text_view_padding"
                                 android:layout_marginStart="@dimen/detail_text_view_padding" />
 
                             <TextView
                                 style="@style/Secondary.TextView"
-                                android:layout_below="@+id/tvDetailPhone"
+                                android:layout_below="@+id/textview_detail_phone"
                                 android:layout_marginLeft="@dimen/detail_text_view_padding"
                                 android:layout_marginStart="@dimen/detail_text_view_padding"
-                                android:text="@string/phone" />
+                                android:text="@string/phone_number" />
                         </RelativeLayout>
 
                         <!--Email-->
                         <RelativeLayout
-                            android:id="@+id/rlEmail"
+                            android:id="@+id/relativelayout_detail_email"
                             style="@style/contactsInfoRL">
 
                             <ImageButton
-                                android:id="@+id/ibEmailIcon"
+                                android:id="@+id/imagebutton_detail_email"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -208,14 +219,14 @@
                                 app:srcCompat="@drawable/ic_email_blue_24dp" />
 
                             <TextView
-                                android:id="@+id/tvDetailEmail"
+                                android:id="@+id/textview_detail_email"
                                 style="@style/Primary.TextView"
                                 android:layout_marginLeft="@dimen/detail_text_view_padding"
                                 android:layout_marginStart="@dimen/detail_text_view_padding" />
 
                             <TextView
                                 style="@style/Secondary.TextView"
-                                android:layout_below="@+id/tvDetailEmail"
+                                android:layout_below="@+id/textview_detail_email"
                                 android:layout_marginLeft="@dimen/detail_text_view_padding"
                                 android:layout_marginStart="@dimen/detail_text_view_padding"
                                 android:text="@string/email" />
@@ -240,7 +251,7 @@
                             android:text="@string/born_on_this_day" />
 
                         <android.support.v7.widget.RecyclerView
-                            android:id="@+id/detailRecyclerView"
+                            android:id="@+id/recyclerview_detail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </LinearLayout>

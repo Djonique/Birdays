@@ -35,19 +35,19 @@ import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.ContactsHelper;
 import com.djonique.birdays.utils.PermissionHelper;
+import com.djonique.birdays.utils.Utils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity implements ContactsHelper.LoadingContactsListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         BirdaysPreferenceFragment fragment = new BirdaysPreferenceFragment();
-        getFragmentManager().beginTransaction().replace(android.R.id.content,
-                fragment).commit();
+        getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
@@ -77,9 +77,14 @@ public class SettingsActivity extends AppCompatActivity {
         if (requestCode == ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE && PermissionHelper.permissionGranted(this)) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             if (!preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false)) {
-                ContactsHelper.loadContacts(getContentResolver(), this, preferences);
+                ContactsHelper contactsHelper = new ContactsHelper(this, getContentResolver());
+                contactsHelper.loadContacts(preferences);
             }
         }
+    }
+
+    @Override
+    public void onContactsUploaded() {
     }
 
     public static class BirdaysPreferenceFragment extends PreferenceFragment
@@ -93,7 +98,6 @@ public class SettingsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
             mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
-
             logEvent();
 
             preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -101,7 +105,7 @@ public class SettingsActivity extends AppCompatActivity {
             /*
             * Sets summary for additional notification
             */
-            Preference additionalNotification = findPreference(ConstantManager.ADDITIONAL_NOTIFICATION);
+            Preference additionalNotification = findPreference(ConstantManager.ADDITIONAL_NOTIFICATION_KEY);
             additionalNotification.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -135,7 +139,8 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     if (!preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false)) {
-                        ContactsHelper.loadContacts(getActivity().getContentResolver(), getActivity(), preferences);
+                        ContactsHelper contactsHelper = new ContactsHelper(getActivity(), getActivity().getContentResolver());
+                        contactsHelper.loadContacts(preferences);
                     }
                     return true;
                 }
@@ -180,8 +185,8 @@ public class SettingsActivity extends AppCompatActivity {
             List<Person> persons = dbHelper.query().getPersons();
             AlarmHelper alarmHelper = AlarmHelper.getInstance();
             switch (key) {
-                case ConstantManager.NOTIFICATIONS:
-                    boolean isChecked = sharedPreferences.getBoolean(getString(R.string.notifications_key), false);
+                case ConstantManager.NOTIFICATIONS_KEY:
+                    boolean isChecked = sharedPreferences.getBoolean(ConstantManager.NOTIFICATIONS_KEY, false);
                     if (isChecked) {
                         for (Person person : persons) {
                             alarmHelper.setAlarms(person);
@@ -192,17 +197,21 @@ public class SettingsActivity extends AppCompatActivity {
                         }
                     }
                     break;
-                case ConstantManager.NOTIFICATION_TIME:
+                case ConstantManager.NOTIFICATION_TIME_KEY:
                     for (Person person : persons) {
                         alarmHelper.removeAlarms(person.getTimeStamp());
                         alarmHelper.setAlarms(person);
                     }
                     break;
-                case ConstantManager.ADDITIONAL_NOTIFICATION:
+                case ConstantManager.ADDITIONAL_NOTIFICATION_KEY:
                     for (Person person : persons) {
                         alarmHelper.removeAlarms(person.getTimeStamp());
                         alarmHelper.setAlarms(person);
                     }
+                    break;
+                case ConstantManager.NIGHT_MODE_KEY:
+                    Utils.setupDayNightTheme(sharedPreferences);
+                    restartApp();
                     break;
             }
         }
@@ -225,6 +234,13 @@ public class SettingsActivity extends AppCompatActivity {
             Bundle params = new Bundle();
             params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, ConstantManager.SETTINGS_ACTIVITY_TAG);
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
+        }
+
+        private void restartApp() {
+            Intent intent = getActivity().getPackageManager()
+                    .getLaunchIntentForPackage(getActivity().getPackageName());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         }
     }
 }

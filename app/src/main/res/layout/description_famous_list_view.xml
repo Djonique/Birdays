@@ -21,12 +21,12 @@
     android:background="?android:attr/selectableItemBackground">
 
     <TextView
-        android:id="@+id/tvFamousName"
+        android:id="@+id/textview_famous_name"
         style="@style/Primary.TextView"
         android:maxLines="1" />
 
     <TextView
-        android:id="@+id/tvFamousDate"
+        android:id="@+id/textview_famous_date"
         style="@style/Secondary.TextView"
-        android:layout_below="@+id/tvFamousName" />
+        android:layout_below="@+id/textview_famous_name" />
 </RelativeLayout>

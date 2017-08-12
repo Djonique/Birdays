@@ -42,8 +42,6 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_PERSON = 0;
@@ -195,22 +193,17 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             listViewHolder.tvName.setText(person.getName());
 
             long date = person.getDate();
-            boolean unknownYear = person.isYearUnknown();
 
             GradientDrawable ageCircle = (GradientDrawable) listViewHolder.tvAge.getBackground();
 
-            if (unknownYear) {
+            if (person.isYearUnknown()) {
+                listViewHolder.tvAge.setVisibility(View.GONE);
                 listViewHolder.tvDate.setText(Utils.getDateWithoutYear(date));
-                ageCircle.setColor(ContextCompat.getColor(context, R.color.accent_green_200));
-                listViewHolder.tvAge.setTextColor(ContextCompat.getColor(context, R.color.secondary_text));
-                listViewHolder.tvAge.setShadowLayer(1, 1, 1, ContextCompat.getColor(context, android.R.color.white));
-                listViewHolder.tvAge.setText(Utils.setLetters(person.getName()));
             } else {
+                listViewHolder.tvAge.setVisibility(View.VISIBLE);
                 final int age = Utils.getAge(date);
                 listViewHolder.tvDate.setText(Utils.getDate(date));
                 ageCircle.setColor(ContextCompat.getColor(context, getAgeCircleColor(age)));
-                listViewHolder.tvAge.setTextColor(ContextCompat.getColor(context, android.R.color.white));
-                listViewHolder.tvAge.setShadowLayer(1, 1, 1, ContextCompat.getColor(context, R.color.secondary_text));
                 listViewHolder.tvAge.setText(String.valueOf(age));
             }
 
@@ -230,7 +223,8 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
                     allFragment.startActivity(intent);
                     if (context instanceof MainActivity) {
-                        ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
+                        ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in,
+                                R.anim.activity_primary_out);
                     }
                 }
             });
@@ -302,9 +296,9 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         ListViewHolder(View itemView) {
             super(itemView);
-            tvName = ButterKnife.findById(itemView, R.id.tvPersonName);
-            tvDate = ButterKnife.findById(itemView, R.id.tvPersonDate);
-            tvAge = ButterKnife.findById(itemView, R.id.tvListAge);
+            tvName = ((TextView) itemView.findViewById(R.id.textview_all_name));
+            tvDate = ((TextView) itemView.findViewById(R.id.textview_all_date));
+            tvAge = ((TextView) itemView.findViewById(R.id.textview_all_age));
         }
     }
 
@@ -313,7 +307,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         SeparatorViewHolder(View itemView) {
             super(itemView);
-            type = ButterKnife.findById(itemView, R.id.tvSeparator);
+            type = ((TextView) itemView.findViewById(R.id.textview_separator));
         }
     }
 }

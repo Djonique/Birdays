@@ -21,22 +21,27 @@
     android:background="?android:attr/selectableItemBackground">
 
     <TextView
-        android:id="@+id/tvListAge"
+        android:id="@+id/textview_all_age"
         android:layout_width="@dimen/age_circle_size"
         android:layout_height="@dimen/age_circle_size"
         android:layout_gravity="center_vertical"
         android:background="@drawable/age_circle"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
+        android:shadowColor="@android:color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/age_circle_text_size" />
 
     <TextView
-        android:id="@+id/tvPersonName"
+        android:id="@+id/textview_all_name"
         style="@style/Material.Primary.TextView"
         android:maxLines="1" />
 
     <TextView
-        android:id="@+id/tvPersonDate"
+        android:id="@+id/textview_all_date"
         style="@style/Material.Secondary.TextView"
-        android:layout_below="@+id/tvPersonName" />
+        android:layout_below="@+id/textview_all_name" />
 </RelativeLayout>

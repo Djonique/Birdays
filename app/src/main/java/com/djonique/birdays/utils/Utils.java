@@ -17,6 +17,8 @@
 package com.djonique.birdays.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 import android.widget.EditText;
 
@@ -32,6 +34,7 @@ import java.util.TimeZone;
 
 public class Utils {
 
+    private static final int MILLISECONDS_IN_A_DAY = 86400000;
     private static Calendar today = Calendar.getInstance();
     private static Calendar dayOfBirthday = Calendar.getInstance();
 
@@ -109,7 +112,16 @@ public class Utils {
         } else {
             birthday.set(Calendar.YEAR, today.get(Calendar.YEAR) + 1);
         }
-        long diffDays = (birthday.getTimeInMillis() - today.getTimeInMillis()) / (1000 * 60 * 60 * 24);
+        long diffDays = (birthday.getTimeInMillis() - today.getTimeInMillis()) / MILLISECONDS_IN_A_DAY;
+        return String.valueOf(diffDays);
+    }
+
+    public static String daysSinceBirthday(long date) {
+        Calendar birthday = Calendar.getInstance();
+        birthday.setTimeInMillis(date);
+        birthday.set(Calendar.HOUR_OF_DAY, 9);
+        today.set(Calendar.HOUR_OF_DAY, 10);
+        long diffDays = (today.getTimeInMillis() - birthday.getTimeInMillis()) / MILLISECONDS_IN_A_DAY;
         return String.valueOf(diffDays);
     }
 
@@ -189,44 +201,44 @@ public class Utils {
     /**
      * Returns image of certain zodiac
      */
-    public static String getZodiacImage(int resId) {
-        String zodiacImage = null;
+    public static int getZodiacImage(int resId) {
+        int zodiacImage = 0;
         switch (resId) {
             case R.string.aries:
-                zodiacImage = "\u2648";
+                zodiacImage = R.drawable.ic_aries;
                 break;
             case R.string.taurus:
-                zodiacImage = "\u2649";
+                zodiacImage = R.drawable.ic_taurus;
                 break;
             case R.string.gemini:
-                zodiacImage = "\u264A";
+                zodiacImage = R.drawable.ic_gemini;
                 break;
             case R.string.cancer:
-                zodiacImage = "\u264B";
+                zodiacImage = R.drawable.ic_cancer;
                 break;
             case R.string.leo:
-                zodiacImage = "\u264C";
+                zodiacImage = R.drawable.ic_leo;
                 break;
             case R.string.virgo:
-                zodiacImage = "\u264D";
+                zodiacImage = R.drawable.ic_virgo;
                 break;
             case R.string.libra:
-                zodiacImage = "\u264E";
+                zodiacImage = R.drawable.ic_libra;
                 break;
             case R.string.scorpio:
-                zodiacImage = "\u264F";
+                zodiacImage = R.drawable.ic_scorpio;
                 break;
             case R.string.sagittarius:
-                zodiacImage = "\u2650";
+                zodiacImage = R.drawable.ic_sagittarius;
                 break;
             case R.string.capricorn:
-                zodiacImage = "\u2651";
+                zodiacImage = R.drawable.ic_capricorn;
                 break;
             case R.string.aquarius:
-                zodiacImage = "\u2652";
+                zodiacImage = R.drawable.ic_aquarius;
                 break;
             case R.string.pisces:
-                zodiacImage = "\u2653";
+                zodiacImage = R.drawable.ic_pisces;
                 break;
         }
         return zodiacImage;
@@ -277,7 +289,16 @@ public class Utils {
         return found;
     }
 
-    public static String setLetters(String fullName) {
+    public static void setupDayNightTheme(SharedPreferences preferences) {
+        boolean nightMode = preferences.getBoolean(ConstantManager.NIGHT_MODE_KEY, false);
+        if (nightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+    /*public static String setLetters(String fullName) {
         String[] names = fullName.split(" ");
         String letters = "";
         for (int i = 0; i < names.length; i++) {
@@ -285,5 +306,5 @@ public class Utils {
             if (names[i].length() > 0) letters += names[i].charAt(0);
         }
         return letters.toUpperCase();
-    }
+    }*/
 }

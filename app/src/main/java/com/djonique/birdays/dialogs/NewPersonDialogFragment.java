@@ -24,9 +24,11 @@ import android.app.DialogFragment;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatButton;
@@ -54,6 +56,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     private AddingPersonListener addingPersonListener;
+    private SharedPreferences preferences;
     private EditText etName, etPhone, etEmail, etDate;
     private AppCompatCheckBox cbKnownYear;
     private Calendar calendar;
@@ -67,6 +70,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         super.onAttach(activity);
         try {
             addingPersonListener = (AddingPersonListener) activity;
+            preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         } catch (ClassCastException e) {
             throw new ClassCastException();
         }
@@ -88,7 +92,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         View container = inflater.inflate(R.layout.fragment_dialog, null);
 
         AppCompatButton addFromContactsButton =
-                ((AppCompatButton) container.findViewById(R.id.addFromContactsDialogButton));
+                ((AppCompatButton) container.findViewById(R.id.button_dialog_afc));
         addFromContactsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,17 +106,17 @@ public class NewPersonDialogFragment extends DialogFragment implements
             }
         });
 
-        final TextInputLayout tilName = (TextInputLayout) container.findViewById(R.id.tilName);
+        final TextInputLayout tilName = (TextInputLayout) container.findViewById(R.id.til_dialog_name);
         etName = tilName.getEditText();
 
-        final TextInputLayout tilPhone = (TextInputLayout) container.findViewById(R.id.tilPhone);
+        final TextInputLayout tilPhone = (TextInputLayout) container.findViewById(R.id.til_dialog_phone);
         etPhone = tilPhone.getEditText();
 
-        final TextInputLayout tilEmail = (TextInputLayout) container.findViewById(R.id.tilEmail);
+        final TextInputLayout tilEmail = (TextInputLayout) container.findViewById(R.id.til_dialog_email);
         etEmail = tilEmail.getEditText();
 
-        final TextInputLayout tilDate = ((TextInputLayout) container.findViewById(R.id.tilDate));
-        etDate = (EditText) container.findViewById(R.id.etDate);
+        final TextInputLayout tilDate = ((TextInputLayout) container.findViewById(R.id.til_dialog_date));
+        etDate = (EditText) container.findViewById(R.id.edittext_dialog_date);
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,11 +130,12 @@ public class NewPersonDialogFragment extends DialogFragment implements
                                 calendar.get(Calendar.MONTH),
                                 calendar.get(Calendar.DAY_OF_MONTH)
                         );
+                dpd.setThemeDark(preferences.getBoolean(ConstantManager.NIGHT_MODE_KEY, false));
                 dpd.show(getFragmentManager(), ConstantManager.DATE_PICKER_FRAGMENT_TAG);
             }
         });
 
-        cbKnownYear = ((AppCompatCheckBox) container.findViewById(R.id.cbKnownYear));
+        cbKnownYear = ((AppCompatCheckBox) container.findViewById(R.id.checkbox_dialog));
 
         builder.setView(container);
         builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
@@ -286,14 +291,15 @@ public class NewPersonDialogFragment extends DialogFragment implements
         if (resultCode == Activity.RESULT_OK) {
             Uri contactData = data.getData();
             ContentResolver contentResolver = getActivity().getContentResolver();
+            ContactsHelper contactsHelper = new ContactsHelper(getActivity(), contentResolver);
             Cursor cursor = contentResolver.query(contactData, null, null, null, null);
             if (cursor != null && cursor.getCount() > 0) {
                 if (cursor.moveToFirst()) {
                     String id = cursor.getString(
                             cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                    etName.setText(ContactsHelper.getContactName(contentResolver, id));
-                    etPhone.setText(ContactsHelper.getContactPhoneNumber(contentResolver, id));
-                    etEmail.setText(ContactsHelper.getContactEmail(contentResolver, id));
+                    etName.setText(contactsHelper.getContactName(contentResolver, id));
+                    etPhone.setText(contactsHelper.getContactPhoneNumber(contentResolver, id));
+                    etEmail.setText(contactsHelper.getContactEmail(contentResolver, id));
                 }
             }
             if (cursor != null) {

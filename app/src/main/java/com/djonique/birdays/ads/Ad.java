@@ -29,16 +29,16 @@ public class Ad {
     /**
      * Loads AdMob banner into MainActivity
      */
-    public static void showMainBanner(final View view, final AdView banner, final View fab) {
+    public static void showMainBanner(final ViewGroup viewGroup, final AdView banner, final View view) {
         banner.loadAd(new AdRequest.Builder().build());
 
         banner.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                setupContentViewPadding(view, banner.getHeight());
+                setupContentViewPadding(viewGroup, banner.getHeight());
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    setBottomMargin(fab, -(banner.getHeight() / 4));
+                    setBottomMargin(view, -(banner.getHeight() / 4));
                 }
             }
         });
@@ -47,14 +47,14 @@ public class Ad {
     /**
      * Loads AdMob banner into DetailActivity
      */
-    public static void showDetailBanner(final View view, final AdView banner) {
+    public static void showDetailBanner(final ViewGroup viewGroup, final AdView banner) {
         banner.loadAd(new AdRequest.Builder().build());
 
         banner.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                setupContentViewPadding(view, banner.getHeight());
+                setupContentViewPadding(viewGroup, banner.getHeight());
             }
         });
     }

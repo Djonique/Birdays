@@ -55,12 +55,12 @@ public class HelpActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }
 
-    @OnClick(R.id.help_open_settings_button)
+    @OnClick(R.id.button_help_settings)
     void openSettings() {
         startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
     }
 
-    @OnClick(R.id.help_send_email_button)
+    @OnClick(R.id.button_help_email)
     void sendEmail() {
         String email = getString(R.string.birdays_email);
         Intent intent = new Intent(Intent.ACTION_SENDTO);

@@ -17,12 +17,12 @@
 -->
 
 <android.support.v7.widget.AppCompatButton xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/addFromContactsDialogButton"
+    android:id="@+id/button_dialog_afc"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginBottom="@dimen/addfromcontacts_button_bottom_margin"
-    android:backgroundTint="@android:color/white"
+    android:backgroundTint="@color/button_background_v21"
     android:padding="@dimen/default_padding"
     android:text="@string/add_from_contacts"
-    android:textColor="@color/color_primary" />
+    android:textColor="@color/button_text_v21" />

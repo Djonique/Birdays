@@ -26,8 +26,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.R;
+import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.adapters.MonthFragmentAdapter;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
@@ -46,7 +46,7 @@ public class MonthFragment extends Fragment {
 
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
-            addPersonFromDB();
+            addMonthPersonsFromDB();
         }
     }
 
@@ -88,7 +88,7 @@ public class MonthFragment extends Fragment {
         }
     }
 
-    public void addPersonFromDB() {
+    public void addMonthPersonsFromDB() {
         adapter.removeAllPersons();
         List<Person> persons = new ArrayList<>();
         persons.addAll(activity.dbHelper.query().getThisMonthPersons());

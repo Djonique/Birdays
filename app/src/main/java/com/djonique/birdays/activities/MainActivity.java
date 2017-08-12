@@ -17,7 +17,6 @@
 package com.djonique.birdays.activities;
 
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -50,9 +49,9 @@ import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.BirdaysApplication;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.ContactsHelper;
+import com.djonique.birdays.utils.Utils;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.kobakei.ratethisapp.RateThisApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,31 +59,29 @@ import butterknife.OnClick;
 import butterknife.OnPageChange;
 
 public class MainActivity extends AppCompatActivity implements
-        NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener {
+        NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener, ContactsHelper.LoadingContactsListener {
 
-    public static final int INSTALL_DAYS = 7;
-    public static final int LAUNCH_TIMES = 5;
     public DBHelper dbHelper;
 
-    @BindView(R.id.appbar)
-    AppBarLayout appBarLayout;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.searchView)
-    SearchView searchView;
-    @BindView(R.id.tabLayout)
-    TabLayout tabLayout;
-    @BindView(R.id.viewPager)
-    ViewPager viewPager;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
-    @BindView(R.id.container)
+    @BindView(R.id.container_main)
     CoordinatorLayout container;
-    @BindView(R.id.banner)
+    @BindView(R.id.appbar_main)
+    AppBarLayout appBarLayout;
+    @BindView(R.id.toolbar_main)
+    Toolbar toolbar;
+    @BindView(R.id.searchview_main)
+    SearchView searchView;
+    @BindView(R.id.tablayout_main)
+    TabLayout tabLayout;
+    @BindView(R.id.viewpager_main)
+    ViewPager viewPager;
+    @BindView(R.id.fab_main)
+    FloatingActionButton fab;
+    @BindView(R.id.banner_main)
     AdView adView;
 
-    private PagerAdapter pagerAdapter;
     private SharedPreferences preferences;
+    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +90,11 @@ public class MainActivity extends AppCompatActivity implements
         ButterKnife.bind(this);
         FirebaseAnalytics.getInstance(this);
 
-        AlarmHelper.getInstance().init(this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        rateThisAppInit(this);
+        Utils.setupDayNightTheme(preferences);
+
+        AlarmHelper.getInstance().init(this);
 
         dbHelper = new DBHelper(this);
 
@@ -107,10 +106,9 @@ public class MainActivity extends AppCompatActivity implements
         viewPager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(viewPager);
 
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         if (!preferences.getBoolean(ConstantManager.CONTACTS_UPLOADED, false)) {
-            ContactsHelper.loadContacts(getContentResolver(), MainActivity.this, preferences);
+            ContactsHelper contactsHelper = new ContactsHelper(this, getContentResolver());
+            contactsHelper.loadContacts(preferences);
             refreshAdapter(viewPager);
         }
 
@@ -179,18 +177,9 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data == null) return;
-        if (resultCode == RESULT_OK) {
-            int position = data.getIntExtra(ConstantManager.POSITION, 0);
-            pagerAdapter.startRemovePersonDialog(position);
-        }
-    }
-
-    @Override
     public void onPersonAdded(Person person) {
         pagerAdapter.addPerson(person);
-        Snackbar.make(findViewById(R.id.container), R.string.record_added, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(findViewById(R.id.container_main), R.string.record_added, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -202,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements
         pagerAdapter.deleteRecord(timeStamp);
     }
 
-    @OnPageChange(R.id.viewPager)
+    @OnPageChange(R.id.viewpager_main)
     void onPageSelected(int position) {
         appBarLayout.setExpanded(true, true);
         if (position == PagerAdapter.FAMOUS_FRAGMENT_POSITION) {
@@ -214,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @OnClick(R.id.fab)
+    @OnClick(R.id.fab_main)
     void showDialog() {
         DialogFragment newPersonDialogFragment = new NewPersonDialogFragment();
         newPersonDialogFragment.show(getFragmentManager(), ConstantManager.NEW_PERSON_DIALOG_TAG);
@@ -226,16 +215,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    /**
-     * «Rate this app» dialog initialization
-     */
-    private void rateThisAppInit(Context context) {
-        RateThisApp.onCreate(context);
-        RateThisApp.Config config = new RateThisApp.Config(INSTALL_DAYS, LAUNCH_TIMES);
-        RateThisApp.init(config);
-        RateThisApp.showRateDialogIfNeeded(context);
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -244,7 +223,8 @@ public class MainActivity extends AppCompatActivity implements
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (!preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false)) {
-                    ContactsHelper.loadContacts(getContentResolver(), MainActivity.this, preferences);
+                    ContactsHelper contactsHelper = new ContactsHelper(this, getContentResolver());
+                    contactsHelper.loadContacts(preferences);
                     refreshAdapter(viewPager);
                 }
             } else {
@@ -264,8 +244,13 @@ public class MainActivity extends AppCompatActivity implements
     /**
      * Opens application settings
      */
-    public void openApplicationSettings() {
+    private void openApplicationSettings() {
         startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.parse(ConstantManager.PACKAGE + getPackageName())));
+    }
+
+    @Override
+    public void onContactsUploaded() {
+        refreshAdapter(viewPager);
     }
 }

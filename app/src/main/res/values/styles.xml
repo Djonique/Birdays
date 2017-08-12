@@ -17,28 +17,27 @@
 -->
 
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    <style name="BirdaysTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
         <item name="colorControlHighlight">@color/ripple</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="BirdaysTheme.NoActionBar" parent="BirdaysTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-    <style name="AppTheme.DetailActivity" parent="AppTheme.NoActionBar" />
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">@android:color/white</item>
-        <item name="tabSelectedTextColor">@android:color/white</item>
-        <item name="tabTextColor">@color/tab_text</item>
+        <item name="tabIndicatorColor">@color/tab_color_main</item>
+        <item name="tabSelectedTextColor">@color/tab_color_main</item>
+        <item name="tabTextColor">@color/tab_text_disabled</item>
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabPaddingStart">12dp</item>
         <item name="tabPaddingEnd">12dp</item>
@@ -118,6 +117,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="cardCornerRadius">2dp</item>
         <item name="cardUseCompatPadding">true</item>
+        <item name="cardPreventCornerOverlap">true</item>
         <item name="elevation">2dp</item>
         <item name="android:layout_margin">@dimen/card_layout_margin</item>
     </style>
@@ -157,7 +157,7 @@
         <item name="android:layout_margin">32dp</item>
         <item name="android:layout_weight">1</item>
     </style>
-    
+
     <style name="HelpButtonStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

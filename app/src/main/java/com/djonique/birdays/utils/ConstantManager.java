@@ -18,14 +18,12 @@ package com.djonique.birdays.utils;
 
 public interface ConstantManager {
 
-    // MainActivity
+    // Activities
     String CONTACTS_UPLOADED = "CONTACTS_UPLOADED";
     String WRONG_CONTACTS_FORMAT = "WRONG_CONTACTS_FORMAT";
+    int EDIT_ACTIVITY = 102;
 
-    // Share
-    String TEXT_PLAIN = "text/plain";
-
-    // Dialog
+    // Dialogs
     String NEW_PERSON_DIALOG_TAG = "NEW_PERSON_DIALOG_TAG";
     String DATE_PICKER_FRAGMENT_TAG = "DATE_PICKER_FRAGMENT_TAG";
     String BOTTOM_SHEET_DIALOG_TAG = "BOTTOM_SHEET_DIALOG_TAG";
@@ -34,23 +32,17 @@ public interface ConstantManager {
     int REQUEST_READ_CONTACTS = 1;
     int CONTACTS_REQUEST_PERMISSION_CODE = 2;
 
-    // AllFragment
-    String TIME_STAMP = "TIME_STAMP";
-    String SELECTED_ITEM = "SELECTED_ITEM";
-    int DETAIL_ACTIVITY = 101;
-
-    // DetailActivity intent
-    int EDIT_ACTIVITY = 102;
-    String POSITION = "POSITION";
-
-    // Alarm
+    // Alarm and Settings keys
     String NAME = "name";
-    String NOTIFICATIONS = "notifications";
-    String NOTIFICATION_TIME = "notification_time";
-    String VIBRATION = "vibration";
-    String ADDITIONAL_NOTIFICATION = "additional_notification";
+    String NOTIFICATIONS_KEY = "notifications_key";
+    String NOTIFICATION_TIME_KEY = "notification_time_key";
+    // String VIBRATION = "vibration";
+    String ADDITIONAL_NOTIFICATION_KEY = "additional_notification_key";
+    String NIGHT_MODE_KEY = "night_mode_key";
 
     // Intents
+    String TIME_STAMP = "TIME_STAMP";
+    String TEXT_PLAIN = "text/plain";
     String PACKAGE = "package:";
     String TYPE_EMAIL = "message/rfc822";
     String MAILTO = "mailto:";
@@ -61,10 +53,10 @@ public interface ConstantManager {
 
     // Firebase Analytics
     String NEW_PERSON_ADDED = "new_person_added";
+    String FAMOUS_PERSON_CLICKED = "famous_person_clicked";
     String MAKE_CALL = "make_call";
     String SEND_MESSAGE = "send_sms";
     String SEND_EMAIL = "send_email";
-    String FAMOUS_PERSON_CLICKED = "famous_person_clicked";
     String SHARE_APP = "share_app";
     String DETAIL_ACTIVITY_TAG = "DetailActivity";
     String EDIT_ACTIVITY_TAG = "EditActivity";

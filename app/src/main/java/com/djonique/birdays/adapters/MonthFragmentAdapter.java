@@ -42,8 +42,6 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdapter.CardViewHolder> {
 
     private Context context;
@@ -99,14 +97,17 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
         if (unknownYear) {
             holder.tvDate.setText(Utils.getDateWithoutYear(date));
+            holder.tvAge.setVisibility(View.GONE);
         } else {
             holder.tvDate.setText(Utils.getDate(date));
+            String age = context.getString(R.string.turns) + Integer.toString(Utils.getAge(date));
+            holder.tvAge.setVisibility(View.VISIBLE);
+            holder.tvAge.setText(age);
         }
 
         String daysLeft = Utils.daysLeft(context, date);
         String today = context.getString(R.string.today);
-        holder.tvAge.setVisibility(View.VISIBLE);
-        holder.tvAge.setText(daysLeft.equals(today) ?
+        holder.tvDaysLeft.setText(daysLeft.equals(today) ?
                 today : context.getString(R.string.days_left) + ": " + daysLeft);
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -140,9 +141,9 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         }
 
         if (phoneNumber != null && !phoneNumber.equals("")) {
-            enableButton(holder.btnPhone);
-            enableButton(holder.btnSMS);
-            holder.btnPhone.setOnClickListener(new View.OnClickListener() {
+            enableButton(holder.btnCall);
+            enableButton(holder.btnChat);
+            holder.btnCall.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mFirebaseAnalytics.logEvent(ConstantManager.MAKE_CALL, new Bundle());
@@ -150,7 +151,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                 }
             });
 
-            holder.btnSMS.setOnClickListener(new View.OnClickListener() {
+            holder.btnChat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mFirebaseAnalytics.logEvent(ConstantManager.SEND_MESSAGE, new Bundle());
@@ -163,8 +164,8 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             });
 
         } else {
-            disableButton(holder.btnPhone);
-            disableButton(holder.btnSMS);
+            disableButton(holder.btnCall);
+            disableButton(holder.btnChat);
         }
     }
 
@@ -205,22 +206,23 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     static class CardViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         RelativeLayout relativeLayout;
-        TextView tvName, tvDate, tvAge;
-        ImageButton btnPhone, btnEmail, btnSMS;
+        TextView tvName, tvDate, tvAge, tvDaysLeft;
+        ImageButton btnEmail, btnChat, btnCall;
 
         CardViewHolder(View itemView) {
             super(itemView);
-            cardView = ButterKnife.findById(itemView, R.id.cardView);
-            relativeLayout = ButterKnife.findById(itemView, R.id.relativeLayout);
-            tvName = ButterKnife.findById(itemView, R.id.tvName);
-            tvDate = ButterKnife.findById(itemView, R.id.tvDate);
-            tvAge = ButterKnife.findById(itemView, R.id.tvAge);
-            btnEmail = ButterKnife.findById(itemView, R.id.btnEmail);
+            cardView = ((CardView) itemView.findViewById(R.id.cardview_card));
+            relativeLayout = ((RelativeLayout) itemView.findViewById(R.id.relativelayout_card));
+            tvName = ((TextView) itemView.findViewById(R.id.textview_card_name));
+            tvDate = ((TextView) itemView.findViewById(R.id.textview_card_date));
+            tvAge = ((TextView) itemView.findViewById(R.id.textview_card_date));
+            tvDaysLeft = ((TextView) itemView.findViewById(R.id.textview_card_left));
+            btnEmail = ((ImageButton) itemView.findViewById(R.id.imagebutton_card_email));
             btnEmail.setImageResource(R.drawable.ic_email_blue_24dp);
-            btnSMS = ButterKnife.findById(itemView, R.id.btnSMS);
-            btnSMS.setImageResource(R.drawable.ic_chat_blue_24dp);
-            btnPhone = ButterKnife.findById(itemView, R.id.btnPhone);
-            btnPhone.setImageResource(R.drawable.ic_call_blue_24dp);
+            btnChat = ((ImageButton) itemView.findViewById(R.id.imagebutton_card_chat));
+            btnChat.setImageResource(R.drawable.ic_chat_blue_24dp);
+            btnCall = ((ImageButton) itemView.findViewById(R.id.imagebutton_card_call));
+            btnCall.setImageResource(R.drawable.ic_call_blue_24dp);
         }
     }
 }

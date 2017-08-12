@@ -21,7 +21,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tvSeparator"
+        android:id="@+id/textview_separator"
         style="@style/Material.Secondary.TextView"
         android:textSize="@dimen/separator_text" />
 </RelativeLayout>
