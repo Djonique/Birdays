@@ -215,7 +215,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             relativeLayout = ((RelativeLayout) itemView.findViewById(R.id.relativelayout_card));
             tvName = ((TextView) itemView.findViewById(R.id.textview_card_name));
             tvDate = ((TextView) itemView.findViewById(R.id.textview_card_date));
-            tvAge = ((TextView) itemView.findViewById(R.id.textview_card_date));
+            tvAge = ((TextView) itemView.findViewById(R.id.textview_card_age));
             tvDaysLeft = ((TextView) itemView.findViewById(R.id.textview_card_left));
             btnEmail = ((ImageButton) itemView.findViewById(R.id.imagebutton_card_email));
             btnEmail.setImageResource(R.drawable.ic_email_blue_24dp);

@@ -37,7 +37,7 @@ dependencies {
     compile 'com.google.firebase:firebase-ads:11.0.4'
     compile 'com.google.firebase:firebase-perf:11.0.4'
     compile 'com.jakewharton:butterknife:8.8.1'
-    compile 'com.wdullaer:materialdatetimepicker:3.2.2'
+    compile 'com.wdullaer:materialdatetimepicker:2.5.0'
     compile 'io.github.kobakei:ratethisapp:1.2.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'

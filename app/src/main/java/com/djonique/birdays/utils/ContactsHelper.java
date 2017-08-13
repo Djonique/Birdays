@@ -193,7 +193,11 @@ public class ContactsHelper {
      */
     private void dismissProgressDialog() {
         if (progressDialog != null) {
-            progressDialog.dismiss();
+            try {
+                progressDialog.dismiss();
+            } catch (IllegalArgumentException e) {
+                Toast.makeText(activity, "IllegalArgumentException", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
