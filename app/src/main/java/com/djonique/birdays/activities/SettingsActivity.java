@@ -183,7 +183,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             DBHelper dbHelper = new DBHelper(getActivity());
             List<Person> persons = dbHelper.query().getPersons();
-            AlarmHelper alarmHelper = AlarmHelper.getInstance();
+            AlarmHelper alarmHelper = new AlarmHelper(getActivity());
             switch (key) {
                 case ConstantManager.NOTIFICATIONS_KEY:
                     boolean isChecked = sharedPreferences.getBoolean(ConstantManager.NOTIFICATIONS_KEY, false);

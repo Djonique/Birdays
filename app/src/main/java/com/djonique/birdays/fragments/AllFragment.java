@@ -67,7 +67,7 @@ public class AllFragment extends Fragment {
             activity = (MainActivity) getActivity();
             addAllPersonsFromDB();
         }
-        alarmHelper = AlarmHelper.getInstance();
+        alarmHelper = new AlarmHelper(getActivity());
     }
 
     @Nullable

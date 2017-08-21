@@ -83,9 +83,9 @@ public class Utils {
     }
 
     /**
-     * Returns age
+     * Returns current age
      */
-    public static int getAge(long date) {
+    public static int getCurrentAge(long date) {
         dayOfBirthday.setTimeInMillis(date);
 
         int age = getYear(today) - getYear(dayOfBirthday);
@@ -94,6 +94,23 @@ public class Utils {
             age--;
         } else if (getMonth(today) == getMonth(dayOfBirthday) &&
                 getDay(today) < getDay(dayOfBirthday)) {
+            age--;
+        }
+        return age;
+    }
+
+    /**
+     * Returns future age
+     */
+    public static int getFutureAge(long date) {
+        dayOfBirthday.setTimeInMillis(date);
+
+        int age = getYear(today) - getYear(dayOfBirthday);
+
+        if (getMonth(today) < getMonth(dayOfBirthday)) {
+            age--;
+        } else if (getMonth(today) == getMonth(dayOfBirthday) &&
+                getDay(today) <= getDay(dayOfBirthday)) {
             age--;
         }
         return age + 1;

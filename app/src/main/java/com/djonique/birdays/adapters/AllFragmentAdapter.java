@@ -18,9 +18,11 @@ package com.djonique.birdays.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -64,6 +66,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private AllFragment allFragment;
     private Context context;
     private FirebaseAnalytics mFirebaseAnalytics;
+    private String agePref;
 
     public AllFragmentAdapter(AllFragment allFragment) {
         this.allFragment = allFragment;
@@ -163,6 +166,8 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        agePref = preferences.getString(ConstantManager.DISPLAYED_AGE_KEY, "0");
         switch (viewType) {
             case TYPE_PERSON:
                 View view = LayoutInflater.from(context).inflate(R.layout.description_list_view,
@@ -201,7 +206,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 listViewHolder.tvDate.setText(Utils.getDateWithoutYear(date));
             } else {
                 listViewHolder.tvAge.setVisibility(View.VISIBLE);
-                final int age = Utils.getAge(date);
+                final int age = (agePref.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date));
                 listViewHolder.tvDate.setText(Utils.getDate(date));
                 ageCircle.setColor(ContextCompat.getColor(context, getAgeCircleColor(age)));
                 listViewHolder.tvAge.setText(String.valueOf(age));

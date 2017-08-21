@@ -150,7 +150,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                 if (!Utils.isEmptyDate(etDate)) {
                     person.setDate(calendar.getTimeInMillis());
-                    AlarmHelper.getInstance().setAlarms(person);
+                    new AlarmHelper(getActivity()).setAlarms(person);
                 }
 
                 if (cbKnownYear != null) person.setYearUnknown(cbKnownYear.isChecked());

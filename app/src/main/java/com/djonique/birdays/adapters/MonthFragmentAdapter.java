@@ -18,9 +18,11 @@ package com.djonique.birdays.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -45,11 +47,9 @@ import java.util.List;
 public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdapter.CardViewHolder> {
 
     private Context context;
+    private SharedPreferences sharedPreferences;
     private FirebaseAnalytics mFirebaseAnalytics;
     private List<Item> items;
-
-    private int enabled = Color.rgb(33, 150, 243);
-    private int disabled = Color.rgb(224, 224, 224);
 
     public MonthFragmentAdapter() {
         items = new ArrayList<>();
@@ -78,6 +78,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         View view = LayoutInflater.from(context).inflate(
                 R.layout.description_card_view, parent, false);
@@ -100,7 +101,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.tvAge.setVisibility(View.GONE);
         } else {
             holder.tvDate.setText(Utils.getDate(date));
-            String age = context.getString(R.string.turns) + Integer.toString(Utils.getAge(date));
+            String age = context.getString(R.string.turns) + Integer.toString(Utils.getFutureAge(date));
             holder.tvAge.setVisibility(View.VISIBLE);
             holder.tvAge.setText(age);
         }
@@ -162,7 +163,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                     context.startActivity(intent);
                 }
             });
-
         } else {
             disableButton(holder.btnCall);
             disableButton(holder.btnChat);
@@ -194,13 +194,25 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     }
 
     private void enableButton(ImageButton button) {
-        button.setColorFilter(enabled);
+        if (nightMode()) {
+            button.setColorFilter(Color.rgb(104, 239, 173));
+        } else {
+            button.setColorFilter(Color.rgb(33, 150, 243));
+        }
         button.setClickable(true);
     }
 
     private void disableButton(ImageButton button) {
-        button.setColorFilter(disabled);
+        if (nightMode()) {
+            button.setColorFilter(Color.rgb(112, 112, 112));
+        } else {
+            button.setColorFilter(Color.rgb(224, 224, 224));
+        }
         button.setClickable(false);
+    }
+
+    private boolean nightMode() {
+        return sharedPreferences.getBoolean(ConstantManager.NIGHT_MODE_KEY, false);
     }
 
     static class CardViewHolder extends RecyclerView.ViewHolder {

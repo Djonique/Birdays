@@ -36,25 +36,37 @@ public class AlarmHelper {
 
     private static final int REQUEST_CODE_OFFSET = 99;
     @SuppressLint("StaticFieldLeak")
-    private static AlarmHelper instance;
+    //private AlarmHelper instance;
     private long defaultNotificationTime = 645703200000L - Utils.getTimeOffset();
     private long additionalNotificationOffset;
     private Context context;
     private AlarmManager alarmManager;
     private SharedPreferences preferences;
 
-    public static AlarmHelper getInstance() {
+    /*public static AlarmHelper getInstance() {
         if (instance == null) {
             instance = new AlarmHelper();
         }
         return instance;
-    }
+    }*/
 
-    public void init(Context context) {
+    public AlarmHelper(Context context) {
         this.context = context;
         alarmManager = ((AlarmManager)
                 context.getApplicationContext().getSystemService(Context.ALARM_SERVICE));
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    }
+
+    public void setAlarms(Person person) {
+        try {
+            setAlarm(person);
+            additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION_KEY, "0"));
+            if (additionalNotificationOffset != 0) {
+                setAdditionalAlarm(person);
+            }
+        } catch (SecurityException e) {
+            Toast.makeText(context, R.string.security_exception, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setAlarm(Person person) {
@@ -87,18 +99,6 @@ public class AlarmHelper {
         alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
     }
 
-    public void setAlarms(Person person) {
-        try {
-            setAlarm(person);
-            additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION_KEY, "0"));
-            if (additionalNotificationOffset != 0) {
-                setAdditionalAlarm(person);
-            }
-        } catch (SecurityException e) {
-            Toast.makeText(context, R.string.security_exception, Toast.LENGTH_LONG).show();
-        }
-    }
-
     private String makeGreetings(long offset) {
         String[] dates = context.getResources().getStringArray(R.array.additional_notification_greetings);
         String[] entryValues = context.getResources().getStringArray(R.array.additional_notification_entry_values);
@@ -109,6 +109,14 @@ public class AlarmHelper {
             }
         }
         return greetings;
+    }
+
+    public void removeAlarms(long timeStamp) {
+        removeAlarm(timeStamp);
+        additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION_KEY, "0"));
+        if (additionalNotificationOffset != 0) {
+            removeAdditionalAlarm(timeStamp);
+        }
     }
 
     private void removeAlarm(long timeStamp) {
@@ -129,14 +137,6 @@ public class AlarmHelper {
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
         alarmManager.cancel(pendingIntent);
-    }
-
-    public void removeAlarms(long timeStamp) {
-        removeAlarm(timeStamp);
-        additionalNotificationOffset = Long.parseLong(preferences.getString(ConstantManager.ADDITIONAL_NOTIFICATION_KEY, "0"));
-        if (additionalNotificationOffset != 0) {
-            removeAdditionalAlarm(timeStamp);
-        }
     }
 
     private long setupCalendarYear(Person person, long offset) {

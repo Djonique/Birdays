@@ -17,7 +17,7 @@
 -->
 
 <resources>
-    <string name="version">Версия сборки 1.3.0</string>
+    <string name="build_version">Версия сборки</string>
 
     <!-- MainActivity -->
     <string name="loading_contacts">Загрузка контактов…</string>
@@ -129,11 +129,11 @@
     <string name="contacts_sync_title">Синхронизация контактов</string>
     <string name="contacts_sync_summary">Нажмите, чтобы синхронизировать контакты из адресной книги</string>
     <string name="night_mode">Ночной режим</string>
+    <string name="displayed_age">Отображаемый возраст</string>
     <string name="rate_app">Оценить приложение</string>
     <string name="share">Поделиться</string>
     <string name="share_text">Забываете поздравить родных, друзей или коллег с днем рождения? Birdays напомнит Вам о важном празднике!\n\n</string>
     <string name="about_app">О приложении</string>
-    <string name="twitter">Birdays в Твиттере</string>
     <string name="menu_github">Исходный код</string>
     <string name="privacy_policy">Политика конфиденциальности</string>
     <string name="software_licenses">Лицензии открытого ПО</string>
@@ -155,6 +155,11 @@
         <item>через 3 дня</item>
         <item>через неделю</item>
         <item>через 2 недели</item>
+    </string-array>
+
+    <string-array name="displayed_age_entries">
+        <item>Текущий</item>
+        <item>Будущий</item>
     </string-array>
 
     <!-- HelpActivity -->

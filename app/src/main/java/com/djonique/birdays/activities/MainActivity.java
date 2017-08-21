@@ -39,9 +39,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.ad.Ad;
 import com.djonique.birdays.adapters.PagerAdapter;
-import com.djonique.birdays.ads.Ad;
-import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.dialogs.NewPersonDialogFragment;
 import com.djonique.birdays.fragments.AllFragment;
@@ -59,7 +58,9 @@ import butterknife.OnClick;
 import butterknife.OnPageChange;
 
 public class MainActivity extends AppCompatActivity implements
-        NewPersonDialogFragment.AddingPersonListener, AllFragment.DeletingRecordListener, ContactsHelper.LoadingContactsListener {
+        NewPersonDialogFragment.AddingPersonListener,
+        AllFragment.DeletingRecordListener,
+        ContactsHelper.LoadingContactsListener {
 
     public DBHelper dbHelper;
 
@@ -94,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements
 
         Utils.setupDayNightTheme(preferences);
 
-        AlarmHelper.getInstance().init(this);
-
         dbHelper = new DBHelper(this);
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
@@ -107,9 +106,7 @@ public class MainActivity extends AppCompatActivity implements
         tabLayout.setupWithViewPager(viewPager);
 
         if (!preferences.getBoolean(ConstantManager.CONTACTS_UPLOADED, false)) {
-            ContactsHelper contactsHelper = new ContactsHelper(this, getContentResolver());
-            contactsHelper.loadContacts(preferences);
-            refreshAdapter(viewPager);
+            new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
         }
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -125,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        Ad.showMainBanner(container, adView, fab);
+        Ad.showBannerAd(container, adView, fab);
 
         // App starts from AllFragment
         viewPager.setCurrentItem(1);
@@ -209,12 +206,6 @@ public class MainActivity extends AppCompatActivity implements
         newPersonDialogFragment.show(getFragmentManager(), ConstantManager.NEW_PERSON_DIALOG_TAG);
     }
 
-    private void refreshAdapter(ViewPager viewPager) {
-        if (viewPager != null) {
-            viewPager.getAdapter().notifyDataSetChanged();
-        }
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -223,9 +214,7 @@ public class MainActivity extends AppCompatActivity implements
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (!preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false)) {
-                    ContactsHelper contactsHelper = new ContactsHelper(this, getContentResolver());
-                    contactsHelper.loadContacts(preferences);
-                    refreshAdapter(viewPager);
+                    new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
                 }
             } else {
                 Snackbar.make(container, R.string.permission_required,
@@ -251,6 +240,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onContactsUploaded() {
-        refreshAdapter(viewPager);
+        if (viewPager != null) {
+            viewPager.getAdapter().notifyDataSetChanged();
+        }
     }
 }

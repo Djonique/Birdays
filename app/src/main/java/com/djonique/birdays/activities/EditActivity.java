@@ -162,7 +162,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
     private void setAlarms(Person person) {
-        AlarmHelper alarmHelper = AlarmHelper.getInstance();
+        AlarmHelper alarmHelper = new AlarmHelper(this);
         alarmHelper.removeAlarms(person.getTimeStamp());
         alarmHelper.setAlarms(person);
     }

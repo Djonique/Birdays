@@ -17,7 +17,6 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -81,19 +80,19 @@
 
                             <TextView
                                 android:id="@+id/textview_detail_age"
-                                android:layout_width="@dimen/zodiac_image_size"
-                                android:layout_height="@dimen/zodiac_image_size"
+                                android:layout_width="@dimen/detail_age_size"
+                                android:layout_height="@dimen/detail_age_size"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center"
-                                android:textColor="@color/main_blue_500"
+                                android:textColor="@color/blue_to_green"
                                 android:textSize="24sp" />
 
                             <TextView
                                 android:id="@+id/textview_detail_date"
-                                style="@style/Material.Primary.TextView" />
+                                style="@style/EditActivity.Primary.TextView" />
 
                             <TextView
-                                style="@style/Material.Secondary.TextView"
+                                style="@style/EditActivity.Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_date"
                                 android:text="@string/date" />
                         </RelativeLayout>
@@ -108,10 +107,10 @@
 
                             <TextView
                                 android:id="@+id/textview_detail_left"
-                                style="@style/Material.Primary.TextView" />
+                                style="@style/EditActivity.Primary.TextView" />
 
                             <TextView
-                                style="@style/Material.Secondary.TextView"
+                                style="@style/EditActivity.Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_left"
                                 android:text="@string/days_left" />
                         </RelativeLayout>
@@ -128,10 +127,10 @@
 
                             <TextView
                                 android:id="@+id/textview_detail_since"
-                                style="@style/Material.Primary.TextView" />
+                                style="@style/EditActivity.Primary.TextView" />
 
                             <TextView
-                                style="@style/Material.Secondary.TextView"
+                                style="@style/EditActivity.Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_since"
                                 android:text="@string/days_since_birth" />
                         </RelativeLayout>
@@ -142,14 +141,15 @@
                             <ImageView
                                 android:id="@+id/imageview_detail_zodiac"
                                 style="@style/detailActivityIcons"
-                                android:contentDescription="@string/zodiac_sign" />
+                                android:contentDescription="@string/zodiac_sign"
+                                android:tint="@color/blue_to_green" />
 
                             <TextView
                                 android:id="@+id/textview_detail_zodiac"
-                                style="@style/Material.Primary.TextView" />
+                                style="@style/EditActivity.Primary.TextView" />
 
                             <TextView
-                                style="@style/Material.Secondary.TextView"
+                                style="@style/EditActivity.Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_zodiac"
                                 android:text="@string/zodiac_sign" />
                         </RelativeLayout>
@@ -193,14 +193,14 @@
                             <TextView
                                 android:id="@+id/textview_detail_phone"
                                 style="@style/Primary.TextView"
-                                android:layout_marginLeft="@dimen/detail_text_view_padding"
-                                android:layout_marginStart="@dimen/detail_text_view_padding" />
+                                android:layout_marginLeft="@dimen/detail_textview_padding"
+                                android:layout_marginStart="@dimen/detail_textview_padding" />
 
                             <TextView
                                 style="@style/Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_phone"
-                                android:layout_marginLeft="@dimen/detail_text_view_padding"
-                                android:layout_marginStart="@dimen/detail_text_view_padding"
+                                android:layout_marginLeft="@dimen/detail_textview_padding"
+                                android:layout_marginStart="@dimen/detail_textview_padding"
                                 android:text="@string/phone_number" />
                         </RelativeLayout>
 
@@ -221,14 +221,14 @@
                             <TextView
                                 android:id="@+id/textview_detail_email"
                                 style="@style/Primary.TextView"
-                                android:layout_marginLeft="@dimen/detail_text_view_padding"
-                                android:layout_marginStart="@dimen/detail_text_view_padding" />
+                                android:layout_marginLeft="@dimen/detail_textview_padding"
+                                android:layout_marginStart="@dimen/detail_textview_padding" />
 
                             <TextView
                                 style="@style/Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_email"
-                                android:layout_marginLeft="@dimen/detail_text_view_padding"
-                                android:layout_marginStart="@dimen/detail_text_view_padding"
+                                android:layout_marginLeft="@dimen/detail_textview_padding"
+                                android:layout_marginStart="@dimen/detail_textview_padding"
                                 android:text="@string/email" />
                         </RelativeLayout>
                     </LinearLayout>
@@ -243,11 +243,11 @@
 
                         <TextView
                             style="@style/Secondary.TextView"
-                            android:layout_marginEnd="@dimen/detail_famous_text_view_padding"
-                            android:layout_marginLeft="@dimen/detail_famous_text_view_padding"
-                            android:layout_marginRight="@dimen/detail_famous_text_view_padding"
-                            android:layout_marginStart="@dimen/detail_famous_text_view_padding"
-                            android:layout_marginTop="@dimen/detail_famous_text_view_padding"
+                            android:layout_marginEnd="@dimen/detail_textview_famous_padding"
+                            android:layout_marginLeft="@dimen/detail_textview_famous_padding"
+                            android:layout_marginRight="@dimen/detail_textview_famous_padding"
+                            android:layout_marginStart="@dimen/detail_textview_famous_padding"
+                            android:layout_marginTop="@dimen/detail_textview_famous_padding"
                             android:text="@string/born_on_this_day" />
 
                         <android.support.v7.widget.RecyclerView
@@ -273,12 +273,4 @@
             app:rippleColor="@color/ripple"
             app:srcCompat="@drawable/ic_edit_grey_24dp" />
     </android.support.design.widget.CoordinatorLayout>
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/banner_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/detail_banner_id" />
 </RelativeLayout>

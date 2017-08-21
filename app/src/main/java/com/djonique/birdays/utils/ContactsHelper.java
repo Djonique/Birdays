@@ -216,7 +216,7 @@ public class ContactsHelper {
         @Override
         protected Void doInBackground(Void... params) {
             DBHelper dbHelper = new DBHelper(activity);
-            AlarmHelper alarmHelper = AlarmHelper.getInstance();
+            AlarmHelper alarmHelper = new AlarmHelper(activity);
 
             List<Person> dbPersons = dbHelper.query().getPersons();
             List<Person> contacts = getAllContactsWithBirthdays(contentResolver);

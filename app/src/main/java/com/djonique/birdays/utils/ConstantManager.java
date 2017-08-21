@@ -26,7 +26,7 @@ public interface ConstantManager {
     // Dialogs
     String NEW_PERSON_DIALOG_TAG = "NEW_PERSON_DIALOG_TAG";
     String DATE_PICKER_FRAGMENT_TAG = "DATE_PICKER_FRAGMENT_TAG";
-    String BOTTOM_SHEET_DIALOG_TAG = "BOTTOM_SHEET_DIALOG_TAG";
+    // String BOTTOM_SHEET_DIALOG_TAG = "BOTTOM_SHEET_DIALOG_TAG";
 
     // Permission requests
     int REQUEST_READ_CONTACTS = 1;
@@ -39,6 +39,7 @@ public interface ConstantManager {
     // String VIBRATION = "vibration";
     String ADDITIONAL_NOTIFICATION_KEY = "additional_notification_key";
     String NIGHT_MODE_KEY = "night_mode_key";
+    String DISPLAYED_AGE_KEY = "displayed_age_key";
 
     // Intents
     String TIME_STAMP = "TIME_STAMP";

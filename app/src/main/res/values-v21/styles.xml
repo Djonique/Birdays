@@ -27,13 +27,23 @@
     </style>
 
     <style name="Material.Primary.TextView" parent="Primary.TextView">
-        <item name="android:layout_marginLeft">@dimen/default_left_margin</item>
-        <item name="android:layout_marginStart">@dimen/default_left_margin</item>
+        <item name="android:layout_marginLeft">@dimen/default_left_margin_56sp</item>
+        <item name="android:layout_marginStart">@dimen/default_left_margin_56sp</item>
+    </style>
+
+    <style name="EditActivity.Primary.TextView" parent="Material.Primary.TextView">
+        <item name="android:layout_marginLeft">@dimen/edit_textview_left_padding</item>
+        <item name="android:layout_marginStart">@dimen/edit_textview_left_padding</item>
     </style>
 
     <style name="Material.Secondary.TextView" parent="Secondary.TextView">
-        <item name="android:layout_marginLeft">@dimen/default_left_margin</item>
-        <item name="android:layout_marginStart">@dimen/default_left_margin</item>
+        <item name="android:layout_marginLeft">@dimen/default_left_margin_56sp</item>
+        <item name="android:layout_marginStart">@dimen/default_left_margin_56sp</item>
+    </style>
+
+    <style name="EditActivity.Secondary.TextView" parent="Material.Secondary.TextView">
+        <item name="android:layout_marginLeft">@dimen/edit_textview_left_padding</item>
+        <item name="android:layout_marginStart">@dimen/edit_textview_left_padding</item>
     </style>
 
     <style name="detailActivityIcons">

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.djonique.birdays.ads;
+package com.djonique.birdays.ad;
 
 import android.os.Build;
 import android.view.View;
@@ -29,7 +29,7 @@ public class Ad {
     /**
      * Loads AdMob banner into MainActivity
      */
-    public static void showMainBanner(final ViewGroup viewGroup, final AdView banner, final View view) {
+    public static void showBannerAd(final ViewGroup viewGroup, final AdView banner, final View view) {
         banner.loadAd(new AdRequest.Builder().build());
 
         banner.setAdListener(new AdListener() {
@@ -40,21 +40,6 @@ public class Ad {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                     setBottomMargin(view, -(banner.getHeight() / 4));
                 }
-            }
-        });
-    }
-
-    /**
-     * Loads AdMob banner into DetailActivity
-     */
-    public static void showDetailBanner(final ViewGroup viewGroup, final AdView banner) {
-        banner.loadAd(new AdRequest.Builder().build());
-
-        banner.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                setupContentViewPadding(viewGroup, banner.getHeight());
             }
         });
     }

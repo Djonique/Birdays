@@ -18,9 +18,10 @@
 
 <resources>
     <!-- default dimens -->
-    <dimen name="default_padding">24dp</dimen>
+    <dimen name="default_padding">24sp</dimen>
     <dimen name="default_layout_height">96sp</dimen>
-    <dimen name="default_left_margin">72dp</dimen>
+    <dimen name="default_left_margin_56sp">72sp</dimen>
+    <dimen name="default_left_margin_72sp">96sp</dimen>
 
     <!-- fab dimens -->
     <dimen name="fab_margin_default">24dp</dimen>
@@ -34,8 +35,8 @@
     <!-- text size -->
     <dimen name="primary_text">20sp</dimen>
     <dimen name="secondary_text">16sp</dimen>
-    <dimen name="separator_text">20sp</dimen>
-    <dimen name="primary_card_text">34sp</dimen>
+    <dimen name="separator_text">16sp</dimen>
+    <dimen name="card_primary_text">34sp</dimen>
 
     <!-- age circle -->
     <dimen name="age_circle_size">48sp</dimen>
@@ -47,10 +48,10 @@
 
     <!-- DetailActivity -->
     <dimen name="detail_activity_icon_padding">12dp</dimen>
-    <dimen name="zodiac_image_size">48dp</dimen>
+    <dimen name="detail_age_size">48dp</dimen>
     <dimen name="detail_icon_padding">36dp</dimen>
-    <dimen name="detail_text_view_padding">96dp</dimen>
-    <dimen name="detail_famous_text_view_padding">24dp</dimen>
+    <dimen name="detail_textview_padding">96dp</dimen>
+    <dimen name="detail_textview_famous_padding">24dp</dimen>
 
     <!-- EditActivity -->
     <dimen name="edit_image_padding">12dp</dimen>
@@ -58,6 +59,7 @@
     <dimen name="edit_date_text_size">20sp</dimen>
     <dimen name="edit_left_cb_padding">96dp</dimen>
     <dimen name="edit_linear_layout_padding_top">12dp</dimen>
+    <dimen name="edit_textview_left_padding">72dp</dimen>
 
     <!-- LicensesActivity -->
     <dimen name="licenses_text_view_bottom_padding">12dp</dimen>

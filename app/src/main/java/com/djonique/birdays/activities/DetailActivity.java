@@ -19,8 +19,10 @@ package com.djonique.birdays.activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
@@ -40,13 +42,11 @@ import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
-import com.djonique.birdays.ads.Ad;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
-import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kobakei.ratethisapp.RateThisApp;
 
@@ -61,6 +61,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private static final int INSTALL_DAYS = 7;
     private static final int LAUNCH_TIMES = 5;
+
     @BindView(R.id.container_detail)
     CoordinatorLayout container;
     @BindView(R.id.toolbar_detail)
@@ -93,13 +94,12 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvEmail;
     @BindView(R.id.recyclerview_detail)
     RecyclerView recyclerView;
-    @BindView(R.id.banner_detail)
-    AdView adView;
+
     private FirebaseAnalytics mFirebaseAnalytics;
     private DBHelper dbHelper;
     private Person person;
     private long timeStamp, date;
-    private String name, phoneNumber, email;
+    private String name, phoneNumber, email, agePref;
     private boolean unknownYear;
 
     @Override
@@ -108,6 +108,9 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        agePref = preferences.getString(ConstantManager.DISPLAYED_AGE_KEY, "0");
 
         Intent intent = getIntent();
         timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
@@ -130,8 +133,6 @@ public class DetailActivity extends AppCompatActivity {
         loadBornThisDay();
 
         recyclerView.setFocusable(false);
-
-        Ad.showDetailBanner(container, adView);
 
         rateThisAppInit(this);
     }
@@ -200,7 +201,7 @@ public class DetailActivity extends AppCompatActivity {
             rlDaysSinceBirthday.setVisibility(View.GONE);
         } else {
             tvDate.setText(Utils.getDate(date));
-            tvAge.setText(String.valueOf(Utils.getAge(date)));
+            tvAge.setText(String.valueOf(agePref.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date)));
             tvDaysSinceBirthday.setText(Utils.daysSinceBirthday(date));
         }
 
@@ -275,7 +276,8 @@ public class DetailActivity extends AppCompatActivity {
         builder.setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                AlarmHelper.getInstance().removeAlarms(timeStamp);
+
+                new AlarmHelper(getApplicationContext()).removeAlarms(timeStamp);
                 dbHelper.removePerson(timeStamp);
                 dialog.dismiss();
                 finish();

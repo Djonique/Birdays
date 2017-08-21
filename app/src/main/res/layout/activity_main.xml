@@ -86,5 +86,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/main_banner_id" />
+        ads:adUnitId="@string/banner_ad_id" />
 </RelativeLayout>
