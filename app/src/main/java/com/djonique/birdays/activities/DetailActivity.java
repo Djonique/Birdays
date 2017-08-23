@@ -112,6 +112,8 @@ public class DetailActivity extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         agePref = preferences.getString(ConstantManager.DISPLAYED_AGE_KEY, "0");
 
+        Utils.setupDayNightTheme(preferences);
+
         Intent intent = getIntent();
         timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
 

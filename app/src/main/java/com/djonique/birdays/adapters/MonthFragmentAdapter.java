@@ -230,11 +230,11 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             tvAge = ((TextView) itemView.findViewById(R.id.textview_card_age));
             tvDaysLeft = ((TextView) itemView.findViewById(R.id.textview_card_left));
             btnEmail = ((ImageButton) itemView.findViewById(R.id.imagebutton_card_email));
-            btnEmail.setImageResource(R.drawable.ic_email_blue_24dp);
+            btnEmail.setImageResource(R.drawable.ic_email_blue_green_24dp);
             btnChat = ((ImageButton) itemView.findViewById(R.id.imagebutton_card_chat));
-            btnChat.setImageResource(R.drawable.ic_chat_blue_24dp);
+            btnChat.setImageResource(R.drawable.ic_chat_blue_green_24dp);
             btnCall = ((ImageButton) itemView.findViewById(R.id.imagebutton_card_call));
-            btnCall.setImageResource(R.drawable.ic_call_blue_24dp);
+            btnCall.setImageResource(R.drawable.ic_call_blue_green_24dp);
         }
     }
 }

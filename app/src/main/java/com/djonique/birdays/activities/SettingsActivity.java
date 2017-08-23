@@ -16,6 +16,7 @@
 
 package com.djonique.birdays.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
@@ -142,6 +144,35 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                         ContactsHelper contactsHelper = new ContactsHelper(getActivity(), getActivity().getContentResolver());
                         contactsHelper.loadContacts(preferences);
                     }
+                    return true;
+                }
+            });
+
+            /*
+            * Displayed age
+            */
+            Preference displayedAge = findPreference(getString(R.string.displayed_age_key));
+            displayedAge.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    ((ListPreference) preference).setValue(newValue.toString());
+                    preference.setSummary(((ListPreference) preference).getEntry());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle(getString(R.string.action_settings));
+                    builder.setMessage(R.string.displayed_age_changes);
+                    builder.setPositiveButton(R.string.restart_now, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            restartApp();
+                        }
+                    });
+                    builder.setNegativeButton(R.string.later, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.show();
                     return true;
                 }
             });

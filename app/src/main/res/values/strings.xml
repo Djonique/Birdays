@@ -145,6 +145,9 @@
     <string name="contacts_sync_summary">Tap here to synchronize contacts from your device</string>
     <string name="night_mode">Night mode</string>
     <string name="displayed_age">Displayed age</string>
+    <string name="displayed_age_changes">You must restart an app for these changes to take effect</string>
+    <string name="restart_now">Restart now</string>
+    <string name="later">Later</string>
     <string name="rate_app">Rate app</string>
     <string name="share">Share</string>
     <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Birdays will remind you of an important holiday!\n\n</string>

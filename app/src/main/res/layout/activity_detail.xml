@@ -103,7 +103,7 @@
                             <ImageView
                                 style="@style/detailActivityIcons"
                                 android:contentDescription="@string/calendar"
-                                app:srcCompat="@drawable/ic_calendar_blue_24dp" />
+                                app:srcCompat="@drawable/ic_calendar_blue_green_24dp" />
 
                             <TextView
                                 android:id="@+id/textview_detail_left"
@@ -123,7 +123,7 @@
                             <ImageView
                                 style="@style/detailActivityIcons"
                                 android:contentDescription="@string/calendar"
-                                app:srcCompat="@drawable/ic_calendar_range_blue_24dp" />
+                                app:srcCompat="@drawable/ic_calendar_range_blue_green_24dp" />
 
                             <TextView
                                 android:id="@+id/textview_detail_since"
@@ -177,7 +177,7 @@
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/phone_number"
                                 android:padding="@dimen/detail_icon_padding"
-                                app:srcCompat="@drawable/ic_call_blue_24dp" />
+                                app:srcCompat="@drawable/ic_call_blue_green_24dp" />
 
                             <ImageButton
                                 android:id="@+id/imagebutton_detail_chat"
@@ -188,7 +188,7 @@
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/chat"
                                 android:padding="@dimen/detail_icon_padding"
-                                app:srcCompat="@drawable/ic_chat_blue_24dp" />
+                                app:srcCompat="@drawable/ic_chat_blue_green_24dp" />
 
                             <TextView
                                 android:id="@+id/textview_detail_phone"
@@ -216,7 +216,7 @@
                                 android:background="?attr/selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/email"
                                 android:padding="@dimen/detail_icon_padding"
-                                app:srcCompat="@drawable/ic_email_blue_24dp" />
+                                app:srcCompat="@drawable/ic_email_blue_green_24dp" />
 
                             <TextView
                                 android:id="@+id/textview_detail_email"

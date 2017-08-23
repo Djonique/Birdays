@@ -47,7 +47,7 @@
                     android:layout_marginLeft="@dimen/edit_image_padding"
                     android:layout_marginStart="@dimen/edit_image_padding"
                     android:contentDescription="@string/calendar"
-                    app:srcCompat="@drawable/ic_person_blue_24dp" />
+                    app:srcCompat="@drawable/ic_person_blue_green_24dp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/til_edit_name"
@@ -78,7 +78,7 @@
                     android:layout_marginLeft="@dimen/edit_image_padding"
                     android:layout_marginStart="@dimen/edit_image_padding"
                     android:contentDescription="@string/calendar"
-                    app:srcCompat="@drawable/ic_calendar_blue_24dp" />
+                    app:srcCompat="@drawable/ic_calendar_blue_green_24dp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/til_edit_date"
@@ -127,7 +127,7 @@
                     android:layout_marginLeft="@dimen/edit_image_padding"
                     android:layout_marginStart="@dimen/edit_image_padding"
                     android:contentDescription="@string/phone_number"
-                    app:srcCompat="@drawable/ic_call_blue_24dp" />
+                    app:srcCompat="@drawable/ic_call_blue_green_24dp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -157,7 +157,7 @@
                     android:layout_marginLeft="@dimen/edit_image_padding"
                     android:layout_marginStart="@dimen/edit_image_padding"
                     android:contentDescription="@string/email"
-                    app:srcCompat="@drawable/ic_email_blue_24dp" />
+                    app:srcCompat="@drawable/ic_email_blue_green_24dp" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"

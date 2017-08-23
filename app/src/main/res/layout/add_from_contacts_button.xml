@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:contentDescription="@string/add_from_contacts"
-        app:srcCompat="@drawable/ic_contacts_blue_24dp" />
+        app:srcCompat="@drawable/ic_contacts_blue_green_24dp" />
 
     <Button
         android:id="@+id/button_dialog_afc"
