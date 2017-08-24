@@ -96,20 +96,37 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
         holder.tvName.setText(person.getName());
 
+        String daysLeft = Utils.daysLeft(context, date);
+        String today = context.getString(R.string.today);
+
         if (unknownYear) {
             holder.tvDate.setText(Utils.getDateWithoutYear(date));
             holder.tvAge.setVisibility(View.GONE);
+            if (!Utils.isBirthdayPassed(date) || Utils.isToday(date)) {
+                holder.tvDaysLeft.setVisibility(View.VISIBLE);
+                holder.tvDaysLeft.setText(daysLeft.equals(today) ? today : context.getString(R.string.days_left) + ": " + daysLeft);
+            } else {
+                holder.tvDaysLeft.setVisibility(View.GONE);
+            }
         } else {
             holder.tvDate.setText(Utils.getDate(date));
-            String age = context.getString(R.string.turns) + Integer.toString(Utils.getFutureAge(date));
             holder.tvAge.setVisibility(View.VISIBLE);
-            holder.tvAge.setText(age);
+            if (Utils.isBirthdayPassed(date)) {
+                String age = context.getString(R.string.turned) + Utils.getCurrentAge(date);
+                holder.tvAge.setText(age);
+                holder.tvDaysLeft.setVisibility(View.GONE);
+            } else {
+                String age;
+                if (Utils.isToday(date)) {
+                    age = context.getString(R.string.turns) + Utils.getFutureAge(date);
+                } else {
+                    age = context.getString(R.string.will_turn) + Utils.getFutureAge(date);
+                }
+                holder.tvAge.setText(age);
+                holder.tvDaysLeft.setVisibility(View.VISIBLE);
+                holder.tvDaysLeft.setText(daysLeft.equals(today) ? today : context.getString(R.string.days_left) + ": " + daysLeft);
+            }
         }
-
-        String daysLeft = Utils.daysLeft(context, date);
-        String today = context.getString(R.string.today);
-        holder.tvDaysLeft.setText(daysLeft.equals(today) ?
-                today : context.getString(R.string.days_left) + ": " + daysLeft);
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override

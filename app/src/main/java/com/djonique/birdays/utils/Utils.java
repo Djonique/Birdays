@@ -119,8 +119,8 @@ public class Utils {
     public static String daysLeft(Context context, long date) {
         Calendar birthday = Calendar.getInstance();
         birthday.setTimeInMillis(date);
-        if (getMonth(today) == getMonth(birthday)
-                && getDay(today) == getDay(birthday)) return context.getString(R.string.today);
+        if (getMonth(today) == getMonth(birthday) && getDay(today) == getDay(birthday))
+            return context.getString(R.string.today);
         birthday.set(Calendar.HOUR_OF_DAY, 10);
         today.set(Calendar.HOUR_OF_DAY, 9);
         if (getMonth(today) < getMonth(birthday)
@@ -165,6 +165,14 @@ public class Utils {
             thisMonth = true;
         }
         return thisMonth;
+    }
+
+    public static boolean isBirthdayPassed(long date) {
+        return getDay(today) > getDay(date);
+    }
+
+    public static boolean isToday(long date) {
+        return getDay(today) == getDay(date);
     }
 
     /**

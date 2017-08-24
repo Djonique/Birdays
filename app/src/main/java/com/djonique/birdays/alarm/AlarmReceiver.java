@@ -36,7 +36,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        //boolean vibrate = preferences.getBoolean(ConstantManager.VIBRATION, false);
 
         String string = intent.getStringExtra(ConstantManager.NAME);
         long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
@@ -60,9 +59,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setWhen(System.currentTimeMillis());
         builder.setDefaults(Notification.DEFAULT_ALL);
-        /*if (vibrate) {
-            builder.setVibrate(new long[] {1000});
-        }*/
         builder.setContentIntent(pendingIntent);
 
         Notification notification = builder.build();

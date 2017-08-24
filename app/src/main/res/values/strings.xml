@@ -28,7 +28,9 @@
     <string name="snackbar_allow_text">Allow</string>
     <string name="all">All</string>
     <string name="famous">Famous</string>
+    <string name="turned">Turned\u0020</string>
     <string name="turns">Turns\u0020</string>
+    <string name="will_turn">Will turn\u0020</string>
     <string name="send_email">Send email</string>
     <string name="happy_birthday">Happy Birthday!</string>
     <string name="famous_search_error">Device does not have a web search app to perform this action</string>

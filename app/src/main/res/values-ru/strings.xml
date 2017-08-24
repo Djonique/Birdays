@@ -27,7 +27,9 @@
     <string name="snackbar_allow_text">Разрешить</string>
     <string name="all">Все</string>
     <string name="famous">Известные</string>
-    <string name="turns">Исполнится\u0020</string>
+    <string name="turned">Исполнилось\u0020</string>
+    <string name="turns">Исполняется\u0020</string>
+    <string name="will_turn">Исполнится\u0020</string>
     <string name="send_email">Отправить письмо</string>
     <string name="happy_birthday">С Днем Рождения!</string>
     <string name="famous_search_error">На телефоне не установлено приложение для веб-поиска</string>
