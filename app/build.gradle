@@ -11,11 +11,10 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 13
-        versionName "1.4.0"
+        versionName "1.3.2"
         vectorDrawables.useSupportLibrary = true
         resValue "string", "version_name", versionName
         resValue "string", "banner_ad_id", "ca-app-pub-5122433987000361/8152385338"
-        resValue "string", "interstitial_ad_id", "ca-app-pub-5122433987000361/1171069308"
     }
     buildTypes {
         release {
