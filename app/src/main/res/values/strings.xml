@@ -126,6 +126,7 @@
     <string name="notification_time_key" translatable="false">notification_time_key</string>
     <string name="vibration_key" translatable="false">vibration</string>
     <string name="additional_notification_key" translatable="false">additional_notification_key</string>
+    <string name="ringtone_key">ringtone_key</string>
     <string name="help_key" translatable="false">help_key</string>
     <string name="contacts_sync_key" translatable="false">contacts_sync_key</string>
     <string name="night_mode_key" translatable="false">night_mode_key</string>
@@ -140,6 +141,7 @@
     <string name="default_time_preference" translatable="false">645703200000</string>
     <string name="Vibration">Vibration</string>
     <string name="additional_notification">Additional notification</string>
+    <string name="notification_tone">Notification tone</string>
     <string name="help">Help</string>
     <string name="tap_here">Tap here if you don\'t receive notifications</string>
     <string name="general">General</string>

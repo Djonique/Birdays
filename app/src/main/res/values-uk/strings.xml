@@ -125,6 +125,7 @@
     <string name="notifications_time">Время уведомления</string>
     <string name="Vibration">Вибрация</string>
     <string name="additional_notification">Дополнительное уведомление</string>
+    <string name="notification_tone">Звук уведомления</string>
     <string name="help">Помощь</string>
     <string name="tap_here">Нажмите здесь, если Вам не приходят уведомления</string>
     <string name="general">Общие</string>

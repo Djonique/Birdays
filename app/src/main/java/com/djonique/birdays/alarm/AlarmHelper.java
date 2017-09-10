@@ -22,6 +22,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
@@ -36,19 +37,11 @@ public class AlarmHelper {
 
     private static final int REQUEST_CODE_OFFSET = 99;
     @SuppressLint("StaticFieldLeak")
-    //private AlarmHelper instance;
     private long defaultNotificationTime = 645703200000L - Utils.getTimeOffset();
     private long additionalNotificationOffset;
     private Context context;
     private AlarmManager alarmManager;
     private SharedPreferences preferences;
-
-    /*public static AlarmHelper getInstance() {
-        if (instance == null) {
-            instance = new AlarmHelper();
-        }
-        return instance;
-    }*/
 
     public AlarmHelper(Context context) {
         this.context = context;
@@ -79,7 +72,7 @@ public class AlarmHelper {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
                 (int) person.getTimeStamp(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        setAlarmDependingOnApi(alarmManager, triggerAtMillis, pendingIntent);
     }
 
     private void setAdditionalAlarm(Person person) {
@@ -96,7 +89,19 @@ public class AlarmHelper {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
                 requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        setAlarmDependingOnApi(alarmManager, triggerAtMillis, pendingIntent);
+    }
+
+    private void setAlarmDependingOnApi(AlarmManager alarmManager,
+                                        long triggerAtMillis,
+                                        PendingIntent pendingIntent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        } else {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        }
     }
 
     private String makeGreetings(long offset) {

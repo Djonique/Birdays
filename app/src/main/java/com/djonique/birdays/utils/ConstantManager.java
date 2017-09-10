@@ -36,8 +36,8 @@ public interface ConstantManager {
     String NAME = "name";
     String NOTIFICATIONS_KEY = "notifications_key";
     String NOTIFICATION_TIME_KEY = "notification_time_key";
-    // String VIBRATION = "vibration";
     String ADDITIONAL_NOTIFICATION_KEY = "additional_notification_key";
+    String RINGTONE_KEY = "ringtone_key";
     String NIGHT_MODE_KEY = "night_mode_key";
     String DISPLAYED_AGE_KEY = "displayed_age_key";
 

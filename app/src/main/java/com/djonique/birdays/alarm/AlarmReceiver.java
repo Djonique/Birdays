@@ -22,6 +22,10 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
@@ -35,7 +39,10 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String ringtone = preferences.getString(ConstantManager.RINGTONE_KEY,
+                RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION).toString());
+        Uri ringtoneUri = Uri.parse(ringtone);
 
         String string = intent.getStringExtra(ConstantManager.NAME);
         long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
@@ -58,7 +65,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setContentText(string);
         builder.setSmallIcon(R.drawable.ic_notification);
         builder.setWhen(System.currentTimeMillis());
-        builder.setDefaults(Notification.DEFAULT_ALL);
+        builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
+        builder.setSound(ringtoneUri);
         builder.setContentIntent(pendingIntent);
 
         Notification notification = builder.build();

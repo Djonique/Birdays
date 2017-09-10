@@ -30,11 +30,6 @@
             android:dependency="@string/notifications_key"
             android:key="@string/notification_time_key"
             android:title="@string/notifications_time" />
-        <!--<CheckBoxPreference
-            android:defaultValue="true"
-            android:dependency="@string/notifications_key"
-            android:key="@string/vibration_key"
-            android:title="@string/Vibration" />-->
         <ListPreference
             android:defaultValue="0"
             android:dependency="@string/notifications_key"
@@ -43,6 +38,13 @@
             android:key="@string/additional_notification_key"
             android:summary="%s"
             android:title="@string/additional_notification" />
+        <RingtonePreference
+            android:dependency="@string/notifications_key"
+            android:key="@string/ringtone_key"
+            android:ringtoneType="notification"
+            android:showDefault="true"
+            android:showSilent="false"
+            android:title="@string/notification_tone" />
         <Preference
             android:key="@string/help_key"
             android:summary="@string/tap_here"

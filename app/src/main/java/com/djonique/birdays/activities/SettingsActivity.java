@@ -19,11 +19,14 @@ package com.djonique.birdays.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -103,6 +106,27 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             logEvent();
 
             preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+            /*
+            * Sets summary for ringtone
+            */
+            Preference ringtonePreference = findPreference(ConstantManager.RINGTONE_KEY);
+            String ringtoneString = preferences.getString(ringtonePreference.getKey(),
+                    Settings.System.DEFAULT_NOTIFICATION_URI.toString());
+            String ringtoneName = RingtoneManager.getRingtone(getActivity(),
+                    Uri.parse(ringtoneString)).getTitle(getActivity());
+            ringtonePreference.setDefaultValue(Settings.System.DEFAULT_NOTIFICATION_URI);
+            ringtonePreference.setSummary(ringtoneName);
+
+            ringtonePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    String newRingtoneName = RingtoneManager.getRingtone(getActivity(),
+                            Uri.parse(newValue.toString())).getTitle(getActivity());
+                    preference.setSummary(newRingtoneName);
+                    return true;
+                }
+            });
 
             /*
             * Sets summary for additional notification
@@ -212,33 +236,32 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            final AlarmHelper alarmHelper = new AlarmHelper(getActivity());
             DBHelper dbHelper = new DBHelper(getActivity());
-            List<Person> persons = dbHelper.query().getPersons();
-            AlarmHelper alarmHelper = new AlarmHelper(getActivity());
+            final List<Person> persons = dbHelper.query().getPersons();
             switch (key) {
                 case ConstantManager.NOTIFICATIONS_KEY:
-                    boolean isChecked = sharedPreferences.getBoolean(ConstantManager.NOTIFICATIONS_KEY, false);
-                    if (isChecked) {
-                        for (Person person : persons) {
-                            alarmHelper.setAlarms(person);
+                    final boolean isChecked = sharedPreferences.getBoolean(ConstantManager.NOTIFICATIONS_KEY, false);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (isChecked) {
+                                for (Person person : persons) {
+                                    alarmHelper.setAlarms(person);
+                                }
+                            } else {
+                                for (Person person : persons) {
+                                    alarmHelper.removeAlarms(person.getTimeStamp());
+                                }
+                            }
                         }
-                    } else {
-                        for (Person person : persons) {
-                            alarmHelper.removeAlarms(person.getTimeStamp());
-                        }
-                    }
+                    }).start();
                     break;
                 case ConstantManager.NOTIFICATION_TIME_KEY:
-                    for (Person person : persons) {
-                        alarmHelper.removeAlarms(person.getTimeStamp());
-                        alarmHelper.setAlarms(person);
-                    }
+                    restartAlarms(alarmHelper, persons);
                     break;
                 case ConstantManager.ADDITIONAL_NOTIFICATION_KEY:
-                    for (Person person : persons) {
-                        alarmHelper.removeAlarms(person.getTimeStamp());
-                        alarmHelper.setAlarms(person);
-                    }
+                    restartAlarms(alarmHelper, persons);
                     break;
                 case ConstantManager.NIGHT_MODE_KEY:
                     Utils.setupDayNightTheme(sharedPreferences);
@@ -265,6 +288,18 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             Bundle params = new Bundle();
             params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, ConstantManager.SETTINGS_ACTIVITY_TAG);
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
+        }
+
+        private void restartAlarms(final AlarmHelper alarmHelper, final List<Person> persons) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (Person person : persons) {
+                        alarmHelper.removeAlarms(person.getTimeStamp());
+                        alarmHelper.setAlarms(person);
+                    }
+                }
+            }).start();
         }
 
         private void restartApp() {
