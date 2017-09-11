@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,6 +41,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
@@ -99,7 +101,11 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (PermissionHelper.permissionGranted(getActivity())) {
                     Intent intent = new Intent(Intent.ACTION_PICK,
                             ContactsContract.Contacts.CONTENT_URI);
-                    startActivityForResult(intent, ConstantManager.REQUEST_READ_CONTACTS);
+                    try {
+                        startActivityForResult(intent, ConstantManager.REQUEST_READ_CONTACTS);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(getActivity(), R.string.open_contacts_error, Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     PermissionHelper.requestPermission(getActivity());
                 }

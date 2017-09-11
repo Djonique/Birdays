@@ -73,6 +73,7 @@
     <!-- NewPersonDialogFragment -->
     <string name="add_new_record">Новая запись</string>
     <string name="add_from_contacts">Добавить из контактов</string>
+    <string name="open_contacts_error">"Это действие выполнить невозможно из-за особенностей устройства</string>
     <string name="name">Имя</string>
     <string name="error_hint">Пожалуйста, введите имя</string>
     <string name="phone_number">Номер телефон</string>

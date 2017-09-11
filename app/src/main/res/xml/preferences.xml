@@ -39,6 +39,7 @@
             android:summary="%s"
             android:title="@string/additional_notification" />
         <RingtonePreference
+            android:defaultValue="@string/ringtone_default_value"
             android:dependency="@string/notifications_key"
             android:key="@string/ringtone_key"
             android:ringtoneType="notification"

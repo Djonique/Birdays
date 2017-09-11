@@ -108,27 +108,6 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
             /*
-            * Sets summary for ringtone
-            */
-            Preference ringtonePreference = findPreference(ConstantManager.RINGTONE_KEY);
-            String ringtoneString = preferences.getString(ringtonePreference.getKey(),
-                    Settings.System.DEFAULT_NOTIFICATION_URI.toString());
-            String ringtoneName = RingtoneManager.getRingtone(getActivity(),
-                    Uri.parse(ringtoneString)).getTitle(getActivity());
-            ringtonePreference.setDefaultValue(Settings.System.DEFAULT_NOTIFICATION_URI);
-            ringtonePreference.setSummary(ringtoneName);
-
-            ringtonePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    String newRingtoneName = RingtoneManager.getRingtone(getActivity(),
-                            Uri.parse(newValue.toString())).getTitle(getActivity());
-                    preference.setSummary(newRingtoneName);
-                    return true;
-                }
-            });
-
-            /*
             * Sets summary for additional notification
             */
             Preference additionalNotification = findPreference(ConstantManager.ADDITIONAL_NOTIFICATION_KEY);
@@ -137,6 +116,26 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     ((ListPreference) preference).setValue(newValue.toString());
                     preference.setSummary(((ListPreference) preference).getEntry());
+                    return true;
+                }
+            });
+
+            /*
+            * Sets summary for ringtone
+            */
+            Preference ringtonePreference = findPreference(ConstantManager.RINGTONE_KEY);
+            String ringtoneString = preferences.getString(ringtonePreference.getKey(),
+                    Settings.System.DEFAULT_NOTIFICATION_URI.toString());
+            String ringtoneName = RingtoneManager.getRingtone(getActivity(),
+                    Uri.parse(ringtoneString)).getTitle(getActivity());
+            ringtonePreference.setSummary(ringtoneName);
+
+            ringtonePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    String newRingtoneName = RingtoneManager.getRingtone(getActivity(),
+                            Uri.parse(newValue.toString())).getTitle(getActivity());
+                    preference.setSummary(newRingtoneName);
                     return true;
                 }
             });

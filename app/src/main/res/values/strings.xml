@@ -74,6 +74,7 @@
     <!-- NewPersonDialogFragment -->
     <string name="add_new_record">New record</string>
     <string name="add_from_contacts">Add from contacts</string>
+    <string name="open_contacts_error">Impossible to perform this action due to device features</string>
     <string name="name">Name</string>
     <string name="error_hint">Please enter the name</string>
     <string name="phone_number">Phone number</string>
@@ -142,6 +143,7 @@
     <string name="Vibration">Vibration</string>
     <string name="additional_notification">Additional notification</string>
     <string name="notification_tone">Notification tone</string>
+    <string name="ringtone_default_value" translatable="false">content://settings/system/notification_sound</string>
     <string name="help">Help</string>
     <string name="tap_here">Tap here if you don\'t receive notifications</string>
     <string name="general">General</string>
