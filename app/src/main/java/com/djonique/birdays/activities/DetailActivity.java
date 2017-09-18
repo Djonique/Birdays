@@ -40,6 +40,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.djonique.birdays.BuildConfig;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
@@ -47,6 +48,8 @@ import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ConstantManager;
 import com.djonique.birdays.utils.Utils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kobakei.ratethisapp.RateThisApp;
 
@@ -101,6 +104,7 @@ public class DetailActivity extends AppCompatActivity {
     private long timeStamp, date;
     private String name, phoneNumber, email, agePref;
     private boolean unknownYear;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,6 +112,13 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        mInterstitialAd = new InterstitialAd(this);
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(ConstantManager.AD_INTERSTITIAL_KEY, true)) {
+            // Test id ca-app-pub-3940256099942544/1033173712
+            mInterstitialAd.setAdUnitId(BuildConfig.INTERSTITIAL_AD_KEY);
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        }
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         agePref = preferences.getString(ConstantManager.DISPLAYED_AGE_KEY, "0");
@@ -171,6 +182,9 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
         finish();
         overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }

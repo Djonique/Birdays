@@ -124,18 +124,22 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             * Sets summary for ringtone
             */
             Preference ringtonePreference = findPreference(ConstantManager.RINGTONE_KEY);
-            String ringtoneString = preferences.getString(ringtonePreference.getKey(),
-                    Settings.System.DEFAULT_NOTIFICATION_URI.toString());
-            String ringtoneName = RingtoneManager.getRingtone(getActivity(),
-                    Uri.parse(ringtoneString)).getTitle(getActivity());
-            ringtonePreference.setSummary(ringtoneName);
+            try {
+                String ringtoneString = preferences.getString(ringtonePreference.getKey(),
+                        Settings.System.DEFAULT_NOTIFICATION_URI.toString());
+                String ringtoneName = RingtoneManager.getRingtone(getActivity(),
+                        Uri.parse(ringtoneString)).getTitle(getActivity());
+                ringtonePreference.setSummary(ringtoneName);
+            } catch (Exception ignored) {}
 
             ringtonePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    String newRingtoneName = RingtoneManager.getRingtone(getActivity(),
-                            Uri.parse(newValue.toString())).getTitle(getActivity());
-                    preference.setSummary(newRingtoneName);
+                    try {
+                        String newRingtoneName = RingtoneManager.getRingtone(getActivity(),
+                                Uri.parse(newValue.toString())).getTitle(getActivity());
+                        preference.setSummary(newRingtoneName);
+                    } catch (Exception ignored) {}
                     return true;
                 }
             });
@@ -180,22 +184,19 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     ((ListPreference) preference).setValue(newValue.toString());
                     preference.setSummary(((ListPreference) preference).getEntry());
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle(getString(R.string.action_settings));
-                    builder.setMessage(R.string.displayed_age_changes);
-                    builder.setPositiveButton(R.string.restart_now, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            restartApp();
-                        }
-                    });
-                    builder.setNegativeButton(R.string.later, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    builder.show();
+                    showRestartAppDialog();
+                    return true;
+                }
+            });
+
+            /*
+            * Ad banner
+            */
+            Preference adBannerPreference = findPreference(getString(R.string.ad_banner_key));
+            adBannerPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    showRestartAppDialog();
                     return true;
                 }
             });
@@ -306,6 +307,25 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                     .getLaunchIntentForPackage(getActivity().getPackageName());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+        }
+
+        private void showRestartAppDialog() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(getString(R.string.action_settings));
+            builder.setMessage(R.string.displayed_age_changes);
+            builder.setPositiveButton(R.string.restart_now, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    restartApp();
+                }
+            });
+            builder.setNegativeButton(R.string.later, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            builder.show();
         }
     }
 }

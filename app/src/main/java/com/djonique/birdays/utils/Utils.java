@@ -322,14 +322,4 @@ public class Utils {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
-
-    /*public static String setLetters(String fullName) {
-        String[] names = fullName.split(" ");
-        String letters = "";
-        for (int i = 0; i < names.length; i++) {
-            if (i == 2) break;
-            if (names[i].length() > 0) letters += names[i].charAt(0);
-        }
-        return letters.toUpperCase();
-    }*/
 }

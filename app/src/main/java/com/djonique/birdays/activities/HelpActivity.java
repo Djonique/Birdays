@@ -66,7 +66,10 @@ public class HelpActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType(ConstantManager.TYPE_EMAIL);
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-        intent.putExtra(Intent.EXTRA_SUBJECT, Build.MANUFACTURER + "/" + Build.MODEL + "/" + Build.VERSION.SDK_INT);
+        intent.putExtra(Intent.EXTRA_SUBJECT, Build.MANUFACTURER + "/"
+                + Build.MODEL + "/"
+                + Build.VERSION.SDK_INT + "/"
+                + getString(R.string.version_name));
         intent.setData(Uri.parse(ConstantManager.MAILTO + email));
         startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
     }

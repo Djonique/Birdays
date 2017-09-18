@@ -80,6 +80,7 @@
             app:srcCompat="@drawable/ic_add_grey_24dp" />
     </android.support.design.widget.CoordinatorLayout>
 
+    <!-- Test id ca-app-pub-3940256099942544/6300978111 -->
     <com.google.android.gms.ads.AdView
         android:id="@+id/banner_main"
         android:layout_width="match_parent"

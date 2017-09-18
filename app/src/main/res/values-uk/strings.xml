@@ -127,6 +127,7 @@
     <string name="Vibration">Вибрация</string>
     <string name="additional_notification">Дополнительное уведомление</string>
     <string name="notification_tone">Звук уведомления</string>
+    <string name="ringtone_summary">Выберите звук уведомления. По умолчанию используется звук из настроек устройства</string>
     <string name="help">Помощь</string>
     <string name="tap_here">Нажмите здесь, если Вам не приходят уведомления</string>
     <string name="general">Общие</string>
@@ -137,6 +138,12 @@
     <string name="displayed_age_changes">Чтобы изменения вступили в силу, необходимо перезапустить приложение</string>
     <string name="restart_now">Перезапустить сейчас</string>
     <string name="later">Позже</string>
+    <string name="advertising">Реклама</string>
+    <string name="about_ad_title">Почему я вижу рекламу?</string>
+    <string name="about_ad_summary">Весь доход от рекламы идет на развитие проекта и на перевод на другие языки. Вы можете отключить рекламу бесплатно</string>
+    <string name="ad_banner">Баннер</string>
+    <string name="ad_interstitial_title">Межстраничное объявление</string>
+    <string name="ad_interstitial_summary">Показ этого объявления ограничен одним разом на пользователя в день. Не так часто, не правда ли?</string>
     <string name="rate_app">Оценить приложение</string>
     <string name="share">Поделиться</string>
     <string name="share_text">Забываете поздравить родных, друзей или коллег с днем рождения? Birdays напомнит Вам о важном празднике!\n\n</string>

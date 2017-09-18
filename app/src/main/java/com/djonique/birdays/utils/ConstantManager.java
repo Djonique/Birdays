@@ -40,6 +40,8 @@ public interface ConstantManager {
     String RINGTONE_KEY = "ringtone_key";
     String NIGHT_MODE_KEY = "night_mode_key";
     String DISPLAYED_AGE_KEY = "displayed_age_key";
+    String AD_BANNER_KEY = "ad_banner_key";
+    String AD_INTERSTITIAL_KEY = "ad_interstitial_key";
 
     // Intents
     String TIME_STAMP = "TIME_STAMP";

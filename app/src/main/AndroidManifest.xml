@@ -43,6 +43,10 @@
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification" />
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="984663d4831ae005b7ce4584df47c99a529d308e" />
+
         <!-- MainActivity -->
         <activity
             android:name=".activities.MainActivity"

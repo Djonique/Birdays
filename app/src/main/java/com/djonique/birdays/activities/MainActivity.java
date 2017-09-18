@@ -38,6 +38,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.crashlytics.android.Crashlytics;
 import com.djonique.birdays.R;
 import com.djonique.birdays.ad.Ad;
 import com.djonique.birdays.adapters.PagerAdapter;
@@ -56,6 +57,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnPageChange;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements
         NewPersonDialogFragment.AddingPersonListener,
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         FirebaseAnalytics.getInstance(this);
@@ -122,7 +125,9 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        Ad.showBannerAd(container, adView, fab);
+        if (preferences.getBoolean(ConstantManager.AD_BANNER_KEY, true)) {
+            Ad.showBannerAd(container, adView, fab);
+        }
 
         // App starts from AllFragment
         viewPager.setCurrentItem(1);

@@ -45,6 +45,7 @@
             android:ringtoneType="notification"
             android:showDefault="true"
             android:showSilent="false"
+            android:summary="@string/ringtone_summary"
             android:title="@string/notification_tone" />
         <Preference
             android:key="@string/help_key"
@@ -52,12 +53,33 @@
             android:title="@string/help" />
     </PreferenceCategory>
 
-    <!-- General -->
-    <PreferenceCategory android:title="@string/general">
+    <!-- Synchronization -->
+    <PreferenceCategory android:title="@string/action_sync">
         <Preference
             android:key="@string/contacts_sync_key"
             android:summary="@string/contacts_sync_summary"
             android:title="@string/contacts_sync_title" />
+    </PreferenceCategory>
+
+    <!-- Advertising -->
+    <PreferenceCategory android:title="@string/advertising">
+        <Preference
+            android:selectable="false"
+            android:summary="@string/about_ad_summary"
+            android:title="@string/about_ad_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/ad_banner_key"
+            android:title="@string/ad_banner" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/ad_interstitial_key"
+            android:summary="@string/ad_interstitial_summary"
+            android:title="@string/ad_interstitial_title" />
+    </PreferenceCategory>
+
+    <!-- General -->
+    <PreferenceCategory android:title="@string/general">
         <SwitchPreference
             android:key="@string/night_mode_key"
             android:title="@string/night_mode" />
