@@ -22,6 +22,6 @@
         android:id="@+id/menu_edit_ok"
         android:icon="@drawable/ic_check_white_24dp"
         android:orderInCategory="2"
-        android:title="@string/menu_delete"
+        android:title="@string/ok_button"
         app:showAsAction="ifRoom" />
 </menu>

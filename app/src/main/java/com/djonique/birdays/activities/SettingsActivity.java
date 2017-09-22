@@ -130,7 +130,8 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                 String ringtoneName = RingtoneManager.getRingtone(getActivity(),
                         Uri.parse(ringtoneString)).getTitle(getActivity());
                 ringtonePreference.setSummary(ringtoneName);
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
 
             ringtonePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
@@ -139,7 +140,8 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                         String newRingtoneName = RingtoneManager.getRingtone(getActivity(),
                                 Uri.parse(newValue.toString())).getTitle(getActivity());
                         preference.setSummary(newRingtoneName);
-                    } catch (Exception ignored) {}
+                    } catch (Exception ignored) {
+                    }
                     return true;
                 }
             });
@@ -196,6 +198,9 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             adBannerPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if (!Boolean.parseBoolean(newValue.toString())) {
+                        mFirebaseAnalytics.logEvent(ConstantManager.AD_BANNER_DISABLED, new Bundle());
+                    }
                     showRestartAppDialog();
                     return true;
                 }

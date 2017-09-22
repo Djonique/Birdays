@@ -61,6 +61,7 @@ public interface ConstantManager {
     String SEND_MESSAGE = "send_sms";
     String SEND_EMAIL = "send_email";
     String SHARE_APP = "share_app";
+    String AD_BANNER_DISABLED = "ad_banner_disabled";
     String DETAIL_ACTIVITY_TAG = "DetailActivity";
     String EDIT_ACTIVITY_TAG = "EditActivity";
     String SETTINGS_ACTIVITY_TAG = "SettingsActivity";

@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements
         if (item.getItemId() == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
-        } /*else if (item.getItemId() == R.id.action_sync) {
+        /*} else if (item.getItemId() == R.id.action_sync) {
             ModalBottomSheet modalBottomSheet = new ModalBottomSheet();
             modalBottomSheet.show(getSupportFragmentManager(), ConstantManager.BOTTOM_SHEET_DIALOG_TAG);
         } else if (item.getItemId() == R.id.action_backup) {
@@ -173,8 +173,8 @@ public class MainActivity extends AppCompatActivity implements
                 startActivity(intent);
             } catch (ActivityNotFoundException e){
                 Toast.makeText(this, "You don't have an app to perform action, download any File Manager from market", Toast.LENGTH_LONG).show();
-            }
-        }*/
+            }*/
+        }
         return super.onOptionsItemSelected(item);
     }
 
