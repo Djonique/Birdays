@@ -162,7 +162,7 @@
     <string name="about_ad_summary">The revenue from advertising goes to the development of the project and to translation into other languages. You can remove ads for free</string>
     <string name="ad_banner">Banner</string>
     <string name="ad_interstitial_title">Interstitial ad</string>
-    <string name="ad_interstitial_summary">This type of ad is limited to 1 ad per user per day. Not so often, isn\'t it?</string>
+    <string name="ad_interstitial_summary">This type of ad is limited to 1 show per day. Not so often, isn\'t it?</string>
     <string name="rate_app">Rate app</string>
     <string name="share">Share</string>
     <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Birdays will remind you of an important holiday!\n\n</string>
