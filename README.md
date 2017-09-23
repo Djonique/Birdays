@@ -1,5 +1,7 @@
 ## Birdays
 App saves Birthdays and displays famous persons with whom you were born in one day.
+## Translators
+Serhii Ponomarenko (Unkrainian)
 ## License 
 ```
 Copyright 2017 Evgeny Timofeev
