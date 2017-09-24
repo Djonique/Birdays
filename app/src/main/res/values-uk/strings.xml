@@ -74,13 +74,12 @@
     <string name="add_new_record">Новий запис</string>
     <string name="add_from_contacts">Додати з контактів</string>
     <string name="open_contacts_error">Цю дію неможливо виконати через особливості пристрою</string>
-    <string name="name">Ім’я</string>
-    <string name="error_hint">Будь ласка, введіть ім’я</string>
+    <string name="name">Ім\'я</string>
+    <string name="error_hint">Будь ласка, введіть ім\'я</string>
     <string name="phone_number">Номер телефону</string>
     <string name="pick_date">Оберіть дату</string>
     <string name="wrong_date">Неправильна дата</string>
     <string name="unknown_year">Я не знаю рік народження</string>
-    <string name="ok_button">OK</string>
     <string name="cancel_button">Скасувати</string>
     <string name="record_added">Запис доданий</string>
 
@@ -184,7 +183,7 @@
         що застосунку Birdays дозволено показувати сповіщення (Налаштування → Програми → Birdays).\n\n2.
         Вимкніть режим енергоощадження або додайте застосунок у білий список. (Налаштування →
         Акумулятор → Економія заряду).\n\n3. Якщо у вас встановлені менеджери завдань,
-        застосунки для очищення пам’яті чи заощадження енергії
+        застосунки для очищення пам\'яті чи заощадження енергії
         («Battery Saver», «Clean Master» та ін.), які блокують роботу в фоновому режимі,
         додайте застосунок Birdays в їхній список захищених програм.
     </string>
@@ -200,15 +199,15 @@
     </string>
     <string name="help_email_description">Якщо сповіщення досі не надходять, будь ласка, напишить мені на адресу birdaysapp@gmail.com</string>
 
-   <!-- Famous persons -->
+    <!-- Famous persons -->
     <!-- 1 january -->
     <string name="medici">Лоренцо Медічі</string>
     <string name="giordano_bruno">Джордано Бруно</string>
     <string name="frazer">Джеймс Джордж Фрейзер</string>
-    <string name="coubertin">П’єр де Кубертен</string>
+    <string name="coubertin">П\'єр де Кубертен</string>
     <string name="william_fox">Вільям Фокс</string>
     <!-- 2 january-->
-    <string name="piero_di_cosimo">П’єро ді Козімо</string>
+    <string name="piero_di_cosimo">П\'єро ді Козімо</string>
     <string name="vasily_perov">Василь Перов</string>
     <string name="balakirev">Мілій Балакирев</string>
     <string name="tippett">Майкл Тіппетт</string>
@@ -238,7 +237,7 @@
     <!-- 6 january -->
     <string name="darc">Жанна д\'Арк</string>
     <string name="jakob_bernoulli">Якоб Бернуллі</string>
-    <string name="montgolfier">Жак-Етьєнн Монгольф’є</string>
+    <string name="montgolfier">Жак-Етьєнн Монгольф\'є</string>
     <string name="schliemann">Генріх Шліман</string>
     <string name="scriabin">Олександр Скрябін</string>
     <string name="celentano">Адріано Челентано</string>
@@ -303,7 +302,7 @@
     <!-- 16 january -->
     <string name="schoner">Йоганн Шонер</string>
     <string name="piccinni">Нікколо Піччінні</string>
-    <string name="alfieri">Вітторіо Альф’єрі</string>
+    <string name="alfieri">Вітторіо Альф\'єрі</string>
     <string name="veresaev">Вікентій Вересаєв</string>
     <string name="roy_jones">Рой Джонс</string>
     <!-- 17 january -->
@@ -314,7 +313,7 @@
     <string name="muhammad_ali">Мухаммед Алі</string>
     <string name="jim_carrey">Джим Керрі</string>
     <!-- 18 january -->
-    <string name="montesquieu">Шарль де Монтеск’є</string>
+    <string name="montesquieu">Шарль де Монтеск\'є</string>
     <string name="cesar_cui">Цезар Кюї</string>
     <string name="ehrenfest">Пауль Еренфест</string>
     <string name="milne">Алан Александр Мілн</string>
@@ -355,7 +354,7 @@
     <string name="hauer">Рутгер Гауер</string>
     <!-- 24 january -->
     <string name="congreve">Вільям Конгрев</string>
-    <string name="beaumarchais">П’єр де Бомарше</string>
+    <string name="beaumarchais">П\'єр де Бомарше</string>
     <string name="hoffmann">Ернст Гофманн</string>
     <string name="surikov">Василь Суриков</string>
     <string name="shechtman">Данієль Шехтман</string>
@@ -473,13 +472,13 @@
     <!-- 10 february -->
     <string name="molter">Йоганн Мельхіор Мольтер</string>
     <string name="lamb">Чарлз Лем</string>
-    <string name="navier">Анрі Нав’є</string>
+    <string name="navier">Анрі Нав\'є</string>
     <string name="pasternak">Борис Пастернак</string>
     <string name="brecht">Бертольт Брехт</string>
     <!-- 11 february -->
     <string name="talbot">Вільям Генрі Фокс Талбот</string>
     <string name="edison">Томас Едісон</string>
-    <string name="henry">Б’юла Луїза Генрі</string>
+    <string name="henry">Б\'юла Луїза Генрі</string>
     <string name="sheldon">Сідні Шелдон</string>
     <string name="nielsen">Леслі Нільсен</string>
     <string name="aniston">Дженніфер Еністон</string>
@@ -495,13 +494,13 @@
     <string name="krylov">Іван Крилов</string>
     <string name="chaliapin">Федір Шаляпін</string>
     <string name="shockley">Вільям Бредфорд Шоклі</string>
-    <string name="collina">П’єрлуїджі Колліна</string>
+    <string name="collina">П\'єрлуїджі Колліна</string>
     <string name="robbie_williams">Роббі Вільямс</string>
     <!-- 14 february -->
     <string name="alberti">Леон-Баттіста Альберті</string>
     <string name="babur">Бабур</string>
     <string name="ferris">Джордж Ферріс</string>
-    <string name="germi">П’єтро Джермі</string>
+    <string name="germi">П\'єтро Джермі</string>
     <string name="sergey_kapitsa">Сергій Капиця</string>
     <string name="alan_parker">Алан Паркер</string>
     <!-- 15 february -->
@@ -513,7 +512,7 @@
     <string name="whitehead">Альфред Норт Вайтхед</string>
     <string name="barrymore">Джон Беррімор</string>
     <!-- 16 february -->
-    <string name="bouguer">П’єр Бугер</string>
+    <string name="bouguer">П\'єр Бугер</string>
     <string name="bodoni">Джамбаттіста Бодоні</string>
     <string name="galton">Френсіс Гальтон</string>
     <string name="haeckel">Ернст Генріх Геккель</string>
@@ -556,7 +555,7 @@
     <string name="washington">Джордж Вашингтон</string>
     <string name="schopenhauer">Артур Шопенгауер</string>
     <string name="quetelet">Адольф Кетле</string>
-    <string name="janssen">П’єр Жансен</string>
+    <string name="janssen">П\'єр Жансен</string>
     <string name="hertz">Генріх Герц</string>
     <string name="bronsted">Йоганнес Ніколаус Брьонстед</string>
     <string name="drew_barrymore">Дрю Беррімор</string>
@@ -577,7 +576,7 @@
     <!-- 25 february -->
     <string name="battuta">Ібн Батута</string>
     <string name="goldoni">Карло Ґольдоні</string>
-    <string name="renoir">П’єр-Огюст Ренуар</string>
+    <string name="renoir">П\'єр-Огюст Ренуар</string>
     <string name="karl_may">Карл Фрідрих Май</string>
     <string name="caruso">Енріко Карузо</string>
     <string name="burgess">Ентоні Берджес</string>
@@ -652,7 +651,7 @@
     <string name="rob_roy">Роб Рой</string>
     <string name="niepce">Жозеф Нісефор Ньєпс</string>
     <string name="palmer">Даніель Девід Пальмер</string>
-    <string name="montesquiou">Роберт де Монтеск’ю</string>
+    <string name="montesquiou">Роберт де Монтеск\'ю</string>
     <string name="mondrian">Піт Мондріан</string>
     <string name="ravel">Моріс Равель</string>
     <string name="kobo_abe">Кобо Абе</string>
@@ -680,7 +679,7 @@
     <string name="stone">Шерон Стоун</string>
     <!-- 11 march -->
     <string name="tasso">Торквато Тассо</string>
-    <string name="verrier">Урбен Левер’є</string>
+    <string name="verrier">Урбен Левер\'є</string>
     <string name="bertrand">Жозеф Бертран</string>
     <string name="vannevar_bush">Венівар Буш</string>
     <string name="bloembergen">Ніколас Бломберген</string>
@@ -753,7 +752,7 @@
     <string name="neher">Ервін Неєр</string>
     <string name="bennington">Честер Беннінгтон</string>
     <!-- 21 march -->
-    <string name="fourier">Жозеф Фур’є</string>
+    <string name="fourier">Жозеф Фур\'є</string>
     <string name="mozhaysky">Олександр Можайський </string>
     <string name="gilbert">Волтер Гілберт</string>
     <string name="oldman">Гері Олдмен</string>
@@ -761,13 +760,13 @@
     <string name="ronaldinho">Роналдінью</string>
     <!-- 22 march -->
     <string name="van_dyck">Антоніс ван Дейк</string>
-    <string name="pelletier">П’єр Жозеф Пеллетьє</string>
+    <string name="pelletier">П\'єр Жозеф Пеллетьє</string>
     <string name="lysenko">Микола Лисенко</string>
     <string name="millikan">Роберт Міллікен</string>
     <string name="richter">Бертон Ріхтер</string>
     <string name="webber">Ендрю Ллойд Веббер</string>
     <!-- 23 march -->
-    <string name="laplace">П’єр-Симон Лаплас</string>
+    <string name="laplace">П\'єр-Симон Лаплас</string>
     <string name="du_gard">Роже Мартен дю Гар</string>
     <string name="noether">Еммі Нетер</string>
     <string name="juan_gris">Хуан Ґріс</string>
@@ -868,7 +867,7 @@
     <string name="reid">Томас Майн Рід</string>
     <string name="siemens">Карл Вільгельм Сіменс</string>
     <string name="simmons">Ден Сіммонс</string>
-    <string name="weaving">Г’юго Вівінг</string>
+    <string name="weaving">Г\'юго Вівінг</string>
     <string name="robert_downey">Роберт Дауні-мол.</string>
     <string name="ledger">Гіт Леджер</string>
     <!-- 5 april -->
@@ -909,7 +908,7 @@
     <string name="muybridge">Едвард Майбрідж</string>
     <string name="pincus">Грегорі Гудвін Пінк</string>
     <string name="eckert">Джон Преспер Еккерт</string>
-    <string name="hefner">Г’ю Гефнер</string>
+    <string name="hefner">Г\'ю Гефнер</string>
     <string name="belmondo">Жан-Поль Бельмондо</string>
     <string name="stewart">Крістен Стюарт</string>
     <!-- 10 april -->
@@ -933,7 +932,7 @@
     <string name="hancock">Гербі Генкок</string>
     <string name="garcia">Енді Гарсія</string>
     <!-- 13 april -->
-    <string name="favre">П’єр Фавр</string>
+    <string name="favre">П\'єр Фавр</string>
     <string name="fawkes">Гай Фокс</string>
     <string name="bramah">Джозеф Брама</string>
     <string name="trevithick">Річард Тревітік</string>
@@ -985,7 +984,7 @@
     <string name="judd">Ешлі Джад</string>
     <string name="christensen">Гайден Крістенсен</string>
     <!-- 20 april -->
-    <string name="aretino">П’єтро Аретіно</string>
+    <string name="aretino">П\'єтро Аретіно</string>
     <string name="pinel">Філіпп Пінель</string>
     <string name="raffaelli">Жан-Франсуа Раффаеллі</string>
     <string name="hitler">Адольф Гітлер</string>
@@ -1080,7 +1079,7 @@
     <!-- 1 may -->
     <string name="addison">Джозеф Аддісон</string>
     <string name="cajal">Сантьяго Рамон-і-Кахаль</string>
-    <string name="chardin">П’єр Тейяр де Шарден</string>
+    <string name="chardin">П\'єр Тейяр де Шарден</string>
     <string name="woo">Джон Ву</string>
     <string name="dornan">Джеймі Дорнан</string>
     <!-- 2 may -->
@@ -1092,7 +1091,7 @@
     <string name="johnson">Двейн Джонсон</string>
     <string name="david_beckham">Девід Бекхем</string>
     <!-- 3 may -->
-    <string name="machiavelli">Нікколо Мак’явеллі</string>
+    <string name="machiavelli">Нікколо Мак\'явеллі</string>
     <string name="haldane">Джон Скотт Голдейн</string>
     <string name="ekman">Вагн Вальфрід Екман</string>
     <string name="coty">Франсуа Коті</string>
@@ -1107,7 +1106,7 @@
     <string name="mandelstam">Леонід Мандельштам</string>
     <string name="hepburn">Одрі Хепберн</string>
     <!-- 5 may -->
-    <string name="kierkegaard">Серен Об’ю К’єркегор</string>
+    <string name="kierkegaard">Серен Об\'ю К\'єркегор</string>
     <string name="marx">Карл Маркс</string>
     <string name="sienkiewicz">Генрик Сенкевич</string>
     <string name="schawlow">Артур Леонард Шавлов</string>
@@ -1185,12 +1184,12 @@
     <string name="vasnetsov">Віктор Васнецов</string>
     <string name="wernicke">Карл Верніке</string>
     <string name="baum">Лаймен Фрунк Баум</string>
-    <string name="curie">П’єр Кюрі</string>
+    <string name="curie">П\'єр Кюрі</string>
     <string name="bulgakov">Михайло Булгаков</string>
     <!-- 16 may -->
     <string name="agnesi">Марія Ґаетана Аньєзі</string>
     <string name="vauquelin">Луї Ніколя Воклен</string>
-    <string name="david_hughes">Девід Едвард Г’юз</string>
+    <string name="david_hughes">Девід Едвард Г\'юз</string>
     <string name="fonda">Генрі Фонда</string>
     <string name="herman">Вуді Герман</string>
     <string name="trejo">Денні Трехо</string>
@@ -1198,14 +1197,14 @@
     <string name="megan_fox">Меган Фокс</string>
     <!-- 17 may -->
     <string name="jenner">Едвард Дженнер</string>
-    <string name="lockyer">Норман Лок’єр</string>
+    <string name="lockyer">Норман Лок\'єр</string>
     <string name="hassel">Одд Хассель</string>
     <string name="gabin">Жан Габен</string>
     <string name="nilsson">Бірґіт Нільссон</string>
     <string name="hopper">Денніс Гоппер</string>
     <!-- 18 may -->
     <string name="khayyam">Омар Хайям</string>
-    <string name="clapperton">Г’ю Клапертон</string>
+    <string name="clapperton">Г\'ю Клапертон</string>
     <string name="hofmeister">Вільгельм Гофмейстер</string>
     <string name="heaviside">Олівер Хевісайд</string>
     <string name="bertrand_russell">Бертран Расселл</string>
@@ -1224,7 +1223,7 @@
     <string name="balzac">Оноре де Бальзак</string>
     <string name="passy">Фредерік Пассі</string>
     <string name="berliner">Еміль Берлінер</string>
-    <string name="hewlett">Вільям Редінгтон Г’юлет</string>
+    <string name="hewlett">Вільям Редінгтон Г\'юлет</string>
     <string name="edward_lewis">Едвард Льюїс</string>
     <string name="cher">Шер</string>
     <!-- 21 may -->
@@ -1237,7 +1236,7 @@
     <!-- 22 may -->
     <string name="wagner">Ріхард Вагнер</string>
     <string name="doyle">Артур Конан-Дойл</string>
-    <string name="olivier">Лоуренс Олів’є</string>
+    <string name="olivier">Лоуренс Олів\'є</string>
     <string name="herge">Ерже</string>
     <string name="herbert_brown">Герберт Чарлз Браун</string>
     <string name="campbell">Наомі Кемпбелл</string>
@@ -1345,7 +1344,7 @@
     <!-- 6 june -->
     <string name="regiomontanus">Реґіомонтан</string>
     <string name="velazquez">Дієго Веласкес</string>
-    <string name="corneille">П’єр Корнель</string>
+    <string name="corneille">П\'єр Корнель</string>
     <string name="pushkin">Олександр Пушкін</string>
     <string name="braun">Карл Фердинанд Браун</string>
     <string name="mann">Томас Манн</string>
@@ -1387,7 +1386,7 @@
     <string name="richard_strauss">Ріхард Штраус</string>
     <string name="cousteau">Жак-Ів Кусто</string>
     <string name="styron">Вільям Стайрон</string>
-    <string name="laurie">Г’ю Лорі</string>
+    <string name="laurie">Г\'ю Лорі</string>
     <string name="dinklage">Пітер Дінклейдж</string>
     <string name="labeouf">Шая Лабаф</string>
     <!-- 12 june -->
@@ -1458,7 +1457,7 @@
     <!-- 21 june -->
     <string name="poisson">Сімеон-Дені Пуассон</string>
     <string name="sartre">Жан-Поль Сартр</string>
-    <string name="mcewan">Ієн Мак’юен</string>
+    <string name="mcewan">Ієн Мак\'юен</string>
     <string name="platini">Мішель Платіні</string>
     <string name="tsoi">Віктор Цой</string>
     <string name="lana_del_rey">Лана Дель Рей</string>
@@ -1512,7 +1511,7 @@
     <string name="carrel">Алексіс Каррель</string>
     <string name="goeppert_mayer">Марія Гепперт-Маєр</string>
     <string name="kathy_bates">Кеті Бейтс</string>
-    <string name="cusack">Джон К’юсак</string>
+    <string name="cusack">Джон К\'юсак</string>
     <string name="musk">Ілон Маск</string>
     <!-- 29 june -->
     <string name="dodoens">Ремберт Додунс</string>
@@ -1543,7 +1542,7 @@
     <string name="henry_bragg">Вільям Генрі Брегг</string>
     <string name="hesse">Герман Гессе</string>
     <string name="lacoste">Рене Лакост</string>
-    <string name="cardin">П’єр Карден</string>
+    <string name="cardin">П\'єр Карден</string>
     <string name="lumumba">Патріс Лумумбаба</string>
     <string name="naceri">Самі Насері</string>
     <string name="robbie">Марго Роббі</string>
@@ -1554,7 +1553,7 @@
     <string name="cruise">Том Круз</string>
     <string name="selanne">Теему Селянне</string>
     <!-- 4 july -->
-    <string name="blanchard">Жан-П’єр Франсуа Бланшар</string>
+    <string name="blanchard">Жан-П\'єр Франсуа Бланшар</string>
     <string name="everest">Джордж Еверест</string>
     <string name="garibaldi">Джузеппе Гарібальді</string>
     <string name="manolete">Манолете</string>
@@ -1629,7 +1628,7 @@
     <string name="rubik">Ерне Рубік</string>
     <string name="benassi">Бенні Бенассі</string>
     <!-- 14 july -->
-    <string name="dumas">Жан Батист Дюма</string>
+    <string name="dumas">Жан-Батист Дюма</string>
     <string name="klimt">Густав Клімт</string>
     <string name="irving_stone">Ірвінг Стоун</string>
     <string name="bergman">Інгмар Бергман</string>
@@ -1757,7 +1756,7 @@
     <string name="primo_levi">Прімо Леві</string>
     <string name="rowling">Джоан Роулінг</string>
     <!-- 1 august -->
-    <string name="lamarck">Жан Батист Ламарк</string>
+    <string name="lamarck">Жан-Батист Ламарк</string>
     <string name="melville">Герман Мелвілл</string>
     <string name="taro">Герда Таро</string>
     <string name="laurent">Ів Сен-Лоран</string>
@@ -1920,7 +1919,7 @@
     <string name="arrow">Кеннет Джозеф Ерроу</string>
     <string name="phoenix">Рівер Фенікс</string>
     <!-- 24 august -->
-    <string name="weddell">Джеймс Уедделла</string>
+    <string name="weddell">Джеймс Веддел</string>
     <string name="borges">Хорхе Луїс Борхес</string>
     <string name="coelho">Пауло Коельйо</string>
     <string name="jarre">Жан-Мішель Жарр</string>
@@ -2273,7 +2272,7 @@
     <string name="pavel_durov">Павло Дуров</string>
     <!-- 11 october -->
     <string name="olbers">Генріх Вільгельм Ольберс</string>
-    <string name="berlier">Жан-Батист Берлье</string>
+    <string name="berlier">Жан-Батист Берльє</string>
     <string name="heinz">Генрі Гайнц</string>
     <string name="roosevelt">Елеонора Рузвельт</string>
     <string name="mauriac">Франсуа Моріак</string>

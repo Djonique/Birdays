@@ -80,7 +80,6 @@
     <string name="pick_date">Pick date</string>
     <string name="wrong_date">Wrong date</string>
     <string name="unknown_year">I don\'t know year</string>
-    <string name="ok_button">OK</string>
     <string name="cancel_button">Cancel</string>
     <string name="record_added">Record added</string>
 
@@ -2679,7 +2678,7 @@
     <string name="waits">Tom Waits</string>
     <string name="emily_browning">Emily Browning</string>
     <!-- 8 december -->
-    <string name="dholbach">Paul-Henri Thiry, baron d’Holbach</string>
+    <string name="dholbach">Paul-Henri Thiry, baron d\'Holbach</string>
     <string name="menzel">Adolph von Menzel</string>
     <string name="bjornson">Bjørnstjerne Bjørnson</string>
     <string name="reynaud">Charles-Émile Reynaud</string>

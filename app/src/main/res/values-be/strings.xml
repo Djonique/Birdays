@@ -80,7 +80,6 @@
     <string name="pick_date">Выберите дату</string>
     <string name="wrong_date">Неверная дата</string>
     <string name="unknown_year">Я не знаю год рождения</string>
-    <string name="ok_button">OK</string>
     <string name="cancel_button">Отмена</string>
     <string name="record_added">Запись добавлена</string>
 
@@ -1629,7 +1628,7 @@
     <string name="rubik">Эрнё Рубик</string>
     <string name="benassi">Бенни Бенасси</string>
     <!-- 14 july -->
-    <string name="dumas">Жан Батист Дюма</string>
+    <string name="dumas">Жан-Батист Дюма</string>
     <string name="klimt">Густав Климт</string>
     <string name="irving_stone">Ирвинг Стоун</string>
     <string name="bergman">Ингмар Бергман</string>
@@ -1649,7 +1648,7 @@
     <string name="sheckley">Роберт Шекли</string>
     <!-- 17 july -->
     <string name="friedrich_krupp">Фридрих Карл Крупп</string>
-    <string name="corot">Жан Батист Камиль Коро</string>
+    <string name="corot">Жан-Батист Камиль Коро</string>
     <string name="nicholas">Николай Миклухо-Маклай</string>
     <string name="lamaitre">Жорж Леметр</string>
     <string name="abbott">Беренис Эббот</string>
@@ -1757,7 +1756,7 @@
     <string name="primo_levi">Примо Леви</string>
     <string name="rowling">Джоан Роулинг</string>
     <!-- 1 august -->
-    <string name="lamarck">Жан Батист Ламарк</string>
+    <string name="lamarck">Жан-Батист Ламарк</string>
     <string name="melville">Герман Мелвилл</string>
     <string name="taro">Герда Таро</string>
     <string name="laurent">Ив Сен-Лоран</string>
