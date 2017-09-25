@@ -145,7 +145,6 @@
     <string name="Vibration">Vibration</string>
     <string name="additional_notification">Additional notification</string>
     <string name="notification_tone">Notification tone</string>
-    <string name="ringtone_default_value" translatable="false">content://settings/system/notification_sound</string>
     <string name="ringtone_summary">Choose a sound for notification. By default is used tone from the device settings</string>
     <string name="help">Help</string>
     <string name="tap_here">Tap here if you don\'t receive notifications</string>

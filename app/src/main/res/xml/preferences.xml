@@ -39,7 +39,6 @@
             android:summary="%s"
             android:title="@string/additional_notification" />
         <RingtonePreference
-            android:defaultValue="@string/ringtone_default_value"
             android:dependency="@string/notifications_key"
             android:key="@string/ringtone_key"
             android:ringtoneType="notification"
@@ -59,23 +58,6 @@
             android:key="@string/contacts_sync_key"
             android:summary="@string/contacts_sync_summary"
             android:title="@string/contacts_sync_title" />
-    </PreferenceCategory>
-
-    <!-- Advertising -->
-    <PreferenceCategory android:title="@string/advertising">
-        <Preference
-            android:selectable="false"
-            android:summary="@string/about_ad_summary"
-            android:title="@string/about_ad_title" />
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="@string/ad_banner_key"
-            android:title="@string/ad_banner" />
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="@string/ad_interstitial_key"
-            android:summary="@string/ad_interstitial_summary"
-            android:title="@string/ad_interstitial_title" />
     </PreferenceCategory>
 
     <!-- General -->
@@ -98,6 +80,23 @@
         <Preference
             android:key="@string/share_key"
             android:title="@string/share" />
+    </PreferenceCategory>
+
+    <!-- Advertising -->
+    <PreferenceCategory android:title="@string/advertising">
+        <Preference
+            android:selectable="false"
+            android:summary="@string/about_ad_summary"
+            android:title="@string/about_ad_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/ad_banner_key"
+            android:title="@string/ad_banner" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/ad_interstitial_key"
+            android:summary="@string/ad_interstitial_summary"
+            android:title="@string/ad_interstitial_title" />
     </PreferenceCategory>
 
     <!-- About app -->

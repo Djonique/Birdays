@@ -26,7 +26,6 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -126,7 +125,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             Preference ringtonePreference = findPreference(ConstantManager.RINGTONE_KEY);
             try {
                 String ringtoneString = preferences.getString(ringtonePreference.getKey(),
-                        Settings.System.DEFAULT_NOTIFICATION_URI.toString());
+                        RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION).toString());
                 String ringtoneName = RingtoneManager.getRingtone(getActivity(),
                         Uri.parse(ringtoneString)).getTitle(getActivity());
                 ringtonePreference.setSummary(ringtoneName);
