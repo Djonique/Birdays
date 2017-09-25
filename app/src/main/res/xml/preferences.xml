@@ -90,13 +90,13 @@
             android:title="@string/about_ad_title" />
         <SwitchPreference
             android:defaultValue="true"
-            android:key="@string/ad_banner_key"
-            android:title="@string/ad_banner" />
-        <SwitchPreference
-            android:defaultValue="true"
             android:key="@string/ad_interstitial_key"
             android:summary="@string/ad_interstitial_summary"
             android:title="@string/ad_interstitial_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/ad_banner_key"
+            android:title="@string/ad_banner" />
     </PreferenceCategory>
 
     <!-- About app -->
