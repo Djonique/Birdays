@@ -2,6 +2,7 @@
 App saves Birthdays and displays famous persons with whom you were born in one day.
 ## Translators
 Serhii Ponomarenko (Ukrainian)
+Marc Sulser (Deutsch)
 ## License 
 ```
 Copyright 2017 Evgeny Timofeev
