@@ -315,7 +315,7 @@ public class Utils {
     }
 
     public static void setupDayNightTheme(SharedPreferences preferences) {
-        boolean nightMode = preferences.getBoolean(ConstantManager.NIGHT_MODE_KEY, false);
+        boolean nightMode = preferences.getBoolean(Constants.NIGHT_MODE_KEY, false);
         if (nightMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {

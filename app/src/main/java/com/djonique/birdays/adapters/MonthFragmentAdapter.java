@@ -37,7 +37,7 @@ import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
-import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -132,7 +132,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
+                intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
                 context.startActivity(intent);
                 if (context instanceof MainActivity) {
                     ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
@@ -145,12 +145,12 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnEmail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mFirebaseAnalytics.logEvent(ConstantManager.SEND_EMAIL, new Bundle());
+                    mFirebaseAnalytics.logEvent(Constants.SEND_EMAIL, new Bundle());
                     Intent intent = new Intent(Intent.ACTION_SENDTO);
-                    intent.setType(ConstantManager.TYPE_EMAIL);
+                    intent.setType(Constants.TYPE_EMAIL);
                     intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
                     intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.happy_birthday));
-                    intent.setData(Uri.parse(ConstantManager.MAILTO + email));
+                    intent.setData(Uri.parse(Constants.MAILTO + email));
                     context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_email)));
                 }
             });
@@ -164,19 +164,19 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnCall.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mFirebaseAnalytics.logEvent(ConstantManager.MAKE_CALL, new Bundle());
-                    context.startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(ConstantManager.TEL + phoneNumber)));
+                    mFirebaseAnalytics.logEvent(Constants.MAKE_CALL, new Bundle());
+                    context.startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(Constants.TEL + phoneNumber)));
                 }
             });
 
             holder.btnChat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mFirebaseAnalytics.logEvent(ConstantManager.SEND_MESSAGE, new Bundle());
+                    mFirebaseAnalytics.logEvent(Constants.SEND_MESSAGE, new Bundle());
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setType(ConstantManager.TYPE_SMS);
-                    intent.putExtra(ConstantManager.ADDRESS, phoneNumber);
-                    intent.setData(Uri.parse(ConstantManager.SMSTO + phoneNumber));
+                    intent.setType(Constants.TYPE_SMS);
+                    intent.putExtra(Constants.ADDRESS, phoneNumber);
+                    intent.setData(Uri.parse(Constants.SMSTO + phoneNumber));
                     context.startActivity(intent);
                 }
             });
@@ -229,7 +229,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     }
 
     private boolean nightMode() {
-        return sharedPreferences.getBoolean(ConstantManager.NIGHT_MODE_KEY, false);
+        return sharedPreferences.getBoolean(Constants.NIGHT_MODE_KEY, false);
     }
 
     static class CardViewHolder extends RecyclerView.ViewHolder {

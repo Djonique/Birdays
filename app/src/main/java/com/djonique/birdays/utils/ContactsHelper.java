@@ -36,6 +36,8 @@ import java.util.List;
 
 public class ContactsHelper {
 
+    private static final String ILLEGAL_ARGUMENT_EXCEPTION = "IllegalArgumentException";
+
     private Activity activity;
     private ContentResolver contentResolver;
     private ProgressDialog progressDialog;
@@ -51,7 +53,7 @@ public class ContactsHelper {
      * Returns name from certain contact
      */
     public String getContactName(ContentResolver contentResolver, String id) {
-        String name = null;
+        String name = "";
         Cursor nameCursor = contentResolver.query(ContactsContract.Data.CONTENT_URI,
                 null,
                 ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + " = ?",
@@ -70,7 +72,7 @@ public class ContactsHelper {
      * Returns phone number from certain contact
      */
     public String getContactPhoneNumber(ContentResolver contentResolver, String id) {
-        String phoneNumber = null;
+        String phoneNumber = "";
         Cursor phoneCursor = contentResolver.query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 null,
@@ -90,7 +92,7 @@ public class ContactsHelper {
      * Returns email from certain contact
      */
     public String getContactEmail(ContentResolver contentResolver, String id) {
-        String email = null;
+        String email = "";
         Cursor emailCursor = contentResolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI,
                 null,
                 ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?",
@@ -164,40 +166,16 @@ public class ContactsHelper {
      * saves them into DB, sets alarm for added persons
      */
     public void loadContacts(SharedPreferences preferences) {
-        if (PermissionHelper.permissionGranted(activity)) {
+        if (PermissionManager.readingContactsPermissionGranted(activity)) {
             try {
-                new SuperAsyncTask().execute();
-                preferences.edit().putBoolean(ConstantManager.CONTACTS_UPLOADED, true).apply();
+                new ContactsAsyncLoading().execute();
+                preferences.edit().putBoolean(Constants.CONTACTS_UPLOADED, true).apply();
             } catch (Exception e) {
-                preferences.edit().putBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, true).apply();
+                preferences.edit().putBoolean(Constants.WRONG_CONTACTS_FORMAT, true).apply();
                 Toast.makeText(activity, R.string.loading_contacts_error, Toast.LENGTH_LONG).show();
             }
         } else {
-            PermissionHelper.requestPermission(activity);
-        }
-    }
-
-    /**
-     * Starts progress dialog
-     */
-    private void startProgressDialog() {
-        progressDialog = new ProgressDialog(activity);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage(activity.getString(R.string.loading_contacts));
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
-
-    /**
-     * Stops progress dialog
-     */
-    private void dismissProgressDialog() {
-        if (progressDialog != null) {
-            try {
-                progressDialog.dismiss();
-            } catch (IllegalArgumentException e) {
-                Toast.makeText(activity, "IllegalArgumentException", Toast.LENGTH_SHORT).show();
-            }
+            PermissionManager.requestReadingContactsPermission(activity);
         }
     }
 
@@ -205,12 +183,14 @@ public class ContactsHelper {
         void onContactsUploaded();
     }
 
-    private class SuperAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class ContactsAsyncLoading extends AsyncTask<Void, Void, Void> {
+
+        ProgressDialogHelper progressDialogHelper = new ProgressDialogHelper(activity);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            startProgressDialog();
+            progressDialogHelper.startProgressDialog(activity.getString(R.string.loading_contacts));
         }
 
         @Override
@@ -233,7 +213,7 @@ public class ContactsHelper {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            dismissProgressDialog();
+            progressDialogHelper.dismissProgressDialog();
             loadingContactsListener.onContactsUploaded();
             Toast.makeText(activity, R.string.contacts_uploaded, Toast.LENGTH_SHORT).show();
         }

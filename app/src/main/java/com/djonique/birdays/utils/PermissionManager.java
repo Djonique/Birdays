@@ -23,12 +23,12 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
-public class PermissionHelper {
+public class PermissionManager {
 
     /**
      * Checks if permission for reading contacts is granted
      */
-    public static boolean permissionGranted(Context context) {
+    public static boolean readingContactsPermissionGranted(Context context) {
         return ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS)
                 == PackageManager.PERMISSION_GRANTED;
     }
@@ -36,8 +36,24 @@ public class PermissionHelper {
     /**
      * Requests reading contacts permission if it is not granted
      */
-    public static void requestPermission(Activity activity) {
+    public static void requestReadingContactsPermission(Activity activity) {
         ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_CONTACTS},
-                ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE);
+                Constants.CONTACTS_REQUEST_PERMISSION_CODE);
+    }
+
+    /**
+     * Checks if permission for writing to SD card is granted
+     */
+    public static boolean writingSdPermissionGranted(Context context) {
+        return ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == PackageManager.PERMISSION_GRANTED;
+    }
+
+    /**
+     * Requests writing to SD card permission if it is not granted
+     */
+    public static void requestWritingSdPermission(Activity activity) {
+        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                Constants.WRITE_EXTERNAL_STORAGE_PERMISSION_CODE);
     }
 }

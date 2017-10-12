@@ -25,6 +25,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -43,9 +44,10 @@
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification" />
 
+        <!-- Fabric Crashlytics -->
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="984663d4831ae005b7ce4584df47c99a529d308e" />
+            android:value="${fabric_api_key}" />
 
         <!-- MainActivity -->
         <activity

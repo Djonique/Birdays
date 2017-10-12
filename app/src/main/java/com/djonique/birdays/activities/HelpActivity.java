@@ -24,7 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Constants;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -64,13 +64,13 @@ public class HelpActivity extends AppCompatActivity {
     void sendEmail() {
         String email = getString(R.string.birdays_email);
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setType(ConstantManager.TYPE_EMAIL);
+        intent.setType(Constants.TYPE_EMAIL);
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
         intent.putExtra(Intent.EXTRA_SUBJECT, Build.MANUFACTURER + "/"
                 + Build.MODEL + "/"
                 + Build.VERSION.SDK_INT + "/"
                 + getString(R.string.version_name));
-        intent.setData(Uri.parse(ConstantManager.MAILTO + email));
+        intent.setData(Uri.parse(Constants.MAILTO + email));
         startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
     }
 }

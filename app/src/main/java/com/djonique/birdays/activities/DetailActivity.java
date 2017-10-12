@@ -46,7 +46,7 @@ import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
-import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -114,19 +114,18 @@ public class DetailActivity extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         mInterstitialAd = new InterstitialAd(this);
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(ConstantManager.AD_INTERSTITIAL_KEY, true)) {
-            // Test id ca-app-pub-3940256099942544/1033173712
-            mInterstitialAd.setAdUnitId(BuildConfig.INTERSTITIAL_AD_KEY);
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(Constants.AD_INTERSTITIAL_KEY, true)) {
+            mInterstitialAd.setAdUnitId(BuildConfig.INTERSTITIAL_AD_ID);
             mInterstitialAd.loadAd(new AdRequest.Builder().build());
         }
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        agePref = preferences.getString(ConstantManager.DISPLAYED_AGE_KEY, "0");
+        agePref = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
 
         Utils.setupDayNightTheme(preferences);
 
         Intent intent = getIntent();
-        timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
+        timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
 
         dbHelper = new DBHelper(this);
         person = dbHelper.query().getPerson(timeStamp);
@@ -168,7 +167,7 @@ public class DetailActivity extends AppCompatActivity {
                 break;
             case R.id.menu_detail_share:
                 Intent intentShare = new Intent(Intent.ACTION_SEND);
-                intentShare.setType(ConstantManager.TEXT_PLAIN);
+                intentShare.setType(Constants.TEXT_PLAIN);
                 intentShare.putExtra(Intent.EXTRA_TEXT, name
                         + getString(R.string.is_celebrating_bd)
                         + Utils.getDateWithoutYear(date)
@@ -197,7 +196,7 @@ public class DetailActivity extends AppCompatActivity {
             // Refreshes activity after editing
             Toast.makeText(this, R.string.record_edited, Toast.LENGTH_SHORT).show();
             Intent refresh = new Intent(this, DetailActivity.class);
-            refresh.putExtra(ConstantManager.TIME_STAMP, timeStamp);
+            refresh.putExtra(Constants.TIME_STAMP, timeStamp);
             startActivity(refresh);
             this.finish();
         }
@@ -265,8 +264,8 @@ public class DetailActivity extends AppCompatActivity {
     void starEditActivity() {
         logEvent();
         Intent intent = new Intent(this, EditActivity.class);
-        intent.putExtra(ConstantManager.TIME_STAMP, timeStamp);
-        startActivityForResult(intent, ConstantManager.EDIT_ACTIVITY);
+        intent.putExtra(Constants.TIME_STAMP, timeStamp);
+        startActivityForResult(intent, Constants.EDIT_ACTIVITY);
         overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
     }
 
@@ -321,34 +320,34 @@ public class DetailActivity extends AppCompatActivity {
 
     private void logEvent() {
         Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, ConstantManager.EDIT_ACTIVITY_TAG);
+        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, Constants.EDIT_ACTIVITY_TAG);
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
     }
 
     @OnClick(R.id.imagebutton_detail_phone)
     void makeCall() {
-        mFirebaseAnalytics.logEvent(ConstantManager.MAKE_CALL, new Bundle());
-        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(ConstantManager.TEL + phoneNumber)));
+        mFirebaseAnalytics.logEvent(Constants.MAKE_CALL, new Bundle());
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(Constants.TEL + phoneNumber)));
     }
 
     @OnClick(R.id.imagebutton_detail_chat)
     void sendMessage() {
-        mFirebaseAnalytics.logEvent(ConstantManager.SEND_MESSAGE, new Bundle());
+        mFirebaseAnalytics.logEvent(Constants.SEND_MESSAGE, new Bundle());
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setType(ConstantManager.TYPE_SMS);
-        intent.putExtra(ConstantManager.ADDRESS, phoneNumber);
-        intent.setData(Uri.parse(ConstantManager.SMSTO + phoneNumber));
+        intent.setType(Constants.TYPE_SMS);
+        intent.putExtra(Constants.ADDRESS, phoneNumber);
+        intent.setData(Uri.parse(Constants.SMSTO + phoneNumber));
         startActivity(intent);
     }
 
     @OnClick(R.id.imagebutton_detail_email)
     void sendEmail() {
-        mFirebaseAnalytics.logEvent(ConstantManager.SEND_EMAIL, new Bundle());
+        mFirebaseAnalytics.logEvent(Constants.SEND_EMAIL, new Bundle());
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setType(ConstantManager.TYPE_EMAIL);
+        intent.setType(Constants.TYPE_EMAIL);
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
         intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.happy_birthday));
-        intent.setData(Uri.parse(ConstantManager.MAILTO + email));
+        intent.setData(Uri.parse(Constants.MAILTO + email));
         startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
     }
 }

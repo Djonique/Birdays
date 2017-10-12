@@ -123,7 +123,6 @@
     <string name="notifications">Сповіщення</string>
     <string name="allow_notification">Дозволити застосунку присилати сповіщення про майбутні дні народження</string>
     <string name="notifications_time">Час сповіщення</string>
-    <string name="Vibration">Вібрація</string>
     <string name="additional_notification">Додаткове сповіщення</string>
     <string name="notification_tone">Звук сповіщення</string>
     <string name="ringtone_summary">Оберіть звук сповіщення. За замовчування використовується звук із налаштувань пристрою</string>
@@ -2502,7 +2501,7 @@
     <string name="gosling">Раян Гослінг</string>
     <string name="hathaway">Енн Гетевей</string>
     <!-- 13 november -->
-    <string name="montagu">Джон Монтегю</string>
+    <string name="montagu">Джон Монтегю, 4-й граф Сендвіч</string>
     <string name="hauy">Валентин Гаюї</string>
     <string name="stevenson">Роберт Луїс Стівенсон</string>
     <string name="kokkonen">Йонас Кокконен</string>

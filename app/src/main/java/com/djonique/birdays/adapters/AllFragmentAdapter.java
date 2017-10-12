@@ -37,7 +37,7 @@ import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.models.Separator;
-import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -167,7 +167,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         context = parent.getContext();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        agePref = preferences.getString(ConstantManager.DISPLAYED_AGE_KEY, "0");
+        agePref = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
         switch (viewType) {
             case TYPE_PERSON:
                 View view = LayoutInflater.from(context).inflate(R.layout.description_list_view,
@@ -225,7 +225,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 public void onClick(View v) {
                     logEvent();
                     Intent intent = new Intent(context, DetailActivity.class);
-                    intent.putExtra(ConstantManager.TIME_STAMP, person.getTimeStamp());
+                    intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
                     allFragment.startActivity(intent);
                     if (context instanceof MainActivity) {
                         ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in,
@@ -283,7 +283,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private void logEvent() {
         Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, ConstantManager.DETAIL_ACTIVITY_TAG);
+        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, Constants.DETAIL_ACTIVITY_TAG);
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
     }
 

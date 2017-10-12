@@ -24,6 +24,7 @@
         <item name="colorAccent">@color/color_accent</item>
         <item name="colorControlHighlight">@color/ripple</item>
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:datePickerStyle">@android:style/Widget.Holo.DatePicker</item>
     </style>
 
     <style name="Material.Primary.TextView" parent="Primary.TextView">

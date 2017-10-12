@@ -19,17 +19,16 @@ package com.djonique.birdays.dialogs;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatButton;
@@ -40,25 +39,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.models.Person;
-import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.ContactsHelper;
-import com.djonique.birdays.utils.PermissionHelper;
+import com.djonique.birdays.utils.PermissionManager;
 import com.djonique.birdays.utils.Utils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Calendar;
 
-public class NewPersonDialogFragment extends DialogFragment implements
-        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+public class NewPersonDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     private AddingPersonListener addingPersonListener;
-    private SharedPreferences preferences;
     private EditText etName, etPhone, etEmail, etDate;
     private AppCompatCheckBox cbKnownYear;
     private Calendar calendar;
@@ -72,7 +70,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
         super.onAttach(activity);
         try {
             addingPersonListener = (AddingPersonListener) activity;
-            preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         } catch (ClassCastException e) {
             throw new ClassCastException();
         }
@@ -98,16 +95,16 @@ public class NewPersonDialogFragment extends DialogFragment implements
         addFromContactsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (PermissionHelper.permissionGranted(getActivity())) {
+                if (PermissionManager.readingContactsPermissionGranted(getActivity())) {
                     Intent intent = new Intent(Intent.ACTION_PICK,
                             ContactsContract.Contacts.CONTENT_URI);
                     try {
-                        startActivityForResult(intent, ConstantManager.REQUEST_READ_CONTACTS);
+                        startActivityForResult(intent, Constants.REQUEST_READ_CONTACTS);
                     } catch (ActivityNotFoundException e) {
                         Toast.makeText(getActivity(), R.string.open_contacts_error, Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    PermissionHelper.requestPermission(getActivity());
+                    PermissionManager.requestReadingContactsPermission(getActivity());
                 }
             }
         });
@@ -129,15 +126,8 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 if (etDate.length() == 0) {
                     etDate.setText("");
                 }
-                com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd =
-                        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.newInstance(
-                                NewPersonDialogFragment.this,
-                                calendar.get(Calendar.YEAR),
-                                calendar.get(Calendar.MONTH),
-                                calendar.get(Calendar.DAY_OF_MONTH)
-                        );
-                dpd.setThemeDark(preferences.getBoolean(ConstantManager.NIGHT_MODE_KEY, false));
-                dpd.show(getFragmentManager(), ConstantManager.DATE_PICKER_FRAGMENT_TAG);
+
+                showDatePickerDialog();
             }
         });
 
@@ -147,7 +137,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mFirebaseAnalytics.logEvent(ConstantManager.NEW_PERSON_ADDED, new Bundle());
+                mFirebaseAnalytics.logEvent(Constants.NEW_PERSON_ADDED, new Bundle());
                 if (etName != null) {
                     name = etName.getText().toString();
                     person.setName(name);
@@ -276,11 +266,19 @@ public class NewPersonDialogFragment extends DialogFragment implements
         return alertDialog;
     }
 
+    private void showDatePickerDialog() {
+        DatePickerDialog mDatePickerDialog = new DatePickerDialog(getActivity(),
+                NewPersonDialogFragment.this,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        mDatePickerDialog.show();
+    }
+
     @Override
-    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view,
-                          int yearPicked, int monthOfYear, int dayOfMonth) {
-        calendar.set(Calendar.YEAR, yearPicked);
-        calendar.set(Calendar.MONTH, monthOfYear);
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         date = calendar.getTimeInMillis();
         // Checks state of CheckBox whenever date is picked

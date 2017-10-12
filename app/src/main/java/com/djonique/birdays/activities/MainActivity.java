@@ -47,7 +47,7 @@ import com.djonique.birdays.dialogs.NewPersonDialogFragment;
 import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.BirdaysApplication;
-import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.ContactsHelper;
 import com.djonique.birdays.utils.Utils;
 import com.google.android.gms.ads.AdView;
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements
         viewPager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(viewPager);
 
-        if (!preferences.getBoolean(ConstantManager.CONTACTS_UPLOADED, false)) {
+        if (!preferences.getBoolean(Constants.CONTACTS_UPLOADED, false)) {
             new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
         }
 
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        if (preferences.getBoolean(ConstantManager.AD_BANNER_KEY, true)) {
+        if (preferences.getBoolean(Constants.AD_BANNER_KEY, true)) {
             Ad.showBannerAd(container, adView, fab);
         }
 
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements
             overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
         /*} else if (item.getItemId() == R.id.action_sync) {
             ModalBottomSheet modalBottomSheet = new ModalBottomSheet();
-            modalBottomSheet.show(getSupportFragmentManager(), ConstantManager.BOTTOM_SHEET_DIALOG_TAG);
+            modalBottomSheet.show(getSupportFragmentManager(), Constants.BOTTOM_SHEET_DIALOG_TAG);
         } else if (item.getItemId() == R.id.action_backup) {
             try {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -208,17 +208,17 @@ public class MainActivity extends AppCompatActivity implements
     @OnClick(R.id.fab_main)
     void showDialog() {
         DialogFragment newPersonDialogFragment = new NewPersonDialogFragment();
-        newPersonDialogFragment.show(getFragmentManager(), ConstantManager.NEW_PERSON_DIALOG_TAG);
+        newPersonDialogFragment.show(getFragmentManager(), Constants.NEW_PERSON_DIALOG_TAG);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == ConstantManager.CONTACTS_REQUEST_PERMISSION_CODE) {
+        if (requestCode == Constants.CONTACTS_REQUEST_PERMISSION_CODE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (!preferences.getBoolean(ConstantManager.WRONG_CONTACTS_FORMAT, false)) {
+                if (!preferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
                     new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
                 }
             } else {
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements
      */
     private void openApplicationSettings() {
         startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.parse(ConstantManager.PACKAGE + getPackageName())));
+                Uri.parse(Constants.PACKAGE + getPackageName())));
     }
 
     @Override

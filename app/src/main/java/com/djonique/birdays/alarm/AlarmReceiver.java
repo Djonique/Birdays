@@ -32,7 +32,7 @@ import android.support.v4.app.TaskStackBuilder;
 import com.djonique.birdays.R;
 import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.utils.BirdaysApplication;
-import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Constants;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -40,15 +40,15 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String ringtone = preferences.getString(ConstantManager.RINGTONE_KEY,
+        String ringtone = preferences.getString(Constants.RINGTONE_KEY,
                 RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION).toString());
         Uri ringtoneUri = Uri.parse(ringtone);
 
-        String string = intent.getStringExtra(ConstantManager.NAME);
-        long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
+        String string = intent.getStringExtra(Constants.NAME);
+        long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
 
         Intent resultIntent = new Intent(context, DetailActivity.class);
-        resultIntent.putExtra(ConstantManager.TIME_STAMP, timeStamp);
+        resultIntent.putExtra(Constants.TIME_STAMP, timeStamp);
 
         if (BirdaysApplication.isActivityVisible()) {
             resultIntent = intent;

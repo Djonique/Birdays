@@ -52,12 +52,20 @@
             android:title="@string/help" />
     </PreferenceCategory>
 
-    <!-- Synchronization -->
+    <!-- Synchronization and Backup -->
     <PreferenceCategory android:title="@string/action_sync">
         <Preference
             android:key="@string/contacts_sync_key"
             android:summary="@string/contacts_sync_summary"
             android:title="@string/contacts_sync_title" />
+        <Preference
+            android:key="@string/export_key"
+            android:title="Export records"
+            android:summary="Create an XML file with backup on SD card"/>
+        <Preference
+            android:key="@string/restore_key"
+            android:title="Restore records"
+            android:summary="Pick an XML file with backup"/>
     </PreferenceCategory>
 
     <!-- General -->

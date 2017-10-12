@@ -16,7 +16,7 @@
 
 package com.djonique.birdays.utils;
 
-public interface ConstantManager {
+public interface Constants {
 
     // Activities
     String CONTACTS_UPLOADED = "CONTACTS_UPLOADED";
@@ -25,12 +25,12 @@ public interface ConstantManager {
 
     // Dialogs
     String NEW_PERSON_DIALOG_TAG = "NEW_PERSON_DIALOG_TAG";
-    String DATE_PICKER_FRAGMENT_TAG = "DATE_PICKER_FRAGMENT_TAG";
     // String BOTTOM_SHEET_DIALOG_TAG = "BOTTOM_SHEET_DIALOG_TAG";
 
     // Permission requests
     int REQUEST_READ_CONTACTS = 1;
     int CONTACTS_REQUEST_PERMISSION_CODE = 2;
+    int WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 3;
 
     // Alarm and Settings keys
     String NAME = "name";

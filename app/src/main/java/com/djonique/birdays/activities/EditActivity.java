@@ -17,24 +17,22 @@
 package com.djonique.birdays.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
-import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
 
@@ -44,7 +42,7 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class EditActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class EditActivity extends AppCompatActivity implements android.app.DatePickerDialog.OnDateSetListener {
 
     @BindView(R.id.til_edit_name)
     TextInputLayout tilEditName;
@@ -75,7 +73,7 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        long timeStamp = intent.getLongExtra(ConstantManager.TIME_STAMP, 0);
+        long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
 
         dbHelper = new DBHelper(this);
         person = dbHelper.query().getPerson(timeStamp);
@@ -169,22 +167,18 @@ public class EditActivity extends AppCompatActivity implements DatePickerDialog.
 
     @OnClick(R.id.edittext_edit_date)
     void pickDate() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd =
-                com.wdullaer.materialdatetimepicker.date.DatePickerDialog.newInstance(
-                        EditActivity.this,
-                        calendar.get(Calendar.YEAR),
-                        calendar.get(Calendar.MONTH),
-                        calendar.get(Calendar.DAY_OF_MONTH)
-                );
-        dpd.setThemeDark(preferences.getBoolean(ConstantManager.NIGHT_MODE_KEY, false));
-        dpd.show(getFragmentManager(), ConstantManager.DATE_PICKER_FRAGMENT_TAG);
+        android.app.DatePickerDialog mDatePickerDialog = new android.app.DatePickerDialog(this,
+                this,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        mDatePickerDialog.show();
     }
 
     @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, monthOfYear);
+        calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         date = calendar.getTimeInMillis();
         // Checks state of CheckBox whenever date is picked

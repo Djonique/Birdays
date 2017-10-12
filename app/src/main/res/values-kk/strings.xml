@@ -123,7 +123,6 @@
     <string name="notifications">Уведомления</string>
     <string name="allow_notification">Разрешить приложению присылать уведомления о предстоящих днях рождения</string>
     <string name="notifications_time">Время уведомления</string>
-    <string name="Vibration">Вибрация</string>
     <string name="additional_notification">Дополнительное уведомление</string>
     <string name="notification_tone">Звук уведомления</string>
     <string name="ringtone_summary">Выберите звук уведомления. По умолчанию используется звук из настроек устройства</string>
@@ -2502,7 +2501,7 @@
     <string name="gosling">Райан Гослинг</string>
     <string name="hathaway">Энн Хэтэуэй</string>
     <!-- 13 november -->
-    <string name="montagu">Джон Монтегю</string>
+    <string name="montagu">Джон Монтегю, 4-й граф Сэндвич</string>
     <string name="hauy">Валентин Гаюи</string>
     <string name="stevenson">Роберт Льюис Стивенсон</string>
     <string name="kokkonen">Йонас Кокконен</string>

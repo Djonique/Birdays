@@ -16,10 +16,10 @@
 
 package com.djonique.birdays.adapters;
 
-import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,7 +31,7 @@ import android.widget.Toast;
 import com.djonique.birdays.R;
 import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
-import com.djonique.birdays.utils.ConstantManager;
+import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -87,9 +87,11 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFirebaseAnalytics.logEvent(ConstantManager.FAMOUS_PERSON_CLICKED, new Bundle());
-                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-                intent.putExtra(SearchManager.QUERY, name);
+                mFirebaseAnalytics.logEvent(Constants.FAMOUS_PERSON_CLICKED, new Bundle());
+                //Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                //intent.putExtra(SearchManager.QUERY, name);
+                Intent intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(context.getString(R.string.google_search) + name));
                 try {
                     context.startActivity(intent);
                 } catch (ActivityNotFoundException e) {

@@ -2,8 +2,10 @@
 .gradle
 .idea
 /local.properties
+/keystore.properties
 .DS_Store
 /build
 /captures
 /Common key
 /Google Play App Signing
+/google-services.json
