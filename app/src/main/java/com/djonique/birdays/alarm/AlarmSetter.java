@@ -32,7 +32,6 @@ public class AlarmSetter extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         DBHelper dbHelper = new DBHelper(context);
 
-        //AlarmHelper.getInstance().init(context);
         AlarmHelper alarmHelper = new AlarmHelper(context);
 
         List<Person> persons = new ArrayList<>();

@@ -22,6 +22,7 @@ public interface Constants {
     String CONTACTS_UPLOADED = "CONTACTS_UPLOADED";
     String WRONG_CONTACTS_FORMAT = "WRONG_CONTACTS_FORMAT";
     int EDIT_ACTIVITY = 102;
+    int FILE_MANAGER = 103;
 
     // Dialogs
     String NEW_PERSON_DIALOG_TAG = "NEW_PERSON_DIALOG_TAG";
@@ -31,6 +32,7 @@ public interface Constants {
     int REQUEST_READ_CONTACTS = 1;
     int CONTACTS_REQUEST_PERMISSION_CODE = 2;
     int WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 3;
+    int READ_EXTERNAL_STORAGE_PERMISSION_CODE = 4;
 
     // Alarm and Settings keys
     String NAME = "name";

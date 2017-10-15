@@ -68,7 +68,7 @@
     <!-- Menu -->
     <string name="action_sync">Синхронізація</string>
     <string name="action_settings">Налаштування</string>
-    <string name="menu_delete">Видалити</string>
+    <string name="action_delete">Видалити</string>
 
     <!-- NewPersonDialogFragment -->
     <string name="add_new_record">Новий запис</string>
@@ -161,12 +161,12 @@
     </string-array>
 
     <string-array name="additional_notification_greetings">
-        <item>сьогодні</item>
-        <item>завтра</item>
-        <item>післязавтра</item>
-        <item>через 3 дні</item>
-        <item>через тиждень</item>
-        <item>через 2 тижні</item>
+        <item>Сьогодні</item>
+        <item>Завтра</item>
+        <item>Післязавтра</item>
+        <item>Через 3 дні</item>
+        <item>Через тиждень</item>
+        <item>Через 2 тижні</item>
     </string-array>
 
     <string-array name="displayed_age_entries">

@@ -59,9 +59,9 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
     @BindView(R.id.edittext_edit_email)
     EditText etEmail;
 
-    private DBHelper dbHelper;
-    private Person person;
-    private Calendar calendar;
+    private DBHelper mDBHelper;
+    private Person mPerson;
+    private Calendar mCalendar;
     private long date;
     private boolean unknownYear;
     private boolean hide = false;
@@ -75,12 +75,12 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
         Intent intent = getIntent();
         long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
 
-        dbHelper = new DBHelper(this);
-        person = dbHelper.query().getPerson(timeStamp);
-        unknownYear = person.isYearUnknown();
+        mDBHelper = new DBHelper(this);
+        mPerson = mDBHelper.query().getPerson(timeStamp);
+        unknownYear = mPerson.isYearUnknown();
 
-        calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(person.getDate());
+        mCalendar = Calendar.getInstance();
+        mCalendar.setTimeInMillis(mPerson.getDate());
 
         updateUI();
     }
@@ -100,7 +100,7 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
                 return true;
             case R.id.menu_edit_ok:
                 updatePerson();
-                setAlarms(person);
+                setAlarms(mPerson);
                 setResult(RESULT_OK, new Intent());
                 finish();
                 this.overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
@@ -119,10 +119,10 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
      * Updates UI depending on person's info
      */
     private void updateUI() {
-        etName.setText(person.getName());
+        etName.setText(mPerson.getName());
         etName.setSelection(etName.getText().length());
 
-        date = person.getDate();
+        date = mPerson.getDate();
         if (unknownYear) {
             etDate.setText(Utils.getDateWithoutYear(date));
         } else {
@@ -130,22 +130,21 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
         }
 
         checkBox.setChecked(unknownYear);
-        etPhoneNumber.setText(person.getPhoneNumber());
-        etEmail.setText(person.getEmail());
+        etPhoneNumber.setText(mPerson.getPhoneNumber());
+        etEmail.setText(mPerson.getEmail());
     }
 
     /**
-     * Updates person's info after editing
+     * Updates person's data after editing
      */
     private void updatePerson() {
         String name = updateText(etName);
-        person.setName(name);
-        person.setLowerCaseName(name.toLowerCase());
-        person.setDate(calendar.getTimeInMillis());
-        person.setYearUnknown(checkBox.isChecked());
-        person.setPhoneNumber(updateText(etPhoneNumber));
-        person.setEmail(updateText(etEmail));
-        dbHelper.updateRec(person);
+        mPerson.setName(name);
+        mPerson.setDate(mCalendar.getTimeInMillis());
+        mPerson.setYearUnknown(checkBox.isChecked());
+        mPerson.setPhoneNumber(updateText(etPhoneNumber));
+        mPerson.setEmail(updateText(etEmail));
+        mDBHelper.updateRec(mPerson);
     }
 
     /**
@@ -169,18 +168,18 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
     void pickDate() {
         android.app.DatePickerDialog mDatePickerDialog = new android.app.DatePickerDialog(this,
                 this,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH));
+                mCalendar.get(Calendar.YEAR),
+                mCalendar.get(Calendar.MONTH),
+                mCalendar.get(Calendar.DAY_OF_MONTH));
         mDatePickerDialog.show();
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
-        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        date = calendar.getTimeInMillis();
+        mCalendar.set(Calendar.YEAR, year);
+        mCalendar.set(Calendar.MONTH, month);
+        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        date = mCalendar.getTimeInMillis();
         // Checks state of CheckBox whenever date is picked
         if (!checkBox.isChecked()) {
             etDate.setText(Utils.getDate(date));
@@ -237,7 +236,7 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
     }
 
     private boolean fieldsValid() {
-        return (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar))
+        return (!Utils.isEmptyDate(etDate) && Utils.isRightDate(mCalendar))
                 || (!Utils.isEmptyDate(etDate) && checkBox.isChecked());
     }
 }

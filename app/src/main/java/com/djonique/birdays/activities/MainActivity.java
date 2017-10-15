@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity implements
     @BindView(R.id.banner_main)
     AdView adView;
 
-    private SharedPreferences preferences;
-    private PagerAdapter pagerAdapter;
+    private SharedPreferences mPreferences;
+    private PagerAdapter mPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,22 +94,22 @@ public class MainActivity extends AppCompatActivity implements
         ButterKnife.bind(this);
         FirebaseAnalytics.getInstance(this);
 
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        Utils.setupDayNightTheme(preferences);
+        Utils.setupDayNightTheme(mPreferences);
 
         dbHelper = new DBHelper(this);
 
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
+        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
 
         setSupportActionBar(toolbar);
 
-        viewPager.setAdapter(pagerAdapter);
+        viewPager.setAdapter(mPagerAdapter);
         viewPager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(viewPager);
 
-        if (!preferences.getBoolean(Constants.CONTACTS_UPLOADED, false)) {
-            new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
+        if (!mPreferences.getBoolean(Constants.CONTACTS_UPLOADED, false)) {
+            new ContactsHelper(this, getContentResolver()).loadContacts(mPreferences);
         }
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -120,12 +120,12 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                pagerAdapter.search(newText);
+                mPagerAdapter.search(newText);
                 return false;
             }
         });
 
-        if (preferences.getBoolean(Constants.AD_BANNER_KEY, true)) {
+        if (mPreferences.getBoolean(Constants.AD_BANNER_KEY, true)) {
             Ad.showBannerAd(container, adView, fab);
         }
 
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onRestart() {
         super.onRestart();
-        pagerAdapter.addRecordsFromDB();
+        mPagerAdapter.addRecordsFromDB();
     }
 
     @Override
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onPersonAdded(Person person) {
-        pagerAdapter.addPerson(person);
+        mPagerAdapter.addPerson(person);
         Snackbar.make(findViewById(R.id.container_main), R.string.record_added, Snackbar.LENGTH_SHORT).show();
     }
 
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onRecordDeleted(long timeStamp) {
-        pagerAdapter.deleteRecord(timeStamp);
+        mPagerAdapter.deleteRecord(timeStamp);
     }
 
     @OnPageChange(R.id.viewpager_main)
@@ -218,8 +218,8 @@ public class MainActivity extends AppCompatActivity implements
         if (requestCode == Constants.CONTACTS_REQUEST_PERMISSION_CODE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (!preferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
-                    new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
+                if (!mPreferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
+                    new ContactsHelper(this, getContentResolver()).loadContacts(mPreferences);
                 }
             } else {
                 Snackbar.make(container, R.string.permission_required,

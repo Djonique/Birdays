@@ -88,9 +88,29 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                 ContactsHelper contactsHelper = new ContactsHelper(this, getContentResolver());
                 contactsHelper.loadContacts(preferences);
             }
-        } else if (requestCode == Constants.WRITE_EXTERNAL_STORAGE_PERMISSION_CODE
-                && PermissionManager.writingSdPermissionGranted(this)) {
-            new ExportHelper(this).export();
+        } else if (PermissionManager.writingSdPermissionGranted(this)) {
+            if (requestCode == Constants.WRITE_EXTERNAL_STORAGE_PERMISSION_CODE) {
+                new ExportHelper(this).export();
+            } else if (requestCode == Constants.READ_EXTERNAL_STORAGE_PERMISSION_CODE) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT)
+                            .setType("text/xml")
+                            .addCategory(Intent.CATEGORY_OPENABLE)
+                            .putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                    startActivityForResult(intent, Constants.FILE_MANAGER);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(this,
+                            "You don't have an app to perform action, download any File Manager from market",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.FILE_MANAGER && resultCode == RESULT_OK) {
+            new RestoreHelper(this).restoreRecords(data.getData().getPath());
         }
     }
 
@@ -102,7 +122,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             implements SharedPreferences.OnSharedPreferenceChangeListener {
 
         private FirebaseAnalytics mFirebaseAnalytics;
-        private SharedPreferences preferences;
+        private SharedPreferences mPreferences;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -111,7 +131,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
             logEvent();
 
-            preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            mPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
             /*
             * Sets summary for additional notification
@@ -131,7 +151,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             */
             Preference ringtonePreference = findPreference(Constants.RINGTONE_KEY);
             try {
-                String ringtoneString = preferences.getString(ringtonePreference.getKey(),
+                String ringtoneString = mPreferences.getString(ringtonePreference.getKey(),
                         RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION).toString());
                 String ringtoneName = RingtoneManager.getRingtone(getActivity(),
                         Uri.parse(ringtoneString)).getTitle(getActivity());
@@ -169,15 +189,57 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             });
 
             /*
-            * Contacts synchronization
+            * Imports contacts
             */
             Preference contactsSync = findPreference(getString(R.string.contacts_sync_key));
             contactsSync.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    if (!preferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
+                    if (!mPreferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
                         ContactsHelper contactsHelper = new ContactsHelper(getActivity(), getActivity().getContentResolver());
-                        contactsHelper.loadContacts(preferences);
+                        contactsHelper.loadContacts(mPreferences);
+                    }
+                    return true;
+                }
+            });
+
+            /*
+            * Exports records to XML file
+            */
+            Preference exportPreference = findPreference(getString(R.string.export_key));
+            exportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    if (PermissionManager.writingSdPermissionGranted(getActivity())) {
+                        new ExportHelper(getActivity()).export();
+                    } else {
+                        PermissionManager.requestWritingSdPermission(getActivity());
+                    }
+                    return true;
+                }
+            });
+
+            /*
+            * Restores records from XML file
+            */
+            Preference restorePreference = findPreference(getString(R.string.recover_key));
+            restorePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    if (PermissionManager.writingSdPermissionGranted(getActivity())) {
+                        try {
+                            Intent intent = new Intent(Intent.ACTION_GET_CONTENT)
+                                    .setType("text/xml")
+                                    .addCategory(Intent.CATEGORY_OPENABLE)
+                                    .putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                            startActivityForResult(intent, Constants.FILE_MANAGER);
+                        } catch (ActivityNotFoundException e) {
+                            Toast.makeText(getActivity(),
+                                    "You don't have an app to perform action, download any File Manager from market",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        PermissionManager.requestReadingSdPermission(getActivity());
                     }
                     return true;
                 }
@@ -243,46 +305,12 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                     return true;
                 }
             });
-
-            Preference exportPreference = findPreference(getString(R.string.export_key));
-            exportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    if (PermissionManager.writingSdPermissionGranted(getActivity())) {
-                        new ExportHelper(getActivity()).export();
-                    } else {
-                        PermissionManager.requestWritingSdPermission(getActivity());
-                    }
-                    return true;
-                }
-            });
-
-            Preference restorePreference = findPreference(getString(R.string.restore_key));
-            restorePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    try {
-                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                        intent.setType("text/xml");
-                        intent.addCategory(Intent.CATEGORY_OPENABLE);
-                        startActivityForResult(intent, 999);
-                    } catch (ActivityNotFoundException e) {
-                        Toast.makeText(getActivity(),
-                                "You don't have an app to perform action, download any File Manager from market",
-                                Toast.LENGTH_LONG).show();
-                    }
-                    return true;
-                }
-            });
         }
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (requestCode == 999 && resultCode == RESULT_OK) {
-                String path = data.getData().getPath();
-                Toast.makeText(getActivity(), path, Toast.LENGTH_LONG).show();
-                RestoreHelper mRestoreHelper = new RestoreHelper(getActivity());
-                mRestoreHelper.restoreRecords(path);
+            if (requestCode == Constants.FILE_MANAGER && resultCode == RESULT_OK) {
+                new RestoreHelper(getActivity()).restoreRecords(data.getData().getPath());
             }
         }
 

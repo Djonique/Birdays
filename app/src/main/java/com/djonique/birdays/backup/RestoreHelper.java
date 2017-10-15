@@ -19,7 +19,11 @@ package com.djonique.birdays.backup;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.djonique.birdays.R;
+import com.djonique.birdays.alarm.AlarmHelper;
+import com.djonique.birdays.database.DBHelper;
 import com.djonique.birdays.models.Person;
+import com.djonique.birdays.utils.Utils;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -30,19 +34,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
-
-import static com.djonique.birdays.backup.ExportHelper.DATE;
-import static com.djonique.birdays.backup.ExportHelper.EMAIL;
-import static com.djonique.birdays.backup.ExportHelper.IO_EXCEPTION;
-import static com.djonique.birdays.backup.ExportHelper.NAME;
-import static com.djonique.birdays.backup.ExportHelper.PERSON;
-import static com.djonique.birdays.backup.ExportHelper.PHONE_NUMBER;
-import static com.djonique.birdays.backup.ExportHelper.UNKNOWN_YEAR;
 
 public class RestoreHelper {
 
+    private static final String PERSON = "person";
+    private static final String NAME = "name";
+    private static final String DATE = "date";
+    private static final String UNKNOWN_YEAR = "unknown_year";
+    private static final String PHONE_NUMBER = "phone_number";
+    private static final String EMAIL = "email";
+    private static final String IO_EXCEPTION = "IOException";
     private static final String XML_PULL_PARSER_EXCEPTION = "XmlPullParserException";
     private static final String FILE_NOT_FOUND_EXCEPTION = "FileNotFoundException";
 
@@ -62,6 +64,7 @@ public class RestoreHelper {
             FileInputStream fis = new FileInputStream(file);
             parser.setInput(new InputStreamReader(fis));
             parseXml(parser);
+            Toast.makeText(mContext, R.string.records_recovered, Toast.LENGTH_LONG).show();
         } catch (XmlPullParserException e) {
             Toast.makeText(mContext, XML_PULL_PARSER_EXCEPTION, Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
@@ -70,7 +73,9 @@ public class RestoreHelper {
     }
 
     private void parseXml(XmlPullParser parser) {
-        List<Person> persons = null;
+        DBHelper dbHelper = new DBHelper(mContext);
+        List<Person> dbPersons = dbHelper.query().getPersons();
+        AlarmHelper alarmHelper = new AlarmHelper(mContext);
         Person person = null;
 
         try {
@@ -80,7 +85,6 @@ public class RestoreHelper {
                 String name;
                 switch (eventType) {
                     case XmlPullParser.START_DOCUMENT:
-                        persons = new ArrayList<>();
                         break;
                     case XmlPullParser.START_TAG:
                         name = parser.getName();
@@ -108,8 +112,11 @@ public class RestoreHelper {
                         break;
                     case XmlPullParser.END_TAG:
                         name = parser.getName();
-                        if (name.equals(PERSON) && persons != null && person != null) {
-                            persons.add(person);
+                        if (name.equals(PERSON) && person != null) {
+                            if (!Utils.isPersonAlreadyInDB(person, dbPersons)) {
+                                dbHelper.addRec(person);
+                                alarmHelper.setAlarms(person);
+                            }
                         }
                         break;
                 }

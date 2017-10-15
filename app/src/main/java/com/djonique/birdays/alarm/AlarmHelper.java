@@ -16,7 +16,6 @@
 
 package com.djonique.birdays.alarm;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -36,60 +35,59 @@ import java.util.Calendar;
 public class AlarmHelper {
 
     private static final int REQUEST_CODE_OFFSET = 99;
-    @SuppressLint("StaticFieldLeak")
     private long defaultNotificationTime = 645703200000L - Utils.getTimeOffset();
     private long additionalNotificationOffset;
-    private Context context;
-    private AlarmManager alarmManager;
-    private SharedPreferences preferences;
+    private Context mContext;
+    private AlarmManager mAlarmManager;
+    private SharedPreferences mPreferences;
 
     public AlarmHelper(Context context) {
-        this.context = context;
-        alarmManager = ((AlarmManager)
+        mContext = context;
+        mAlarmManager = ((AlarmManager)
                 context.getApplicationContext().getSystemService(Context.ALARM_SERVICE));
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public void setAlarms(Person person) {
         try {
             setAlarm(person);
-            additionalNotificationOffset = Long.parseLong(preferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
+            additionalNotificationOffset = Long.parseLong(mPreferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
             if (additionalNotificationOffset != 0) {
                 setAdditionalAlarm(person);
             }
         } catch (SecurityException e) {
-            Toast.makeText(context, R.string.security_exception, Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, R.string.security_exception, Toast.LENGTH_LONG).show();
         }
     }
 
     private void setAlarm(Person person) {
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(Constants.NAME, person.getName() + context.getString(R.string.notification_greetings));
+        Intent intent = new Intent(mContext, AlarmReceiver.class);
+        intent.putExtra(Constants.NAME, person.getName() + " (" + mContext.getString(R.string.today) + ")");
         intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
 
         long triggerAtMillis = setupCalendarYear(person, 0);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext.getApplicationContext(),
                 (int) person.getTimeStamp(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        setAlarmDependingOnApi(alarmManager, triggerAtMillis, pendingIntent);
+        setAlarmDependingOnApi(mAlarmManager, triggerAtMillis, pendingIntent);
     }
 
     private void setAdditionalAlarm(Person person) {
-        additionalNotificationOffset = Long.parseLong(preferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
+        additionalNotificationOffset = Long.parseLong(mPreferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
 
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(Constants.NAME, person.getName() + context.getString(R.string.additional_notification_greetings) + makeGreetings(additionalNotificationOffset));
+        Intent intent = new Intent(mContext, AlarmReceiver.class);
+        intent.putExtra(Constants.NAME, person.getName() + " (" + makeGreetings(additionalNotificationOffset) + ")");
         intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
 
         long triggerAtMillis = setupCalendarYear(person, additionalNotificationOffset);
 
         int requestCode = (int) person.getTimeStamp() + REQUEST_CODE_OFFSET;
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext.getApplicationContext(),
                 requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        setAlarmDependingOnApi(alarmManager, triggerAtMillis, pendingIntent);
+        setAlarmDependingOnApi(mAlarmManager, triggerAtMillis, pendingIntent);
     }
 
     private void setAlarmDependingOnApi(AlarmManager alarmManager,
@@ -105,8 +103,8 @@ public class AlarmHelper {
     }
 
     private String makeGreetings(long offset) {
-        String[] dates = context.getResources().getStringArray(R.array.additional_notification_greetings);
-        String[] entryValues = context.getResources().getStringArray(R.array.additional_notification_entry_values);
+        String[] dates = mContext.getResources().getStringArray(R.array.additional_notification_greetings);
+        String[] entryValues = mContext.getResources().getStringArray(R.array.additional_notification_entry_values);
         String greetings = null;
         for (int i = 1; i < entryValues.length; i++) {
             if (offset == Long.parseLong(entryValues[i])) {
@@ -118,35 +116,35 @@ public class AlarmHelper {
 
     public void removeAlarms(long timeStamp) {
         removeAlarm(timeStamp);
-        additionalNotificationOffset = Long.parseLong(preferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
+        additionalNotificationOffset = Long.parseLong(mPreferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
         if (additionalNotificationOffset != 0) {
             removeAdditionalAlarm(timeStamp);
         }
     }
 
     private void removeAlarm(long timeStamp) {
-        Intent intent = new Intent(context, AlarmReceiver.class);
+        Intent intent = new Intent(mContext, AlarmReceiver.class);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, (int) timeStamp, intent,
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, (int) timeStamp, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        alarmManager.cancel(pendingIntent);
+        mAlarmManager.cancel(pendingIntent);
     }
 
     private void removeAdditionalAlarm(long timeStamp) {
-        Intent intent = new Intent(context, AlarmReceiver.class);
+        Intent intent = new Intent(mContext, AlarmReceiver.class);
 
         int requestCode = (int) timeStamp + REQUEST_CODE_OFFSET;
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent,
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, requestCode, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        alarmManager.cancel(pendingIntent);
+        mAlarmManager.cancel(pendingIntent);
     }
 
     private long setupCalendarYear(Person person, long offset) {
         long now = Calendar.getInstance().getTimeInMillis();
-        long notificationTime = preferences.getLong(Constants.NOTIFICATION_TIME_KEY, defaultNotificationTime);
+        long notificationTime = mPreferences.getLong(Constants.NOTIFICATION_TIME_KEY, defaultNotificationTime);
         Calendar notificationTimeCalendar = Calendar.getInstance();
         notificationTimeCalendar.setTimeInMillis(notificationTime);
 

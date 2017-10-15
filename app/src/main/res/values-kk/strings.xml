@@ -68,7 +68,7 @@
     <!-- Menu -->
     <string name="action_sync">Синхронизация</string>
     <string name="action_settings">Настройки</string>
-    <string name="menu_delete">Удалить</string>
+    <string name="action_delete">Удалить</string>
 
     <!-- NewPersonDialogFragment -->
     <string name="add_new_record">Новая запись</string>
@@ -129,8 +129,8 @@
     <string name="help">Помощь</string>
     <string name="tap_here">Нажмите здесь, если Вам не приходят уведомления</string>
     <string name="general">Общие</string>
-    <string name="contacts_sync_title">Синхронизация контактов</string>
-    <string name="contacts_sync_summary">Нажмите, чтобы синхронизировать контакты из адресной книги</string>
+    <string name="contacts_sync_title">Импортировать контакты</string>
+    <string name="contacts_sync_summary">Нажмите, чтобы импортировать контакты из адресной книги (поддерживается ISO 8601)</string>
     <string name="night_mode">Ночной режим</string>
     <string name="displayed_age">Отображаемый возраст</string>
     <string name="displayed_age_changes">Чтобы изменения вступили в силу, необходимо перезапустить приложение</string>
@@ -161,12 +161,12 @@
     </string-array>
 
     <string-array name="additional_notification_greetings">
-        <item>сегодня</item>
-        <item>завтра</item>
-        <item>послезавтра</item>
-        <item>через 3 дня</item>
-        <item>через неделю</item>
-        <item>через 2 недели</item>
+        <item>Сегодня</item>
+        <item>Завтра</item>
+        <item>Послезавтра</item>
+        <item>Через 3 дня</item>
+        <item>Через неделю</item>
+        <item>Через 2 недели</item>
     </string-array>
 
     <string-array name="displayed_age_entries">

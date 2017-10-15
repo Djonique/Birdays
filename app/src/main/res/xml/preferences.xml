@@ -53,19 +53,19 @@
     </PreferenceCategory>
 
     <!-- Synchronization and Backup -->
-    <PreferenceCategory android:title="@string/action_sync">
+    <PreferenceCategory android:title="@string/sync_and_backup">
         <Preference
             android:key="@string/contacts_sync_key"
             android:summary="@string/contacts_sync_summary"
             android:title="@string/contacts_sync_title" />
         <Preference
             android:key="@string/export_key"
-            android:title="Export records"
-            android:summary="Create an XML file with backup on SD card"/>
+            android:title="@string/export_records"
+            android:summary="@string/export_records_summary"/>
         <Preference
-            android:key="@string/restore_key"
-            android:title="Restore records"
-            android:summary="Pick an XML file with backup"/>
+            android:key="@string/recover_key"
+            android:title="@string/recover_records"
+            android:summary="@string/recover_records_summary"/>
     </PreferenceCategory>
 
     <!-- General -->

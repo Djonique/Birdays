@@ -17,7 +17,6 @@
 package com.djonique.birdays.utils;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -36,11 +35,8 @@ import java.util.List;
 
 public class ContactsHelper {
 
-    private static final String ILLEGAL_ARGUMENT_EXCEPTION = "IllegalArgumentException";
-
     private Activity activity;
     private ContentResolver contentResolver;
-    private ProgressDialog progressDialog;
     private LoadingContactsListener loadingContactsListener;
 
     public ContactsHelper(Activity activity, ContentResolver contentResolver) {

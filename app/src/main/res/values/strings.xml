@@ -70,7 +70,7 @@
     <!-- Menu -->
     <string name="action_sync">Synchronization</string>
     <string name="action_settings">Settings</string>
-    <string name="menu_delete">Delete</string>
+    <string name="action_delete">Delete</string>
 
     <!-- NewPersonDialogFragment -->
     <string name="add_new_record">New record</string>
@@ -131,7 +131,7 @@
     <string name="help_key" translatable="false">help_key</string>
     <string name="contacts_sync_key" translatable="false">contacts_sync_key</string>
     <string name="export_key" translatable="false">export_key</string>
-    <string name="restore_key" translatable="false">restore_key</string>
+    <string name="recover_key" translatable="false">recover_key</string>
     <string name="night_mode_key" translatable="false">night_mode_key</string>
     <string name="displayed_age_key" translatable="false">displayed_age_key</string>
     <string name="ad_banner_key" translatable="false">ad_banner_key</string>
@@ -150,10 +150,17 @@
     <string name="help">Help</string>
     <string name="tap_here">Tap here if you don\'t receive notifications</string>
     <string name="general">General</string>
-    <string name="contacts_sync_title">Contacts synchronization</string>
-    <string name="contacts_sync_summary">Tap here to synchronize contacts from your device</string>
-    <string name="saving_records">Saving records…</string>
-    <string name="backup_finished">Backup finished, xml file in the\u0020</string>
+    <string name="sync_and_backup">Synchronization and backup</string>
+    <string name="contacts_sync_title">Import contacts</string>
+    <string name="contacts_sync_summary">Tap here to import contacts from your device (supports ISO 8601)</string>
+    <string name="exporting_records">Exporting records…</string>
+    <string name="ext_storage_error">External storage is not available</string>
+    <string name="backup_finished">Backup finished, XML file in the\u0020</string>
+    <string name="export_records">Export records</string>
+    <string name="export_records_summary">Create the XML file with backup</string>
+    <string name="recover_records">Recover records</string>
+    <string name="recover_records_summary">Choose the XML file with backup from external storage</string>
+    <string name="records_recovered">Records recovered</string>
     <string name="night_mode">Night mode</string>
     <string name="displayed_age">Displayed age</string>
     <string name="displayed_age_changes">You must restart an app for these changes to take effect</string>
@@ -196,12 +203,12 @@
     </string-array>
 
     <string-array name="additional_notification_greetings">
-        <item>today</item>
-        <item>tomorrow</item>
-        <item>in 2 days</item>
-        <item>in 3 days</item>
-        <item>in a week</item>
-        <item>in 2 weeks</item>
+        <item>Today</item>
+        <item>Tomorrow</item>
+        <item>In 2 days</item>
+        <item>In 3 days</item>
+        <item>In a week</item>
+        <item>In 2 weeks</item>
     </string-array>
 
     <string-array name="displayed_age_entries">
@@ -234,6 +241,10 @@
     <string name="samsung_description">Open «Smart Manager», tap on battery, then on «Detail».
         Disable this feature for Birdays app.
     </string>
+    <!--<string name="xiaomi_header">For Xiaomi owners</string>
+    <string name="xiaomi_description">Open «Battery», got to Фоновый режим, tap on Apps, find Birdays and let app not save</string>
+    <string name="lenovo_header">For Lenovo owners</string>
+    <string name="lenovo_description">To do</string>-->
     <string name="help_email_description">If alarm still not working, please contact me at birdaysapp@gmail.com</string>
     <string name="birdays_email" translatable="false">birdaysapp@gmail.com</string>
 
@@ -241,17 +252,6 @@
     <string name="butter_knife_by_jake_wharton" translatable="false">Butter Knife by Jake Wharton</string>
     <string name="butter_knife_license" translatable="false">
         Copyright 2013 Jake Wharton\n\nLicensed under the Apache License, Version 2.0 (the "License");
-        you may not use this file except in compliance with the License.
-        You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-    </string>
-
-    <string name="materialdatetimepicker_by_wouter_dullaert" translatable="false">MaterialDateTimePicker by Wouter Dullaert</string>
-    <string name="mdtp_licence" translatable="false">
-        Copyright 2015 Wouter Dullaert\n\nLicensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
         You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software
         distributed under the License is distributed on an "AS IS" BASIS,

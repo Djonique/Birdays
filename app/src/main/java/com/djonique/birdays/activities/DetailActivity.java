@@ -99,8 +99,8 @@ public class DetailActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     private FirebaseAnalytics mFirebaseAnalytics;
-    private DBHelper dbHelper;
-    private Person person;
+    private DBHelper mDBHelper;
+    private Person mPerson;
     private long timeStamp, date;
     private String name, phoneNumber, email, agePref;
     private boolean unknownYear;
@@ -127,13 +127,13 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
 
-        dbHelper = new DBHelper(this);
-        person = dbHelper.query().getPerson(timeStamp);
-        name = person.getName();
-        date = person.getDate();
-        unknownYear = person.isYearUnknown();
-        phoneNumber = person.getPhoneNumber();
-        email = person.getEmail();
+        mDBHelper = new DBHelper(this);
+        mPerson = mDBHelper.query().getPerson(timeStamp);
+        name = mPerson.getName();
+        date = mPerson.getDate();
+        unknownYear = mPerson.isYearUnknown();
+        phoneNumber = mPerson.getPhoneNumber();
+        email = mPerson.getEmail();
 
         toolbar.setTitle(name);
         setSupportActionBar(toolbar);
@@ -163,7 +163,7 @@ public class DetailActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.menu_detail_delete:
-                deletePersonDialog(person);
+                deletePersonDialog(mPerson);
                 break;
             case R.id.menu_detail_share:
                 Intent intentShare = new Intent(Intent.ACTION_SEND);
@@ -230,13 +230,13 @@ public class DetailActivity extends AppCompatActivity {
         if (isEmpty(phoneNumber)) {
             rlPhoneNumber.setVisibility(View.GONE);
         } else {
-            tvPhoneNumber.setText(String.valueOf(person.getPhoneNumber()));
+            tvPhoneNumber.setText(String.valueOf(mPerson.getPhoneNumber()));
         }
 
         if (isEmpty(email)) {
             rlEmail.setVisibility(View.GONE);
         } else {
-            tvEmail.setText(person.getEmail());
+            tvEmail.setText(mPerson.getEmail());
         }
     }
 
@@ -254,7 +254,7 @@ public class DetailActivity extends AppCompatActivity {
         FamousFragmentAdapter adapter = new FamousFragmentAdapter();
         recyclerView.setAdapter(adapter);
 
-        List<Person> famousPersons = dbHelper.query().getFamousBornThisDay(date);
+        List<Person> famousPersons = mDBHelper.query().getFamousBornThisDay(date);
         for (int i = 0; i < famousPersons.size(); i++) {
             adapter.addItem(famousPersons.get(i));
         }
@@ -293,7 +293,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 new AlarmHelper(getApplicationContext()).removeAlarms(timeStamp);
-                dbHelper.removePerson(timeStamp);
+                mDBHelper.removePerson(timeStamp);
                 dialog.dismiss();
                 finish();
                 overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);

@@ -68,7 +68,7 @@
     <!-- Menu -->
     <string name="action_sync">Synchronization</string>
     <string name="action_settings">Settings</string>
-    <string name="menu_delete">Delete</string>
+    <string name="action_delete">Delete</string>
 
     <!-- NewPersonDialogFragment -->
     <string name="add_new_record">New record</string>
@@ -129,8 +129,8 @@
     <string name="help">Help</string>
     <string name="tap_here">Tap here if you don\'t receive notifications</string>
     <string name="general">General</string>
-    <string name="contacts_sync_title">Contacts synchronization</string>
-    <string name="contacts_sync_summary">Tap here to synchronize contacts from your device</string>
+    <string name="contacts_sync_title">Import contacts</string>
+    <string name="contacts_sync_summary">Tap here to import contacts from your device (supports ISO 8601)</string>
     <string name="night_mode">Night mode</string>
     <string name="displayed_age">Displayed age</string>
     <string name="displayed_age_changes">You must restart an app for these changes to take effect</string>
@@ -161,12 +161,12 @@
     </string-array>
 
     <string-array name="additional_notification_greetings">
-        <item>today</item>
-        <item>tomorrow</item>
-        <item>in 2 days</item>
-        <item>in 3 days</item>
-        <item>in a week</item>
-        <item>in 2 weeks</item>
+        <item>Today</item>
+        <item>Tomorrow</item>
+        <item>In 2 days</item>
+        <item>In 3 days</item>
+        <item>In a week</item>
+        <item>In 2 weeks</item>
     </string-array>
 
     <string-array name="displayed_age_entries">

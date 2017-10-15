@@ -42,7 +42,7 @@ public class PermissionManager {
     }
 
     /**
-     * Checks if permission for writing to SD card is granted
+     * Checks if permission for writing and reading to SD card is granted
      */
     public static boolean writingSdPermissionGranted(Context context) {
         return ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -55,5 +55,13 @@ public class PermissionManager {
     public static void requestWritingSdPermission(Activity activity) {
         ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 Constants.WRITE_EXTERNAL_STORAGE_PERMISSION_CODE);
+    }
+
+    /**
+     * Requests reading to SD card permission if it is not granted
+     */
+    public static void requestReadingSdPermission(Activity activity) {
+        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                Constants.READ_EXTERNAL_STORAGE_PERMISSION_CODE);
     }
 }

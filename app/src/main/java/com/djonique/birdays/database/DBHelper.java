@@ -33,11 +33,10 @@ public class DBHelper extends SQLiteOpenHelper {
     static final String COLUMN_PHONE_NUMBER = "phone";
     static final String COLUMN_EMAIL = "email";
     static final String COLUMN_TIME_STAMP = "time_stamp";
-    static final String COLUMN_LOWER_CASE_NAME = "lower_case_name";
-    public static final String SELECTION_LIKE_NAME = COLUMN_LOWER_CASE_NAME + " LIKE ?";
     static final String DB_PERSONS = "persons";
     static final String DB_FAMOUS = "famous";
     static final String SELECTION_TIME_STAMP = COLUMN_TIME_STAMP + " = ?";
+    public static final String SELECTION_LIKE_NAME = COLUMN_NAME + " LIKE ?";
     private static final String DB_NAME = "my_db";
     private static final int DATABASE_VERSION = 1;
     private static final String DB_PERSONS_CREATE = "CREATE TABLE " + DB_PERSONS + " ("
@@ -47,28 +46,28 @@ public class DBHelper extends SQLiteOpenHelper {
             + COLUMN_IS_YEAR_KNOWN + " INTEGER, "
             + COLUMN_PHONE_NUMBER + " TEXT, "
             + COLUMN_EMAIL + " TEXT, "
-            + COLUMN_TIME_STAMP + " INTEGER, "
-            + COLUMN_LOWER_CASE_NAME + " TEXT"
+            + COLUMN_TIME_STAMP + " INTEGER"
             + ");";
     private static final String DB_FAMOUS_CREATE = "CREATE TABLE " + DB_FAMOUS + " ("
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NAME + " TEXT, "
             + COLUMN_DATE + " INTEGER"
             + ");";
-    private DBQueryManager dbQueryManager;
-    private Context context;
+
+    private DBQueryManager mDBQueryManager;
+    private Context mContext;
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
-        this.context = context;
-        dbQueryManager = new DBQueryManager(getWritableDatabase());
+        mContext = context;
+        mDBQueryManager = new DBQueryManager(getWritableDatabase());
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DB_PERSONS_CREATE);
         db.execSQL(DB_FAMOUS_CREATE);
-        DBFamous.createDB(context, db);
+        DBFamous.createDB(mContext, db);
     }
 
     @Override
@@ -78,7 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
             try {
                 db.execSQL("DROP TABLE IF EXISTS " + DB_FAMOUS);
                 db.execSQL(DB_FAMOUS_CREATE);
-                DBFamous.createDB(context, db);
+                DBFamous.createDB(mContext, db);
                 db.setTransactionSuccessful();
             } finally {
                 db.endTransaction();
@@ -94,7 +93,6 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PHONE_NUMBER, person.getPhoneNumber());
         cv.put(COLUMN_EMAIL, person.getEmail());
         cv.put(COLUMN_TIME_STAMP, person.getTimeStamp());
-        cv.put(COLUMN_LOWER_CASE_NAME, person.getLowerCaseName());
         getWritableDatabase().insert(DB_PERSONS, null, cv);
     }
 
@@ -105,13 +103,12 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_IS_YEAR_KNOWN, Utils.boolToInt(person.isYearUnknown()));
         cv.put(COLUMN_PHONE_NUMBER, person.getPhoneNumber());
         cv.put(COLUMN_EMAIL, person.getEmail());
-        cv.put(COLUMN_LOWER_CASE_NAME, person.getLowerCaseName());
         getWritableDatabase().update(DB_PERSONS, cv, SELECTION_TIME_STAMP,
                 new String[]{String.valueOf(person.getTimeStamp())});
     }
 
     public DBQueryManager query() {
-        return dbQueryManager;
+        return mDBQueryManager;
     }
 
     public void removePerson(long timeStamp) {

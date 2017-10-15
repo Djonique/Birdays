@@ -141,7 +141,6 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
                 if (etName != null) {
                     name = etName.getText().toString();
                     person.setName(name);
-                    person.setLowerCaseName(name.toLowerCase());
                 }
 
                 if (!Utils.isEmptyDate(etDate)) {

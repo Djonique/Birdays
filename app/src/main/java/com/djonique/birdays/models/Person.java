@@ -21,51 +21,40 @@ import java.util.Date;
 
 public class Person implements Item {
 
-    private String name;
-    private long date;
+    private String name, phoneNumber, email;
+    private long date, timeStamp;
     private boolean unknownYear;
-    private String phoneNumber;
-    private String email;
-    private long timeStamp;
-    private String lowerCaseName;
 
+    // Default constructor
     public Person() {
         this.timeStamp = new Date().getTime();
     }
 
+    // Constructor for database with famous persons
     public Person(String name, long date) {
         this.name = name;
         this.date = date;
     }
 
-    public Person(String name,
-                  long date,
-                  boolean unknownYear,
-                  String phoneNumber,
-                  String email) {
+    // Constructor for importing from Contacts
+    public Person(String name, long date, boolean unknownYear, String phoneNumber, String email) {
         this.name = name;
         this.date = date;
         this.unknownYear = unknownYear;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.timeStamp = new Date().getTime();
-        this.lowerCaseName = name.toLowerCase();
     }
 
-    public Person(String name,
-                  long date,
-                  boolean unknownYear,
-                  String phoneNumber,
-                  String email,
-                  long timeStamp,
-                  String lowerCaseName) {
+    // Constructor for DBQueryManager
+    public Person(String name, long date, boolean unknownYear, String phoneNumber, String email,
+                  long timeStamp) {
         this.name = name;
         this.date = date;
         this.unknownYear = unknownYear;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.timeStamp = timeStamp;
-        this.lowerCaseName = lowerCaseName;
     }
 
     public String getName() {
@@ -112,14 +101,6 @@ public class Person implements Item {
         return timeStamp;
     }
 
-    public String getLowerCaseName() {
-        return lowerCaseName;
-    }
-
-    public void setLowerCaseName(String lowerCaseName) {
-        this.lowerCaseName = lowerCaseName;
-    }
-
     @Override
     public boolean isPerson() {
         return true;
@@ -146,6 +127,6 @@ public class Person implements Item {
             return false;
         }
         Person person = (Person) obj;
-        return this.lowerCaseName.equals(person.lowerCaseName);
+        return this.name.equalsIgnoreCase(person.name);
     }
 }

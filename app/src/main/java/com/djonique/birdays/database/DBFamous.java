@@ -31,12 +31,11 @@ import static com.djonique.birdays.database.DBHelper.DB_FAMOUS;
 class DBFamous {
 
     private static void addFamous(SQLiteDatabase db, Person person) {
-        long offset = Utils.getTimeOffset();
-        int twelveHourOffset = 43200000;
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, person.getName());
-        if (offset <= 0) {
-            cv.put(COLUMN_DATE, person.getDate() + twelveHourOffset);
+        if (Utils.getTimeOffset() <= 0) {
+            // 43200000 is twelve hour offset
+            cv.put(COLUMN_DATE, person.getDate() + 43200000);
         } else {
             cv.put(COLUMN_DATE, person.getDate());
         }

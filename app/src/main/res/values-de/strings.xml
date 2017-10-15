@@ -68,7 +68,7 @@
     <!-- Menu -->
     <string name="action_sync">Synchronisation</string>
     <string name="action_settings">Einstellungen</string>
-    <string name="menu_delete">Löschen</string>
+    <string name="action_delete">Löschen</string>
 
     <!-- NewPersonDialogFragment -->
     <string name="add_new_record">Neuer Eintrag</string>
@@ -161,12 +161,12 @@
     </string-array>
 
     <string-array name="additional_notification_greetings">
-        <item>heute</item>
-        <item>morgen</item>
-        <item>in 2 Tagen</item>
-        <item>in 3 Tagen</item>
-        <item>in einer Woche</item>
-        <item>in 2 Wochen</item>
+        <item>Heute</item>
+        <item>Morgen</item>
+        <item>In 2 Tagen</item>
+        <item>In 3 Tagen</item>
+        <item>In einer Woche</item>
+        <item>In 2 Wochen</item>
     </string-array>
 
     <string-array name="displayed_age_entries">

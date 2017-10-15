@@ -27,17 +27,17 @@ import java.util.List;
 
 public class DBQueryManager {
 
-    private SQLiteDatabase database;
-    private Person person;
+    private SQLiteDatabase mDatabase;
+    private Person mPerson;
     private List<Person> persons;
 
     DBQueryManager(SQLiteDatabase database) {
-        this.database = database;
+        this.mDatabase = database;
     }
 
     public Person getPerson(long timeStamp) {
 
-        Cursor cursor = database.query(DBHelper.DB_PERSONS, null, DBHelper.SELECTION_TIME_STAMP,
+        Cursor cursor = mDatabase.query(DBHelper.DB_PERSONS, null, DBHelper.SELECTION_TIME_STAMP,
                 new String[]{Long.toString(timeStamp)}, null, null, null);
 
         if (cursor.moveToFirst()) {
@@ -46,19 +46,18 @@ public class DBQueryManager {
             boolean isYearKnown = getYearUnknown(cursor);
             String phoneNumber = getPhoneNumber(cursor);
             String email = getEmail(cursor);
-            String lowerCaseName = getLowerCaseName(cursor);
 
-            person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp, lowerCaseName);
+            mPerson = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
         }
         cursor.close();
 
-        return person;
+        return mPerson;
     }
 
     public List<Person> getPersons() {
         persons = new ArrayList<>();
 
-        Cursor cursor = database.query(DBHelper.DB_PERSONS, null, null, null, null,
+        Cursor cursor = mDatabase.query(DBHelper.DB_PERSONS, null, null, null, null,
                 null, null);
 
         if (cursor.moveToFirst()) {
@@ -69,10 +68,9 @@ public class DBQueryManager {
                 String phoneNumber = getPhoneNumber(cursor);
                 String email = getEmail(cursor);
                 long timeStamp = getTimeStamp(cursor);
-                String lowerCaseName = getLowerCaseName(cursor);
 
-                person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp, lowerCaseName);
-                persons.add(person);
+                mPerson = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
+                persons.add(mPerson);
 
             } while (cursor.moveToNext());
         }
@@ -84,7 +82,7 @@ public class DBQueryManager {
     public List<Person> getSearchPerson(String selection, String[] selectionArgs, String orderBy) {
         persons = new ArrayList<>();
 
-        Cursor cursor = database.query(DBHelper.DB_PERSONS, null, selection, selectionArgs, null,
+        Cursor cursor = mDatabase.query(DBHelper.DB_PERSONS, null, selection, selectionArgs, null,
                 null, orderBy);
 
         if (cursor.moveToFirst()) {
@@ -95,10 +93,9 @@ public class DBQueryManager {
                 String phoneNumber = getPhoneNumber(cursor);
                 String email = getEmail(cursor);
                 long timeStamp = getTimeStamp(cursor);
-                String lowerCaseName = getLowerCaseName(cursor);
 
-                person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp, lowerCaseName);
-                persons.add(person);
+                mPerson = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
+                persons.add(mPerson);
 
             } while (cursor.moveToNext());
         }
@@ -110,7 +107,7 @@ public class DBQueryManager {
     public List<Person> getThisMonthPersons() {
         persons = new ArrayList<>();
 
-        Cursor cursor = database.query(DBHelper.DB_PERSONS, null, null, null, null, null, null);
+        Cursor cursor = mDatabase.query(DBHelper.DB_PERSONS, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -120,11 +117,10 @@ public class DBQueryManager {
                 String phoneNumber = getPhoneNumber(cursor);
                 String email = getEmail(cursor);
                 long timeStamp = getTimeStamp(cursor);
-                String lowerCaseName = getLowerCaseName(cursor);
 
                 if (Utils.isCurrentMonth(date)) {
-                    person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp, lowerCaseName);
-                    persons.add(person);
+                    mPerson = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
+                    persons.add(mPerson);
                 }
             } while (cursor.moveToNext());
         }
@@ -137,7 +133,7 @@ public class DBQueryManager {
                                              String orderBy) {
         persons = new ArrayList<>();
 
-        Cursor cursor = database.query(DBHelper.DB_PERSONS, null, selection, selectionArgs, null,
+        Cursor cursor = mDatabase.query(DBHelper.DB_PERSONS, null, selection, selectionArgs, null,
                 null, orderBy);
 
         if (cursor.moveToFirst()) {
@@ -148,11 +144,10 @@ public class DBQueryManager {
                 String phoneNumber = getPhoneNumber(cursor);
                 String email = getEmail(cursor);
                 long timeStamp = getTimeStamp(cursor);
-                String lowerCaseName = getLowerCaseName(cursor);
 
                 if (Utils.isCurrentMonth(date)) {
-                    person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp, lowerCaseName);
-                    persons.add(person);
+                    mPerson = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
+                    persons.add(mPerson);
                 }
             } while (cursor.moveToNext());
         }
@@ -164,7 +159,7 @@ public class DBQueryManager {
     public List<Person> getFamousBornThisDay(long dayOfBirthday) {
         persons = new ArrayList<>();
 
-        Cursor cursor = database.query(DBHelper.DB_FAMOUS, null, null, null, null, null, null);
+        Cursor cursor = mDatabase.query(DBHelper.DB_FAMOUS, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -173,8 +168,8 @@ public class DBQueryManager {
 
                 if (Utils.getMonth(date) == Utils.getMonth(dayOfBirthday) &&
                         Utils.getDay(date) == Utils.getDay(dayOfBirthday)) {
-                    person = new Person(name, date);
-                    persons.add(person);
+                    mPerson = new Person(name, date);
+                    persons.add(mPerson);
                 }
             } while (cursor.moveToNext());
         }
@@ -205,9 +200,5 @@ public class DBQueryManager {
 
     private long getTimeStamp(Cursor cursor) {
         return cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_TIME_STAMP));
-    }
-
-    private String getLowerCaseName(Cursor cursor) {
-        return cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_LOWER_CASE_NAME));
     }
 }
