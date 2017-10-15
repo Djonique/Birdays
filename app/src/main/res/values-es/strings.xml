@@ -145,12 +145,12 @@
     </string-array>
 
     <string-array name="additional_notification_greetings">
-        <item>hoy</item>
-        <item>mañana</item>
-        <item>en 2 días</item>
-        <item>en 3 días</item>
-        <item>en una semana</item>
-        <item>en 2 semanas</item>
+        <item>Hoy</item>
+        <item>Mañana</item>
+        <item>En 2 días</item>
+        <item>En 3 días</item>
+        <item>En una semana</item>
+        <item>En 2 semanas</item>
     </string-array>
 
     <string-array name="displayed_age_entries">
@@ -260,7 +260,7 @@
     <string name="perrault">Charles Perrault</string>
     <string name="jack_london">Jack London</string>
     <string name="kurchatov">Igor Kurchatov</string>
-    <string name="Korolev">Sergei Korolev</string>
+    <string name="korolev">Sergei Korolev</string>
     <string name="maharishi">Maharishi Mahesh Yogi</string>
     <string name="murakami">Haruki Murakami</string>
     <!-- 13 january -->
@@ -271,8 +271,8 @@
     <string name="feyerabend">Paul Karl Feyerabend</string>
     <!-- 14 january -->
     <string name="semyonov">Pyotr Semyonov-Tyan-Shansky</string>
-    <string name="Morisot">Berthe Morisot</string>
-    <string name="Schweitzer">Albert Schweitzer</string>
+    <string name="morisot">Berthe Morisot</string>
+    <string name="schweitzer">Albert Schweitzer</string>
     <string name="mishima">Yukio Mishima</string>
     <string name="kharlamov">Valeri Kharlamov</string>
     <!-- 15 january -->

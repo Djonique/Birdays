@@ -133,7 +133,7 @@ class DBFamous {
         addFamous(db, new Person(context.getString(R.string.perrault), -10791532800000L));
         addFamous(db, new Person(context.getString(R.string.jack_london), -2965420800000L));
         addFamous(db, new Person(context.getString(R.string.kurchatov), -2113430400000L));
-        addFamous(db, new Person(context.getString(R.string.Korolev), -1987200000000L));
+        addFamous(db, new Person(context.getString(R.string.korolev), -1987200000000L));
         addFamous(db, new Person(context.getString(R.string.maharishi), -1671580800000L));
         addFamous(db, new Person(context.getString(R.string.murakami), -661737600000L));
 
@@ -146,8 +146,8 @@ class DBFamous {
 
         // 14 january
         addFamous(db, new Person(context.getString(R.string.semyonov), -4511548800000L));
-        addFamous(db, new Person(context.getString(R.string.Morisot), -4069699200000L));
-        addFamous(db, new Person(context.getString(R.string.Schweitzer), -2996784000000L));
+        addFamous(db, new Person(context.getString(R.string.morisot), -4069699200000L));
+        addFamous(db, new Person(context.getString(R.string.schweitzer), -2996784000000L));
         addFamous(db, new Person(context.getString(R.string.mishima), -1418947200000L));
         addFamous(db, new Person(context.getString(R.string.kharlamov), -693187200000L));
 

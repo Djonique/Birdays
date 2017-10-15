@@ -281,7 +281,7 @@
     <string name="perrault">Шарль Перро</string>
     <string name="jack_london">Джек Лондон</string>
     <string name="kurchatov">Игорь Курчатов</string>
-    <string name="Korolev">Сергей Королёв</string>
+    <string name="korolev">Сергей Королёв</string>
     <string name="maharishi">Махариши Махеш Йоги</string>
     <string name="murakami">Харуки Мураками</string>
     <!-- 13 january -->
@@ -292,8 +292,8 @@
     <string name="feyerabend">Пол Карл Фейерабенд</string>
     <!-- 14 january -->
     <string name="semyonov">Пётр Семёнов-Тян-Шанский</string>
-    <string name="Morisot">Берта Моризо</string>
-    <string name="Schweitzer">Альберт Швейцер</string>
+    <string name="morisot">Берта Моризо</string>
+    <string name="schweitzer">Альберт Швейцер</string>
     <string name="mishima">Юкио Мисима</string>
     <string name="kharlamov">Валерий Харламов</string>
     <!-- 15 january -->
