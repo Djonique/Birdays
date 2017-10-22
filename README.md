@@ -4,6 +4,8 @@ App saves Birthdays and displays famous persons with whom you were born in one d
 Serhii Ponomarenko (Ukrainian)
 
 Marc Sulser (Deutsch)
+
+Pablo Rodríguez (Spanish)
 ## License 
 ```
 Copyright 2017 Evgeny Timofeev
