@@ -20,7 +20,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class AlarmSetter extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        DBHelper dbHelper = new DBHelper(context);
+        DbHelper dbHelper = new DbHelper(context);
 
         AlarmHelper alarmHelper = new AlarmHelper(context);
 

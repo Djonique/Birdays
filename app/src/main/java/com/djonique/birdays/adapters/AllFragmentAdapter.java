@@ -66,7 +66,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private AllFragment allFragment;
     private Context context;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private String agePref;
+    private String displayedAge;
 
     public AllFragmentAdapter(AllFragment allFragment) {
         this.allFragment = allFragment;
@@ -167,7 +167,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         context = parent.getContext();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        agePref = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
+        displayedAge = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
         switch (viewType) {
             case TYPE_PERSON:
                 View view = LayoutInflater.from(context).inflate(R.layout.description_list_view,
@@ -188,6 +188,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         Item item = getItem(position);
 
         final Resources resources = holder.itemView.getResources();
+        String[] months = resources.getStringArray(R.array.months);
 
         if (item.isPerson()) {
             holder.itemView.setEnabled(true);
@@ -206,7 +207,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 listViewHolder.tvDate.setText(Utils.getDateWithoutYear(date));
             } else {
                 listViewHolder.tvAge.setVisibility(View.VISIBLE);
-                final int age = (agePref.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date));
+                final int age = (displayedAge.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date));
                 listViewHolder.tvDate.setText(Utils.getDate(date));
                 ageCircle.setColor(ContextCompat.getColor(context, getAgeCircleColor(age)));
                 listViewHolder.tvAge.setText(String.valueOf(age));
@@ -236,7 +237,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         } else {
             Separator separator = ((Separator) item);
             SeparatorViewHolder separatorViewHolder = ((SeparatorViewHolder) holder);
-            separatorViewHolder.type.setText(resources.getString(separator.getType()));
+            separatorViewHolder.type.setText(months[separator.getType()]);
         }
     }
 
@@ -301,9 +302,9 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         ListViewHolder(View itemView) {
             super(itemView);
-            tvName = ((TextView) itemView.findViewById(R.id.textview_all_name));
-            tvDate = ((TextView) itemView.findViewById(R.id.textview_all_date));
-            tvAge = ((TextView) itemView.findViewById(R.id.textview_all_age));
+            tvName = itemView.findViewById(R.id.textview_all_name);
+            tvDate = itemView.findViewById(R.id.textview_all_date);
+            tvAge = itemView.findViewById(R.id.textview_all_age);
         }
     }
 
@@ -312,7 +313,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         SeparatorViewHolder(View itemView) {
             super(itemView);
-            type = ((TextView) itemView.findViewById(R.id.textview_separator));
+            type = itemView.findViewById(R.id.textview_separator);
         }
     }
 }

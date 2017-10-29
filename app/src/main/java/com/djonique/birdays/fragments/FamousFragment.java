@@ -17,6 +17,7 @@
 package com.djonique.birdays.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -45,17 +46,17 @@ public class FamousFragment extends Fragment {
 
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
-            addFamousPersonsFromDB();
+            addFamousPersonsFromDb();
         }
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(manager);
         adapter = new FamousFragmentAdapter();
@@ -70,7 +71,7 @@ public class FamousFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    private void addFamousPersonsFromDB() {
+    private void addFamousPersonsFromDb() {
         adapter.removeAllPersons();
         List<Person> famous = new ArrayList<>();
 

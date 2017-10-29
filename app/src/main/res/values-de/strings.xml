@@ -22,19 +22,16 @@
     <!-- MainActivity -->
     <string name="loading_contacts">Kontakte werden geladen…</string>
     <string name="contacts_uploaded">Kontakte hochgeladen</string>
-    <string name="loading_contacts_error">Kontakt(e) konnte(n) nicht importiert werden, fehlerhaftes Datumsformat</string>
-    <string name="permission_required">Berechtigung für das Laden von Kontakten erforderlich</string>
+    <string name="loading_contacts_error">Kontakte konnte(n) nicht importiert werden, falsches Datumsformat</string>
+    <string name="permission_required">Berechtigung zum Importieren von Kontakten erforderlich</string>
     <string name="snackbar_allow_text">Erlauben</string>
     <string name="all">Alle</string>
     <string name="famous">Berühmt</string>
-    <string name="turned">Wurde\u0020</string>
-    <string name="turns">Wird\u0020</string>
-    <string name="will_turn">Wird\u0020</string>
-    <string name="send_email">Email senden</string>
+    <string name="age">Alter:\u0020</string>
     <string name="happy_birthday">Alles Gute zum Geburtstag!</string>
-    <string name="famous_search_error">Gerät verfügt nicht über erforderliche Websuche-App um diese Aktion durchzuführen</string>
-    <string name="delete_record_text">Sind Sie sicher, dass Sie diesen Eintrag löschen möchten</string>
-    <string name="record_removed">Eintrag gelöscht</string>
+    <string name="web_search_error">Aktion kann nicht ausgeführt werden, bitte Webbrowser installieren</string>
+    <string name="delete_record_text">Sind Sie sicher, dass Sie diesen Eintrag löschen möchten:</string>
+    <string name="record_deleted">Eintrag gelöscht</string>
     <string name="undo">Rückgängig</string>
 
     <string-array name="months">
@@ -52,19 +49,6 @@
         <item>Dezember</item>
     </string-array>
 
-    <string name="january">Januar</string>
-    <string name="february">Februar</string>
-    <string name="march">März</string>
-    <string name="april">April</string>
-    <string name="may">Mai</string>
-    <string name="june">Juni</string>
-    <string name="july">Juli</string>
-    <string name="august">August</string>
-    <string name="september">September</string>
-    <string name="october">Oktober</string>
-    <string name="november">November</string>
-    <string name="december">Dezember</string>
-
     <!-- Menu -->
     <string name="action_sync">Synchronisation</string>
     <string name="action_settings">Einstellungen</string>
@@ -73,13 +57,13 @@
     <!-- NewPersonDialogFragment -->
     <string name="add_new_record">Neuer Eintrag</string>
     <string name="add_from_contacts">Aus Kontakten hinzufügen</string>
-    <string name="open_contacts_error">Aktion kann aufgrund Geräteeigenschaften nicht durchgeführt werden</string>
+    <string name="open_contacts_error">Aktion kann wegen Geräteeigenschaften nicht ausgeführt werden</string>
     <string name="name">Name</string>
     <string name="error_hint">Bitte Namen eingeben</string>
     <string name="phone_number">Telefonnummer</string>
     <string name="pick_date">Datum auswählen</string>
     <string name="wrong_date">Falsches Datum</string>
-    <string name="unknown_year">Jahr unbekannt</string>
+    <string name="year_unknown">Jahr unbekannt</string>
     <string name="cancel_button">Abbrechen</string>
     <string name="record_added">Eintrag hinzugefügt</string>
 
@@ -100,9 +84,6 @@
     <string name="record_edited">Eintrag bearbeitet</string>
 
     <!-- Alarm -->
-    <string name="is_celebrating_bd">\u0020feiert seinen Geburtstag am\u0020</string>
-    <string name="notification_greetings">\'s Geburtstag ist heute!</string>
-    <string name="additional_notification_greetings">\'s Geburtstag ist\u0020</string>
     <string name="security_exception">Sicherheitsbeschränkung, Samsung-Geräte erlauben nur eine begrenzte Anzahl Alarme</string>
 
     <!-- Zodiac signs -->
@@ -120,36 +101,15 @@
     <string name="pisces">Fische</string>
 
     <!-- SettingsActivity -->
+    <string name="optimization_enabled">Optimierung aktiviert!</string>
+    <string name="optimization_description">\nMit Version 6.0 hat Android den Energiesparmodus Doze eingeführt, welcher das Verhalten von Apps durch Optimierung der Hintergrund-CPU beeinflusst.\n\nDamit die App korrekt funktioniert, muss die Optimierung für Birdays ausgeschaltet werden.</string>
+    <string name="do_not_show_again">Nicht erneut anzeigen</string>
+    <string name="disable_button">Deaktivieren</string>
+    <!-- Notifications -->
     <string name="notifications">Benachrichtigungen</string>
     <string name="allow_notification">Der App erlauben, Benachrichtigungen von anstehenden Geburtstagen zu senden</string>
     <string name="notifications_time">Zeitpunkt der Benachrichtigung</string>
     <string name="additional_notification">Weitere Benachrichtigung</string>
-    <string name="notification_tone">Benachrichtigungston</string>
-    <string name="ringtone_summary">Wählen Sie einen Benachrichtigungston. Standardmässig wird der Ton aus den Geräteeinstellungen verwendet</string>
-    <string name="help">Hilfe</string>
-    <string name="tap_here">Tippen Sie hier, wenn Sie keine Benachrichtigungen erhalten</string>
-    <string name="general">Allgemein</string>
-    <string name="contacts_sync_title">Kontakte-Synchronisation</string>
-    <string name="contacts_sync_summary">Tippen Sie hier, um Kontakte von Ihrem Gerät zu synchronisieren</string>
-    <string name="night_mode">Nachtmodus</string>
-    <string name="displayed_age">Alter anzeigen</string>
-    <string name="displayed_age_changes">Sie müssen die App neu starten, damit diese Änderung wirksam wird</string>
-    <string name="restart_now">Jetzt neu starten</string>
-    <string name="later">Später</string>
-    <string name="advertising">Werbung</string>
-    <string name="about_ad_title">Warum sehe ich Werbung?</string>
-    <string name="about_ad_summary">Die Einnahmen aus der Werbung gehen an die Entwicklung des Projekts und in die Übersetzung in andere Sprachen. Sie können die Werbung kostenlos entfernen</string>
-    <string name="ad_banner">Banner</string>
-    <string name="ad_interstitial_title">Zwischengeschaltete Werbung</string>
-    <string name="ad_interstitial_summary">Diese Art von Werbung wird nur einmal pro Tag angezeigt. Nicht zu oft, oder?</string>
-    <string name="rate_app">App bewerten</string>
-    <string name="share">Teilen</string>
-    <string name="share_text">Vergessen Sie, Ihren Verwandten, Freunden oder Kollegen zum Geburtstag zu gratulieren? Birdays erinnert Sie an wichtige Feiertage!\n\n</string>
-    <string name="about_app">Über die App</string>
-    <string name="menu_github">Quelltext</string>
-    <string name="privacy_policy">Datenschutzrichtlinien</string>
-    <string name="software_licenses">Freie Software-Lizenzen</string>
-    <string name="licenses">Lizenzen</string>
 
     <string-array name="additional_notification_entries">
         <item>Nie</item>
@@ -160,7 +120,7 @@
         <item>2 Wochen zuvor</item>
     </string-array>
 
-    <string-array name="additional_notification_greetings">
+    <string-array name="additional_notification_delay">
         <item>Heute</item>
         <item>Morgen</item>
         <item>In 2 Tagen</item>
@@ -169,36 +129,70 @@
         <item>In 2 Wochen</item>
     </string-array>
 
+    <string name="notification_tone">Benachrichtigungston</string>
+    <string name="ringtone_summary">Wählen Sie einen Benachrichtigungston. Standardmässig wird der Ton aus den Geräteeinstellungen verwendet</string>
+    <string name="silent">Ohne</string>
+    <string name="help">Hilfe</string>
+    <string name="tap_here">Tippen Sie hier, wenn Sie keine Benachrichtigungen erhalten</string>
+    <!-- Synchronization and backup -->
+    <string name="sync_and_backup">Synchronisierung und Backup</string>
+    <string name="contacts_import_title">Kontakt(e) importieren</string>
+    <string name="contacts_import_summary">Hier tippen um Kontakte von Ihrem Gerät zu importieren (unterstützt ISO 8601)</string>
+    <string name="export_records">Einträge exportieren (Beta)</string>
+    <string name="export_records_summary">Mit Backup XML-File erstellen</string>
+    <string name="ext_storage_error">Externer Speicher nicht verfügbar</string>
+    <string name="exporting_records">Einträge werden exportiert…</string>
+    <string name="backup_finished">Backup abgeschlossen, XML-File abgelegt unter\u0020</string>
+    <string name="recover_records">Einträge wiederherstellen (Beta)</string>
+    <string name="recover_records_summary">XML Backup-File auswählen</string>
+    <string name="recover_records_error">Aktion kann nicht ausgeführt werden, bitte File-Manager installieren</string>
+    <string name="records_recovered">Einträge wiederhergestellt</string>
+    <!-- General -->
+    <string name="general">Allgemein</string>
+    <string name="night_mode">Nachtmodus</string>
+    <string name="displayed_age">Alter anzeigen</string>
+
     <string-array name="displayed_age_entries">
         <item>Aktuell</item>
         <item>Zukunft</item>
     </string-array>
 
+    <string name="displayed_age_changes">Sie müssen die App neu starten, damit diese Änderung wirksam wird</string>
+    <string name="restart_now">Jetzt neu starten</string>
+    <string name="later">Später</string>
+    <string name="rate_app">App bewerten</string>
+    <string name="share">Teilen</string>
+    <string name="share_text">Vergessen Sie, Ihren Verwandten, Freunden oder Kollegen zum Geburtstag zu gratulieren? Birdays erinnert Sie an wichtige Feiertage!\n\n</string>
+    <!-- Advertising -->
+    <string name="advertising">Werbung</string>
+    <string name="about_ad_title">Warum sehe ich Werbung?</string>
+    <string name="about_ad_summary">Die Einnahmen aus der Werbung gehen an die Entwicklung des Projekts und in die Übersetzung in andere Sprachen. Sie können die Werbung kostenlos entfernen</string>
+    <string name="ad_interstitial_title">Zwischengeschaltete Werbung</string>
+    <string name="ad_interstitial_summary">Diese Art von Werbung wird nur einmal pro Tag angezeigt. Nicht zu oft, oder?</string>
+    <string name="ad_banner">Banner</string>
+    <!-- About app -->
+    <string name="about_app">Über die App</string>
+    <string name="menu_github">Quelltext</string>
+    <string name="privacy_policy">Datenschutzrichtlinien</string>
+    <string name="software_licenses">Freie Software-Lizenzen</string>
+    <string name="licenses">Lizenzen</string>
+
     <!-- HelpActivity -->
     <string name="help_header">Weshalb funktioniert der Alarm nicht?</string>
-    <string name="help_description">Manche Geräte verfügen über einen Energiesparmodus,
-        der Hintergrundprozesse von Apps blockieren oder Programme am Starten hindern kann.\nDamit
-        der Alarm korrekt funktioniert, sind einige einfache Schritte zu befolgen:\n\n1.
-        Stellen Sie sicher, dass die Benachrichtigungen für die Birdays App aktiviert sind ([Path]).\n\n2.
-        Deaktivieren Sie den Energiesparmodus oder fügen Sie Birdays zur Whitelist hinzu ([Path]).\n\n3.
-        Falls Sie Task Manager, Task Killer oder RAM Optimierer installiert haben, fügen Sie Birdays
-        zu deren Whitelist hinzu.
-    </string>
-    <string name="help_delay_text">Bitte beachten Sie, dass Benachrichtigungen auf manchen Geräten
-        mit Verzögerung erscheinen können.
-    </string>
+    <string name="help_description">Manche Geräte verfügen über einen Energiesparmodus, der Hintergrundprozesse von Apps blockieren oder Programme am Starten hindern kann.\nDamit der Alarm korrekt funktioniert, sind einige einfache Schritte zu befolgen:\n\n1. Stellen Sie sicher, dass die Benachrichtigungen für die Birdays App aktiviert sind (Einstellungen > Apps > Birdays).\n\n2. Falls Sie Task Manager, Task Killer oder RAM Optimierer installiert haben (z.B. «Battery Saver», «Clean Master»), fügen Sie Birdays zu deren Whitelist hinzu.\n\n3. Deaktivieren Sie den Energiesparmodus oder fügen Sie Birdays zur Whitelist hinzu (Einstellungen > Akku > Akku-Leistungsoptimierung).\nNur für Geräte mit Android 6.0 (Marshmallow) oder höher.</string>
+    <string name="help_whitelist">Whitelist öffnen</string>
+    <string name="help_whitelist_error">Nur für Geräte mit Android 6.0 (Marshmallow) oder höher</string>
+    <string name="help_delay_text">"Bitte beachten Sie, dass Benachrichtigungen auf manchen Geräten mit Verzögerung erscheinen können.\n    "</string>
     <string name="help_settings">Einstellungen öffnen</string>
     <string name="huawei_header">Für Huawei-Besitzer</string>
-    <string name="huawei_description">Öffnen Sie «», wählen Sie «» und öffnen Sie «».
-        Stellen Sie sicher, dass diese Einstellung für Birdays aktiviert ist.
-    </string>
+    <string name="huawei_description">Öffnen Sie «Einstellungen», wählen Sie «Energiesparen» und öffnen Sie «Geschützte Apps». Stellen Sie sicher, dass diese Einstellung für Birdays aktiviert ist.</string>
     <string name="samsung_header">Für Samsung-Besitzer</string>
-    <string name="samsung_description">Öffnen Sie «», wählen Sie «», dann «». Deaktivieren Sie diese
-        Einstellung für Birdays.
-    </string>
-    <string name="help_email_description">Sollte der Alarm noch immer nicht funktionieren,
-        kontaktieren Sie mich bitte unter birdaysapp@gmail.com
-    </string>
+    <string name="samsung_description">Öffnen Sie «Smart Manager», wählen Sie «Akku», dann «Detail». Deaktivieren Sie diese Einstellung für Birdays.</string>
+    <string name="xiaomi_header">Für Xiaomi-Besitzer</string>
+    <string name="xiaomi_description">Öffnen Sie «Einstellungen», gehen sie zu «Akku &amp; Leistung», dann zu «Akkuverbrauch verwalten» und öffnen Sie «Apps auswählen», wählen Sie «Kein Beschränkungen» für Birdays.</string>
+    <string name="show_button">Anzeigen</string>
+    <string name="help_email_description">Sollte der Alarm noch immer nicht funktionieren, kontaktieren Sie mich bitte unter birdaysapp@gmail.com</string>
+    <string name="send_email">Email senden</string>
 
     <!-- Famous persons -->
     <!-- 1 january -->

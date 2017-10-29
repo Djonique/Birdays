@@ -17,6 +17,7 @@
 package com.djonique.birdays.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -34,9 +35,9 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     public static final int FAMOUS_FRAGMENT_POSITION = 2;
 
+    private Context context;
     private MonthFragment monthFragment;
     private AllFragment allFragment;
-    private Context context;
 
     public PagerAdapter(FragmentManager fm, Context context) {
         super(fm);
@@ -58,7 +59,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public int getItemPosition(Object object) {
+    public int getItemPosition(@NonNull Object object) {
         return POSITION_NONE;
     }
 
@@ -80,6 +81,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
         return null;
     }
 
+    @NonNull
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         Fragment createdFragment = (Fragment) super.instantiateItem(container, position);
@@ -109,12 +111,12 @@ public class PagerAdapter extends FragmentPagerAdapter {
         }
     }
 
-    public void addRecordsFromDB() {
+    public void addRecordsFromDb() {
         if (monthFragment != null) {
-            monthFragment.addMonthPersonsFromDB();
+            monthFragment.addMonthPersonsFromDb();
         }
         if (allFragment != null) {
-            allFragment.addAllPersonsFromDB();
+            allFragment.addAllPersonsFromDb();
         }
     }
 

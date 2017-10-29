@@ -33,4 +33,6 @@
     <color name="button_background_v21">#68EFAD</color>
     <color name="button_text_v16">#8A000000</color>
     <color name="button_text_v21">#8A000000</color>
+    <color name="cardview_background">@color/cardview_dark_background</color>
+    <color name="cardview_birthday">#EF5350</color>
 </resources>

@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dialog_cb_top_margin"
-                android:text="@string/unknown_year" />
+                android:text="@string/year_unknown" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

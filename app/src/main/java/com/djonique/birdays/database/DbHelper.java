@@ -25,18 +25,20 @@ import android.provider.BaseColumns;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Utils;
 
-public class DBHelper extends SQLiteOpenHelper {
+public class DbHelper extends SQLiteOpenHelper {
 
     public static final String COLUMN_NAME = "name";
+    public static final String SELECTION_LIKE_NAME = COLUMN_NAME + " LIKE ?";
+
+    static final String DB_PERSONS = "persons";
+    static final String DB_FAMOUS = "famous";
     static final String COLUMN_DATE = "date";
     static final String COLUMN_IS_YEAR_KNOWN = "is_year_known";
     static final String COLUMN_PHONE_NUMBER = "phone";
     static final String COLUMN_EMAIL = "email";
     static final String COLUMN_TIME_STAMP = "time_stamp";
-    static final String DB_PERSONS = "persons";
-    static final String DB_FAMOUS = "famous";
     static final String SELECTION_TIME_STAMP = COLUMN_TIME_STAMP + " = ?";
-    public static final String SELECTION_LIKE_NAME = COLUMN_NAME + " LIKE ?";
+
     private static final String DB_NAME = "my_db";
     private static final int DATABASE_VERSION = 1;
     private static final String DB_PERSONS_CREATE = "CREATE TABLE " + DB_PERSONS + " ("
@@ -54,20 +56,20 @@ public class DBHelper extends SQLiteOpenHelper {
             + COLUMN_DATE + " INTEGER"
             + ");";
 
-    private DBQueryManager mDBQueryManager;
-    private Context mContext;
+    private DbQueryManager dbQueryManager;
+    private Context context;
 
-    public DBHelper(Context context) {
+    public DbHelper(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
-        mContext = context;
-        mDBQueryManager = new DBQueryManager(getWritableDatabase());
+        this.context = context;
+        dbQueryManager = new DbQueryManager(getWritableDatabase());
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DB_PERSONS_CREATE);
         db.execSQL(DB_FAMOUS_CREATE);
-        DBFamous.createDB(mContext, db);
+        DbFamous.createDB(context, db);
     }
 
     @Override
@@ -77,7 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
             try {
                 db.execSQL("DROP TABLE IF EXISTS " + DB_FAMOUS);
                 db.execSQL(DB_FAMOUS_CREATE);
-                DBFamous.createDB(mContext, db);
+                DbFamous.createDB(context, db);
                 db.setTransactionSuccessful();
             } finally {
                 db.endTransaction();
@@ -85,7 +87,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void addRec(Person person) {
+    public void addRecord(Person person) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, person.getName());
         cv.put(COLUMN_DATE, person.getDate());
@@ -96,7 +98,7 @@ public class DBHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert(DB_PERSONS, null, cv);
     }
 
-    public void updateRec(Person person) {
+    public void updateRecord(Person person) {
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, person.getName());
         cv.put(COLUMN_DATE, person.getDate());
@@ -107,8 +109,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(person.getTimeStamp())});
     }
 
-    public DBQueryManager query() {
-        return mDBQueryManager;
+    public DbQueryManager query() {
+        return dbQueryManager;
     }
 
     public void removePerson(long timeStamp) {

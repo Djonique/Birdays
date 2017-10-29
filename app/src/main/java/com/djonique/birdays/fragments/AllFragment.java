@@ -19,6 +19,7 @@ package com.djonique.birdays.fragments;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -33,7 +34,7 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.adapters.AllFragmentAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
-import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.models.Separator;
@@ -65,17 +66,17 @@ public class AllFragment extends Fragment {
 
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
-            addAllPersonsFromDB();
+            addAllPersonsFromDb();
         }
         alarmHelper = new AlarmHelper(getActivity());
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(manager);
         adapter = new AllFragmentAdapter(this);
@@ -84,7 +85,7 @@ public class AllFragment extends Fragment {
         return view;
     }
 
-    public void addPerson(Person newPerson, boolean saveToDB) {
+    public void addPerson(Person newPerson, boolean saveToDb) {
         int position = -1;
         Separator separator = null;
 
@@ -121,67 +122,7 @@ public class AllFragment extends Fragment {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(newPerson.getDate());
 
-            if (newPerson.getMonth(newPerson.getDate()) == Calendar.JANUARY) {
-                if (!adapter.containsSeparatorJanuary) {
-                    adapter.containsSeparatorJanuary = true;
-                    separator = new Separator(Separator.TYPE_JANUARY);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.FEBRUARY) {
-                if (!adapter.containsSeparatorFebruary) {
-                    adapter.containsSeparatorFebruary = true;
-                    separator = new Separator(Separator.TYPE_FEBRUARY);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.MARCH) {
-                if (!adapter.containsSeparatorMarch) {
-                    adapter.containsSeparatorMarch = true;
-                    separator = new Separator(Separator.TYPE_MARCH);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.APRIL) {
-                if (!adapter.containsSeparatorApril) {
-                    adapter.containsSeparatorApril = true;
-                    separator = new Separator(Separator.TYPE_APRIL);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.MAY) {
-                if (!adapter.containsSeparatorMay) {
-                    adapter.containsSeparatorMay = true;
-                    separator = new Separator(Separator.TYPE_MAY);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.JUNE) {
-                if (!adapter.containsSeparatorJune) {
-                    adapter.containsSeparatorJune = true;
-                    separator = new Separator(Separator.TYPE_JUNE);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.JULY) {
-                if (!adapter.containsSeparatorJuly) {
-                    adapter.containsSeparatorJuly = true;
-                    separator = new Separator(Separator.TYPE_JULY);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.AUGUST) {
-                if (!adapter.containsSeparatorAugust) {
-                    adapter.containsSeparatorAugust = true;
-                    separator = new Separator(Separator.TYPE_AUGUST);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.SEPTEMBER) {
-                if (!adapter.containsSeparatorSeptember) {
-                    adapter.containsSeparatorSeptember = true;
-                    separator = new Separator(Separator.TYPE_SEPTEMBER);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.OCTOBER) {
-                if (!adapter.containsSeparatorOctober) {
-                    adapter.containsSeparatorOctober = true;
-                    separator = new Separator(Separator.TYPE_OCTOBER);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.NOVEMBER) {
-                if (!adapter.containsSeparatorNovember) {
-                    adapter.containsSeparatorNovember = true;
-                    separator = new Separator(Separator.TYPE_NOVEMBER);
-                }
-            } else if (newPerson.getMonth(newPerson.getDate()) == Calendar.DECEMBER) {
-                if (!adapter.containsSeparatorDecember) {
-                    adapter.containsSeparatorDecember = true;
-                    separator = new Separator(Separator.TYPE_DECEMBER);
-                }
-            }
+            separator = getSeparator(newPerson);
         }
 
         if (position != -1) {
@@ -196,12 +137,12 @@ public class AllFragment extends Fragment {
             adapter.addItem(newPerson);
         }
 
-        if (saveToDB) {
-            activity.dbHelper.addRec(newPerson);
+        if (saveToDb) {
+            activity.dbHelper.addRecord(newPerson);
         }
     }
 
-    public void addAllPersonsFromDB() {
+    public void addAllPersonsFromDb() {
         adapter.removeAllPersons();
         List<Person> persons = new ArrayList<>();
         persons.addAll(activity.dbHelper.query().getPersons());
@@ -211,8 +152,87 @@ public class AllFragment extends Fragment {
         }
     }
 
+    private Separator getSeparator(Person person) {
+        Separator separator = null;
+        switch (person.getMonth(person.getDate())) {
+            case Calendar.JANUARY:
+                if (!adapter.containsSeparatorJanuary) {
+                    adapter.containsSeparatorJanuary = true;
+                    separator = new Separator(Separator.TYPE_JANUARY);
+                }
+                break;
+            case Calendar.FEBRUARY:
+                if (!adapter.containsSeparatorFebruary) {
+                    adapter.containsSeparatorFebruary = true;
+                    separator = new Separator(Separator.TYPE_FEBRUARY);
+                }
+                break;
+            case Calendar.MARCH:
+                if (!adapter.containsSeparatorMarch) {
+                    adapter.containsSeparatorMarch = true;
+                    separator = new Separator(Separator.TYPE_MARCH);
+                }
+                break;
+            case Calendar.APRIL:
+                if (!adapter.containsSeparatorApril) {
+                    adapter.containsSeparatorApril = true;
+                    separator = new Separator(Separator.TYPE_APRIL);
+                }
+                break;
+            case Calendar.MAY:
+                if (!adapter.containsSeparatorMay) {
+                    adapter.containsSeparatorMay = true;
+                    separator = new Separator(Separator.TYPE_MAY);
+                }
+                break;
+            case Calendar.JUNE:
+                if (!adapter.containsSeparatorJune) {
+                    adapter.containsSeparatorJune = true;
+                    separator = new Separator(Separator.TYPE_JUNE);
+                }
+                break;
+            case Calendar.JULY:
+                if (!adapter.containsSeparatorJuly) {
+                    adapter.containsSeparatorJuly = true;
+                    separator = new Separator(Separator.TYPE_JULY);
+                }
+                break;
+            case Calendar.AUGUST:
+                if (!adapter.containsSeparatorAugust) {
+                    adapter.containsSeparatorAugust = true;
+                    separator = new Separator(Separator.TYPE_AUGUST);
+                }
+                break;
+            case Calendar.SEPTEMBER:
+                if (!adapter.containsSeparatorSeptember) {
+                    adapter.containsSeparatorSeptember = true;
+                    separator = new Separator(Separator.TYPE_SEPTEMBER);
+                }
+                break;
+            case Calendar.OCTOBER:
+                if (!adapter.containsSeparatorOctober) {
+                    adapter.containsSeparatorOctober = true;
+                    separator = new Separator(Separator.TYPE_OCTOBER);
+                }
+                break;
+            case Calendar.NOVEMBER:
+                if (!adapter.containsSeparatorNovember) {
+                    adapter.containsSeparatorNovember = true;
+                    separator = new Separator(Separator.TYPE_NOVEMBER);
+                }
+                break;
+            case Calendar.DECEMBER:
+                if (!adapter.containsSeparatorDecember) {
+                    adapter.containsSeparatorDecember = true;
+                    separator = new Separator(Separator.TYPE_DECEMBER);
+                }
+                break;
+        }
+        return separator;
+    }
+
     public void removePersonDialog(final int location) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
         Item item = adapter.getItem(location);
 
@@ -230,8 +250,8 @@ public class AllFragment extends Fragment {
 
                     adapter.removePerson(location);
                     isRemoved[0] = true;
-                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.container_main),
-                            R.string.record_removed, Snackbar.LENGTH_SHORT);
+                    Snackbar snackbar = Snackbar.make(activity.findViewById(R.id.container_main),
+                            R.string.record_deleted, Snackbar.LENGTH_SHORT);
 
                     snackbar.setAction(getString(R.string.undo), new View.OnClickListener() {
                         @Override
@@ -273,8 +293,8 @@ public class AllFragment extends Fragment {
     public void findPerson(String name) {
         adapter.removeAllPersons();
         List<Person> persons = new ArrayList<>();
-        persons.addAll(activity.dbHelper.query().getSearchPerson(DBHelper.SELECTION_LIKE_NAME,
-                new String[]{"%" + name + "%"}, DBHelper.COLUMN_NAME));
+        persons.addAll(activity.dbHelper.query().getSearchPerson(DbHelper.SELECTION_LIKE_NAME,
+                new String[]{"%" + name + "%"}, DbHelper.COLUMN_NAME));
 
         for (int i = 0; i < persons.size(); i++) {
             addPerson(persons.get(i), false);

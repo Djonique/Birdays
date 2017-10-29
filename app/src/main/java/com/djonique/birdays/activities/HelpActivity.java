@@ -16,26 +16,61 @@
 
 package com.djonique.birdays.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.utils.Constants;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HelpActivity extends AppCompatActivity {
+
+    private static final String HUAWEI = "huawei";
+    private static final String SAMSUNG = "samsung";
+    private static final String XIAOMI = "xiaomi";
+    private static final String ALERT_SHOWED = "ALERT_SHOWED";
+
+    @BindView(R.id.button_help_whitelist)
+    AppCompatButton btnOpenWhitelist;
+    @BindView(R.id.button_help_settings)
+    AppCompatButton btnOpenSettings;
+    @BindView(R.id.button_help_email)
+    AppCompatButton btnSendEmail;
+
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
         ButterKnife.bind(this);
+        btnOpenWhitelist.setText(R.string.help_whitelist);
+        btnOpenSettings.setText(R.string.help_settings);
+        btnSendEmail.setText(R.string.send_email);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (!preferences.getBoolean(ALERT_SHOWED, false)) {
+            checkManufacturer(Build.MANUFACTURER.toLowerCase());
+        }
     }
 
     @Override
@@ -55,6 +90,59 @@ public class HelpActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }
 
+    private void checkManufacturer(String manufacturer) {
+        switch (manufacturer) {
+            case HUAWEI:
+                showAlertSnackbar(getString(R.string.huawei_header), getString(R.string.huawei_description));
+                break;
+            case SAMSUNG:
+                showAlertSnackbar(getString(R.string.samsung_header), getString(R.string.samsung_description));
+                break;
+            case XIAOMI:
+                showAlertSnackbar(getString(R.string.xiaomi_header), getString(R.string.xiaomi_description));
+                break;
+        }
+    }
+
+    private void showAlertSnackbar(final String title, final String message) {
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.ll_help_activity), title, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.show_button, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showAlertDialog(title, message);
+                        preferences.edit().putBoolean(ALERT_SHOWED, true).apply();
+                    }
+                });
+        snackbar.setActionTextColor(Color.WHITE);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(getColor(R.color.snackbar_alert));
+        TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        textView.setAllCaps(true);
+        snackbar.show();
+    }
+
+    private void showAlertDialog(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    @OnClick(R.id.button_help_whitelist)
+    void openBatteryOptimization() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            startActivity(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS));
+        } else {
+            Toast.makeText(this, R.string.help_whitelist_error, Toast.LENGTH_LONG).show();
+        }
+    }
+
     @OnClick(R.id.button_help_settings)
     void openSettings() {
         startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
@@ -71,6 +159,6 @@ public class HelpActivity extends AppCompatActivity {
                 + Build.VERSION.SDK_INT + "/"
                 + getString(R.string.version_name));
         intent.setData(Uri.parse(Constants.MAILTO + email));
-        startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
+        startActivity(Intent.createChooser(intent, null));
     }
 }

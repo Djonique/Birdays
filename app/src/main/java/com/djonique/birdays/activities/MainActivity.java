@@ -42,7 +42,7 @@ import com.crashlytics.android.Crashlytics;
 import com.djonique.birdays.R;
 import com.djonique.birdays.ad.Ad;
 import com.djonique.birdays.adapters.PagerAdapter;
-import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.dialogs.NewPersonDialogFragment;
 import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.models.Person;
@@ -64,7 +64,10 @@ public class MainActivity extends AppCompatActivity implements
         AllFragment.DeletingRecordListener,
         ContactsHelper.LoadingContactsListener {
 
-    public DBHelper dbHelper;
+    private static final String NEW_PERSON_DIALOG_TAG = "NEW_PERSON_DIALOG_TAG";
+    // private static final String BOTTOM_SHEET_DIALOG_TAG = "BOTTOM_SHEET_DIALOG_TAG";
+
+    public DbHelper dbHelper;
 
     @BindView(R.id.container_main)
     CoordinatorLayout container;
@@ -83,8 +86,8 @@ public class MainActivity extends AppCompatActivity implements
     @BindView(R.id.banner_main)
     AdView adView;
 
-    private SharedPreferences mPreferences;
-    private PagerAdapter mPagerAdapter;
+    private SharedPreferences preferences;
+    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,22 +97,22 @@ public class MainActivity extends AppCompatActivity implements
         ButterKnife.bind(this);
         FirebaseAnalytics.getInstance(this);
 
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        Utils.setupDayNightTheme(mPreferences);
+        Utils.setupDayNightTheme(preferences);
 
-        dbHelper = new DBHelper(this);
+        dbHelper = new DbHelper(this);
 
-        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
 
         setSupportActionBar(toolbar);
 
-        viewPager.setAdapter(mPagerAdapter);
+        viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(2);
         tabLayout.setupWithViewPager(viewPager);
 
-        if (!mPreferences.getBoolean(Constants.CONTACTS_UPLOADED, false)) {
-            new ContactsHelper(this, getContentResolver()).loadContacts(mPreferences);
+        if (!preferences.getBoolean(Constants.CONTACTS_UPLOADED, false)) {
+            new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
         }
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -120,12 +123,12 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mPagerAdapter.search(newText);
+                pagerAdapter.search(newText);
                 return false;
             }
         });
 
-        if (mPreferences.getBoolean(Constants.AD_BANNER_KEY, true)) {
+        if (preferences.getBoolean(getString(R.string.ad_banner_key), true)) {
             Ad.showBannerAd(container, adView, fab);
         }
 
@@ -142,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onRestart() {
         super.onRestart();
-        mPagerAdapter.addRecordsFromDB();
+        pagerAdapter.addRecordsFromDb();
     }
 
     @Override
@@ -164,23 +167,14 @@ public class MainActivity extends AppCompatActivity implements
             overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
         /*} else if (item.getItemId() == R.id.action_sync) {
             ModalBottomSheet modalBottomSheet = new ModalBottomSheet();
-            modalBottomSheet.show(getSupportFragmentManager(), Constants.BOTTOM_SHEET_DIALOG_TAG);
-        } else if (item.getItemId() == R.id.action_backup) {
-            try {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("text/xml");
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                startActivity(intent);
-            } catch (ActivityNotFoundException e){
-                Toast.makeText(this, "You don't have an app to perform action, download any File Manager from market", Toast.LENGTH_LONG).show();
-            }*/
+            modalBottomSheet.show(getSupportFragmentManager(), Constants.BOTTOM_SHEET_DIALOG_TAG);*/
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onPersonAdded(Person person) {
-        mPagerAdapter.addPerson(person);
+        pagerAdapter.addPerson(person);
         Snackbar.make(findViewById(R.id.container_main), R.string.record_added, Snackbar.LENGTH_SHORT).show();
     }
 
@@ -190,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onRecordDeleted(long timeStamp) {
-        mPagerAdapter.deleteRecord(timeStamp);
+        pagerAdapter.deleteRecord(timeStamp);
     }
 
     @OnPageChange(R.id.viewpager_main)
@@ -208,18 +202,18 @@ public class MainActivity extends AppCompatActivity implements
     @OnClick(R.id.fab_main)
     void showDialog() {
         DialogFragment newPersonDialogFragment = new NewPersonDialogFragment();
-        newPersonDialogFragment.show(getFragmentManager(), Constants.NEW_PERSON_DIALOG_TAG);
+        newPersonDialogFragment.show(getFragmentManager(), NEW_PERSON_DIALOG_TAG);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == Constants.CONTACTS_REQUEST_PERMISSION_CODE) {
+        if (requestCode == Constants.READ_CONTACTS_PERMISSION_CODE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                if (!mPreferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
-                    new ContactsHelper(this, getContentResolver()).loadContacts(mPreferences);
+                if (!preferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
+                    new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
                 }
             } else {
                 Snackbar.make(container, R.string.permission_required,
@@ -240,13 +234,11 @@ public class MainActivity extends AppCompatActivity implements
      */
     private void openApplicationSettings() {
         startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.parse(Constants.PACKAGE + getPackageName())));
+                Uri.parse("package:" + getPackageName())));
     }
 
     @Override
     public void onContactsUploaded() {
-        if (viewPager != null) {
-            viewPager.getAdapter().notifyDataSetChanged();
-        }
+        if (viewPager != null) viewPager.getAdapter().notifyDataSetChanged();
     }
 }

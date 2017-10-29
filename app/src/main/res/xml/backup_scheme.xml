@@ -20,6 +20,5 @@
     <include
         domain="database"
         path="my_db.db" />
-    <exclude domain="sharedpref" />
-    <exclude domain="external" />
+    <include domain="sharedpref" />
 </full-backup-content>

@@ -8,12 +8,12 @@ public class ProgressDialogHelper {
 
     private static final String ILLEGAL_ARGUMENT_EXCEPTION = "IllegalArgumentException";
 
-    private ProgressDialog progressDialog;
     private Context context;
+    private ProgressDialog progressDialog;
 
     public ProgressDialogHelper(Context context) {
-        progressDialog = new ProgressDialog(context);
         this.context = context;
+        progressDialog = new ProgressDialog(context);
     }
 
     /**

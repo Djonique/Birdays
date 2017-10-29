@@ -23,7 +23,7 @@ public class Person implements Item {
 
     private String name, phoneNumber, email;
     private long date, timeStamp;
-    private boolean unknownYear;
+    private boolean yearUnknown;
 
     // Default constructor
     public Person() {
@@ -37,21 +37,21 @@ public class Person implements Item {
     }
 
     // Constructor for importing from Contacts
-    public Person(String name, long date, boolean unknownYear, String phoneNumber, String email) {
+    public Person(String name, long date, boolean yearUnknown, String phoneNumber, String email) {
         this.name = name;
         this.date = date;
-        this.unknownYear = unknownYear;
+        this.yearUnknown = yearUnknown;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.timeStamp = new Date().getTime();
     }
 
-    // Constructor for DBQueryManager
-    public Person(String name, long date, boolean unknownYear, String phoneNumber, String email,
+    // Constructor for DbQueryManager
+    public Person(String name, long date, boolean yearUnknown, String phoneNumber, String email,
                   long timeStamp) {
         this.name = name;
         this.date = date;
-        this.unknownYear = unknownYear;
+        this.yearUnknown = yearUnknown;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.timeStamp = timeStamp;
@@ -74,11 +74,11 @@ public class Person implements Item {
     }
 
     public boolean isYearUnknown() {
-        return unknownYear;
+        return yearUnknown;
     }
 
-    public void setYearUnknown(boolean unknownYear) {
-        this.unknownYear = unknownYear;
+    public void setYearUnknown(boolean yearUnknown) {
+        this.yearUnknown = yearUnknown;
     }
 
     public String getPhoneNumber() {

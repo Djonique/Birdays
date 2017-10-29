@@ -43,7 +43,7 @@
             android:key="@string/ringtone_key"
             android:ringtoneType="notification"
             android:showDefault="true"
-            android:showSilent="false"
+            android:showSilent="true"
             android:summary="@string/ringtone_summary"
             android:title="@string/notification_tone" />
         <Preference
@@ -55,17 +55,17 @@
     <!-- Synchronization and Backup -->
     <PreferenceCategory android:title="@string/sync_and_backup">
         <Preference
-            android:key="@string/contacts_sync_key"
-            android:summary="@string/contacts_sync_summary"
-            android:title="@string/contacts_sync_title" />
+            android:key="@string/import_contacts_key"
+            android:summary="@string/contacts_import_summary"
+            android:title="@string/contacts_import_title" />
         <Preference
             android:key="@string/export_key"
-            android:title="@string/export_records"
-            android:summary="@string/export_records_summary"/>
+            android:summary="@string/export_records_summary"
+            android:title="@string/export_records" />
         <Preference
             android:key="@string/recover_key"
-            android:title="@string/recover_records"
-            android:summary="@string/recover_records_summary"/>
+            android:summary="@string/recover_records_summary"
+            android:title="@string/recover_records" />
     </PreferenceCategory>
 
     <!-- General -->
@@ -80,11 +80,9 @@
             android:key="@string/displayed_age_key"
             android:summary="%s"
             android:title="@string/displayed_age" />
-        <Preference android:title="@string/rate_app">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="@string/play_market_app_link" />
-        </Preference>
+        <Preference
+            android:key="@string/rate_app_key"
+            android:title="@string/rate_app" />
         <Preference
             android:key="@string/share_key"
             android:title="@string/share" />
@@ -109,16 +107,12 @@
 
     <!-- About app -->
     <PreferenceCategory android:title="@string/about_app">
-        <Preference android:title="@string/menu_github">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="@string/github_url" />
-        </Preference>
-        <Preference android:title="@string/privacy_policy">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="@string/privacy_policy_link" />
-        </Preference>
+        <Preference
+            android:key="@string/source_code_key"
+            android:title="@string/menu_github" />
+        <Preference
+            android:key="@string/privacy_policy_key"
+            android:title="@string/privacy_policy" />
         <Preference
             android:key="@string/licenses_key"
             android:title="@string/software_licenses" />

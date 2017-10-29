@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
-import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Utils;
 
@@ -36,46 +36,47 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
-public class RestoreHelper {
+public class RecoverHelper {
 
     private static final String PERSON = "person";
     private static final String NAME = "name";
     private static final String DATE = "date";
-    private static final String UNKNOWN_YEAR = "unknown_year";
+    private static final String YEAR_UNKNOWN = "year_unknown";
     private static final String PHONE_NUMBER = "phone_number";
     private static final String EMAIL = "email";
-    private static final String IO_EXCEPTION = "IOException";
+
     private static final String XML_PULL_PARSER_EXCEPTION = "XmlPullParserException";
     private static final String FILE_NOT_FOUND_EXCEPTION = "FileNotFoundException";
+    private static final String IO_EXCEPTION = "IOException";
 
-    private Context mContext;
+    private Context context;
 
-    public RestoreHelper(Context context) {
-        mContext = context;
+    public RecoverHelper(Context context) {
+        this.context = context;
     }
 
-    public void restoreRecords(String path) {
+    public void recoverRecords(String path) {
         XmlPullParserFactory pullParserFactory;
         try {
             pullParserFactory = XmlPullParserFactory.newInstance();
             pullParserFactory.setNamespaceAware(true);
             XmlPullParser parser = pullParserFactory.newPullParser();
             File file = new File(path);
-            FileInputStream fis = new FileInputStream(file);
-            parser.setInput(new InputStreamReader(fis));
+            FileInputStream inputStream = new FileInputStream(file);
+            parser.setInput(new InputStreamReader(inputStream));
             parseXml(parser);
-            Toast.makeText(mContext, R.string.records_recovered, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.records_recovered, Toast.LENGTH_LONG).show();
         } catch (XmlPullParserException e) {
-            Toast.makeText(mContext, XML_PULL_PARSER_EXCEPTION, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, XML_PULL_PARSER_EXCEPTION, Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
-            Toast.makeText(mContext, FILE_NOT_FOUND_EXCEPTION, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, FILE_NOT_FOUND_EXCEPTION, Toast.LENGTH_LONG).show();
         }
     }
 
     private void parseXml(XmlPullParser parser) {
-        DBHelper dbHelper = new DBHelper(mContext);
+        DbHelper dbHelper = new DbHelper(context);
         List<Person> dbPersons = dbHelper.query().getPersons();
-        AlarmHelper alarmHelper = new AlarmHelper(mContext);
+        AlarmHelper alarmHelper = new AlarmHelper(context);
         Person person = null;
 
         try {
@@ -98,7 +99,7 @@ public class RestoreHelper {
                                 case DATE:
                                     person.setDate(Long.valueOf(parser.nextText()));
                                     break;
-                                case UNKNOWN_YEAR:
+                                case YEAR_UNKNOWN:
                                     person.setYearUnknown(Boolean.valueOf(parser.nextText()));
                                     break;
                                 case PHONE_NUMBER:
@@ -114,7 +115,7 @@ public class RestoreHelper {
                         name = parser.getName();
                         if (name.equals(PERSON) && person != null) {
                             if (!Utils.isPersonAlreadyInDB(person, dbPersons)) {
-                                dbHelper.addRec(person);
+                                dbHelper.addRecord(person);
                                 alarmHelper.setAlarms(person);
                             }
                         }
@@ -123,9 +124,9 @@ public class RestoreHelper {
                 eventType = parser.next();
             }
         } catch (XmlPullParserException e) {
-            Toast.makeText(mContext, XML_PULL_PARSER_EXCEPTION, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, XML_PULL_PARSER_EXCEPTION, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
-            Toast.makeText(mContext, IO_EXCEPTION, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, IO_EXCEPTION, Toast.LENGTH_LONG).show();
         }
     }
 }

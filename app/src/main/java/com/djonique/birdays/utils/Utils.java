@@ -16,11 +16,15 @@
 
 package com.djonique.birdays.utils;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.models.Person;
@@ -171,9 +175,9 @@ public class Utils {
         return getDay(today) > getDay(date);
     }
 
-    public static boolean isToday(long date) {
+    /*public static boolean isToday(long date) {
         return getDay(today) == getDay(date);
-    }
+    }*/
 
     /**
      * Returns zodiac name of certain date
@@ -295,7 +299,7 @@ public class Utils {
         return calendar.getTimeInMillis();
     }
 
-    static boolean isYearKnown(String dateString) {
+    static boolean isYearUnknown(String dateString) {
         String[] dateArray = dateString.split("-");
         return dateArray[0].equals("");
     }
@@ -320,6 +324,15 @@ public class Utils {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+    public static void openBrowser(Context context, String link) {
+        try {
+            context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(link)), null));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(context, R.string.web_search_error, Toast.LENGTH_SHORT).show();
         }
     }
 }

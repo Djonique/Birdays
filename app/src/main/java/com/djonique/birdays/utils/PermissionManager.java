@@ -38,7 +38,7 @@ public class PermissionManager {
      */
     public static void requestReadingContactsPermission(Activity activity) {
         ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_CONTACTS},
-                Constants.CONTACTS_REQUEST_PERMISSION_CODE);
+                Constants.READ_CONTACTS_PERMISSION_CODE);
     }
 
     /**

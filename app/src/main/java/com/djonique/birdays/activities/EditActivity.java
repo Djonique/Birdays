@@ -29,10 +29,12 @@ import android.widget.EditText;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
-import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
+import com.djonique.birdays.utils.DatePickerManager;
 import com.djonique.birdays.utils.Utils;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
 
@@ -42,7 +44,9 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class EditActivity extends AppCompatActivity implements android.app.DatePickerDialog.OnDateSetListener {
+public class EditActivity extends AppCompatActivity implements
+        android.app.DatePickerDialog.OnDateSetListener,
+        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
     @BindView(R.id.til_edit_name)
     TextInputLayout tilEditName;
@@ -59,12 +63,12 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
     @BindView(R.id.edittext_edit_email)
     EditText etEmail;
 
-    private DBHelper mDBHelper;
-    private Person mPerson;
-    private Calendar mCalendar;
+    private DbHelper dbHelper;
+    private Person person;
+    private Calendar calendar;
     private long date;
-    private boolean unknownYear;
-    private boolean hide = false;
+    private boolean yearUnknown;
+    private boolean hideOkButton = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,20 +79,20 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
         Intent intent = getIntent();
         long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
 
-        mDBHelper = new DBHelper(this);
-        mPerson = mDBHelper.query().getPerson(timeStamp);
-        unknownYear = mPerson.isYearUnknown();
+        dbHelper = new DbHelper(this);
+        person = dbHelper.query().getPerson(timeStamp);
+        yearUnknown = person.isYearUnknown();
 
-        mCalendar = Calendar.getInstance();
-        mCalendar.setTimeInMillis(mPerson.getDate());
+        calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(person.getDate());
 
-        updateUI();
+        setupUI();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_edit, menu);
-        if (hide) menu.findItem(R.id.menu_edit_ok).setVisible(false);
+        if (hideOkButton) menu.findItem(R.id.menu_edit_ok).setVisible(false);
         return true;
     }
 
@@ -100,7 +104,7 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
                 return true;
             case R.id.menu_edit_ok:
                 updatePerson();
-                setAlarms(mPerson);
+                setAlarms(person);
                 setResult(RESULT_OK, new Intent());
                 finish();
                 this.overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
@@ -116,39 +120,38 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
     }
 
     /**
-     * Updates UI depending on person's info
+     * Sets up UI depending on person's data
      */
-    private void updateUI() {
-        etName.setText(mPerson.getName());
+    private void setupUI() {
+        etName.setText(person.getName());
         etName.setSelection(etName.getText().length());
 
-        date = mPerson.getDate();
-        if (unknownYear) {
+        date = person.getDate();
+        if (yearUnknown) {
             etDate.setText(Utils.getDateWithoutYear(date));
         } else {
             etDate.setText(Utils.getDate(date));
         }
 
-        checkBox.setChecked(unknownYear);
-        etPhoneNumber.setText(mPerson.getPhoneNumber());
-        etEmail.setText(mPerson.getEmail());
+        checkBox.setChecked(yearUnknown);
+        etPhoneNumber.setText(person.getPhoneNumber());
+        etEmail.setText(person.getEmail());
     }
 
     /**
      * Updates person's data after editing
      */
     private void updatePerson() {
-        String name = updateText(etName);
-        mPerson.setName(name);
-        mPerson.setDate(mCalendar.getTimeInMillis());
-        mPerson.setYearUnknown(checkBox.isChecked());
-        mPerson.setPhoneNumber(updateText(etPhoneNumber));
-        mPerson.setEmail(updateText(etEmail));
-        mDBHelper.updateRec(mPerson);
+        person.setName(updateText(etName));
+        person.setDate(calendar.getTimeInMillis());
+        person.setYearUnknown(checkBox.isChecked());
+        person.setPhoneNumber(updateText(etPhoneNumber));
+        person.setEmail(updateText(etEmail));
+        dbHelper.updateRecord(person);
     }
 
     /**
-     * Uses to update text in updatePerson() method
+     * Used to update text in updatePerson() method
      */
     private String updateText(EditText editText) {
         String result = "";
@@ -166,20 +169,24 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
 
     @OnClick(R.id.edittext_edit_date)
     void pickDate() {
-        android.app.DatePickerDialog mDatePickerDialog = new android.app.DatePickerDialog(this,
-                this,
-                mCalendar.get(Calendar.YEAR),
-                mCalendar.get(Calendar.MONTH),
-                mCalendar.get(Calendar.DAY_OF_MONTH));
-        mDatePickerDialog.show();
+        new DatePickerManager(this, calendar).showDialog(this, this);
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        mCalendar.set(Calendar.YEAR, year);
-        mCalendar.set(Calendar.MONTH, month);
-        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        date = mCalendar.getTimeInMillis();
+        setDate(year, month, dayOfMonth);
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        setDate(year, monthOfYear, dayOfMonth);
+    }
+
+    private void setDate(int year, int month, int dayOfMonth) {
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        date = calendar.getTimeInMillis();
         // Checks state of CheckBox whenever date is picked
         if (!checkBox.isChecked()) {
             etDate.setText(Utils.getDate(date));
@@ -192,10 +199,10 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
     void validateName() {
         if (etName.length() == 0) {
             tilEditName.setError(getString(R.string.error_hint));
-            hide = true;
+            hideOkButton = true;
         } else {
             if (fieldsValid()) {
-                hide = false;
+                hideOkButton = false;
             }
             tilEditName.setErrorEnabled(false);
         }
@@ -207,11 +214,11 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
         if (fieldsValid()) {
             tilEditDate.setErrorEnabled(false);
             if (etName.length() != 0) {
-                hide = false;
+                hideOkButton = false;
             }
         } else {
             tilEditDate.setError(getString(R.string.wrong_date));
-            hide = true;
+            hideOkButton = true;
         }
         invalidateOptionsMenu();
     }
@@ -226,17 +233,17 @@ public class EditActivity extends AppCompatActivity implements android.app.DateP
         if (fieldsValid()) {
             tilEditDate.setErrorEnabled(false);
             if (etName.length() != 0) {
-                hide = false;
+                hideOkButton = false;
             }
         } else {
             tilEditDate.setError(getString(R.string.wrong_date));
-            hide = true;
+            hideOkButton = true;
         }
         invalidateOptionsMenu();
     }
 
     private boolean fieldsValid() {
-        return (!Utils.isEmptyDate(etDate) && Utils.isRightDate(mCalendar))
+        return (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar))
                 || (!Utils.isEmptyDate(etDate) && checkBox.isChecked());
     }
 }

@@ -138,19 +138,9 @@
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
-    <style name="AppCompatTheme" parent="Theme.AppCompat.Light">
-        <item name="windowActionBar">false</item>
-        <item name="android:windowActionBar">false</item>
-    </style>
-
-    <style name="CustomActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="windowActionBarOverlay">true</item>
-    </style>
-
     <style name="DialogAnimation">
-        <item name="@android:windowEnterAnimation">@anim/dialog_grow_in</item>
-        <item name="@android:windowExitAnimation">@anim/dialog_grow_out</item>
+        <item name="android:windowEnterAnimation">@anim/dialog_grow_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_grow_out</item>
     </style>
 
     <style name="CollapsingToolbarStyle">
@@ -171,5 +161,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:padding">@dimen/default_padding</item>
+    </style>
+
+    <style name="Licenses.Primary.TextView" parent="Primary.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Licenses.Secondary.TextView" parent="Secondary.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">@dimen/licenses_text_view_bottom_padding</item>
     </style>
 </resources>

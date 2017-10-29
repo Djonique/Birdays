@@ -18,23 +18,16 @@ package com.djonique.birdays.utils;
 
 public interface Constants {
 
-    // Activities
+    // Preferences
     String CONTACTS_UPLOADED = "CONTACTS_UPLOADED";
     String WRONG_CONTACTS_FORMAT = "WRONG_CONTACTS_FORMAT";
-    int EDIT_ACTIVITY = 102;
-    int FILE_MANAGER = 103;
-
-    // Dialogs
-    String NEW_PERSON_DIALOG_TAG = "NEW_PERSON_DIALOG_TAG";
-    // String BOTTOM_SHEET_DIALOG_TAG = "BOTTOM_SHEET_DIALOG_TAG";
 
     // Permission requests
-    int REQUEST_READ_CONTACTS = 1;
-    int CONTACTS_REQUEST_PERMISSION_CODE = 2;
-    int WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 3;
-    int READ_EXTERNAL_STORAGE_PERMISSION_CODE = 4;
+    int READ_CONTACTS_PERMISSION_CODE = 1;
+    int WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 2;
+    int READ_EXTERNAL_STORAGE_PERMISSION_CODE = 3;
 
-    // Alarm and Settings keys
+    // Settings keys
     String NAME = "name";
     String NOTIFICATIONS_KEY = "notifications_key";
     String NOTIFICATION_TIME_KEY = "notification_time_key";
@@ -42,13 +35,9 @@ public interface Constants {
     String RINGTONE_KEY = "ringtone_key";
     String NIGHT_MODE_KEY = "night_mode_key";
     String DISPLAYED_AGE_KEY = "displayed_age_key";
-    String AD_BANNER_KEY = "ad_banner_key";
-    String AD_INTERSTITIAL_KEY = "ad_interstitial_key";
 
     // Intents
     String TIME_STAMP = "TIME_STAMP";
-    String TEXT_PLAIN = "text/plain";
-    String PACKAGE = "package:";
     String TYPE_EMAIL = "message/rfc822";
     String MAILTO = "mailto:";
     String TYPE_SMS = "vnd.android-dir/mms-sms";

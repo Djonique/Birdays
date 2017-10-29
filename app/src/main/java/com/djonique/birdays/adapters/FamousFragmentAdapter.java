@@ -16,17 +16,13 @@
 
 package com.djonique.birdays.adapters;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.models.Item;
@@ -88,15 +84,7 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
             @Override
             public void onClick(View view) {
                 mFirebaseAnalytics.logEvent(Constants.FAMOUS_PERSON_CLICKED, new Bundle());
-                //Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-                //intent.putExtra(SearchManager.QUERY, name);
-                Intent intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(context.getString(R.string.google_search) + name));
-                try {
-                    context.startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    Toast.makeText(context, R.string.famous_search_error, Toast.LENGTH_SHORT).show();
-                }
+                Utils.openBrowser(context, context.getString(R.string.google_search) + name);
             }
         });
     }
@@ -111,8 +99,8 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
 
         ListViewHolder(View itemView) {
             super(itemView);
-            tvName = ((TextView) itemView.findViewById(R.id.textview_famous_name));
-            tvDate = ((TextView) itemView.findViewById(R.id.textview_famous_date));
+            tvName = itemView.findViewById(R.id.textview_famous_name);
+            tvDate = itemView.findViewById(R.id.textview_famous_date);
         }
     }
 }

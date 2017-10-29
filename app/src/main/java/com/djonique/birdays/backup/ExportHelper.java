@@ -16,6 +16,7 @@
 
 package com.djonique.birdays.backup;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,7 +27,7 @@ import android.util.Xml;
 import android.widget.Toast;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ProgressDialogHelper;
 import com.djonique.birdays.utils.Utils;
@@ -43,28 +44,30 @@ import java.util.List;
 
 public class ExportHelper {
 
+    private static final String RECORDS = "records";
     private static final String PERSON = "person";
     private static final String NAME = "name";
     private static final String DATE = "date";
-    private static final String UNKNOWN_YEAR = "unknown_year";
+    private static final String YEAR_UNKNOWN = "year_unknown";
     private static final String PHONE_NUMBER = "phone_number";
     private static final String EMAIL = "email";
     private static final String BACKUP = "backup";
     private static final String UTF_8 = "UTF-8";
-    private static final String RECORDS = "records";
-    private static final String IO_EXCEPTION = "IOException";
-    private static final String FILE_NOT_FOUND_EXCEPTION = "FileNotFoundException";
+
     private static final String ILLEGAL_ARGUMENT_EXCEPTION = "IllegalArgumentException";
     private static final String ILLEGAL_STATE_EXCEPTION = "IllegalStateException";
-    private Context mContext;
+    private static final String IO_EXCEPTION = "IOException";
+    private static final String FILE_NOT_FOUND_EXCEPTION = "FileNotFoundException";
+
+    private Context context;
     private File folder;
-    private boolean isStorageAvailable = true;
+    private boolean storageAvailable = true;
 
     public ExportHelper(Context context) {
-        mContext = context;
+        this.context = context;
     }
 
-    public void export() {
+    public void exportRecords() {
         new ExportAsyncTask().execute();
     }
 
@@ -95,9 +98,9 @@ public class ExportHelper {
                 xmlSerializer.text(String.valueOf(person.getDate()));
                 xmlSerializer.endTag(null, DATE);
                 // unknown year
-                xmlSerializer.startTag(null, UNKNOWN_YEAR);
+                xmlSerializer.startTag(null, YEAR_UNKNOWN);
                 xmlSerializer.text(String.valueOf(person.isYearUnknown()));
-                xmlSerializer.endTag(null, UNKNOWN_YEAR);
+                xmlSerializer.endTag(null, YEAR_UNKNOWN);
                 // phone number
                 xmlSerializer.startTag(null, PHONE_NUMBER);
                 String phoneNumber = person.getPhoneNumber() == null ? "" : person.getPhoneNumber();
@@ -114,11 +117,11 @@ public class ExportHelper {
             xmlSerializer.endDocument();
             xmlSerializer.flush();
         } catch (IllegalArgumentException e) {
-            Toast.makeText(mContext, ILLEGAL_ARGUMENT_EXCEPTION, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, ILLEGAL_ARGUMENT_EXCEPTION, Toast.LENGTH_LONG).show();
         } catch (IllegalStateException e) {
-            Toast.makeText(mContext, ILLEGAL_STATE_EXCEPTION, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, ILLEGAL_STATE_EXCEPTION, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
-            Toast.makeText(mContext, IO_EXCEPTION, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, IO_EXCEPTION, Toast.LENGTH_LONG).show();
         }
         return stringWriter.toString();
     }
@@ -135,14 +138,15 @@ public class ExportHelper {
         builder.show();
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class ExportAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        ProgressDialogHelper progressDialogHelper = new ProgressDialogHelper(mContext);
+        ProgressDialogHelper progressDialogHelper = new ProgressDialogHelper(context);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialogHelper.startProgressDialog(mContext.getString(R.string.exporting_records));
+            progressDialogHelper.startProgressDialog(context.getString(R.string.exporting_records));
         }
 
         @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -151,27 +155,27 @@ public class ExportHelper {
             File sd = Environment.getExternalStorageDirectory();
             if (isExternalStorageWritable()) {
                 try {
-                    folder = new File(sd.getPath() + File.separator + mContext.getString(R.string.app_name));
+                    folder = new File(sd.getPath() + File.separator + context.getString(R.string.app_name));
                     if (!folder.exists()) {
                         folder.mkdir();
                     }
                     File backupFile = new File(folder + File.separator + getBackupFileName());
                     backupFile.createNewFile();
-                    FileOutputStream fileOutputStream = new FileOutputStream(backupFile);
-                    List<Person> persons = new DBHelper(mContext).query().getPersons();
-                    fileOutputStream.write(writeXml(persons).getBytes());
-                    fileOutputStream.close();
+                    FileOutputStream outputStream = new FileOutputStream(backupFile);
+                    List<Person> persons = new DbHelper(context).query().getPersons();
+                    outputStream.write(writeXml(persons).getBytes());
+                    outputStream.close();
                 } catch (FileNotFoundException e) {
-                    Toast.makeText(mContext, FILE_NOT_FOUND_EXCEPTION, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, FILE_NOT_FOUND_EXCEPTION, Toast.LENGTH_LONG).show();
                 } catch (IOException e) {
-                    Toast.makeText(mContext, IO_EXCEPTION, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, IO_EXCEPTION, Toast.LENGTH_LONG).show();
                 }
             } else {
-                isStorageAvailable = false;
-                ((Activity) mContext).runOnUiThread(new Runnable() {
+                storageAvailable = false;
+                ((Activity) context).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        showAlertDialog(mContext, mContext.getString(R.string.ext_storage_error));
+                        showAlertDialog(context, context.getString(R.string.ext_storage_error));
                     }
                 });
             }
@@ -182,8 +186,8 @@ public class ExportHelper {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressDialogHelper.dismissProgressDialog();
-            if (isStorageAvailable) {
-                showAlertDialog(mContext, mContext.getString(R.string.backup_finished) + folder);
+            if (storageAvailable) {
+                showAlertDialog(context, context.getString(R.string.backup_finished) + folder);
             }
         }
     }

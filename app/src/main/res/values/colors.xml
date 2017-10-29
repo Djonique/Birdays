@@ -17,7 +17,6 @@
 -->
 
 <resources>
-    <!-- main material design colors -->
     <color name="color_primary">#2196F3</color>
     <color name="color_primary_dark">#1976D2</color>
     <color name="color_accent">#43AF84</color>
@@ -35,6 +34,9 @@
     <color name="button_background_v21">@android:color/white</color>
     <color name="button_text_v16">@android:color/white</color>
     <color name="button_text_v21">#2196F3</color>
+    <color name="cardview_background">@color/cardview_light_background</color>
+    <color name="cardview_birthday">#EF9A9A</color>
+    <color name="snackbar_alert">#EF5350</color>
 
     <!-- age colors -->
     <color name="age1">#F06292</color>

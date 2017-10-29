@@ -27,14 +27,11 @@
     <string name="snackbar_allow_text">Разрешить</string>
     <string name="all">Все</string>
     <string name="famous">Известные</string>
-    <string name="turned">Исполнилось\u0020</string>
-    <string name="turns">Исполняется\u0020</string>
-    <string name="will_turn">Исполнится\u0020</string>
-    <string name="send_email">Отправить письмо</string>
+    <string name="age">Возраст:\u0020</string>
     <string name="happy_birthday">С Днем Рождения!</string>
-    <string name="famous_search_error">На телефоне не установлено приложение для веб-поиска</string>
+    <string name="web_search_error">Не удалось выполнить действие, пожалуйста, установите веб-браузер</string>
     <string name="delete_record_text">Вы действительно хотите удалить эту запись:\u0020</string>
-    <string name="record_removed">Запись удалена</string>
+    <string name="record_deleted">Запись удалена</string>
     <string name="undo">Отмена</string>
 
     <string-array name="months">
@@ -52,19 +49,6 @@
         <item>Декабрь</item>
     </string-array>
 
-    <string name="january">Январь</string>
-    <string name="february">Февраль</string>
-    <string name="march">Март</string>
-    <string name="april">Апрель</string>
-    <string name="may">Май</string>
-    <string name="june">Июнь</string>
-    <string name="july">Июль</string>
-    <string name="august">Август</string>
-    <string name="september">Сентябрь</string>
-    <string name="october">Октябрь</string>
-    <string name="november">Ноябрь</string>
-    <string name="december">Декабрь</string>
-
     <!-- Menu -->
     <string name="action_sync">Синхронизация</string>
     <string name="action_settings">Настройки</string>
@@ -73,13 +57,13 @@
     <!-- NewPersonDialogFragment -->
     <string name="add_new_record">Новая запись</string>
     <string name="add_from_contacts">Добавить из контактов</string>
-    <string name="open_contacts_error">"Это действие выполнить невозможно из-за особенностей устройства</string>
+    <string name="open_contacts_error">Это действие выполнить невозможно из-за особенностей устройства</string>
     <string name="name">Имя</string>
     <string name="error_hint">Пожалуйста, введите имя</string>
     <string name="phone_number">Номер телефон</string>
     <string name="pick_date">Выберите дату</string>
     <string name="wrong_date">Неверная дата</string>
-    <string name="unknown_year">Я не знаю год рождения</string>
+    <string name="year_unknown">Я не знаю год рождения</string>
     <string name="cancel_button">Отмена</string>
     <string name="record_added">Запись добавлена</string>
 
@@ -100,9 +84,6 @@
     <string name="record_edited">Запись отредактирована</string>
 
     <!-- Alarm -->
-    <string name="is_celebrating_bd">\u0020празднует день рождения\u0020</string>
-    <string name="notification_greetings">\u0020сегодня празднует ДР!</string>
-    <string name="additional_notification_greetings">\u0020празднует ДР\u0020</string>
     <string name="security_exception">SecurityException, на устройствах Samsung установлено ограничение в 500 отложенных уведомлений</string>
 
     <!-- Zodiac signs -->
@@ -120,40 +101,15 @@
     <string name="pisces">Рыбы</string>
 
     <!-- SettingsActivity -->
+    <string name="optimization_enabled">Включена оптимизация!</string>
+    <string name="optimization_description">\nНачиная с версии 6.0, Android ввел режим энергосбережения Doze, который управляет поведением приложений, ограничивая фоновые процессы.\n\nЧтобы приложение работало корректно, выключите оптимизацию для Birdays.</string>
+    <string name="do_not_show_again">Больше не показывать</string>
+    <string name="disable_button">Выключить</string>
+    <!-- Notifications -->
     <string name="notifications">Уведомления</string>
     <string name="allow_notification">Разрешить приложению присылать уведомления о предстоящих днях рождения</string>
     <string name="notifications_time">Время уведомления</string>
     <string name="additional_notification">Дополнительное уведомление</string>
-    <string name="notification_tone">Звук уведомления</string>
-    <string name="ringtone_summary">Выберите звук уведомления. По умолчанию используется звук из настроек устройства</string>
-    <string name="help">Помощь</string>
-    <string name="tap_here">Нажмите здесь, если Вам не приходят уведомления</string>
-    <string name="general">Общие</string>
-    <string name="contacts_sync_title">Импортировать контакты</string>
-    <string name="contacts_sync_summary">Нажмите, чтобы импортировать контакты из адресной книги (поддерживается ISO 8601)</string>
-    <string name="export_records">Эспортировать записи</string>
-    <string name="export_records_summary">Создать XML-файл с резервной копией на SD карте</string>
-    <string name="recover_records">Восстановить записи</string>
-    <string name="recover_records_summary">Выберите XML-файл с резервной копией на SD карте</string>
-    <string name="night_mode">Ночной режим</string>
-    <string name="displayed_age">Отображаемый возраст</string>
-    <string name="displayed_age_changes">Чтобы изменения вступили в силу, необходимо перезапустить приложение</string>
-    <string name="restart_now">Перезапустить сейчас</string>
-    <string name="later">Позже</string>
-    <string name="advertising">Реклама</string>
-    <string name="about_ad_title">Почему я вижу рекламу?</string>
-    <string name="about_ad_summary">Весь доход от рекламы идет на развитие проекта и на перевод на другие языки. Вы можете отключить рекламу бесплатно</string>
-    <string name="ad_banner">Баннер</string>
-    <string name="ad_interstitial_title">Межстраничное объявление</string>
-    <string name="ad_interstitial_summary">Показ этого объявления ограничен одним разом в день. Не так часто, не правда ли?</string>
-    <string name="rate_app">Оценить приложение</string>
-    <string name="share">Поделиться</string>
-    <string name="share_text">Забываете поздравить родных, друзей или коллег с днем рождения? Birdays напомнит Вам о важном празднике!\n\n</string>
-    <string name="about_app">О приложении</string>
-    <string name="menu_github">Исходный код</string>
-    <string name="privacy_policy">Политика конфиденциальности</string>
-    <string name="software_licenses">Лицензии открытого ПО</string>
-    <string name="licenses">Лицензии</string>
 
     <string-array name="additional_notification_entries">
         <item>Никогда</item>
@@ -164,7 +120,7 @@
         <item>За 2 недели</item>
     </string-array>
 
-    <string-array name="additional_notification_greetings">
+    <string-array name="additional_notification_delay">
         <item>Сегодня</item>
         <item>Завтра</item>
         <item>Послезавтра</item>
@@ -173,34 +129,70 @@
         <item>Через 2 недели</item>
     </string-array>
 
+    <string name="notification_tone">Звук уведомления</string>
+    <string name="ringtone_summary">Выберите звук уведомления. По умолчанию используется звук из настроек устройства</string>
+    <string name="silent">Без звука</string>
+    <string name="help">Помощь</string>
+    <string name="tap_here">Нажмите здесь, если Вам не приходят уведомления</string>
+    <!-- Synchronization and backup -->
+    <string name="sync_and_backup">Синхронизация и резервное копирование</string>
+    <string name="contacts_import_title">Импортировать контакты</string>
+    <string name="contacts_import_summary">Нажмите, чтобы импортировать контакты из адресной книги (поддерживается ISO 8601)</string>
+    <string name="export_records">Экспортировать записи (Beta)</string>
+    <string name="export_records_summary">Создать XML-файл с резервной копией</string>
+    <string name="ext_storage_error">Внешнее хранилище недоступно</string>
+    <string name="exporting_records">Экспортирование…</string>
+    <string name="backup_finished">Резервное копирование завершено, XML-файл находится в\u0020</string>
+    <string name="recover_records">Восстановить записи (Beta)</string>
+    <string name="recover_records_summary">Выберите XML-файл с резервной копией во внешнем хранилище</string>
+    <string name="recover_records_error">Невозможно выполнить действие, пожалуйста, установите диспетчер файлов</string>
+    <string name="records_recovered">Записи восстановлены</string>
+    <!-- General -->
+    <string name="general">Общие</string>
+    <string name="night_mode">Ночной режим</string>
+    <string name="displayed_age">Отображаемый возраст</string>
+
     <string-array name="displayed_age_entries">
         <item>Текущий</item>
         <item>Будущий</item>
     </string-array>
 
+    <string name="displayed_age_changes">Чтобы изменения вступили в силу, необходимо перезапустить приложение</string>
+    <string name="restart_now">Перезапустить сейчас</string>
+    <string name="later">Позже</string>
+    <string name="rate_app">Оценить приложение</string>
+    <string name="share">Поделиться</string>
+    <string name="share_text">Забываете поздравить родных, друзей или коллег с днем рождения? Birdays напомнит Вам о важном празднике!\n\n</string>
+    <!-- Advertising -->
+    <string name="advertising">Реклама</string>
+    <string name="about_ad_title">Почему я вижу рекламу?</string>
+    <string name="about_ad_summary">Весь доход от рекламы идет на развитие проекта и на перевод на другие языки. Вы можете отключить рекламу бесплатно</string>
+    <string name="ad_interstitial_title">Межстраничное объявление</string>
+    <string name="ad_interstitial_summary">Показ этого объявления ограничен одним разом в день. Не так часто, не правда ли?</string>
+    <string name="ad_banner">Баннер</string>
+    <!-- About app -->
+    <string name="about_app">О приложении</string>
+    <string name="menu_github">Исходный код</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="software_licenses">Лицензии открытого ПО</string>
+    <string name="licenses">Лицензии</string>
+
     <!-- HelpActivity -->
     <string name="help_header">Почему мне не приходят уведомления?</string>
-    <string name="help_description">Некоторые устройства имеют режим сбережения энергии,
-        который блокирует работу приложения в фоновом режиме или запрещает автозапуск.\nЧтобы
-        уведомления работали корректно, выполните несколько простых действий:\n\n1. Убедитесь,
-        что для приложения Birdays разрешены уведомления (Настройки → Приложения → Birdays).\n\n2.
-        Отключите режим энергосбережения или добавьте приложение в белый список. (Настройки →
-        Батарея → Экономия заряда батареи).\n\n3. Если у Вас установлены менеджеры задач,
-        приложения для очистки памяти или сбережения энергии
-        («Battery Saver», «Clean Master» или др.), которые блокируют работу в фоновом режиме,
-        добавьте приложение Birdays в их список защищенных приложений.
-    </string>
-    <string name="help_delay_text">Обратите внимание, что на некоторых устройствах уведомления приходят с задержкой</string>
+    <string name="help_description">Некоторые устройства имеют режим сбережения энергии, который блокирует работу приложения в фоновом режиме или запрещает автозапуск.\nЧтобы уведомления работали корректно, выполните несколько простых действий:\n\n1. Убедитесь, что для приложения Birdays разрешены уведомления (Настройки > Приложения > Birdays).\n\n2. Если у Вас установлены менеджеры задач, приложения для очистки памяти или сбережения энергии («Battery Saver», «Clean Master» или др.), которые блокируют работу в фоновом режиме, добавьте приложение Birdays в их список защищенных приложений.\n\n3. Отключите режим энергосбережения или добавьте приложение в белый список. (Настройки > Батарея > Экономия заряда батареи).\nТолько для устройств, работающих на Android 6.0 (Marshmallow) или выше.</string>
+    <string name="help_whitelist">Открыть белый список</string>
+    <string name="help_whitelist_error">Только для устройств, работающих на Android 6.0 (Marshmallow) или выше</string>
+    <string name="help_delay_text">Обратите внимание, что на некоторых устройствах уведомления приходят с задержкой.</string>
     <string name="help_settings">Открыть настройки</string>
     <string name="huawei_header">Для владельцев Huawei</string>
-    <string name="huawei_description">Откройте настройки телефона, перейдите в «Энергосбережение»,
-        затем откройте вкладку «Защищенные приложения» и отметьте в списке Birdays.
-    </string>
+    <string name="huawei_description">Откройте настройки телефона, перейдите в «Энергосбережение», затем откройте вкладку «Защищенные приложения» и отметьте в списке Birdays.</string>
     <string name="samsung_header">Для владельцев Samsung</string>
-    <string name="samsung_description">Найдите приложение «Smart Manager», нажмите на батарею,
-        затем на «Подробно». Убедитесь, что для приложения Birdays отключено энергосбережение.
-    </string>
+    <string name="samsung_description">Найдите приложение «Smart Manager», нажмите на батарею, затем на «Подробно». Убедитесь, что для приложения Birdays отключено энергосбережение.</string>
+    <string name="xiaomi_header">Для владельцев Xiaomi</string>
+    <string name="xiaomi_description">Откройте настройки телефона, перейдите в «Батарея и производительность», затем «Экономия энергии», нажмите «Выбрать приложение», выберите «Нет ограничений» для Birdays.</string>
+    <string name="show_button">Показать</string>
     <string name="help_email_description">Если уведомления по-прежнему не приходят, пожалуйста, напишите мне на почту birdaysapp@gmail.com</string>
+    <string name="send_email">Отправить письмо</string>
 
     <!-- Famous persons -->
     <!-- 1 january -->

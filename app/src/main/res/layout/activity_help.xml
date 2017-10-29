@@ -21,6 +21,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/ll_help_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -41,15 +42,23 @@
             android:paddingBottom="@dimen/default_padding"
             android:text="@string/help_description" />
 
+        <!-- Open Battery optimization settings -->
+        <include
+            android:id="@+id/button_help_whitelist"
+            layout="@layout/button_help_activity" />
+
         <TextView
             style="@style/Primary.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
             android:text="@string/help_delay_text" />
 
         <!-- Open settings button -->
-        <include layout="@layout/open_settings_button" />
+        <include
+            android:id="@+id/button_help_settings"
+            layout="@layout/button_help_activity" />
 
         <!-- Huawei -->
         <TextView
@@ -81,7 +90,7 @@
             android:layout_height="wrap_content"
             android:text="@string/samsung_description" />
 
-        <!--&lt;!&ndash; Xiaomi &ndash;&gt;
+        <!-- Xiaomi -->
         <TextView
             style="@style/Primary.TextView"
             android:layout_width="match_parent"
@@ -96,21 +105,6 @@
             android:layout_height="wrap_content"
             android:text="@string/xiaomi_description" />
 
-        &lt;!&ndash; Lenovo &ndash;&gt;
-        <TextView
-            style="@style/Primary.TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/default_padding"
-            android:paddingTop="@dimen/default_padding"
-            android:text="@string/lenovo_header" />
-
-        <TextView
-            style="@style/Secondary.TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lenovo_description" />-->
-
         <TextView
             style="@style/Primary.TextView"
             android:layout_width="match_parent"
@@ -120,7 +114,9 @@
             android:text="@string/help_email_description" />
 
         <!-- Send email button -->
-        <include layout="@layout/send_email_button" />
+        <include
+            android:id="@+id/button_help_email"
+            layout="@layout/button_help_activity" />
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

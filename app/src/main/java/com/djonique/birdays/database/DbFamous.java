@@ -24,11 +24,11 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Utils;
 
-import static com.djonique.birdays.database.DBHelper.COLUMN_DATE;
-import static com.djonique.birdays.database.DBHelper.COLUMN_NAME;
-import static com.djonique.birdays.database.DBHelper.DB_FAMOUS;
+import static com.djonique.birdays.database.DbHelper.COLUMN_DATE;
+import static com.djonique.birdays.database.DbHelper.COLUMN_NAME;
+import static com.djonique.birdays.database.DbHelper.DB_FAMOUS;
 
-class DBFamous {
+class DbFamous {
 
     private static void addFamous(SQLiteDatabase db, Person person) {
         ContentValues cv = new ContentValues();

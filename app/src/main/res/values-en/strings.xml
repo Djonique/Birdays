@@ -22,19 +22,16 @@
     <!-- MainActivity -->
     <string name="loading_contacts">Loading contacts…</string>
     <string name="contacts_uploaded">Contacts uploaded</string>
-    <string name="loading_contacts_error">Impossible to import from contacts, nonstandard date format</string>
-    <string name="permission_required">Permission is required for loading from Contacts</string>
+    <string name="loading_contacts_error">Unable to import contacts, nonstandard date format</string>
+    <string name="permission_required">Permission is required for importing contacts</string>
     <string name="snackbar_allow_text">Allow</string>
     <string name="all">All</string>
     <string name="famous">Famous</string>
-    <string name="turned">Turned\u0020</string>
-    <string name="turns">Turns\u0020</string>
-    <string name="will_turn">Will turn\u0020</string>
-    <string name="send_email">Send email</string>
+    <string name="age">Current age:\u0020</string>
     <string name="happy_birthday">Happy Birthday!</string>
-    <string name="famous_search_error">Device does not have a web search app to perform this action</string>
+    <string name="web_search_error">Unable to perform action, please install web browser</string>
     <string name="delete_record_text">Are you sure you want to delete this record:\u0020</string>
-    <string name="record_removed">Record removed</string>
+    <string name="record_deleted">Record deleted</string>
     <string name="undo">Undo</string>
 
     <string-array name="months">
@@ -52,19 +49,6 @@
         <item>December</item>
     </string-array>
 
-    <string name="january">January</string>
-    <string name="february">February</string>
-    <string name="march">March</string>
-    <string name="april">April</string>
-    <string name="may">May</string>
-    <string name="june">June</string>
-    <string name="july">July</string>
-    <string name="august">August</string>
-    <string name="september">September</string>
-    <string name="october">October</string>
-    <string name="november">November</string>
-    <string name="december">December</string>
-
     <!-- Menu -->
     <string name="action_sync">Synchronization</string>
     <string name="action_settings">Settings</string>
@@ -73,13 +57,13 @@
     <!-- NewPersonDialogFragment -->
     <string name="add_new_record">New record</string>
     <string name="add_from_contacts">Add from contacts</string>
-    <string name="open_contacts_error">Impossible to perform this action due to device features</string>
+    <string name="open_contacts_error">Unable to perform action due to device features</string>
     <string name="name">Name</string>
     <string name="error_hint">Please enter the name</string>
     <string name="phone_number">Phone number</string>
     <string name="pick_date">Pick date</string>
     <string name="wrong_date">Wrong date</string>
-    <string name="unknown_year">I don\'t know year</string>
+    <string name="year_unknown">I don\'t know year</string>
     <string name="cancel_button">Cancel</string>
     <string name="record_added">Record added</string>
 
@@ -100,9 +84,6 @@
     <string name="record_edited">Record edited</string>
 
     <!-- Alarm -->
-    <string name="is_celebrating_bd">\u0020is celebrating Birthday on\u0020</string>
-    <string name="notification_greetings">\'s Birthday is today!</string>
-    <string name="additional_notification_greetings">\'s Birthday is\u0020</string>
     <string name="security_exception">SecurityException, Samsung devices restrict the number of alarms you can register</string>
 
     <!-- Zodiac signs -->
@@ -120,36 +101,15 @@
     <string name="pisces">Pisces</string>
 
     <!-- SettingsActivity -->
+    <string name="optimization_enabled">Optimization enabled!</string>
+    <string name="optimization_description">\nStarting from version 6.0, Android introduced power-saving mode Doze that manage apps behavior by deferring background CPU.\n\nTo make app work correctly disable optimization for Birdays.</string>
+    <string name="do_not_show_again">Do not show again</string>
+    <string name="disable_button">Disable</string>
+    <!-- Notifications -->
     <string name="notifications">Notifications</string>
     <string name="allow_notification">Allow the app to send notifications of upcoming birthdays</string>
     <string name="notifications_time">Notification time</string>
     <string name="additional_notification">Additional notification</string>
-    <string name="notification_tone">Notification tone</string>
-    <string name="ringtone_summary">Choose a sound for notification. By default is used tone from the device settings</string>
-    <string name="help">Help</string>
-    <string name="tap_here">Tap here if you don\'t receive notifications</string>
-    <string name="general">General</string>
-    <string name="contacts_sync_title">Import contacts</string>
-    <string name="contacts_sync_summary">Tap here to import contacts from your device (supports ISO 8601)</string>
-    <string name="night_mode">Night mode</string>
-    <string name="displayed_age">Displayed age</string>
-    <string name="displayed_age_changes">You must restart an app for these changes to take effect</string>
-    <string name="restart_now">Restart now</string>
-    <string name="later">Later</string>
-    <string name="advertising">Advertising</string>
-    <string name="about_ad_title">Why do I see ads?</string>
-    <string name="about_ad_summary">The revenue from advertising goes to the development of the project and to translation into other languages. You can remove ads for free</string>
-    <string name="ad_banner">Banner</string>
-    <string name="ad_interstitial_title">Interstitial ad</string>
-    <string name="ad_interstitial_summary">This type of ad is limited to 1 show per day. Not so often, isn\'t it?</string>
-    <string name="rate_app">Rate app</string>
-    <string name="share">Share</string>
-    <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Birdays will remind you of an important holiday!\n\n</string>
-    <string name="about_app">About app</string>
-    <string name="menu_github">Source code</string>
-    <string name="privacy_policy">Privacy policy</string>
-    <string name="software_licenses">Free software licenses</string>
-    <string name="licenses">Licenses</string>
 
     <string-array name="additional_notification_entries">
         <item>Never</item>
@@ -160,7 +120,7 @@
         <item>Before 2 weeks</item>
     </string-array>
 
-    <string-array name="additional_notification_greetings">
+    <string-array name="additional_notification_delay">
         <item>Today</item>
         <item>Tomorrow</item>
         <item>In 2 days</item>
@@ -169,32 +129,70 @@
         <item>In 2 weeks</item>
     </string-array>
 
+    <string name="notification_tone">Notification tone</string>
+    <string name="ringtone_summary">Choose a sound for notification. By default is used tone from the device settings</string>
+    <string name="silent">None</string>
+    <string name="help">Help</string>
+    <string name="tap_here">Tap here if you don\'t receive notifications</string>
+    <!-- Synchronization and backup -->
+    <string name="sync_and_backup">Synchronization and backup</string>
+    <string name="contacts_import_title">Import contacts</string>
+    <string name="contacts_import_summary">Tap here to import contacts from your device (supports ISO 8601)</string>
+    <string name="export_records">Export records (Beta)</string>
+    <string name="export_records_summary">Create the XML file with backup</string>
+    <string name="ext_storage_error">External storage is not available</string>
+    <string name="exporting_records">Exporting records…</string>
+    <string name="backup_finished">Backup finished, XML file in the\u0020</string>
+    <string name="recover_records">Recover records (Beta)</string>
+    <string name="recover_records_summary">Choose the XML file with backup in external storage</string>
+    <string name="recover_records_error">Unable to perform action, please install file manager</string>
+    <string name="records_recovered">Records recovered</string>
+    <!-- General -->
+    <string name="general">General</string>
+    <string name="night_mode">Night mode</string>
+    <string name="displayed_age">Displayed age</string>
+
     <string-array name="displayed_age_entries">
         <item>Current</item>
         <item>Future</item>
     </string-array>
 
+    <string name="displayed_age_changes">You must restart an app for these changes to take effect</string>
+    <string name="restart_now">Restart now</string>
+    <string name="later">Later</string>
+    <string name="rate_app">Rate app</string>
+    <string name="share">Share</string>
+    <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Birdays will remind you of an important holiday!\n\n</string>
+    <!-- Advertising -->
+    <string name="advertising">Advertising</string>
+    <string name="about_ad_title">Why do I see ads?</string>
+    <string name="about_ad_summary">The revenue from advertising goes to the development of the project and to translation into other languages. You can remove ads for free</string>
+    <string name="ad_interstitial_title">Interstitial ad</string>
+    <string name="ad_interstitial_summary">This type of ad is limited to 1 show per day. Not so often, isn\'t it?</string>
+    <string name="ad_banner">Banner</string>
+    <!-- About app -->
+    <string name="about_app">About app</string>
+    <string name="menu_github">Source code</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="software_licenses">Free software licenses</string>
+    <string name="licenses">Licenses</string>
+
     <!-- HelpActivity -->
     <string name="help_header">Why alarm is not working?</string>
-    <string name="help_description">Some devices have Power Saving Mode that could block app
-        background processes or disable application from running on startup.\nTo make alarm work
-        correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled
-        for Birdays app (Settings → Apps → Birdays).\n\n2. Turn off your Power Saving Mode or add
-        Birdays to the whitelist (Settings → Battery → Battery optimization).\n\n3. If you have
-        installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»),
-        which could block app background processes, add Birdays to their whitelist.
-    </string>
+    <string name="help_description">Some devices have Power Saving Mode that could block app background processes or disable application from running on startup.\nTo make alarm work correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled for Birdays app (Settings > Apps > Birdays).\n\n2. If you have installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»), which could block app background processes, add Birdays to their whitelist.\n\n3. Turn off your power-saving mode or add Birdays to the whitelist (Settings > Battery > Battery optimization).\nOnly for devices running Android 6.0 (Marshmallow) or higher.</string>
+    <string name="help_whitelist">Open whitelist</string>
+    <string name="help_whitelist_error">Only for devices running Android 6.0 (Marshmallow) or higher</string>
     <string name="help_delay_text">Please note that on some devices notifications could work with some delay.</string>
     <string name="help_settings">Open settings</string>
     <string name="huawei_header">For Huawei owners</string>
-    <string name="huawei_description">Open device «Settings», go to «Power saving» and open
-        «Protected apps». Make sure that this feature is enabled for Birdays.
-    </string>
+    <string name="huawei_description">Open device «Settings», go to «Power saving» and open «Protected apps». Make sure that this feature is enabled for Birdays.</string>
     <string name="samsung_header">For Samsung owners</string>
-    <string name="samsung_description">Open «Smart Manager», tap on battery, then on «Detail».
-        Disable this feature for Birdays app.
-    </string>
+    <string name="samsung_description">Open «Smart Manager», tap on «Battery», then on «Detail». Disable this feature for Birdays app.</string>
+    <string name="xiaomi_header">For Xiaomi owners</string>
+    <string name="xiaomi_description">Open device «Settings», go to «Battery &amp; performance», then «Manage apps battery usage», open «Choose apps», choose «No restrictions» for Birdays.</string>
+    <string name="show_button">Show</string>
     <string name="help_email_description">If alarm still not working, please contact me at birdaysapp@gmail.com</string>
+    <string name="send_email">Send email</string>
 
     <!-- Famous persons -->
     <!-- 1 january -->

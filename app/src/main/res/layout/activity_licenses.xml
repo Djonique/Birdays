@@ -27,31 +27,44 @@
         android:padding="@dimen/default_padding">
 
         <TextView
-            style="@style/Primary.TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/Licenses.Primary.TextView"
             android:paddingBottom="@dimen/default_padding"
             android:text="@string/butter_knife_by_jake_wharton" />
 
         <TextView
-            style="@style/Secondary.TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/licenses_text_view_bottom_padding"
-            android:text="@string/butter_knife_license" />
+            style="@style/Licenses.Secondary.TextView"
+            android:text="@string/butter_knife_copyright" />
 
         <TextView
-            style="@style/Primary.TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/Licenses.Secondary.TextView"
+            android:text="@string/apache_license" />
+
+        <TextView
+            style="@style/Licenses.Primary.TextView"
             android:paddingBottom="@dimen/default_padding"
             android:paddingTop="@dimen/default_padding"
-            android:text="@string/ratethisapp_by_keisuke_kobayashi" />
+            android:text="@string/mdtp_by_wouter_dullaert" />
 
         <TextView
-            style="@style/Secondary.TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/rta_license" />
+            style="@style/Licenses.Secondary.TextView"
+            android:text="@string/mdtp_copyright" />
+
+        <TextView
+            style="@style/Licenses.Secondary.TextView"
+            android:text="@string/apache_license" />
+
+        <TextView
+            style="@style/Licenses.Primary.TextView"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
+            android:text="@string/rta_by_keisuke_kobayashi" />
+
+        <TextView
+            style="@style/Licenses.Secondary.TextView"
+            android:text="@string/rta_copyright" />
+
+        <TextView
+            style="@style/Licenses.Secondary.TextView"
+            android:text="@string/apache_license" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

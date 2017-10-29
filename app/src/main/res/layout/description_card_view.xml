@@ -72,7 +72,7 @@
             <ImageButton
                 android:id="@+id/imagebutton_card_email"
                 style="@style/cardImageButtonStyle"
-                android:contentDescription="@string/send_email" />
+                android:contentDescription="@string/email" />
 
             <!--Divider-->
             <View

@@ -23,9 +23,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.FileUriExposedException;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
@@ -41,10 +42,10 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String ringtone = preferences.getString(Constants.RINGTONE_KEY,
-                RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION).toString());
+                Settings.System.DEFAULT_NOTIFICATION_URI.toString());
         Uri ringtoneUri = Uri.parse(ringtone);
 
-        String string = intent.getStringExtra(Constants.NAME);
+        String name = intent.getStringExtra(Constants.NAME);
         long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
 
         Intent resultIntent = new Intent(context, DetailActivity.class);
@@ -60,13 +61,16 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .addNextIntentWithParentStack(resultIntent)
                 .getPendingIntent(((int) timeStamp), PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, name);
         builder.setContentTitle(context.getString(R.string.app_name));
-        builder.setContentText(string);
+        builder.setContentText(name);
         builder.setSmallIcon(R.drawable.ic_notification);
-        builder.setWhen(System.currentTimeMillis());
-        builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
-        builder.setSound(ringtoneUri);
+        try {
+            builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
+            builder.setSound(ringtoneUri);
+        } catch (FileUriExposedException e) {
+            builder.setDefaults(Notification.DEFAULT_ALL);
+        }
         builder.setContentIntent(pendingIntent);
 
         Notification notification = builder.build();
@@ -74,6 +78,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         NotificationManager notificationManager =
                 ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
-        notificationManager.notify((int) timeStamp, notification);
+        if (notificationManager != null) {
+            notificationManager.notify((int) timeStamp, notification);
+        }
     }
 }

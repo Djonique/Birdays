@@ -44,7 +44,7 @@ import com.djonique.birdays.BuildConfig;
 import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
-import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
@@ -64,6 +64,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private static final int INSTALL_DAYS = 7;
     private static final int LAUNCH_TIMES = 5;
+    private static final int EDIT_ACTIVITY = 4;
 
     @BindView(R.id.container_detail)
     CoordinatorLayout container;
@@ -99,11 +100,11 @@ public class DetailActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     private FirebaseAnalytics mFirebaseAnalytics;
-    private DBHelper mDBHelper;
-    private Person mPerson;
+    private DbHelper dbHelper;
+    private Person person;
     private long timeStamp, date;
-    private String name, phoneNumber, email, agePref;
-    private boolean unknownYear;
+    private String phoneNumber, email, displayedAge;
+    private boolean yearUnknown;
     private InterstitialAd mInterstitialAd;
 
     @Override
@@ -114,33 +115,32 @@ public class DetailActivity extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         mInterstitialAd = new InterstitialAd(this);
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(Constants.AD_INTERSTITIAL_KEY, true)) {
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.ad_interstitial_key), true)) {
             mInterstitialAd.setAdUnitId(BuildConfig.INTERSTITIAL_AD_ID);
             mInterstitialAd.loadAd(new AdRequest.Builder().build());
         }
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        agePref = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
+        displayedAge = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
 
         Utils.setupDayNightTheme(preferences);
 
         Intent intent = getIntent();
         timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
 
-        mDBHelper = new DBHelper(this);
-        mPerson = mDBHelper.query().getPerson(timeStamp);
-        name = mPerson.getName();
-        date = mPerson.getDate();
-        unknownYear = mPerson.isYearUnknown();
-        phoneNumber = mPerson.getPhoneNumber();
-        email = mPerson.getEmail();
+        dbHelper = new DbHelper(this);
+        person = dbHelper.query().getPerson(timeStamp);
+        date = person.getDate();
+        yearUnknown = person.isYearUnknown();
+        phoneNumber = person.getPhoneNumber();
+        email = person.getEmail();
 
-        toolbar.setTitle(name);
+        toolbar.setTitle(person.getName());
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 
-        updateUI();
+        setupUI();
 
         loadBornThisDay();
 
@@ -163,17 +163,7 @@ public class DetailActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.menu_detail_delete:
-                deletePersonDialog(mPerson);
-                break;
-            case R.id.menu_detail_share:
-                Intent intentShare = new Intent(Intent.ACTION_SEND);
-                intentShare.setType(Constants.TEXT_PLAIN);
-                intentShare.putExtra(Intent.EXTRA_TEXT, name
-                        + getString(R.string.is_celebrating_bd)
-                        + Utils.getDateWithoutYear(date)
-                        + "\n\n"
-                        + getString(R.string.play_market_app_link));
-                startActivity(Intent.createChooser(intentShare, getString(R.string.app_name)));
+                deletePersonDialog(person);
                 break;
         }
         return true;
@@ -192,7 +182,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data == null) return;
-        if (resultCode == RESULT_OK) {
+        if (requestCode == EDIT_ACTIVITY && resultCode == RESULT_OK) {
             // Refreshes activity after editing
             Toast.makeText(this, R.string.record_edited, Toast.LENGTH_SHORT).show();
             Intent refresh = new Intent(this, DetailActivity.class);
@@ -203,20 +193,20 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     /**
-     * Updates UI depending on person's info
+     * Sets up UI depending on person's data
      */
-    private void updateUI() {
+    private void setupUI() {
         setSeasonImage();
 
         tvDaysLeft.setText(Utils.daysLeft(this, date));
 
-        if (unknownYear) {
+        if (yearUnknown) {
             tvDate.setText(Utils.getDateWithoutYear(date));
             tvAge.setVisibility(View.GONE);
             rlDaysSinceBirthday.setVisibility(View.GONE);
         } else {
             tvDate.setText(Utils.getDate(date));
-            tvAge.setText(String.valueOf(agePref.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date)));
+            tvAge.setText(String.valueOf(displayedAge.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date)));
             tvDaysSinceBirthday.setText(Utils.daysSinceBirthday(date));
         }
 
@@ -230,13 +220,13 @@ public class DetailActivity extends AppCompatActivity {
         if (isEmpty(phoneNumber)) {
             rlPhoneNumber.setVisibility(View.GONE);
         } else {
-            tvPhoneNumber.setText(String.valueOf(mPerson.getPhoneNumber()));
+            tvPhoneNumber.setText(String.valueOf(person.getPhoneNumber()));
         }
 
         if (isEmpty(email)) {
             rlEmail.setVisibility(View.GONE);
         } else {
-            tvEmail.setText(mPerson.getEmail());
+            tvEmail.setText(person.getEmail());
         }
     }
 
@@ -254,7 +244,7 @@ public class DetailActivity extends AppCompatActivity {
         FamousFragmentAdapter adapter = new FamousFragmentAdapter();
         recyclerView.setAdapter(adapter);
 
-        List<Person> famousPersons = mDBHelper.query().getFamousBornThisDay(date);
+        List<Person> famousPersons = dbHelper.query().getFamousBornThisDay(date);
         for (int i = 0; i < famousPersons.size(); i++) {
             adapter.addItem(famousPersons.get(i));
         }
@@ -265,7 +255,7 @@ public class DetailActivity extends AppCompatActivity {
         logEvent();
         Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra(Constants.TIME_STAMP, timeStamp);
-        startActivityForResult(intent, Constants.EDIT_ACTIVITY);
+        startActivityForResult(intent, EDIT_ACTIVITY);
         overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
     }
 
@@ -293,7 +283,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 new AlarmHelper(getApplicationContext()).removeAlarms(timeStamp);
-                mDBHelper.removePerson(timeStamp);
+                dbHelper.removePerson(timeStamp);
                 dialog.dismiss();
                 finish();
                 overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
@@ -327,7 +317,8 @@ public class DetailActivity extends AppCompatActivity {
     @OnClick(R.id.imagebutton_detail_phone)
     void makeCall() {
         mFirebaseAnalytics.logEvent(Constants.MAKE_CALL, new Bundle());
-        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(Constants.TEL + phoneNumber)));
+        startActivity(Intent.createChooser(new Intent(Intent.ACTION_DIAL,
+                Uri.parse(Constants.TEL + phoneNumber)), null));
     }
 
     @OnClick(R.id.imagebutton_detail_chat)
@@ -337,7 +328,7 @@ public class DetailActivity extends AppCompatActivity {
         intent.setType(Constants.TYPE_SMS);
         intent.putExtra(Constants.ADDRESS, phoneNumber);
         intent.setData(Uri.parse(Constants.SMSTO + phoneNumber));
-        startActivity(intent);
+        startActivity(Intent.createChooser(intent, null));
     }
 
     @OnClick(R.id.imagebutton_detail_email)
@@ -348,6 +339,6 @@ public class DetailActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
         intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.happy_birthday));
         intent.setData(Uri.parse(Constants.MAILTO + email));
-        startActivity(Intent.createChooser(intent, getString(R.string.send_email)));
+        startActivity(Intent.createChooser(intent, null));
     }
 }

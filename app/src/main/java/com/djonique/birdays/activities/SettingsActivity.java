@@ -16,29 +16,38 @@
 
 package com.djonique.birdays.activities;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.backup.ExportHelper;
-import com.djonique.birdays.backup.RestoreHelper;
-import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.backup.RecoverHelper;
+import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.ContactsHelper;
@@ -50,6 +59,12 @@ import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity implements ContactsHelper.LoadingContactsListener {
 
+    private static final String DO_NOT_SHOW_OPTIMIZATION_ALERT = "DO_NOT_SHOW_OPTIMIZATION_ALERT";
+    private static final int FILE_MANAGER = 5;
+
+    private AppCompatCheckBox cbDoNotShowAgain;
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +74,59 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!preferences.getBoolean(DO_NOT_SHOW_OPTIMIZATION_ALERT, false)) {
+                PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+                if (powerManager != null && !powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
+                    showWarningMessage(this);
+                }
+            }
+        }
+    }
+
+    private void showWarningMessage(Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setIcon(R.drawable.ic_warning_red_24dp);
+        builder.setTitle(R.string.optimization_enabled);
+
+        @SuppressLint("InflateParams") LinearLayout view = (LinearLayout)
+                getLayoutInflater().inflate(R.layout.checkbox_do_not_show_again, null);
+
+        builder.setView(view);
+        cbDoNotShowAgain = view.findViewById(R.id.checkbox_alert);
+        cbDoNotShowAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cbDoNotShowAgain.isChecked()) {
+                    preferences.edit().putBoolean(DO_NOT_SHOW_OPTIMIZATION_ALERT, true).apply();
+                }
+            }
+        });
+
+        builder.setMessage(R.string.optimization_description);
+        builder.setPositiveButton(R.string.disable_button, new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    startActivity(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS));
+                } catch (ActivityNotFoundException ignored) {
+                }
+            }
+        });
+        builder.setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
     @Override
@@ -82,26 +150,23 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == Constants.CONTACTS_REQUEST_PERMISSION_CODE && PermissionManager.readingContactsPermissionGranted(this)) {
+        if (requestCode == Constants.READ_CONTACTS_PERMISSION_CODE && PermissionManager.readingContactsPermissionGranted(this)) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             if (!preferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
-                ContactsHelper contactsHelper = new ContactsHelper(this, getContentResolver());
-                contactsHelper.loadContacts(preferences);
+                new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
             }
         } else if (PermissionManager.writingSdPermissionGranted(this)) {
             if (requestCode == Constants.WRITE_EXTERNAL_STORAGE_PERMISSION_CODE) {
-                new ExportHelper(this).export();
+                new ExportHelper(this).exportRecords();
             } else if (requestCode == Constants.READ_EXTERNAL_STORAGE_PERMISSION_CODE) {
                 try {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT)
                             .setType("text/xml")
                             .addCategory(Intent.CATEGORY_OPENABLE)
                             .putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-                    startActivityForResult(intent, Constants.FILE_MANAGER);
+                    startActivityForResult(Intent.createChooser(intent, null), FILE_MANAGER);
                 } catch (ActivityNotFoundException e) {
-                    Toast.makeText(this,
-                            "You don't have an app to perform action, download any File Manager from market",
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.recover_records_error, Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -109,8 +174,9 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.FILE_MANAGER && resultCode == RESULT_OK) {
-            new RestoreHelper(this).restoreRecords(data.getData().getPath());
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FILE_MANAGER && resultCode == RESULT_OK) {
+            new RecoverHelper(this).recoverRecords(data.getData().getPath());
         }
     }
 
@@ -122,7 +188,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             implements SharedPreferences.OnSharedPreferenceChangeListener {
 
         private FirebaseAnalytics mFirebaseAnalytics;
-        private SharedPreferences mPreferences;
+        private SharedPreferences preferences;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -131,13 +197,12 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
             logEvent();
 
-            mPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
             /*
             * Sets summary for additional notification
             */
-            Preference additionalNotification = findPreference(Constants.ADDITIONAL_NOTIFICATION_KEY);
-            additionalNotification.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            findPreference(Constants.ADDITIONAL_NOTIFICATION_KEY).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     ((ListPreference) preference).setValue(newValue.toString());
@@ -151,11 +216,18 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             */
             Preference ringtonePreference = findPreference(Constants.RINGTONE_KEY);
             try {
-                String ringtoneString = mPreferences.getString(ringtonePreference.getKey(),
-                        RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION).toString());
-                String ringtoneName = RingtoneManager.getRingtone(getActivity(),
-                        Uri.parse(ringtoneString)).getTitle(getActivity());
-                ringtonePreference.setSummary(ringtoneName);
+                String defaultRingtoneString = Settings.System.DEFAULT_NOTIFICATION_URI.toString();
+                String ringtoneString = preferences.getString(ringtonePreference.getKey(), defaultRingtoneString);
+                if (ringtoneString.equals(defaultRingtoneString)) {
+                    preferences.edit().putString(Constants.RINGTONE_KEY, defaultRingtoneString).apply();
+                }
+                if (ringtoneString.equals("")) {
+                    ringtonePreference.setSummary(getString(R.string.silent));
+                } else {
+                    String ringtoneName = RingtoneManager.getRingtone(getActivity(),
+                            Uri.parse(ringtoneString)).getTitle(getActivity());
+                    ringtonePreference.setSummary(ringtoneName);
+                }
             } catch (Exception ignored) {
             }
 
@@ -163,9 +235,13 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     try {
-                        String newRingtoneName = RingtoneManager.getRingtone(getActivity(),
-                                Uri.parse(newValue.toString())).getTitle(getActivity());
-                        preference.setSummary(newRingtoneName);
+                        if (newValue.toString().equals("")) {
+                            preference.setSummary(getString(R.string.silent));
+                        } else {
+                            String newRingtoneName = RingtoneManager.getRingtone(getActivity(),
+                                    Uri.parse(newValue.toString())).getTitle(getActivity());
+                            preference.setSummary(newRingtoneName);
+                        }
                     } catch (Exception ignored) {
                     }
                     return true;
@@ -175,8 +251,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             /*
             * Opens HelpActivity
             */
-            Preference help = findPreference(getString(R.string.help_key));
-            help.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            findPreference(getString(R.string.help_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     SettingsActivity activity = (SettingsActivity) getActivity();
@@ -191,13 +266,12 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             /*
             * Imports contacts
             */
-            Preference contactsSync = findPreference(getString(R.string.contacts_sync_key));
-            contactsSync.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            findPreference(getString(R.string.import_contacts_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    if (!mPreferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
+                    if (!preferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
                         ContactsHelper contactsHelper = new ContactsHelper(getActivity(), getActivity().getContentResolver());
-                        contactsHelper.loadContacts(mPreferences);
+                        contactsHelper.loadContacts(preferences);
                     }
                     return true;
                 }
@@ -206,12 +280,11 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             /*
             * Exports records to XML file
             */
-            Preference exportPreference = findPreference(getString(R.string.export_key));
-            exportPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            findPreference(getString(R.string.export_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     if (PermissionManager.writingSdPermissionGranted(getActivity())) {
-                        new ExportHelper(getActivity()).export();
+                        new ExportHelper(getActivity()).exportRecords();
                     } else {
                         PermissionManager.requestWritingSdPermission(getActivity());
                     }
@@ -220,10 +293,9 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             });
 
             /*
-            * Restores records from XML file
+            * Recovers records from XML file
             */
-            Preference restorePreference = findPreference(getString(R.string.recover_key));
-            restorePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            findPreference(getString(R.string.recover_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     if (PermissionManager.writingSdPermissionGranted(getActivity())) {
@@ -232,10 +304,9 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                                     .setType("text/xml")
                                     .addCategory(Intent.CATEGORY_OPENABLE)
                                     .putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-                            startActivityForResult(intent, Constants.FILE_MANAGER);
+                            startActivityForResult(intent, FILE_MANAGER);
                         } catch (ActivityNotFoundException e) {
-                            Toast.makeText(getActivity(),
-                                    "You don't have an app to perform action, download any File Manager from market",
+                            Toast.makeText(getActivity(), R.string.recover_records_error,
                                     Toast.LENGTH_LONG).show();
                         }
                     } else {
@@ -248,8 +319,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             /*
             * Displayed age
             */
-            Preference displayedAge = findPreference(getString(R.string.displayed_age_key));
-            displayedAge.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            findPreference(getString(R.string.displayed_age_key)).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     ((ListPreference) preference).setValue(newValue.toString());
@@ -260,10 +330,35 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             });
 
             /*
+             * Rate app
+             */
+            findPreference(getString(R.string.rate_app_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Utils.openBrowser(getActivity(), getString(R.string.play_market_app_link));
+                    return true;
+                }
+            });
+
+            /*
+            * Share app
+            */
+            findPreference(getString(R.string.share_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    mFirebaseAnalytics.logEvent(Constants.SHARE_APP, new Bundle());
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + getString(R.string.play_market_app_link));
+                    startActivity(Intent.createChooser(intent, null));
+                    return true;
+                }
+            });
+
+            /*
             * Ad banner
             */
-            Preference adBannerPreference = findPreference(getString(R.string.ad_banner_key));
-            adBannerPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            findPreference(getString(R.string.ad_banner_key)).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     if (!Boolean.parseBoolean(newValue.toString())) {
@@ -275,17 +370,23 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             });
 
             /*
-            * Share app
+            * Source code
             */
-            Preference share = findPreference(getString(R.string.share_key));
-            share.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            findPreference(getString(R.string.source_code_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    mFirebaseAnalytics.logEvent(Constants.SHARE_APP, new Bundle());
-                    Intent intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType(Constants.TEXT_PLAIN);
-                    intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + getString(R.string.play_market_app_link));
-                    startActivity(Intent.createChooser(intent, getString(R.string.app_name)));
+                    Utils.openBrowser(getActivity(), getString(R.string.github_url));
+                    return true;
+                }
+            });
+
+            /*
+            * Privacy policy
+            */
+            findPreference(getString(R.string.privacy_policy_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Utils.openBrowser(getActivity(), getString(R.string.privacy_policy_link));
                     return true;
                 }
             });
@@ -293,8 +394,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             /*
             * Opens LicensesActivity
             */
-            Preference licenses = findPreference(getString(R.string.licenses_key));
-            licenses.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            findPreference(getString(R.string.licenses_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     SettingsActivity activity = (SettingsActivity) getActivity();
@@ -309,15 +409,16 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (requestCode == Constants.FILE_MANAGER && resultCode == RESULT_OK) {
-                new RestoreHelper(getActivity()).restoreRecords(data.getData().getPath());
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == FILE_MANAGER && resultCode == RESULT_OK) {
+                new RecoverHelper(getActivity()).recoverRecords(data.getData().getPath());
             }
         }
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             final AlarmHelper alarmHelper = new AlarmHelper(getActivity());
-            DBHelper dbHelper = new DBHelper(getActivity());
+            DbHelper dbHelper = new DbHelper(getActivity());
             final List<Person> persons = dbHelper.query().getPersons();
             switch (key) {
                 case Constants.NOTIFICATIONS_KEY:
@@ -385,8 +486,10 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         private void restartApp() {
             Intent intent = getActivity().getPackageManager()
                     .getLaunchIntentForPackage(getActivity().getPackageName());
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            if (intent != null) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
         }
 
         private void showRestartAppDialog() {

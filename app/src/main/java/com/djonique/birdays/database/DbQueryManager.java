@@ -25,19 +25,19 @@ import com.djonique.birdays.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBQueryManager {
+public class DbQueryManager {
 
-    private SQLiteDatabase mDatabase;
-    private Person mPerson;
+    private SQLiteDatabase database;
+    private Person person;
     private List<Person> persons;
 
-    DBQueryManager(SQLiteDatabase database) {
-        this.mDatabase = database;
+    DbQueryManager(SQLiteDatabase database) {
+        this.database = database;
     }
 
     public Person getPerson(long timeStamp) {
 
-        Cursor cursor = mDatabase.query(DBHelper.DB_PERSONS, null, DBHelper.SELECTION_TIME_STAMP,
+        Cursor cursor = database.query(DbHelper.DB_PERSONS, null, DbHelper.SELECTION_TIME_STAMP,
                 new String[]{Long.toString(timeStamp)}, null, null, null);
 
         if (cursor.moveToFirst()) {
@@ -47,17 +47,17 @@ public class DBQueryManager {
             String phoneNumber = getPhoneNumber(cursor);
             String email = getEmail(cursor);
 
-            mPerson = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
+            person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
         }
         cursor.close();
 
-        return mPerson;
+        return person;
     }
 
     public List<Person> getPersons() {
         persons = new ArrayList<>();
 
-        Cursor cursor = mDatabase.query(DBHelper.DB_PERSONS, null, null, null, null,
+        Cursor cursor = database.query(DbHelper.DB_PERSONS, null, null, null, null,
                 null, null);
 
         if (cursor.moveToFirst()) {
@@ -69,8 +69,8 @@ public class DBQueryManager {
                 String email = getEmail(cursor);
                 long timeStamp = getTimeStamp(cursor);
 
-                mPerson = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
-                persons.add(mPerson);
+                person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
+                persons.add(person);
 
             } while (cursor.moveToNext());
         }
@@ -82,7 +82,7 @@ public class DBQueryManager {
     public List<Person> getSearchPerson(String selection, String[] selectionArgs, String orderBy) {
         persons = new ArrayList<>();
 
-        Cursor cursor = mDatabase.query(DBHelper.DB_PERSONS, null, selection, selectionArgs, null,
+        Cursor cursor = database.query(DbHelper.DB_PERSONS, null, selection, selectionArgs, null,
                 null, orderBy);
 
         if (cursor.moveToFirst()) {
@@ -94,8 +94,8 @@ public class DBQueryManager {
                 String email = getEmail(cursor);
                 long timeStamp = getTimeStamp(cursor);
 
-                mPerson = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
-                persons.add(mPerson);
+                person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
+                persons.add(person);
 
             } while (cursor.moveToNext());
         }
@@ -107,7 +107,7 @@ public class DBQueryManager {
     public List<Person> getThisMonthPersons() {
         persons = new ArrayList<>();
 
-        Cursor cursor = mDatabase.query(DBHelper.DB_PERSONS, null, null, null, null, null, null);
+        Cursor cursor = database.query(DbHelper.DB_PERSONS, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -119,8 +119,8 @@ public class DBQueryManager {
                 long timeStamp = getTimeStamp(cursor);
 
                 if (Utils.isCurrentMonth(date)) {
-                    mPerson = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
-                    persons.add(mPerson);
+                    person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
+                    persons.add(person);
                 }
             } while (cursor.moveToNext());
         }
@@ -133,7 +133,7 @@ public class DBQueryManager {
                                              String orderBy) {
         persons = new ArrayList<>();
 
-        Cursor cursor = mDatabase.query(DBHelper.DB_PERSONS, null, selection, selectionArgs, null,
+        Cursor cursor = database.query(DbHelper.DB_PERSONS, null, selection, selectionArgs, null,
                 null, orderBy);
 
         if (cursor.moveToFirst()) {
@@ -146,8 +146,8 @@ public class DBQueryManager {
                 long timeStamp = getTimeStamp(cursor);
 
                 if (Utils.isCurrentMonth(date)) {
-                    mPerson = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
-                    persons.add(mPerson);
+                    person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
+                    persons.add(person);
                 }
             } while (cursor.moveToNext());
         }
@@ -159,7 +159,7 @@ public class DBQueryManager {
     public List<Person> getFamousBornThisDay(long dayOfBirthday) {
         persons = new ArrayList<>();
 
-        Cursor cursor = mDatabase.query(DBHelper.DB_FAMOUS, null, null, null, null, null, null);
+        Cursor cursor = database.query(DbHelper.DB_FAMOUS, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -168,8 +168,8 @@ public class DBQueryManager {
 
                 if (Utils.getMonth(date) == Utils.getMonth(dayOfBirthday) &&
                         Utils.getDay(date) == Utils.getDay(dayOfBirthday)) {
-                    mPerson = new Person(name, date);
-                    persons.add(mPerson);
+                    person = new Person(name, date);
+                    persons.add(person);
                 }
             } while (cursor.moveToNext());
         }
@@ -179,26 +179,26 @@ public class DBQueryManager {
     }
 
     private String getName(Cursor cursor) {
-        return cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_NAME));
+        return cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_NAME));
     }
 
     private long getDate(Cursor cursor) {
-        return cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_DATE));
+        return cursor.getLong(cursor.getColumnIndex(DbHelper.COLUMN_DATE));
     }
 
     private boolean getYearUnknown(Cursor cursor) {
-        return cursor.getInt(cursor.getColumnIndex(DBHelper.COLUMN_IS_YEAR_KNOWN)) == 1;
+        return cursor.getInt(cursor.getColumnIndex(DbHelper.COLUMN_IS_YEAR_KNOWN)) == 1;
     }
 
     private String getPhoneNumber(Cursor cursor) {
-        return cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_PHONE_NUMBER));
+        return cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_PHONE_NUMBER));
     }
 
     private String getEmail(Cursor cursor) {
-        return cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_EMAIL));
+        return cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_EMAIL));
     }
 
     private long getTimeStamp(Cursor cursor) {
-        return cursor.getLong(cursor.getColumnIndex(DBHelper.COLUMN_TIME_STAMP));
+        return cursor.getLong(cursor.getColumnIndex(DbHelper.COLUMN_TIME_STAMP));
     }
 }

@@ -20,16 +20,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.djonique.birdays.activities.MainActivity">
-   <!-- <item
-        android:id="@+id/action_sync"
-        android:orderInCategory="1"
-        android:title="@string/action_sync"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_backup"
-        android:orderInCategory="2"
-        android:title="Backup"
-        app:showAsAction="never" />-->
+    <!-- <item
+         android:id="@+id/action_sync"
+         android:orderInCategory="1"
+         android:title="@string/action_sync"
+         app:showAsAction="never" />-->
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="99"

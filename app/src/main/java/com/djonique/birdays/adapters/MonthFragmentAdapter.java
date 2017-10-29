@@ -47,7 +47,7 @@ import java.util.List;
 public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdapter.CardViewHolder> {
 
     private Context context;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences preferences;
     private FirebaseAnalytics mFirebaseAnalytics;
     private List<Item> items;
 
@@ -78,7 +78,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        preferences = PreferenceManager.getDefaultSharedPreferences(context);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         View view = LayoutInflater.from(context).inflate(
                 R.layout.description_card_view, parent, false);
@@ -90,42 +90,21 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         final Item item = items.get(position);
         final Person person = (Person) item;
         long date = person.getDate();
-        boolean unknownYear = person.isYearUnknown();
         final String email = person.getEmail();
         final String phoneNumber = person.getPhoneNumber();
 
         holder.tvName.setText(person.getName());
 
-        String daysLeft = Utils.daysLeft(context, date);
-        String today = context.getString(R.string.today);
-
-        if (unknownYear) {
+        if (person.isYearUnknown()) {
             holder.tvDate.setText(Utils.getDateWithoutYear(date));
             holder.tvAge.setVisibility(View.GONE);
-            if (!Utils.isBirthdayPassed(date) || Utils.isToday(date)) {
-                holder.tvDaysLeft.setVisibility(View.VISIBLE);
-                holder.tvDaysLeft.setText(daysLeft.equals(today) ? today : context.getString(R.string.days_left) + ": " + daysLeft);
-            } else {
-                holder.tvDaysLeft.setVisibility(View.GONE);
-            }
+            changeCardViewBackgroundColor(date, holder.cardView, holder.tvDaysLeft);
         } else {
             holder.tvDate.setText(Utils.getDate(date));
             holder.tvAge.setVisibility(View.VISIBLE);
-            if (Utils.isBirthdayPassed(date)) {
-                String age = context.getString(R.string.turned) + Utils.getCurrentAge(date);
-                holder.tvAge.setText(age);
-                holder.tvDaysLeft.setVisibility(View.GONE);
-            } else {
-                String age;
-                if (Utils.isToday(date)) {
-                    age = context.getString(R.string.turns) + Utils.getFutureAge(date);
-                } else {
-                    age = context.getString(R.string.will_turn) + Utils.getFutureAge(date);
-                }
-                holder.tvAge.setText(age);
-                holder.tvDaysLeft.setVisibility(View.VISIBLE);
-                holder.tvDaysLeft.setText(daysLeft.equals(today) ? today : context.getString(R.string.days_left) + ": " + daysLeft);
-            }
+            String age = context.getString(R.string.age) + Utils.getCurrentAge(date);
+            holder.tvAge.setText(age);
+            changeCardViewBackgroundColor(date, holder.cardView, holder.tvDaysLeft);
         }
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +130,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                     intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
                     intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.happy_birthday));
                     intent.setData(Uri.parse(Constants.MAILTO + email));
-                    context.startActivity(Intent.createChooser(intent, context.getString(R.string.send_email)));
+                    context.startActivity(Intent.createChooser(intent, null));
                 }
             });
         } else {
@@ -165,7 +144,8 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                 @Override
                 public void onClick(View v) {
                     mFirebaseAnalytics.logEvent(Constants.MAKE_CALL, new Bundle());
-                    context.startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(Constants.TEL + phoneNumber)));
+                    context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_DIAL,
+                            Uri.parse(Constants.TEL + phoneNumber)), null));
                 }
             });
 
@@ -177,7 +157,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                     intent.setType(Constants.TYPE_SMS);
                     intent.putExtra(Constants.ADDRESS, phoneNumber);
                     intent.setData(Uri.parse(Constants.SMSTO + phoneNumber));
-                    context.startActivity(intent);
+                    context.startActivity(Intent.createChooser(intent, null));
                 }
             });
         } else {
@@ -229,7 +209,26 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     }
 
     private boolean nightMode() {
-        return sharedPreferences.getBoolean(Constants.NIGHT_MODE_KEY, false);
+        return preferences.getBoolean(Constants.NIGHT_MODE_KEY, false);
+    }
+
+    private void changeCardViewBackgroundColor(long date, CardView cardView, TextView textView) {
+        String daysLeft = Utils.daysLeft(context, date);
+        boolean today = daysLeft.equals(context.getString(R.string.today));
+        if (Utils.isBirthdayPassed(date)) {
+            textView.setVisibility(View.GONE);
+            cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cardview_background));
+        } else {
+            textView.setVisibility(View.VISIBLE);
+            if (today) {
+                cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cardview_birthday));
+                textView.setText(context.getString(R.string.today));
+            } else {
+                cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cardview_background));
+                String summary = context.getString(R.string.days_left) + ": " + daysLeft;
+                textView.setText(summary);
+            }
+        }
     }
 
     static class CardViewHolder extends RecyclerView.ViewHolder {
@@ -240,17 +239,17 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
         CardViewHolder(View itemView) {
             super(itemView);
-            cardView = ((CardView) itemView.findViewById(R.id.cardview_card));
-            relativeLayout = ((RelativeLayout) itemView.findViewById(R.id.relativelayout_card));
-            tvName = ((TextView) itemView.findViewById(R.id.textview_card_name));
-            tvDate = ((TextView) itemView.findViewById(R.id.textview_card_date));
-            tvAge = ((TextView) itemView.findViewById(R.id.textview_card_age));
-            tvDaysLeft = ((TextView) itemView.findViewById(R.id.textview_card_left));
-            btnEmail = ((ImageButton) itemView.findViewById(R.id.imagebutton_card_email));
+            cardView = itemView.findViewById(R.id.cardview_card);
+            relativeLayout = itemView.findViewById(R.id.relativelayout_card);
+            tvName = itemView.findViewById(R.id.textview_card_name);
+            tvDate = itemView.findViewById(R.id.textview_card_date);
+            tvAge = itemView.findViewById(R.id.textview_card_age);
+            tvDaysLeft = itemView.findViewById(R.id.textview_card_left);
+            btnEmail = itemView.findViewById(R.id.imagebutton_card_email);
             btnEmail.setImageResource(R.drawable.ic_email_blue_green_24dp);
-            btnChat = ((ImageButton) itemView.findViewById(R.id.imagebutton_card_chat));
+            btnChat = itemView.findViewById(R.id.imagebutton_card_chat);
             btnChat.setImageResource(R.drawable.ic_chat_blue_green_24dp);
-            btnCall = ((ImageButton) itemView.findViewById(R.id.imagebutton_card_call));
+            btnCall = itemView.findViewById(R.id.imagebutton_card_call);
             btnCall.setImageResource(R.drawable.ic_call_blue_green_24dp);
         }
     }

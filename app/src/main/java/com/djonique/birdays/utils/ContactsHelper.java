@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
-import com.djonique.birdays.database.DBHelper;
+import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
@@ -50,9 +50,9 @@ public class ContactsHelper {
      */
     public String getContactName(ContentResolver contentResolver, String id) {
         String name = "";
-        Cursor nameCursor = contentResolver.query(ContactsContract.Data.CONTENT_URI,
+        Cursor nameCursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI,
                 null,
-                ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + " = ?",
+                ContactsContract.Contacts._ID + " = ?",
                 new String[]{id}, null);
         if (nameCursor != null && nameCursor.moveToFirst()) {
             name =
@@ -124,11 +124,11 @@ public class ContactsHelper {
             }
             if (date == 0) continue;
 
-            boolean isYearKnown = Utils.isYearKnown(dateString);
+            boolean yearUnknown = Utils.isYearUnknown(dateString);
             String phoneNumber = getContactPhoneNumber(contentResolver, id);
             String email = getContactEmail(contentResolver, id);
 
-            Person person = new Person(name, date, isYearKnown, phoneNumber, email);
+            Person person = new Person(name, date, yearUnknown, phoneNumber, email);
             contacts.add(person);
         }
         cursor.close();
@@ -141,11 +141,11 @@ public class ContactsHelper {
     private Cursor getContactsCursor(ContentResolver contentResolver) {
         Uri uri = ContactsContract.Data.CONTENT_URI;
 
-        String[] projection = new String[]{
+       /* String[] projection = new String[]{
                 ContactsContract.Contacts.DISPLAY_NAME,
                 ContactsContract.CommonDataKinds.Event.CONTACT_ID,
                 ContactsContract.CommonDataKinds.Event.START_DATE,
-        };
+        };*/
 
         String where =
                 ContactsContract.Data.MIMETYPE
@@ -154,7 +154,7 @@ public class ContactsHelper {
                         + "="
                         + ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY;
         String[] selectionArgs = new String[]{ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE};
-        return contentResolver.query(uri, projection, where, selectionArgs, null);
+        return contentResolver.query(uri, null, where, selectionArgs, null);
     }
 
     /**
@@ -191,7 +191,7 @@ public class ContactsHelper {
 
         @Override
         protected Void doInBackground(Void... params) {
-            DBHelper dbHelper = new DBHelper(activity);
+            DbHelper dbHelper = new DbHelper(activity);
             AlarmHelper alarmHelper = new AlarmHelper(activity);
 
             List<Person> dbPersons = dbHelper.query().getPersons();
@@ -199,7 +199,7 @@ public class ContactsHelper {
 
             for (Person person : contacts) {
                 if (!Utils.isPersonAlreadyInDB(person, dbPersons)) {
-                    dbHelper.addRec(person);
+                    dbHelper.addRecord(person);
                     alarmHelper.setAlarms(person);
                 }
             }

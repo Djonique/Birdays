@@ -19,7 +19,6 @@ package com.djonique.birdays.dialogs;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.ActivityNotFoundException;
@@ -48,17 +47,22 @@ import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.ContactsHelper;
+import com.djonique.birdays.utils.DatePickerManager;
 import com.djonique.birdays.utils.PermissionManager;
 import com.djonique.birdays.utils.Utils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Calendar;
 
-public class NewPersonDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+public class NewPersonDialogFragment extends DialogFragment implements
+        android.app.DatePickerDialog.OnDateSetListener,
+        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+
+    private static final String NEW_PERSON_DIALOG_TAG = "NEW_PERSON_DIALOG_TAG";
 
     private AddingPersonListener addingPersonListener;
     private EditText etName, etPhone, etEmail, etDate;
-    private AppCompatCheckBox cbKnownYear;
+    private AppCompatCheckBox checkBox;
     private Calendar calendar;
     private String name;
     private long date;
@@ -76,7 +80,6 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(activity);
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -87,11 +90,9 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
         final Person person = new Person();
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        @SuppressLint("InflateParams")
-        View container = inflater.inflate(R.layout.fragment_dialog, null);
+        @SuppressLint("InflateParams") final View container = inflater.inflate(R.layout.fragment_dialog, null);
 
-        AppCompatButton addFromContactsButton =
-                ((AppCompatButton) container.findViewById(R.id.button_dialog_afc));
+        AppCompatButton addFromContactsButton = container.findViewById(R.id.button_dialog_afc);
         addFromContactsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +100,9 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
                     Intent intent = new Intent(Intent.ACTION_PICK,
                             ContactsContract.Contacts.CONTENT_URI);
                     try {
-                        startActivityForResult(intent, Constants.REQUEST_READ_CONTACTS);
+                        DialogFragment fragment = (DialogFragment)
+                                getActivity().getFragmentManager().findFragmentByTag(NEW_PERSON_DIALOG_TAG);
+                        fragment.startActivityForResult(intent, Constants.READ_CONTACTS_PERMISSION_CODE);
                     } catch (ActivityNotFoundException e) {
                         Toast.makeText(getActivity(), R.string.open_contacts_error, Toast.LENGTH_LONG).show();
                     }
@@ -109,29 +112,29 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
             }
         });
 
-        final TextInputLayout tilName = (TextInputLayout) container.findViewById(R.id.til_dialog_name);
+        final TextInputLayout tilName = container.findViewById(R.id.til_dialog_name);
         etName = tilName.getEditText();
 
-        final TextInputLayout tilPhone = (TextInputLayout) container.findViewById(R.id.til_dialog_phone);
+        final TextInputLayout tilPhone = container.findViewById(R.id.til_dialog_phone);
         etPhone = tilPhone.getEditText();
 
-        final TextInputLayout tilEmail = (TextInputLayout) container.findViewById(R.id.til_dialog_email);
+        final TextInputLayout tilEmail = container.findViewById(R.id.til_dialog_email);
         etEmail = tilEmail.getEditText();
 
-        final TextInputLayout tilDate = ((TextInputLayout) container.findViewById(R.id.til_dialog_date));
-        etDate = (EditText) container.findViewById(R.id.edittext_dialog_date);
+        final TextInputLayout tilDate = container.findViewById(R.id.til_dialog_date);
+        etDate = container.findViewById(R.id.edittext_dialog_date);
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (etDate.length() == 0) {
                     etDate.setText("");
                 }
-
-                showDatePickerDialog();
+                new DatePickerManager(getActivity(), calendar)
+                        .showDialog(NewPersonDialogFragment.this, NewPersonDialogFragment.this);
             }
         });
 
-        cbKnownYear = ((AppCompatCheckBox) container.findViewById(R.id.checkbox_dialog));
+        checkBox = container.findViewById(R.id.checkbox_dialog);
 
         builder.setView(container);
         builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
@@ -148,7 +151,7 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
                     new AlarmHelper(getActivity()).setAlarms(person);
                 }
 
-                if (cbKnownYear != null) person.setYearUnknown(cbKnownYear.isChecked());
+                if (checkBox != null) person.setYearUnknown(checkBox.isChecked());
 
                 if (etPhone != null && etPhone.length() != 0) {
                     person.setPhoneNumber(etPhone.getText().toString());
@@ -202,7 +205,7 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
                             positiveButton.setEnabled(false);
                         } else {
                             tilName.setErrorEnabled(false);
-                            if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
+                            if (isDateCorrect()) {
                                 positiveButton.setEnabled(true);
                             }
                         }
@@ -220,8 +223,7 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar)
-                                || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
+                        if (isDateCorrect()) {
                             tilDate.setErrorEnabled(false);
                             if (etName.length() != 0) {
                                 positiveButton.setEnabled(true);
@@ -237,19 +239,19 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
                     }
                 });
 
-                cbKnownYear.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                         // If date isn't picked does nothing, if picked checks state of CheckBox
-                        if (cbKnownYear.isChecked() && !Utils.isEmptyDate(etDate)) {
+                        if (checkBox.isChecked() && !Utils.isEmptyDate(etDate)) {
                             etDate.setText(Utils.getDateWithoutYear(date));
-                        } else if (!cbKnownYear.isChecked() && !Utils.isEmptyDate(etDate)) {
+                        } else if (!checkBox.isChecked() && !Utils.isEmptyDate(etDate)) {
                             etDate.setText(Utils.getDate(date));
                         }
 
                         // Doesn't allow to add Person if conditions are not met and shows error
-                        if (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar) || !Utils.isEmptyDate(etDate) && cbKnownYear.isChecked()) {
+                        if (isDateCorrect()) {
                             tilDate.setErrorEnabled(false);
                             if (etName.length() != 0) {
                                 positiveButton.setEnabled(true);
@@ -265,23 +267,29 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
         return alertDialog;
     }
 
-    private void showDatePickerDialog() {
-        DatePickerDialog mDatePickerDialog = new DatePickerDialog(getActivity(),
-                NewPersonDialogFragment.this,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH));
-        mDatePickerDialog.show();
+    private boolean isDateCorrect() {
+        return !Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar)
+                || !Utils.isEmptyDate(etDate) && checkBox.isChecked();
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        setDate(year, month, dayOfMonth);
+    }
+
+    @Override
+    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view,
+                          int year, int monthOfYear, int dayOfMonth) {
+        setDate(year, monthOfYear, dayOfMonth);
+    }
+
+    private void setDate(int year, int month, int dayOfMonth) {
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         date = calendar.getTimeInMillis();
         // Checks state of CheckBox whenever date is picked
-        if (!cbKnownYear.isChecked()) {
+        if (!checkBox.isChecked()) {
             etDate.setText(Utils.getDate(date));
         } else {
             etDate.setText(Utils.getDateWithoutYear(date));
@@ -295,7 +303,10 @@ public class NewPersonDialogFragment extends DialogFragment implements DatePicke
             Uri contactData = data.getData();
             ContentResolver contentResolver = getActivity().getContentResolver();
             ContactsHelper contactsHelper = new ContactsHelper(getActivity(), contentResolver);
-            Cursor cursor = contentResolver.query(contactData, null, null, null, null);
+            Cursor cursor = null;
+            if (contactData != null) {
+                cursor = contentResolver.query(contactData, null, null, null, null);
+            }
             if (cursor != null && cursor.getCount() > 0) {
                 if (cursor.moveToFirst()) {
                     String id = cursor.getString(
