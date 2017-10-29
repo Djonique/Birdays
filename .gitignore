@@ -1,10 +1,12 @@
 *.apk
 *.iml
 .gradle/
+.idea/
 local.properties
 keystore.properties
 .DS_Store
 build/
+release/
 captures/
 Common key
 Google Play App Signing
