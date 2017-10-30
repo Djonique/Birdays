@@ -218,7 +218,7 @@
     <!-- 4 january -->
     <string name="isaac_newton">Ісаак Ньютон</string>
     <string name="pergolesi">Джованні Баттіста Перголезі</string>
-    <string name="jacob_grimm">Якоб Людвиг Карл Грімм</string>
+    <string name="jacob_grimm">Якоб Грімм</string>
     <string name="braille">Луї Брайль</string>
     <string name="tsereteli">Зураб Церетелі</string>
     <string name="josephson">Браян Девід Джозефсон</string>
@@ -248,7 +248,7 @@
     <string name="sirani">Елізабетта Сірані</string>
     <string name="nijinska">Броніслава Ніжинська</string>
     <string name="presley">Елвіс Преслі</string>
-    <string name="hawking">Стівен Вільям Гокінг</string>
+    <string name="hawking">Стівен Гокінг</string>
     <string name="daviw_bowie">Девід Бові</string>
     <!-- 9 january -->
     <string name="simon_vouet">Сімон Вуе</string>
@@ -281,7 +281,7 @@
     <string name="wien">Вільгельм Він</string>
     <string name="soutine">Хайм Сутін</string>
     <string name="lifshitz">Ілля Ліфшиць</string>
-    <string name="feyerabend">Пол Карл Фейєрабенд</string>
+    <string name="feyerabend">Пол Фейєрабенд</string>
     <!-- 14 january -->
     <string name="semyonov">Петро Семенов-Тянь-Шанський</string>
     <string name="morisot">Берта Морізо</string>
@@ -289,7 +289,7 @@
     <string name="mishima">Юкіо Місіма</string>
     <string name="kharlamov">Валерій Харламов</string>
     <!-- 15 january -->
-    <string name="moliere">Жан-Батист Поклен (Мольєр)</string>
+    <string name="moliere">Мольєр</string>
     <string name="griboyedov">Олександр Грибоєдов</string>
     <string name="virtanen">Арттурі Ілмарі Віртанен</string>
     <string name="teller">Удвард Теллер</string>
@@ -323,10 +323,10 @@
     <string name="serov">Валентин Сєров</string>
     <string name="kantorovich">Леонід Канторович</string>
     <!-- 20 january -->
-    <string name="gessi">Джованні Франческо Джессі</string>
+    <string name="gessi">Франческо Джессі</string>
     <string name="ampere">Андре-Марі Ампер</string>
     <string name="chausson">Ернест Шоссон</string>
-    <string name="onassis">Аристотель Сократ Онассіс</string>
+    <string name="onassis">Аристотель Онассіс</string>
     <string name="fellini">Федеріко Фелліні</string>
     <!-- 21 january -->
     <string name="browning">Джон Мозес Браунінг</string>
@@ -350,7 +350,7 @@
     <!-- 24 january -->
     <string name="congreve">Вільям Конгрев</string>
     <string name="beaumarchais">П\'єр де Бомарше</string>
-    <string name="hoffmann">Ернст Гофманн</string>
+    <string name="hoffmann">Ернст Теодор Амадей Гофманн</string>
     <string name="surikov">Василь Суриков</string>
     <string name="shechtman">Данієль Шехтман</string>
     <string name="kinski">Настасья Кінскі</string>

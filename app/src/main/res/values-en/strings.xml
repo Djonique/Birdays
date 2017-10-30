@@ -212,13 +212,13 @@
     <string name="dabbadie">Antoine Thomson d\'Abbadie</string>
     <string name="fletcher">John Gould Fletcher</string>
     <string name="tolkien">John Ronald Reuel Tolkien</string>
-    <string name="moore">Gordon Earle Moore</string>
+    <string name="moore">Gordon Moore</string>
     <string name="mel_gibson">Mel Gibson</string>
     <string name="schumacher">Michael Schumacher</string>
     <!-- 4 january -->
     <string name="isaac_newton">Isaac Newton</string>
     <string name="pergolesi">Giovanni Battista Pergolesi</string>
-    <string name="jacob_grimm">Jacob Ludwig Carl Grimm</string>
+    <string name="jacob_grimm">Jacob Grimm</string>
     <string name="braille">Louis Braille</string>
     <string name="tsereteli">Zurab Tsereteli</string>
     <string name="josephson">Brian David Josephson</string>
@@ -239,7 +239,7 @@
     <string name="atkinson">Rowan Atkinson</string>
     <string name="redmayne">Eddie Redmayne</string>
     <!-- 7 january -->
-    <string name="pope_gregory">Gregorius PP. XIII</string>
+    <string name="pope_gregory">Pope Gregory XIII</string>
     <string name="fleming">Sandford Fleming</string>
     <string name="eliezer">Eliezer Ben-Yehuda</string>
     <string name="borel">Émile Borel</string>
@@ -248,7 +248,7 @@
     <string name="sirani">Elisabetta Sirani</string>
     <string name="nijinska">Bronislava Nijinska</string>
     <string name="presley">Elvis Presley</string>
-    <string name="hawking">Stephen William Hawking</string>
+    <string name="hawking">Stephen Hawking</string>
     <string name="daviw_bowie">David Bowie</string>
     <!-- 9 january -->
     <string name="simon_vouet">Simon Vouet</string>
@@ -265,7 +265,7 @@
     <!-- 11 january -->
     <string name="parmigianino">Parmigianino</string>
     <string name="guidobaldo">Guidobaldo del Monte</string>
-    <string name="stensen">Niels Stensen</string>
+    <string name="stensen">Nicolas Steno</string>
     <string name="hofmann">Albert Hofmann</string>
     <string name="mendoza">Eduardo Mendoza</string>
     <!-- 12 january -->
@@ -281,7 +281,7 @@
     <string name="wien">Wilhelm Wien</string>
     <string name="soutine">Chaim Soutine</string>
     <string name="lifshitz">Ilya Lifshitz</string>
-    <string name="feyerabend">Paul Karl Feyerabend</string>
+    <string name="feyerabend">Paul Feyerabend</string>
     <!-- 14 january -->
     <string name="semyonov">Pyotr Semyonov-Tyan-Shansky</string>
     <string name="morisot">Berthe Morisot</string>
@@ -289,7 +289,7 @@
     <string name="mishima">Yukio Mishima</string>
     <string name="kharlamov">Valeri Kharlamov</string>
     <!-- 15 january -->
-    <string name="moliere">Jean-Baptiste Poquelin (Molière)</string>
+    <string name="moliere">Molière</string>
     <string name="griboyedov">Alexander Griboyedov</string>
     <string name="virtanen">Artturi Ilmari Virtanen</string>
     <string name="teller">Edward Teller</string>
@@ -308,7 +308,7 @@
     <string name="muhammad_ali">Muhammad Ali</string>
     <string name="jim_carrey">Jim Carrey</string>
     <!-- 18 january -->
-    <string name="montesquieu">Charles Louis de Montesquieu</string>
+    <string name="montesquieu">Montesquieu</string>
     <string name="cesar_cui">César Cui</string>
     <string name="ehrenfest">Paul Ehrenfest</string>
     <string name="milne">Alan Alexander Milne</string>
@@ -319,14 +319,14 @@
     <string name="cagnacci">Guido Cagnacci</string>
     <string name="comte">Auguste Comte</string>
     <string name="edgar_poe">Edgar Allan Poe</string>
-    <string name="kapteyn">Jacobus Cornelius Kapteyn</string>
+    <string name="kapteyn">Jacobus Kapteyn</string>
     <string name="serov">Valentin Serov</string>
     <string name="kantorovich">Leonid Kantorovich</string>
     <!-- 20 january -->
-    <string name="gessi">Giovan Francesco Gessi</string>
+    <string name="gessi">Francesco Gessi</string>
     <string name="ampere">André-Marie Ampère</string>
     <string name="chausson">Ernest Chausson</string>
-    <string name="onassis">Aristotle Socrates Onassis</string>
+    <string name="onassis">Aristotle Onassis</string>
     <string name="fellini">Federico Fellini</string>
     <!-- 21 january -->
     <string name="browning">John Moses Browning</string>
@@ -343,19 +343,19 @@
     <!-- 23 january -->
     <string name="stendhal">Stendhal</string>
     <string name="manet">Édouard Manet</string>
-    <string name="abbe">Ernst Karl Abbe</string>
+    <string name="abbe">Ernst Abbe</string>
     <string name="hilbert">David Hilbert</string>
     <string name="yukawa">Hideki Yukawa</string>
     <string name="hauer">Rutger Hauer</string>
     <!-- 24 january -->
     <string name="congreve">William Congreve</string>
     <string name="beaumarchais">Pierre Beaumarchais</string>
-    <string name="hoffmann">Ernst Hoffmann</string>
+    <string name="hoffmann">Ernst Theodor Amadeus Hoffmann</string>
     <string name="surikov">Vasily Surikov</string>
     <string name="shechtman">Dan Shechtman</string>
     <string name="kinski">Nastassja Kinski</string>
     <!-- 25 january -->
-    <string name="lagrange">Joseph Louis Lagrange</string>
+    <string name="lagrange">Joseph-Louis Lagrange</string>
     <string name="burns">Robert Burns</string>
     <string name="shishkin">Ivan Shishkin</string>
     <string name="maugham">Somerset Maugham</string>
@@ -379,7 +379,7 @@
     <string name="borelli">Giovanni Alfonso Borelli</string>
     <string name="heweliusz">Jan Heweliusz</string>
     <string name="baskerville">John Baskerville</string>
-    <string name="rubinstein">Artur Rubinstein</string>
+    <string name="rubinstein">Arthur Rubinstein</string>
     <string name="buffon">Gianluigi Buffon</string>
     <!-- 29 january -->
     <string name="swedenborg">Emanuel Swedenborg</string>
@@ -397,7 +397,7 @@
     <string name="brown">Ruth Brown</string>
     <!-- 31 january -->
     <string name="schubert">Franz Schubert</string>
-    <string name="richards">Theodor William Richards</string>
+    <string name="richards">Theodore William Richards</string>
     <string name="langmuir">Irving Langmuir</string>
     <string name="vanga">Vanga</string>
     <string name="timberlake">Justin Timberlake</string>

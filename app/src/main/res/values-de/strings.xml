@@ -212,13 +212,13 @@
     <string name="dabbadie">Antoine Thomson d\'Abbadie</string>
     <string name="fletcher">John Gould Fletcher</string>
     <string name="tolkien">John Ronald Reuel Tolkien</string>
-    <string name="moore">Gordon Earle Moore</string>
+    <string name="moore">Gordon Moore</string>
     <string name="mel_gibson">Mel Gibson</string>
     <string name="schumacher">Michael Schumacher</string>
     <!-- 4 january -->
     <string name="isaac_newton">Isaac Newton</string>
     <string name="pergolesi">Giovanni Battista Pergolesi</string>
-    <string name="jacob_grimm">Jacob Ludwig Carl Grimm</string>
+    <string name="jacob_grimm">Jacob Grimm</string>
     <string name="braille">Louis Braille</string>
     <string name="tsereteli">Surab Zereteli</string>
     <string name="josephson">Brian David Josephson</string>
@@ -239,7 +239,7 @@
     <string name="atkinson">Rowan Atkinson</string>
     <string name="redmayne">Eddie Redmayne</string>
     <!-- 7 january -->
-    <string name="pope_gregory">Gregorius PP. XIII</string>
+    <string name="pope_gregory">Gregor XIII.</string>
     <string name="fleming">Sandford Fleming</string>
     <string name="eliezer">Eliezer Ben-Jehuda</string>
     <string name="borel">Émile Borel</string>
@@ -248,7 +248,7 @@
     <string name="sirani">Elisabetta Sirani</string>
     <string name="nijinska">Bronislava Nijinska</string>
     <string name="presley">Elvis Presley</string>
-    <string name="hawking">Stephen William Hawking</string>
+    <string name="hawking">Stephen Hawking</string>
     <string name="daviw_bowie">David Bowie</string>
     <!-- 9 january -->
     <string name="simon_vouet">Simon Vouet</string>
@@ -281,7 +281,7 @@
     <string name="wien">Wilhelm Wien</string>
     <string name="soutine">Chaim Soutine</string>
     <string name="lifshitz">Ilja Michailowitsch Lifschitz</string>
-    <string name="feyerabend">Paul Karl Feyerabend</string>
+    <string name="feyerabend">Paul Feyerabend</string>
     <!-- 14 january -->
     <string name="semyonov">Pjotr Petrowitsch Semjonow-Tjan-Schanski</string>
     <string name="morisot">Berthe Morisot</string>
@@ -289,7 +289,7 @@
     <string name="mishima">Mishima Yukio</string>
     <string name="kharlamov">Waleri Borissowitsch Charlamow</string>
     <!-- 15 january -->
-    <string name="moliere">Jean-Baptiste Poquelin (Molière)</string>
+    <string name="moliere">Molière</string>
     <string name="griboyedov">Alexander Sergejewitsch Gribojedow</string>
     <string name="virtanen">Artturi Ilmari Virtanen</string>
     <string name="teller">Edward Teller</string>
@@ -323,7 +323,7 @@
     <string name="serov">Walentin Alexandrowitsch Serow</string>
     <string name="kantorovich">Leonid Witaljewitsch Kantorowitsch</string>
     <!-- 20 january -->
-    <string name="gessi">Giovan Francesco Gessi</string>
+    <string name="gessi">Francesco Gessi</string>
     <string name="ampere">André-Marie Ampère</string>
     <string name="chausson">Ernest Chausson</string>
     <string name="onassis">Aristoteles Onassis</string>
@@ -343,14 +343,14 @@
     <!-- 23 january -->
     <string name="stendhal">Stendhal</string>
     <string name="manet">Édouard Manet</string>
-    <string name="abbe">Ernst Karl Abbe</string>
+    <string name="abbe">Ernst Abbe</string>
     <string name="hilbert">David Hilbert</string>
     <string name="yukawa">Yukawa Hideki</string>
     <string name="hauer">Rutger Hauer</string>
     <!-- 24 january -->
     <string name="congreve">William Congreve</string>
     <string name="beaumarchais">Pierre-Augustin Caron de Beaumarchais</string>
-    <string name="hoffmann">Ernst Hoffmann</string>
+    <string name="hoffmann">Ernst Theodor Amadeus Hoffmann</string>
     <string name="surikov">Wassili Iwanowitsch Surikow</string>
     <string name="shechtman">Dan Shechtman</string>
     <string name="kinski">Nastassja Kinski</string>
@@ -397,7 +397,7 @@
     <string name="brown">Ruth Brown</string>
     <!-- 31 january -->
     <string name="schubert">Franz Schubert</string>
-    <string name="richards">Theodor William Richards</string>
+    <string name="richards">Theodore William Richards</string>
     <string name="langmuir">Irving Langmuir</string>
     <string name="vanga">Wanga</string>
     <string name="timberlake">Justin Timberlake</string>
