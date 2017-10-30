@@ -39,7 +39,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -74,12 +73,9 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!preferences.getBoolean(DO_NOT_SHOW_OPTIMIZATION_ALERT, false)) {
                 PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
@@ -100,14 +96,6 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
         builder.setView(view);
         cbDoNotShowAgain = view.findViewById(R.id.checkbox_alert);
-        cbDoNotShowAgain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (cbDoNotShowAgain.isChecked()) {
-                    preferences.edit().putBoolean(DO_NOT_SHOW_OPTIMIZATION_ALERT, true).apply();
-                }
-            }
-        });
 
         builder.setMessage(R.string.optimization_description);
         builder.setPositiveButton(R.string.disable_button, new DialogInterface.OnClickListener() {
@@ -116,6 +104,9 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             public void onClick(DialogInterface dialog, int which) {
                 try {
                     startActivity(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS));
+                    if (cbDoNotShowAgain.isChecked()) {
+                        preferences.edit().putBoolean(DO_NOT_SHOW_OPTIMIZATION_ALERT, true).apply();
+                    }
                 } catch (ActivityNotFoundException ignored) {
                 }
             }
@@ -124,6 +115,9 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
+                if (cbDoNotShowAgain.isChecked()) {
+                    preferences.edit().putBoolean(DO_NOT_SHOW_OPTIMIZATION_ALERT, true).apply();
+                }
             }
         });
         builder.show();

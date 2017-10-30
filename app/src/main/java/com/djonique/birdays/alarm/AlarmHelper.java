@@ -62,7 +62,8 @@ public class AlarmHelper {
 
     private void setAlarm(Person person) {
         Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(Constants.NAME, person.getName() + " (" + context.getString(R.string.today) + ")");
+        intent.putExtra(Constants.NAME, person.getName());
+        intent.putExtra(Constants.WHEN, context.getString(R.string.today));
         intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
 
         long triggerAtMillis = setupCalendarYear(person, 0);
@@ -77,7 +78,8 @@ public class AlarmHelper {
         additionalNotificationOffset = Long.parseLong(preferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
 
         Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(Constants.NAME, person.getName() + " (" + setDelayText(additionalNotificationOffset) + ")");
+        intent.putExtra(Constants.NAME, person.getName());
+        intent.putExtra(Constants.WHEN, setDelayText(additionalNotificationOffset));
         intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
 
         long triggerAtMillis = setupCalendarYear(person, additionalNotificationOffset);

@@ -27,8 +27,12 @@ public interface Constants {
     int WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 2;
     int READ_EXTERNAL_STORAGE_PERMISSION_CODE = 3;
 
+    // Alarm
+    String NAME = "NAME";
+    String WHEN = "WHEN";
+    String TIME_STAMP = "TIME_STAMP";
+
     // Settings keys
-    String NAME = "name";
     String NOTIFICATIONS_KEY = "notifications_key";
     String NOTIFICATION_TIME_KEY = "notification_time_key";
     String ADDITIONAL_NOTIFICATION_KEY = "additional_notification_key";
@@ -37,7 +41,6 @@ public interface Constants {
     String DISPLAYED_AGE_KEY = "displayed_age_key";
 
     // Intents
-    String TIME_STAMP = "TIME_STAMP";
     String TYPE_EMAIL = "message/rfc822";
     String MAILTO = "mailto:";
     String TYPE_SMS = "vnd.android-dir/mms-sms";

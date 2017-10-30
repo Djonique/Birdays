@@ -25,20 +25,23 @@ import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AlarmSetter extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        DbHelper dbHelper = new DbHelper(context);
+        if (Objects.equals(intent.getAction(), Intent.ACTION_BOOT_COMPLETED)) {
+            DbHelper dbHelper = new DbHelper(context);
 
-        AlarmHelper alarmHelper = new AlarmHelper(context);
+            AlarmHelper alarmHelper = new AlarmHelper(context);
 
-        List<Person> persons = new ArrayList<>();
-        persons.addAll(dbHelper.query().getPersons());
+            List<Person> persons = new ArrayList<>();
+            persons.addAll(dbHelper.query().getPersons());
 
-        for (Person person : persons) {
-            alarmHelper.setAlarms(person);
+            for (Person person : persons) {
+                alarmHelper.setAlarms(person);
+            }
         }
     }
 }
