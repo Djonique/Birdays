@@ -48,6 +48,10 @@ public class AlarmHelper {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
+    /**
+     * Set up both alarms main and additional
+     */
+
     public void setAlarms(Person person) {
         try {
             setAlarm(person);
@@ -59,6 +63,10 @@ public class AlarmHelper {
             Toast.makeText(context, R.string.security_exception, Toast.LENGTH_LONG).show();
         }
     }
+
+    /**
+     * Set up main alarm
+     */
 
     private void setAlarm(Person person) {
         Intent intent = new Intent(context, AlarmReceiver.class);
@@ -74,12 +82,16 @@ public class AlarmHelper {
         setAlarmDependingOnApi(alarmManager, triggerAtMillis, pendingIntent);
     }
 
+    /**
+     * Set up additional alarm
+     */
+
     private void setAdditionalAlarm(Person person) {
         additionalNotificationOffset = Long.parseLong(preferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
 
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(Constants.NAME, person.getName());
-        intent.putExtra(Constants.WHEN, setDelayText(additionalNotificationOffset));
+        intent.putExtra(Constants.WHEN, setWhen(additionalNotificationOffset));
         intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
 
         long triggerAtMillis = setupCalendarYear(person, additionalNotificationOffset);
@@ -92,7 +104,10 @@ public class AlarmHelper {
         setAlarmDependingOnApi(alarmManager, triggerAtMillis, pendingIntent);
     }
 
-    // Sets correct alarm for API 19 (without delay) and API 23 with Doze mode
+    /**
+     * Set up correct alarm for Android API 19 (without delay) and Android API 23+ with Doze
+     */
+
     private void setAlarmDependingOnApi(AlarmManager alarmManager,
                                         long triggerAtMillis,
                                         PendingIntent pendingIntent) {
@@ -105,18 +120,25 @@ public class AlarmHelper {
         }
     }
 
-    // Configures text for notification
-    private String setDelayText(long offset) {
+    /**
+     * Configures text for additional notification
+     */
+
+    private String setWhen(long offset) {
         String[] dates = context.getResources().getStringArray(R.array.additional_notification_delay);
         String[] entryValues = context.getResources().getStringArray(R.array.additional_notification_entry_values);
-        String greetings = null;
+        String when = null;
         for (int i = 1; i < entryValues.length; i++) {
             if (offset == Long.parseLong(entryValues[i])) {
-                greetings = dates[i];
+                when = dates[i];
             }
         }
-        return greetings;
+        return when;
     }
+
+    /**
+     * Removes all alarms
+     */
 
     public void removeAlarms(long timeStamp) {
         removeAlarm(timeStamp);
@@ -126,6 +148,10 @@ public class AlarmHelper {
         }
     }
 
+    /**
+     * Removes main alarm
+     */
+
     private void removeAlarm(long timeStamp) {
         Intent intent = new Intent(context, AlarmReceiver.class);
 
@@ -134,6 +160,10 @@ public class AlarmHelper {
 
         alarmManager.cancel(pendingIntent);
     }
+
+    /**
+     * Removes additional alarm
+     */
 
     private void removeAdditionalAlarm(long timeStamp) {
         Intent intent = new Intent(context, AlarmReceiver.class);
@@ -146,13 +176,16 @@ public class AlarmHelper {
         alarmManager.cancel(pendingIntent);
     }
 
+    /**
+     * Set up time for triggering alarm
+     */
+
     private long setupCalendarYear(Person person, long offset) {
         long now = Calendar.getInstance().getTimeInMillis();
         long notificationTime = preferences.getLong(Constants.NOTIFICATION_TIME_KEY, defaultNotificationTime);
         Calendar notificationTimeCalendar = Calendar.getInstance();
         notificationTimeCalendar.setTimeInMillis(notificationTime);
 
-        // Notification time setup
         int hour = notificationTimeCalendar.get(Calendar.HOUR_OF_DAY);
         int minutes = notificationTimeCalendar.get(Calendar.MINUTE);
 

@@ -89,6 +89,7 @@
 
     <!-- Alarm -->
     <string name="security_exception">SecurityException, Samsung devices restrict the number of alarms you can register</string>
+    <string name="channel_name">Birthdays</string>
 
     <!-- Zodiac signs -->
     <string name="aries">Aries</string>

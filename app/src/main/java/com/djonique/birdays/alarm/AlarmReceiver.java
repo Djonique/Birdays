@@ -26,10 +26,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
-import android.os.FileUriExposedException;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
@@ -41,74 +39,119 @@ import com.djonique.birdays.utils.Constants;
 public class AlarmReceiver extends BroadcastReceiver {
 
     private static final String CHANNEL_ID = "com.djonique.birdays";
-    private static final String CHANNEL_NAME = "Birthday channel";
 
-    private NotificationManager notificationManager;
+    private NotificationManager manager;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        notificationManager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+        manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String ringtone = preferences.getString(Constants.RINGTONE_KEY,
-                Settings.System.DEFAULT_NOTIFICATION_URI.toString());
-        Uri ringtoneUri = Uri.parse(ringtone);
-
+        // Extras from intent
         String name = intent.getStringExtra(Constants.NAME);
         String when = intent.getStringExtra(Constants.WHEN);
         long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
 
-        Intent resultIntent = new Intent(context, DetailActivity.class);
-        resultIntent.putExtra(Constants.TIME_STAMP, timeStamp);
-
-        if (BirdaysApplication.isActivityVisible()) {
-            resultIntent = intent;
-        }
-
-        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
         PendingIntent pendingIntent = TaskStackBuilder.create(context)
-                .addNextIntentWithParentStack(resultIntent)
+                .addNextIntentWithParentStack(getResultIntent(context, timeStamp, intent))
                 .getPendingIntent(((int) timeStamp), PendingIntent.FLAG_UPDATE_CURRENT);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel();
-        }
+        createNotificationChannel(context);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID);
-        builder.setContentTitle(context.getString(R.string.app_name));
-        builder.setContentText(name);
-        builder.setContentInfo(when);
-        builder.setSmallIcon(R.drawable.ic_notification);
-        builder.setCategory(NotificationCompat.CATEGORY_EVENT);
-        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        try {
-            builder.setDefaults(NotificationCompat.DEFAULT_VIBRATE | NotificationCompat.DEFAULT_LIGHTS);
-            builder.setSound(ringtoneUri);
-        } catch (FileUriExposedException e) {
-            builder.setDefaults(NotificationCompat.DEFAULT_ALL);
-        }
+        NotificationCompat.Builder builder = buildNotification(context, name, when);
+
+        setDefaultsAndRingtone(builder, getRingtoneUri(context));
+
         builder.setContentIntent(pendingIntent);
 
         Notification notification = builder.build();
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
-        if (notificationManager != null) {
-            notificationManager.notify((int) timeStamp, notification);
+        if (manager != null) {
+            manager.notify((int) timeStamp, notification);
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void createNotificationChannel() {
-        NotificationChannel channel;
-        channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
-        channel.enableLights(true);
-        channel.enableVibration(true);
-        channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-        if (notificationManager != null) {
-            notificationManager.createNotificationChannel(channel);
+    /**
+     * Creates intent to open DetailActivity on notification click
+     */
+
+    private Intent getResultIntent(Context context, long timeStamp, Intent intent) {
+        Intent resultIntent = new Intent(context, DetailActivity.class);
+        resultIntent.putExtra(Constants.TIME_STAMP, timeStamp);
+        if (BirdaysApplication.isActivityVisible()) {
+            resultIntent = intent;
         }
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        return resultIntent;
+    }
+
+    /**
+     * Creates notification channel for Android API 26+
+     */
+
+    private void createNotificationChannel(Context context) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
+                    context.getString(R.string.channel_name), NotificationManager.IMPORTANCE_HIGH);
+            channel.enableLights(true);
+            channel.enableVibration(true);
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+            if (manager != null) {
+                manager.createNotificationChannel(channel);
+            }
+        }
+    }
+
+    /**
+     * Builds default notification
+     */
+
+    private NotificationCompat.Builder buildNotification(Context context, String title, String text) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID);
+        builder.setContentTitle(title);
+        builder.setContentText(text);
+        builder.setSmallIcon(R.drawable.ic_notification);
+        builder.setColor(context.getResources().getColor(R.color.accent_green_200));
+        builder.setCategory(NotificationCompat.CATEGORY_EVENT);
+        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+        return builder;
+    }
+
+    /**
+     * Avoids FileUriExposedException on Android API 24+
+     */
+
+    private void setDefaultsAndRingtone(NotificationCompat.Builder builder, Uri ringtoneUri) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            try {
+                setRingtone(builder, ringtoneUri);
+            } catch (Exception e) {
+                builder.setDefaults(NotificationCompat.DEFAULT_ALL);
+            }
+        } else {
+            setRingtone(builder, ringtoneUri);
+        }
+    }
+
+    /**
+     * Set up notification tone, vibration and lights for notification
+     */
+
+    private void setRingtone(NotificationCompat.Builder builder, Uri ringtoneUri) {
+        builder.setDefaults(NotificationCompat.DEFAULT_VIBRATE | NotificationCompat.DEFAULT_LIGHTS);
+        builder.setSound(ringtoneUri);
+    }
+
+    /**
+     * Returns URI for picked in the settings notification tone
+     */
+
+    private Uri getRingtoneUri(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String ringtone = preferences.getString(Constants.RINGTONE_KEY,
+                Settings.System.DEFAULT_NOTIFICATION_URI.toString());
+        return Uri.parse(ringtone);
     }
 }

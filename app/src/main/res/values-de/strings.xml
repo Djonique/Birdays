@@ -85,6 +85,7 @@
 
     <!-- Alarm -->
     <string name="security_exception">Sicherheitsbeschränkung, Samsung-Geräte erlauben nur eine begrenzte Anzahl Alarme</string>
+    <string name="channel_name">Geburtstage</string>
 
     <!-- Zodiac signs -->
     <string name="aries">Widder</string>

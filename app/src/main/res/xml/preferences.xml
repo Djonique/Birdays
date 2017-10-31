@@ -41,7 +41,7 @@
         <RingtonePreference
             android:dependency="@string/notifications_key"
             android:key="@string/ringtone_key"
-            android:ringtoneType="notification"
+            android:ringtoneType="notification|ringtone"
             android:showDefault="true"
             android:showSilent="true"
             android:summary="@string/ringtone_summary"

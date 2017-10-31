@@ -85,6 +85,7 @@
 
     <!-- Alarm -->
     <string name="security_exception">SecurityException, на устройствах Samsung установлено ограничение в 500 отложенных уведомлений</string>
+    <string name="channel_name">Дни рождения</string>
 
     <!-- Zodiac signs -->
     <string name="aries">Овен</string>
