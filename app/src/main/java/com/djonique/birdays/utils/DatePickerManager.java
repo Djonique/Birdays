@@ -17,6 +17,7 @@
 package com.djonique.birdays.utils;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -30,15 +31,18 @@ public class DatePickerManager {
 
     private Activity activity;
     private Calendar calendar;
+    private SharedPreferences preferences;
 
     public DatePickerManager(Activity activity, Calendar calendar) {
         this.activity = activity;
         this.calendar = calendar;
+        preferences = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
     /**
      * Shows material calendar on API 24 devices instead of spinner
      */
+
     public void showDialog(DatePickerDialog.OnDateSetListener androidCallback,
                            com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener libCallback) {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
@@ -51,9 +55,11 @@ public class DatePickerManager {
     /**
      * Configures android DatePickerDialog
      */
+
     private void showDatePickerDialog(DatePickerDialog.OnDateSetListener callback) {
         android.app.DatePickerDialog datePickerDialog = new android.app.DatePickerDialog(
                 activity,
+                setTheme(isNightMode()),
                 callback,
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
@@ -64,6 +70,7 @@ public class DatePickerManager {
     /**
      * Configures DatePickerDialog by Wouter Dullaert
      */
+
     private void showMdtpDialog(com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener callback) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd =
@@ -75,5 +82,21 @@ public class DatePickerManager {
                 );
         dpd.setThemeDark(preferences.getBoolean(Constants.NIGHT_MODE_KEY, false));
         dpd.show(activity.getFragmentManager(), DATE_PICKER_FRAGMENT_TAG);
+    }
+
+    /**
+     * Set correct theme for day/night modes
+     */
+
+    private int setTheme(boolean nightMode) {
+        if (nightMode) {
+            return AlertDialog.THEME_HOLO_DARK;
+        } else {
+            return AlertDialog.THEME_HOLO_LIGHT;
+        }
+    }
+
+    private boolean isNightMode() {
+        return preferences.getBoolean(Constants.NIGHT_MODE_KEY, false);
     }
 }
