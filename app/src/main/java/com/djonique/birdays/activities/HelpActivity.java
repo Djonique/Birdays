@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -115,7 +116,7 @@ public class HelpActivity extends AppCompatActivity {
                 });
         snackbar.setActionTextColor(Color.WHITE);
         View snackbarView = snackbar.getView();
-        snackbarView.setBackgroundColor(getResources().getColor(R.color.snackbar_alert));
+        snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.snackbar_alert));
         TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setAllCaps(true);
         snackbar.show();
