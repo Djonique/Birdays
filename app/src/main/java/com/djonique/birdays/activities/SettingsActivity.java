@@ -170,7 +170,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == FILE_MANAGER && resultCode == RESULT_OK) {
-            new RecoverHelper(this).recoverRecords(data.getData().getPath());
+            new RecoverHelper(this).recoverRecords(this, data.getData());
         }
     }
 
@@ -405,7 +405,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
             if (requestCode == FILE_MANAGER && resultCode == RESULT_OK) {
-                new RecoverHelper(getActivity()).recoverRecords(data.getData().getPath());
+                new RecoverHelper(getActivity()).recoverRecords(getActivity(), data.getData());
             }
         }
 

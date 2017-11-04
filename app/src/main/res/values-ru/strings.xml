@@ -55,7 +55,7 @@
     <string name="action_delete">Удалить</string>
 
     <!-- NewPersonDialogFragment -->
-    <string name="add_new_record">Новая запись</string>
+    <string name="new_record">Новая запись</string>
     <string name="add_from_contacts">Добавить из контактов</string>
     <string name="open_contacts_error">Это действие выполнить невозможно из-за особенностей устройства</string>
     <string name="name">Имя</string>
@@ -68,7 +68,7 @@
     <string name="record_added">Запись добавлена</string>
 
     <!-- DetailActivity -->
-    <string name="date">День рождения</string>
+    <string name="birthday">День рождения</string>
     <string name="days_left">Дней осталось</string>
     <string name="today">Сегодня</string>
     <string name="days_since_birth">Дней с момента рождения</string>
@@ -145,7 +145,7 @@
     <string name="exporting_records">Экспортирование…</string>
     <string name="backup_finished">Резервное копирование завершено, XML-файл находится в\u0020</string>
     <string name="recover_records">Восстановить записи (Beta)</string>
-    <string name="recover_records_summary">Выберите XML-файл с резервной копией во внешнем хранилище</string>
+    <string name="recover_records_summary">Выберите XML-файл с резервной копией</string>
     <string name="recover_records_error">Невозможно выполнить действие, пожалуйста, установите диспетчер файлов</string>
     <string name="records_recovered">Записи восстановлены</string>
     <!-- General -->

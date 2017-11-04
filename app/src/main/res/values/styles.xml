@@ -102,13 +102,13 @@
 
     <style name="materialRL">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/default_layout_height</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/default_padding</item>
     </style>
 
     <style name="contactsInfoRL">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/default_layout_height</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingBottom">@dimen/default_padding</item>
         <item name="android:paddingTop">@dimen/default_padding</item>
     </style>

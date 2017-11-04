@@ -23,6 +23,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -217,14 +218,14 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         boolean today = daysLeft.equals(context.getString(R.string.today));
         if (Utils.isBirthdayPassed(date)) {
             textView.setVisibility(View.GONE);
-            cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cardview_background));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardview_background));
         } else {
             textView.setVisibility(View.VISIBLE);
             if (today) {
-                cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cardview_birthday));
+                cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardview_birthday));
                 textView.setText(context.getString(R.string.today));
             } else {
-                cardView.setCardBackgroundColor(context.getResources().getColor(R.color.cardview_background));
+                cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardview_background));
                 String summary = context.getString(R.string.days_left) + ": " + daysLeft;
                 textView.setText(summary);
             }

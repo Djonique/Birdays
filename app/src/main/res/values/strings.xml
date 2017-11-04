@@ -57,7 +57,7 @@
     <string name="action_delete">Delete</string>
 
     <!-- NewPersonDialogFragment -->
-    <string name="add_new_record">New record</string>
+    <string name="new_record">New record</string>
     <string name="add_from_contacts">Add from contacts</string>
     <string name="open_contacts_error">Unable to perform action due to device features</string>
     <string name="name">Name</string>
@@ -72,7 +72,7 @@
     <string name="record_added">Record added</string>
 
     <!-- DetailActivity -->
-    <string name="date">Birthday</string>
+    <string name="birthday">Birthday</string>
     <string name="days_left">Days until next birthday</string>
     <string name="today">Today</string>
     <string name="days_since_birth">Days since birth</string>
@@ -178,7 +178,7 @@
     <string name="exporting_records">Exporting records…</string>
     <string name="backup_finished">Backup finished, XML file in the\u0020</string>
     <string name="recover_records">Recover records (Beta)</string>
-    <string name="recover_records_summary">Choose the XML file with backup in external storage</string>
+    <string name="recover_records_summary">Choose the XML file with backup</string>
     <string name="recover_records_error">Unable to perform action, please install file manager</string>
     <string name="records_recovered">Records recovered</string>
     <!-- General -->

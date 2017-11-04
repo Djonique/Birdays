@@ -55,7 +55,7 @@
     <string name="action_delete">Löschen</string>
 
     <!-- NewPersonDialogFragment -->
-    <string name="add_new_record">Neuer Eintrag</string>
+    <string name="new_record">Neuer Eintrag</string>
     <string name="add_from_contacts">Aus Kontakten hinzufügen</string>
     <string name="open_contacts_error">Aktion kann wegen Geräteeigenschaften nicht ausgeführt werden</string>
     <string name="name">Name</string>
@@ -68,7 +68,7 @@
     <string name="record_added">Eintrag hinzugefügt</string>
 
     <!-- DetailActivity -->
-    <string name="date">Geburtstag</string>
+    <string name="birthday">Geburtstag</string>
     <string name="days_left">Tage bis zum nächsten Geburtstag</string>
     <string name="today">Heute</string>
     <string name="days_since_birth">Tage seit der Geburt</string>

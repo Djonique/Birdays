@@ -19,7 +19,6 @@
 <resources>
     <!-- default dimens -->
     <dimen name="default_padding">16sp</dimen>
-    <dimen name="default_layout_height">72sp</dimen>
     <dimen name="default_left_margin_56sp">56sp</dimen>
     <dimen name="default_left_margin_72sp">72sp</dimen>
 

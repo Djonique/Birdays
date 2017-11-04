@@ -44,6 +44,7 @@ import java.util.List;
 
 public class ExportHelper {
 
+    // XML constants
     private static final String RECORDS = "records";
     private static final String PERSON = "person";
     private static final String NAME = "name";
@@ -54,6 +55,7 @@ public class ExportHelper {
     private static final String BACKUP = "backup";
     private static final String UTF_8 = "UTF-8";
 
+    // Exceptions constants
     private static final String ILLEGAL_ARGUMENT_EXCEPTION = "IllegalArgumentException";
     private static final String ILLEGAL_STATE_EXCEPTION = "IllegalStateException";
     private static final String IO_EXCEPTION = "IOException";

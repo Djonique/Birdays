@@ -55,7 +55,7 @@
     <string name="action_delete">Eliminar</string>
 
     <!-- NewPersonDialogFragment -->
-    <string name="add_new_record">Nueva entrada</string>
+    <string name="new_record">Nueva entrada</string>
     <string name="add_from_contacts">Añadir desde contactos</string>
     <string name="open_contacts_error">Es imposible realizar esta acción en este dispositivo</string>
     <string name="name">Nombre</string>
@@ -68,7 +68,7 @@
     <string name="record_added">Entrada añadida</string>
 
     <!-- DetailActivity -->
-    <string name="date">Cumpleaños</string>
+    <string name="birthday">Cumpleaños</string>
     <string name="days_left">Días hasta el próximo cumpleaños</string>
     <string name="today">Hoy</string>
     <string name="days_since_birth">Días desde su nacimiento</string>
@@ -145,7 +145,7 @@
     <string name="exporting_records">Exporting records…</string>
     <string name="backup_finished">Backup finished, XML file in the\u0020</string>
     <string name="recover_records">Recover records (Beta)</string>
-    <string name="recover_records_summary">Choose the XML file with backup in external storage</string>
+    <string name="recover_records_summary">Choose the XML file with backup</string>
     <string name="recover_records_error">Unable to perform action, please install file manager</string>
     <string name="records_recovered">Records recovered</string>
     <!-- General -->

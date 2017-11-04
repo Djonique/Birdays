@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/textview_famous_name"
         style="@style/Primary.TextView"
-        android:maxLines="1" />
+        android:maxLines="2" />
 
     <TextView
         android:id="@+id/textview_famous_date"

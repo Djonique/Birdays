@@ -94,7 +94,7 @@
                             <TextView
                                 style="@style/EditActivity.Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_date"
-                                android:text="@string/date" />
+                                android:text="@string/birthday" />
                         </RelativeLayout>
 
                         <!-- DaysLeft -->

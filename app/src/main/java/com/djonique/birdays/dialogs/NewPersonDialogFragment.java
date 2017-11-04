@@ -84,7 +84,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.add_new_record);
+        builder.setTitle(R.string.new_record);
 
         calendar = Calendar.getInstance();
         final Person person = new Person();

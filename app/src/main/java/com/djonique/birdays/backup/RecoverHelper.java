@@ -16,7 +16,12 @@
 
 package com.djonique.birdays.backup;
 
+import android.content.ContentUris;
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.widget.Toast;
 
 import com.djonique.birdays.R;
@@ -38,6 +43,7 @@ import java.util.List;
 
 public class RecoverHelper {
 
+    // XML constants
     private static final String PERSON = "person";
     private static final String NAME = "name";
     private static final String DATE = "date";
@@ -45,9 +51,17 @@ public class RecoverHelper {
     private static final String PHONE_NUMBER = "phone_number";
     private static final String EMAIL = "email";
 
+    // Exceptions constants
     private static final String XML_PULL_PARSER_EXCEPTION = "XmlPullParserException";
     private static final String FILE_NOT_FOUND_EXCEPTION = "FileNotFoundException";
     private static final String IO_EXCEPTION = "IOException";
+
+    // Path constants
+    private static final String PRIMARY = "primary";
+    private static final String CONTENT_DOWNLOADS = "content://downloads/public_downloads";
+    private static final String AUTHORITY_EXTERNAL_STORAGE = "com.android.externalstorage.documents";
+    private static final String AUTHORITY_DOWNLOADS = "com.android.providers.downloads.documents";
+    private static final String COLUMN_DATA = "_data";
 
     private Context context;
 
@@ -55,7 +69,9 @@ public class RecoverHelper {
         this.context = context;
     }
 
-    public void recoverRecords(String path) {
+    public void recoverRecords(Context context, Uri uri) {
+        String path = getPath(context, uri);
+        if (path == null) path = uri.getPath();
         XmlPullParserFactory pullParserFactory;
         try {
             pullParserFactory = XmlPullParserFactory.newInstance();
@@ -128,5 +144,47 @@ public class RecoverHelper {
         } catch (IOException e) {
             Toast.makeText(context, IO_EXCEPTION, Toast.LENGTH_LONG).show();
         }
+    }
+
+    private String getPath(Context context, Uri uri) {
+        if (isExternalStorageDocument(uri)) {
+            String docId = DocumentsContract.getDocumentId(uri);
+            String[] split = docId.split(":");
+            String type = split[0];
+
+            if (PRIMARY.equalsIgnoreCase(type)) {
+                return Environment.getExternalStorageDirectory() + "/" + split[1];
+            }
+        } else if (isDownloadsDocument(uri)) {
+            String id = DocumentsContract.getDocumentId(uri);
+            Uri contentUri = ContentUris.withAppendedId(Uri.parse(CONTENT_DOWNLOADS), Long.valueOf(id));
+            return getDataColumn(context, contentUri);
+        }
+        return null;
+    }
+
+    private boolean isExternalStorageDocument(Uri uri) {
+        return uri.getAuthority().equals(AUTHORITY_EXTERNAL_STORAGE);
+    }
+
+    private boolean isDownloadsDocument(Uri uri) {
+        return uri.getAuthority().equals(AUTHORITY_DOWNLOADS);
+    }
+
+    private String getDataColumn(Context context, Uri uri) {
+        Cursor cursor = null;
+        String column = COLUMN_DATA;
+        String[] projection = {column};
+        try {
+            cursor = context.getContentResolver().query(uri, projection, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                int index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
     }
 }

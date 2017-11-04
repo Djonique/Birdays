@@ -38,7 +38,7 @@
     <TextView
         android:id="@+id/textview_all_name"
         style="@style/Material.Primary.TextView"
-        android:maxLines="1" />
+        android:maxLines="2" />
 
     <TextView
         android:id="@+id/textview_all_date"
