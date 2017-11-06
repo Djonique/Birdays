@@ -45,7 +45,7 @@ public class Ad {
     }
 
     /**
-     * Sets up bottom padding of view under AdMob banner
+     * Set up bottom padding of view under AdMob banner
      */
     private static void setupContentViewPadding(View view, int padding) {
         view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(),

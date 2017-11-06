@@ -111,8 +111,8 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
+                Intent intent = new Intent(context, DetailActivity.class)
+                        .putExtra(Constants.TIME_STAMP, person.getTimeStamp());
                 context.startActivity(intent);
                 if (context instanceof MainActivity) {
                     ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
@@ -126,10 +126,10 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                 @Override
                 public void onClick(View v) {
                     mFirebaseAnalytics.logEvent(Constants.SEND_EMAIL, new Bundle());
-                    Intent intent = new Intent(Intent.ACTION_SENDTO);
-                    intent.setType(Constants.TYPE_EMAIL);
-                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                    intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.happy_birthday));
+                    Intent intent = new Intent(Intent.ACTION_SENDTO)
+                            .setType(Constants.TYPE_EMAIL)
+                            .putExtra(Intent.EXTRA_EMAIL, new String[]{email})
+                            .putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.happy_birthday));
                     intent.setData(Uri.parse(Constants.MAILTO + email));
                     context.startActivity(Intent.createChooser(intent, null));
                 }
@@ -154,10 +154,10 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                 @Override
                 public void onClick(View v) {
                     mFirebaseAnalytics.logEvent(Constants.SEND_MESSAGE, new Bundle());
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setType(Constants.TYPE_SMS);
-                    intent.putExtra(Constants.ADDRESS, phoneNumber);
-                    intent.setData(Uri.parse(Constants.SMSTO + phoneNumber));
+                    Intent intent = new Intent(Intent.ACTION_VIEW)
+                            .setType(Constants.TYPE_SMS)
+                            .putExtra(Constants.ADDRESS, phoneNumber)
+                            .setData(Uri.parse(Constants.SMSTO + phoneNumber));
                     context.startActivity(Intent.createChooser(intent, null));
                 }
             });
@@ -247,11 +247,8 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             tvAge = itemView.findViewById(R.id.textview_card_age);
             tvDaysLeft = itemView.findViewById(R.id.textview_card_left);
             btnEmail = itemView.findViewById(R.id.imagebutton_card_email);
-            btnEmail.setImageResource(R.drawable.ic_email_blue_green_24dp);
             btnChat = itemView.findViewById(R.id.imagebutton_card_chat);
-            btnChat.setImageResource(R.drawable.ic_chat_blue_green_24dp);
             btnCall = itemView.findViewById(R.id.imagebutton_card_call);
-            btnCall.setImageResource(R.drawable.ic_call_blue_green_24dp);
         }
     }
 }

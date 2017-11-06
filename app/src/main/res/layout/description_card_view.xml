@@ -17,6 +17,7 @@
 -->
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardview_card"
     style="@style/cardViewStyle">
 
@@ -72,7 +73,9 @@
             <ImageButton
                 android:id="@+id/imagebutton_card_email"
                 style="@style/cardImageButtonStyle"
-                android:contentDescription="@string/email" />
+                android:contentDescription="@string/email"
+                android:tint="@color/blue_to_green"
+                app:srcCompat="@drawable/ic_email_blue_24dp" />
 
             <!--Divider-->
             <View
@@ -83,7 +86,9 @@
             <ImageButton
                 android:id="@+id/imagebutton_card_chat"
                 style="@style/cardImageButtonStyle"
-                android:contentDescription="@string/chat" />
+                android:contentDescription="@string/chat"
+                android:tint="@color/blue_to_green"
+                app:srcCompat="@drawable/ic_chat_blue_24dp" />
 
             <!--Divider-->
             <View
@@ -94,7 +99,9 @@
             <ImageButton
                 android:id="@+id/imagebutton_card_call"
                 style="@style/cardImageButtonStyle"
-                android:contentDescription="@string/call" />
+                android:contentDescription="@string/call"
+                android:tint="@color/blue_to_green"
+                app:srcCompat="@drawable/ic_call_blue_24dp" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

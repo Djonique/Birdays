@@ -27,8 +27,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:tint="@color/blue_to_green"
         android:contentDescription="@string/add_from_contacts"
-        app:srcCompat="@drawable/ic_contacts_blue_green_24dp" />
+        app:srcCompat="@drawable/ic_contacts_blue_24dp" />
 
     <Button
         android:id="@+id/button_dialog_afc"

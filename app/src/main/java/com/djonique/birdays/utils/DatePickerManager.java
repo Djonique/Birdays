@@ -42,7 +42,6 @@ public class DatePickerManager {
     /**
      * Shows material calendar on API 24 devices instead of spinner
      */
-
     public void showDialog(DatePickerDialog.OnDateSetListener androidCallback,
                            com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener libCallback) {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
@@ -55,7 +54,6 @@ public class DatePickerManager {
     /**
      * Configures android DatePickerDialog
      */
-
     private void showDatePickerDialog(DatePickerDialog.OnDateSetListener callback) {
         android.app.DatePickerDialog datePickerDialog = new android.app.DatePickerDialog(
                 activity,
@@ -70,7 +68,6 @@ public class DatePickerManager {
     /**
      * Configures DatePickerDialog by Wouter Dullaert
      */
-
     private void showMdtpDialog(com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener callback) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog dpd =
@@ -87,7 +84,6 @@ public class DatePickerManager {
     /**
      * Set correct theme for day/night modes
      */
-
     private int setTheme(boolean nightMode) {
         if (nightMode) {
             return AlertDialog.THEME_HOLO_DARK;

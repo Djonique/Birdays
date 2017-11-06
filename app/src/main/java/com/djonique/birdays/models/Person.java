@@ -25,18 +25,24 @@ public class Person implements Item {
     private long date, timeStamp;
     private boolean yearUnknown;
 
-    // Default constructor
+    /**
+     * Default constructor
+     */
     public Person() {
         this.timeStamp = new Date().getTime();
     }
 
-    // Constructor for database with famous persons
+    /**
+     * Constructor for database with famous persons
+     */
     public Person(String name, long date) {
         this.name = name;
         this.date = date;
     }
 
-    // Constructor for importing from Contacts
+    /**
+     * Constructor for importing from Contacts
+     */
     public Person(String name, long date, boolean yearUnknown, String phoneNumber, String email) {
         this.name = name;
         this.date = date;
@@ -46,7 +52,9 @@ public class Person implements Item {
         this.timeStamp = new Date().getTime();
     }
 
-    // Constructor for DbQueryManager
+    /**
+     * Constructor for DbQueryManager
+     */
     public Person(String name, long date, boolean yearUnknown, String phoneNumber, String email,
                   long timeStamp) {
         this.name = name;

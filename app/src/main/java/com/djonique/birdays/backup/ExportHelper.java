@@ -99,7 +99,7 @@ public class ExportHelper {
                 xmlSerializer.startTag(null, DATE);
                 xmlSerializer.text(String.valueOf(person.getDate()));
                 xmlSerializer.endTag(null, DATE);
-                // unknown year
+                // year unknown
                 xmlSerializer.startTag(null, YEAR_UNKNOWN);
                 xmlSerializer.text(String.valueOf(person.isYearUnknown()));
                 xmlSerializer.endTag(null, YEAR_UNKNOWN);

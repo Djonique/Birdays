@@ -75,7 +75,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Creates intent to open DetailActivity on notification click
      */
-
     private Intent getResultIntent(Context context, long timeStamp, Intent intent) {
         Intent resultIntent = new Intent(context, DetailActivity.class);
         resultIntent.putExtra(Constants.TIME_STAMP, timeStamp);
@@ -89,7 +88,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Creates notification channel for Android API 26+
      */
-
     private void createNotificationChannel(Context context) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
@@ -106,7 +104,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Builds default notification
      */
-
     private NotificationCompat.Builder buildNotification(Context context, String title, String text) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID);
         builder.setContentTitle(title);
@@ -122,7 +119,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Avoids FileUriExposedException on Android API 24+
      */
-
     private void setDefaultsAndRingtone(NotificationCompat.Builder builder, Uri ringtoneUri) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             try {
@@ -138,7 +134,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Set up notification tone, vibration and lights for notification
      */
-
     private void setRingtone(NotificationCompat.Builder builder, Uri ringtoneUri) {
         builder.setDefaults(NotificationCompat.DEFAULT_VIBRATE | NotificationCompat.DEFAULT_LIGHTS);
         builder.setSound(ringtoneUri);
@@ -147,7 +142,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Returns URI for picked in the settings notification tone
      */
-
     private Uri getRingtoneUri(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String ringtone = preferences.getString(Constants.RINGTONE_KEY,

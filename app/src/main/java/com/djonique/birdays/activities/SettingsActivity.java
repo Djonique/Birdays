@@ -194,7 +194,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
             /*
-            * Sets summary for additional notification
+            * Set summary for additional notification
             */
             findPreference(Constants.ADDITIONAL_NOTIFICATION_KEY).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
@@ -206,7 +206,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             });
 
             /*
-            * Sets summary for ringtone
+            * Set summary for ringtone
             */
             Preference ringtonePreference = findPreference(Constants.RINGTONE_KEY);
             try {

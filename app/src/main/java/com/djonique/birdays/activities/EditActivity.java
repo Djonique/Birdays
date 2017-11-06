@@ -120,7 +120,7 @@ public class EditActivity extends AppCompatActivity implements
     }
 
     /**
-     * Sets up UI depending on person's data
+     * Set up UI depending on person's data
      */
     private void setupUI() {
         etName.setText(person.getName());

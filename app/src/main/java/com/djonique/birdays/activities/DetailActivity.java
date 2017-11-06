@@ -193,7 +193,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     /**
-     * Sets up UI depending on person's data
+     * Set up UI depending on person's data
      */
     private void setupUI() {
         setSeasonImage();
@@ -260,7 +260,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     /**
-     * Sets up image depending on month
+     * Set up image depending on month
      */
     private void setSeasonImage() {
         Calendar calendar = Calendar.getInstance();
@@ -324,21 +324,21 @@ public class DetailActivity extends AppCompatActivity {
     @OnClick(R.id.imagebutton_detail_chat)
     void sendMessage() {
         mFirebaseAnalytics.logEvent(Constants.SEND_MESSAGE, new Bundle());
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setType(Constants.TYPE_SMS);
-        intent.putExtra(Constants.ADDRESS, phoneNumber);
-        intent.setData(Uri.parse(Constants.SMSTO + phoneNumber));
+        Intent intent = new Intent(Intent.ACTION_VIEW)
+                .setType(Constants.TYPE_SMS)
+                .putExtra(Constants.ADDRESS, phoneNumber)
+                .setData(Uri.parse(Constants.SMSTO + phoneNumber));
         startActivity(Intent.createChooser(intent, null));
     }
 
     @OnClick(R.id.imagebutton_detail_email)
     void sendEmail() {
         mFirebaseAnalytics.logEvent(Constants.SEND_EMAIL, new Bundle());
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setType(Constants.TYPE_EMAIL);
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.happy_birthday));
-        intent.setData(Uri.parse(Constants.MAILTO + email));
+        Intent intent = new Intent(Intent.ACTION_SENDTO)
+                .setType(Constants.TYPE_EMAIL)
+                .putExtra(Intent.EXTRA_EMAIL, new String[]{email})
+                .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.happy_birthday))
+                .setData(Uri.parse(Constants.MAILTO + email));
         startActivity(Intent.createChooser(intent, null));
     }
 }
