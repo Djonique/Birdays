@@ -46,8 +46,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/edit_image_padding"
                     android:layout_marginStart="@dimen/edit_image_padding"
-                    android:tint="@color/blue_to_green"
                     android:contentDescription="@string/calendar"
+                    android:tint="@color/blue_to_green"
                     app:srcCompat="@drawable/ic_person_blue_24dp" />
 
                 <android.support.design.widget.TextInputLayout
@@ -78,8 +78,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/edit_image_padding"
                     android:layout_marginStart="@dimen/edit_image_padding"
-                    android:tint="@color/blue_to_green"
                     android:contentDescription="@string/calendar"
+                    android:tint="@color/blue_to_green"
                     app:srcCompat="@drawable/ic_calendar_blue_24dp" />
 
                 <android.support.design.widget.TextInputLayout
@@ -129,6 +129,7 @@
                     android:layout_marginLeft="@dimen/edit_image_padding"
                     android:layout_marginStart="@dimen/edit_image_padding"
                     android:contentDescription="@string/phone_number"
+                    android:tint="@color/blue_to_green"
                     app:srcCompat="@drawable/ic_call_blue_24dp" />
 
                 <android.support.design.widget.TextInputLayout
@@ -159,6 +160,7 @@
                     android:layout_marginLeft="@dimen/edit_image_padding"
                     android:layout_marginStart="@dimen/edit_image_padding"
                     android:contentDescription="@string/email"
+                    android:tint="@color/blue_to_green"
                     app:srcCompat="@drawable/ic_email_blue_24dp" />
 
                 <android.support.design.widget.TextInputLayout
