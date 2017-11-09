@@ -135,6 +135,6 @@ public class Person implements Item {
             return false;
         }
         Person person = (Person) obj;
-        return this.name.equalsIgnoreCase(person.name);
+        return name.equalsIgnoreCase(person.getName());
     }
 }

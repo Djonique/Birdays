@@ -21,6 +21,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -100,12 +101,12 @@ public class DetailActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     private FirebaseAnalytics mFirebaseAnalytics;
+    private InterstitialAd mInterstitialAd;
     private DbHelper dbHelper;
     private Person person;
     private long timeStamp, date;
     private String phoneNumber, email, displayedAge;
     private boolean yearUnknown;
-    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,21 +115,26 @@ public class DetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean adEnabled = preferences.getBoolean(getString(R.string.ad_interstitial_key), true);
+        displayedAge = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
+
+        /*
+        * Interstitial doesn't work on Android API 26+
+        * java.lang.IllegalStateException: Only fullscreen activities can request orientation
+        */
         mInterstitialAd = new InterstitialAd(this);
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.ad_interstitial_key), true)) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O && adEnabled) {
             mInterstitialAd.setAdUnitId(BuildConfig.INTERSTITIAL_AD_ID);
             mInterstitialAd.loadAd(new AdRequest.Builder().build());
         }
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        displayedAge = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
+        dbHelper = new DbHelper(this);
 
         Utils.setupDayNightTheme(preferences);
 
         Intent intent = getIntent();
         timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
-
-        dbHelper = new DbHelper(this);
         person = dbHelper.query().getPerson(timeStamp);
         date = person.getDate();
         yearUnknown = person.isYearUnknown();

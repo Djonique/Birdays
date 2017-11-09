@@ -198,7 +198,7 @@ public class ContactsHelper {
             List<Person> contacts = getAllContactsWithBirthdays(contentResolver);
 
             for (Person person : contacts) {
-                if (!Utils.isPersonAlreadyInDB(person, dbPersons)) {
+                if (!Utils.isPersonAlreadyInDb(person, dbPersons)) {
                     dbHelper.addRecord(person);
                     alarmHelper.setAlarms(person);
                 }

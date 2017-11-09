@@ -307,7 +307,7 @@ public class Utils {
     /**
      * Checks if person with the same name already exists in database
      */
-    public static boolean isPersonAlreadyInDB(Person person, List<Person> list) {
+    public static boolean isPersonAlreadyInDb(Person person, List<Person> list) {
         boolean found = false;
         for (Person dbPerson : list) {
             if (person.equals(dbPerson)) {
