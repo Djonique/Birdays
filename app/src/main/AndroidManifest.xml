@@ -117,7 +117,7 @@
         </receiver>
 
         <!-- BirdaysWidget -->
-        <!--<receiver
+        <receiver
             android:name=".widget.BirdaysWidget"
             android:label="@string/app_name">
             <intent-filter>
@@ -126,6 +126,6 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget" />
-        </receiver>-->
+        </receiver>
     </application>
 </manifest>

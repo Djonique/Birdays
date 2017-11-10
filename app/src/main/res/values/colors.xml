@@ -37,6 +37,7 @@
     <color name="cardview_background">@color/cardview_light_background</color>
     <color name="cardview_birthday">#EF9A9A</color>
     <color name="snackbar_alert">#EF5350</color>
+    <color name="widget_highlight">#EF5350</color>
 
     <!-- age colors -->
     <color name="age1">#F06292</color>

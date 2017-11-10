@@ -173,4 +173,11 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingBottom">@dimen/licenses_text_view_bottom_padding</item>
     </style>
+
+    <style name="WidgetTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/widget_text_size</item>
+    </style>
 </resources>
