@@ -16,6 +16,7 @@
 
 package com.djonique.birdays.alarm;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -59,7 +60,14 @@ public class AlarmHelper {
                 setAdditionalAlarm(person);
             }
         } catch (SecurityException e) {
-            Toast.makeText(context, R.string.security_exception, Toast.LENGTH_LONG).show();
+            if (context instanceof Activity) {
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(context, R.string.security_exception, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
         }
     }
 

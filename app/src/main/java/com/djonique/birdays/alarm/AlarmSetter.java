@@ -19,7 +19,9 @@ package com.djonique.birdays.alarm;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
+import com.djonique.birdays.R;
 import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Person;
 
@@ -39,7 +41,11 @@ public class AlarmSetter extends BroadcastReceiver {
             persons.addAll(dbHelper.query().getPersons());
 
             for (Person person : persons) {
-                alarmHelper.setAlarms(person);
+                try {
+                    alarmHelper.setAlarms(person);
+                } catch (SecurityException e) {
+                    Toast.makeText(context, R.string.security_exception, Toast.LENGTH_LONG).show();
+                }
             }
         }
     }

@@ -138,7 +138,7 @@ public class HelpActivity extends AppCompatActivity {
     @OnClick(R.id.button_help_whitelist)
     void openBatteryOptimization() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            startActivity(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS));
+            startActivity(Intent.createChooser(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS), null));
         } else {
             Toast.makeText(this, R.string.help_whitelist_error, Toast.LENGTH_LONG).show();
         }
