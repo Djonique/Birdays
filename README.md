@@ -6,7 +6,9 @@ Serhii Ponomarenko (Ukrainian)
 Marc Sulser (Deutsch)
 
 Pablo Rodríguez (Spanish)
-## License 
+
+Dai Jia (Chinese simplified)
+## License
 ```
 Copyright 2017 Evgeny Timofeev
 
