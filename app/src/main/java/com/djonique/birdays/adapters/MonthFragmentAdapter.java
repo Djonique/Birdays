@@ -36,7 +36,6 @@ import android.widget.TextView;
 import com.djonique.birdays.R;
 import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.activities.MainActivity;
-import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
@@ -50,28 +49,26 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     private Context context;
     private SharedPreferences preferences;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private List<Item> items;
+    private List<Person> persons;
 
     public MonthFragmentAdapter() {
-        items = new ArrayList<>();
+        persons = new ArrayList<>();
     }
 
-    public Item getItem(int position) {
-        return items.get(position);
+    public Person getPerson(int position) {
+        return persons.get(position);
     }
 
-    public void addItem(Item item) {
-        Person person = (Person) item;
+    public void addPerson(Person person) {
         if (Utils.isCurrentMonth(person.getDate())) {
-            items.add(item);
+            persons.add(person);
             notifyItemInserted(getItemCount() - 1);
         }
     }
 
-    public void addItem(int location, Item item) {
-        Person person = (Person) item;
+    public void addPerson(int location, Person person) {
         if (Utils.isCurrentMonth(person.getDate())) {
-            items.add(location, item);
+            persons.add(location, person);
             notifyItemInserted(location);
         }
     }
@@ -88,8 +85,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
     @Override
     public void onBindViewHolder(final CardViewHolder holder, int position) {
-        final Item item = items.get(position);
-        final Person person = (Person) item;
+        final Person person = persons.get(position);
         long date = person.getDate();
         final String email = person.getEmail();
         final String phoneNumber = person.getPhoneNumber();
@@ -111,9 +107,8 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailActivity.class)
-                        .putExtra(Constants.TIME_STAMP, person.getTimeStamp());
-                context.startActivity(intent);
+                context.startActivity(new Intent(context, DetailActivity.class)
+                        .putExtra(Constants.TIME_STAMP, person.getTimeStamp()));
                 if (context instanceof MainActivity) {
                     ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
                 }
@@ -126,12 +121,11 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                 @Override
                 public void onClick(View v) {
                     mFirebaseAnalytics.logEvent(Constants.SEND_EMAIL, new Bundle());
-                    Intent intent = new Intent(Intent.ACTION_SENDTO)
+                    context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_SENDTO)
                             .setType(Constants.TYPE_EMAIL)
                             .putExtra(Intent.EXTRA_EMAIL, new String[]{email})
-                            .putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.happy_birthday));
-                    intent.setData(Uri.parse(Constants.MAILTO + email));
-                    context.startActivity(Intent.createChooser(intent, null));
+                            .putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.happy_birthday))
+                            .setData(Uri.parse(Constants.MAILTO + email)), null));
                 }
             });
         } else {
@@ -154,11 +148,10 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
                 @Override
                 public void onClick(View v) {
                     mFirebaseAnalytics.logEvent(Constants.SEND_MESSAGE, new Bundle());
-                    Intent intent = new Intent(Intent.ACTION_VIEW)
+                    context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW)
                             .setType(Constants.TYPE_SMS)
                             .putExtra(Constants.ADDRESS, phoneNumber)
-                            .setData(Uri.parse(Constants.SMSTO + phoneNumber));
-                    context.startActivity(Intent.createChooser(intent, null));
+                            .setData(Uri.parse(Constants.SMSTO + phoneNumber)), null));
                 }
             });
         } else {
@@ -169,16 +162,15 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return persons.size();
     }
 
     public void removePerson(long timeStamp) {
         for (int i = 0; i < getItemCount(); i++) {
-            Item item = getItem(i);
-            Person person = ((Person) item);
+            Person person = getPerson(i);
 
             if (person.getTimeStamp() == timeStamp) {
-                items.remove(i);
+                persons.remove(i);
                 notifyItemRemoved(i);
             }
         }
@@ -186,7 +178,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
     public void removeAllPersons() {
         if (getItemCount() != 0) {
-            items = new ArrayList<>();
+            persons = new ArrayList<>();
             notifyDataSetChanged();
         }
     }
@@ -215,13 +207,13 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
     private void changeCardViewBackgroundColor(long date, CardView cardView, TextView textView) {
         String daysLeft = Utils.daysLeft(context, date);
-        boolean today = daysLeft.equals(context.getString(R.string.today));
         if (Utils.isBirthdayPassed(date)) {
             textView.setVisibility(View.GONE);
             cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardview_background));
         } else {
             textView.setVisibility(View.VISIBLE);
-            if (today) {
+            String today = context.getString(R.string.today);
+            if (daysLeft.equals(today)) {
                 cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardview_birthday));
                 textView.setText(context.getString(R.string.today));
             } else {

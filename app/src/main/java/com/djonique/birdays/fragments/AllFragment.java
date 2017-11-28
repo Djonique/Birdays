@@ -35,11 +35,9 @@ import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.adapters.AllFragmentAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DbHelper;
-import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.models.Separator;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -55,8 +53,7 @@ public class AllFragment extends Fragment {
         super.onAttach(context);
         try {
             deletingRecordListener = (MainActivity) getActivity();
-        } catch (ClassCastException e) {
-            throw new ClassCastException();
+        } catch (ClassCastException ignored) {
         }
     }
 
@@ -67,21 +64,18 @@ public class AllFragment extends Fragment {
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
             addAllPersonsFromDb();
+            alarmHelper = new AlarmHelper(activity);
         }
-        alarmHelper = new AlarmHelper(getActivity());
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(manager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new AllFragmentAdapter(this);
         recyclerView.setAdapter(adapter);
-
         return view;
     }
 
@@ -89,22 +83,28 @@ public class AllFragment extends Fragment {
         int position = -1;
         Separator separator = null;
 
+        long newPersonDate = newPerson.getDate();
+        int newPersonMonth = newPerson.getMonth();
+        int newPersonDay = newPerson.getDay();
+
         for (int i = 0; i < adapter.getItemCount(); i++) {
             if (adapter.getItem(i).isPerson()) {
                 Person person = ((Person) adapter.getItem(i));
+                int month = person.getMonth();
+                int day = person.getDay();
 
-                if (newPerson.getMonth(newPerson.getDate()) < person.getMonth(person.getDate())) {
+                if (newPersonMonth < month) {
                     position = i;
                     break;
-                } else if (newPerson.getMonth(newPerson.getDate()) == person.getMonth(person.getDate())) {
-                    if (newPerson.getDay(newPerson.getDate()) <= person.getDay(person.getDate())) {
+                } else if (newPersonMonth == month) {
+                    if (newPersonDay <= day) {
                         // If date before
                         position = i;
                         break;
                     } else { // If date after
                         if (adapter.getItemCount() > (i + 1) && adapter.getItem(i + 1).isPerson()) { // If after person, not adapter
-                            Person person1 = ((Person) adapter.getItem(i + 1));
-                            if (newPerson.getDay(newPerson.getDate()) <= person1.getDay(person1.getDate())) {
+                            Person nextPerson = ((Person) adapter.getItem(i + 1));
+                            if (newPersonDay <= nextPerson.getDay()) {
                                 // If date before, else if date after - continue
                                 position = i + 1;
                                 break;
@@ -118,9 +118,9 @@ public class AllFragment extends Fragment {
             }
         }
 
-        if (newPerson.getDate() != 0) {
+        if (newPersonDate != 0) {
             Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(newPerson.getDate());
+            calendar.setTimeInMillis(newPersonDate);
 
             separator = getSeparator(newPerson);
         }
@@ -144,17 +144,16 @@ public class AllFragment extends Fragment {
 
     public void addAllPersonsFromDb() {
         adapter.removeAllPersons();
-        List<Person> persons = new ArrayList<>();
-        persons.addAll(activity.dbHelper.query().getPersons());
+        List<Person> persons = activity.dbHelper.query().getPersons();
 
-        for (int i = 0; i < persons.size(); i++) {
-            addPerson(persons.get(i), false);
+        for (Person person : persons) {
+            addPerson(person, false);
         }
     }
 
     private Separator getSeparator(Person person) {
         Separator separator = null;
-        switch (person.getMonth(person.getDate())) {
+        switch (person.getMonth()) {
             case Calendar.JANUARY:
                 if (!adapter.containsSeparatorJanuary) {
                     adapter.containsSeparatorJanuary = true;
@@ -234,67 +233,62 @@ public class AllFragment extends Fragment {
     public void removePersonDialog(final int location) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-        Item item = adapter.getItem(location);
+        Person person = (Person) adapter.getItem(location);
+        final long timeStamp = person.getTimeStamp();
 
-        Person personText = ((Person) item);
-        builder.setMessage(getString(R.string.delete_record_text) + personText.getName() + "?");
+        builder.setMessage(getString(R.string.delete_record_text) + person.getName() + "?");
 
-        if (item.isPerson()) {
-            Person person = ((Person) item);
-            final long timeStamp = person.getTimeStamp();
-            final boolean[] isRemoved = {false};
+        final boolean[] isRemoved = {false};
 
-            builder.setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+        builder.setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-                    adapter.removePerson(location);
-                    isRemoved[0] = true;
-                    Snackbar snackbar = Snackbar.make(activity.findViewById(R.id.container_main),
-                            R.string.record_deleted, Snackbar.LENGTH_SHORT);
+                adapter.removePerson(location);
+                isRemoved[0] = true;
+                Snackbar snackbar = Snackbar.make(activity.findViewById(R.id.container_main),
+                        R.string.record_deleted, Snackbar.LENGTH_SHORT);
 
-                    snackbar.setAction(getString(R.string.undo), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            addPerson(activity.dbHelper.query().getPerson(timeStamp), false);
-                            isRemoved[0] = false;
-                        }
-                    });
+                snackbar.setAction(getString(R.string.undo), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addPerson(activity.dbHelper.query().getPerson(timeStamp), false);
+                        isRemoved[0] = false;
+                    }
+                });
 
-                    snackbar.getView().addOnAttachStateChangeListener(
-                            new View.OnAttachStateChangeListener() {
-                                @Override
-                                public void onViewAttachedToWindow(View v) {
+                snackbar.getView().addOnAttachStateChangeListener(
+                        new View.OnAttachStateChangeListener() {
+                            @Override
+                            public void onViewAttachedToWindow(View v) {
+                            }
+
+                            @Override
+                            public void onViewDetachedFromWindow(View v) {
+                                if (isRemoved[0]) {
+                                    alarmHelper.removeAlarms(timeStamp);
+                                    activity.dbHelper.removePerson(timeStamp);
+                                    deletingRecordListener.onRecordDeleted(timeStamp);
                                 }
-
-                                @Override
-                                public void onViewDetachedFromWindow(View v) {
-                                    if (isRemoved[0]) {
-                                        alarmHelper.removeAlarms(timeStamp);
-                                        activity.dbHelper.removePerson(timeStamp);
-                                        deletingRecordListener.onRecordDeleted(timeStamp);
-                                    }
-                                }
-                            });
-                    snackbar.show();
-                    dialog.dismiss();
-                }
-            });
-            builder.setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-        }
+                            }
+                        });
+                snackbar.show();
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
         builder.show();
     }
 
     public void findPerson(String name) {
         adapter.removeAllPersons();
-        List<Person> persons = new ArrayList<>();
-        persons.addAll(activity.dbHelper.query().getSearchPerson(DbHelper.SELECTION_LIKE_NAME,
-                new String[]{"%" + name + "%"}, DbHelper.COLUMN_NAME));
+        List<Person> persons = activity.dbHelper.query().getSearchPerson(DbHelper.SELECTION_LIKE_NAME,
+                new String[]{"%" + name + "%"}, DbHelper.COLUMN_NAME);
 
         for (int i = 0; i < persons.size(); i++) {
             addPerson(persons.get(i), false);

@@ -31,7 +31,6 @@ import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.models.Person;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -52,16 +51,12 @@ public class FamousFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(manager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new FamousFragmentAdapter();
         recyclerView.setAdapter(adapter);
-
         return view;
     }
 
@@ -73,12 +68,11 @@ public class FamousFragment extends Fragment {
 
     private void addFamousPersonsFromDb() {
         adapter.removeAllPersons();
-        List<Person> famous = new ArrayList<>();
-
-        famous.addAll(activity.dbHelper.query().getFamousBornThisDay(Calendar.getInstance().getTimeInMillis()));
+        List<Person> famous = activity.dbHelper.query()
+                .getFamousBornThisDay(Calendar.getInstance().getTimeInMillis());
 
         for (int i = 0; i < famous.size(); i++) {
-            adapter.addItem(famous.get(i));
+            adapter.addPerson(famous.get(i));
         }
     }
 }

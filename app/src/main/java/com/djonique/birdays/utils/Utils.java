@@ -58,28 +58,32 @@ public class Utils {
         return yearlessFormat.format(date);
     }
 
-    private static int getDay(Calendar calendar) {
-        return calendar.get(Calendar.DAY_OF_MONTH);
+    private static int getYear(Calendar calendar) {
+        return calendar.get(Calendar.YEAR);
     }
 
     private static int getMonth(Calendar calendar) {
         return calendar.get(Calendar.MONTH);
     }
 
-    private static int getYear(Calendar calendar) {
-        return calendar.get(Calendar.YEAR);
+    private static int getDayOfMonth(Calendar calendar) {
+        return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
-    public static int getDay(long date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(date);
-        return calendar.get(Calendar.DAY_OF_MONTH);
+    private static int getDayOfYear(Calendar calendar) {
+        return calendar.get(Calendar.DAY_OF_YEAR);
     }
 
     public static int getMonth(long date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
         return calendar.get(Calendar.MONTH);
+    }
+
+    public static int getDayOfMonth(long date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date);
+        return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     public static long getTimeOffset() {
@@ -91,15 +95,8 @@ public class Utils {
      */
     public static int getCurrentAge(long date) {
         dayOfBirthday.setTimeInMillis(date);
-
         int age = getYear(today) - getYear(dayOfBirthday);
-
-        if (getMonth(today) < getMonth(dayOfBirthday)) {
-            age--;
-        } else if (getMonth(today) == getMonth(dayOfBirthday) &&
-                getDay(today) < getDay(dayOfBirthday)) {
-            age--;
-        }
+        if (getDayOfYear(today) < getDayOfYear(dayOfBirthday)) age--;
         return age;
     }
 
@@ -108,27 +105,18 @@ public class Utils {
      */
     public static int getFutureAge(long date) {
         dayOfBirthday.setTimeInMillis(date);
-
         int age = getYear(today) - getYear(dayOfBirthday);
-
-        if (getMonth(today) < getMonth(dayOfBirthday)) {
-            age--;
-        } else if (getMonth(today) == getMonth(dayOfBirthday) &&
-                getDay(today) <= getDay(dayOfBirthday)) {
-            age--;
-        }
+        if (getDayOfYear(today) <= getDayOfYear(dayOfBirthday)) age--;
         return age + 1;
     }
 
     public static String daysLeft(Context context, long date) {
         Calendar birthday = Calendar.getInstance();
         birthday.setTimeInMillis(date);
-        if (getMonth(today) == getMonth(birthday) && getDay(today) == getDay(birthday))
-            return context.getString(R.string.today);
+        if (getDayOfYear(today) == getDayOfYear(birthday)) return context.getString(R.string.today);
         birthday.set(Calendar.HOUR_OF_DAY, 10);
         today.set(Calendar.HOUR_OF_DAY, 9);
-        if (getMonth(today) < getMonth(birthday)
-                || (getMonth(today) == getMonth(birthday) && getDay(today) <= getDay(birthday))) {
+        if (getDayOfYear(today) <= getDayOfYear(birthday)) {
             birthday.set(Calendar.YEAR, today.get(Calendar.YEAR));
         } else {
             birthday.set(Calendar.YEAR, today.get(Calendar.YEAR) + 1);
@@ -172,12 +160,8 @@ public class Utils {
     }
 
     public static boolean isBirthdayPassed(long date) {
-        return getDay(today) > getDay(date);
+        return getDayOfMonth(today) > getDayOfMonth(date);
     }
-
-    /*public static boolean isToday(long date) {
-        return getDay(today) == getDay(date);
-    }*/
 
     /**
      * Returns zodiac name of certain date
@@ -188,40 +172,40 @@ public class Utils {
 
         switch (getMonth(dayOfBirthday)) {
             case Calendar.JANUARY:
-                resId = getDay(dayOfBirthday) < 21 ? R.string.capricorn : R.string.aquarius;
+                resId = getDayOfMonth(dayOfBirthday) < 21 ? R.string.capricorn : R.string.aquarius;
                 break;
             case Calendar.FEBRUARY:
-                resId = getDay(dayOfBirthday) < 20 ? R.string.aquarius : R.string.pisces;
+                resId = getDayOfMonth(dayOfBirthday) < 20 ? R.string.aquarius : R.string.pisces;
                 break;
             case Calendar.MARCH:
-                resId = getDay(dayOfBirthday) < 21 ? R.string.pisces : R.string.aries;
+                resId = getDayOfMonth(dayOfBirthday) < 21 ? R.string.pisces : R.string.aries;
                 break;
             case Calendar.APRIL:
-                resId = getDay(dayOfBirthday) < 21 ? R.string.aries : R.string.taurus;
+                resId = getDayOfMonth(dayOfBirthday) < 21 ? R.string.aries : R.string.taurus;
                 break;
             case Calendar.MAY:
-                resId = getDay(dayOfBirthday) < 22 ? R.string.taurus : R.string.gemini;
+                resId = getDayOfMonth(dayOfBirthday) < 22 ? R.string.taurus : R.string.gemini;
                 break;
             case Calendar.JUNE:
-                resId = getDay(dayOfBirthday) < 22 ? R.string.gemini : R.string.cancer;
+                resId = getDayOfMonth(dayOfBirthday) < 22 ? R.string.gemini : R.string.cancer;
                 break;
             case Calendar.JULY:
-                resId = getDay(dayOfBirthday) < 23 ? R.string.cancer : R.string.leo;
+                resId = getDayOfMonth(dayOfBirthday) < 23 ? R.string.cancer : R.string.leo;
                 break;
             case Calendar.AUGUST:
-                resId = getDay(dayOfBirthday) < 23 ? R.string.leo : R.string.virgo;
+                resId = getDayOfMonth(dayOfBirthday) < 23 ? R.string.leo : R.string.virgo;
                 break;
             case Calendar.SEPTEMBER:
-                resId = getDay(dayOfBirthday) < 24 ? R.string.virgo : R.string.libra;
+                resId = getDayOfMonth(dayOfBirthday) < 24 ? R.string.virgo : R.string.libra;
                 break;
             case Calendar.OCTOBER:
-                resId = getDay(dayOfBirthday) < 24 ? R.string.libra : R.string.scorpio;
+                resId = getDayOfMonth(dayOfBirthday) < 24 ? R.string.libra : R.string.scorpio;
                 break;
             case Calendar.NOVEMBER:
-                resId = getDay(dayOfBirthday) < 23 ? R.string.scorpio : R.string.sagittarius;
+                resId = getDayOfMonth(dayOfBirthday) < 23 ? R.string.scorpio : R.string.sagittarius;
                 break;
             case Calendar.DECEMBER:
-                resId = getDay(dayOfBirthday) < 22 ? R.string.sagittarius : R.string.capricorn;
+                resId = getDayOfMonth(dayOfBirthday) < 22 ? R.string.sagittarius : R.string.capricorn;
                 break;
         }
         return resId;

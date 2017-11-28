@@ -98,8 +98,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     private String getMonth() {
         String[] months = context.getResources().getStringArray(R.array.months);
-        Calendar today = Calendar.getInstance();
-        return months[today.get(Calendar.MONTH)];
+        return months[Calendar.getInstance().get(Calendar.MONTH)];
     }
 
     public void search(String text) {

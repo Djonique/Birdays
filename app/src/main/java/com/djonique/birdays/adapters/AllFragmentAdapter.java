@@ -18,8 +18,6 @@ package com.djonique.birdays.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -166,8 +164,8 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        displayedAge = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
+        displayedAge = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(Constants.DISPLAYED_AGE_KEY, "0");
         switch (viewType) {
             case TYPE_PERSON:
                 View view = LayoutInflater.from(context).inflate(R.layout.description_list_view,
@@ -187,8 +185,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         Item item = getItem(position);
 
-        final Resources resources = holder.itemView.getResources();
-        String[] months = resources.getStringArray(R.array.months);
+        String[] months = holder.itemView.getResources().getStringArray(R.array.months);
 
         if (item.isPerson()) {
             holder.itemView.setEnabled(true);
@@ -200,8 +197,6 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             long date = person.getDate();
 
-            GradientDrawable ageCircle = (GradientDrawable) listViewHolder.tvAge.getBackground();
-
             if (person.isYearUnknown()) {
                 listViewHolder.tvAge.setVisibility(View.GONE);
                 listViewHolder.tvDate.setText(Utils.getDateWithoutYear(date));
@@ -209,6 +204,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 listViewHolder.tvAge.setVisibility(View.VISIBLE);
                 final int age = (displayedAge.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date));
                 listViewHolder.tvDate.setText(Utils.getDate(date));
+                GradientDrawable ageCircle = (GradientDrawable) listViewHolder.tvAge.getBackground();
                 ageCircle.setColor(ContextCompat.getColor(context, getAgeCircleColor(age)));
                 listViewHolder.tvAge.setText(String.valueOf(age));
             }
@@ -225,9 +221,8 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 @Override
                 public void onClick(View v) {
                     logEvent();
-                    Intent intent = new Intent(context, DetailActivity.class);
-                    intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
-                    allFragment.startActivity(intent);
+                    allFragment.startActivity(new Intent(context, DetailActivity.class).
+                            putExtra(Constants.TIME_STAMP, person.getTimeStamp()));
                     if (context instanceof MainActivity) {
                         ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in,
                                 R.anim.activity_primary_out);
@@ -236,8 +231,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             });
         } else {
             Separator separator = ((Separator) item);
-            SeparatorViewHolder separatorViewHolder = ((SeparatorViewHolder) holder);
-            separatorViewHolder.type.setText(months[separator.getType()]);
+            ((SeparatorViewHolder) holder).separatorView.setText(months[separator.getType()]);
         }
     }
 
@@ -270,16 +264,16 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      * Selects certain color depending on person's age
      */
     private int getAgeCircleColor(int age) {
-        int ageCircleColorResID;
-        if (age < 10) ageCircleColorResID = R.color.age1;
-        else if (age >= 10 && age < 20) ageCircleColorResID = R.color.age2;
-        else if (age >= 20 && age < 30) ageCircleColorResID = R.color.age3;
-        else if (age >= 30 && age < 40) ageCircleColorResID = R.color.age4;
-        else if (age >= 40 && age < 50) ageCircleColorResID = R.color.age5;
-        else if (age >= 50 && age < 60) ageCircleColorResID = R.color.age6;
-        else if (age >= 60 && age < 70) ageCircleColorResID = R.color.age7;
-        else ageCircleColorResID = R.color.age8;
-        return ageCircleColorResID;
+        int colorResId;
+        if (age < 10) colorResId = R.color.age1;
+        else if (age >= 10 && age < 20) colorResId = R.color.age2;
+        else if (age >= 20 && age < 30) colorResId = R.color.age3;
+        else if (age >= 30 && age < 40) colorResId = R.color.age4;
+        else if (age >= 40 && age < 50) colorResId = R.color.age5;
+        else if (age >= 50 && age < 60) colorResId = R.color.age6;
+        else if (age >= 60 && age < 70) colorResId = R.color.age7;
+        else colorResId = R.color.age8;
+        return colorResId;
     }
 
     private void logEvent() {
@@ -290,11 +284,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        if (getItem(position).isPerson()) {
-            return TYPE_PERSON;
-        } else {
-            return TYPE_SEPARATOR;
-        }
+        return getItem(position).isPerson() ? TYPE_PERSON : TYPE_SEPARATOR;
     }
 
     private static class ListViewHolder extends RecyclerView.ViewHolder {
@@ -309,11 +299,11 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private class SeparatorViewHolder extends RecyclerView.ViewHolder {
-        TextView type;
+        TextView separatorView;
 
         SeparatorViewHolder(View itemView) {
             super(itemView);
-            type = itemView.findViewById(R.id.textview_separator);
+            separatorView = itemView.findViewById(R.id.textview_separator);
         }
     }
 }

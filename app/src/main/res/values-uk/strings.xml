@@ -161,8 +161,8 @@
     <string name="displayed_age_changes">Щоб зміни були застосовані, треба перезавантажити застосунок</string>
     <string name="restart_now">Перезавантажити зараз</string>
     <string name="later">Пізніше</string>
-    <string name="rate_app">Оцінити застосунок</string>
-    <string name="share">Поділитись</string>
+    <string name="rate_app">Оцінить застосунок</string>
+    <string name="share_app">Розкажіть про застосунок</string>
     <string name="share_text">Забуваєте привітати родичів, друзів чи колег із днем народження? Birdays нагадає вам про важливе свято!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Реклама</string>

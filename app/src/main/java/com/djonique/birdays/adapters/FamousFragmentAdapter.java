@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.djonique.birdays.R;
-import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
@@ -36,26 +35,26 @@ import java.util.List;
 
 public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAdapter.ListViewHolder> {
 
-    private List<Item> items;
+    private List<Person> famous;
     private Context context;
     private FirebaseAnalytics mFirebaseAnalytics;
 
     public FamousFragmentAdapter() {
-        this.items = new ArrayList<>();
+        famous = new ArrayList<>();
     }
 
-    private Item getItem(int position) {
-        return items.get(position);
+    private Person getPerson(int position) {
+        return famous.get(position);
     }
 
-    public void addItem(Item item) {
-        items.add(item);
+    public void addPerson(Person person) {
+        famous.add(person);
         notifyItemInserted(getItemCount() - 1);
     }
 
     public void removeAllPersons() {
         if (getItemCount() != 0) {
-            items = new ArrayList<>();
+            famous = new ArrayList<>();
             notifyDataSetChanged();
         }
     }
@@ -73,8 +72,7 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
     public void onBindViewHolder(final ListViewHolder holder, int position) {
         holder.itemView.setEnabled(true);
         View itemView = holder.itemView;
-        Item item = getItem(position);
-        final Person person = (Person) item;
+        final Person person = getPerson(position);
         final String name = person.getName();
 
         holder.tvName.setText(name);
@@ -91,7 +89,7 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return famous.size();
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {

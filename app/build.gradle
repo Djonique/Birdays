@@ -30,8 +30,8 @@ android {
         applicationId "com.djonique.birdays"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 16
-        versionName "1.4.1"
+        versionCode 17
+        versionName "1.5.0"
         resConfigs "auto"
         vectorDrawables.useSupportLibrary = true
         resValue "string", "version_name", versionName
@@ -58,8 +58,8 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-def androidSupportVersion = '27.0.0'
-def firebaseVersion = '11.6.0'
+def androidSupportVersion = '27.0.1'
+def firebaseVersion = '11.4.2'
 def butterKnifeVersion = '8.8.1'
 
 dependencies {

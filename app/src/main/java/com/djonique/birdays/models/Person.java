@@ -16,10 +16,12 @@
 
 package com.djonique.birdays.models;
 
+import android.support.annotation.NonNull;
+
 import java.util.Calendar;
 import java.util.Date;
 
-public class Person implements Item {
+public class Person implements Item, Comparable<Person> {
 
     private String name, phoneNumber, email;
     private long date, timeStamp;
@@ -114,15 +116,15 @@ public class Person implements Item {
         return true;
     }
 
-    public int getMonth(long date) {
+    public int getMonth() {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(date);
+        calendar.setTimeInMillis(this.date);
         return calendar.get(Calendar.MONTH);
     }
 
-    public int getDay(long date) {
+    public int getDay() {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(date);
+        calendar.setTimeInMillis(this.date);
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
@@ -136,5 +138,16 @@ public class Person implements Item {
         }
         Person person = (Person) obj;
         return name.equalsIgnoreCase(person.getName());
+    }
+
+    @Override
+    public int compareTo(@NonNull Person person) {
+        if (this.getMonth() < person.getMonth()) {
+            return -1;
+        } else if (this.getMonth() == person.getMonth()) {
+            return this.getDay() - person.getDay();
+        } else {
+            return 1;
+        }
     }
 }

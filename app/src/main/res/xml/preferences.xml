@@ -85,7 +85,7 @@
             android:title="@string/rate_app" />
         <Preference
             android:key="@string/share_key"
-            android:title="@string/share" />
+            android:title="@string/share_app" />
     </PreferenceCategory>
 
     <!-- Advertising -->

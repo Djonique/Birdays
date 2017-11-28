@@ -60,7 +60,7 @@
     <string name="open_contacts_error">Это действие выполнить невозможно из-за особенностей устройства</string>
     <string name="name">Имя</string>
     <string name="error_hint">Пожалуйста, введите имя</string>
-    <string name="phone_number">Номер телефон</string>
+    <string name="phone_number">Номер телефона</string>
     <string name="pick_date">Выберите дату</string>
     <string name="wrong_date">Неверная дата</string>
     <string name="year_unknown">Я не знаю год рождения</string>
@@ -161,8 +161,8 @@
     <string name="displayed_age_changes">Чтобы изменения вступили в силу, необходимо перезапустить приложение</string>
     <string name="restart_now">Перезапустить сейчас</string>
     <string name="later">Позже</string>
-    <string name="rate_app">Оценить приложение</string>
-    <string name="share">Поделиться</string>
+    <string name="rate_app">Оцените приложение</string>
+    <string name="share_app">Расскажите о приложении</string>
     <string name="share_text">Забываете поздравить родных, друзей или коллег с днем рождения? Birdays напомнит Вам о важном празднике!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Реклама</string>

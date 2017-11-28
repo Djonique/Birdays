@@ -19,10 +19,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/widget_background">
+    android:background="@drawable/widget_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_notification"
+            android:tint="@color/accent_green_200" />
+
+        <TextView
+            style="@style/WidgetHeaderTextView"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
+            android:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/textview_widget_header_date"
+            style="@style/WidgetHeaderTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white" />
 
     <ListView
         android:id="@+id/listview_widget"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp" />
 </LinearLayout>

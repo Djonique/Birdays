@@ -167,7 +167,7 @@ public class DbQueryManager {
                 long date = getDate(cursor);
 
                 if (Utils.getMonth(date) == Utils.getMonth(dayOfBirthday) &&
-                        Utils.getDay(date) == Utils.getDay(dayOfBirthday)) {
+                        Utils.getDayOfMonth(date) == Utils.getDayOfMonth(dayOfBirthday)) {
                     person = new Person(name, date);
                     persons.add(person);
                 }

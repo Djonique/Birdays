@@ -252,7 +252,7 @@ public class DetailActivity extends AppCompatActivity {
 
         List<Person> famousPersons = dbHelper.query().getFamousBornThisDay(date);
         for (int i = 0; i < famousPersons.size(); i++) {
-            adapter.addItem(famousPersons.get(i));
+            adapter.addPerson(famousPersons.get(i));
         }
     }
 

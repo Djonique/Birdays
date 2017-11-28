@@ -55,13 +55,10 @@ public class MonthFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(manager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new MonthFragmentAdapter();
         recyclerView.setAdapter(adapter);
-
         return view;
     }
 
@@ -75,17 +72,17 @@ public class MonthFragment extends Fragment {
         int position = -1;
 
         for (int i = 0; i < adapter.getItemCount(); i++) {
-            Person person = ((Person) adapter.getItem(i));
-            if (newPerson.getDay(newPerson.getDate()) < person.getDay(person.getDate())) {
+            Person person = adapter.getPerson(i);
+            if (newPerson.getDay() < person.getDay()) {
                 position = i;
                 break;
             }
         }
 
         if (position != -1) {
-            adapter.addItem(position, newPerson);
+            adapter.addPerson(position, newPerson);
         } else {
-            adapter.addItem(newPerson);
+            adapter.addPerson(newPerson);
         }
     }
 
