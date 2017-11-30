@@ -8,6 +8,10 @@ Marc Sulser (Deutsch)
 Pablo Rodríguez (Spanish)
 
 Dai Jia (Chinese simplified)
+
+Uluç Muslu (Turkish)
+
+isaideureka (Indonesian)
 ## License
 ```
 Copyright 2017 Evgeny Timofeev
