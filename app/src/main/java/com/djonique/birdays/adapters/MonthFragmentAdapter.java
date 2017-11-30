@@ -215,7 +215,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             String today = context.getString(R.string.today);
             if (daysLeft.equals(today)) {
                 cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardview_birthday));
-                textView.setText(context.getString(R.string.today));
+                textView.setText(today);
             } else {
                 cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardview_background));
                 String summary = context.getString(R.string.days_left) + ": " + daysLeft;

@@ -34,7 +34,7 @@ import java.util.Calendar;
 
 public class WidgetProvider extends AppWidgetProvider {
 
-    public static final String ACTION_ON_CLICK = "ACTION_ON_CLICK";
+    private static final String ACTION_ON_CLICK = "ACTION_ON_CLICK";
 
     @Override
     public void onEnabled(Context context) {
@@ -44,6 +44,7 @@ public class WidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager,
                          int[] appWidgetIds) {
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
 
         for (int i : appWidgetIds) {
 
@@ -63,8 +64,8 @@ public class WidgetProvider extends AppWidgetProvider {
             remoteViews.setPendingIntentTemplate(R.id.listview_widget, clickPendingIntent);
 
             appWidgetManager.updateAppWidget(i, remoteViews);
+            appWidgetManager.notifyAppWidgetViewDataChanged(i, R.id.listview_widget);
         }
-        super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     // Opens DetailActivity

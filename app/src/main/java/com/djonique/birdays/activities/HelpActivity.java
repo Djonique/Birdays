@@ -116,7 +116,7 @@ public class HelpActivity extends AppCompatActivity {
                 });
         snackbar.setActionTextColor(Color.WHITE);
         View snackbarView = snackbar.getView();
-        snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.snackbar_alert));
+        snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.red_alert));
         TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setAllCaps(true);
         snackbar.show();

@@ -17,183 +17,183 @@
 -->
 
 <resources>
-    <string name="build_version">编译版本</string>
+    <string name="build_version">Versi kompilasi</string>
 
     <!-- MainActivity -->
-    <string name="loading_contacts">正在加载联系人…</string>
-    <string name="contacts_uploaded">联系人已上传</string>
-    <string name="loading_contacts_error">无法导入联系人，不是标准的日期格式</string>
-    <string name="permission_required">导入联系人需要权限</string>
-    <string name="snackbar_allow_text">允许</string>
-    <string name="all">全部</string>
-    <string name="famous">名人</string>
-    <string name="age">当前年龄：\u0020</string>
-    <string name="happy_birthday">生日快乐！</string>
-    <string name="web_search_error">无法执行操作，请安装网页浏览器</string>
-    <string name="delete_record_text">你确定要删除这条记录：\u0020</string>
-    <string name="record_deleted">记录已删除</string>
-    <string name="undo">撤消</string>
+    <string name="loading_contacts">Memuat kontak…</string>
+    <string name="contacts_uploaded">Mengunggah kontak</string>
+    <string name="loading_contacts_error">Gagal mengimpor kontak, format tanggal salah</string>
+    <string name="permission_required">Izin diperlukan untuk mengimpor kontak</string>
+    <string name="snackbar_allow_text">Izinkan</string>
+    <string name="all">Semua</string>
+    <string name="famous">Terkenal</string>
+    <string name="age">Umur sekarang:\u0020</string>
+    <string name="happy_birthday">Selamat Ulang Tahun!</string>
+    <string name="web_search_error">Tidak dapat melakukan operasi, silahkan pasang penjelajah web</string>
+    <string name="delete_record_text">Anda yakin ingin menghapus catatan:\u0020</string>
+    <string name="record_deleted">Catatan dihapus</string>
+    <string name="undo">Urung</string>
 
     <string-array name="months">
-        <item>1月</item>
-        <item>2月</item>
-        <item>3月</item>
-        <item>4月</item>
-        <item>5月</item>
-        <item>6月</item>
-        <item>7月</item>
-        <item>8月</item>
-        <item>9月</item>
-        <item>10月</item>
-        <item>11月</item>
-        <item>12月</item>
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Maret</item>
+        <item>April</item>
+        <item>Mei</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>Agustus</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>November</item>
+        <item>Desember</item>
     </string-array>
 
     <!-- Menu -->
-    <string name="action_sync">同步</string>
-    <string name="action_settings">设置</string>
-    <string name="action_delete">删除</string>
+    <string name="action_sync">Sinkronisasi</string>
+    <string name="action_settings">Pengaturan</string>
+    <string name="action_delete">Hapus</string>
 
     <!-- NewPersonDialogFragment -->
-    <string name="new_record">新建记录</string>
-    <string name="add_from_contacts">从联系人添加</string>
-    <string name="open_contacts_error">由于设备功能而无法执行操作</string>
-    <string name="name">姓名</string>
-    <string name="error_hint">请输入姓名</string>
-    <string name="phone_number">电话号码</string>
-    <string name="pick_date">选择日期</string>
-    <string name="wrong_date">错误的日期</string>
-    <string name="year_unknown">我不知道年份</string>
-    <string name="cancel_button">取消</string>
-    <string name="record_added">记录已添加</string>
+    <string name="new_record">Catatan baru</string>
+    <string name="add_from_contacts">Tambahkan dari kontak</string>
+    <string name="open_contacts_error">Gagal melakukan tindakan karena fitur perangkat</string>
+    <string name="name">Nama</string>
+    <string name="error_hint">Silakan masukkan nama</string>
+    <string name="phone_number">Nomor telepon</string>
+    <string name="pick_date">Pilih tanggal</string>
+    <string name="wrong_date">Tanggal salah</string>
+    <string name="year_unknown">Tahun tidak diketahui</string>
+    <string name="cancel_button">Batal</string>
+    <string name="record_added">Catatan ditambahkan</string>
 
     <!-- DetailActivity -->
-    <string name="birthday">生日</string>
-    <string name="days_left">到下个生日的天数</string>
-    <string name="today">今天</string>
-    <string name="days_since_birth">出生后的天数</string>
-    <string name="zodiac_sign">星座</string>
-    <string name="season_picture">季节图片</string>
-    <string name="calendar">日历</string>
-    <string name="call">呼叫</string>
-    <string name="chat">聊天</string>
-    <string name="born_on_this_day">在这一天出生</string>
+    <string name="birthday">Ulang tahun</string>
+    <string name="days_left">Hari menuju ulang tahunnya</string>
+    <string name="today">Hari ini</string>
+    <string name="days_since_birth">Hari sejak lahir</string>
+    <string name="zodiac_sign">Zodiak</string>
+    <string name="season_picture">Gambar musim</string>
+    <string name="calendar">Kalender</string>
+    <string name="call">Panggilan</string>
+    <string name="chat">Obrolan</string>
+    <string name="born_on_this_day">Lahir hari ini</string>
 
     <!-- EditActivity -->
-    <string name="editing_label">编辑中</string>
-    <string name="record_edited">记录已编辑</string>
+    <string name="editing_label">Mengedit</string>
+    <string name="record_edited">Mengedit catatan</string>
 
     <!-- Alarm -->
-    <string name="security_exception">安全异常，三星设备限制你可以注册的警报数量</string>
-    <string name="channel_name">生日</string>
+    <string name="security_exception">SecurityException, perangkat Samsung membatasi jumlah alarm yang bisa Anda daftarkan</string>
+    <string name="channel_name">Ulang tahun</string>
 
     <!-- Zodiac signs -->
-    <string name="aries">白羊座</string>
-    <string name="taurus">金牛座</string>
-    <string name="gemini">双子座</string>
-    <string name="cancer">巨蟹座</string>
-    <string name="leo">狮子座</string>
-    <string name="virgo">处女座</string>
-    <string name="libra">天秤座</string>
-    <string name="scorpio">蝎子座</string>
-    <string name="sagittarius">射手座</string>
-    <string name="capricorn">摩羯座</string>
-    <string name="aquarius">水瓶座</string>
-    <string name="pisces">双鱼座</string>
+    <string name="aries">Aries</string>
+    <string name="taurus">Taurus</string>
+    <string name="gemini">Gemini</string>
+    <string name="cancer">Kanser</string>
+    <string name="leo">Leo</string>
+    <string name="virgo">Virgo</string>
+    <string name="libra">Libra</string>
+    <string name="scorpio">Skorpio</string>
+    <string name="sagittarius">Sagitarius</string>
+    <string name="capricorn">Kaprikornus</string>
+    <string name="aquarius">Akuarius</string>
+    <string name="pisces">Pises</string>
 
     <!-- SettingsActivity -->
-    <string name="optimization_enabled">优化已启用！</string>
-    <string name="optimization_description">\n从6.0 版开始，安卓引入了节电模式 Doze，通过延迟后台 CPU 来管理应用程序的行为。\n\n需禁用针对 Birdays 的优化以使其正常运行。</string>
-    <string name="do_not_show_again">不再显示</string>
-    <string name="disable_button">禁用</string>
+    <string name="optimization_enabled">Optimalisasi diaktifkan!</string>
+    <string name="optimization_description">\nMulai dari versi 6.0, Android memperkenalkan hemat daya mode Doze yang mengelola perilaku aplikasi dengan menunda latar CPU.\n\nUntuk membuat aplikasi bekerja dengan benar, nonaktifkan pengoptimalan untuk Birdays.</string>
+    <string name="do_not_show_again">Jangan tampilkan lagi</string>
+    <string name="disable_button">Nonaktifkan</string>
     <!-- Notifications -->
-    <string name="notifications">通知</string>
-    <string name="allow_notification">允许应用程序发送即将到来的生日通知</string>
-    <string name="notifications_time">通知时间</string>
-    <string name="additional_notification">附加通知</string>
+    <string name="notifications">Notifikasi</string>
+    <string name="allow_notification">Izinkan aplikasi mengirim notifikasi ulang tahun yang akan datang</string>
+    <string name="notifications_time">Waktu notifikasi</string>
+    <string name="additional_notification">Notifikasi tambahan</string>
 
     <string-array name="additional_notification_entries">
-        <item>从不</item>
-        <item>1天前</item>
-        <item>2天前</item>
-        <item>3天前</item>
-        <item>1周前</item>
-        <item>2周前</item>
+        <item>Tidak pernah</item>
+        <item>Sehari sebelumnya</item>
+        <item>2 hari sebelumnya</item>
+        <item>3 hari sebelumnya</item>
+        <item>Seminggu sebelumnya</item>
+        <item>2 minggu sebelumnya</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
-        <item>今天</item>
-        <item>明天</item>
-        <item>2天內</item>
-        <item>3天內</item>
-        <item>1周内</item>
-        <item>2周内</item>
+        <item>Hari ini</item>
+        <item>Besok</item>
+        <item>Lusa</item>
+        <item>Dalam 3 hari</item>
+        <item>Dalam seminggu</item>
+        <item>Dalam 2 minggu</item>
     </string-array>
 
-    <string name="notification_tone">通知铃声</string>
-    <string name="ringtone_summary">选择通知的声音。默认使用设备设置的铃声</string>
-    <string name="silent">无</string>
-    <string name="help">帮助</string>
-    <string name="tap_here">如果没有收到通知，请点击此处</string>
+    <string name="notification_tone">Nada notifikasi</string>
+    <string name="ringtone_summary">Pilih nada notifikasi. Suara standarnya adalah dari pengaturan perangkat</string>
+    <string name="silent">Tidak ada</string>
+    <string name="help">Bantuan</string>
+    <string name="tap_here">Ketuk di sini jika Anda tidak menerima notifikasi</string>
     <!-- Synchronization and backup -->
-    <string name="sync_and_backup">同步和备份</string>
-    <string name="contacts_import_title">导入联系人</string>
-    <string name="contacts_import_summary">点击此处从设备中导入联系人 (支持 ISO 8601)</string>
-    <string name="export_records">导出记录 (Beta)</string>
-    <string name="export_records_summary">创建带有备份的 XML 文件</string>
-    <string name="ext_storage_error">外部存储不可用</string>
-    <string name="exporting_records">正在导出记录…</string>
-    <string name="backup_finished">备份完成，XML 文件在\u0020</string>
-    <string name="recover_records">恢复记录 (Beta)</string>
-    <string name="recover_records_summary">选择带有备份的 XML 文件</string>
-    <string name="recover_records_error">无法执行操作，请安装文件管理器</string>
-    <string name="records_recovered">恢复的记录</string>
+    <string name="sync_and_backup">Menyinkronkan dan membuat cadangan</string>
+    <string name="contacts_import_title">Impor kontak</string>
+    <string name="contacts_import_summary">Ketuk di sini untuk mengimpor kontak dari perangkat Anda (mendukung ISO 8601)</string>
+    <string name="export_records">Ekspor catatan (Beta)</string>
+    <string name="export_records_summary">Buat berkas XML dengan cadangan</string>
+    <string name="ext_storage_error">Penyimpanan eksternal tidak tersedia</string>
+    <string name="exporting_records">Mengekspor catatan…</string>
+    <string name="backup_finished">Membuat cadangan selesai, berkas XML dalam\u0020</string>
+    <string name="recover_records">Memulihkan catatan (Beta)</string>
+    <string name="recover_records_summary">Pilih berkas XML dengan cadangan</string>
+    <string name="recover_records_error">Gagal melakukan tindakan, mohon pasang manajer berkas</string>
+    <string name="records_recovered">Catatan dipulihkan</string>
     <!-- General -->
-    <string name="general">通用</string>
-    <string name="night_mode">夜间模式</string>
-    <string name="displayed_age">显示的年龄</string>
+    <string name="general">Umum</string>
+    <string name="night_mode">Mode malam</string>
+    <string name="displayed_age">Tampilkan umur</string>
 
     <string-array name="displayed_age_entries">
-        <item>当前</item>
-        <item>未来</item>
+        <item>Sekarang</item>
+        <item>Masa depan</item>
     </string-array>
 
-    <string name="displayed_age_changes">要让更改生效，你必须重新启动应用程序。</string>
-    <string name="restart_now">立即重启</string>
-    <string name="later">稍后</string>
-    <string name="rate_app">为本软件评分</string>
-    <string name="share_app">分享</string>
-    <string name="share_text">你是否忘记过祝贺亲戚、朋友或同事的生日？Birdays 会提醒你这个重要的日子！\n\n</string>
+    <string name="displayed_age_changes">Anda harus menghidupkan ulang aplikasi untuk menerapkan perubahan</string>
+    <string name="restart_now">Hidupkan ulang sekarang</string>
+    <string name="later">Nanti</string>
+    <string name="rate_app">Beri nilai aplikasi</string>
+    <string name="share_app">Bagikan</string>
+    <string name="share_text">Apakah Anda lupa mengucapkan selamat kepada saudara, teman atau kolega Anda di hari ulang tahun mereka? Birdays akan mengingatkan Anda pada momen yang penting!\n\n</string>
     <!-- Advertising -->
-    <string name="advertising">广告</string>
-    <string name="about_ad_title">为什么我会看到广告？</string>
-    <string name="about_ad_summary">广告收入将用于项目的开发和翻译。你可以免费去除广告</string>
-    <string name="ad_interstitial_title">间隙式广告</string>
-    <string name="ad_interstitial_summary">这类广告每天只展示一次。没那么频繁，不是吗？</string>
-    <string name="ad_banner">横幅广告</string>
+    <string name="advertising">Iklan</string>
+    <string name="about_ad_title">Mengapa saya melihat iklan?</string>
+    <string name="about_ad_summary">Pendapatan dari iklan mengalir ke projek pengembangan dan untuk menerjemahkan ke bahasa lain. Anda bisa menghapus iklan secara gratis</string>
+    <string name="ad_interstitial_title">Iklan interstitial</string>
+    <string name="ad_interstitial_summary">Jenis iklan ini terbatas, hanya muncul sekali per hari. Tidak begitu sering, bukan?</string>
+    <string name="ad_banner">Spanduk</string>
     <!-- About app -->
-    <string name="about_app">关于应用程序</string>
-    <string name="menu_github">源代码</string>
-    <string name="privacy_policy">隐私政策</string>
-    <string name="software_licenses">免费软件许可证</string>
-    <string name="licenses">许可证</string>
+    <string name="about_app">Tentang aplikasi</string>
+    <string name="menu_github">Kode sumber</string>
+    <string name="privacy_policy">Kebijakan privasi</string>
+    <string name="software_licenses">Lisensi perangkat lunak gratis</string>
+    <string name="licenses">Lisensi</string>
 
     <!-- HelpActivity -->
-    <string name="help_header">为什么闹钟没有运行？</string>
-    <string name="help_description">有些设备具有节电模式，会阻止应用程序的后台进程，或在启动时禁用程序运行。\n使闹钟正常运行，只需下面几个简单的步骤：\n\n1. 请确保为 Birdays 启用了通知 (设置 > 应用程序 > Birdays)。\n\n2. 如果你安装了任务管理器、任务终结者或内存优化程序 (例如«Battery Saver»、«Clean Master»)，可能会阻止应用程序的后台进程，请将 Birdays 添加到他们的白名单中。\n\n3. 关闭节电模式或添加 Birdays 到白名单 (设置 > 电池 > 电池优化)。\n仅针对运行安卓 6.0 (棉花糖) 或更高的设备。</string>
-    <string name="help_whitelist">打开白名单</string>
-    <string name="help_whitelist_error">仅针对运行安卓 6.0 (棉花糖) 或更高的设备。</string>
-    <string name="help_delay_text">请注意，在某些设备上，通知可能会有所延迟。</string>
-    <string name="help_settings">打开设置</string>
-    <string name="huawei_header">华为的机主</string>
-    <string name="huawei_description">打开设备«设置»，至«省电管理»，打开«受保护的后台应用»。确保已为 Birdays 启用此功能。</string>
-    <string name="samsung_header">三星机主</string>
-    <string name="samsung_description">打开«智能管理器»，点击«电池»、«详细»。为 Birdays 禁用该功能。</string>
-    <string name="xiaomi_header">小米机主</string>
-    <string name="xiaomi_description">打开设备«设置»，转到«电池和性能»，然后«管理应用电池使用»，打开«选择应用程序»，将 Birdays 选择为«无限制»。</string>
-    <string name="show_button">显示</string>
-    <string name="help_email_description">如果闹钟仍不工作，请与我联系：birdaysapp@gmail.com</string>
-    <string name="send_email">发送邮件</string>
+    <string name="help_header">Mengapa alarm tidak bekerja?</string>
+    <string name="help_description">Beberapa perangkat memiliki Mode Penghematan Daya yang dapat memblokir proses latar belakang aplikasi atau menonaktifkan aplikasi agar tidak berjalan.\nUntuk membuat alarm bekerja dengan benar, lakukan beberapa langkah sederhana di bawah ini:\n\n1. Pastikan notifikasi diaktifkan untuk aplikasi Birdays (Setelan > Aplikasi > Birdays).\n\n2. Jika Anda telah memasang pengelola tugas, pembunuh tugas atau pengoptimalan RAM (misalnya «Penghemat baterai», «Clean Master»), yang dapat memblokir proses latar belakang aplikasi, tambahkan Birdays ke daftar putih mereka.\n\n3. Matikan mode hemat daya Anda atau tambahkan Birdays ke daftar putih (Pengaturan> Baterai > Pengoptimalan Baterai).\nHanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi.   Konteks | Permintaan Konteks.</string>
+    <string name="help_whitelist">Buka daftar putih</string>
+    <string name="help_whitelist_error">Hanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi</string>
+    <string name="help_delay_text">Harap diingat pada beberapa perangkat, pemberitahuan mungkin dapat bekerja dengan beberapa penundaan.</string>
+    <string name="help_settings">Buka pengaturan</string>
+    <string name="huawei_header">Untuk pengguna Huawei</string>
+    <string name="huawei_description">Buka perangkat «Pengaturan», pergi ke «Penghematan energi» dan buka «Aplikasi yang dilindungi». Pastikan fitur ini diaktifkan untuk Birdays.</string>
+    <string name="samsung_header">Untuk pengguna Samsung</string>
+    <string name="samsung_description">Buka «Manajer Pintar», ketuk «Baterai», kemudian «Detail». Nonaktifkan fitur untuk aplikasi Birdays.</string>
+    <string name="xiaomi_header">Untuk pengguna Xiaomi</string>
+    <string name="xiaomi_description">Buka perangkat «Pengaturan», pergi ke «Baterai &amp; performa», kemudian «Kelola aplikasi penggunaan baterai», buka «Pilih aplikasi», pilih «Tidak ada batasan» untuk Birdays.</string>
+    <string name="show_button">Tampilkan</string>
+    <string name="help_email_description">Jika alarm masih belum berfungsi, silakan hubungi saya di birdaysapp@gmail.com  </string>
+    <string name="send_email">Kirim posel</string>
 
     <!-- Famous persons -->
     <!-- 1 january -->

@@ -18,6 +18,9 @@ package com.djonique.birdays.widget;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -36,6 +39,7 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
 
     private Context context;
     private DbHelper dbHelper;
+    private SharedPreferences preferences;
     private List<Person> widgetList;
 
     WidgetViewsFactory(Context context) {
@@ -45,12 +49,15 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
     @Override
     public void onCreate() {
         dbHelper = new DbHelper(context);
+        preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        widgetList = new ArrayList<>();
     }
 
     @Override
     public void onDataSetChanged() {
+        widgetList.clear();
+
         List<Person> persons = dbHelper.query().getPersons();
-        widgetList = new ArrayList<>();
         Collections.sort(persons);
 
         Calendar today = Calendar.getInstance();
@@ -88,26 +95,48 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
 
     @Override
     public RemoteViews getViewAt(int i) {
-        RemoteViews view = new RemoteViews(context.getPackageName(), R.layout.description_widget_list_view);
+        RemoteViews view = new RemoteViews(context.getPackageName(),
+                R.layout.description_widget_list_view);
 
         String name = widgetList.get(i).getName();
         long date = widgetList.get(i).getDate();
         boolean yearUnknown = widgetList.get(i).isYearUnknown();
 
-        view.setTextViewText(R.id.textview_widget_name, name);
-        view.setTextViewText(R.id.textview_widget_date,
-                Utils.getDateWithoutYear(date));
+        // Age column
         if (!yearUnknown) {
-            view.setTextViewText(R.id.textview_widget_age, String.valueOf(Utils.getCurrentAge(date)));
+            String displayedAge = PreferenceManager.getDefaultSharedPreferences(context)
+                    .getString(Constants.DISPLAYED_AGE_KEY, "0");
+            int age = (displayedAge.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date));
+            view.setTextViewText(R.id.textview_widget_age, String.valueOf(age));
         } else {
             view.setTextViewText(R.id.textview_widget_age, "");
         }
 
+        // Name column
+        view.setTextViewText(R.id.textview_widget_name, name);
+
+        // Date column
+        String today = context.getString(R.string.today);
+        if (Utils.daysLeft(context, date).equals(today)) {
+            view.setTextViewText(R.id.textview_widget_date, today);
+            setTextColor(view, ContextCompat.getColor(context, R.color.red_alert));
+        } else {
+            view.setTextViewText(R.id.textview_widget_date, Utils.getDateWithoutYear(date));
+            setTextColor(view, ContextCompat.getColor(context, android.R.color.white));
+        }
+
+        // OnClick handling
         Intent clickIntent = new Intent();
         clickIntent.putExtra(Constants.TIME_STAMP, widgetList.get(i).getTimeStamp());
         view.setOnClickFillInIntent(R.id.relativelayout_widget, clickIntent);
 
         return view;
+    }
+
+    private void setTextColor(RemoteViews views, int color) {
+        views.setTextColor(R.id.textview_widget_age, color);
+        views.setTextColor(R.id.textview_widget_name, color);
+        views.setTextColor(R.id.textview_widget_date, color);
     }
 
     @Override

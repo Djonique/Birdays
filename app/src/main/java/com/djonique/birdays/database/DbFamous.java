@@ -42,7 +42,7 @@ class DbFamous {
         db.insert(DB_FAMOUS, null, cv);
     }
 
-    static void createDB(Context context, SQLiteDatabase db) {
+    static void createFamousDb(Context context, SQLiteDatabase db) {
 
         // 1 january
         addFamous(db, new Person(context.getString(R.string.medici), -16440364800000L));

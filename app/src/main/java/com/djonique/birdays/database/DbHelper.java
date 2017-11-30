@@ -69,7 +69,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DB_PERSONS_CREATE);
         db.execSQL(DB_FAMOUS_CREATE);
-        DbFamous.createDB(context, db);
+        DbFamous.createFamousDb(context, db);
     }
 
     @Override
@@ -79,12 +79,16 @@ public class DbHelper extends SQLiteOpenHelper {
             try {
                 db.execSQL("DROP TABLE IF EXISTS " + DB_FAMOUS);
                 db.execSQL(DB_FAMOUS_CREATE);
-                DbFamous.createDB(context, db);
+                DbFamous.createFamousDb(context, db);
                 db.setTransactionSuccessful();
             } finally {
                 db.endTransaction();
             }
         }
+    }
+
+    public DbQueryManager query() {
+        return dbQueryManager;
     }
 
     public void addRecord(Person person) {
@@ -109,11 +113,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(person.getTimeStamp())});
     }
 
-    public DbQueryManager query() {
-        return dbQueryManager;
-    }
-
-    public void removePerson(long timeStamp) {
+    public void removeRecord(long timeStamp) {
         getWritableDatabase().delete(DB_PERSONS, SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)});
     }
 }

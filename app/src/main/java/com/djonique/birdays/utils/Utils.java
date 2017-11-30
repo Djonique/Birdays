@@ -16,7 +16,9 @@
 
 package com.djonique.birdays.utils;
 
+import android.appwidget.AppWidgetManager;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.models.Person;
+import com.djonique.birdays.widget.WidgetProvider;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -66,12 +69,8 @@ public class Utils {
         return calendar.get(Calendar.MONTH);
     }
 
-    private static int getDayOfMonth(Calendar calendar) {
+    private static int getDay(Calendar calendar) {
         return calendar.get(Calendar.DAY_OF_MONTH);
-    }
-
-    private static int getDayOfYear(Calendar calendar) {
-        return calendar.get(Calendar.DAY_OF_YEAR);
     }
 
     public static int getMonth(long date) {
@@ -80,7 +79,7 @@ public class Utils {
         return calendar.get(Calendar.MONTH);
     }
 
-    public static int getDayOfMonth(long date) {
+    public static int getDay(long date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
         return calendar.get(Calendar.DAY_OF_MONTH);
@@ -96,7 +95,12 @@ public class Utils {
     public static int getCurrentAge(long date) {
         dayOfBirthday.setTimeInMillis(date);
         int age = getYear(today) - getYear(dayOfBirthday);
-        if (getDayOfYear(today) < getDayOfYear(dayOfBirthday)) age--;
+        if (getMonth(today) < getMonth(dayOfBirthday)) {
+            age--;
+        } else if (getMonth(today) == getMonth(dayOfBirthday) &&
+                getDay(today) < getDay(dayOfBirthday)) {
+            age--;
+        }
         return age;
     }
 
@@ -106,17 +110,25 @@ public class Utils {
     public static int getFutureAge(long date) {
         dayOfBirthday.setTimeInMillis(date);
         int age = getYear(today) - getYear(dayOfBirthday);
-        if (getDayOfYear(today) <= getDayOfYear(dayOfBirthday)) age--;
+        if (getMonth(today) < getMonth(dayOfBirthday)) {
+            age--;
+        } else if (getMonth(today) == getMonth(dayOfBirthday) &&
+                getDay(today) <= getDay(dayOfBirthday)) {
+            age--;
+        }
         return age + 1;
     }
 
     public static String daysLeft(Context context, long date) {
         Calendar birthday = Calendar.getInstance();
         birthday.setTimeInMillis(date);
-        if (getDayOfYear(today) == getDayOfYear(birthday)) return context.getString(R.string.today);
+        if (getMonth(today) == getMonth(birthday) && getDay(today) == getDay(birthday)) {
+            return context.getString(R.string.today);
+        }
         birthday.set(Calendar.HOUR_OF_DAY, 10);
         today.set(Calendar.HOUR_OF_DAY, 9);
-        if (getDayOfYear(today) <= getDayOfYear(birthday)) {
+        if (getMonth(today) < getMonth(birthday)
+                || (getMonth(today) == getMonth(birthday) && getDay(today) <= getDay(birthday))) {
             birthday.set(Calendar.YEAR, today.get(Calendar.YEAR));
         } else {
             birthday.set(Calendar.YEAR, today.get(Calendar.YEAR) + 1);
@@ -160,7 +172,7 @@ public class Utils {
     }
 
     public static boolean isBirthdayPassed(long date) {
-        return getDayOfMonth(today) > getDayOfMonth(date);
+        return getDay(today) > getDay(date);
     }
 
     /**
@@ -172,40 +184,40 @@ public class Utils {
 
         switch (getMonth(dayOfBirthday)) {
             case Calendar.JANUARY:
-                resId = getDayOfMonth(dayOfBirthday) < 21 ? R.string.capricorn : R.string.aquarius;
+                resId = getDay(dayOfBirthday) < 21 ? R.string.capricorn : R.string.aquarius;
                 break;
             case Calendar.FEBRUARY:
-                resId = getDayOfMonth(dayOfBirthday) < 20 ? R.string.aquarius : R.string.pisces;
+                resId = getDay(dayOfBirthday) < 20 ? R.string.aquarius : R.string.pisces;
                 break;
             case Calendar.MARCH:
-                resId = getDayOfMonth(dayOfBirthday) < 21 ? R.string.pisces : R.string.aries;
+                resId = getDay(dayOfBirthday) < 21 ? R.string.pisces : R.string.aries;
                 break;
             case Calendar.APRIL:
-                resId = getDayOfMonth(dayOfBirthday) < 21 ? R.string.aries : R.string.taurus;
+                resId = getDay(dayOfBirthday) < 21 ? R.string.aries : R.string.taurus;
                 break;
             case Calendar.MAY:
-                resId = getDayOfMonth(dayOfBirthday) < 22 ? R.string.taurus : R.string.gemini;
+                resId = getDay(dayOfBirthday) < 22 ? R.string.taurus : R.string.gemini;
                 break;
             case Calendar.JUNE:
-                resId = getDayOfMonth(dayOfBirthday) < 22 ? R.string.gemini : R.string.cancer;
+                resId = getDay(dayOfBirthday) < 22 ? R.string.gemini : R.string.cancer;
                 break;
             case Calendar.JULY:
-                resId = getDayOfMonth(dayOfBirthday) < 23 ? R.string.cancer : R.string.leo;
+                resId = getDay(dayOfBirthday) < 23 ? R.string.cancer : R.string.leo;
                 break;
             case Calendar.AUGUST:
-                resId = getDayOfMonth(dayOfBirthday) < 23 ? R.string.leo : R.string.virgo;
+                resId = getDay(dayOfBirthday) < 23 ? R.string.leo : R.string.virgo;
                 break;
             case Calendar.SEPTEMBER:
-                resId = getDayOfMonth(dayOfBirthday) < 24 ? R.string.virgo : R.string.libra;
+                resId = getDay(dayOfBirthday) < 24 ? R.string.virgo : R.string.libra;
                 break;
             case Calendar.OCTOBER:
-                resId = getDayOfMonth(dayOfBirthday) < 24 ? R.string.libra : R.string.scorpio;
+                resId = getDay(dayOfBirthday) < 24 ? R.string.libra : R.string.scorpio;
                 break;
             case Calendar.NOVEMBER:
-                resId = getDayOfMonth(dayOfBirthday) < 23 ? R.string.scorpio : R.string.sagittarius;
+                resId = getDay(dayOfBirthday) < 23 ? R.string.scorpio : R.string.sagittarius;
                 break;
             case Calendar.DECEMBER:
-                resId = getDayOfMonth(dayOfBirthday) < 22 ? R.string.sagittarius : R.string.capricorn;
+                resId = getDay(dayOfBirthday) < 22 ? R.string.sagittarius : R.string.capricorn;
                 break;
         }
         return resId;
@@ -318,5 +330,11 @@ public class Utils {
         } catch (ActivityNotFoundException e) {
             Toast.makeText(context, R.string.web_search_error, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public static void notifyWidget(Context context) {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        int[] appWidgetI‌​ds = appWidgetManager.getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetI‌​ds, R.id.listview_widget);
     }
 }

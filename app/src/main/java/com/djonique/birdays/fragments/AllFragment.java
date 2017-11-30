@@ -45,14 +45,14 @@ public class AllFragment extends Fragment {
 
     private MainActivity activity;
     private AllFragmentAdapter adapter;
-    private DeletingRecordListener deletingRecordListener;
+    private DeletingPersonListener deletingPersonListener;
     private AlarmHelper alarmHelper;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            deletingRecordListener = (MainActivity) getActivity();
+            deletingPersonListener = (MainActivity) getActivity();
         } catch (ClassCastException ignored) {
         }
     }
@@ -267,8 +267,8 @@ public class AllFragment extends Fragment {
                             public void onViewDetachedFromWindow(View v) {
                                 if (isRemoved[0]) {
                                     alarmHelper.removeAlarms(timeStamp);
-                                    activity.dbHelper.removePerson(timeStamp);
-                                    deletingRecordListener.onRecordDeleted(timeStamp);
+                                    activity.dbHelper.removeRecord(timeStamp);
+                                    deletingPersonListener.onPersonDeleted(timeStamp);
                                 }
                             }
                         });
@@ -295,7 +295,7 @@ public class AllFragment extends Fragment {
         }
     }
 
-    public interface DeletingRecordListener {
-        void onRecordDeleted(long timeStamp);
+    public interface DeletingPersonListener {
+        void onPersonDeleted(long timeStamp);
     }
 }

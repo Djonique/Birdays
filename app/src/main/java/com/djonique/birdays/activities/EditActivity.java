@@ -105,6 +105,7 @@ public class EditActivity extends AppCompatActivity implements
             case R.id.menu_edit_ok:
                 updatePerson();
                 setAlarms(person);
+                Utils.notifyWidget(this);
                 setResult(RESULT_OK, new Intent());
                 finish();
                 this.overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);

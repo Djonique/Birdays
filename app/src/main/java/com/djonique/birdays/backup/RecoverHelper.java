@@ -81,6 +81,7 @@ public class RecoverHelper {
             FileInputStream inputStream = new FileInputStream(file);
             parser.setInput(new InputStreamReader(inputStream));
             parseXml(parser);
+            Utils.notifyWidget(context);
             Toast.makeText(context, R.string.records_recovered, Toast.LENGTH_LONG).show();
         } catch (XmlPullParserException e) {
             Toast.makeText(context, XML_PULL_PARSER_EXCEPTION, Toast.LENGTH_LONG).show();

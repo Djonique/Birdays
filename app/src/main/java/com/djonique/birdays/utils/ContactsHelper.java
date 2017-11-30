@@ -211,6 +211,7 @@ public class ContactsHelper {
             super.onPostExecute(aVoid);
             progressDialogHelper.dismissProgressDialog();
             loadingContactsListener.onContactsUploaded();
+            Utils.notifyWidget(activity);
             Toast.makeText(activity, R.string.contacts_uploaded, Toast.LENGTH_SHORT).show();
         }
     }

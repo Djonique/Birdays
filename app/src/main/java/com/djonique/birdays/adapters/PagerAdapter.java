@@ -110,7 +110,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
         }
     }
 
-    public void addRecordsFromDb() {
+    public void addPersonsFromDb() {
         if (monthFragment != null) {
             monthFragment.addMonthPersonsFromDb();
         }
@@ -128,7 +128,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
         }
     }
 
-    public void deleteRecord(long timeStamp) {
+    public void deletePerson(long timeStamp) {
         if (monthFragment != null) {
             monthFragment.deleteRecord(timeStamp);
         }

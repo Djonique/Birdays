@@ -289,7 +289,8 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 new AlarmHelper(getApplicationContext()).removeAlarms(timeStamp);
-                dbHelper.removePerson(timeStamp);
+                dbHelper.removeRecord(timeStamp);
+                Utils.notifyWidget(getApplicationContext());
                 dialog.dismiss();
                 finish();
                 overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);

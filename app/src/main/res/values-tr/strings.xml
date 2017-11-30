@@ -17,183 +17,183 @@
 -->
 
 <resources>
-    <string name="build_version">编译版本</string>
+    <string name="build_version">Sürüm</string>
 
     <!-- MainActivity -->
-    <string name="loading_contacts">正在加载联系人…</string>
-    <string name="contacts_uploaded">联系人已上传</string>
-    <string name="loading_contacts_error">无法导入联系人，不是标准的日期格式</string>
-    <string name="permission_required">导入联系人需要权限</string>
-    <string name="snackbar_allow_text">允许</string>
-    <string name="all">全部</string>
-    <string name="famous">名人</string>
-    <string name="age">当前年龄：\u0020</string>
-    <string name="happy_birthday">生日快乐！</string>
-    <string name="web_search_error">无法执行操作，请安装网页浏览器</string>
-    <string name="delete_record_text">你确定要删除这条记录：\u0020</string>
-    <string name="record_deleted">记录已删除</string>
-    <string name="undo">撤消</string>
+    <string name="loading_contacts">Kişiler yükleniyor…</string>
+    <string name="contacts_uploaded">Kişiler yüklendi</string>
+    <string name="loading_contacts_error">Kişileri, standart olmayan tarih biçimlerini içe aktaramıyor</string>
+    <string name="permission_required">Kişileri eklemek için izin gerekiyor</string>
+    <string name="snackbar_allow_text">İzin ver</string>
+    <string name="all">Tüm</string>
+    <string name="famous">Ünlü</string>
+    <string name="age">Geçerli Yaş: \u0020</string>
+    <string name="happy_birthday">Doğum Günün Kutlu Olsun!</string>
+    <string name="web_search_error">İşlem yapılamadı, lütfen web tarayıcısı yükleyin</string>
+    <string name="delete_record_text">Bu kaydı silmek istediğinizden eminmisiniz</string>
+    <string name="record_deleted">Kayıt silindi</string>
+    <string name="undo">Geri al</string>
 
     <string-array name="months">
-        <item>1月</item>
-        <item>2月</item>
-        <item>3月</item>
-        <item>4月</item>
-        <item>5月</item>
-        <item>6月</item>
-        <item>7月</item>
-        <item>8月</item>
-        <item>9月</item>
-        <item>10月</item>
-        <item>11月</item>
-        <item>12月</item>
+        <item>Ocak</item>
+        <item>Şubat</item>
+        <item>Mart</item>
+        <item>Nisan</item>
+        <item>Mayıs</item>
+        <item>Haziran</item>
+        <item>Temmuz</item>
+        <item>Ağustos</item>
+        <item>Eylül</item>
+        <item>Ekim</item>
+        <item>Kasım</item>
+        <item>Aralık</item>
     </string-array>
 
     <!-- Menu -->
-    <string name="action_sync">同步</string>
-    <string name="action_settings">设置</string>
-    <string name="action_delete">删除</string>
+    <string name="action_sync">Senkronizasyon</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="action_delete">Sil</string>
 
     <!-- NewPersonDialogFragment -->
-    <string name="new_record">新建记录</string>
-    <string name="add_from_contacts">从联系人添加</string>
-    <string name="open_contacts_error">由于设备功能而无法执行操作</string>
-    <string name="name">姓名</string>
-    <string name="error_hint">请输入姓名</string>
-    <string name="phone_number">电话号码</string>
-    <string name="pick_date">选择日期</string>
-    <string name="wrong_date">错误的日期</string>
-    <string name="year_unknown">我不知道年份</string>
-    <string name="cancel_button">取消</string>
-    <string name="record_added">记录已添加</string>
+    <string name="new_record">Yeni kayıt</string>
+    <string name="add_from_contacts">Kişilerden ekle</string>
+    <string name="open_contacts_error">Cihaz özellikleri nedeniyle işlem yapılamıyor</string>
+    <string name="name">Adı</string>
+    <string name="error_hint">Lütfen bir ad girin</string>
+    <string name="phone_number">Telefon Numarası</string>
+    <string name="pick_date">Tarih Seç</string>
+    <string name="wrong_date">Yanlış tarih</string>
+    <string name="year_unknown">Yılı bilmiyorum</string>
+    <string name="cancel_button">Iptal</string>
+    <string name="record_added">Kayıt eklendi</string>
 
     <!-- DetailActivity -->
-    <string name="birthday">生日</string>
-    <string name="days_left">到下个生日的天数</string>
-    <string name="today">今天</string>
-    <string name="days_since_birth">出生后的天数</string>
-    <string name="zodiac_sign">星座</string>
-    <string name="season_picture">季节图片</string>
-    <string name="calendar">日历</string>
-    <string name="call">呼叫</string>
-    <string name="chat">聊天</string>
-    <string name="born_on_this_day">在这一天出生</string>
+    <string name="birthday">Doğum Günü</string>
+    <string name="days_left">Bir sonraki doğumgününe kadarki günler</string>
+    <string name="today">Bugün</string>
+    <string name="days_since_birth">Doğumdan beri</string>
+    <string name="zodiac_sign">Burç</string>
+    <string name="season_picture">Sezon resmi</string>
+    <string name="calendar">Takvim</string>
+    <string name="call">Ara</string>
+    <string name="chat">Sohbet</string>
+    <string name="born_on_this_day">Bu gün doğan</string>
 
     <!-- EditActivity -->
-    <string name="editing_label">编辑中</string>
-    <string name="record_edited">记录已编辑</string>
+    <string name="editing_label">Düzenleme</string>
+    <string name="record_edited">Kayıt düzenlendi</string>
 
     <!-- Alarm -->
-    <string name="security_exception">安全异常，三星设备限制你可以注册的警报数量</string>
-    <string name="channel_name">生日</string>
+    <string name="security_exception">SecurityException, Samsung cihazlar kayıt olabilirsiniz alarm sayısını kısıtlayın</string>
+    <string name="channel_name">Doğum Günleri</string>
 
     <!-- Zodiac signs -->
-    <string name="aries">白羊座</string>
-    <string name="taurus">金牛座</string>
-    <string name="gemini">双子座</string>
-    <string name="cancer">巨蟹座</string>
-    <string name="leo">狮子座</string>
-    <string name="virgo">处女座</string>
-    <string name="libra">天秤座</string>
-    <string name="scorpio">蝎子座</string>
-    <string name="sagittarius">射手座</string>
-    <string name="capricorn">摩羯座</string>
-    <string name="aquarius">水瓶座</string>
-    <string name="pisces">双鱼座</string>
+    <string name="aries">Koç</string>
+    <string name="taurus">Boğa</string>
+    <string name="gemini">İkizler</string>
+    <string name="cancer">Yengeç</string>
+    <string name="leo">Aslan</string>
+    <string name="virgo">Başak</string>
+    <string name="libra">Terazi</string>
+    <string name="scorpio">Akrep</string>
+    <string name="sagittarius">Yay</string>
+    <string name="capricorn">Oğlak</string>
+    <string name="aquarius">Kova</string>
+    <string name="pisces">Balık</string>
 
     <!-- SettingsActivity -->
-    <string name="optimization_enabled">优化已启用！</string>
-    <string name="optimization_description">\n从6.0 版开始，安卓引入了节电模式 Doze，通过延迟后台 CPU 来管理应用程序的行为。\n\n需禁用针对 Birdays 的优化以使其正常运行。</string>
-    <string name="do_not_show_again">不再显示</string>
-    <string name="disable_button">禁用</string>
+    <string name="optimization_enabled">En iyi duruma getirme etkin!</string>
+    <string name="optimization_description">tanıttı \nStarting sürüm 6.0, Android yeti-koruma tarz arka plan CPU.\n\nTo ertelemek tarafından apps davranış yönetmek Doze app iş düzgün optimizasyon Birdays için devre dışı bırakmak olun.</string>
+    <string name="do_not_show_again">Bir daha gösterme</string>
+    <string name="disable_button">Devre Dışı Bırak</string>
     <!-- Notifications -->
-    <string name="notifications">通知</string>
-    <string name="allow_notification">允许应用程序发送即将到来的生日通知</string>
-    <string name="notifications_time">通知时间</string>
-    <string name="additional_notification">附加通知</string>
+    <string name="notifications">Bildirimler</string>
+    <string name="allow_notification">Uygulamaya yaklaşan doğum günleri bildirimlerini göndermeye izin ver</string>
+    <string name="notifications_time">Bildirim zamanı</string>
+    <string name="additional_notification">Ek bildirim</string>
 
     <string-array name="additional_notification_entries">
-        <item>从不</item>
-        <item>1天前</item>
-        <item>2天前</item>
-        <item>3天前</item>
-        <item>1周前</item>
-        <item>2周前</item>
+        <item>Hiçbir zaman</item>
+        <item>1 gün önce</item>
+        <item>2 gün önce</item>
+        <item>3 gün önce</item>
+        <item>1 hafta önce</item>
+        <item>2 hafta önce</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
-        <item>今天</item>
-        <item>明天</item>
-        <item>2天內</item>
-        <item>3天內</item>
-        <item>1周内</item>
-        <item>2周内</item>
+        <item>Bugün</item>
+        <item>Yarın</item>
+        <item>2 gün içinde</item>
+        <item>3 gün içinde</item>
+        <item>Bir hafta içinde</item>
+        <item>2 hafta içinde</item>
     </string-array>
 
-    <string name="notification_tone">通知铃声</string>
-    <string name="ringtone_summary">选择通知的声音。默认使用设备设置的铃声</string>
-    <string name="silent">无</string>
-    <string name="help">帮助</string>
-    <string name="tap_here">如果没有收到通知，请点击此处</string>
+    <string name="notification_tone">Bildirim tonu</string>
+    <string name="ringtone_summary">Bildirim için bir ses seçin. Cihaz ayarlarından varsayılan olarak ton kullanılır</string>
+    <string name="silent">Hiçbiri</string>
+    <string name="help">Yardım</string>
+    <string name="tap_here">Bildirimleri almadıysanız, buraya dokunun</string>
     <!-- Synchronization and backup -->
-    <string name="sync_and_backup">同步和备份</string>
-    <string name="contacts_import_title">导入联系人</string>
-    <string name="contacts_import_summary">点击此处从设备中导入联系人 (支持 ISO 8601)</string>
-    <string name="export_records">导出记录 (Beta)</string>
-    <string name="export_records_summary">创建带有备份的 XML 文件</string>
-    <string name="ext_storage_error">外部存储不可用</string>
-    <string name="exporting_records">正在导出记录…</string>
-    <string name="backup_finished">备份完成，XML 文件在\u0020</string>
-    <string name="recover_records">恢复记录 (Beta)</string>
-    <string name="recover_records_summary">选择带有备份的 XML 文件</string>
-    <string name="recover_records_error">无法执行操作，请安装文件管理器</string>
-    <string name="records_recovered">恢复的记录</string>
+    <string name="sync_and_backup">Senkronizasyon ve yedekleme</string>
+    <string name="contacts_import_title">Kişileri içe aktar</string>
+    <string name="contacts_import_summary">(ISO 8601 destekler), aygıtınızdan kişileri almak için buraya dokunun</string>
+    <string name="export_records">Verme kayıtları (Beta)</string>
+    <string name="export_records_summary">Yedekleme ile XML dosyasını oluştur</string>
+    <string name="ext_storage_error">Harici depolama mevcut değil</string>
+    <string name="exporting_records">Kayıtları dışa aktarılıyor…</string>
+    <string name="backup_finished">Yedek tamamlandı, XML dosyasında the\u0020</string>
+    <string name="recover_records">Kayıtları iyileştir (Beta)</string>
+    <string name="recover_records_summary">XML dosyasının yedeği seçin</string>
+    <string name="recover_records_error">İşlem yapılamadı, lütfen web tarayıcısı yükleyin</string>
+    <string name="records_recovered">Kayıtları kurtarıldı</string>
     <!-- General -->
-    <string name="general">通用</string>
-    <string name="night_mode">夜间模式</string>
-    <string name="displayed_age">显示的年龄</string>
+    <string name="general">Genel</string>
+    <string name="night_mode">Gece modu</string>
+    <string name="displayed_age">Görüntülenen yaş</string>
 
     <string-array name="displayed_age_entries">
-        <item>当前</item>
-        <item>未来</item>
+        <item>Mevcut</item>
+        <item>Gelecek</item>
     </string-array>
 
-    <string name="displayed_age_changes">要让更改生效，你必须重新启动应用程序。</string>
-    <string name="restart_now">立即重启</string>
-    <string name="later">稍后</string>
-    <string name="rate_app">为本软件评分</string>
-    <string name="share_app">分享</string>
-    <string name="share_text">你是否忘记过祝贺亲戚、朋友或同事的生日？Birdays 会提醒你这个重要的日子！\n\n</string>
+    <string name="displayed_age_changes">Bu değişikliklerin etkili olabilmesi için uygulamayı yeniden başlatmalısın</string>
+    <string name="restart_now">Şimdi yeniden başlat</string>
+    <string name="later">Daha Sonra</string>
+    <string name="rate_app">Uygulamayı değerlendirin</string>
+    <string name="share_app">Paylaş</string>
+    <string name="share_text">Doğum günlerinde akrabalarınızı, arkadaşlarınızı ve meslektaşlarınızı tebrik etmeyi unuttunuz mu? Birdays size önemli bir tatil hatırlatacaktır!\n\n</string>
     <!-- Advertising -->
-    <string name="advertising">广告</string>
-    <string name="about_ad_title">为什么我会看到广告？</string>
-    <string name="about_ad_summary">广告收入将用于项目的开发和翻译。你可以免费去除广告</string>
-    <string name="ad_interstitial_title">间隙式广告</string>
-    <string name="ad_interstitial_summary">这类广告每天只展示一次。没那么频繁，不是吗？</string>
-    <string name="ad_banner">横幅广告</string>
+    <string name="advertising">Reklam</string>
+    <string name="about_ad_title">Neden reklamları görüyorum?</string>
+    <string name="about_ad_summary">Reklam gelirleri, projenin geliştirilmesine ve diğer dillere çevirmeye gider. Reklamları ücretsiz kaldırabilirsiniz</string>
+    <string name="ad_interstitial_title">Arada açılan reklam</string>
+    <string name="ad_interstitial_summary">Bu tür bir reklam günde 1 gösteri ile sınırlıdır. Çok sık değil, değil mi?</string>
+    <string name="ad_banner">Afiş</string>
     <!-- About app -->
-    <string name="about_app">关于应用程序</string>
-    <string name="menu_github">源代码</string>
-    <string name="privacy_policy">隐私政策</string>
-    <string name="software_licenses">免费软件许可证</string>
-    <string name="licenses">许可证</string>
+    <string name="about_app">Uygulama hakkında</string>
+    <string name="menu_github">Kaynak kodu</string>
+    <string name="privacy_policy">Gizlilik Politikası</string>
+    <string name="software_licenses">Özgür yazılım lisansları</string>
+    <string name="licenses">Lisanslar</string>
 
     <!-- HelpActivity -->
-    <string name="help_header">为什么闹钟没有运行？</string>
-    <string name="help_description">有些设备具有节电模式，会阻止应用程序的后台进程，或在启动时禁用程序运行。\n使闹钟正常运行，只需下面几个简单的步骤：\n\n1. 请确保为 Birdays 启用了通知 (设置 > 应用程序 > Birdays)。\n\n2. 如果你安装了任务管理器、任务终结者或内存优化程序 (例如«Battery Saver»、«Clean Master»)，可能会阻止应用程序的后台进程，请将 Birdays 添加到他们的白名单中。\n\n3. 关闭节电模式或添加 Birdays 到白名单 (设置 > 电池 > 电池优化)。\n仅针对运行安卓 6.0 (棉花糖) 或更高的设备。</string>
-    <string name="help_whitelist">打开白名单</string>
-    <string name="help_whitelist_error">仅针对运行安卓 6.0 (棉花糖) 或更高的设备。</string>
-    <string name="help_delay_text">请注意，在某些设备上，通知可能会有所延迟。</string>
-    <string name="help_settings">打开设置</string>
-    <string name="huawei_header">华为的机主</string>
-    <string name="huawei_description">打开设备«设置»，至«省电管理»，打开«受保护的后台应用»。确保已为 Birdays 启用此功能。</string>
-    <string name="samsung_header">三星机主</string>
-    <string name="samsung_description">打开«智能管理器»，点击«电池»、«详细»。为 Birdays 禁用该功能。</string>
-    <string name="xiaomi_header">小米机主</string>
-    <string name="xiaomi_description">打开设备«设置»，转到«电池和性能»，然后«管理应用电池使用»，打开«选择应用程序»，将 Birdays 选择为«无限制»。</string>
-    <string name="show_button">显示</string>
-    <string name="help_email_description">如果闹钟仍不工作，请与我联系：birdaysapp@gmail.com</string>
-    <string name="send_email">发送邮件</string>
+    <string name="help_header">Neden alarm çalışmıyor?</string>
+    <string name="help_description">Bazı cihazlarda, uygulama arka planı işlemlerini engelleyebilecek veya uygulamanın başlangıçta çalışmasını engelleyebilecek Güç Tasarruf Modu vardır. \NArama işini doğru yapmak için aşağıdaki birkaç basit adımı uygulayın: \n \ n1. Birdays uygulaması için bildirimlerin etkinleştirildiğinden emin olun (Ayarlar &amp; gt; Apps &amp; gt; Birdays). \N \n2. Uygulama arka plan işlemlerini engelleyebilecek görev yöneticileri, görev katilleri veya RAM iyileştiricileri (ör. \"Pil Tasarrufu\", \"Temiz Ana\") yüklediyseniz, Beyaz listelerine Birdays ekleyin. \N \n3. Güç tasarrufu modunu kapatın veya Beyaz listedeki Birdays\'i ekleyin (Ayarlar &amp; gt; Pil &amp; gt; Pil optimizasyonu). \ NAvustralya 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için.</string>
+    <string name="help_whitelist">Beyaz listeyi aç</string>
+    <string name="help_whitelist_error">Yalnızca Android 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için</string>
+    <string name="help_delay_text">Unutmayın ki bazı cihazlarda bildirimler gecikme yaşayabilir.</string>
+    <string name="help_settings">Ayarlara git</string>
+    <string name="huawei_header">Huawei sahipleri için</string>
+    <string name="huawei_description">Açık aygıt «koyma», «Güç tasarrufu için» gidip «apps mahfuz» açın. Bu özellik Birdays için etkin olduğundan emin olun.</string>
+    <string name="samsung_header">Samsung sahipleri için</string>
+    <string name="samsung_description">«Akıllı Yöneticisi», «Pil» ve sonra «Detay» dokunun. Birdays app için bu özelliği devre dışı bırakın.</string>
+    <string name="xiaomi_header">Huawei sahipleri için</string>
+    <string name="xiaomi_description">Aygıt «ayarlar» açın, «Pil &amp; performans», «Yönet apps pil kullanımı» git, «apps Seç» açın, «için kısıtlama yoktur» Birdays seçin.</string>
+    <string name="show_button">Dizi</string>
+    <string name="help_email_description">Alarm hala çalışmıyorsa, lütfen bana birdaysapp@gmail.com ulaşın</string>
+    <string name="send_email">E-posta gönder</string>
 
     <!-- Famous persons -->
     <!-- 1 january -->

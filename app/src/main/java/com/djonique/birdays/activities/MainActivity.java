@@ -61,7 +61,7 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements
         NewPersonDialogFragment.AddingPersonListener,
-        AllFragment.DeletingRecordListener,
+        AllFragment.DeletingPersonListener,
         ContactsHelper.LoadingContactsListener {
 
     private static final String NEW_PERSON_DIALOG_TAG = "NEW_PERSON_DIALOG_TAG";
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onRestart() {
         super.onRestart();
-        pagerAdapter.addRecordsFromDb();
+        pagerAdapter.addPersonsFromDb();
     }
 
     @Override
@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPersonAdded(Person person) {
         pagerAdapter.addPerson(person);
+        Utils.notifyWidget(this);
         Snackbar.make(findViewById(R.id.container_main), R.string.record_added, Snackbar.LENGTH_SHORT).show();
     }
 
@@ -183,8 +184,9 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onRecordDeleted(long timeStamp) {
-        pagerAdapter.deleteRecord(timeStamp);
+    public void onPersonDeleted(long timeStamp) {
+        pagerAdapter.deletePerson(timeStamp);
+        Utils.notifyWidget(this);
     }
 
     @OnPageChange(R.id.viewpager_main)
@@ -239,6 +241,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onContactsUploaded() {
-        if (viewPager != null) viewPager.getAdapter().notifyDataSetChanged();
+        if (viewPager.getAdapter() != null) viewPager.getAdapter().notifyDataSetChanged();
     }
 }
