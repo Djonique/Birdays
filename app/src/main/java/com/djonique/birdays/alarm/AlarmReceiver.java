@@ -38,6 +38,8 @@ import com.djonique.birdays.utils.Constants;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
+    // TODO: 30.11.2017 FireUriExposedException
+
     private static final String CHANNEL_ID = "com.djonique.birdays";
 
     private NotificationManager manager;

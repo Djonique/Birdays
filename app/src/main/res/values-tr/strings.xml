@@ -27,10 +27,10 @@
     <string name="snackbar_allow_text">İzin ver</string>
     <string name="all">Tüm</string>
     <string name="famous">Ünlü</string>
-    <string name="age">Geçerli Yaş: \u0020</string>
+    <string name="age">Geçerli Yaş:\\u0020</string>
     <string name="happy_birthday">Doğum Günün Kutlu Olsun!</string>
     <string name="web_search_error">İşlem yapılamadı, lütfen web tarayıcısı yükleyin</string>
-    <string name="delete_record_text">Bu kaydı silmek istediğinizden eminmisiniz</string>
+    <string name="delete_record_text">Bu kaydı silmek istediğinizden eminmisiniz:</string>
     <string name="record_deleted">Kayıt silindi</string>
     <string name="undo">Geri al</string>
 
@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">En iyi duruma getirme etkin!</string>
-    <string name="optimization_description">tanıttı \nStarting sürüm 6.0, Android yeti-koruma tarz arka plan CPU.\n\nTo ertelemek tarafından apps davranış yönetmek Doze app iş düzgün optimizasyon Birdays için devre dışı bırakmak olun.</string>
+    <string name="optimization_description">\nStarting sürüm 6.0, Android yeti-koruma tarz arka plan CPU.\n\nTo ertelemek tarafından apps davranış yönetmek Doze app iş düzgün optimizasyon Birdays için devre dışı bırakmak olun.</string>
     <string name="do_not_show_again">Bir daha gösterme</string>
     <string name="disable_button">Devre Dışı Bırak</string>
     <!-- Notifications -->
@@ -180,17 +180,17 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Neden alarm çalışmıyor?</string>
-    <string name="help_description">Bazı cihazlarda, uygulama arka planı işlemlerini engelleyebilecek veya uygulamanın başlangıçta çalışmasını engelleyebilecek Güç Tasarruf Modu vardır. \NArama işini doğru yapmak için aşağıdaki birkaç basit adımı uygulayın: \n \ n1. Birdays uygulaması için bildirimlerin etkinleştirildiğinden emin olun (Ayarlar &amp; gt; Apps &amp; gt; Birdays). \N \n2. Uygulama arka plan işlemlerini engelleyebilecek görev yöneticileri, görev katilleri veya RAM iyileştiricileri (ör. \"Pil Tasarrufu\", \"Temiz Ana\") yüklediyseniz, Beyaz listelerine Birdays ekleyin. \N \n3. Güç tasarrufu modunu kapatın veya Beyaz listedeki Birdays\'i ekleyin (Ayarlar &amp; gt; Pil &amp; gt; Pil optimizasyonu). \ NAvustralya 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için.</string>
+    <string name="help_description">Bazı cihazlarda, uygulama arka planı işlemlerini engelleyebilecek veya uygulamanın başlangıçta çalışmasını engelleyebilecek Güç Tasarruf Modu vardır.\nArama işini doğru yapmak için aşağıdaki birkaç basit adımı uygulayın:\n\n1. Birdays uygulaması için bildirimlerin etkinleştirildiğinden emin olun (Ayarlar > Apps > Birdays).\n\n2. Uygulama arka plan işlemlerini engelleyebilecek görev yöneticileri, görev katilleri veya RAM iyileştiricileri (ör. «Battery Saver», «Clean Master») yüklediyseniz, Beyaz listelerine Birdays ekleyin.\n \n3. Güç tasarrufu modunu kapatın veya Beyaz listedeki Birdays\'i ekleyin (Ayarlar > Pil > Pil optimizasyonu). \nYalnızca Android 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için.</string>
     <string name="help_whitelist">Beyaz listeyi aç</string>
     <string name="help_whitelist_error">Yalnızca Android 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için</string>
     <string name="help_delay_text">Unutmayın ki bazı cihazlarda bildirimler gecikme yaşayabilir.</string>
     <string name="help_settings">Ayarlara git</string>
     <string name="huawei_header">Huawei sahipleri için</string>
-    <string name="huawei_description">Açık aygıt «koyma», «Güç tasarrufu için» gidip «apps mahfuz» açın. Bu özellik Birdays için etkin olduğundan emin olun.</string>
+    <string name="huawei_description">Açık aygıt «Koyma», «Güç tasarrufu için» gidip «Apps mahfuz» açın. Bu özellik Birdays için etkin olduğundan emin olun.</string>
     <string name="samsung_header">Samsung sahipleri için</string>
-    <string name="samsung_description">«Akıllı Yöneticisi», «Pil» ve sonra «Detay» dokunun. Birdays app için bu özelliği devre dışı bırakın.</string>
+    <string name="samsung_description">«Smart Manager», «Pil» ve sonra «Ayrinti» dokunun. Birdays app için bu özelliği devre dışı bırakın.</string>
     <string name="xiaomi_header">Huawei sahipleri için</string>
-    <string name="xiaomi_description">Aygıt «ayarlar» açın, «Pil &amp; performans», «Yönet apps pil kullanımı» git, «apps Seç» açın, «için kısıtlama yoktur» Birdays seçin.</string>
+    <string name="xiaomi_description">Aygıt «Ayarlar» açın, «Pil», «Uygulamalarin pil kullanimini yönet» git, «Uygulamalari seçin» açın, «Kısıtlama yok» Birdays seçin.</string>
     <string name="show_button">Dizi</string>
     <string name="help_email_description">Alarm hala çalışmıyorsa, lütfen bana birdaysapp@gmail.com ulaşın</string>
     <string name="send_email">E-posta gönder</string>

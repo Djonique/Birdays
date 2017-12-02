@@ -17,32 +17,32 @@
 -->
 
 <resources>
-    <string name="build_version">Versi kompilasi</string>
+    <string name="build_version">Versjon</string>
 
     <!-- MainActivity -->
-    <string name="loading_contacts">Memuat kontak…</string>
-    <string name="contacts_uploaded">Mengunggah kontak</string>
-    <string name="loading_contacts_error">Gagal mengimpor kontak, format tanggal salah</string>
-    <string name="permission_required">Izin diperlukan untuk mengimpor kontak</string>
-    <string name="snackbar_allow_text">Izinkan</string>
-    <string name="all">Semua</string>
-    <string name="famous">Terkenal</string>
-    <string name="age">Umur sekarang:\u0020</string>
-    <string name="happy_birthday">Selamat Ulang Tahun!</string>
-    <string name="web_search_error">Tidak dapat melakukan operasi, silahkan pasang penjelajah web</string>
-    <string name="delete_record_text">Anda yakin ingin menghapus catatan:\u0020</string>
-    <string name="record_deleted">Catatan dihapus</string>
-    <string name="undo">Urung</string>
+    <string name="loading_contacts">Laster opp kontakter…</string>
+    <string name="contacts_uploaded">Kontakter opplastet</string>
+    <string name="loading_contacts_error">Kunne ikke importere kontakter, ugyldig datoformat</string>
+    <string name="permission_required">Tillatelse kreves for å importere kontakter</string>
+    <string name="snackbar_allow_text">Tillat</string>
+    <string name="all">Alle</string>
+    <string name="famous">Berømte</string>
+    <string name="age">Alder:\u0020</string>
+    <string name="happy_birthday">Gratulerer med dagen!</string>
+    <string name="web_search_error">Kunne ikke utføre handling, vennligst installér nettleseren</string>
+    <string name="delete_record_text">Er du sikker på at du vil slette denne lappen:\u0020</string>
+    <string name="record_deleted">Lapp slettet</string>
+    <string name="undo">Angre</string>
 
     <string-array name="months">
-        <item>Januari</item>
-        <item>Februari</item>
-        <item>Maret</item>
+        <item>Januar</item>
+        <item>Februar</item>
+        <item>Mars</item>
         <item>April</item>
-        <item>Mei</item>
+        <item>Mai</item>
         <item>Juni</item>
         <item>Juli</item>
-        <item>Agustus</item>
+        <item>August</item>
         <item>September</item>
         <item>Oktober</item>
         <item>November</item>
@@ -50,150 +50,150 @@
     </string-array>
 
     <!-- Menu -->
-    <string name="action_sync">Sinkronisasi</string>
-    <string name="action_settings">Pengaturan</string>
-    <string name="action_delete">Hapus</string>
+    <string name="action_sync">Synkronisering</string>
+    <string name="action_settings">Innstillinger</string>
+    <string name="action_delete">Slett</string>
 
     <!-- NewPersonDialogFragment -->
-    <string name="new_record">Catatan baru</string>
-    <string name="add_from_contacts">Tambahkan dari kontak</string>
-    <string name="open_contacts_error">Gagal melakukan tindakan karena fitur perangkat</string>
-    <string name="name">Nama</string>
-    <string name="error_hint">Silakan masukkan nama</string>
-    <string name="phone_number">Nomor telepon</string>
-    <string name="pick_date">Pilih tanggal</string>
-    <string name="wrong_date">Tanggal salah</string>
-    <string name="year_unknown">Tahun tidak diketahui</string>
-    <string name="cancel_button">Batal</string>
-    <string name="record_added">Catatan ditambahkan</string>
+    <string name="new_record">Ny lapp</string>
+    <string name="add_from_contacts">Legg til fra kontakter</string>
+    <string name="open_contacts_error">Kunne ikke utføre handling grunnet enhetsfunksjoner</string>
+    <string name="name">Navn</string>
+    <string name="error_hint">Vennligst skriv inn navnet</string>
+    <string name="phone_number">Telefonnummer</string>
+    <string name="pick_date">Velg dato</string>
+    <string name="wrong_date">Feil dato</string>
+    <string name="year_unknown">Jeg kan ikke året</string>
+    <string name="cancel_button">Avbryt</string>
+    <string name="record_added">Lapp lagt til</string>
 
     <!-- DetailActivity -->
-    <string name="birthday">Ulang tahun</string>
-    <string name="days_left">Hari menuju ulang tahunnya</string>
-    <string name="today">Hari ini</string>
-    <string name="days_since_birth">Hari sejak lahir</string>
-    <string name="zodiac_sign">Zodiak</string>
-    <string name="season_picture">Gambar musim</string>
+    <string name="birthday">Bursdag</string>
+    <string name="days_left">Dager til neste bursdag</string>
+    <string name="today">I dag</string>
+    <string name="days_since_birth">Dager siden fødsel</string>
+    <string name="zodiac_sign">Stjernetegn</string>
+    <string name="season_picture">Årstidbilde</string>
     <string name="calendar">Kalender</string>
-    <string name="call">Panggilan</string>
-    <string name="chat">Obrolan</string>
-    <string name="born_on_this_day">Lahir hari ini</string>
+    <string name="call">Ring</string>
+    <string name="chat">Chat</string>
+    <string name="born_on_this_day">Født på denne dagen</string>
 
     <!-- EditActivity -->
-    <string name="editing_label">Mengedit</string>
-    <string name="record_edited">Mengedit catatan</string>
+    <string name="editing_label">Redigering</string>
+    <string name="record_edited">Lapp redigert</string>
 
     <!-- Alarm -->
-    <string name="security_exception">SecurityException, perangkat Samsung membatasi jumlah alarm yang bisa Anda daftarkan</string>
-    <string name="channel_name">Ulang tahun</string>
+    <string name="security_exception">SecurityException, Samsung-enheter begrenser antallet numre og alarmer du kan registrere</string>
+    <string name="channel_name">Bursdager</string>
 
     <!-- Zodiac signs -->
-    <string name="aries">Aries</string>
-    <string name="taurus">Taurus</string>
-    <string name="gemini">Gemini</string>
-    <string name="cancer">Kanser</string>
-    <string name="leo">Leo</string>
-    <string name="virgo">Virgo</string>
-    <string name="libra">Libra</string>
-    <string name="scorpio">Skorpio</string>
-    <string name="sagittarius">Sagitarius</string>
-    <string name="capricorn">Kaprikornus</string>
-    <string name="aquarius">Akuarius</string>
-    <string name="pisces">Pises</string>
+    <string name="aries">Væren</string>
+    <string name="taurus">Tyren</string>
+    <string name="gemini">Tvillingene</string>
+    <string name="cancer">Krepsen</string>
+    <string name="leo">Løven</string>
+    <string name="virgo">Jomfruen</string>
+    <string name="libra">Vekten</string>
+    <string name="scorpio">Skorpionen</string>
+    <string name="sagittarius">Skytten</string>
+    <string name="capricorn">Steinbukken</string>
+    <string name="aquarius">Vannmannen</string>
+    <string name="pisces">Fiskene</string>
 
     <!-- SettingsActivity -->
-    <string name="optimization_enabled">Optimalisasi diaktifkan!</string>
-    <string name="optimization_description">\nMulai dari versi 6.0, Android memperkenalkan hemat daya mode Doze yang mengelola perilaku aplikasi dengan menunda latar CPU.\n\nUntuk membuat aplikasi bekerja dengan benar, nonaktifkan pengoptimalan untuk Birdays.</string>
-    <string name="do_not_show_again">Jangan tampilkan lagi</string>
-    <string name="disable_button">Nonaktifkan</string>
+    <string name="optimization_enabled">Optimalisering aktivert!</string>
+    <string name="optimization_description">\nFra og med versjon 6.0, introduserte Android strømsparingsmodusen Doze som holder styr på appers oppførsel ved å utsette bakgrunns-CPU.\n\nFor å få appen til å virke normalt, deaktivér optimalisering av Birdays.</string>
+    <string name="do_not_show_again">Ikke vis dette igjen</string>
+    <string name="disable_button">Deaktivér</string>
     <!-- Notifications -->
-    <string name="notifications">Notifikasi</string>
-    <string name="allow_notification">Izinkan aplikasi mengirim notifikasi ulang tahun yang akan datang</string>
-    <string name="notifications_time">Waktu notifikasi</string>
-    <string name="additional_notification">Notifikasi tambahan</string>
+    <string name="notifications">Varslinger</string>
+    <string name="allow_notification">Tillat appen å sende varslinger om kommende bursdager</string>
+    <string name="notifications_time">Varslingsklokkeslett</string>
+    <string name="additional_notification">Ytterlig varsling</string>
 
     <string-array name="additional_notification_entries">
-        <item>Tidak pernah</item>
-        <item>Sehari sebelumnya</item>
-        <item>2 hari sebelumnya</item>
-        <item>3 hari sebelumnya</item>
-        <item>Seminggu sebelumnya</item>
-        <item>2 minggu sebelumnya</item>
+        <item>Aldri</item>
+        <item>1 dag før</item>
+        <item>2 dager før</item>
+        <item>3 dager før</item>
+        <item>1 uke før</item>
+        <item>2 uker før</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
-        <item>Hari ini</item>
-        <item>Besok</item>
-        <item>Lusa</item>
-        <item>Dalam 3 hari</item>
-        <item>Dalam seminggu</item>
-        <item>Dalam 2 minggu</item>
+        <item>I dag</item>
+        <item>I morgen</item>
+        <item>Om 2 dager</item>
+        <item>Om 3 dager</item>
+        <item>Om 1 uke</item>
+        <item>Om 2 uker</item>
     </string-array>
 
-    <string name="notification_tone">Nada notifikasi</string>
-    <string name="ringtone_summary">Pilih nada notifikasi. Suara standarnya adalah dari pengaturan perangkat</string>
-    <string name="silent">Tidak ada</string>
-    <string name="help">Bantuan</string>
-    <string name="tap_here">Ketuk di sini jika Anda tidak menerima notifikasi</string>
+    <string name="notification_tone">Varslingstone</string>
+    <string name="ringtone_summary">Velg en tone til varslingen. Standard er tonen fra enhetsinnstillingene</string>
+    <string name="silent">Ingen</string>
+    <string name="help">Hjelp</string>
+    <string name="tap_here">Trykk her hvis du ikke mottar varslinger</string>
     <!-- Synchronization and backup -->
-    <string name="sync_and_backup">Menyinkronkan dan membuat cadangan</string>
-    <string name="contacts_import_title">Impor kontak</string>
-    <string name="contacts_import_summary">Ketuk di sini untuk mengimpor kontak dari perangkat Anda (mendukung ISO 8601)</string>
-    <string name="export_records">Ekspor catatan (Beta)</string>
-    <string name="export_records_summary">Buat berkas XML dengan cadangan</string>
-    <string name="ext_storage_error">Penyimpanan eksternal tidak tersedia</string>
-    <string name="exporting_records">Mengekspor catatan…</string>
-    <string name="backup_finished">Membuat cadangan selesai, berkas XML dalam\u0020</string>
-    <string name="recover_records">Memulihkan catatan (Beta)</string>
-    <string name="recover_records_summary">Pilih berkas XML dengan cadangan</string>
-    <string name="recover_records_error">Gagal melakukan tindakan, mohon pasang manajer berkas</string>
-    <string name="records_recovered">Catatan dipulihkan</string>
+    <string name="sync_and_backup">Synkronisering og sikkerhetskopiering</string>
+    <string name="contacts_import_title">Importér kontakter</string>
+    <string name="contacts_import_summary">Trykk her for å importere kontaktene fra enheten din (støtter ISO 8601)</string>
+    <string name="export_records">Overfør lapper (Beta)</string>
+    <string name="export_records_summary">Lag XML-filen med sikkerhetskopi</string>
+    <string name="ext_storage_error">Ekstern lagring er ikke tilgjengelig</string>
+    <string name="exporting_records">Overfører lapper…</string>
+    <string name="backup_finished">Sikkerhetskopi fullført, XML-filen er i\u0020</string>
+    <string name="recover_records">Gjenopprett lapper (Beta)</string>
+    <string name="recover_records_summary">Velg XML-filen med sikkerhetskopi</string>
+    <string name="recover_records_error">Kunne ikke utføre handling, vennligst installér filbehandleren</string>
+    <string name="records_recovered">Lapper gjenopprettet</string>
     <!-- General -->
-    <string name="general">Umum</string>
-    <string name="night_mode">Mode malam</string>
-    <string name="displayed_age">Tampilkan umur</string>
+    <string name="general">Generelt</string>
+    <string name="night_mode">Nattmodus</string>
+    <string name="displayed_age">Vist alder</string>
 
     <string-array name="displayed_age_entries">
-        <item>Sekarang</item>
-        <item>Masa depan</item>
+        <item>Nåværende</item>
+        <item>Fremtidige</item>
     </string-array>
 
-    <string name="displayed_age_changes">Anda harus menghidupkan ulang aplikasi untuk menerapkan perubahan</string>
-    <string name="restart_now">Hidupkan ulang sekarang</string>
-    <string name="later">Nanti</string>
-    <string name="rate_app">Beri nilai aplikasi</string>
-    <string name="share_app">Bagikan</string>
-    <string name="share_text">Apakah Anda lupa mengucapkan selamat kepada saudara, teman atau kolega Anda di hari ulang tahun mereka? Birdays akan mengingatkan Anda pada momen yang penting!\n\n</string>
+    <string name="displayed_age_changes">Du må omstarte appen for å merke disse effektene</string>
+    <string name="restart_now">Omstart nå</string>
+    <string name="later">Senere</string>
+    <string name="rate_app">Vurdér appen</string>
+    <string name="share">Del</string>
+    <string name="share_text">Glemmer du å gratulere slektninger, venner eller kolleger med dagen? Birdays vil hjelpe deg med å huske en viktig høytid!\n\n</string>
     <!-- Advertising -->
-    <string name="advertising">Iklan</string>
-    <string name="about_ad_title">Mengapa saya melihat iklan?</string>
-    <string name="about_ad_summary">Pendapatan dari iklan mengalir ke projek pengembangan dan untuk menerjemahkan ke bahasa lain. Anda bisa menghapus iklan secara gratis</string>
-    <string name="ad_interstitial_title">Iklan interstitial</string>
-    <string name="ad_interstitial_summary">Jenis iklan ini terbatas, hanya muncul sekali per hari. Tidak begitu sering, bukan?</string>
-    <string name="ad_banner">Spanduk</string>
+    <string name="advertising">Reklamering</string>
+    <string name="about_ad_title">Hvorfor ser jeg annonser?</string>
+    <string name="about_ad_summary">Inntektene fra reklameringen går til utviklingen av prosjektet og oversettelse av det til andre språk. Du kan fjerne annonser helt gratis</string>
+    <string name="ad_interstitial_title">Interstitiell annonse</string>
+    <string name="ad_interstitial_summary">Denne typen annonse er begrenset til 1 visning om dagen. Ikke så ofte, eller?</string>
+    <string name="ad_banner">Banner</string>
     <!-- About app -->
-    <string name="about_app">Tentang aplikasi</string>
-    <string name="menu_github">Kode sumber</string>
-    <string name="privacy_policy">Kebijakan privasi</string>
-    <string name="software_licenses">Lisensi perangkat lunak gratis</string>
-    <string name="licenses">Lisensi</string>
+    <string name="about_app">Om appen</string>
+    <string name="menu_github">Kildekode</string>
+    <string name="privacy_policy">Personvern</string>
+    <string name="software_licenses">Fri programvare-lisenser</string>
+    <string name="licenses">Lisenser</string>
 
     <!-- HelpActivity -->
-    <string name="help_header">Mengapa alarm tidak bekerja?</string>
-    <string name="help_description">Beberapa perangkat memiliki Mode Penghematan Daya yang dapat memblokir proses latar belakang aplikasi atau menonaktifkan aplikasi agar tidak berjalan.\nUntuk membuat alarm bekerja dengan benar, lakukan beberapa langkah sederhana di bawah ini:\n\n1. Pastikan notifikasi diaktifkan untuk aplikasi Birdays (Setelan > Aplikasi > Birdays).\n\n2. Jika Anda telah memasang pengelola tugas, pembunuh tugas atau pengoptimalan RAM (misalnya «Penghemat baterai», «Clean Master»), yang dapat memblokir proses latar belakang aplikasi, tambahkan Birdays ke daftar putih mereka.\n\n3. Matikan mode hemat daya Anda atau tambahkan Birdays ke daftar putih (Pengaturan> Baterai > Pengoptimalan Baterai).\nHanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi.</string>
-    <string name="help_whitelist">Buka daftar putih</string>
-    <string name="help_whitelist_error">Hanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi</string>
-    <string name="help_delay_text">Harap diingat pada beberapa perangkat, pemberitahuan mungkin dapat bekerja dengan beberapa penundaan.</string>
-    <string name="help_settings">Buka pengaturan</string>
-    <string name="huawei_header">Untuk pengguna Huawei</string>
-    <string name="huawei_description">Buka perangkat «Pengaturan», pergi ke «Penghematan energi» dan buka «Aplikasi yang dilindungi». Pastikan fitur ini diaktifkan untuk Birdays.</string>
-    <string name="samsung_header">Untuk pengguna Samsung</string>
-    <string name="samsung_description">Buka «Manajer Pintar», ketuk «Baterai», kemudian «Detail». Nonaktifkan fitur untuk aplikasi Birdays.</string>
-    <string name="xiaomi_header">Untuk pengguna Xiaomi</string>
-    <string name="xiaomi_description">Buka perangkat «Setelan», pergi ke «Baterai &amp; performa», kemudian «Kelola penggunaan baterai apl», buka «Pilih apl», pilih «Tidak ada pembatasan» untuk Birdays.</string>
-    <string name="show_button">Tampilkan</string>
-    <string name="help_email_description">Jika alarm masih belum berfungsi, silakan hubungi saya di birdaysapp@gmail.com  </string>
-    <string name="send_email">Kirim posel</string>
+    <string name="help_header">Hvorfor virker ikke alarmen?</string>
+    <string name="help_description">Noen enheter har en strømsparingsmodus som kan blokkere appens bakgrunnsaktivitet eller hindre den fra å kjøre ved oppstart.\nFor å få alarmen til å virke ordentlig, utfør de enkle stegene under:\n\n1. Sørg for at varslinger er skrudd på for Birdays-appen (Innstillinger > apper > Birdays).\n\n2. Hvis du har installert oppgavebehandling, oppdragsmorder eller RAM-optimalisering (f.eks. «Battery Saver», «Clean Master»), noe som også kan blokkere bakgrunnsaktivitet, legg Birdays til hvitelisten deres.\n\n3. Skru av strømsparingsmodusen din eller legg Birdays til hvitelisten (Innstillinger > batteri > batterioptimalisering).\nKun for enheter som kjører Android 6.0 (Marshmallow) eller høyere.</string>
+    <string name="help_whitelist">Åpne hviteliste</string>
+    <string name="help_whitelist_error">Kun for enheter som kjører Android 6.0 (Marshmallow) eller høyere</string>
+    <string name="help_delay_text">Vennligst vær oppmerksom på at varslinger kan virke med litt forsinkelse på noen enheter.</string>
+    <string name="help_settings">Åpne innstillinger</string>
+    <string name="huawei_header">For Huawei-brukere</string>
+    <string name="huawei_description">Åpne enhets-«innstillinger», gå til «strømsparing» og åpne «beskyttede apper». Sørg for at denne funksjonen er aktivert for Birdays.</string>
+    <string name="samsung_header">For Samsung-brukere</string>
+    <string name="samsung_description">Åpne «oppgavebehandling», trykk på «batteri», så «detaljer». Deaktivér denne funksjonen for Birdays-appen.</string>
+    <string name="xiaomi_header">For Xiaomi-brukere</string>
+    <string name="xiaomi_description">Åpne enhets-«innstillinger», gå til «batteri &amp; ytelse», så «behandle appers batteriforbruk», åpne «velg apper», velg «ingen restriksjoner» for Birdays.</string>
+    <string name="show_button">Vis</string>
+    <string name="help_email_description">Hvis alarmen ikke virker, vennligst kontakt meg via birdaysapp@gmail.com (Engelsk)</string>
+    <string name="send_email">Send e-post</string>
 
     <!-- Famous persons -->
     <!-- 1 january -->

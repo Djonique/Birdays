@@ -84,7 +84,7 @@
     <string name="record_edited">记录已编辑</string>
 
     <!-- Alarm -->
-    <string name="security_exception">安全异常，三星设备限制你可以注册的警报数量</string>
+    <string name="security_exception">SecurityException，三星设备限制你可以注册的警报数量</string>
     <string name="channel_name">生日</string>
 
     <!-- Zodiac signs -->
@@ -182,7 +182,7 @@
     <string name="help_header">为什么闹钟没有运行？</string>
     <string name="help_description">有些设备具有节电模式，会阻止应用程序的后台进程，或在启动时禁用程序运行。\n使闹钟正常运行，只需下面几个简单的步骤：\n\n1. 请确保为 Birdays 启用了通知 (设置 > 应用程序 > Birdays)。\n\n2. 如果你安装了任务管理器、任务终结者或内存优化程序 (例如«Battery Saver»、«Clean Master»)，可能会阻止应用程序的后台进程，请将 Birdays 添加到他们的白名单中。\n\n3. 关闭节电模式或添加 Birdays 到白名单 (设置 > 电池 > 电池优化)。\n仅针对运行安卓 6.0 (棉花糖) 或更高的设备。</string>
     <string name="help_whitelist">打开白名单</string>
-    <string name="help_whitelist_error">仅针对运行安卓 6.0 (棉花糖) 或更高的设备。</string>
+    <string name="help_whitelist_error">仅针对运行安卓 6.0 (棉花糖) 或更高的设备</string>
     <string name="help_delay_text">请注意，在某些设备上，通知可能会有所延迟。</string>
     <string name="help_settings">打开设置</string>
     <string name="huawei_header">华为的机主</string>

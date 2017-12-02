@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
     Copyright 2017 Evgeny Timofeev
@@ -17,75 +17,75 @@
 -->
 
 <resources>
-    <string name="build_version">Versi kompilasi</string>
+    <string name="build_version">Bersyon ng pagkakagawa</string>
 
     <!-- MainActivity -->
-    <string name="loading_contacts">Memuat kontak…</string>
-    <string name="contacts_uploaded">Mengunggah kontak</string>
-    <string name="loading_contacts_error">Gagal mengimpor kontak, format tanggal salah</string>
-    <string name="permission_required">Izin diperlukan untuk mengimpor kontak</string>
-    <string name="snackbar_allow_text">Izinkan</string>
-    <string name="all">Semua</string>
-    <string name="famous">Terkenal</string>
-    <string name="age">Umur sekarang:\u0020</string>
-    <string name="happy_birthday">Selamat Ulang Tahun!</string>
-    <string name="web_search_error">Tidak dapat melakukan operasi, silahkan pasang penjelajah web</string>
-    <string name="delete_record_text">Anda yakin ingin menghapus catatan:\u0020</string>
-    <string name="record_deleted">Catatan dihapus</string>
-    <string name="undo">Urung</string>
+    <string name="loading_contacts">Iniloload ang mga kontak…</string>
+    <string name="contacts_uploaded">Ang mga kontak ay na i-upload na</string>
+    <string name="loading_contacts_error">Hindi ma i-import ang mga kontak, hindi naka-standard ang pormat</string>
+    <string name="permission_required">Permiso ay kinakailangan para ma-import ang mga kontak</string>
+    <string name="snackbar_allow_text">I-allow</string>
+    <string name="all">Lahat</string>
+    <string name="famous">Tanyag</string>
+    <string name="age">Kasalukuyang edad:\u0020</string>
+    <string name="happy_birthday">Maligayang kaarawan!</string>
+    <string name="web_search_error">Hindi maisagawa ang aksyon, pakiusap i-install ang web browser</string>
+    <string name="delete_record_text">Sigurado ka bang gusto mong burahin itong talaan:\u0020</string>
+    <string name="record_deleted">Na bura na ang talaan</string>
+    <string name="undo">I-undo</string>
 
     <string-array name="months">
-        <item>Januari</item>
-        <item>Februari</item>
-        <item>Maret</item>
-        <item>April</item>
-        <item>Mei</item>
-        <item>Juni</item>
-        <item>Juli</item>
-        <item>Agustus</item>
-        <item>September</item>
-        <item>Oktober</item>
-        <item>November</item>
-        <item>Desember</item>
+        <item>Enero</item>
+        <item>Pebrero</item>
+        <item>Marso</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Hunyo</item>
+        <item>Hulyo</item>
+        <item>Agosto</item>
+        <item>Setyembre</item>
+        <item>Oktubre</item>
+        <item>Nobyembre</item>
+        <item>Disyembre</item>
     </string-array>
 
     <!-- Menu -->
-    <string name="action_sync">Sinkronisasi</string>
-    <string name="action_settings">Pengaturan</string>
-    <string name="action_delete">Hapus</string>
+    <string name="action_sync">Sinkronisasyon</string>
+    <string name="action_settings">Mga setting</string>
+    <string name="action_delete">Burahin</string>
 
     <!-- NewPersonDialogFragment -->
-    <string name="new_record">Catatan baru</string>
-    <string name="add_from_contacts">Tambahkan dari kontak</string>
-    <string name="open_contacts_error">Gagal melakukan tindakan karena fitur perangkat</string>
-    <string name="name">Nama</string>
-    <string name="error_hint">Silakan masukkan nama</string>
-    <string name="phone_number">Nomor telepon</string>
-    <string name="pick_date">Pilih tanggal</string>
-    <string name="wrong_date">Tanggal salah</string>
-    <string name="year_unknown">Tahun tidak diketahui</string>
-    <string name="cancel_button">Batal</string>
-    <string name="record_added">Catatan ditambahkan</string>
+    <string name="new_record">Bagong talaan</string>
+    <string name="add_from_contacts">Magdagdag galing sa mga kontak</string>
+    <string name="open_contacts_error">Hindi maisagawa ang aksyon dahil sa device features</string>
+    <string name="name">Pangalan</string>
+    <string name="error_hint">Pakilagyan ng pangalan</string>
+    <string name="phone_number">Numero ng telepono</string>
+    <string name="pick_date">Pumili ng petsa</string>
+    <string name="wrong_date">Mali ang petsa</string>
+    <string name="year_unknown">Hindi ko alam ang taon</string>
+    <string name="cancel_button">Kanselahin</string>
+    <string name="record_added">Idinagdag na sa tala</string>
 
     <!-- DetailActivity -->
-    <string name="birthday">Ulang tahun</string>
-    <string name="days_left">Hari menuju ulang tahunnya</string>
-    <string name="today">Hari ini</string>
-    <string name="days_since_birth">Hari sejak lahir</string>
-    <string name="zodiac_sign">Zodiak</string>
-    <string name="season_picture">Gambar musim</string>
-    <string name="calendar">Kalender</string>
-    <string name="call">Panggilan</string>
-    <string name="chat">Obrolan</string>
-    <string name="born_on_this_day">Lahir hari ini</string>
+    <string name="birthday">Araw ng Kapanganakan</string>
+    <string name="days_left">Mga araw hangang sa susunod na kapanganakan</string>
+    <string name="today">Ngayon</string>
+    <string name="days_since_birth">Mga araw simula sa kapanganakan</string>
+    <string name="zodiac_sign">Tanda ng zodiac</string>
+    <string name="season_picture">Larawan ng panahon</string>
+    <string name="calendar">Kalendaryo</string>
+    <string name="call">Tawag</string>
+    <string name="chat">Chat</string>
+    <string name="born_on_this_day">Ipinanganak sa araw na to</string>
 
     <!-- EditActivity -->
-    <string name="editing_label">Mengedit</string>
-    <string name="record_edited">Mengedit catatan</string>
+    <string name="editing_label">Ini-edit</string>
+    <string name="record_edited">Ang tala ay na edit na</string>
 
     <!-- Alarm -->
-    <string name="security_exception">SecurityException, perangkat Samsung membatasi jumlah alarm yang bisa Anda daftarkan</string>
-    <string name="channel_name">Ulang tahun</string>
+    <string name="security_exception">SecurityException, Ang Samsung devices ay nililimitahan ang bilang ng alarm na maari mong irehistro</string>
+    <string name="channel_name">Mga araw ng kapanganakan</string>
 
     <!-- Zodiac signs -->
     <string name="aries">Aries</string>
@@ -95,105 +95,105 @@
     <string name="leo">Leo</string>
     <string name="virgo">Virgo</string>
     <string name="libra">Libra</string>
-    <string name="scorpio">Skorpio</string>
-    <string name="sagittarius">Sagitarius</string>
-    <string name="capricorn">Kaprikornus</string>
-    <string name="aquarius">Akuarius</string>
-    <string name="pisces">Pises</string>
+    <string name="scorpio">Scorpio</string>
+    <string name="sagittarius">Sagittarius</string>
+    <string name="capricorn">Capricorn</string>
+    <string name="aquarius">Aquarius</string>
+    <string name="pisces">Pisces</string>
 
     <!-- SettingsActivity -->
-    <string name="optimization_enabled">Optimalisasi diaktifkan!</string>
-    <string name="optimization_description">\nMulai dari versi 6.0, Android memperkenalkan hemat daya mode Doze yang mengelola perilaku aplikasi dengan menunda latar CPU.\n\nUntuk membuat aplikasi bekerja dengan benar, nonaktifkan pengoptimalan untuk Birdays.</string>
-    <string name="do_not_show_again">Jangan tampilkan lagi</string>
-    <string name="disable_button">Nonaktifkan</string>
+    <string name="optimization_enabled">Optimization pinagana!</string>
+    <string name="optimization_description">\nSimula sa version 6.0, Ang android ay inintroduce ang power-saving mode Doze na namamahala sa kilos ng mga app sa pamamagitan ng pagantala sa background CPU.\n\nPara mapagana ng maayos ang app i-disable ang optimisasyon para sa Birdays.</string>
+    <string name="do_not_show_again">Huwag ng ipakita pang muli</string>
+    <string name="disable_button">I-disable</string>
     <!-- Notifications -->
-    <string name="notifications">Notifikasi</string>
-    <string name="allow_notification">Izinkan aplikasi mengirim notifikasi ulang tahun yang akan datang</string>
-    <string name="notifications_time">Waktu notifikasi</string>
-    <string name="additional_notification">Notifikasi tambahan</string>
+    <string name="notifications">Mga notipikasyon</string>
+    <string name="allow_notification">Hayaan ang app na mag padala ng notipikasyon ng nalalapit na kaarawan</string>
+    <string name="notifications_time">Oras ng Notipikasyon</string>
+    <string name="additional_notification">Karagdagang notipikasyon</string>
 
     <string-array name="additional_notification_entries">
-        <item>Tidak pernah</item>
-        <item>Sehari sebelumnya</item>
-        <item>2 hari sebelumnya</item>
-        <item>3 hari sebelumnya</item>
-        <item>Seminggu sebelumnya</item>
-        <item>2 minggu sebelumnya</item>
+        <item>Hindi kailanman</item>
+        <item>Bago ang 1 araw</item>
+        <item>Bago ang 2 na araw</item>
+        <item>Bago ang 3 na araw</item>
+        <item>Bago ang 1 linggo</item>
+        <item>Bago ang 2 na linggo</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
-        <item>Hari ini</item>
-        <item>Besok</item>
-        <item>Lusa</item>
-        <item>Dalam 3 hari</item>
-        <item>Dalam seminggu</item>
-        <item>Dalam 2 minggu</item>
+        <item>Ngayon</item>
+        <item>Bukas</item>
+        <item>Sa 2 na araw</item>
+        <item>Sa 3 na araw</item>
+        <item>Sa isang linggo</item>
+        <item>Sa 2 na linggo</item>
     </string-array>
 
-    <string name="notification_tone">Nada notifikasi</string>
-    <string name="ringtone_summary">Pilih nada notifikasi. Suara standarnya adalah dari pengaturan perangkat</string>
-    <string name="silent">Tidak ada</string>
-    <string name="help">Bantuan</string>
-    <string name="tap_here">Ketuk di sini jika Anda tidak menerima notifikasi</string>
+    <string name="notification_tone">Tone ng notipikasyon</string>
+    <string name="ringtone_summary">Pumili ng sound para sa notipikasyon. Sa pamamagitan ng default ay gagamitn ang tone mula sa mga setting ng device</string>
+    <string name="silent">Wala</string>
+    <string name="help">Tulong</string>
+    <string name="tap_here">I-tap dito kung hindi ka nakatanggap ng notipikasyon</string>
     <!-- Synchronization and backup -->
-    <string name="sync_and_backup">Menyinkronkan dan membuat cadangan</string>
-    <string name="contacts_import_title">Impor kontak</string>
-    <string name="contacts_import_summary">Ketuk di sini untuk mengimpor kontak dari perangkat Anda (mendukung ISO 8601)</string>
-    <string name="export_records">Ekspor catatan (Beta)</string>
-    <string name="export_records_summary">Buat berkas XML dengan cadangan</string>
-    <string name="ext_storage_error">Penyimpanan eksternal tidak tersedia</string>
-    <string name="exporting_records">Mengekspor catatan…</string>
-    <string name="backup_finished">Membuat cadangan selesai, berkas XML dalam\u0020</string>
-    <string name="recover_records">Memulihkan catatan (Beta)</string>
-    <string name="recover_records_summary">Pilih berkas XML dengan cadangan</string>
-    <string name="recover_records_error">Gagal melakukan tindakan, mohon pasang manajer berkas</string>
-    <string name="records_recovered">Catatan dipulihkan</string>
+    <string name="sync_and_backup">Synchronization at backup</string>
+    <string name="contacts_import_title">I-import ang mga kontak</string>
+    <string name="contacts_import_summary">I-tap dito para mag-import ng mga kontak galing sa iyong device (supports ISO 8601)</string>
+    <string name="export_records">I-export ang mga tala (Beta)</string>
+    <string name="export_records_summary">Gumawa ng XML file na may backup</string>
+    <string name="ext_storage_error">Ang external na storage ay hindi availabol</string>
+    <string name="exporting_records">Ini-eksport ang mga tala…</string>
+    <string name="backup_finished">Tapos na ang pag backup, ang XML file sa\u0020</string>
+    <string name="recover_records">I-recover ang mga tala (Beta)</string>
+    <string name="recover_records_summary">Pumili ng XML file na may backup</string>
+    <string name="recover_records_error">Hindi maisagawa ang aksyon, pakiusap i-install ang file manager</string>
+    <string name="records_recovered">Nai-recover na ang mga rekord</string>
     <!-- General -->
-    <string name="general">Umum</string>
-    <string name="night_mode">Mode malam</string>
-    <string name="displayed_age">Tampilkan umur</string>
+    <string name="general">General</string>
+    <string name="night_mode">Night mode</string>
+    <string name="displayed_age">Ipakita ang edad</string>
 
     <string-array name="displayed_age_entries">
-        <item>Sekarang</item>
-        <item>Masa depan</item>
+        <item>Kasalukuyan</item>
+        <item>Hinaharap</item>
     </string-array>
 
-    <string name="displayed_age_changes">Anda harus menghidupkan ulang aplikasi untuk menerapkan perubahan</string>
-    <string name="restart_now">Hidupkan ulang sekarang</string>
-    <string name="later">Nanti</string>
-    <string name="rate_app">Beri nilai aplikasi</string>
-    <string name="share_app">Bagikan</string>
-    <string name="share_text">Apakah Anda lupa mengucapkan selamat kepada saudara, teman atau kolega Anda di hari ulang tahun mereka? Birdays akan mengingatkan Anda pada momen yang penting!\n\n</string>
+    <string name="displayed_age_changes">Kinakailangan mong simulan mula ang app para mag kabisa ang mga ginawang pagbabago</string>
+    <string name="restart_now">Simulang muli ngayon</string>
+    <string name="later">Kalaunan</string>
+    <string name="rate_app">I-rate ang app</string>
+    <string name="share">Ibahagi</string>
+    <string name="share_text">Nakalimutan mo bang batiin ang iyong mga kamag-anak, kaibigan o kasamahan sa kanilang kaarawan? ang Birdays ay paaalalahanan ka sa mga importanteng holiday!\n\n</string>
     <!-- Advertising -->
-    <string name="advertising">Iklan</string>
-    <string name="about_ad_title">Mengapa saya melihat iklan?</string>
-    <string name="about_ad_summary">Pendapatan dari iklan mengalir ke projek pengembangan dan untuk menerjemahkan ke bahasa lain. Anda bisa menghapus iklan secara gratis</string>
-    <string name="ad_interstitial_title">Iklan interstitial</string>
-    <string name="ad_interstitial_summary">Jenis iklan ini terbatas, hanya muncul sekali per hari. Tidak begitu sering, bukan?</string>
-    <string name="ad_banner">Spanduk</string>
+    <string name="advertising">Advertising</string>
+    <string name="about_ad_title">Bakit ako nakakakita ng mga ads?</string>
+    <string name="about_ad_summary">Ang kita sa pag a-advertising ay mapupunta sa development ng project at sa mga nag ta translate nito sa ibang lengwahe. Maaari mong tangalin ang mga ads ng walang bayad</string>
+    <string name="ad_interstitial_title">Interstitial ad</string>
+    <string name="ad_interstitial_summary">Ang ganitong uri ng ad ay limitado sa 1 paglabas kada araw. Hindi kadalasan, hindi ba?</string>
+    <string name="ad_banner">Banner</string>
     <!-- About app -->
-    <string name="about_app">Tentang aplikasi</string>
-    <string name="menu_github">Kode sumber</string>
-    <string name="privacy_policy">Kebijakan privasi</string>
-    <string name="software_licenses">Lisensi perangkat lunak gratis</string>
-    <string name="licenses">Lisensi</string>
+    <string name="about_app">Tungkol sa app</string>
+    <string name="menu_github">Source code</string>
+    <string name="privacy_policy">Patakaran sa Privacy</string>
+    <string name="software_licenses">Mnga lisensya ng libreng software</string>
+    <string name="licenses">Mga lisensya</string>
 
     <!-- HelpActivity -->
-    <string name="help_header">Mengapa alarm tidak bekerja?</string>
-    <string name="help_description">Beberapa perangkat memiliki Mode Penghematan Daya yang dapat memblokir proses latar belakang aplikasi atau menonaktifkan aplikasi agar tidak berjalan.\nUntuk membuat alarm bekerja dengan benar, lakukan beberapa langkah sederhana di bawah ini:\n\n1. Pastikan notifikasi diaktifkan untuk aplikasi Birdays (Setelan > Aplikasi > Birdays).\n\n2. Jika Anda telah memasang pengelola tugas, pembunuh tugas atau pengoptimalan RAM (misalnya «Penghemat baterai», «Clean Master»), yang dapat memblokir proses latar belakang aplikasi, tambahkan Birdays ke daftar putih mereka.\n\n3. Matikan mode hemat daya Anda atau tambahkan Birdays ke daftar putih (Pengaturan> Baterai > Pengoptimalan Baterai).\nHanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi.</string>
-    <string name="help_whitelist">Buka daftar putih</string>
-    <string name="help_whitelist_error">Hanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi</string>
-    <string name="help_delay_text">Harap diingat pada beberapa perangkat, pemberitahuan mungkin dapat bekerja dengan beberapa penundaan.</string>
-    <string name="help_settings">Buka pengaturan</string>
-    <string name="huawei_header">Untuk pengguna Huawei</string>
-    <string name="huawei_description">Buka perangkat «Pengaturan», pergi ke «Penghematan energi» dan buka «Aplikasi yang dilindungi». Pastikan fitur ini diaktifkan untuk Birdays.</string>
-    <string name="samsung_header">Untuk pengguna Samsung</string>
-    <string name="samsung_description">Buka «Manajer Pintar», ketuk «Baterai», kemudian «Detail». Nonaktifkan fitur untuk aplikasi Birdays.</string>
-    <string name="xiaomi_header">Untuk pengguna Xiaomi</string>
-    <string name="xiaomi_description">Buka perangkat «Setelan», pergi ke «Baterai &amp; performa», kemudian «Kelola penggunaan baterai apl», buka «Pilih apl», pilih «Tidak ada pembatasan» untuk Birdays.</string>
-    <string name="show_button">Tampilkan</string>
-    <string name="help_email_description">Jika alarm masih belum berfungsi, silakan hubungi saya di birdaysapp@gmail.com  </string>
-    <string name="send_email">Kirim posel</string>
+    <string name="help_header">Bakit hindi gumagana ang alarm?</string>
+    <string name="help_description">Ang ibang mga device ay merong Power Saving Mode na maaaring maka harang sa pagproseso ng app background o kaya ay i-disable ang pag takbo ng application sa pag-startup.\nPara mapagana ang alarm ng tama kailangan gawin ang mga simpleng hakbang na ito sa ibaba:\n\n1. Siguraduhing na ang notifikasyon ay gumagana para sa Birdays app (Mga Setting > Apps > Birdays).\n\n2. Kung ikaw ay nag-install ng task managers, task killers o RAM optimizers (hal. «Battery Saver», «Clean Master»), Namaaring humarang sa pag proseso ng app background, Idagdag ang Birdays sa kanilang whitelist.\n\n3. I-Turn off ang iyong power-saving mode o kaya\'y idagdag ang Birdays sa whitelist (Mga setting > Battery > Battery optimization).\nPara lamang sa mga devices na gumagana sa Android 6.0 (Marshmallow) o mas mataas pa.</string>
+    <string name="help_whitelist">Buksan ang whitelist</string>
+    <string name="help_whitelist_error">Para lamang sa mga device na gumagana sa Android 6.0 (Marshmallow) or mas mataas pa</string>
+    <string name="help_delay_text">Pakiusap tandaan na sa mga ilang mga notifikasyon ng device ay maaaring magkaroon ng ilang pagka-antala.</string>
+    <string name="help_settings">Buksan ang mga setting</string>
+    <string name="huawei_header">Para sa mga may-ari ng Huawei</string>
+    <string name="huawei_description">Buksan ang device «Mga setting» go to «Power saving» at buksan ang «Protected apps». Siguraduhin na ang feature na ito ay gagana sa Birdays.</string>
+    <string name="samsung_header">Para sa mga may-ari ng Samsung</string>
+    <string name="samsung_description">Bukas ang «Smart Manager», i-tap sa «Battery», pagkatapos ay sa «Detalye». I-disable ang feature na ito para Birdays app.</string>
+    <string name="xiaomi_header">Para sa mga may-ari ng Xiaomi</string>
+    <string name="xiaomi_description">Buksan ang device «Mga setting» pumunta sa «Battery & performance», saka «I-manage ang apps batter usage», buksan ang «Choose apps», piliin ang «No restrictions» para sa Birdays.</string>
+    <string name="show_button">Ipakita</string>
+    <string name="help_email_description">Kung ang alarm ay hindi gumagana, pakiusap kontakin ako sa birdaysapp@gmail.com</string>
+    <string name="send_email">Mag-send ng email</string>
 
     <!-- Famous persons -->
     <!-- 1 january -->

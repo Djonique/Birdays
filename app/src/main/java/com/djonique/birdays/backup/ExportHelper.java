@@ -44,6 +44,8 @@ import java.util.List;
 
 public class ExportHelper {
 
+    // TODO: 30.11.2017 Toast in main thread
+
     // XML constants
     private static final String RECORDS = "records";
     private static final String PERSON = "person";
