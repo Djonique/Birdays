@@ -1,11 +1,11 @@
 ## Birdays
 App saves Birthdays and displays famous persons with whom you were born in one day.
 ## Translators
-Serhii Ponomarenko (Ukrainian)
+Serhii Ponomarenko (Ukrainian) [mellangr](https://github.com/mellangr)
 
 Marc Sulser (Deutsch)
 
-Pablo Rodríguez (Spanish)
+Pablo Rodríguez (Spanish) [MeLlamoPablo](https://github.com/MeLlamoPablo)
 
 Dai Jia (Chinese simplified)
 
@@ -17,7 +17,7 @@ Nito (Norwegian)
 
 José Romero (French)
 
-Ruah Timario (Filipino) [@ruahtheking](https://github.com/ruahtheking)
+Ruah Timario (Filipino) [ruahtheking](https://github.com/ruahtheking)
 ## License
 ```
 Copyright 2017 Evgeny Timofeev
