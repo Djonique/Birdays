@@ -12,6 +12,12 @@ Dai Jia (Chinese simplified)
 Uluç Muslu (Turkish)
 
 isaideureka (Indonesian)
+
+Nito (Norwegian)
+
+José Romero (French)
+
+Ruah Timario (Filipino) [@ruahtheking](https://github.com/ruahtheking)
 ## License
 ```
 Copyright 2017 Evgeny Timofeev
