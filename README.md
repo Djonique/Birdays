@@ -20,6 +20,8 @@ Nito (Norwegian)
 José Romero (French)
 
 Ruah Timario (Filipino) [ruahtheking](https://github.com/ruahtheking)
+
+Belkacem Mohammed (Kabyle) [belkacem77](https://github.com/belkacem77)
 ## License
 
 ```
