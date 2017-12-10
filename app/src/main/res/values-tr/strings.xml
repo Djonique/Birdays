@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
     Copyright 2017 Evgeny Timofeev
@@ -22,15 +22,15 @@
     <!-- MainActivity -->
     <string name="loading_contacts">Kişiler yükleniyor…</string>
     <string name="contacts_uploaded">Kişiler yüklendi</string>
-    <string name="loading_contacts_error">Kişileri, standart olmayan tarih biçimlerini içe aktaramıyor</string>
+    <string name="loading_contacts_error">Kişiler içe aktarılamadı, yanlış tarih biçimi</string>
     <string name="permission_required">Kişileri eklemek için izin gerekiyor</string>
     <string name="snackbar_allow_text">İzin ver</string>
     <string name="all">Tüm</string>
     <string name="famous">Ünlü</string>
-    <string name="age">Geçerli Yaş:\\u0020</string>
+    <string name="age">Geçerli Yaş:\u0020</string>
     <string name="happy_birthday">Doğum Günün Kutlu Olsun!</string>
     <string name="web_search_error">İşlem yapılamadı, lütfen web tarayıcısı yükleyin</string>
-    <string name="delete_record_text">Bu kaydı silmek istediğinizden eminmisiniz:</string>
+    <string name="delete_record_text">Bu kaydı silmek istediğinizden eminmisiniz:\u0020</string>
     <string name="record_deleted">Kayıt silindi</string>
     <string name="undo">Geri al</string>
 
@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">En iyi duruma getirme etkin!</string>
-    <string name="optimization_description">\nStarting sürüm 6.0, Android yeti-koruma tarz arka plan CPU.\n\nTo ertelemek tarafından apps davranış yönetmek Doze app iş düzgün optimizasyon Birdays için devre dışı bırakmak olun.</string>
+    <string name="optimization_description">\nSürüm 6.0 ile Android, arka plan CPU\'yu optimize ederek uygulamaların davranışını etkileyen güç tasarrufu modu Doze\'yi tanıttı.\n\nUygulamayı doğru bir şekilde gerçekleştirmek için Birdays için optimizasyonun kapatılması gerekir.</string>
     <string name="do_not_show_again">Bir daha gösterme</string>
     <string name="disable_button">Devre Dışı Bırak</string>
     <!-- Notifications -->
@@ -130,9 +130,9 @@
         <item>2 hafta içinde</item>
     </string-array>
 
-    <string name="notification_tone">Bildirim tonu</string>
+    <string name="notification_tone">Bildirim sesi</string>
     <string name="ringtone_summary">Bildirim için bir ses seçin. Cihaz ayarlarından varsayılan olarak ton kullanılır</string>
-    <string name="silent">Hiçbiri</string>
+    <string name="silent">Yok</string>
     <string name="help">Yardım</string>
     <string name="tap_here">Bildirimleri almadıysanız, buraya dokunun</string>
     <!-- Synchronization and backup -->
@@ -145,12 +145,20 @@
     <string name="exporting_records">Kayıtları dışa aktarılıyor…</string>
     <string name="backup_finished">Yedek tamamlandı, XML dosyasında the\u0020</string>
     <string name="recover_records">Kayıtları iyileştir (Beta)</string>
-    <string name="recover_records_summary">XML dosyasının yedeği seçin</string>
+    <string name="recover_records_summary">Yedekleme ile XML dosyasını seçin</string>
     <string name="recover_records_error">İşlem yapılamadı, lütfen web tarayıcısı yükleyin</string>
     <string name="records_recovered">Kayıtları kurtarıldı</string>
     <!-- General -->
     <string name="general">Genel</string>
     <string name="night_mode">Gece modu</string>
+    <string name="start_page">Başlangıç sayfası</string>
+
+    <string-array name="start_page_entries">
+        <item>Cari ay</item>
+        <item>Tüm</item>
+        <item>Ünlü</item>
+    </string-array>
+
     <string name="displayed_age">Görüntülenen yaş</string>
 
     <string-array name="displayed_age_entries">
@@ -161,8 +169,8 @@
     <string name="displayed_age_changes">Bu değişikliklerin etkili olabilmesi için uygulamayı yeniden başlatmalısın</string>
     <string name="restart_now">Şimdi yeniden başlat</string>
     <string name="later">Daha Sonra</string>
-    <string name="rate_app">Uygulamayı değerlendirin</string>
-    <string name="share_app">Paylaş</string>
+    <string name="rate_app">Bizi değerlendirin</string>
+    <string name="share_app">Uygulamayi paylaş</string>
     <string name="share_text">Doğum günlerinde akrabalarınızı, arkadaşlarınızı ve meslektaşlarınızı tebrik etmeyi unuttunuz mu? Birdays size önemli bir tatil hatırlatacaktır!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Reklam</string>
@@ -175,25 +183,25 @@
     <string name="about_app">Uygulama hakkında</string>
     <string name="menu_github">Kaynak kodu</string>
     <string name="privacy_policy">Gizlilik Politikası</string>
-    <string name="software_licenses">Özgür yazılım lisansları</string>
+    <string name="software_licenses">Açık kaynak lisanslar</string>
     <string name="licenses">Lisanslar</string>
 
     <!-- HelpActivity -->
     <string name="help_header">Neden alarm çalışmıyor?</string>
-    <string name="help_description">Bazı cihazlarda, uygulama arka planı işlemlerini engelleyebilecek veya uygulamanın başlangıçta çalışmasını engelleyebilecek Güç Tasarruf Modu vardır.\nArama işini doğru yapmak için aşağıdaki birkaç basit adımı uygulayın:\n\n1. Birdays uygulaması için bildirimlerin etkinleştirildiğinden emin olun (Ayarlar > Apps > Birdays).\n\n2. Uygulama arka plan işlemlerini engelleyebilecek görev yöneticileri, görev katilleri veya RAM iyileştiricileri (ör. «Battery Saver», «Clean Master») yüklediyseniz, Beyaz listelerine Birdays ekleyin.\n \n3. Güç tasarrufu modunu kapatın veya Beyaz listedeki Birdays\'i ekleyin (Ayarlar > Pil > Pil optimizasyonu). \nYalnızca Android 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için.</string>
+    <string name="help_description">Bazı cihazlarda, uygulama arka planı işlemlerini engelleyebilecek veya uygulamanın başlangıçta çalışmasını engelleyebilecek Güç Tasarruf Modu vardır.\nArama işini doğru yapmak için aşağıdaki birkaç basit adımı uygulayın:\n\n1. Birdays uygulaması için bildirimlerin etkinleştirildiğinden emin olun (Ayarlar > Uygulamalar > Birdays).\n\n2. Uygulama arka plan işlemlerini engelleyebilecek görev yöneticileri, görev katilleri veya RAM iyileştiricileri (ör. «Battery Saver», «Clean Master») yüklediyseniz, Beyaz listelerine Birdays ekleyin.\n \n3. Güç tasarrufu modunu kapatın veya Beyaz listedeki Birdays\'i ekleyin (Ayarlar > Pil > Pil optimizasyonu). \nYalnızca Android 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için.</string>
     <string name="help_whitelist">Beyaz listeyi aç</string>
     <string name="help_whitelist_error">Yalnızca Android 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için</string>
     <string name="help_delay_text">Unutmayın ki bazı cihazlarda bildirimler gecikme yaşayabilir.</string>
     <string name="help_settings">Ayarlara git</string>
     <string name="huawei_header">Huawei sahipleri için</string>
-    <string name="huawei_description">Açık aygıt «Koyma», «Güç tasarrufu için» gidip «Apps mahfuz» açın. Bu özellik Birdays için etkin olduğundan emin olun.</string>
+    <string name="huawei_description">«Ayarlar» ı açın, «Güç tasarrufu» nu seçin ve «Korunan uygulamalar» ı açın. Birdays için bu ayarın açık olduğundan emin olun.</string>
     <string name="samsung_header">Samsung sahipleri için</string>
     <string name="samsung_description">«Smart Manager», «Pil» ve sonra «Ayrinti» dokunun. Birdays app için bu özelliği devre dışı bırakın.</string>
     <string name="xiaomi_header">Huawei sahipleri için</string>
-    <string name="xiaomi_description">Aygıt «Ayarlar» açın, «Pil», «Uygulamalarin pil kullanimini yönet» git, «Uygulamalari seçin» açın, «Kısıtlama yok» Birdays seçin.</string>
+    <string name="xiaomi_description">«Ayarlar» \'ı açın, «Pil», ardından «Uygulamalarin pil kullanimini yönet» ve «Uygulamaları seçin» seçeneğini açın, Birdays için «Kısıtlama yok» seçeneğini seçin.</string>
     <string name="show_button">Dizi</string>
     <string name="help_email_description">Alarm hala çalışmıyorsa, lütfen bana birdaysapp@gmail.com ulaşın</string>
-    <string name="send_email">E-posta gönder</string>
+    <string name="send_email">Eposta gönder</string>
 
     <!-- Famous persons -->
     <!-- 1 january -->

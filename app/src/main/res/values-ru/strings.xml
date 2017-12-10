@@ -151,6 +151,14 @@
     <!-- General -->
     <string name="general">Общие</string>
     <string name="night_mode">Ночной режим</string>
+    <string name="start_page">Начальная страница</string>
+
+    <string-array name="start_page_entries">
+        <item>Текущий месяц</item>
+        <item>Все</item>
+        <item>Известные</item>
+    </string-array>
+
     <string name="displayed_age">Отображаемый возраст</string>
 
     <string-array name="displayed_age_entries">

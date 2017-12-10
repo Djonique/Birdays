@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
     Copyright 2017 Evgeny Timofeev
@@ -27,7 +27,7 @@
     <string name="snackbar_allow_text">Autoriser</string>
     <string name="all">Tous</string>
     <string name="famous">Célèbre</string>
-    <string name="age">Âge actuelle:\u0020</string>
+    <string name="age">Âge actuel:\u0020</string>
     <string name="happy_birthday">Joyeux Anniversaire!</string>
     <string name="web_search_error">Impossible d\'effectuer l\'action, installez le navigateur web s\'il vous plaît</string>
     <string name="delete_record_text">Êtes-vous bien sûr de vouloir supprimer cet enregistrement:\u0020</string>
@@ -114,11 +114,11 @@
 
     <string-array name="additional_notification_entries">
         <item>Jamais</item>
-        <item>Avant 1 jour</item>
-        <item>Avant 2 jours</item>
-        <item>Avant 3 jours</item>
-        <item>Avant 1 semaine</item>
-        <item>Avant 2 semaines</item>
+        <item>1 jour avant</item>
+        <item>2 jours avant</item>
+        <item>3 jours avant</item>
+        <item>1 semaine avant</item>
+        <item>2 semaines avant</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -130,9 +130,9 @@
         <item>Dans 2 semaines</item>
     </string-array>
 
-    <string name="notification_tone">Sonnerie de notification</string>
+    <string name="notification_tone">Son de notification</string>
     <string name="ringtone_summary">Choisissez un son pour la notification. Par défaut, la tonalité utilisée provient des paramètres de l\'appareil</string>
-    <string name="silent">Aucun</string>
+    <string name="silent">Vide</string>
     <string name="help">Aide</string>
     <string name="tap_here">Cliquez ici si vous ne recevez des notifications</string>
     <!-- Synchronization and backup -->
@@ -151,18 +151,26 @@
     <!-- General -->
     <string name="general">Général</string>
     <string name="night_mode">Mode nuit</string>
+    <string name="start_page">Page de démarrage</string>
+
+    <string-array name="start_page_entries">
+        <item>Mois en cours</item>
+        <item>Tous</item>
+        <item>Célèbre</item>
+    </string-array>
+
     <string name="displayed_age">Âge affiché</string>
 
     <string-array name="displayed_age_entries">
-        <item>Courant</item>
+        <item>Actuel</item>
         <item>Futur</item>
     </string-array>
 
     <string name="displayed_age_changes">Vous devez redémarrer une application pour que ces modifications entrent en vigueur</string>
     <string name="restart_now">Redémarrer maintenant</string>
     <string name="later">Plus tard</string>
-    <string name="rate_app">Évaluer l\'app</string>
-    <string name="share">Partager</string>
+    <string name="rate_app">Donnez votre avis</string>
+    <string name="share_app">Partager l\'application</string>
     <string name="share_text">Oubliez-vous féliciter vos parents, des amis ou des collègues pour leur anniversaire? Birdays vous rappellera une importante fête!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Publicité</string>
@@ -175,7 +183,7 @@
     <string name="about_app">À propos de l\'app</string>
     <string name="menu_github">Code source</string>
     <string name="privacy_policy">Politique de confidentialité</string>
-    <string name="software_licenses">Licences de logiciels libres</string>
+    <string name="software_licenses">Licenses Open Source</string>
     <string name="licenses">Licences</string>
 
     <!-- HelpActivity -->

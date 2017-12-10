@@ -311,6 +311,18 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             });
 
             /*
+            * Start page
+            */
+            findPreference(getString(R.string.start_page_key)).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    ((ListPreference) preference).setValue(newValue.toString());
+                    preference.setSummary(((ListPreference) preference).getEntry());
+                    return true;
+                }
+            });
+
+            /*
             * Displayed age
             */
             findPreference(getString(R.string.displayed_age_key)).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {

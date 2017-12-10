@@ -114,11 +114,11 @@
 
     <string-array name="additional_notification_entries">
         <item>Never</item>
-        <item>Before 1 day</item>
-        <item>Before 2 days</item>
-        <item>Before 3 days</item>
-        <item>Before 1 week</item>
-        <item>Before 2 weeks</item>
+        <item>1 day before</item>
+        <item>2 days before</item>
+        <item>3 days before</item>
+        <item>1 week before</item>
+        <item>2 weeks before</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -151,6 +151,14 @@
     <!-- General -->
     <string name="general">General</string>
     <string name="night_mode">Night mode</string>
+    <string name="start_page">Start page</string>
+
+    <string-array name="start_page_entries">
+        <item>Current month</item>
+        <item>All</item>
+        <item>Famous</item>
+    </string-array>
+
     <string name="displayed_age">Displayed age</string>
 
     <string-array name="displayed_age_entries">
@@ -175,7 +183,7 @@
     <string name="about_app">About app</string>
     <string name="menu_github">Source code</string>
     <string name="privacy_policy">Privacy policy</string>
-    <string name="software_licenses">Free software licenses</string>
+    <string name="software_licenses">Open-source licenses</string>
     <string name="licenses">Licenses</string>
 
     <!-- HelpActivity -->

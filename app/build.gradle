@@ -24,7 +24,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    buildToolsVersion '27.0.2'
 
     defaultConfig {
         applicationId "com.djonique.birdays"
@@ -58,7 +58,7 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-def androidSupportVersion = '27.0.1'
+def androidSupportVersion = '27.0.2'
 def firebaseVersion = '11.4.2'
 def butterKnifeVersion = '8.8.1'
 

@@ -38,16 +38,17 @@ import com.djonique.birdays.utils.Constants;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
-    // TODO: 30.11.2017 FireUriExposedException
-
     private static final String CHANNEL_ID = "com.djonique.birdays";
 
     private NotificationManager manager;
+    private SharedPreferences preferences;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
         manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // Extras from intent
         String name = intent.getStringExtra(Constants.NAME);
@@ -62,7 +63,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = buildNotification(context, name, when);
 
-        setDefaultsAndRingtone(builder, getRingtoneUri(context));
+        setDefaultsAndRingtone(builder);
 
         builder.setContentIntent(pendingIntent);
 
@@ -121,15 +122,17 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Avoids FileUriExposedException on Android API 24+
      */
-    private void setDefaultsAndRingtone(NotificationCompat.Builder builder, Uri ringtoneUri) {
+    private void setDefaultsAndRingtone(NotificationCompat.Builder builder) {
+        String ringtone = preferences.getString(Constants.RINGTONE_KEY,
+                Settings.System.DEFAULT_NOTIFICATION_URI.toString());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             try {
-                setRingtone(builder, ringtoneUri);
+                setRingtone(builder, Uri.parse(ringtone));
             } catch (Exception e) {
                 builder.setDefaults(NotificationCompat.DEFAULT_ALL);
             }
         } else {
-            setRingtone(builder, ringtoneUri);
+            setRingtone(builder, Uri.parse(ringtone));
         }
     }
 
@@ -139,15 +142,5 @@ public class AlarmReceiver extends BroadcastReceiver {
     private void setRingtone(NotificationCompat.Builder builder, Uri ringtoneUri) {
         builder.setDefaults(NotificationCompat.DEFAULT_VIBRATE | NotificationCompat.DEFAULT_LIGHTS);
         builder.setSound(ringtoneUri);
-    }
-
-    /**
-     * Returns URI for picked in the settings notification tone
-     */
-    private Uri getRingtoneUri(Context context) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String ringtone = preferences.getString(Constants.RINGTONE_KEY,
-                Settings.System.DEFAULT_NOTIFICATION_URI.toString());
-        return Uri.parse(ringtone);
     }
 }

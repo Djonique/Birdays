@@ -38,6 +38,7 @@ public interface Constants {
     String ADDITIONAL_NOTIFICATION_KEY = "additional_notification_key";
     String RINGTONE_KEY = "ringtone_key";
     String NIGHT_MODE_KEY = "night_mode_key";
+    String START_PAGE = "start_page_key";
     String DISPLAYED_AGE_KEY = "displayed_age_key";
 
     // Intents

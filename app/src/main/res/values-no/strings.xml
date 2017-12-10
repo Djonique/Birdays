@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!--
     Copyright 2017 Evgeny Timofeev
@@ -151,6 +151,14 @@
     <!-- General -->
     <string name="general">Generelt</string>
     <string name="night_mode">Nattmodus</string>
+    <string name="start_page">Startside</string>
+
+    <string-array name="start_page_entries">
+        <item>Nåværende måned</item>
+        <item>Alle</item>
+        <item>Berømte</item>
+    </string-array>
+
     <string name="displayed_age">Vist alder</string>
 
     <string-array name="displayed_age_entries">
@@ -162,7 +170,7 @@
     <string name="restart_now">Omstart nå</string>
     <string name="later">Senere</string>
     <string name="rate_app">Vurdér appen</string>
-    <string name="share">Del</string>
+    <string name="share_app">Del</string>
     <string name="share_text">Glemmer du å gratulere slektninger, venner eller kolleger med dagen? Birdays vil hjelpe deg med å huske en viktig høytid!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Reklamering</string>
@@ -175,22 +183,22 @@
     <string name="about_app">Om appen</string>
     <string name="menu_github">Kildekode</string>
     <string name="privacy_policy">Personvern</string>
-    <string name="software_licenses">Fri programvare-lisenser</string>
+    <string name="software_licenses">Open-source-lisenser</string>
     <string name="licenses">Lisenser</string>
 
     <!-- HelpActivity -->
     <string name="help_header">Hvorfor virker ikke alarmen?</string>
-    <string name="help_description">Noen enheter har en strømsparingsmodus som kan blokkere appens bakgrunnsaktivitet eller hindre den fra å kjøre ved oppstart.\nFor å få alarmen til å virke ordentlig, utfør de enkle stegene under:\n\n1. Sørg for at varslinger er skrudd på for Birdays-appen (Innstillinger > apper > Birdays).\n\n2. Hvis du har installert oppgavebehandling, oppdragsmorder eller RAM-optimalisering (f.eks. «Battery Saver», «Clean Master»), noe som også kan blokkere bakgrunnsaktivitet, legg Birdays til hvitelisten deres.\n\n3. Skru av strømsparingsmodusen din eller legg Birdays til hvitelisten (Innstillinger > batteri > batterioptimalisering).\nKun for enheter som kjører Android 6.0 (Marshmallow) eller høyere.</string>
+    <string name="help_description">Noen enheter har en strømsparingsmodus som kan blokkere appens bakgrunnsaktivitet eller hindre den fra å kjøre ved oppstart.\nFor å få alarmen til å virke ordentlig, utfør de enkle stegene under:\n\n1. Sørg for at varslinger er skrudd på for Birdays-appen (Innstillinger > Apper > Birdays).\n\n2. Hvis du har installert oppgavebehandling, oppdragsmorder eller RAM-optimalisering (f.eks. «Battery Saver», «Clean Master»), noe som også kan blokkere bakgrunnsaktivitet, legg Birdays til hvitelisten deres.\n\n3. Skru av strømsparingsmodusen din eller legg Birdays til hvitelisten (Innstillinger > Batteri > Batterioptimalisering).\nKun for enheter som kjører Android 6.0 (Marshmallow) eller høyere.</string>
     <string name="help_whitelist">Åpne hviteliste</string>
     <string name="help_whitelist_error">Kun for enheter som kjører Android 6.0 (Marshmallow) eller høyere</string>
     <string name="help_delay_text">Vennligst vær oppmerksom på at varslinger kan virke med litt forsinkelse på noen enheter.</string>
     <string name="help_settings">Åpne innstillinger</string>
     <string name="huawei_header">For Huawei-brukere</string>
-    <string name="huawei_description">Åpne enhets-«innstillinger», gå til «strømsparing» og åpne «beskyttede apper». Sørg for at denne funksjonen er aktivert for Birdays.</string>
+    <string name="huawei_description">Åpne enhets «Innstillinger», gå til «Strømsparing» og åpne «Beskyttede apper». Sørg for at denne funksjonen er aktivert for Birdays.</string>
     <string name="samsung_header">For Samsung-brukere</string>
-    <string name="samsung_description">Åpne «oppgavebehandling», trykk på «batteri», så «detaljer». Deaktivér denne funksjonen for Birdays-appen.</string>
+    <string name="samsung_description">Åpne «Smart Manager», trykk på «Batteri», så «Info». Deaktivér denne funksjonen for Birdays-appen.</string>
     <string name="xiaomi_header">For Xiaomi-brukere</string>
-    <string name="xiaomi_description">Åpne enhets-«innstillinger», gå til «batteri &amp; ytelse», så «behandle appers batteriforbruk», åpne «velg apper», velg «ingen restriksjoner» for Birdays.</string>
+    <string name="xiaomi_description">Åpne enhets «Innstillinger», gå til «Batteri &amp; ytelse», så «Behandle appers batteriforbruk», åpne «Velg apper», velg «Ingen restriksjoner» for Birdays.</string>
     <string name="show_button">Vis</string>
     <string name="help_email_description">Hvis alarmen ikke virker, vennligst kontakt meg via birdaysapp@gmail.com (Engelsk)</string>
     <string name="send_email">Send e-post</string>
