@@ -24,6 +24,8 @@ Ruah Timario (Filipino) [ruahtheking](https://github.com/ruahtheking)
 Miguel Dos Reis (Portuguese and Spanish)
 
 Omer Surer (Turkish)
+
+Xiupeng (Chinese traditional)
 ## License
 
 ```
