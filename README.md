@@ -20,6 +20,10 @@ Nito (Norwegian)
 José Romero (French)
 
 Ruah Timario (Filipino) [ruahtheking](https://github.com/ruahtheking)
+
+Miguel Dos Reis (Portuguese and Spanish)
+
+Omer Surer (Turkish)
 ## License
 
 ```
