@@ -26,6 +26,8 @@ Miguel Dos Reis (Portuguese and Spanish)
 Omer Surer (Turkish)
 
 Xiupeng (Chinese traditional)
+
+Andra Fetele (Romanian)
 ## License
 
 ```
