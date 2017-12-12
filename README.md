@@ -27,7 +27,7 @@ Omer Surer (Turkish)
 
 Xiupeng (Chinese traditional)
 
-Andra Fetele (Romanian)
+Andra Fetele (Romanian) [sarmizegetusaa](https://github.com/sarmizegetusaa)
 ## License
 
 ```
