@@ -1,0 +1,2864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2017 Evgeny Timofeev
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<resources>
+    <string name="build_version">Build-versie</string>
+
+    <!-- MainActivity -->
+    <string name="loading_contacts">Contacten aan het laden…</string>
+    <string name="contacts_uploaded">Contacten geüpload</string>
+    <string name="loading_contacts_error">Contacten kunnen niet worden geïmporteerd, verkeerde datumnotatie</string>
+    <string name="permission_required">Toestemming om contactpersonen te importeren is vereist</string>
+    <string name="snackbar_allow_text">Toestaan</string>
+    <string name="all">Alle</string>
+    <string name="famous">Beroemd</string>
+    <string name="age">Huidige leeftijd:\u0020</string>
+    <string name="happy_birthday">Gefeliciteerd met uw verjaardag!</string>
+    <string name="web_search_error">Kan de actie niet uitvoeren, installeer de webbrowser</string>
+    <string name="delete_record_text">Weet u zeker dat u dit record wilt verwijderen?:\u0020</string>
+    <string name="record_deleted">Record is verwijderd</string>
+    <string name="undo">Ongedaan maken</string>
+
+    <string-array name="months">
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Maart</item>
+        <item>April</item>
+        <item>May</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>Augustus</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <!-- Menu -->
+    <string name="action_sync">Synchronisatie</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="action_delete">Verwijderen</string>
+
+    <!-- NewPersonDialogFragment -->
+    <string name="new_record">Nieuw record</string>
+    <string name="add_from_contacts">Toevoegen uit contacten</string>
+    <string name="open_contacts_error">Deze actie kan niet worden uitgevoerd vanwege apparaatfuncties</string>
+    <string name="name">Naam</string>
+    <string name="error_hint">Naam invoeren, alstublieft</string>
+    <string name="phone_number">Telefoonnummer</string>
+    <string name="pick_date">Selecteer datum</string>
+    <string name="wrong_date">Verkeerde datum</string>
+    <string name="year_unknown">Jaar is onbekend</string>
+    <string name="cancel_button">Annuleren</string>
+    <string name="record_added">Record toegevoegd</string>
+
+    <!-- DetailActivity -->
+    <string name="birthday">Geboortedatum</string>
+    <string name="days_left">Dagen tot de volgende verjaardag</string>
+    <string name="today">Vandaag</string>
+    <string name="days_since_birth">Dagen sinds geboorte</string>
+    <string name="zodiac_sign">Sterrenbeeld</string>
+    <string name="season_picture">Seizoensafbeelding</string>
+    <string name="calendar">Kalender</string>
+    <string name="call">Bellen</string>
+    <string name="chat">Gesprek</string>
+    <string name="born_on_this_day">Op deze dag geboren</string>
+
+    <!-- EditActivity -->
+    <string name="editing_label">Bewerken</string>
+    <string name="record_edited">Record bewerkt</string>
+
+    <!-- Alarm -->
+    <string name="security_exception">SecurityException, Samsung-apparaten beperken het aantal alarmen dat u kunt registreren</string>
+    <string name="channel_name">Verjaardagen</string>
+
+    <!-- Zodiac signs -->
+    <string name="aries">Ram</string>
+    <string name="taurus">Stier</string>
+    <string name="gemini">Tweelingen</string>
+    <string name="cancer">Kreeft</string>
+    <string name="leo">Leeuw</string>
+    <string name="virgo">Maagd</string>
+    <string name="libra">Weegschaal</string>
+    <string name="scorpio">Schorpioen</string>
+    <string name="sagittarius">Boogschutter</string>
+    <string name="capricorn">Steenbok</string>
+    <string name="aquarius">Waterman</string>
+    <string name="pisces">Vissen</string>
+
+    <!-- SettingsActivity -->
+    <string name="optimization_enabled">Optimalisatie ingeschakeld!</string>
+    <string name="optimization_description">\nVanaf versie 6.0 introduceerde Android de energiebesparende modus Doze, die de werking van de applicatie beheert door de achtergrond-CPU uit te stellen.\n\nSchakel optimalisatie van Birdays uit om het applicatie correct te laten werken.</string>
+    <string name="do_not_show_again">Niet meer tonen</string>
+    <string name="disable_button">Uitschakelen</string>
+    <!-- Notifications -->
+    <string name="notifications">Meldingen</string>
+    <string name="allow_notification">Sta de toepassing toe om toekomstige verjaardagsmeldingen te verzenden</string>
+    <string name="notifications_time">Meldingstijd</string>
+    <string name="additional_notification">Aanvullende notificatie</string>
+
+    <string-array name="additional_notification_entries">
+        <item>Nooit</item>
+        <item>1dag ervoor</item>
+        <item>2 dagen ervoor</item>
+        <item>3 dagen ervoor</item>
+        <item>1 week ervoor</item>
+        <item>2 weker ervoor</item>
+    </string-array>
+
+    <string-array name="additional_notification_delay">
+        <item>Vandaag</item>
+        <item>Morgen</item>
+        <item>In 2 dagen</item>
+        <item>In 3 dagen</item>
+        <item>In een week</item>
+        <item>In 2 weken</item>
+    </string-array>
+
+    <string name="notification_tone">Meldingstoon</string>
+    <string name="ringtone_summary">Kies een toon voor meldingen. Standaard wordt de apparaattoon gebruikt</string>
+    <string name="silent">Geen</string>
+    <string name="help">Hulp</string>
+    <string name="tap_here">Klik hier als u geen meldingen ontvangt</string>
+    <!-- Synchronization and backup -->
+    <string name="sync_and_backup">Synchronisatie en back-up</string>
+    <string name="contacts_import_title">Contacten importeren</string>
+    <string name="contacts_import_summary">Tik hier om contacten van uw apparaat te importeren (ondersteunt ISO 8601)</string>
+    <string name="export_records">Records exporteren (Beta)</string>
+    <string name="export_records_summary">Maak het XML-bestand met de back-up</string>
+    <string name="ext_storage_error">Externe opslag is niet beschikbaar</string>
+    <string name="exporting_records">Records exporteren…</string>
+    <string name="backup_finished">Back-up voltooid, XML-bestand opgeslagen onder\u0020</string>
+    <string name="recover_records">Records herstellen (Beta)</string>
+    <string name="recover_records_summary">Kies het XML-bestand met back-up</string>
+    <string name="recover_records_error">Actie niet toegestaan, installeer de bestandsbeheerder</string>
+    <string name="records_recovered">Records hersteld</string>
+    <!-- General -->
+    <string name="general">Algemeen</string>
+    <string name="night_mode">Nachtmodus</string>
+    <string name="start_page">Startpagina</string>
+
+    <string-array name="start_page_entries">
+        <item>Deze maand</item>
+        <item>Alle</item>
+        <item>Beroemd</item>
+    </string-array>
+
+    <string name="displayed_age">Getoonde leeftijd</string>
+
+    <string-array name="displayed_age_entries">
+        <item>Huidige</item>
+        <item>Toekomst</item>
+    </string-array>
+
+    <string name="displayed_age_changes">Start een toepassing opnieuw om deze wijzigingen van kracht te laten worden</string>
+    <string name="restart_now">Nu opnieuw opstarten</string>
+    <string name="later">Later</string>
+    <string name="rate_app">Beoordeel app</string>
+    <string name="share">Delen</string>
+    <string name="share_text">Vergeet u meestal uw familie, vrienden of collega\'s te feliciteren met hun verjaardag? Birdays zal u eraan herinneren!\n\n</string>
+    <!-- Advertising -->
+    <string name="advertising">Reclame</string>
+    <string name="about_ad_title">Waarom zie ik advertenties?</string>
+    <string name="about_ad_summary">Advertentie-inkomsten gaan naar projectontwikkeling en vertaling naar andere talen. U kunt advertenties gratis verwijderen</string>
+    <string name="ad_interstitial_title">Interstitiële advertentie</string>
+    <string name="ad_interstitial_summary">Dit type advertentie is beperkt tot 1 per dag. Niet zo vaak, toch?</string>
+    <string name="ad_banner">Banner</string>
+    <!-- About app -->
+    <string name="about_app">Over de app</string>
+    <string name="menu_github">Broncode</string>
+    <string name="privacy_policy">Privacy beleid</string>
+    <string name="software_licenses">Open source licenties</string>
+    <string name="licenses">Licenties</string>
+
+    <!-- HelpActivity -->
+    <string name="help_header">Waarom alarm werkt niet?</string>
+    <string name="help_description">Sommige apparaten hebben de energiebesparende modus die achtergrondapp-processen kan blokkeren of de toepassing uitschakelen die bij het opstarten wordt uitgevoerd.\nOm de taakwaarschuwing op de juiste manier uit te voeren, voert u een paar eenvoudige stappen uit:\n\n1. Zorg ervoor dat meldingen zijn ingeschakeld voor de Birdays-app (Instellingen > apps > Birdays).\n\n2. Als u taskmanager, taakmoordenaar of RAM-optimizers (bijvoorbeeld «Battery Saver», «Clean Master») hebt geïnstalleerd, die achtergrondappprocessen zouden kunnen blokkeren, voegt u Birdays toe aan hun witte lijst.\n\n3. Deactiveer de energiebesparende modus of voeg Birdays toe aan de witte lijst (Instellingen > Batterij > Batterij- en accu-optimalisatie).\nAlleen voor apparaten met Android 6.0 (Marshmallow) of hoger.</string>
+    <string name="help_whitelist">Open een witte lijst</string>
+    <string name="help_whitelist_error">Alleen voor apparaten met Android 6.0 (Marshmallow) of hoger</string>
+    <string name="help_delay_text">Houd er rekening mee dat meldingen op sommige apparaten mogelijk enige vertraging kunnen veroorzaken.</string>
+    <string name="help_settings">Open instellingen</string>
+    <string name="huawei_header">Voor Huawei eigenaren</string>
+    <string name="huawei_description">Open «Instellingen», ga naar «Energiebesparing» en open «Beschermde toepassingen». Zorg ervoor dat deze functie is ingeschakeld voor Birdays.</string>
+    <string name="samsung_header">Voor Samsung eigenaren</string>
+    <string name="samsung_description">Open «Smart Manager», klik op «Batterij» en vervolgens op «Detail». Schakel deze functie uit voor Birdays.</string>
+    <string name="xiaomi_header">Voor Xiaomi eigenaren</string>
+    <string name="xiaomi_description">Open de telefooninstellingen, ga naar «Batterij &amp; prestaties», klik vervolgens op «Energie besparen», klik op «Toepassing selecteren», selecteer«Geen beperkingen» voor Birdays.</string>
+    <string name="show_button">Weergeven</string>
+    <string name="help_email_description">Als het alarm nog steeds niet werkt, neem contact met me op birdaysapp@gmail.com</string>
+    <string name="send_email">E-mail verzenden</string>
+
+    <!-- Famous persons -->
+    <!-- 1 january -->
+    <string name="medici">Lorenzo de\' Medici</string>
+    <string name="giordano_bruno">Giordano Bruno</string>
+    <string name="frazer">James George Frazer</string>
+    <string name="coubertin">Pierre de Coubertin</string>
+    <string name="william_fox">William Fox</string>
+    <!-- 2 january -->
+    <string name="piero_di_cosimo">Piero di Cosimo</string>
+    <string name="vasily_perov">Vasily Perov</string>
+    <string name="balakirev">Mily Balakirev</string>
+    <string name="tippett">Michael Tippett</string>
+    <string name="isaac_asimov">Isaac Asimov</string>
+    <!-- 3 january -->
+    <string name="louis_poinsot">Louis Poinsot</string>
+    <string name="dabbadie">Antoine Thomson d\'Abbadie</string>
+    <string name="fletcher">John Gould Fletcher</string>
+    <string name="tolkien">John Ronald Reuel Tolkien</string>
+    <string name="moore">Gordon Moore</string>
+    <string name="mel_gibson">Mel Gibson</string>
+    <string name="schumacher">Michael Schumacher</string>
+    <!-- 4 january -->
+    <string name="isaac_newton">Isaac Newton</string>
+    <string name="pergolesi">Giovanni Battista Pergolesi</string>
+    <string name="jacob_grimm">Jacob Grimm</string>
+    <string name="braille">Louis Braille</string>
+    <string name="tsereteli">Zurab Tsereteli</string>
+    <string name="josephson">Brian David Josephson</string>
+    <!-- 5 january -->
+    <string name="eucken">Rudolf Christoph Eucken</string>
+    <string name="gillette">King Camp Gillette</string>
+    <string name="erlanger">Joseph Erlanger</string>
+    <string name="umberto_eco">Umberto Eco</string>
+    <string name="manson">Marilyn Manson</string>
+    <string name="bradley_cooper">Bradley Cooper</string>
+    <!-- 6 january -->
+    <string name="darc">Jeanne d\'Arc</string>
+    <string name="jakob_bernoulli">Jakob Bernoulli</string>
+    <string name="montgolfier">Jacques-Étienne Montgolfier</string>
+    <string name="schliemann">Heinrich Schliemann</string>
+    <string name="scriabin">Alexander Scriabin</string>
+    <string name="celentano">Adriano Celentano</string>
+    <string name="atkinson">Rowan Atkinson</string>
+    <string name="redmayne">Eddie Redmayne</string>
+    <!-- 7 january -->
+    <string name="pope_gregory">Pope Gregory XIII</string>
+    <string name="fleming">Sandford Fleming</string>
+    <string name="eliezer">Eliezer Ben-Yehuda</string>
+    <string name="borel">Émile Borel</string>
+    <string name="nicolas_cage">Nicolas Cage</string>
+    <!-- 8 january -->
+    <string name="sirani">Elisabetta Sirani</string>
+    <string name="nijinska">Bronislava Nijinska</string>
+    <string name="presley">Elvis Presley</string>
+    <string name="hawking">Stephen Hawking</string>
+    <string name="daviw_bowie">David Bowie</string>
+    <!-- 9 january -->
+    <string name="simon_vouet">Simon Vouet</string>
+    <string name="wrangel">Ferdinand von Wrangel</string>
+    <string name="watson">John Broadus Watson</string>
+    <string name="capek">Karel Čapek</string>
+    <string name="beauvoir">Simone de Beauvoir</string>
+    <!-- 10 january -->
+    <string name="birkbeck">George Birkbeck</string>
+    <string name="tolstoy">Aleksey Tolstoy</string>
+    <string name="bertoni">Flaminio Bertoni</string>
+    <string name="wilson">Robert Woodrow Wilson</string>
+    <string name="knuth">Donald Ervin Knuth</string>
+    <!-- 11 january -->
+    <string name="parmigianino">Parmigianino</string>
+    <string name="guidobaldo">Guidobaldo del Monte</string>
+    <string name="stensen">Nicolas Steno</string>
+    <string name="hofmann">Albert Hofmann</string>
+    <string name="mendoza">Eduardo Mendoza</string>
+    <!-- 12 january -->
+    <string name="helmont">Jan Baptista van Helmont</string>
+    <string name="perrault">Charles Perrault</string>
+    <string name="jack_london">Jack London</string>
+    <string name="kurchatov">Igor Kurchatov</string>
+    <string name="korolev">Sergei Korolev</string>
+    <string name="maharishi">Maharishi Mahesh Yogi</string>
+    <string name="murakami">Haruki Murakami</string>
+    <!-- 13 january -->
+    <string name="beketov">Nikolay Beketov</string>
+    <string name="wien">Wilhelm Wien</string>
+    <string name="soutine">Chaim Soutine</string>
+    <string name="lifshitz">Ilya Lifshitz</string>
+    <string name="feyerabend">Paul Feyerabend</string>
+    <!-- 14 january -->
+    <string name="semyonov">Pyotr Semyonov-Tyan-Shansky</string>
+    <string name="morisot">Berthe Morisot</string>
+    <string name="schweitzer">Albert Schweitzer</string>
+    <string name="mishima">Yukio Mishima</string>
+    <string name="kharlamov">Valeri Kharlamov</string>
+    <!-- 15 january -->
+    <string name="moliere">Molière</string>
+    <string name="griboyedov">Alexander Griboyedov</string>
+    <string name="virtanen">Artturi Ilmari Virtanen</string>
+    <string name="teller">Edward Teller</string>
+    <string name="luther_king">Martin Luther King</string>
+    <!-- 16 january -->
+    <string name="schoner">Johannes Schöner</string>
+    <string name="piccinni">Niccolò Piccinni</string>
+    <string name="alfieri">Vittorio Alfieri</string>
+    <string name="veresaev">Vikenty Veresaev</string>
+    <string name="roy_jones">Roy Jones Jr.</string>
+    <!-- 17 january -->
+    <string name="franklin">Benjamin Franklin</string>
+    <string name="zhukovsky">Nikolay Zhukovsky</string>
+    <string name="stanislavski">Konstantin Stanislavski</string>
+    <string name="al_capone">Al Capone</string>
+    <string name="muhammad_ali">Muhammad Ali</string>
+    <string name="jim_carrey">Jim Carrey</string>
+    <!-- 18 january -->
+    <string name="montesquieu">Montesquieu</string>
+    <string name="cesar_cui">César Cui</string>
+    <string name="ehrenfest">Paul Ehrenfest</string>
+    <string name="milne">Alan Alexander Milne</string>
+    <string name="kitano">Takeshi Kitano</string>
+    <string name="costner">Kevin Costner</string>
+    <string name="guardiola">Josep Guardiola</string>
+    <!-- 19 january -->
+    <string name="cagnacci">Guido Cagnacci</string>
+    <string name="comte">Auguste Comte</string>
+    <string name="edgar_poe">Edgar Allan Poe</string>
+    <string name="kapteyn">Jacobus Kapteyn</string>
+    <string name="serov">Valentin Serov</string>
+    <string name="kantorovich">Leonid Kantorovich</string>
+    <!-- 20 january -->
+    <string name="gessi">Francesco Gessi</string>
+    <string name="ampere">André-Marie Ampère</string>
+    <string name="chausson">Ernest Chausson</string>
+    <string name="onassis">Aristotle Onassis</string>
+    <string name="fellini">Federico Fellini</string>
+    <!-- 21 january -->
+    <string name="browning">John Moses Browning</string>
+    <string name="florensky">Pavel Florensky</string>
+    <string name="dior">Christian Dior</string>
+    <string name="benny_hill">Benny Hill</string>
+    <string name="domingo">Plácido Domingo</string>
+    <!-- 22 january -->
+    <string name="bacon">Francis Bacon</string>
+    <string name="byron">George Gordon Byron</string>
+    <string name="scoville">Wilbur Scoville</string>
+    <string name="picabia">Francis Picabia</string>
+    <string name="landau">Lev Landau</string>
+    <!-- 23 january -->
+    <string name="stendhal">Stendhal</string>
+    <string name="manet">Édouard Manet</string>
+    <string name="abbe">Ernst Abbe</string>
+    <string name="hilbert">David Hilbert</string>
+    <string name="yukawa">Hideki Yukawa</string>
+    <string name="hauer">Rutger Hauer</string>
+    <!-- 24 january -->
+    <string name="congreve">William Congreve</string>
+    <string name="beaumarchais">Pierre Beaumarchais</string>
+    <string name="hoffmann">Ernst Theodor Amadeus Hoffmann</string>
+    <string name="surikov">Vasily Surikov</string>
+    <string name="shechtman">Dan Shechtman</string>
+    <string name="kinski">Nastassja Kinski</string>
+    <!-- 25 january -->
+    <string name="lagrange">Joseph-Louis Lagrange</string>
+    <string name="burns">Robert Burns</string>
+    <string name="shishkin">Ivan Shishkin</string>
+    <string name="maugham">Somerset Maugham</string>
+    <string name="woolf">Virginia Woolf</string>
+    <string name="prigogine">Ilya Prigogine</string>
+    <string name="eusebio">Eusébio</string>
+    <!-- 26 january -->
+    <string name="morita">Akio Morita</string>
+    <string name="newman">Paul Newman</string>
+    <string name="davis">Angela Davis</string>
+    <string name="gretzky">Wayne Gretzky</string>
+    <string name="mourinho">José Mourinho</string>
+    <!-- 27 january -->
+    <string name="neumann">Johann Balthasar Neumann</string>
+    <string name="mozart">Wolfgang Amadeus Mozart</string>
+    <string name="schelling">Friedrich Schelling</string>
+    <string name="saltykov_shchedrin">Mikhail Saltykov-Shchedrin</string>
+    <string name="carroll">Lewis Carroll</string>
+    <string name="bjorndalen">Ole Einar Bjørndalen</string>
+    <!-- 28 january -->
+    <string name="borelli">Giovanni Alfonso Borelli</string>
+    <string name="heweliusz">Jan Heweliusz</string>
+    <string name="baskerville">John Baskerville</string>
+    <string name="rubinstein">Arthur Rubinstein</string>
+    <string name="buffon">Gianluigi Buffon</string>
+    <!-- 29 january -->
+    <string name="swedenborg">Emanuel Swedenborg</string>
+    <string name="mohs">Friedrich Mohs</string>
+    <string name="auber">Daniel Auber</string>
+    <string name="shibasaburo">Kitasato Shibasaburō</string>
+    <string name="chekhov">Anton Chekhov</string>
+    <string name="rolland">Romain Rolland</string>
+    <!-- 30 january -->
+    <string name="watt">James Watt</string>
+    <string name="chamisso">Adelbert von Chamisso</string>
+    <string name="kotelnikov">Gleb Kotelnikov</string>
+    <string name="gaidai">Leonid Gaidai</string>
+    <string name="engelbart">Douglas Engelbart</string>
+    <string name="brown">Ruth Brown</string>
+    <!-- 31 january -->
+    <string name="schubert">Franz Schubert</string>
+    <string name="richards">Theodore William Richards</string>
+    <string name="langmuir">Irving Langmuir</string>
+    <string name="vanga">Vanga</string>
+    <string name="timberlake">Justin Timberlake</string>
+    <!-- 1 february -->
+    <string name="bekhterev">Vladimir Bekhterev</string>
+    <string name="john_ford">John Ford</string>
+    <string name="gable">Clark Gable</string>
+    <string name="segre">Emilio Gino Segrè</string>
+    <string name="brandon_lee">Brandon Lee</string>
+    <!-- 2 february -->
+    <string name="bourdon">Sébastien Bourdon</string>
+    <string name="boussingault">Jean Baptiste Boussingault</string>
+    <string name="forel">François-Alphonse Forel</string>
+    <string name="chkalov">Valery Chkalov</string>
+    <string name="haasse">Hella Haasse</string>
+    <string name="holland">John Henry Holland</string>
+    <!-- 3 february -->
+    <string name="mendelssohn">Felix Mendelssohn</string>
+    <string name="trubner">Heinrich Wilhelm Trübner</string>
+    <string name="fomin">Ivan Fomin</string>
+    <string name="stein">Gertrude Stein</string>
+    <string name="joachim_low">Joachim Löw</string>
+    <!-- 4 february -->
+    <string name="bottger">Johann Friedrich Böttger</string>
+    <string name="nemcova">Božena Němcová</string>
+    <string name="prandtl">Ludwig Prandtl</string>
+    <string name="maillard">Louis Camille Maillard</string>
+    <string name="tombaugh">Clyde William Tombaugh</string>
+    <!-- 5 february -->
+    <string name="runeberg">Johan Ludvig Runeberg</string>
+    <string name="maxim">Hiram Stevens Maxim</string>
+    <string name="dunlop">John Boyd Dunlop</string>
+    <string name="teike">Carl Teike</string>
+    <string name="citroen">André Gustave Citroën</string>
+    <string name="voisin">Gabriel Voisin</string>
+    <string name="cristiano_ronaldo">Cristiano Ronaldo</string>
+    <string name="neymar">Neymar</string>
+    <!-- 6 february -->
+    <string name="heinecken">Christian Heinrich Heinecken</string>
+    <string name="zelinsky">Nikolay Zelinsky</string>
+    <string name="bragg">Paul Bragg</string>
+    <string name="truffaut">François Roland Truffaut</string>
+    <string name="bob_marley">Bob Marley</string>
+    <!-- 7 february -->
+    <string name="dickens">Charles Dickens</string>
+    <string name="alfred_adler">Alfred Adler</string>
+    <string name="sinclair_lewis">Sinclair Lewis</string>
+    <string name="chizhevsky">Alexander Chizhevsky</string>
+    <string name="euler">Ulf von Euler</string>
+    <string name="desmond_doss">Desmond Doss</string>
+    <string name="kutcher">Ashton Kutcher</string>
+    <!-- 8 february -->
+    <string name="bernoulli">Daniel Bernoulli</string>
+    <string name="courtois">Bernard Courtois</string>
+    <string name="jules_verne">Jules Verne</string>
+    <string name="mendeleev">Dmitri Mendeleev</string>
+    <string name="carlson">Chester Carlson</string>
+    <string name="williams">John Williams</string>
+    <!-- 9 february -->
+    <string name="navai">Ali-Shir Nava\'i</string>
+    <string name="valisy_zhukovsky">Vasily Zhukovsky</string>
+    <string name="maybach">Wilhelm Maybach</string>
+    <string name="soseki">Natsume Sōseki</string>
+    <string name="berg">Alban Berg</string>
+    <string name="valier">Max Valier</string>
+    <string name="monod">Jacques Lucien Monod</string>
+    <!-- 10 february -->
+    <string name="molter">Johann Melchior Molter</string>
+    <string name="lamb">Charles Lamb</string>
+    <string name="navier">Claude Louis Navier</string>
+    <string name="pasternak">Boris Pasternak</string>
+    <string name="brecht">Bertolt Brecht</string>
+    <!-- 11 february -->
+    <string name="talbot">William Henry Fox Talbot</string>
+    <string name="edison">Thomas Edison</string>
+    <string name="henry">Beulah Louise Henry</string>
+    <string name="sheldon">Sidney Sheldon</string>
+    <string name="nielsen">Leslie Nielsen</string>
+    <string name="aniston">Jennifer Aniston</string>
+    <!-- 12 february -->
+    <string name="gottsched">Johann Christoph Gottsched</string>
+    <string name="darwin">Charles Robert Darwin</string>
+    <string name="lincoln">Abraham Lincoln</string>
+    <string name="roerich">Helena Roerich</string>
+    <string name="anna_pavlova">Anna Pavlova</string>
+    <string name="byung_chul">Lee Byung-chul</string>
+    <!-- 13 february -->
+    <string name="malthus">Thomas Malthus</string>
+    <string name="krylov">Ivan Krylov</string>
+    <string name="chaliapin">Feodor Chaliapin</string>
+    <string name="shockley">William Bradford Shockley</string>
+    <string name="collina">Pierluigi Collina</string>
+    <string name="robbie_williams">Robbie Williams</string>
+    <!-- 14 february -->
+    <string name="alberti">Leone Battista Alberti</string>
+    <string name="babur">Babur</string>
+    <string name="ferris">George Ferris</string>
+    <string name="germi">Pietro Germi</string>
+    <string name="sergey_kapitsa">Sergey Kapitsa</string>
+    <string name="alan_parker">Alan Parker</string>
+    <!-- 15 february -->
+    <string name="galilei">Galileo Galilei</string>
+    <string name="praetorius">Praetorius</string>
+    <string name="bentham">Jeremy Bentham</string>
+    <string name="stoney">George Johnstone Stoney</string>
+    <string name="guillaume">Charles Édouard Guillaume</string>
+    <string name="whitehead">Alfred North Whitehead</string>
+    <string name="barrymore">John Barrymore</string>
+    <!-- 16 february -->
+    <string name="bouguer">Pierre Bouguer</string>
+    <string name="bodoni">Giambattista Bodoni</string>
+    <string name="galton">Francis Galton</string>
+    <string name="haeckel">Ernst Heinrich Haeckel</string>
+    <string name="rossi">Valentino Rossi</string>
+    <!-- 17 february -->
+    <string name="laennec">René Laennec</string>
+    <string name="beilstein">Friedrich Konrad Beilstein</string>
+    <string name="john_watson">Thomas John Watson</string>
+    <string name="fisher">Ronald Fisher</string>
+    <string name="michael_bay">Michael Bay</string>
+    <string name="denise_richards">Denise Richards</string>
+    <!-- 18 february -->
+    <string name="volta">Alessandro Volta</string>
+    <string name="bates">Henry Walter Bates</string>
+    <string name="ernst_mach">Ernst Mach</string>
+    <string name="ferrari">Enzo Ferrari</string>
+    <string name="yoko_ono">Yoko Ono</string>
+    <string name="travolta">John Travolta</string>
+    <!-- 19 february -->
+    <string name="copernicus">Nicolaus Copernicus</string>
+    <string name="boccherini">Luigi Boccherini</string>
+    <string name="murchison">Roderick Impey Murchison</string>
+    <string name="ducommun">Élie Ducommun</string>
+    <string name="arrhenius">Svante August Arrhenius</string>
+    <string name="del_toro">Benicio del Toro</string>
+    <!-- 20 february -->
+    <string name="reil">Johann Christian Reil</string>
+    <string name="boltzmann">Ludwig Boltzmann</string>
+    <string name="crawford">Cindy Crawford</string>
+    <string name="cobain">Kurt Cobain</string>
+    <string name="rihanna">Rihanna</string>
+    <!-- 21 february -->
+    <string name="delibes">Léo Delibes</string>
+    <string name="calment">Jeanne Calment</string>
+    <string name="sullivan">Harry Stack Sullivan</string>
+    <string name="henrik_dam">Henrik Dam</string>
+    <string name="givenchy">Hubert de Givenchy</string>
+    <string name="palahniuk">Chuck Palahniuk</string>
+    <!-- 22 february -->
+    <string name="washington">George Washington</string>
+    <string name="schopenhauer">Arthur Schopenhauer</string>
+    <string name="quetelet">Adolphe Quetelet</string>
+    <string name="janssen">Pierre Janssen</string>
+    <string name="hertz">Heinrich Hertz</string>
+    <string name="bronsted">Johannes Nicolaus Brønsted</string>
+    <string name="drew_barrymore">Drew Barrymore</string>
+    <!-- 23 february -->
+    <string name="handel">George Frideric Handel</string>
+    <string name="chambers">William Chambers</string>
+    <string name="rothschild">Mayer Amschel Rothschild</string>
+    <string name="malevich">Kazimir Malevich</string>
+    <string name="jaspers">Karl Jaspers</string>
+    <string name="blunt">Emily Blunt</string>
+    <!-- 24 february -->
+    <string name="banks">Joseph Banks</string>
+    <string name="grimm">Wilhelm Grimm</string>
+    <string name="borgman">Ivan Borgman</string>
+    <string name="freda">Riccardo Freda</string>
+    <string name="legrand">Michel Legrand</string>
+    <string name="steve_jobs">Steve Jobs</string>
+    <!-- 25 february -->
+    <string name="battuta">Ibn Battuta</string>
+    <string name="goldoni">Carlo Goldoni</string>
+    <string name="renoir">Pierre-Auguste Renoir</string>
+    <string name="karl_may">Karl Friedrich May</string>
+    <string name="caruso">Enrico Caruso</string>
+    <string name="burgess">Anthony Burgess</string>
+    <!-- 26 february -->
+    <string name="marlowe">Christopher Marlowe</string>
+    <string name="arago">François Arago</string>
+    <string name="hugo">Victor Hugo</string>
+    <string name="levi_strauss">Levi Strauss</string>
+    <string name="flammarion">Camille Flammarion</string>
+    <!-- 27 february -->
+    <string name="constantine">Constantine the Great</string>
+    <string name="longfellow">Henry Wadsworth Longfellow</string>
+    <string name="ge">Nikolai Ge</string>
+    <string name="best">Charles Best</string>
+    <string name="steinbeck">John Steinbeck</string>
+    <string name="taylor">Elizabeth Taylor</string>
+    <!-- 28 february -->
+    <string name="montaigne">Michel de Montaigne</string>
+    <string name="reaumur">René Antoine Réaumur</string>
+    <string name="renan">Ernest Renan</string>
+    <string name="pauling">Linus Pauling</string>
+    <string name="gehry">Frank Gehry</string>
+    <string name="cooper">Leon Cooper</string>
+    <string name="vodianova">Natalia Vodianova</string>
+    <!-- 29 february -->
+    <string name="klenze">Leo von Klenze</string>
+    <string name="rossini">Gioachino Rossini</string>
+    <string name="john_holland">John Philip Holland</string>
+    <string name="рollerith">Herman Hollerith</string>
+    <string name="papert">Seymour Papert</string>
+    <!-- 1 march -->
+    <string name="botticelli">Sandro Botticelli</string>
+    <string name="chopin">Frédéric Chopin</string>
+    <string name="akutagawa">Ryūnosuke Akutagawa</string>
+    <string name="miller">Glenn Miller</string>
+    <string name="snyder">Zack Snyder</string>
+    <string name="bieber">Justin Bieber</string>
+    <!-- 2 march -->
+    <string name="dekker">Eduard Douwes Dekker</string>
+    <string name="smetana">Bedřich Smetana</string>
+    <string name="irving">John Irving</string>
+    <string name="bon_jovi">Jon Bon Jovi</string>
+    <string name="craig">Daniel Craig</string>
+    <!-- 3 march -->
+    <string name="pullman">George Pullman</string>
+    <string name="cantor">Georg Cantor</string>
+    <string name="bell">Alexander Graham Bell</string>
+    <string name="frisch">Ragnar Frisch</string>
+    <string name="kornberg">Arthur Kornberg</string>
+    <!-- 4 march -->
+    <string name="vivaldi">Antonio Vivaldi</string>
+    <string name="raeburn">Henry Raeburn</string>
+    <string name="gamow">George Gamow</string>
+    <string name="veksler">Vladimir Veksler</string>
+    <string name="mauriat">Paul Mauriat</string>
+    <!-- 5 march -->
+    <string name="mercator">Gerhardus Mercator</string>
+    <string name="tiepolo">Giovanni Battista Tiepolo</string>
+    <string name="marey">Étienne-Jules Marey</string>
+    <string name="tarrasch">Siegbert Tarrasch</string>
+    <string name="ando">Momofuku Ando</string>
+    <string name="tobin">James Tobin</string>
+    <!-- 6 march -->
+    <string name="michelangelo">Michelangelo</string>
+    <string name="bergerac">Savinien de Cyrano de Bergerac</string>
+    <string name="elizabeth_browning">Elizabeth Barrett Browning</string>
+    <string name="jerzy_lec">Stanisław Jerzy Lec</string>
+    <string name="marquez">Gabriel García Márquez</string>
+    <string name="tereshkova">Valentina Tereshkova</string>
+    <string name="shaquille">Shaquille O\'Neal</string>
+    <!-- 7 march -->
+    <string name="rob_roy">Rob Roy</string>
+    <string name="niepce">Joseph Nicéphore Niépce</string>
+    <string name="palmer">Daniel David Palmer</string>
+    <string name="montesquiou">Robert de Montesquiou</string>
+    <string name="mondrian">Piet Mondrian</string>
+    <string name="ravel">Maurice Ravel</string>
+    <string name="kobo_abe">Kōbō Abe</string>
+    <!-- 8 march -->
+    <string name="fothergill">John Fothergill</string>
+    <string name="potocki">Jan Potocki</string>
+    <string name="ignacy">Ignacy Łukasiewicz</string>
+    <string name="thompson">LaMarcus Adna Thompson</string>
+    <string name="otto_hahn">Otto Hahn</string>
+    <string name="kendall">Edward Calvin Kendall</string>
+    <string name="aiken">Howard Hathaway Aiken</string>
+    <!-- 9 march -->
+    <string name="vespucci">Amerigo Vespucci</string>
+    <string name="shevchenko">Taras Shevchenko</string>
+    <string name="barragan">Luis Barragán</string>
+    <string name="kohn">Walter Kohn</string>
+    <string name="gagarin">Yuri Gagarin</string>
+    <string name="binoche">Juliette Binoche</string>
+    <!-- 10 march -->
+    <string name="schlegel">Friedrich Schlegel</string>
+    <string name="eichendorff">Joseph von Eichendorff</string>
+    <string name="blatter">Joseph Blatter</string>
+    <string name="norris">Chuck Norris</string>
+    <string name="bin_laden">Osama bin Laden</string>
+    <string name="stone">Sharon Stone</string>
+    <!-- 11 march -->
+    <string name="tasso">Torquato Tasso</string>
+    <string name="verrier">Urbain Le Verrier</string>
+    <string name="bertrand">Joseph Bertrand</string>
+    <string name="vannevar_bush">Vannevar Bush</string>
+    <string name="bloembergen">Nicolaas Bloembergen</string>
+    <string name="adams">Douglas Adams</string>
+    <string name="knoxville">Johnny Knoxville</string>
+    <!-- 12 march -->
+    <string name="notre">André Le Nôtre</string>
+    <string name="berkeley">George Berkeley</string>
+    <string name="bazhenov">Vasily Bazhenov</string>
+    <string name="kirchhoff">Gustav Kirchhoff</string>
+    <string name="newcomb">Simon Newcomb</string>
+    <string name="perkin">William Henry Perkin</string>
+    <string name="vernadsky">Vladimir Vernadsky</string>
+    <!-- 13 march -->
+    <string name="bonnet">Charles Bonnet</string>
+    <string name="lowell">Percival Lowell</string>
+    <string name="eliade">Mircea Eliade</string>
+    <string name="hubbard">Lafayette Ronald Hubbard</string>
+    <string name="scatman">Scatman John</string>
+    <!-- 14 march -->
+    <string name="telemann">Georg Philipp Telemann</string>
+    <string name="strauss">Johann Strauss I</string>
+    <string name="banville">Théodore de Banville</string>
+    <string name="schiaparelli">Giovanni Schiaparelli</string>
+    <string name="ehrlich">Paul Ehrlich</string>
+    <string name="einstein">Albert Einstein</string>
+    <string name="caine">Michael Caine</string>
+    <!-- 15 march -->
+    <string name="sylvius">Franciscus Sylvius</string>
+    <string name="loschmidt">Johann Josef Loschmidt</string>
+    <string name="heyse">Paul Heyse</string>
+    <string name="behring">Emil von Behring</string>
+    <string name="haffkine">Waldemar Haffkine</string>
+    <string name="alferov">Zhores Alferov</string>
+    <!-- 16 march -->
+    <string name="georg_ohm">Georg Simon Ohm</string>
+    <string name="prudhomme">Sully Prudhomme</string>
+    <string name="beijerinck">Martinus Beijerinck</string>
+    <string name="yayser">Heinrich Kayser</string>
+    <string name="damadian">Raymond Damadian</string>
+    <string name="bertolucci">Bernardo Bertolucci</string>
+    <string name="stallman">Richard Stallman</string>
+    <!-- 17 march -->
+    <string name="daimler">Gottlieb Daimler</string>
+    <string name="vrubel">Mikhail Vrubel</string>
+    <string name="hess">Walter Rudolf Hess</string>
+    <string name="nureyev">Rudolf Nureyev</string>
+    <string name="gibson">William Gibson</string>
+    <string name="russell">Kurt Russell</string>
+    <!-- 18 march -->
+    <string name="steiner">Jakob Steiner</string>
+    <string name="hebbel">Friedrich Hebbel</string>
+    <string name="diesel">Rudolf Diesel</string>
+    <string name="stekel">Wilhelm Stekel</string>
+    <string name="koffka">Kurt Koffka</string>
+    <string name="besson">Luc Besson</string>
+    <!-- 19 march -->
+    <string name="burton">Richard Francis Burton</string>
+    <string name="wheeler">William Morton Wheeler</string>
+    <string name="reger">Max Reger</string>
+    <string name="haworth">Norman Haworth</string>
+    <string name="joliot_curie">Frédéric Joliot-Curie</string>
+    <string name="molina">Mario Molina</string>
+    <string name="bruce_willis">Bruce Willis</string>
+    <!-- 20 march -->
+    <string name="ibsen">Henrik Ibsen</string>
+    <string name="gigli">Beniamino Gigli</string>
+    <string name="skinner">Burrhus Frederic Skinner</string>
+    <string name="cattell">Raymond Cattell</string>
+    <string name="neher">Erwin Neher</string>
+    <string name="bennington">Chester Bennington</string>
+    <!-- 21 march -->
+    <string name="fourier">Joseph Fourier</string>
+    <string name="mozhaysky">Alexander Mozhaysky</string>
+    <string name="gilbert">Walter Gilbert</string>
+    <string name="oldman">Gary Oldman</string>
+    <string name="senna">Ayrton Senna</string>
+    <string name="ronaldinho">Ronaldinho</string>
+    <!-- 22 march -->
+    <string name="van_dyck">Anthony van Dyck</string>
+    <string name="pelletier">Pierre Joseph Pelletier</string>
+    <string name="lysenko">Mykola Lysenko</string>
+    <string name="millikan">Robert Andrews Millikan</string>
+    <string name="richter">Burton Richter</string>
+    <string name="webber">Andrew Lloyd Webber</string>
+    <!-- 23 march -->
+    <string name="laplace">Pierre-Simon Laplace</string>
+    <string name="du_gard">Roger Martin du Gard</string>
+    <string name="noether">Emmy Noether</string>
+    <string name="juan_gris">Juan Gris</string>
+    <string name="fromm">Erich Fromm</string>
+    <string name="kurosawa">Akira Kurosawa</string>
+    <string name="von_braun">Wernher von Braun</string>
+    <!-- 24 march -->
+    <string name="agricola">Georgius Agricola</string>
+    <string name="priestley">Joseph Priestley</string>
+    <string name="morris">William Morris</string>
+    <string name="houdini">Harry Houdini</string>
+    <string name="dario_fo">Dario Fo</string>
+    <string name="ballmer">Steve Ballmer</string>
+    <string name="jim_parsons">Jim Parsons</string>
+    <!-- 25 march -->
+    <string name="amici">Giovanni Battista Amici</string>
+    <string name="toscanini">Arturo Toscanini</string>
+    <string name="aretha_franklin">Aretha Franklin</string>
+    <string name="elton_john">Elton John</string>
+    <string name="parker">Sarah Jessica Parker</string>
+    <!-- 26 march -->
+    <string name="gesner">Conrad Gesner</string>
+    <string name="prorok_divis">Prokop Diviš</string>
+    <string name="benjamin_thompson">Benjamin Thompson</string>
+    <string name="feddersen">Berend Wilhelm Feddersen</string>
+    <string name="frost">Robert Frost</string>
+    <string name="tennessee_williams">Tennessee Williams</string>
+    <string name="katz">Bernard Katz</string>
+    <string name="anfinsen">Christian Anfinsen</string>
+    <string name="nimoy">Leonard Nimoy</string>
+    <string name="tinto_brass">Tinto Brass</string>
+    <string name="tyler">Steven Tyler</string>
+    <string name="knightley">Keira Knightley</string>
+    <!-- 27 march -->
+    <string name="hittorf">Johann Wilhelm Hittorf</string>
+    <string name="rontgen">Wilhelm Röntgen</string>
+    <string name="wallach">Otto Wallach</string>
+    <string name="pearson">Karl Pearson</string>
+    <string name="henry_royce">Henry Royce</string>
+    <string name="steichen">Edward Steichen</string>
+    <string name="tarantino">Quentin Tarantino</string>
+    <!-- 28 march -->
+    <string name="raphael">Raphael</string>
+    <string name="comenius">John Amos Comenius</string>
+    <string name="tamburini">Antonio Tamburini</string>
+    <string name="maxim_gorky">Maxim Gorky</string>
+    <string name="heymans">Corneille Heymans</string>
+    <string name="brzezinski">Zbigniew Brzezinski</string>
+    <string name="friedman">Jerome Isaac Friedman</string>
+    <string name="lady_gaga">Lady Gaga</string>
+    <!-- 29 march -->
+    <string name="santorio">Santorio Santorio</string>
+    <string name="musaus">Johann Karl August Musäus</string>
+    <string name="schneider">Eugène Schneider</string>
+    <string name="walton">Sam Walton</string>
+    <string name="vane">John Vane</string>
+    <string name="gleeson">Brendan Gleeson</string>
+    <!-- 30 march -->
+    <string name="goya">Francisco Goya</string>
+    <string name="rozier">Pilâtre de Rozier</string>
+    <string name="bunsen">Robert Bunsen</string>
+    <string name="verlaine">Paul Verlaine</string>
+    <string name="van_gogh">Vincent van Gogh</string>
+    <string name="sharpe">Tom Sharpe</string>
+    <string name="dion">Celine Dion</string>
+    <!-- 31 march -->
+    <string name="descartes">René Descartes</string>
+    <string name="marvell">Andrew Marvell</string>
+    <string name="bach">Johann Sebastian Bach</string>
+    <string name="haydn">Joseph Haydn</string>
+    <string name="chukovsky">Korney Chukovsky</string>
+    <string name="william_bragg">William Lawrence Bragg</string>
+    <string name="walken">Christopher Walken</string>
+    <!-- 1 april -->
+    <string name="harvey">William Harvey</string>
+    <string name="germain">Sophie Germain</string>
+    <string name="gogol">Nikolai Gogol</string>
+    <string name="zsigmondy">Richard Adolf Zsigmondy</string>
+    <string name="busoni">Ferruccio Busoni</string>
+    <string name="rachmaninoff">Sergei Rachmaninoff</string>
+    <string name="lon_chaney">Lon Chaney</string>
+    <string name="maslow">Abraham Maslow</string>
+    <!-- 2 april -->
+    <string name="grimaldi">Francesco Maria Grimaldi</string>
+    <string name="casanova">Giacomo Casanova</string>
+    <string name="andersen">Hans Christian Andersen</string>
+    <string name="butler">Nicholas Murray Butler</string>
+    <string name="chrysler">Walter Chrysler</string>
+    <string name="fassbender">Michael Fassbender</string>
+    <!-- 3 april -->
+    <string name="washington_irving">Washington Irving</string>
+    <string name="velde">Henry van de Velde</string>
+    <string name="jansky">Jan Janský</string>
+    <string name="brando">Marlon Brando</string>
+    <string name="baldwin">Alec Baldwin</string>
+    <string name="murphy">Eddie Murphy</string>
+    <!-- 4 april -->
+    <string name="reid">Thomas Mayne Reid</string>
+    <string name="siemens">Carl Wilhelm Siemens</string>
+    <string name="simmons">Dan Simmons</string>
+    <string name="weaving">Hugo Weaving</string>
+    <string name="robert_downey">Robert Downey Jr.</string>
+    <string name="ledger">Heath Ledger</string>
+    <!-- 5 april -->
+    <string name="hobbes">Thomas Hobbes</string>
+    <string name="viviani">Vincenzo Viviani</string>
+    <string name="yale">Elihu Yale</string>
+    <string name="spohr">Louis Spohr</string>
+    <string name="dupre">Jules Dupré</string>
+    <string name="nadar">Nadar</string>
+    <string name="lister">Joseph Lister</string>
+    <string name="hailey">Arthur Hailey</string>
+    <!-- 6 april -->
+    <string name="gosse">Philip Henry Gosse</string>
+    <string name="moreau">Gustave Moreau</string>
+    <string name="douglas">Donald Wills Douglas</string>
+    <string name="lynen">Feodor Lynen</string>
+    <string name="fischer">Edmond Henri Fischer</string>
+    <string name="james_watson">James Watson</string>
+    <!-- 7 april -->
+    <string name="gerard_dou">Gerard Dou</string>
+    <string name="wordsworth">William Wordsworth</string>
+    <string name="selmi">Francesco Selmi</string>
+    <string name="christiansen">Ole Kirk Christiansen</string>
+    <string name="holiday">Billie Holiday</string>
+    <string name="coppola">Francis Ford Coppola</string>
+    <string name="chan">Jackie Chan</string>
+    <string name="crowe">Russell Crowe</string>
+    <!-- 8 april -->
+    <string name="tartini">Giuseppe Tartini</string>
+    <string name="von_hofmann">August Wilhelm von Hofmann</string>
+    <string name="husserl">Edmund Husserl</string>
+    <string name="hicks">John Hicks</string>
+    <string name="calvin">Melvin Calvin</string>
+    <!-- 9 april -->
+    <string name="timur">Timur</string>
+    <string name="boehm">Theobald Boehm</string>
+    <string name="brunel">Isambard Kingdom Brunel</string>
+    <string name="muybridge">Eadweard Muybridge</string>
+    <string name="pincus">Gregory Goodwin Pincus</string>
+    <string name="eckert">John Presper Eckert</string>
+    <string name="hefner">Hugh Hefner</string>
+    <string name="belmondo">Jean-Paul Belmondo</string>
+    <string name="stewart">Kristen Stewart</string>
+    <!-- 10 april -->
+    <string name="grotius">Hugo Grotius</string>
+    <string name="tschirnhaus">Ehrenfried Walther von Tschirnhaus</string>
+    <string name="heinicke">Samuel Heinicke</string>
+    <string name="pulitzer">Joseph Pulitzer</string>
+    <string name="seagal">Steven Seagal</string>
+    <string name="canet">Guillaume Canet</string>
+    <!-- 11 april -->
+    <string name="parkinson">James Parkinson</string>
+    <string name="bertini">Francesca Bertini</string>
+    <string name="julian">Percy Julian</string>
+    <string name="lavey">Anton LaVey</string>
+    <string name="wiles">Andrew Wiles</string>
+    <!-- 12 april -->
+    <string name="meyerhof">Otto Fritz Meyerhof</string>
+    <string name="lily_pons">Lily Pons</string>
+    <string name="tinbergen">Jan Tinbergen</string>
+    <string name="cabalie">Montserrat Caballé</string>
+    <string name="hancock">Herbie Hancock</string>
+    <string name="garcia">Andy García</string>
+    <!-- 13 april -->
+    <string name="favre">Pierre Favre</string>
+    <string name="fawkes">Guy Fawkes</string>
+    <string name="bramah">Joseph Bramah</string>
+    <string name="trevithick">Richard Trevithick</string>
+    <string name="meucci">Antonio Meucci</string>
+    <string name="lacan">Jacques Lacan</string>
+    <string name="beckett">Samuel Beckett</string>
+    <!-- 14 april -->
+    <string name="ortelius">Abraham Ortelius</string>
+    <string name="huygens">Christiaan Huygens</string>
+    <string name="fonvizin">Denis Fonvizin</string>
+    <string name="rohlfs">Gerhard Rohlfs</string>
+    <string name="horsley">Victor Horsley</string>
+    <string name="matsumoto">Yukihiro Matsumoto</string>
+    <!-- 15 april -->
+    <string name="da_vinci">Leonardo da Vinci</string>
+    <string name="leonhard_euler">Leonhard Euler</string>
+    <string name="cullen">William Cullen</string>
+    <string name="busch">Wilhelm Busch</string>
+    <string name="gumilyov">Nikolay Gumilyov</string>
+    <string name="emma_thompson">Emma Thompson</string>
+    <string name="emma_watson">Emma Watson</string>
+    <!-- 16 april -->
+    <string name="apianus">Petrus Apianus</string>
+    <string name="hadley">John Hadley</string>
+    <string name="eisenstein">Gotthold Eisenstein</string>
+    <string name="france">Anatole France</string>
+    <string name="wright">Wilbur Wright</string>
+    <string name="chaplin">Charlie Chaplin</string>
+    <!-- 17 april -->
+    <string name="morgan">John Pierpont Morgan</string>
+    <string name="starling">Ernest Henry Starling</string>
+    <string name="saeverud">Harald Sæverud</string>
+    <string name="kohler">Georges Köhler</string>
+    <string name="garner">Jennifer Garner</string>
+    <string name="beckham">Victoria Beckham</string>
+    <!-- 18 april -->
+    <string name="ricardo">David Ricardo</string>
+    <string name="boisbaudran">Paul Émile Lecoq de Boisbaudran</string>
+    <string name="goldstein">Joseph Leonard Goldstein</string>
+    <string name="sokolov">Grigory Sokolov</string>
+    <string name="eric_roberts">Eric Roberts</string>
+    <string name="tennant">David Tennant</string>
+    <!-- 19 april -->
+    <string name="ehrenberg">Christian Gottfried Ehrenberg</string>
+    <string name="gerstner">Franz Anton von Gerstner</string>
+    <string name="fechner">Gustav Theodor Fechner</string>
+    <string name="hughes">Richard Hughes</string>
+    <string name="seaborg">Glenn Theodore Seaborg</string>
+    <string name="judd">Ashley Judd</string>
+    <string name="christensen">Hayden Christensen</string>
+    <!-- 20 april -->
+    <string name="aretino">Pietro Aretino</string>
+    <string name="pinel">Philippe Pinel</string>
+    <string name="raffaelli">Jean-François Raffaëlli</string>
+    <string name="hitler">Adolf Hitler</string>
+    <string name="lloyd">Harold Lloyd</string>
+    <string name="leiris">Michel Leiris</string>
+    <string name="muller">Karl Alexander Müller</string>
+    <string name="sedgwick">Edie Sedgwick</string>
+    <!-- 21 april -->
+    <string name="riebeeck">Johan van Riebeeck</string>
+    <string name="kulibin">Ivan Kulibin</string>
+    <string name="frobel">Friedrich Fröbel</string>
+    <string name="starley">James Starley</string>
+    <string name="flemming">Walther Flemming</string>
+    <string name="weber">Max Weber</string>
+    <string name="bridgman">Percy Williams Bridgman</string>
+    <string name="karrer">Paul Karrer</string>
+    <!-- 22 april -->
+    <string name="fielding">Henry Fielding</string>
+    <string name="kant">Immanuel Kant</string>
+    <string name="plante">Gaston Planté</string>
+    <string name="eichler">August Wilhelm Eichler</string>
+    <string name="bohr">Harald Bohr</string>
+    <string name="mabokov">Vladimir Nabokov</string>
+    <string name="oppenheimer">Julius Robert Oppenheimer</string>
+    <string name="mingus">Charles Mingus</string>
+    <string name="nicholson">Jack Nicholson</string>
+    <!-- 23 april -->
+    <string name="planck">Max Planck</string>
+    <string name="fibiger">Johannes Fibiger</string>
+    <string name="marsh">Ngaio Marsh</string>
+    <string name="ohlin">Bertil Ohlin</string>
+    <string name="laxness">Halldór Laxness</string>
+    <string name="cena">John Cena</string>
+    <string name="patel">Dev Patel</string>
+    <!-- 24 april -->
+    <string name="martini">Giovanni Battista Martini</string>
+    <string name="cartwright">Edmund Cartwright</string>
+    <string name="spitteler">Carl Spitteler</string>
+    <string name="bertillon">Alphonse Bertillon</string>
+    <string name="sundback">Gideon Sundback</string>
+    <string name="streisand">Barbra Streisand</string>
+    <!-- 25 april -->
+    <string name="marc_brunel">Marc Isambart Brunel</string>
+    <string name="klein">Felix Klein</string>
+    <string name="felix_dherelle">Félix d\'Herelle</string>
+    <string name="marconi">Guglielmo Marconi</string>
+    <string name="pauli">Wolfgang Pauli</string>
+    <string name="fitzgerald">Ella Fitzgerald</string>
+    <string name="al_pacino">Al Pacino</string>
+    <string name="cruyff">Johan Cruyff</string>
+    <string name="zellweger">Renée Zellweger</string>
+    <!-- 26 april -->
+    <string name="aurelius">Marcus Aurelius</string>
+    <string name="shakespeare">William Shakespeare</string>
+    <string name="uhland">Ludwig Uhland</string>
+    <string name="delacroix">Eugène Delacroix</string>
+    <string name="krupp">Alfred Krupp</string>
+    <string name="billroth">Theodor Billroth</string>
+    <string name="richardson">Owen Willans Richardson</string>
+    <string name="wittgenstein">Ludwig Wittgenstein</string>
+    <string name="charles_richter">Charles Francis Richter</string>
+    <!-- 27 april -->
+    <string name="kolreuter">Joseph Gottlieb Kölreuter</string>
+    <string name="wollstonecraft">Mary Wollstonecraft</string>
+    <string name="morse">Samuel Morse</string>
+    <string name="carothers">Wallace Carothers</string>
+    <string name="lantz">Walter Lantz</string>
+    <!-- 28 april-->
+    <string name="achard">Franz Carl Achard</string>
+    <string name="kraus">Karl Kraus</string>
+    <string name="godel">Kurt Gödel</string>
+    <string name="schindler">Oskar Schindler</string>
+    <string name="lamborghini">Ferruccio Lamborghini</string>
+    <string name="harper_lee">Harper Lee</string>
+    <string name="yves_klein">Yves Klein</string>
+    <string name="cruz">Penélope Cruz</string>
+    <!-- 29 april -->
+    <string name="drais">Karl Drais</string>
+    <string name="poincare">Henri Poincaré</string>
+    <string name="hearst">William Randolph Hearst</string>
+    <string name="urey">Harold Urey</string>
+    <string name="jack_williamson">Jack Williamson</string>
+    <string name="pfeiffer">Michelle Pfeiffer</string>
+    <string name="thurman">Uma Thurman</string>
+    <!-- 30 april -->
+    <string name="gauss">Carl Friedrich Gauss</string>
+    <string name="bleuler">Eugen Bleuler</string>
+    <string name="kuznets">Simon Kuznets</string>
+    <string name="schultz">Theodore Schultz</string>
+    <string name="shannon">Claude Shannon</string>
+    <string name="gal_gadot">Gal Gadot</string>
+    <!-- 1 may -->
+    <string name="addison">Joseph Addison</string>
+    <string name="cajal">Santiago Ramón y Cajal</string>
+    <string name="chardin">Pierre Teilhard de Chardin</string>
+    <string name="woo">John Woo</string>
+    <string name="dornan">Jamie Dornan</string>
+    <!-- 2 may -->
+    <string name="kirche">Athanasius Kirche</string>
+    <string name="jerome">Jerome K. Jerome</string>
+    <string name="wood">Robert Williams Wood</string>
+    <string name="marshall">Alan Marshall</string>
+    <string name="springer">Axel Springer</string>
+    <string name="johnson">Dwayne Johnson</string>
+    <string name="david_beckham">David Beckham</string>
+    <!-- 3 may -->
+    <string name="machiavelli">Niccolò Machiavelli</string>
+    <string name="haldane">John Scott Haldane</string>
+    <string name="ekman">Vagn Walfrid Ekman</string>
+    <string name="coty">François Coty</string>
+    <string name="thomson">George Paget Thomson</string>
+    <string name="kastler">Alfred Kastler</string>
+    <!-- 4 may -->
+    <string name="cristofori">Bartolomeo Cristofori</string>
+    <string name="borda">Jean-Charles de Borda</string>
+    <string name="brockhaus">Friedrich Arnold Brockhaus</string>
+    <string name="thenard">Louis Jacques Thénard</string>
+    <string name="liddell">Alice Liddell</string>
+    <string name="mandelstam">Leonid Mandelstam</string>
+    <string name="hepburn">Audrey Hepburn</string>
+    <!-- 5 may -->
+    <string name="kierkegaard">Søren Kierkegaard</string>
+    <string name="marx">Karl Marx</string>
+    <string name="sienkiewicz">Henryk Sienkiewicz</string>
+    <string name="schawlow">Arthur Leonard Schawlow</string>
+    <string name="adele">Adele</string>
+    <!-- 6 may -->
+    <string name="freud">Sigmund Freud</string>
+    <string name="peary">Robert Peary</string>
+    <string name="grignard">Victor Grignard</string>
+    <string name="martinson">Harry Martinson</string>
+    <string name="clooney">George Clooney</string>
+    <!-- 7 may -->
+    <string name="clairaut">Alexis Clairaut</string>
+    <string name="robert_browning">Robert Browning</string>
+    <string name="tchaikovsky">Pyotr Ilyich Tchaikovsky</string>
+    <string name="tagore">Rabindranath Tagore</string>
+    <string name="reymont">Władysław Reymont</string>
+    <string name="land">Edwin Herbert Land</string>
+    <!-- 8 may -->
+    <string name="dunant">Henri Dunant</string>
+    <string name="lwoff">André Michel Lwoff</string>
+    <string name="fernandel">Fernandel</string>
+    <string name="rossellini">Roberto Rossellini</string>
+    <string name="iglesias">Enrique Iglesias</string>
+    <!-- 9 may -->
+    <string name="monge">Gaspard Monge</string>
+    <string name="opel">Adam Opel</string>
+    <string name="laval">Gustaf de Laval</string>
+    <string name="carter">Howard Carter</string>
+    <string name="gasset">José Ortega y Gasset</string>
+    <string name="richard_day">Richard Day</string>
+    <string name="eigen">Manfred Eigen</string>
+    <!-- 10 may -->
+    <string name="lisle">Claude Joseph Rouget de Lisle</string>
+    <string name="fresnel">Augustin-Jean Fresnel</string>
+    <string name="killing">Wilhelm Killing</string>
+    <string name="lipton">Thomas Lipton</string>
+    <string name="gaumont">Léon Gaumont</string>
+    <string name="barth">Karl Barth</string>
+    <string name="selznick">David O. Selznick</string>
+    <string name="chapman">Mark David Chapman</string>
+    <!-- 11 may -->
+    <string name="munchhausen">Hieronymus Carl Friedrich von Münchhausen</string>
+    <string name="blumenbach">Johann Friedrich Blumenbach</string>
+    <string name="voynich">Ethel Lilian Voynich</string>
+    <string name="dali">Salvador Dalí</string>
+    <string name="feynman">Richard Feynman</string>
+    <string name="dijkstra">Edsger Wybe Dijkstra</string>
+    <string name="iniesta">Andrés Iniesta</string>
+    <!-- 12 may -->
+    <string name="lear">Edward Lear</string>
+    <string name="hind">John Russell Hind</string>
+    <string name="pirquet">Clemens von Pirquet</string>
+    <string name="giauque">William Giauque</string>
+    <string name="devi">Indra Devi</string>
+    <string name="voznesensky">Andrei Voznesensky</string>
+    <!-- 13 may -->
+    <string name="nevsky">Alexander Nevsky</string>
+    <string name="daudet">Alphonse Daudet</string>
+    <string name="ross">Ronald Ross</string>
+    <string name="braque">Georges Braque</string>
+    <string name="wonder">Stevie Wonder</string>
+    <string name="rodman">Dennis Rodman</string>
+    <string name="pattinson">Robert Pattinson</string>
+    <!-- 14 may -->
+    <string name="gainsborough">Thomas Gainsborough</string>
+    <string name="steinitz">Wilhelm Steinitz</string>
+    <string name="tsvet">Mikhail Tsvet</string>
+    <string name="lucas">George Lucas</string>
+    <string name="zemeckis">Robert Zemeckis</string>
+    <string name="tim_roth">Tim Roth</string>
+    <string name="blanchett">Cate Blanchett</string>
+    <string name="zuckerberg">Mark Zuckerberg</string>
+    <!-- 15 may -->
+    <string name="mechnikov">Ilya Mechnikov</string>
+    <string name="vasnetsov">Viktor Vasnetsov</string>
+    <string name="wernicke">Carl Wernicke</string>
+    <string name="baum">Lyman Frank Baum</string>
+    <string name="curie">Pierre Curie</string>
+    <string name="bulgakov">Mikhail Bulgakov</string>
+    <!-- 16 may -->
+    <string name="agnesi">Maria Gaetana Agnesi</string>
+    <string name="vauquelin">Louis-Nicolas Vauquelin</string>
+    <string name="david_hughes">David Edward Hughes</string>
+    <string name="fonda">Henry Fonda</string>
+    <string name="herman">Woody Herman</string>
+    <string name="trejo">Danny Trejo</string>
+    <string name="brosnan">Pierce Brosnan</string>
+    <string name="megan_fox">Megan Fox</string>
+    <!-- 17 may -->
+    <string name="jenner">Edward Jenner</string>
+    <string name="lockyer">Norman Lockyer</string>
+    <string name="hassel">Odd Hassel</string>
+    <string name="gabin">Jean Gabin</string>
+    <string name="nilsson">Birgit Nilsson</string>
+    <string name="hopper">Dennis Hopper</string>
+    <!-- 18 may -->
+    <string name="khayyam">Omar Khayyam</string>
+    <string name="clapperton">Hugh Clapperton</string>
+    <string name="hofmeister">Wilhelm Hofmeister</string>
+    <string name="heaviside">Oliver Heaviside</string>
+    <string name="bertrand_russell">Bertrand Russell</string>
+    <string name="vigneaud">Vincent du Vigneaud</string>
+    <string name="cretu">Michael Cretu</string>
+    <!-- 19 may -->
+    <string name="evola">Julius Evola</string>
+    <string name="colin_chapman">Colin Chapman</string>
+    <string name="placido">Michele Placido</string>
+    <string name="karapetyan">Shavarsh Karapetyan</string>
+    <string name="oreiro">Natalia Oreiro</string>
+    <string name="pirlo">Andrea Pirlo</string>
+    <string name="sam_smith">Sam Smith</string>
+    <!-- 20 may -->
+    <string name="fabricius">Hieronymus Fabricius</string>
+    <string name="balzac">Honoré de Balzac</string>
+    <string name="passy">Frédéric Passy</string>
+    <string name="berliner">Emil Berliner</string>
+    <string name="hewlett">William Reddington Hewlett</string>
+    <string name="edward_lewis">Edward Lewis</string>
+    <string name="cher">Cher</string>
+    <!-- 21 may -->
+    <string name="durer">Albrecht Dürer</string>
+    <string name="coriolis">Gaspard-Gustave de Coriolis</string>
+    <string name="kock">Paul de Kock</string>
+    <string name="renault">Louis Renault</string>
+    <string name="einthoven">Willem Einthoven</string>
+    <string name="sakharov">Andrei Sakharov</string>
+    <!-- 22 may -->
+    <string name="wagner">Richard Wagner</string>
+    <string name="doyle">Arthur Conan Doyle</string>
+    <string name="olivier">Laurence Olivier</string>
+    <string name="herge">Hergé</string>
+    <string name="herbert_brown">Herbert Charles Brown</string>
+    <string name="campbell">Naomi Campbell</string>
+    <!-- 23 may -->
+    <string name="linnaeus">Carl Linnaeus</string>
+    <string name="mesmer">Franz Mesmer</string>
+    <string name="lilienthal">Otto Lilienthal</string>
+    <string name="fairbanks">Douglas Fairbanks</string>
+    <string name="lagerkvist">Pär Lagerkvist</string>
+    <string name="bardeen">John Bardeen</string>
+    <string name="moog">Robert Moog</string>
+    <!-- 24 may -->
+    <string name="pontormo">Pontormo</string>
+    <string name="fahrenheit">Daniel Gabriel Fahrenheit</string>
+    <string name="sholokhov">Mikhail Sholokhov</string>
+    <string name="brodsky">Joseph Brodsky</string>
+    <string name="dylan">Bob Dylan</string>
+    <string name="deakins">Roger Deakins</string>
+    <!-- 25 may -->
+    <string name="emerson">Ralph Waldo Emerson</string>
+    <string name="burckhardt">Jacob Burckhardt</string>
+    <string name="zeeman">Pieter Zeeman</string>
+    <string name="steinberger">Jack Steinberger</string>
+    <string name="mckellen">Ian McKellen</string>
+    <string name="myers">Mike Myers</string>
+    <!-- 26 may -->
+    <string name="petty">William Petty</string>
+    <string name="moivre">Abraham de Moivre</string>
+    <string name="john_wayne">John Wayne</string>
+    <string name="miles_davis">Miles Davis</string>
+    <string name="kevorkian">Jack Kevorkian</string>
+    <string name="kravitz">Lenny Kravitz</string>
+    <string name="helena_carter">Helena Bonham Carter</string>
+    <!-- 27 may -->
+    <string name="vanderbilt">Cornelius Vanderbilt</string>
+    <string name="duncan">Isadora Duncan</string>
+    <string name="cockcroft">John Cockcroft</string>
+    <string name="christopher_lee">Christopher Lee</string>
+    <string name="bettany">Paul Bettany</string>
+    <!-- 28 may -->
+    <string name="guillotin">Joseph Ignace Guillotin</string>
+    <string name="thomas_moore">Thomas Moore</string>
+    <string name="agassiz">Louis Agassiz</string>
+    <string name="milankovic">Milutin Milanković</string>
+    <string name="ian_fleming">Ian Fleming</string>
+    <string name="minogue">Kylie Minogue</string>
+    <!-- 29 may -->
+    <string name="david_bruce">David Bruce</string>
+    <string name="chesterton">Gilbert Keith Chesterton</string>
+    <string name="spengler">Oswald Spengler</string>
+    <string name="bob_hope">Bob Hope</string>
+    <string name="goldberg">Leah Goldberg</string>
+    <string name="kennedy">John Fitzgerald Kennedy</string>
+    <!-- 30 may -->
+    <string name="hagen">Hermann August Hagen</string>
+    <string name="faberge">Peter Carl Fabergé</string>
+    <string name="thalberg">Irving Thalberg</string>
+    <string name="alfven">Hannes Alfvén</string>
+    <string name="blanc">Mel Blanc</string>
+    <string name="gerrard">Steven Gerrard</string>
+    <!-- 31 may -->
+    <string name="tieck">Ludwig Tieck</string>
+    <string name="pugni">Cesare Pugni</string>
+    <string name="pirrie">William James Pirrie</string>
+    <string name="perse">Saint-John Perse</string>
+    <string name="allais">Maurice Allais</string>
+    <string name="eastwood">Clint Eastwood</string>
+    <string name="jay_miner">Jay Miner</string>
+    <!-- 1 june -->
+    <string name="paer">Ferdinando Paer</string>
+    <string name="carnot">Nicolas Léonard Sadi Carnot</string>
+    <string name="glinka">Mikhail Glinka</string>
+    <string name="monroe">Marilyn Monroe</string>
+    <string name="foster">Norman Foster</string>
+    <string name="freeman">Morgan Freeman</string>
+    <string name="persson">Markus Persson</string>
+    <!-- 2 june -->
+    <string name="de_sade">Marquis de Sade</string>
+    <string name="cagliostro">Alessandro Cagliostro</string>
+    <string name="akimov">Ivan Akimov</string>
+    <string name="hardy">Thomas Hardy</string>
+    <string name="weissmüller">Johnny Weissmuller</string>
+    <string name="quinto">Zachary Quinto</string>
+    <!-- 3 june -->
+    <string name="hutton">James Hutton</string>
+    <string name="shrapnel">Henry Shrapnel</string>
+    <string name="cobden">Richard Cobden</string>
+    <string name="timiryazev">Kliment Timiryazev</string>
+    <string name="pearl">Raymond Pearl</string>
+    <string name="arber">Werner Arber</string>
+    <string name="nadal">Rafael Nadal</string>
+    <!-- 4 june -->
+    <string name="quesnay">François Quesnay</string>
+    <string name="nazimova">Alla Nazimova</string>
+    <string name="cockerell">Christopher Cockerell</string>
+    <string name="bartoli">Cecilia Bartoli</string>
+    <string name="jolie">Angelina Jolie</string>
+    <!-- 5 june -->
+    <string name="chippendale">Thomas Chippendale</string>
+    <string name="keynes">John Maynard Keynes</string>
+    <string name="lorca">Federico García Lorca</string>
+    <string name="gabor">Dennis Gabor</string>
+    <string name="peierls">Rudolf Peierls</string>
+    <string name="wahlberg">Mark Wahlberg</string>
+    <!-- 6 june -->
+    <string name="regiomontanus">Regiomontanus</string>
+    <string name="velazquez">Diego Velázquez</string>
+    <string name="corneille">Pierre Corneille</string>
+    <string name="pushkin">Alexander Pushkin</string>
+    <string name="braun">Karl Ferdinand Braun</string>
+    <string name="mann">Thomas Mann</string>
+    <!-- 7 june -->
+    <string name="brummell">Beau Brummell</string>
+    <string name="auer">Leopold Auer</string>
+    <string name="mackintosh">Charles Rennie Mackintosh</string>
+    <string name="barkla">Charles Glover Barkla</string>
+    <string name="mulliken">Robert Sanderson Mulliken</string>
+    <string name="apgar">Virginia Apgar</string>
+    <string name="martin">Dean Martin</string>
+    <string name="neeson">Liam Neeson</string>
+    <!-- 8 june -->
+    <string name="cassini">Giovanni Domenico Cassini</string>
+    <string name="albinoni">Tomaso Albinoni</string>
+    <string name="careme">Marie-Antoine Carême</string>
+    <string name="schumann">Robert Schumann</string>
+    <string name="yeste">Santiago Bernabéu Yeste</string>
+    <string name="john_campbell">John Wood Campbell</string>
+    <string name="kanye_west">Kanye West</string>
+    <!-- 9 june -->
+    <string name="stephenson">George Stephenson</string>
+    <string name="galle">Johann Gottfried Galle</string>
+    <string name="suttner">Bertha von Suttner</string>
+    <string name="dale">Henry Hallett Dale</string>
+    <string name="fox">Michael J. Fox</string>
+    <string name="depp">Johnny Depp</string>
+    <string name="portman">Natalie Portman</string>
+    <!-- 10 june -->
+    <string name="courbet">Gustave Courbet</string>
+    <string name="otto">Nicolaus Otto</string>
+    <string name="cook">Frederick Cook</string>
+    <string name="mcdaniel">Hattie McDaniel</string>
+    <string name="bellow">Saul Bellow</string>
+    <string name="garland">Judy Garland</string>
+    <!-- 11 june -->
+    <string name="constable">John Constable</string>
+    <string name="fortuny">Mariano Fortuny</string>
+    <string name="richard_strauss">Richard Strauss</string>
+    <string name="cousteau">Jacques-Yves Cousteau</string>
+    <string name="styron">William Styron</string>
+    <string name="laurie">Hugh Laurie</string>
+    <string name="dinklage">Peter Dinklage</string>
+    <string name="labeouf">Shia LaBeouf</string>
+    <!-- 12 june -->
+    <string name="roebling">John August Roebling</string>
+    <string name="lipmann">Fritz Albert Lipmann</string>
+    <string name="frank">Anne Frank</string>
+    <string name="sakmann">Bert Sakmann</string>
+    <string name="lima">Adriana Lima</string>
+    <!-- 13 june -->
+    <string name="young">Thomas Young</string>
+    <string name="maxwell">James Clerk Maxwell</string>
+    <string name="yeats">William Butler Yeats</string>
+    <string name="john_nash">John Forbes Nash Jr.</string>
+    <string name="mcdowell">Malcolm McDowell</string>
+    <string name="perelman">Grigori Perelman</string>
+    <string name="evans">Chris Evans</string>
+    <!-- 14 june -->
+    <string name="coulomb">Charles-Augustin de Coulomb</string>
+    <string name="stowe">Harriet Beecher Stowe</string>
+    <string name="landsteiner">Karl Landsteiner</string>
+    <string name="tokarev">Fedor Tokarev</string>
+    <string name="church">Alonzo Church</string>
+    <string name="guevara">Ernesto Che Guevara</string>
+    <string name="graf">Steffi Graf</string>
+    <!-- 15 june -->
+    <string name="poussin">Nicolas Poussin</string>
+    <string name="fourcroy">Antoine François de Fourcroy</string>
+    <string name="balmont">Konstantin Balmont</string>
+    <string name="belushi">James Belushi</string>
+    <string name="helen_hunt">Helen Hunt</string>
+    <string name="kahn">Oliver Kahn</string>
+    <string name="harris">Neil Patrick Harris</string>
+    <!-- 16 june -->
+    <string name="boccaccio">Giovanni Boccaccio</string>
+    <string name="plucker">Julius Plücker</string>
+    <string name="friedmann">Alexander Friedmann</string>
+    <string name="leinster">Murray Leinster</string>
+    <string name="chakraborty">Mithun Chakraborty</string>
+    <string name="shakur">Tupac Shakur</string>
+    <string name="john_newman">John Newman</string>
+    <!-- 17 june -->
+    <string name="panini">Giovanni Paolo Panini</string>
+    <string name="gounod">Charles Gounod</string>
+    <string name="stravinsky">Igor Stravinsky</string>
+    <string name="escher">Maurits Cornelis Escher</string>
+    <string name="wakefield">Ruth Graves Wakefield</string>
+    <string name="jacob">François Jacob</string>
+    <!-- 18 june -->
+    <string name="goncharov">Ivan Goncharov</string>
+    <string name="laveran">Charles Louis Alphonse Laveran</string>
+    <string name="flagg">James Montgomery Flagg</string>
+    <string name="macdonald">Jeanette MacDonald</string>
+    <string name="mccartney">Paul McCartney</string>
+    <string name="capello">Fabio Capello</string>
+    <!-- 19 june -->
+    <string name="pascal">Blaise Pascal</string>
+    <string name="dazai">Osamu Dazai</string>
+    <string name="flory">Paul Flory</string>
+    <string name="aage_bohr">Aage Niels Bohr</string>
+    <string name="rushdie">Salman Rushdie</string>
+    <string name="dujardin">Jean Dujardin</string>
+    <!-- 20 june -->
+    <string name="rosa">Salvator Rosa</string>
+    <string name="offenbach">Jacques Offenbach</string>
+    <string name="bonnat">Léon Bonnat</string>
+    <string name="kidman">Nicole Kidman</string>
+    <string name="rodriguez">Robert Rodriguez</string>
+    <!-- 21 june -->
+    <string name="poisson">Siméon Denis Poisson</string>
+    <string name="sartre">Jean-Paul Sartre</string>
+    <string name="mcewan">Ian McEwan</string>
+    <string name="platini">Michel Platini</string>
+    <string name="tsoi">Viktor Tsoi</string>
+    <string name="lana_del_rey">Lana Del Rey</string>
+    <!-- 22 june -->
+    <string name="haggard">Henry Rider Haggard</string>
+    <string name="minkowski">Hermann Minkowski</string>
+    <string name="huxley">Julian Huxley</string>
+    <string name="remarque">Erich Maria Remarque</string>
+    <string name="dillinger">John Dillinger</string>
+    <string name="wilder">Billy Wilder</string>
+    <string name="streep">Meryl Streep</string>
+    <string name="dan_brown">Dan Brown</string>
+    <!-- 23 june -->
+    <string name="vico">Giambattista Vico</string>
+    <string name="beauharnais">Joséphine de Beauharnais</string>
+    <string name="akhmatova">Anna Akhmatova</string>
+    <string name="turing">Alan Turing</string>
+    <string name="fosse">Bob Fosse</string>
+    <string name="zidane">Zinedine Zidane</string>
+    <!-- 24 june -->
+    <string name="victor_hess">Victor Franz Hess</string>
+    <string name="fangio">Juan Manuel Fangio</string>
+    <string name="perl">Martin Lewis Perl</string>
+    <string name="chabrol">Claude Chabrol</string>
+    <string name="messi">Lionel Messi</string>
+    <!-- 25 june -->
+    <string name="gaudi">Antoni Gaudí</string>
+    <string name="nernst">Walther Nernst</string>
+    <string name="orwell">George Orwell</string>
+    <string name="lumet">Sidney Lumet</string>
+    <string name="abrikosov">Alexei Abrikosov</string>
+    <string name="michael">George Michael</string>
+    <!-- 26 june -->
+    <string name="brandt">Georg Brandt</string>
+    <string name="kelvin">William Thomson, 1st Baron Kelvin</string>
+    <string name="buck">Pearl S. Buck</string>
+    <string name="bill_lear">Bill Lear</string>
+    <string name="robert_richardson">Robert Coleman Richardson</string>
+    <!-- 27 june -->
+    <string name="mauser">Paul Mauser</string>
+    <string name="spemann">Hans Spemann</string>
+    <string name="keller">Helen Keller</string>
+    <string name="abrams">J.J. Abrams</string>
+    <string name="maguire">Tobey Maguire</string>
+    <string name="raul">Raúl González Blanco</string>
+    <!-- 28 june -->
+    <string name="rubens">Pieter Paul Rubens</string>
+    <string name="rousseau">Jean-Jacques Rousseau</string>
+    <string name="broca">Paul Broca</string>
+    <string name="pirandello">Luigi Pirandello</string>
+    <string name="carrel">Alexis Carrel</string>
+    <string name="goeppert_mayer">Maria Goeppert-Mayer</string>
+    <string name="kathy_bates">Kathy Bates</string>
+    <string name="cusack">John Cusack</string>
+    <string name="musk">Elon Musk</string>
+    <!-- 29 june -->
+    <string name="dodoens">Rembert Dodoens</string>
+    <string name="ressel">Josef Ressel</string>
+    <string name="leopardi">Giacomo Leopardi</string>
+    <string name="exupery">Antoine de Saint-Exupéry</string>
+    <string name="fallaci">Oriana Fallaci</string>
+    <string name="scherzinger">Nicole Scherzinger</string>
+    <!-- 30 june -->
+    <string name="vernet">Horace Vernet</string>
+    <string name="hooker">Joseph Dalton Hooker</string>
+    <string name="duhamel">Georges Duhamel</string>
+    <string name="milosz">Czesław Miłosz</string>
+    <string name="ballard">Robert Ballard</string>
+    <string name="tyson">Mike Tyson</string>
+    <string name="phelps">Michael Phelps</string>
+    <!-- 1 july -->
+    <string name="leibniz">Gottfried Wilhelm Leibniz</string>
+    <string name="poncelet">Jean-Victor Poncelet</string>
+    <string name="george_sand">George Sand</string>
+    <string name="vierordt">Karl von Vierordt</string>
+    <string name="bleriot">Louis Blériot</string>
+    <string name="lauder">Estée Lauder</string>
+    <string name="diana">Diana, Princess of Wales</string>
+    <string name="pamela_anderson">Pamela Anderson</string>
+    <!-- 2 july -->
+    <string name="gluck">Christoph Willibald Gluck</string>
+    <string name="henry_bragg">William Henry Bragg</string>
+    <string name="hesse">Hermann Hesse</string>
+    <string name="lacoste">René Lacoste</string>
+    <string name="cardin">Pierre Cardin</string>
+    <string name="lumumba">Patrice Lumumba</string>
+    <string name="naceri">Samy Naceri</string>
+    <string name="robbie">Margot Robbie</string>
+    <!-- 3 july -->
+    <string name="adam">Robert Adam</string>
+    <string name="kafka">Franz Kafka</string>
+    <string name="stoppard">Tom Stoppard</string>
+    <string name="cruise">Tom Cruise</string>
+    <string name="selanne">Teemu Selänne</string>
+    <!-- 4 july -->
+    <string name="blanchard">Jean-Pierre Blanchard</string>
+    <string name="everest">George Everest</string>
+    <string name="garibaldi">Giuseppe Garibaldi</string>
+    <string name="manolete">Manolete</string>
+    <string name="lollobrigida">Gina Lollobrigida</string>
+    <!-- 5 july -->
+    <string name="bulgarin">Faddey Bulgarin</string>
+    <string name="fitzroy">Robert FitzRoy</string>
+    <string name="rankine">William John Rankine</string>
+    <string name="zetkin">Clara Zetkin</string>
+    <string name="gasser">Herbert Spencer Gasser</string>
+    <string name="cocteau">Jean Cocteau</string>
+    <!-- 6 july -->
+    <string name="raffles">Stamford Raffles</string>
+    <string name="heidenstam">Verner von Heidenstam</string>
+    <string name="chagall">Marc Chagall</string>
+    <string name="bill_haley">Bill Haley</string>
+    <string name="stallone">Sylvester Stallone</string>
+    <string name="rush">Geoffrey Rush</string>
+    <string name="eva_green">Eva Green</string>
+    <!-- 7 july -->
+    <string name="jacquard">Joseph Marie Jacquard</string>
+    <string name="golgi">Camillo Golgi</string>
+    <string name="mahler">Gustav Mahler</string>
+    <string name="feuchtwanger">Lion Feuchtwanger</string>
+    <string name="ringo_starr">Ringo Starr</string>
+    <string name="cutugno">Toto Cutugno</string>
+    <!-- 8 july -->
+    <string name="fontaine">Jean de La Fontaine</string>
+    <string name="zeppelin">Ferdinand von Zeppelin</string>
+    <string name="rockefeller">John D. Rockefeller</string>
+    <string name="benardos">Nikolay Benardos</string>
+    <string name="arthus_evans">Arthur Evans</string>
+    <string name="perls">Fritz Perls</string>
+    <string name="kapitsa">Pyotr Kapitsa</string>
+    <!-- 9 july -->
+    <string name="radcliffe">Ann Radcliffe</string>
+    <string name="davenport">Thomas Davenport</string>
+    <string name="elias_howe">Elias Howe</string>
+    <string name="boas">Franz Boas</string>
+    <string name="chagas">Carlos Chagas</string>
+    <string name="tom_hanks">Tom Hanks</string>
+    <string name="love">Courtney Love</string>
+    <!-- 10 july -->
+    <string name="jean_calvin">Jean Calvin</string>
+    <string name="marryat">Frederick Marryat</string>
+    <string name="pissarro">Camille Pissarro</string>
+    <string name="tesla">Nikola Tesla</string>
+    <string name="proust">Marcel Proust</string>
+    <string name="chamberlain">Owen Chamberlain</string>
+    <!-- 11 july -->
+    <string name="gondora">Luis de Góngora</string>
+    <string name="lalande">Jérôme Lalande</string>
+    <string name="nelson">Leonard Nelson</string>
+    <string name="abel">Rudolf Abel</string>
+    <string name="brynner">Yul Brynner</string>
+    <string name="armani">Giorgio Armani</string>
+    <!-- 12 july -->
+    <string name="bernard">Claude Bernard</string>
+    <string name="eastman">George Eastman</string>
+    <string name="tod_browning">Tod Browning</string>
+    <string name="modigliani">Amedeo Modigliani</string>
+    <string name="meruda">Pablo Neruda</string>
+    <string name="wyeth">Andrew Wyeth</string>
+    <string name="michelle_rodriguez">Michelle Rodriguez</string>
+    <!-- 13 july -->
+    <string name="john_dee">John Dee</string>
+    <string name="cannizzaro">Stanislao Cannizzaro</string>
+    <string name="otto_wagner">Otto Wagner</string>
+    <string name="babel">Isaac Babel</string>
+    <string name="ascari">Alberto Ascari</string>
+    <string name="ford">Harrison Ford</string>
+    <string name="rubik">Ernő Rubik</string>
+    <string name="benassi">Benny Benassi</string>
+    <!-- 14 july -->
+    <string name="dumas">Jean-Baptiste Dumas</string>
+    <string name="klimt">Gustav Klimt</string>
+    <string name="irving_stone">Irving Stone</string>
+    <string name="bergman">Ingmar Bergman</string>
+    <string name="forrester">Jay Wright Forrester</string>
+    <!-- 15 july -->
+    <string name="rembrandt">Rembrandt</string>
+    <string name="pareto">Vilfredo Pareto</string>
+    <string name="harmsworth">Alfred Harmsworth, 1st Viscount Northcliffe</string>
+    <string name="brockhouse">Bertram Brockhouse</string>
+    <string name="savage">Adam Savage</string>
+    <string name="kruger">Diane Kruger</string>
+    <!-- 16 july -->
+    <string name="assisi">Clare of Assisi</string>
+    <string name="amundsen">Roald Amundsen</string>
+    <string name="stanwyck">Barbara Stanwyck</string>
+    <string name="laroche">Guy Laroche</string>
+    <string name="sheckley">Robert Sheckley</string>
+    <!-- 17 july -->
+    <string name="friedrich_krupp">Friedrich Krupp</string>
+    <string name="corot">Jean-Baptiste-Camille Corot</string>
+    <string name="nicholas">Nicholas Miklouho-Maclay</string>
+    <string name="lamaitre">Georges Lemaître</string>
+    <string name="abbott">Berenice Abbott</string>
+    <string name="sutherland">Donald Sutherland</string>
+    <!-- 18 july -->
+    <string name="thackeray">William Makepeace Thackeray</string>
+    <string name="viardot">Pauline Viardot</string>
+    <string name="lorentz">Hendrik Lorentz</string>
+    <string name="mandela">Nelson Mandela</string>
+    <string name="hunter_thompson">Hunter S. Thompson</string>
+    <string name="branson">Richard Branson</string>
+    <string name="vin_diesel">Vin Diesel</string>
+    <!-- 19 july -->
+    <string name="colt">Samuel Colt</string>
+    <string name="degas">Edgar Degas</string>
+    <string name="mayakovsky">Vladimir Mayakovsky</string>
+    <string name="cronin">Archibald Joseph Cronin</string>
+    <string name="coloane">Francisco Coloane</string>
+    <string name="yalow">Rosalyn Sussman Yalow</string>
+    <string name="cumberbatch">Benedict Cumberbatch</string>
+    <!-- 20 july -->
+    <string name="petrarca">Francesco Petrarca</string>
+    <string name="owen">Richard Owen</string>
+    <string name="mendel">Gregor Mendel</string>
+    <string name="georg_muller">Georg Elias Müller</string>
+    <string name="morandi">Giorgio Morandi</string>
+    <string name="dobrev">Dobri Dobrev</string>
+    <string name="bundchen">Gisele Bündchen</string>
+    <!-- 21 july -->
+    <string name="picard">Jean Picard</string>
+    <string name="regnault">Henri Victor Regnault</string>
+    <string name="reuter">Paul Reuter</string>
+    <string name="hemingway">Ernest Hemingway</string>
+    <string name="robin_williams">Robin Williams</string>
+    <string name="josh_hartnett">Josh Hartnett</string>
+    <!-- 22 july -->
+    <string name="soufflot">Jacques-Germain Soufflot</string>
+    <string name="gustav_hertz">Gustav Ludwig Hertz</string>
+    <string name="mathieu">Mireille Mathieu</string>
+    <string name="dafoe">Willem Dafoe</string>
+    <string name="selena_gomez">Selena Gomez</string>
+    <!-- 23 july -->
+    <string name="vyazemsky">Pyotr Vyazemsky</string>
+    <string name="cilea">Francesco Cilea</string>
+    <string name="harrelson">Woody Harrelson</string>
+    <string name="hoffman">Philip Seymour Hoffman</string>
+    <string name="lewinsky">Monica Lewinsky</string>
+    <string name="daniel_radcliffe">Daniel Radcliffe</string>
+    <!-- 24 july -->
+    <string name="vidocq">Eugène François Vidocq</string>
+    <string name="alexandre_dumas">Alexandre Dumas</string>
+    <string name="mucha">Alfons Mucha</string>
+    <string name="benson">Edward Frederic Benson</string>
+    <string name="lopez">Jennifer Lopez</string>
+    <!-- 25 july -->
+    <string name="scheiner">Christoph Scheiner</string>
+    <string name="eakins">Thomas Eakins</string>
+    <string name="davidson_black">Davidson Black</string>
+    <string name="canetti">Elias Canetti</string>
+    <string name="leblanc">Matt LeBlanc</string>
+    <!-- 26 july -->
+    <string name="remak">Robert Remak</string>
+    <string name="shaw">Bernard Shaw</string>
+    <string name="jung">Carl Jung</string>
+    <string name="maurois">André Maurois</string>
+    <string name="kubrick">Stanley Kubrick</string>
+    <string name="jagger">Mick Jagger</string>
+    <string name="spacey">Kevin Spacey</string>
+    <string name="bullock">Sandra Bullock</string>
+    <string name="statham">Jason Statham</string>
+    <!-- 27 july -->
+    <string name="corday">Charlotte Corday</string>
+    <string name="carducci">Giosuè Carducci</string>
+    <string name="hans_fischer">Hans Fischer</string>
+    <string name="monaco">Mario Del Monaco</string>
+    <string name="nikolaj">Nikolaj Coster-Waldau</string>
+    <!-- 28 july -->
+    <string name="hooke">Robert Hooke</string>
+    <string name="feuerbach">Ludwig Feuerbach</string>
+    <string name="grisi">Giulia Grisi</string>
+    <string name="duchamp">Marcel Duchamp</string>
+    <string name="popper">Karl Popper</string>
+    <string name="burda">Aenne Burda</string>
+    <string name="chavez">Hugo Chávez</string>
+    <!-- 29 july -->
+    <string name="aivazovsky">Ivan Aivazovsky</string>
+    <string name="mussolini">Benito Mussolini</string>
+    <string name="theda_bara">Theda Bara</string>
+    <string name="clara_bow">Clara Bow</string>
+    <string name="alonso">Fernando Alonso</string>
+    <!-- 30 july -->
+    <string name="vasari">Giorgio Vasari</string>
+    <string name="bronte">Emily Brontë</string>
+    <string name="henry_ford">Henry Ford</string>
+    <string name="cyril_parkinson">Cyril Northcote Parkinson</string>
+    <string name="schwarzenegger">Arnold Schwarzenegger</string>
+    <string name="jean_reno">Jean Reno</string>
+    <string name="nolan">Christopher Nolan</string>
+    <!-- 31 july -->
+    <string name="cramer">Gabriel Cramer</string>
+    <string name="wohler">Friedrich Wöhler</string>
+    <string name="planquette">Robert Planquette</string>
+    <string name="milton_friedman">Milton Friedman</string>
+    <string name="de_funes">Louis de Funès</string>
+    <string name="primo_levi">Primo Levi</string>
+    <string name="rowling">Joanne Rowling</string>
+    <!-- 1 august -->
+    <string name="lamarck">Jean-Baptiste Lamarck</string>
+    <string name="melville">Herman Melville</string>
+    <string name="taro">Gerda Taro</string>
+    <string name="laurent">Yves Saint Laurent</string>
+    <string name="mendes">Sam Mendes</string>
+    <string name="momoa">Jason Momoa</string>
+    <!-- 2 august -->
+    <string name="hoogstraten">Samuel van Hoogstraten</string>
+    <string name="tyndall">John Tyndall</string>
+    <string name="olcott">Henry Steel Olcott</string>
+    <string name="bartholdi">Frédéric Auguste Bartholdi</string>
+    <string name="loy">Myrna Loy</string>
+    <string name="worthington">Sam Worthington</string>
+    <!-- 3 august -->
+    <string name="otis">Elisha Otis</string>
+    <string name="simak">Clifford Donald Simak</string>
+    <string name="james">Phyllis Dorothy James</string>
+    <string name="sheen">Martin Sheen</string>
+    <string name="lilly">Evangeline Lilly</string>
+    <!-- 4 august -->
+    <string name="shelley">Percy Bysshe Shelley</string>
+    <string name="john_venn">John Venn</string>
+    <string name="hamsun">Knut Hamsun</string>
+    <string name="armstrong">Louis Armstrong</string>
+    <string name="thornton">Billy Bob Thornton</string>
+    <!-- 5 august -->
+    <string name="niels_abel">Niels Henrik Abel</string>
+    <string name="repin">Ilya Repin</string>
+    <string name="maupassant">Guy de Maupassant</string>
+    <string name="wain">Louis Wain</string>
+    <string name="huston">John Huston</string>
+    <string name="neil_armstrong">Neil Armstrong</string>
+    <!-- 6 august -->
+    <string name="malebranche">Nicolas Malebranche</string>
+    <string name="johann_bernoulli">Johann Bernoulli</string>
+    <string name="alexander_fleming">Alexander Fleming</string>
+    <string name="lucille_ball">Lucille Ball</string>
+    <string name="andy_warhol">Andy Warhol</string>
+    <string name="shyamalan">M. Night Shyamalan</string>
+    <!-- 7 august -->
+    <string name="bathory">Elizabeth Báthory</string>
+    <string name="mata_hari">Mata Hari</string>
+    <string name="tobin_bell">Tobin Bell</string>
+    <string name="duchovny">David Duchovny</string>
+    <string name="jimmy_wales">Jimmy Wales</string>
+    <string name="theron">Charlize Theron</string>
+    <!-- 8 august -->
+    <string name="bateson">William Bateson</string>
+    <string name="lawrence">Ernest Lawrence</string>
+    <string name="dirac">Paul Dirac</string>
+    <string name="dustin_hoffman">Dustin Hoffman</string>
+    <string name="federer">Roger Federer</string>
+    <!-- 9 august -->
+    <string name="avogadro">Amedeo Avogadro</string>
+    <string name="morton_william">William Thomas Green Morton</string>
+    <string name="huckel">Erich Hückel</string>
+    <string name="piaget">Jean Piaget</string>
+    <string name="travers">Pamela Lyndon Travers</string>
+    <string name="jansson">Tove Jansson</string>
+    <string name="griffith">Melanie Griffith</string>
+    <string name="houston">Whitney Houston</string>
+    <string name="tautou">Audrey Tautou</string>
+    <!-- 10 august -->
+    <string name="nestle">Henri Nestlé</string>
+    <string name="qunanbaiuli">Abai Qunanbaiuli</string>
+    <string name="darrow">Charles Darrow</string>
+    <string name="shearer">Norma Shearer</string>
+    <string name="tiselius">Arne Tiselius</string>
+    <string name="banderas">Antonio Banderas</string>
+    <!-- 11 august -->
+    <string name="andrew_davis">Andrew Jackson Davis</string>
+    <string name="savant">Marilyn vos Savant</string>
+    <string name="wozniak">Steve Wozniak</string>
+    <string name="hogan">Hulk Hogan</string>
+    <string name="hemsworth">Chris Hemsworth</string>
+    <!-- 12 august -->
+    <string name="bering">Vitus Bering</string>
+    <string name="demille">Cecil B. DeMille</string>
+    <string name="bendix">Vincent Hugo Bendix</string>
+    <string name="schrodinger">Erwin Schrödinger</string>
+    <string name="soros">George Soros</string>
+    <string name="delevingne">Cara Delevingne</string>
+    <!-- 13 august -->
+    <string name="angstrom">Anders Jonas Ångström</string>
+    <string name="miescher">Friedrich Miescher</string>
+    <string name="agnelli">Giovanni Agnelli</string>
+    <string name="hitchcock">Alfred Hitchcock</string>
+    <string name="wankel">Felix Wankel</string>
+    <string name="castro">Fidel Castro</string>
+    <!-- 14 august -->
+    <string name="orsted">Hans Christian Ørsted</string>
+    <string name="holliday">Doc Holliday</string>
+    <string name="merezhkovsky">Dmitry Merezhkovsky</string>
+    <string name="galsworthy">John Galsworthy</string>
+    <string name="dempster">Arthur Jeffrey Dempster</string>
+    <string name="steve_martin">Steve Martin</string>
+    <string name="berry">Halle Berry</string>
+    <string name="kunis">Mila Kunis</string>
+    <!-- 15 august -->
+    <string name="carmontelle">Carmontelle</string>
+    <string name="napoleon">Napoleon</string>
+    <string name="scott">Walter Scott</string>
+    <string name="broglie">Louis de Broglie</string>
+    <string name="inarritu">Alejandro González Iñárritu</string>
+    <string name="affleck">Ben Affleck</string>
+    <string name="jennifer_lawrence">Jennifer Lawrence</string>
+    <!-- 16 august -->
+    <string name="bruyere">Jean de La Bruyère</string>
+    <string name="lippmann">Gabriel Lippmann</string>
+    <string name="bukowski">Charles Bukowski</string>
+    <string name="richard">Pierre Richard</string>
+    <string name="cameron">James Cameron</string>
+    <string name="madonna">Madonna</string>
+    <!-- 17 august -->
+    <string name="fermat">Pierre de Fermat</string>
+    <string name="hodgkin">Thomas Hodgkin</string>
+    <string name="fokker">Adriaan Fokker</string>
+    <string name="naipaul">V. S. Naipaul</string>
+    <string name="de_niro">Robert De Niro</string>
+    <string name="penn">Sean Penn</string>
+    <!-- 18 august -->
+    <string name="brook_taylor">Brook Taylor</string>
+    <string name="salieri">Antonio Salieri</string>
+    <string name="pierre_martin">Pierre-Émile Martin</string>
+    <string name="swayze">Patrick Swayze</string>
+    <string name="norton">Edward Norton</string>
+    <string name="slater">Christian Slater</string>
+    <!-- 19 august -->
+    <string name="samuel_richardson">Samuel Richardson</string>
+    <string name="platov">Matvei Platov</string>
+    <string name="nasmyth">James Nasmyth</string>
+    <string name="meyer">Julius Lothar Meyer</string>
+    <string name="enescu">George Enescu</string>
+    <string name="chanel">Coco Chanel</string>
+    <string name="perry">Matthew Perry</string>
+    <!-- 20 august -->
+    <string name="berzelius">Jöns Jakob Berzelius</string>
+    <string name="quasimodo">Salvatore Quasimodo</string>
+    <string name="susann">Jacqueline Susann</string>
+    <string name="durst">Fred Durst</string>
+    <string name="amy_adams">Amy Adams</string>
+    <string name="garfield">Andrew Garfield</string>
+    <!-- 21 august -->
+    <string name="murdoch">William Murdoch</string>
+    <string name="basie">Count Basie</string>
+    <string name="consuelo_velazquez">Consuelo Velázquez</string>
+    <string name="wilt_chamberlain">Wilt Chamberlain</string>
+    <string name="brin">Sergey Brin</string>
+    <string name="bolt">Usain Bolt</string>
+    <!-- 22 august -->
+    <string name="papin">Denis Papin</string>
+    <string name="maudslay">Henry Maudslay</string>
+    <string name="nipkow">Paul Gottlieb Nipkow</string>
+    <string name="debussy">Claude Debussy</string>
+    <string name="scheler">Max Scheler</string>
+    <string name="bradbury">Ray Bradbury</string>
+    <!-- 23 august-->
+    <string name="laperouse">Jean-François de Lapérouse</string>
+    <string name="cuvier">Georges Cuvier</string>
+    <string name="jirasek">Alois Jirásek</string>
+    <string name="arrow">Kenneth Arrow</string>
+    <string name="phoenix">River Phoenix</string>
+    <!-- 24 august -->
+    <string name="weddell">James Weddell</string>
+    <string name="borges">Jorge Luis Borges</string>
+    <string name="coelho">Paulo Coelho</string>
+    <string name="jarre">Jean-Michel Jarre</string>
+    <string name="fry">Stephen Fry</string>
+    <string name="guttenberg">Steve Guttenberg</string>
+    <string name="grint">Rupert Grint</string>
+    <!-- 25 august -->
+    <string name="pinkerton">Allan Pinkerton</string>
+    <string name="elo">Arpad Elo</string>
+    <string name="brian_moore">Brian Moore</string>
+    <string name="connery">Sean Connery</string>
+    <string name="tim_burton">Tim Burton</string>
+    <string name="schiffer">Claudia Schiffer</string>
+    <!-- 26 august -->
+    <string name="lambert">Johann Heinrich Lambert</string>
+    <string name="joseph_montgolfier">Joseph-Michel Montgolfier</string>
+    <string name="lavoisier">Antoine Lavoisier</string>
+    <string name="forest">Lee De Forest</string>
+    <string name="teresa">Mother Teresa</string>
+    <string name="culkin">Macaulay Culkin</string>
+    <!-- 27 august -->
+    <string name="hegel">Georg Wilhelm Friedrich Hegel</string>
+    <string name="niebuhr">Barthold Georg Niebuhr</string>
+    <string name="bosch">Carl Bosch</string>
+    <string name="rolls">Charles Rolls</string>
+    <string name="ranevskaya">Faina Ranevskaya</string>
+    <string name="chalke">Sarah Chalke</string>
+    <string name="aaron_paul">Aaron Paul</string>
+    <!-- 28 august -->
+    <string name="goethe">Johann Wolfgang von Goethe</string>
+    <string name="blondel">André Blondel</string>
+    <string name="whipple">George Hoyt Whipple</string>
+    <string name="theremin">Léon Theremin</string>
+    <string name="fincher">David Fincher</string>
+    <string name="jack_black">Jack Black</string>
+    <!-- 29 august -->
+    <string name="locke">John Locke</string>
+    <string name="maeterlinck">Maurice Maeterlinck</string>
+    <string name="forssmann">Werner Forssmann</string>
+    <string name="ingrid_bergman">Ingrid Bergman</string>
+    <string name="charlie_parker">Charlie Parker</string>
+    <string name="michael_jackson">Michael Jackson</string>
+    <!-- 30 august -->
+    <string name="mary_shelley">Mary Shelley</string>
+    <string name="adolf_hesse">Adolf Friedrich Hesse</string>
+    <string name="hoff">Jacobus Henricus van \'t Hoff</string>
+    <string name="rutherford">Ernest Rutherford</string>
+    <string name="cummings">Ray Cummings</string>
+    <string name="mclaren">Bruce McLaren</string>
+    <string name="diaz">Cameron Diaz</string>
+    <!-- 31 august -->
+    <string name="helmholtz">Hermann von Helmholtz</string>
+    <string name="paneth">Friedrich Paneth</string>
+    <string name="fredric_march">Fredric March</string>
+    <string name="gere">Richard Gere</string>
+    <string name="tucker">Chris Tucker</string>
+    <!-- 1 september -->
+    <string name="jevons">William Stanley Jevons</string>
+    <string name="auguste_forel">Auguste Forel</string>
+    <string name="burroughs">Edgar Rice Burroughs</string>
+    <string name="marilyn_miller">Marilyn Miller</string>
+    <string name="marciano">Rocky Marciano</string>
+    <string name="estefan">Gloria Estefan</string>
+    <!-- 2 september -->
+    <string name="howard">John Howard</string>
+    <string name="echeverria">Esteban Echeverría</string>
+    <string name="field">Eugene Field</string>
+    <string name="soddy">Frederick Soddy</string>
+    <string name="reeves">Keanu Reeves</string>
+    <string name="hayek">Salma Hayek</string>
+    <!-- 3 september -->
+    <string name="louis_sullivan">Louis Sullivan</string>
+    <string name="pregl">Fritz Pregl</string>
+    <string name="porsche">Ferdinand Porsche</string>
+    <string name="anderson">Carl David Anderson</string>
+    <string name="dovlatov">Sergei Dovlatov</string>
+    <string name="jeunet">Jean-Pierre Jeunet</string>
+    <string name="charlie_sheen">Charlie Sheen</string>
+    <!-- 4 september -->
+    <string name="constantijn_huygens">Constantijn Huygens</string>
+    <string name="chateaubriand">François-René de Chateaubriand</string>
+    <string name="richard_wright">Richard Wright</string>
+    <string name="tange">Kenzō Tange</string>
+    <string name="beyonce">Beyoncé</string>
+    <!-- 5 september -->
+    <string name="campanella">Tommaso Campanella</string>
+    <string name="meyerbeer">Giacomo Meyerbeer</string>
+    <string name="aleksey_tolstoy">Aleksey Konstantinovich Tolstoy</string>
+    <string name="jesse_james">Jesse James</string>
+    <string name="mercury">Freddie Mercury</string>
+    <string name="keaton">Michael Keaton</string>
+    <!-- 6 september -->
+    <string name="serlio">Sebastiano Serlio</string>
+    <string name="moses_mendelssohn">Moses Mendelssohn</string>
+    <string name="dalton">John Dalton</string>
+    <string name="berdan">Hiram Berdan</string>
+    <string name="addams">Jane Addams</string>
+    <string name="essen">Louis Essen</string>
+    <!-- 7 september -->
+    <string name="leclerc">Georges-Louis Leclerc, Comte de Buffon</string>
+    <string name="gossen">Hermann Heinrich Gossen</string>
+    <string name="kuprin">Aleksandr Kuprin</string>
+    <string name="gala_dali">Gala Dalí</string>
+    <string name="debakey">Michael Ellis DeBakey</string>
+    <string name="packard">David Packard</string>
+    <!-- 8 september -->
+    <string name="lionheart">Richard the Lionheart</string>
+    <string name="neckam">Alexander Neckam</string>
+    <string name="mistral">Frédéric Mistral</string>
+    <string name="martin_freeman">Martin Freeman</string>
+    <!-- 9 september -->
+    <string name="frederik_chapman">Fredrik Henrik af Chapman</string>
+    <string name="galvani">Luigi Galvani</string>
+    <string name="leo_tolstoy">Leo Tolstoy</string>
+    <string name="usmanov">Alisher Usmanov</string>
+    <string name="hugh_grant">Hugh Grant</string>
+    <string name="sandler">Adam Sandler</string>
+    <!-- 10 september -->
+    <string name="peirce">Charles Sanders Peirce</string>
+    <string name="elsa_schiaparelli">Elsa Schiaparelli</string>
+    <string name="compton">Arthur Compton</string>
+    <string name="messing">Wolf Messing</string>
+    <string name="lagerfeld">Karl Lagerfeld</string>
+    <string name="joe_perry">Joe Perry</string>
+    <string name="firth">Colin Firth</string>
+    <string name="ritchie">Guy Ritchie</string>
+    <!-- 11 september -->
+    <string name="james_thomson">James Thomson</string>
+    <string name="zeiss">Carl Zeiss</string>
+    <string name="o_henry">O. Henry</string>
+    <string name="jeans">James Jeans</string>
+    <string name="beckenbauer">Franz Beckenbauer</string>
+    <!-- 12 september -->
+    <string name="breitner">George Hendrik Breitner</string>
+    <string name="irene_curie">Irène Joliot-Curie</string>
+    <string name="lem">Stanisław Lem</string>
+    <string name="barry_white">Barry White</string>
+    <string name="farmer">Mylène Farmer</string>
+    <string name="walker">Paul Walker</string>
+    <!-- 13 september -->
+    <string name="samuel_wilson">Samuel Wilson</string>
+    <string name="reed">Walter Reed</string>
+    <string name="john_priestley">John Boynton Priestley</string>
+    <string name="dahl">Roald Dahl</string>
+    <string name="maurice_jarre">Maurice Jarre</string>
+    <string name="bisset">Jacqueline Bisset</string>
+    <!-- 14 september -->
+    <string name="agrippa">Heinrich Cornelius Agrippa</string>
+    <string name="lely">Peter Lely</string>
+    <string name="cecil">Robert Cecil</string>
+    <string name="dana_gibson">Charles Dana Gibson</string>
+    <string name="neill">Sam Neill</string>
+    <string name="winehouse">Amy Winehouse</string>
+    <!-- 15 september -->
+    <string name="marco_polo">Marco Polo</string>
+    <string name="james_cooper">James Fenimore Cooper</string>
+    <string name="bugatti">Ettore Bugatti</string>
+    <string name="christie">Agatha Christie</string>
+    <string name="jean_renoir">Jean Renoir</string>
+    <string name="tommy_lee_jones">Tommy Lee Jones</string>
+    <string name="oliver_stone">Oliver Stone</string>
+    <string name="tom_hardy">Tom Hardy</string>
+    <!-- 16 september -->
+    <string name="kossel">Albrecht Kossel</string>
+    <string name="boyd">Louise Arner Boyd</string>
+    <string name="jellinek">Mercédès Jellinek</string>
+    <string name="korda">Alexander Korda</string>
+    <string name="bbking">B.B. King</string>
+    <string name="rourke">Mickey Rourke</string>
+    <string name="copperfield">David Copperfield</string>
+    <!-- 17 september -->
+    <string name="riemann">Bernhard Riemann</string>
+    <string name="buick">David Dunbar Buick</string>
+    <string name="tsiolkovsky">Konstantin Tsiolkovsky</string>
+    <string name="kesey">Ken Kesey</string>
+    <string name="messner">Reinhold Messner</string>
+    <string name="anastacia">Anastacia</string>
+    <string name="ovechkin">Alexander Ovechkin</string>
+    <!-- 18 september -->
+    <string name="samuel_johnson">Samuel Johnson</string>
+    <string name="foucault">Léon Foucault</string>
+    <string name="garbo">Greta Garbo</string>
+    <string name="mcmillan">Edwin McMillan</string>
+    <string name="werber">Bernard Werber</string>
+    <string name="gandolfini">James Gandolfini</string>
+    <string name="shuttleworth">Mark Shuttleworth</string>
+    <!-- 19 september -->
+    <string name="pajou">Augustin Pajou</string>
+    <string name="golding">William Golding</string>
+    <string name="irons">Jeremy Irons</string>
+    <string name="hornby">Lesley Hornby</string>
+    <string name="karelin">Aleksandr Karelin</string>
+    <!-- 20 september -->
+    <string name="moneta">Ernesto Teodoro Moneta</string>
+    <string name="dewar">James Dewar</string>
+    <string name="leo_strauss">Leo Strauss</string>
+    <string name="loren">Sophia Loren</string>
+    <string name="george_martin">George R. R. Martin</string>
+    <!-- 21 september -->
+    <string name="mcadam">John Loudon McAdam</string>
+    <string name="onnes">Heike Kamerlingh Onnes</string>
+    <string name="wells">Herbert George Wells</string>
+    <string name="nicolle">Charles Nicolle</string>
+    <string name="stephen_king">Stephen King</string>
+    <string name="murray">Bill Murray</string>
+    <string name="beigbeder">Frédéric Beigbeder</string>
+    <!-- 22 september -->
+    <string name="faraday">Michael Faraday</string>
+    <string name="george_bentham">George Bentham</string>
+    <string name="ciurlionis">Mikalojus Čiurlionis</string>
+    <string name="muni">Paul Muni</string>
+    <string name="huggins">Charles Brenton Huggins</string>
+    <string name="dean_reed">Dean Reed</string>
+    <!-- 23 september -->
+    <string name="fizeau">Hippolyte Fizeau</string>
+    <string name="robert_bosch">Robert Bosch</string>
+    <string name="orr">John Boyd Orr, 1st Baron Boyd-Orr</string>
+    <string name="coltrane">John Coltrane</string>
+    <string name="romy_schneider">Romy Schneider</string>
+    <string name="julio_iglesias">Julio Iglesias</string>
+    <string name="springsteen">Bruce Springsteen</string>
+    <!-- 24 september -->
+    <string name="cardano">Gerolamo Cardano</string>
+    <string name="walpole">Horace Walpole</string>
+    <string name="triolet">Elsa Triolet</string>
+    <string name="f_s_fitzgerald">Francis Scott Fitzgerald</string>
+    <string name="ochoa">Severo Ochoa</string>
+    <string name="brunner">John Brunner</string>
+    <!-- 25 september -->
+    <string name="thomas_morgan">Thomas Hunt Morgan</string>
+    <string name="faulkner">William Faulkner</string>
+    <string name="shostakovich">Dmitri Shostakovich</string>
+    <string name="michael_douglas">Michael Douglas</string>
+    <string name="almodovar">Pedro Almodóvar</string>
+    <string name="will_smith">Will Smith</string>
+    <string name="zeta_jones">Catherine Zeta-Jones</string>
+    <!-- 26 september -->
+    <string name="grew">Nehemiah Grew</string>
+    <string name="joseph_proust">Joseph Louis Proust</string>
+    <string name="pavlov">Ivan Pavlov</string>
+    <string name="hine">Lewis Hine</string>
+    <string name="wallis">Barnes Wallis</string>
+    <string name="eliot">Thomas Stearns Eliot</string>
+    <!-- 27 september -->
+    <string name="bossuet">Jacques-Bénigne Bossuet</string>
+    <string name="deledda">Grazia Deledda</string>
+    <string name="larry_wall">Larry Wall</string>
+    <string name="welsh">Irvine Welsh</string>
+    <string name="paltrow">Gwyneth Paltrow</string>
+    <!-- 28 september -->
+    <string name="merimee">Prosper Mérimée</string>
+    <string name="moissan">Henri Moissan</string>
+    <string name="finch">Peter Finch</string>
+    <string name="mastroianni">Marcello Mastroianni</string>
+    <string name="bardot">Brigitte Bardot</string>
+    <string name="watts">Naomi Watts</string>
+    <string name="dita_von_teese">Dita Von Teese</string>
+    <string name="emelianenko">Fedor Emelianenko</string>
+    <!-- 29 september -->
+    <string name="caravaggio">Caravaggio</string>
+    <string name="horatio_nelson">Horatio Nelson, 1st Viscount Nelson</string>
+    <string name="gaskell">Elizabeth Gaskell</string>
+    <string name="fermi">Enrico Fermi</string>
+    <string name="ostrovsky">Nikolai Ostrovsky</string>
+    <string name="antonioni">Michelangelo Antonioni</string>
+    <!-- 30 september -->
+    <string name="condillac">Étienne Bonnot de Condillac</string>
+    <string name="wrigley">William Wrigley Jr.</string>
+    <string name="perrin">Jean Baptiste Perrin</string>
+    <string name="geiger">Hans Geiger</string>
+    <string name="kerr">Deborah Kerr</string>
+    <string name="capote">Truman Capote</string>
+    <string name="bellucci">Monica Bellucci</string>
+    <string name="cotillard">Marion Cotillard</string>
+    <!-- 1 october -->
+    <string name="boeing">William Boeing</string>
+    <string name="richard_harris">Richard Harris</string>
+    <string name="andrews">Julie Andrews</string>
+    <string name="annaud">Jean-Jacques Annaud</string>
+    <string name="galifianakis">Zach Galifianakis</string>
+    <string name="brie_larson">Brie Larson</string>
+    <!-- 2 october -->
+    <string name="ramsay">William Ramsay</string>
+    <string name="gandhi">Mahatma Gandhi</string>
+    <string name="greene">Graham Greene</string>
+    <string name="willy_ley">Willy Ley</string>
+    <string name="karan">Donna Karan</string>
+    <string name="sting">Sting</string>
+    <!-- 3 october -->
+    <string name="shmelyov">Ivan Shmelyov</string>
+    <string name="yesenin">Sergei Yesenin</string>
+    <string name="aragon">Louis Aragon</string>
+    <string name="wolfe">Thomas Wolfe</string>
+    <string name="stefani">Gwen Stefani</string>
+    <string name="headey">Lena Headey</string>
+    <string name="ibrahimovic">Zlatan Ibrahimović</string>
+    <string name="vikander">Alicia Vikander</string>
+    <!-- 4 october -->
+    <string name="piranesi">Giovanni Battista Piranesi</string>
+    <string name="pottier">Eugène Pottier</string>
+    <string name="boussenard">Louis Henri Boussenard</string>
+    <string name="sarandon">Susan Sarandon</string>
+    <string name="waltz">Christoph Waltz</string>
+    <string name="silverstone">Alicia Silverstone</string>
+    <string name="dakota_johnson">Dakota Johnson</string>
+    <!-- 5 october -->
+    <string name="diderot">Denis Diderot</string>
+    <string name="lumiere">Louis Jean Lumière</string>
+    <string name="rous">Francis Peyton Rous</string>
+    <string name="kroc">Ray Kroc</string>
+    <string name="lemieux">Mario Lemieux</string>
+    <string name="pearce">Guy Pearce</string>
+    <string name="winslet">Kate Winslet</string>
+    <string name="eisenberg">Jesse Eisenberg</string>
+    <!-- 6 october -->
+    <string name="maskelyne">Nevil Maskelyne</string>
+    <string name="smuglewicz">Franciszek Smuglewicz</string>
+    <string name="westinghouse">George Westinghouse</string>
+    <string name="fessenden">Reginald Fessenden</string>
+    <string name="corbusier">Le Corbusier</string>
+    <string name="ernest_walton">Ernest Walton</string>
+    <string name="heyerdahl">Thor Heyerdahl</string>
+    <!-- 7 october -->
+    <string name="niels_bohr">Niels Bohr</string>
+    <string name="alcantara">Paulino Alcántara</string>
+    <string name="keneally">Thomas Keneally</string>
+    <string name="putin">Vladimir Putin</string>
+    <string name="braxton">Toni Braxton</string>
+    <!-- 8 october -->
+    <string name="geyter">Pierre De Geyter</string>
+    <string name="poddubny">Ivan Poddubny</string>
+    <string name="tsvetaeva">Marina Tsvetaeva</string>
+    <string name="voicu">Ion Voicu</string>
+    <string name="louise_hay">Louise Hay</string>
+    <string name="weaver">Sigourney Weaver</string>
+    <string name="matt_damon">Matt Damon</string>
+    <!-- 9 october -->
+    <string name="sorbon">Robert de Sorbon</string>
+    <string name="segner">Johann Andreas Segner</string>
+    <string name="saint_saens">Camille Saint-Saëns</string>
+    <string name="lennon">John Lennon</string>
+    <string name="mcqueen">Steve McQueen</string>
+    <!-- 10 october -->
+    <string name="watteau">Jean Antoine Watteau</string>
+    <string name="cavendish">Henry Cavendish</string>
+    <string name="verdi">Giuseppe Verdi</string>
+    <string name="nansen">Fridtjof Nansen</string>
+    <string name="andric">Ivo Andrić</string>
+    <string name="giacometti">Alberto Giacometti</string>
+    <string name="pavel_durov">Pavel Durov</string>
+    <!-- 11 october -->
+    <string name="olbers">Heinrich Wilhelm Matthias Olbers</string>
+    <string name="berlier">Jean-Baptiste Berlier</string>
+    <string name="heinz">Henry Heinz</string>
+    <string name="roosevelt">Eleanor Roosevelt</string>
+    <string name="mauriac">François Mauriac</string>
+    <!-- 12 october -->
+    <string name="sperry">Elmer Ambrose Sperry</string>
+    <string name="harden">Arthur Harden</string>
+    <string name="horch">August Horch</string>
+    <string name="crowley">Aleister Crowley</string>
+    <string name="montale">Eugenio Montale</string>
+    <string name="pavarotti">Luciano Pavarotti</string>
+    <string name="jackman">Hugh Jackman</string>
+    <!-- 13 october -->
+    <string name="tatum">Art Tatum</string>
+    <string name="thatcher">Margaret Thatcher</string>
+    <string name="hunter">Robert Lorne Hunter</string>
+    <string name="simon">Paul Simon</string>
+    <string name="cohen">Sacha Baron Cohen</string>
+    <!-- 14 october -->
+    <string name="william_penn">William Penn</string>
+    <string name="gish">Lillian Gish</string>
+    <string name="roger_moore">Roger Moore</string>
+    <string name="lauren">Ralph Lauren</string>
+    <string name="wasikowska">Mia Wasikowska</string>
+    <!-- 15 october -->
+    <string name="torricelli">Evangelista Torricelli</string>
+    <string name="lermontov">Mikhail Lermontov</string>
+    <string name="asaph_hall">Asaph Hall</string>
+    <string name="nietzsche">Friedrich Nietzsche</string>
+    <string name="ilf">Ilya Ilf</string>
+    <string name="puzo">Mario Puzo</string>
+    <!-- 16 october -->
+    <string name="haller">Albrecht von Haller</string>
+    <string name="wilde">Oscar Wilde</string>
+    <string name="oneill">Eugene O\'Neill</string>
+    <string name="grass">Günter Grass</string>
+    <string name="paffgen">Christa Päffgen</string>
+    <string name="robbins">Tim Robbins</string>
+    <!-- 17 october -->
+    <string name="orlov">Grigory Orlov</string>
+    <string name="saint_simon">Claude Henri de Rouvroy, comte de Saint-Simon</string>
+    <string name="jordan">Robert Jordan</string>
+    <string name="raikkonen">Kimi Räikkönen</string>
+    <string name="felicity_jones">Felicity Jones</string>
+    <!-- 18 october -->
+    <string name="schonbein">Christian Friedrich Schönbein</string>
+    <string name="glumer">Claire von Glümer</string>
+    <string name="lodygin">Alexander Lodygin</string>
+    <string name="bergson">Henri Bergson</string>
+    <string name="chuck_berry">Chuck Berry</string>
+    <string name="george_scott">George C. Scott</string>
+    <string name="van_damme">Jean-Claude Van Damme</string>
+    <!-- 19 october -->
+    <string name="ficino">Marsilio Ficino</string>
+    <string name="auguste_lumiere">Auguste Louis Marie Nicholas Lumière</string>
+    <string name="boccioni">Umberto Boccioni</string>
+    <string name="gilels">Emil Gilels</string>
+    <string name="holyfield">Evander Holyfield</string>
+    <string name="trey_parker">Trey Parker</string>
+    <!-- 20 october -->
+    <string name="bartholin">Thomas Bartholin</string>
+    <string name="wren">Christopher Wren</string>
+    <string name="rimbaud">Arthur Rimbaud</string>
+    <string name="chadwick">James Chadwick</string>
+    <string name="bernat">Enric Bernat</string>
+    <string name="jelinek">Elfriede Jelinek</string>
+    <!-- 21 october -->
+    <string name="coleridge">Samuel Taylor Coleridge</string>
+    <string name="nobel">Alfred Nobel</string>
+    <string name="mikhalkov">Nikita Mikhalkov</string>
+    <string name="carrie_fisher">Carrie Fisher</string>
+    <string name="geim">Andre Geim</string>
+    <string name="kardashian">Kim Kardashian</string>
+    <!-- 22 october -->
+    <string name="liszt">Franz Liszt</string>
+    <string name="bernhardt">Sarah Bernhardt</string>
+    <string name="bunin">Ivan Bunin</string>
+    <string name="yashin">Lev Yashin</string>
+    <string name="christopher_lloyd">Christopher Lloyd</string>
+    <string name="deneuve">Catherine Deneuve</string>
+    <string name="wenger">Arsène Wenger</string>
+    <!-- 23 october -->
+    <string name="larousse">Pierre Larousse</string>
+    <string name="lanchester">Frederick William Lanchester</string>
+    <string name="lewis">Gilbert Newton Lewis</string>
+    <string name="bloch">Felix Bloch</string>
+    <string name="pele">Pelé</string>
+    <string name="reynolds">Ryan Reynolds</string>
+    <string name="clarke">Emilia Clarke</string>
+    <!-- 24 october -->
+    <string name="robbia">Andrea della Robbia</string>
+    <string name="leeuwenhoek">Antoni van Leeuwenhoek</string>
+    <string name="wilhelm_weber">Wilhelm Eduard Weber</string>
+    <string name="swarovski">Daniel Swarovski</string>
+    <string name="raikin">Arkady Raikin</string>
+    <string name="rooney">Wayne Rooney</string>
+    <!-- 25 october -->
+    <string name="galois">Évariste Galois</string>
+    <string name="johann_strauss">Johann Strauss</string>
+    <string name="bizet">Georges Bizet</string>
+    <string name="picasso">Pablo Picasso</string>
+    <string name="gance">Abel Gance</string>
+    <string name="katy_perry">Katy Perry</string>
+    <!-- 26 october -->
+    <string name="scarlatti">Domenico Scarlatti</string>
+    <string name="goldschmidt">Meïr Aron Goldschmidt</string>
+    <string name="vereshchagin">Vasily Vereshchagin</string>
+    <string name="bely">Andrei Bely</string>
+    <string name="napoleon_hill">Napoleon Hill</string>
+    <!-- 27 october -->
+    <string name="paganini">Niccolò Paganini</string>
+    <string name="falk">Robert Falk</string>
+    <string name="cleese">John Cleese</string>
+    <string name="simon_le_bon">Simon Le Bon</string>
+    <string name="vanessa_mae">Vanessa-Mae</string>
+    <!-- 28 october -->
+    <string name="edith_head">Edith Head</string>
+    <string name="waugh">Evelyn Waugh</string>
+    <string name="garrincha">Garrincha</string>
+    <string name="bill_gates">Bill Gates</string>
+    <string name="ramazzotti">Eros Ramazzotti</string>
+    <string name="julia_roberts">Julia Roberts</string>
+    <string name="joaquin_phoenix">Joaquin Phoenix</string>
+    <!-- 29 october -->
+    <string name="stur">Ľudovít Štúr</string>
+    <string name="ioffe">Abram Ioffe</string>
+    <string name="phalle">Niki de Saint Phalle</string>
+    <string name="dreyfuss">Richard Dreyfuss</string>
+    <string name="ryder">Winona Ryder</string>
+    <!-- 30 october -->
+    <string name="kauffmann">Angelica Kauffmann</string>
+    <string name="sheridan">Richard Sheridan</string>
+    <string name="chenier">André Chénier</string>
+    <string name="valery">Paul Valéry</string>
+    <string name="maradona">Diego Maradona</string>
+    <string name="belleci">Tory Belleci</string>
+    <!-- 31 october -->
+    <string name="vermeer">Johannes Vermeer</string>
+    <string name="keats">John Keats</string>
+    <string name="weierstrass">Karl Weierstrass</string>
+    <string name="baeyer">Adolf von Baeyer</string>
+    <string name="helmut_newton">Helmut Newton</string>
+    <string name="peter_jackson">Peter Jackson</string>
+    <string name="rob_schneider">Rob Schneider</string>
+    <!-- 1 november -->
+    <string name="cortona">Pietro da Cortona</string>
+    <string name="canova">Antonio Canova</string>
+    <string name="grieg">Nordahl Grieg</string>
+    <string name="flynt">Larry Flynt</string>
+    <string name="kiedis">Anthony Kiedis</string>
+    <string name="rai">Aishwarya Rai</string>
+    <!-- 2 november -->
+    <string name="antoinette">Marie Antoinette</string>
+    <string name="boole">George Boole</string>
+    <string name="sorel">Georges Sorel</string>
+    <string name="visconti">Luchino Visconti</string>
+    <string name="keith_emerson">Keith Emerson</string>
+    <string name="khan">Shah Rukh Khan</string>
+    <string name="schwimmer">David Schwimmer</string>
+    <!-- 3 november -->
+    <string name="cellini">Benvenuto Cellini</string>
+    <string name="marshak">Samuil Marshak</string>
+    <string name="dassler">Adolf Dassler</string>
+    <string name="gerd_muller">Gerd Müller</string>
+    <string name="lundgren">Dolph Lundgren</string>
+    <string name="newell">Gabe Newell</string>
+    <!-- 4 november -->
+    <string name="reni">Guido Reni</string>
+    <string name="bove">Joseph Bové</string>
+    <string name="shakurantala_devi">Shakuntala Devi</string>
+    <string name="mcconaughey">Matthew McConaughey</string>
+    <string name="figo">Luís Figo</string>
+    <!-- 5 november -->
+    <string name="petrov_vodkin">Kuzma Petrov-Vodkin</string>
+    <string name="leigh">Vivien Leigh</string>
+    <string name="dassin">Joe Dassin</string>
+    <string name="patrick">Robert Patrick</string>
+    <string name="bryan_adams">Bryan Adams</string>
+    <string name="swinton">Tilda Swinton</string>
+    <!-- 6 november -->
+    <string name="sax">Adolphe Sax</string>
+    <string name="charles_dow">Charles Dow</string>
+    <string name="sousa">John Philip Sousa</string>
+    <string name="nailsmith">James Naismith</string>
+    <string name="emma_stone">Emma Stone</string>
+    <!-- 7 november -->
+    <string name="stukeley">William Stukeley</string>
+    <string name="james_cook">James Cook</string>
+    <string name="erkel">Ferenc Erkel</string>
+    <string name="casal">Julián del Casal</string>
+    <string name="marie_curie">Marie Curie</string>
+    <string name="camus">Albert Camus</string>
+    <string name="guetta">David Guetta</string>
+    <!-- 8 november -->
+    <string name="stoker">Bram Stoker</string>
+    <string name="hausdorff">Felix Hausdorff</string>
+    <string name="rorschach">Hermann Rorschach</string>
+    <string name="mitchell">Margaret Mitchell</string>
+    <string name="barnard">Christiaan Barnard</string>
+    <string name="kilby">Jack Kilby</string>
+    <string name="delon">Alain Delon</string>
+    <string name="hiddink">Guus Hiddink</string>
+    <!-- 9 november -->
+    <string name="borden">Gail Borden</string>
+    <string name="turgenev">Ivan Turgenev</string>
+    <string name="gaboriau">Émile Gaboriau</string>
+    <string name="monnet">Jean Monnet</string>
+    <string name="sagan">Carl Sagan</string>
+    <string name="del_piero">Alessandro Del Piero</string>
+    <!-- 10 november -->
+    <string name="luther">Martin Luther</string>
+    <string name="hogarth">William Hogarth</string>
+    <string name="schiller">Friedrich Schiller</string>
+    <string name="innes">Robert Thorburn Ayton Innes</string>
+    <string name="morricone">Ennio Morricone</string>
+    <string name="brittany_murphy">Brittany Murphy</string>
+    <!-- 11 november -->
+    <string name="dostoyevsky">Fyodor Dostoyevsky</string>
+    <string name="maurice_leblanc">Maurice Leblanc</string>
+    <string name="vonnegut">Kurt Vonnegut</string>
+    <string name="brugiroux">André Brugiroux</string>
+    <string name="demi_moore">Demi Moore</string>
+    <string name="dicaprio">Leonardo DiCaprio</string>
+    <!-- 12 november -->
+    <string name="rodin">Auguste Rodin</string>
+    <string name="grace_kelly">Grace Kelly</string>
+    <string name="gurchenko">Lyudmila Gurchenko</string>
+    <string name="gosling">Ryan Gosling</string>
+    <string name="hathaway">Anne Hathaway</string>
+    <!-- 13 november -->
+    <string name="montagu">John Montagu, 4th Earl of Sandwich</string>
+    <string name="hauy">Valentin Haüy</string>
+    <string name="stevenson">Robert Louis Stevenson</string>
+    <string name="kokkonen">Joonas Kokkonen</string>
+    <string name="whoopi_goldberg">Whoopi Goldberg</string>
+    <string name="gerard_butler">Gerard Butler</string>
+    <!-- 14 november -->
+    <string name="fulton">Robert Fulton</string>
+    <string name="bichat">Marie François Xavier Bichat</string>
+    <string name="lyell">Charles Lyell</string>
+    <string name="monet">Claude Monet</string>
+    <string name="banting">Frederick Banting</string>
+    <string name="lindgren">Astrid Lindgren</string>
+    <!-- 15 november -->
+    <string name="lavater">Johann Kaspar Lavater</string>
+    <string name="chasles">Michel Chasles</string>
+    <string name="hauptmann">Gerhart Hauptmann</string>
+    <string name="krogh">August Krogh</string>
+    <string name="kroeger">Chad Kroeger</string>
+    <!-- 16 november -->
+    <string name="kreutzer">Rodolphe Kreutzer</string>
+    <string name="saramago">José Saramago</string>
+    <string name="achebe">Chinua Achebe</string>
+    <string name="krall">Diana Krall</string>
+    <string name="gyllenhaal">Maggie Gyllenhaal</string>
+    <!-- 17 november -->
+    <string name="bronzino">Bronzino</string>
+    <string name="mobius">August Ferdinand Möbius</string>
+    <string name="wigner">Eugene Wigner</string>
+    <string name="honda">Soichiro Honda</string>
+    <string name="scorsese">Martin Scorsese</string>
+    <string name="devito">Danny DeVito</string>
+    <string name="marceau">Sophie Marceau</string>
+    <string name="mcadams">Rachel McAdams</string>
+    <!-- 18 november -->
+    <string name="down">John Langdon Down</string>
+    <string name="nordenskiold">Adolf Erik Nordenskiöld</string>
+    <string name="gallup">George Gallup</string>
+    <string name="issigonis">Alec Issigonis</string>
+    <string name="ryazanov">Eldar Ryazanov</string>
+    <string name="owen_wilson">Owen Wilson</string>
+    <!-- 19 november -->
+    <string name="lomonosov">Mikhail Lomonosov</string>
+    <string name="skoda">Emil Škoda</string>
+    <string name="avenarius">Richard Avenarius</string>
+    <string name="drucker">Peter Drucker</string>
+    <string name="calvin_klein">Calvin Klein</string>
+    <string name="ryan">Meg Ryan</string>
+    <string name="jodie_foster">Jodie Foster</string>
+    <!-- 20 november -->
+    <string name="guericke">Otto von Guericke</string>
+    <string name="lagerlof">Selma Lagerlöf</string>
+    <string name="karl_von_frisch">Karl von Frisch</string>
+    <string name="hubble">Edwin Hubble</string>
+    <string name="osgood">Charles Osgood</string>
+    <!-- 21 november -->
+    <string name="voltaire">Voltaire</string>
+    <string name="schleiermacher">Friedrich Schleiermacher</string>
+    <string name="lewis_morgan">Lewis Henry Morgan</string>
+    <string name="makarova">Natalia Makarova</string>
+    <string name="hawn">Goldie Hawn</string>
+    <string name="bjork">Björk</string>
+    <!-- 22 november -->
+    <string name="vladimir_dal">Vladimir Dal</string>
+    <string name="thomas_cook">Thomas Cook</string>
+    <string name="gide">André Gide</string>
+    <string name="gaulle">Charles de Gaulle</string>
+    <string name="pelevin">Victor Pelevin</string>
+    <string name="mikkelsen">Mads Mikkelsen</string>
+    <string name="ruffalo">Mark Ruffalo</string>
+    <string name="ville_valo">Ville Valo</string>
+    <string name="scarlett_johansson">Scarlett Johansson</string>
+    <!-- 23 november -->
+    <string name="waals">Johannes Diderik van der Waals</string>
+    <string name="karloff">Boris Karloff</string>
+    <string name="moseley">Henry Moseley</string>
+    <string name="nosov">Nikolay Nosov</string>
+    <string name="cyrus">Miley Cyrus</string>
+    <!-- 24 november -->
+    <string name="spinoza">Baruch Spinoza</string>
+    <string name="suvorov">Alexander Suvorov</string>
+    <string name="ellis">William Webb Ellis</string>
+    <string name="collodi">Carlo Collodi</string>
+    <string name="carnegie">Dale Carnegie</string>
+    <string name="kusturica">Emir Kusturica</string>
+    <string name="heigl">Katherine Heigl</string>
+    <!-- 25 november -->
+    <string name="vega">Lope de Vega</string>
+    <string name="sumarokov">Alexander Sumarokov</string>
+    <string name="pirogov">Nikolay Pirogov</string>
+    <string name="benz">Carl Benz</string>
+    <string name="vavilov">Nikolai Vavilov</string>
+    <string name="poul_anderson">Poul Anderson</string>
+    <!-- 26 november -->
+    <string name="harvard">John Harvard</string>
+    <string name="saussure">Ferdinand de Saussure</string>
+    <string name="leck">Bart van der Leck</string>
+    <string name="wiener">Norbert Wiener</string>
+    <string name="ionesco">Eugène Ionesco</string>
+    <string name="tina_turner">Tina Turner</string>
+    <!-- 27 november -->
+    <string name="celsius">Anders Celsius</string>
+    <string name="weizmann">Chaim Weizmann</string>
+    <string name="matsushita">Kōnosuke Matsushita</string>
+    <string name="bruce_lee">Bruce Lee</string>
+    <string name="mashkov">Vladimir Mashkov</string>
+    <!-- 28 november -->
+    <string name="lully">Jean-Baptiste Lully</string>
+    <string name="blake">William Blake</string>
+    <string name="cousin">Victor Cousin</string>
+    <string name="engels">Friedrich Engels</string>
+    <string name="anton_rubinstein">Anton Rubinstein</string>
+    <string name="blok">Alexander Blok</string>
+    <string name="zanetti">Roberto Zanetti</string>
+    <string name="galliano">John Galliano</string>
+    <!-- 29 november -->
+    <string name="donizetti">Gaetano Donizetti</string>
+    <string name="hauff">Wilhelm Hauff</string>
+    <string name="charcot">Jean-Martin Charcot</string>
+    <string name="john_fleming">John Ambrose Fleming</string>
+    <string name="giggs">Ryan Giggs</string>
+    <string name="faris">Anna Faris</string>
+    <!-- 30 november -->
+    <string name="swift">Jonathan Swift</string>
+    <string name="twain">Mark Twain</string>
+    <string name="churchill">Winston Churchill</string>
+    <string name="ridley_scott">Ridley Scott</string>
+    <string name="idol">Billy Idol</string>
+    <string name="stiller">Ben Stiller</string>
+    <!-- 1 december -->
+    <string name="falconet">Étienne Maurice Falconet</string>
+    <string name="tussaud">Marie Tussaud</string>
+    <string name="lobachevsky">Nikolai Lobachevsky</string>
+    <string name="zhukov">Georgy Zhukov</string>
+    <string name="allen">Woody Allen</string>
+    <string name="escobar">Pablo Escobar</string>
+    <!-- 2 december -->
+    <string name="joseph_bell">Joseph Bell</string>
+    <string name="seuratl">Georges Seurat</string>
+    <string name="callas">Maria Callas</string>
+    <string name="versace">Gianni Versace</string>
+    <string name="liu">Lucy Liu</string>
+    <string name="furtado">Nelly Furtado</string>
+    <string name="spears">Britney Spears</string>
+    <!-- 3 december -->
+    <string name="hill">Rowland Hill</string>
+    <string name="rota">Nino Rota</string>
+    <string name="osbourne">Ozzy Osbourne</string>
+    <string name="julianne_moore">Julianne Moore</string>
+    <string name="seyfried">Amanda Seyfried</string>
+    <!-- 4 december -->
+    <string name="chapelain">Jean Chapelain</string>
+    <string name="carlyle">Thomas Carlyle</string>
+    <string name="adler">Robert Adler</string>
+    <string name="bridges">Jeff Bridges</string>
+    <string name="bubka">Sergey Bubka</string>
+    <!-- 5 december -->
+    <string name="tyutchev">Fyodor Tyutchev</string>
+    <string name="lang">Fritz Lang</string>
+    <string name="disney">Walt Disney</string>
+    <string name="heisenberg">Werner Heisenberg</string>
+    <string name="carreras">José Carreras</string>
+    <string name="kaas">Patricia Kaas</string>
+    <!-- 6 december -->
+    <string name="nicolas_leblanc">Nicolas Leblanc</string>
+    <string name="gay_lussac">Joseph Louis Gay-Lussac</string>
+    <string name="veqilharxhi">Naum Veqilharxhi</string>
+    <string name="bazille">Frédéric Bazille</string>
+    <string name="crali">Tullio Crali</string>
+    <string name="nick_park">Nick Park</string>
+    <!-- 7 december -->
+    <string name="bernini">Gian Lorenzo Bernini</string>
+    <string name="schwann">Theodor Schwann</string>
+    <string name="mascagni">Pietro Mascagni</string>
+    <string name="yosano">Akiko Yosano</string>
+    <string name="waits">Tom Waits</string>
+    <string name="emily_browning">Emily Browning</string>
+    <!-- 8 december -->
+    <string name="dholbach">Paul-Henri Thiry, baron d\'Holbach</string>
+    <string name="menzel">Adolph von Menzel</string>
+    <string name="bjornson">Bjørnstjerne Bjørnson</string>
+    <string name="reynaud">Charles-Émile Reynaud</string>
+    <string name="melies">Georges Méliès</string>
+    <string name="morrison">Jim Morrison</string>
+    <string name="basinger">Kim Basinger</string>
+    <string name="somerhalder">Ian Somerhalder</string>
+    <!-- 9 december -->
+    <string name="milton">John Milton</string>
+    <string name="winckelmann">Johann Joachim Winckelmann</string>
+    <string name="scheele">Carl Wilhelm Scheele</string>
+    <string name="berthollet">Claude Louis Berthollet</string>
+    <string name="grace_hopper">Grace Hopper</string>
+    <string name="dench">Judi Dench</string>
+    <string name="malkovich">John Malkovich</string>
+    <!-- 10 december -->
+    <string name="lovelace">Ada Lovelace</string>
+    <string name="nekrasov">Nikolay Nekrasov</string>
+    <string name="sachs">Nelly Sachs</string>
+    <string name="tarasov">Anatoli Tarasov</string>
+    <string name="michael_duncan">Michael Clarke Duncan</string>
+    <string name="branagh">Kenneth Branagh</string>
+    <string name="molko">Brian Molko</string>
+    <!-- 11 december -->
+    <string name="berlioz">Hector Berlioz</string>
+    <string name="musset">Alfred de Musset</string>
+    <string name="koch">Robert Koch</string>
+    <string name="born">Max Born</string>
+    <string name="gardel">Carlos Gardel</string>
+    <string name="marais">Jean Marais</string>
+    <!-- 12 december -->
+    <string name="karamzin">Nikolay Karamzin</string>
+    <string name="serebriakova">Zinaida Serebriakova</string>
+    <string name="ozu">Yasujirō Ozu</string>
+    <string name="sinatra">Frank Sinatra</string>
+    <string name="noyce">Robert Noyce</string>
+    <string name="konyukhov">Fyodor Konyukhov</string>
+    <!-- 13 december -->
+    <string name="gozzi">Carlo Gozzi</string>
+    <string name="heine">Heinrich Heine</string>
+    <string name="werner_siemens">Werner von Siemens</string>
+    <string name="birkeland">Kristian Birkeland</string>
+    <string name="buscemi">Steve Buscemi</string>
+    <string name="foxx">Jamie Foxx</string>
+    <string name="amy_lee">Amy Lee</string>
+    <string name="taylor_swift">Taylor Swift</string>
+    <!-- 14 december -->
+    <string name="nostradamus">Nostradamus</string>
+    <string name="brahe">Tycho Brahe</string>
+    <string name="ueshiba">Morihei Ueshiba</string>
+    <string name="basov">Nikolay Basov</string>
+    <string name="kapoor">Raj Kapoor</string>
+    <!-- 15 december -->
+    <string name="carey">Henry Charles Carey</string>
+    <string name="bolyai">János Bolyai</string>
+    <string name="eiffel">Gustave Eiffel</string>
+    <string name="becquerel">Henri Becquerel</string>
+    <string name="zamenhof">Ludwik Lejzer Zamenhof</string>
+    <string name="getty">Jean Paul Getty</string>
+    <!-- 16 december -->
+    <string name="austen">Jane Austen</string>
+    <string name="walras">Léon Walras</string>
+    <string name="bergmann">Ernst Bergmann</string>
+    <string name="kandinsky">Wassily Kandinsky</string>
+    <string name="linder">Max Linder</string>
+    <string name="arthur_clarke">Arthur C. Clarke</string>
+    <string name="paul_van_dyk">Paul van Dyk</string>
+    <!-- 17 december -->
+    <string name="cimarosa">Domenico Cimarosa</string>
+    <string name="beethoven">Ludwig van Beethoven</string>
+    <string name="davy">Humphry Davy</string>
+    <string name="ganelin">Vyacheslav Ganelin</string>
+    <string name="darryl_way">Darryl Way</string>
+    <string name="jovovich">Milla Jovovich</string>
+    <!-- 18 december -->
+    <string name="polhem">Christopher Polhem</string>
+    <string name="joseph_thomson">Joseph John Thomson</string>
+    <string name="stalin">Joseph Stalin</string>
+    <string name="spielberg">Steven Spielberg</string>
+    <string name="liotta">Ray Liotta</string>
+    <string name="brad_pitt">Brad Pitt</string>
+    <string name="holmes">Katie Holmes</string>
+    <string name="aguilera">Christina Aguilera</string>
+    <!-- 19 december -->
+    <string name="michelson">Albert Abraham Michelson</string>
+    <string name="joze_lima">José Lezama Lima</string>
+    <string name="piaf">Édith Piaf</string>
+    <string name="schweiger">Til Schweiger</string>
+    <string name="milano">Alyssa Milano</string>
+    <string name="jake_gyllenhaal">Jake Gyllenhaal</string>
+    <!-- 20 december -->
+    <string name="heyrovsky">Jaroslav Heyrovský</string>
+    <string name="balandin">Aleksei Balandin</string>
+    <string name="graaff">Robert Jemison Van de Graaff</string>
+    <string name="bohm">David Bohm</string>
+    <string name="uri_geller">Uri Geller</string>
+    <string name="jonah_hill">Jonah Hill</string>
+    <!-- 21 december -->
+    <string name="robert_brown">Robert Brown</string>
+    <string name="hermann_muller">Hermann Joseph Muller</string>
+    <string name="boll">Heinrich Böll</string>
+    <string name="monterroso">Augusto Monterroso</string>
+    <string name="jane_fonda">Jane Fonda</string>
+    <string name="zappa">Frank Zappa</string>
+    <string name="samuel_jackson">Samuel L. Jackson</string>
+    <!-- 22 december  -->
+    <string name="liotard">Jean-Étienne Liotard</string>
+    <string name="fabre">Jean-Henri Fabre</string>
+    <string name="puccini">Giacomo Puccini</string>
+    <string name="elizondo">Héctor Elizondo</string>
+    <string name="fiennes">Ralph Fiennes</string>
+    <string name="paradis">Vanessa Paradis</string>
+    <!-- 23 december -->
+    <string name="champollion">Jean-François Champollion</string>
+    <string name="bryullov">Karl Bryullov</string>
+    <string name="dino_risi">Dino Risi</string>
+    <string name="baker">Chet Baker</string>
+    <string name="bosque">Vicente del Bosque</string>
+    <string name="bruni">Carla Bruni</string>
+    <!-- 24 december -->
+    <string name="joule">James Prescott Joule</string>
+    <string name="howard_hughes">Howard Hughes</string>
+    <string name="chase">James Hadley Chase</string>
+    <string name="gardner">Ava Gardner</string>
+    <string name="ricky_martin">Ricky Martin</string>
+    <string name="stephenie_meyer">Stephenie Meyer</string>
+    <!-- 25 december -->
+    <string name="chevrolet">Louis Chevrolet</string>
+    <string name="rosenzweig">Franz Rosenzweig</string>
+    <string name="hilton">Conrad Hilton</string>
+    <string name="bogart">Humphrey Bogart</string>
+    <string name="castaneda">Carlos Castaneda</string>
+    <string name="lennox">Annie Lennox</string>
+    <string name="buuren">Armin van Buuren</string>
+    <!-- 26 december -->
+    <string name="dinglinger">Johann Melchior Dinglinger</string>
+    <string name="babbage">Charles Babbage</string>
+    <string name="henry_miller">Henry Miller</string>
+    <string name="zedong">Mao Zedong</string>
+    <string name="ulrich">Lars Ulrich</string>
+    <string name="jared_leto">Jared Leto</string>
+    <!-- 27 december -->
+    <string name="kepler">Johannes Kepler</string>
+    <string name="cayley">George Cayley</string>
+    <string name="pasteur">Louis Pasteur</string>
+    <string name="tretyakov">Pavel Tretyakov</string>
+    <string name="dietrich">Marlene Dietrich</string>
+    <string name="depardieu">Gérard Depardieu</string>
+    <!-- 28 december -->
+    <string name="eddington">Arthur Eddington</string>
+    <string name="murnau">Friedrich Wilhelm Murnau</string>
+    <string name="john_neumann">John von Neumann</string>
+    <string name="denzel_washington">Denzel Washington</string>
+    <string name="torvalds">Linus Torvalds</string>
+    <string name="sienna_miller">Sienna Miller</string>
+    <!-- 29 december -->
+    <string name="pompadour">Madame de Pompadour</string>
+    <string name="siqueiros">David Alfaro Siqueiros</string>
+    <string name="voight">Jon Voight</string>
+    <string name="dexter_holland">Dexter Holland</string>
+    <string name="jude_law">Jude Law</string>
+    <!-- 30 december -->
+    <string name="jablonskis">Jonas Jablonskis</string>
+    <string name="kipling">Rudyard Kipling</string>
+    <string name="patti_smith">Patti Smith</string>
+    <string name="jay_kay">Jay Kay</string>
+    <string name="tiger_woods">Tiger Woods</string>
+    <string name="lebron_james">LeBron James</string>
+    <!-- 31 december -->
+    <string name="boldini">Giovanni Boldini</string>
+    <string name="matisse">Henri Matisse</string>
+    <string name="hopkins">Anthony Hopkins</string>
+    <string name="ferguson">Alex Ferguson</string>
+    <string name="kingsley">Ben Kingsley</string>
+    <string name="willis">Connie Willis</string>
+    <string name="val_kilmer">Val Kilmer</string>
+</resources>
