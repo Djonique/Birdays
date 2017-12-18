@@ -51,7 +51,6 @@ import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kobakei.ratethisapp.RateThisApp;
 
 import java.util.Calendar;
@@ -100,7 +99,6 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.recyclerview_detail)
     RecyclerView recyclerView;
 
-    private FirebaseAnalytics mFirebaseAnalytics;
     private InterstitialAd mInterstitialAd;
     private DbHelper dbHelper;
     private Person person;
@@ -113,7 +111,6 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean adEnabled = preferences.getBoolean(getString(R.string.ad_interstitial_key), true);
@@ -258,7 +255,6 @@ public class DetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab_detail)
     void starEditActivity() {
-        logEvent();
         Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra(Constants.TIME_STAMP, timeStamp);
         startActivityForResult(intent, EDIT_ACTIVITY);
@@ -315,22 +311,14 @@ public class DetailActivity extends AppCompatActivity {
         RateThisApp.showRateDialogIfNeeded(context);
     }
 
-    private void logEvent() {
-        Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, Constants.EDIT_ACTIVITY_TAG);
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
-    }
-
     @OnClick(R.id.imagebutton_detail_phone)
     void makeCall() {
-        mFirebaseAnalytics.logEvent(Constants.MAKE_CALL, new Bundle());
         startActivity(Intent.createChooser(new Intent(Intent.ACTION_DIAL,
                 Uri.parse(Constants.TEL + phoneNumber)), null));
     }
 
     @OnClick(R.id.imagebutton_detail_chat)
     void sendMessage() {
-        mFirebaseAnalytics.logEvent(Constants.SEND_MESSAGE, new Bundle());
         Intent intent = new Intent(Intent.ACTION_VIEW)
                 .setType(Constants.TYPE_SMS)
                 .putExtra(Constants.ADDRESS, phoneNumber)
@@ -340,7 +328,6 @@ public class DetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.imagebutton_detail_email)
     void sendEmail() {
-        mFirebaseAnalytics.logEvent(Constants.SEND_EMAIL, new Bundle());
         Intent intent = new Intent(Intent.ACTION_SENDTO)
                 .setType(Constants.TYPE_EMAIL)
                 .putExtra(Intent.EXTRA_EMAIL, new String[]{email})

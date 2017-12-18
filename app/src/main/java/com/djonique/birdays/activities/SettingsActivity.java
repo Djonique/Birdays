@@ -52,7 +52,6 @@ import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.ContactsHelper;
 import com.djonique.birdays.utils.PermissionManager;
 import com.djonique.birdays.utils.Utils;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 
@@ -181,15 +180,12 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
     public static class BirdaysPreferenceFragment extends PreferenceFragment
             implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-        private FirebaseAnalytics mFirebaseAnalytics;
         private SharedPreferences preferences;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
-            mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
-            logEvent();
 
             preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
@@ -352,7 +348,6 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             findPreference(getString(R.string.share_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    mFirebaseAnalytics.logEvent(Constants.SHARE_APP, new Bundle());
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
                     intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + getString(R.string.play_market_app_link));
@@ -367,9 +362,6 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             findPreference(getString(R.string.ad_banner_key)).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    if (!Boolean.parseBoolean(newValue.toString())) {
-                        mFirebaseAnalytics.logEvent(Constants.AD_BANNER_DISABLED, new Bundle());
-                    }
                     showRestartAppDialog();
                     return true;
                 }
@@ -469,12 +461,6 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             super.onPause();
             getPreferenceScreen().getSharedPreferences()
                     .unregisterOnSharedPreferenceChangeListener(this);
-        }
-
-        private void logEvent() {
-            Bundle params = new Bundle();
-            params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, Constants.SETTINGS_ACTIVITY_TAG);
-            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
         }
 
         private void restartAlarms(final AlarmHelper alarmHelper, final List<Person> persons) {

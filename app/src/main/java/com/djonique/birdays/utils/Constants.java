@@ -48,16 +48,4 @@ public interface Constants {
     String ADDRESS = "address";
     String SMSTO = "smsto:";
     String TEL = "tel: ";
-
-    // Firebase Analytics
-    String NEW_PERSON_ADDED = "new_person_added";
-    String FAMOUS_PERSON_CLICKED = "famous_person_clicked";
-    String MAKE_CALL = "make_call";
-    String SEND_MESSAGE = "send_sms";
-    String SEND_EMAIL = "send_email";
-    String SHARE_APP = "share_app";
-    String AD_BANNER_DISABLED = "ad_banner_disabled";
-    String DETAIL_ACTIVITY_TAG = "DetailActivity";
-    String EDIT_ACTIVITY_TAG = "EditActivity";
-    String SETTINGS_ACTIVITY_TAG = "SettingsActivity";
 }

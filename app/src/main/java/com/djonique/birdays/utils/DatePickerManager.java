@@ -77,6 +77,7 @@ public class DatePickerManager {
                         calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH)
                 );
+        dpd.setVersion(com.wdullaer.materialdatetimepicker.date.DatePickerDialog.Version.VERSION_1);
         dpd.setThemeDark(preferences.getBoolean(Constants.NIGHT_MODE_KEY, false));
         dpd.show(activity.getFragmentManager(), DATE_PICKER_FRAGMENT_TAG);
     }
