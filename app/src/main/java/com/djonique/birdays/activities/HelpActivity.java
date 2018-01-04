@@ -16,6 +16,7 @@
 
 package com.djonique.birdays.activities;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -48,6 +49,7 @@ public class HelpActivity extends AppCompatActivity {
     private static final String SAMSUNG = "samsung";
     private static final String XIAOMI = "xiaomi";
     private static final String ALERT_SHOWED = "ALERT_SHOWED";
+    private static final String ACTIVITY_NOT_FOUND_EXCEPTION = "ActivityNotFoundException";
 
     @BindView(R.id.button_help_whitelist)
     AppCompatButton btnOpenWhitelist;
@@ -138,7 +140,11 @@ public class HelpActivity extends AppCompatActivity {
     @OnClick(R.id.button_help_whitelist)
     void openBatteryOptimization() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            startActivity(Intent.createChooser(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS), null));
+            try {
+                startActivity(Intent.createChooser(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS), null));
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(this, ACTIVITY_NOT_FOUND_EXCEPTION, Toast.LENGTH_LONG).show();
+            }
         } else {
             Toast.makeText(this, R.string.help_whitelist_error, Toast.LENGTH_LONG).show();
         }

@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -39,7 +38,6 @@ import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +46,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
 
     private Context context;
     private SharedPreferences preferences;
-    private FirebaseAnalytics mFirebaseAnalytics;
     private List<Person> persons;
 
     public MonthFragmentAdapter() {
@@ -77,7 +74,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         View view = LayoutInflater.from(context).inflate(
                 R.layout.description_card_view, parent, false);
         return new CardViewHolder(view);
@@ -120,7 +116,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnEmail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mFirebaseAnalytics.logEvent(Constants.SEND_EMAIL, new Bundle());
                     context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_SENDTO)
                             .setType(Constants.TYPE_EMAIL)
                             .putExtra(Intent.EXTRA_EMAIL, new String[]{email})
@@ -138,7 +133,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnCall.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mFirebaseAnalytics.logEvent(Constants.MAKE_CALL, new Bundle());
                     context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_DIAL,
                             Uri.parse(Constants.TEL + phoneNumber)), null));
                 }
@@ -147,7 +141,6 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnChat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mFirebaseAnalytics.logEvent(Constants.SEND_MESSAGE, new Bundle());
                     context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW)
                             .setType(Constants.TYPE_SMS)
                             .putExtra(Constants.ADDRESS, phoneNumber)

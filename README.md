@@ -22,6 +22,14 @@ José Romero (French)
 Ruah Timario (Filipino) [ruahtheking](https://github.com/ruahtheking)
 
 Belkacem Mohammed (Kabyle) [belkacem77](https://github.com/belkacem77)
+
+Miguel Dos Reis (Portuguese and Spanish)
+
+Omer Surer (Turkish)
+
+Xiupeng (Chinese traditional)
+
+Andra Fetele (Romanian) [sarmizegetusaa](https://github.com/sarmizegetusaa)
 ## License
 
 ```

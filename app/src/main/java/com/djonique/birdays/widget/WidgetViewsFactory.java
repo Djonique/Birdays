@@ -18,7 +18,6 @@ package com.djonique.birdays.widget;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.widget.RemoteViews;
@@ -39,7 +38,6 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
 
     private Context context;
     private DbHelper dbHelper;
-    private SharedPreferences preferences;
     private List<Person> widgetList;
 
     WidgetViewsFactory(Context context) {
@@ -49,7 +47,6 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
     @Override
     public void onCreate() {
         dbHelper = new DbHelper(context);
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
         widgetList = new ArrayList<>();
     }
 

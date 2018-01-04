@@ -18,13 +18,11 @@ package com.djonique.birdays.backup;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.util.Xml;
-import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.database.DbHelper;
@@ -44,8 +42,6 @@ import java.util.List;
 
 public class ExportHelper {
 
-    // TODO: 30.11.2017 Toast in main thread
-
     // XML constants
     private static final String RECORDS = "records";
     private static final String PERSON = "person";
@@ -63,12 +59,12 @@ public class ExportHelper {
     private static final String IO_EXCEPTION = "IOException";
     private static final String FILE_NOT_FOUND_EXCEPTION = "FileNotFoundException";
 
-    private Context context;
+    private Activity activity;
     private File folder;
     private boolean storageAvailable = true;
 
-    public ExportHelper(Context context) {
-        this.context = context;
+    public ExportHelper(Activity activity) {
+        this.activity = activity;
     }
 
     public void exportRecords() {
@@ -121,36 +117,41 @@ public class ExportHelper {
             xmlSerializer.endDocument();
             xmlSerializer.flush();
         } catch (IllegalArgumentException e) {
-            Toast.makeText(context, ILLEGAL_ARGUMENT_EXCEPTION, Toast.LENGTH_LONG).show();
+            showAlertDialog(activity, ILLEGAL_ARGUMENT_EXCEPTION);
         } catch (IllegalStateException e) {
-            Toast.makeText(context, ILLEGAL_STATE_EXCEPTION, Toast.LENGTH_LONG).show();
+            showAlertDialog(activity, ILLEGAL_STATE_EXCEPTION);
         } catch (IOException e) {
-            Toast.makeText(context, IO_EXCEPTION, Toast.LENGTH_LONG).show();
+            showAlertDialog(activity, IO_EXCEPTION);
         }
         return stringWriter.toString();
     }
 
-    private void showAlertDialog(Context context, String text) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(text);
-        builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
+    private void showAlertDialog(final Activity activity, final String text) {
+        activity.runOnUiThread(new Runnable() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+            public void run() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setMessage(text);
+                builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
             }
         });
-        builder.show();
     }
 
     @SuppressLint("StaticFieldLeak")
     private class ExportAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        ProgressDialogHelper progressDialogHelper = new ProgressDialogHelper(context);
+        ProgressDialogHelper progressDialogHelper = new ProgressDialogHelper(activity);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialogHelper.startProgressDialog(context.getString(R.string.exporting_records));
+            progressDialogHelper.startProgressDialog(activity.getString(R.string.exporting_records));
         }
 
         @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -159,29 +160,24 @@ public class ExportHelper {
             File sd = Environment.getExternalStorageDirectory();
             if (isExternalStorageWritable()) {
                 try {
-                    folder = new File(sd.getPath() + File.separator + context.getString(R.string.app_name));
+                    folder = new File(sd.getPath() + File.separator + activity.getString(R.string.app_name));
                     if (!folder.exists()) {
                         folder.mkdir();
                     }
                     File backupFile = new File(folder + File.separator + getBackupFileName());
                     backupFile.createNewFile();
                     FileOutputStream outputStream = new FileOutputStream(backupFile);
-                    List<Person> persons = new DbHelper(context).query().getPersons();
+                    List<Person> persons = new DbHelper(activity).query().getPersons();
                     outputStream.write(writeXml(persons).getBytes());
                     outputStream.close();
                 } catch (FileNotFoundException e) {
-                    Toast.makeText(context, FILE_NOT_FOUND_EXCEPTION, Toast.LENGTH_LONG).show();
+                    showAlertDialog(activity, FILE_NOT_FOUND_EXCEPTION);
                 } catch (IOException e) {
-                    Toast.makeText(context, IO_EXCEPTION, Toast.LENGTH_LONG).show();
+                    showAlertDialog(activity, IO_EXCEPTION);
                 }
             } else {
                 storageAvailable = false;
-                ((Activity) context).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        showAlertDialog(context, context.getString(R.string.ext_storage_error));
-                    }
-                });
+                showAlertDialog(activity, activity.getString(R.string.ext_storage_error));
             }
             return null;
         }
@@ -191,7 +187,7 @@ public class ExportHelper {
             super.onPostExecute(aVoid);
             progressDialogHelper.dismissProgressDialog();
             if (storageAvailable) {
-                showAlertDialog(context, context.getString(R.string.backup_finished) + folder);
+                showAlertDialog(activity, activity.getString(R.string.backup_finished) + folder);
             }
         }
     }

@@ -50,7 +50,6 @@ import com.djonique.birdays.utils.ContactsHelper;
 import com.djonique.birdays.utils.DatePickerManager;
 import com.djonique.birdays.utils.PermissionManager;
 import com.djonique.birdays.utils.Utils;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Calendar;
 
@@ -66,7 +65,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private Calendar calendar;
     private String name;
     private long date;
-    private FirebaseAnalytics mFirebaseAnalytics;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -77,7 +75,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
         } catch (ClassCastException e) {
             throw new ClassCastException();
         }
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(activity);
     }
 
     @Override
@@ -140,7 +137,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
         builder.setPositiveButton(R.string.ok_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mFirebaseAnalytics.logEvent(Constants.NEW_PERSON_ADDED, new Bundle());
                 if (etName != null) {
                     name = etName.getText().toString();
                     person.setName(name);

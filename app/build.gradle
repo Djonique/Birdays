@@ -24,18 +24,18 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    buildToolsVersion '27.0.2'
 
     defaultConfig {
         applicationId "com.djonique.birdays"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 17
-        versionName "1.5.0"
+        versionCode 18
+        versionName "1.5.1"
         resConfigs "auto"
         vectorDrawables.useSupportLibrary = true
         resValue "string", "version_name", versionName
-        manifestPlaceholders = [fabric_api_key:keystoreProperties['FabricApiKey']]
+        manifestPlaceholders = [fabric_api_key: keystoreProperties['FabricApiKey']]
     }
 
     buildTypes {
@@ -58,8 +58,8 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-def androidSupportVersion = '27.0.1'
-def firebaseVersion = '11.4.2'
+def androidSupportVersion = '27.0.2'
+def firebaseVersion = '11.6.2'
 def butterKnifeVersion = '8.8.1'
 
 dependencies {
@@ -75,7 +75,6 @@ dependencies {
 
     // Firebase
     compile "com.google.firebase:firebase-core:${firebaseVersion}"
-    compile "com.google.firebase:firebase-messaging:${firebaseVersion}"
     compile "com.google.firebase:firebase-ads:${firebaseVersion}"
     compile "com.google.firebase:firebase-perf:${firebaseVersion}"
 
@@ -84,7 +83,7 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
 
     // Material date and time picker
-    compile 'com.wdullaer:materialdatetimepicker:2.5.0'
+    compile 'com.wdullaer:materialdatetimepicker:3.4.1'
 
     // Rate this app
     compile 'io.github.kobakei:ratethisapp:1.2.0'

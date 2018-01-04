@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
     Copyright 2017 Evgeny Timofeev
@@ -17,249 +17,191 @@
 -->
 
 <resources>
-    <string name="app_name" translatable="false">Birdays</string>
-    <string name="build_version">Build version</string>
+    <string name="build_version">Build-versie</string>
 
     <!-- MainActivity -->
-    <string name="loading_contacts">Loading contacts…</string>
-    <string name="contacts_uploaded">Contacts uploaded</string>
-    <string name="loading_contacts_error">Unable to import contacts, nonstandard date format</string>
-    <string name="permission_required">Permission is required for importing contacts</string>
-    <string name="snackbar_allow_text">Allow</string>
-    <string name="all">All</string>
-    <string name="famous">Famous</string>
-    <string name="age">Current age:\u0020</string>
-    <string name="happy_birthday">Happy Birthday!</string>
-    <string name="google_search" translatable="false">https://www.google.com/search?q=</string>
-    <string name="web_search_error">Unable to perform action, please install web browser</string>
-    <string name="delete_record_text">Are you sure you want to delete this record:\u0020</string>
-    <string name="record_deleted">Record deleted</string>
-    <string name="undo">Undo</string>
+    <string name="loading_contacts">Contacten aan het laden…</string>
+    <string name="contacts_uploaded">Contacten geüpload</string>
+    <string name="loading_contacts_error">Contacten kunnen niet worden geïmporteerd, verkeerde datumnotatie</string>
+    <string name="permission_required">Toestemming om contactpersonen te importeren is vereist</string>
+    <string name="snackbar_allow_text">Toestaan</string>
+    <string name="all">Alle</string>
+    <string name="famous">Beroemd</string>
+    <string name="age">Huidige leeftijd:\u0020</string>
+    <string name="happy_birthday">Gefeliciteerd met uw verjaardag!</string>
+    <string name="web_search_error">Kan de actie niet uitvoeren, installeer de webbrowser</string>
+    <string name="delete_record_text">Weet u zeker dat u dit record wilt verwijderen?:\u0020</string>
+    <string name="record_deleted">Record is verwijderd</string>
+    <string name="undo">Ongedaan maken</string>
 
     <string-array name="months">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Maart</item>
         <item>April</item>
         <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>Augustus</item>
         <item>September</item>
-        <item>October</item>
+        <item>Oktober</item>
         <item>November</item>
         <item>December</item>
     </string-array>
 
     <!-- Menu -->
-    <string name="action_sync">Synchronization</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_delete">Delete</string>
+    <string name="action_sync">Synchronisatie</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="action_delete">Verwijderen</string>
 
     <!-- NewPersonDialogFragment -->
-    <string name="new_record">New record</string>
-    <string name="add_from_contacts">Add from contacts</string>
-    <string name="open_contacts_error">Unable to perform action due to device features</string>
-    <string name="name">Name</string>
-    <string name="error_hint">Please enter the name</string>
-    <string name="phone_number">Phone number</string>
-    <string name="email" translatable="false">Email</string>
-    <string name="pick_date">Pick date</string>
-    <string name="wrong_date">Wrong date</string>
-    <string name="year_unknown">I don\'t know year</string>
-    <string name="ok_button" translatable="false">OK</string>
-    <string name="cancel_button">Cancel</string>
-    <string name="record_added">Record added</string>
+    <string name="new_record">Nieuw record</string>
+    <string name="add_from_contacts">Toevoegen uit contacten</string>
+    <string name="open_contacts_error">Deze actie kan niet worden uitgevoerd vanwege apparaatfuncties</string>
+    <string name="name">Naam</string>
+    <string name="error_hint">Naam invoeren, alstublieft</string>
+    <string name="phone_number">Telefoonnummer</string>
+    <string name="pick_date">Selecteer datum</string>
+    <string name="wrong_date">Verkeerde datum</string>
+    <string name="year_unknown">Jaar is onbekend</string>
+    <string name="cancel_button">Annuleren</string>
+    <string name="record_added">Record toegevoegd</string>
 
     <!-- DetailActivity -->
-    <string name="birthday">Birthday</string>
-    <string name="days_left">Days until next birthday</string>
-    <string name="today">Today</string>
-    <string name="days_since_birth">Days since birth</string>
-    <string name="zodiac_sign">Zodiac sign</string>
-    <string name="season_picture">Season picture</string>
-    <string name="calendar">Calendar</string>
-    <string name="call">Call</string>
-    <string name="chat">Chat</string>
-    <string name="born_on_this_day">Born on this day</string>
+    <string name="birthday">Geboortedatum</string>
+    <string name="days_left">Dagen tot de volgende verjaardag</string>
+    <string name="today">Vandaag</string>
+    <string name="days_since_birth">Dagen sinds geboorte</string>
+    <string name="zodiac_sign">Sterrenbeeld</string>
+    <string name="season_picture">Seizoensafbeelding</string>
+    <string name="calendar">Kalender</string>
+    <string name="call">Bellen</string>
+    <string name="chat">Gesprek</string>
+    <string name="born_on_this_day">Op deze dag geboren</string>
 
     <!-- EditActivity -->
-    <string name="editing_label">Editing</string>
-    <string name="record_edited">Record edited</string>
+    <string name="editing_label">Bewerken</string>
+    <string name="record_edited">Record bewerkt</string>
 
     <!-- Alarm -->
-    <string name="security_exception">SecurityException, Samsung devices restrict the number of alarms you can register</string>
-    <string name="channel_name">Birthdays</string>
+    <string name="security_exception">SecurityException, Samsung-apparaten beperken het aantal alarmen dat u kunt registreren</string>
+    <string name="channel_name">Verjaardagen</string>
 
     <!-- Zodiac signs -->
-    <string name="aries">Aries</string>
-    <string name="taurus">Taurus</string>
-    <string name="gemini">Gemini</string>
-    <string name="cancer">Cancer</string>
-    <string name="leo">Leo</string>
-    <string name="virgo">Virgo</string>
-    <string name="libra">Libra</string>
-    <string name="scorpio">Scorpio</string>
-    <string name="sagittarius">Sagittarius</string>
-    <string name="capricorn">Capricorn</string>
-    <string name="aquarius">Aquarius</string>
-    <string name="pisces">Pisces</string>
-
-    <!-- Settings keys -->
-    <string name="notifications_key" translatable="false">notifications_key</string>
-    <string name="notification_time_key" translatable="false">notification_time_key</string>
-    <string name="additional_notification_key" translatable="false">additional_notification_key</string>
-    <string name="ringtone_key" translatable="false">ringtone_key</string>
-    <string name="help_key" translatable="false">help_key</string>
-    <string name="import_contacts_key" translatable="false">import_contacts_key</string>
-    <string name="export_key" translatable="false">export_key</string>
-    <string name="recover_key" translatable="false">recover_key</string>
-    <string name="night_mode_key" translatable="false">night_mode_key</string>
-    <string name="start_page_key" translatable="false">start_page_key</string>
-    <string name="displayed_age_key" translatable="false">displayed_age_key</string>
-    <string name="rate_app_key" translatable="false">rate_app_key</string>
-    <string name="share_key" translatable="false">share_key</string>
-    <string name="ad_interstitial_key" translatable="false">ad_interstitial_key</string>
-    <string name="ad_banner_key" translatable="false">ad_banner_key</string>
-    <string name="source_code_key" translatable="false">source_code_key</string>
-    <string name="privacy_policy_key" translatable="false">privacy_policy_key</string>
-    <string name="licenses_key" translatable="false">licenses_key</string>
+    <string name="aries">Ram</string>
+    <string name="taurus">Stier</string>
+    <string name="gemini">Tweelingen</string>
+    <string name="cancer">Kreeft</string>
+    <string name="leo">Leeuw</string>
+    <string name="virgo">Maagd</string>
+    <string name="libra">Weegschaal</string>
+    <string name="scorpio">Schorpioen</string>
+    <string name="sagittarius">Boogschutter</string>
+    <string name="capricorn">Steenbok</string>
+    <string name="aquarius">Waterman</string>
+    <string name="pisces">Vissen</string>
 
     <!-- SettingsActivity -->
-    <string name="optimization_enabled">Optimization enabled!</string>
-    <string name="optimization_description">\nStarting from version 6.0, Android introduced power-saving mode Doze that manage apps behavior by deferring background CPU.\n\nTo make app work correctly disable optimization for Birdays.</string>
-    <string name="do_not_show_again">Do not show again</string>
-    <string name="disable_button">Disable</string>
+    <string name="optimization_enabled">Optimalisatie ingeschakeld!</string>
+    <string name="optimization_description">\nVanaf versie 6.0 introduceerde Android de energiebesparende modus Doze, die de werking van de applicatie beheert door de achtergrond-CPU uit te stellen.\n\nSchakel optimalisatie van Birdays uit om het applicatie correct te laten werken.</string>
+    <string name="do_not_show_again">Niet meer tonen</string>
+    <string name="disable_button">Uitschakelen</string>
     <!-- Notifications -->
-    <string name="notifications">Notifications</string>
-    <string name="allow_notification">Allow the app to send notifications of upcoming birthdays</string>
-    <string name="notifications_time">Notification time</string>
-    <string name="default_time_preference" translatable="false">645703200000</string>
-    <string name="additional_notification">Additional notification</string>
+    <string name="notifications">Meldingen</string>
+    <string name="allow_notification">Sta de toepassing toe om toekomstige verjaardagsmeldingen te verzenden</string>
+    <string name="notifications_time">Meldingstijd</string>
+    <string name="additional_notification">Aanvullende notificatie</string>
 
     <string-array name="additional_notification_entries">
-        <item>Never</item>
-        <item>1 day before</item>
-        <item>2 days before</item>
-        <item>3 days before</item>
-        <item>1 week before</item>
-        <item>2 weeks before</item>
-    </string-array>
-
-    <string-array name="additional_notification_entry_values" translatable="false">
-        <item>0</item>
-        <item>86400000</item>
-        <item>172800000</item>
-        <item>259200000</item>
-        <item>604800000</item>
-        <item>1209600000</item>
+        <item>Nooit</item>
+        <item>1dag ervoor</item>
+        <item>2 dagen ervoor</item>
+        <item>3 dagen ervoor</item>
+        <item>1 week ervoor</item>
+        <item>2 weker ervoor</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
-        <item>Today</item>
-        <item>Tomorrow</item>
-        <item>In 2 days</item>
-        <item>In 3 days</item>
-        <item>In a week</item>
-        <item>In 2 weeks</item>
+        <item>Vandaag</item>
+        <item>Morgen</item>
+        <item>In 2 dagen</item>
+        <item>In 3 dagen</item>
+        <item>In een week</item>
+        <item>In 2 weken</item>
     </string-array>
 
-    <string name="notification_tone">Notification tone</string>
-    <string name="ringtone_summary">Choose a sound for notification. By default is used tone from the device settings</string>
-    <string name="silent">None</string>
-    <string name="help">Help</string>
-    <string name="tap_here">Tap here if you don\'t receive notifications</string>
+    <string name="notification_tone">Meldingstoon</string>
+    <string name="ringtone_summary">Kies een toon voor meldingen. Standaard wordt de apparaattoon gebruikt</string>
+    <string name="silent">Geen</string>
+    <string name="help">Hulp</string>
+    <string name="tap_here">Klik hier als u geen meldingen ontvangt</string>
     <!-- Synchronization and backup -->
-    <string name="sync_and_backup">Synchronization and backup</string>
-    <string name="contacts_import_title">Import contacts</string>
-    <string name="contacts_import_summary">Tap here to import contacts from your device (supports ISO 8601)</string>
-    <string name="export_records">Export records (Beta)</string>
-    <string name="export_records_summary">Create the XML file with backup</string>
-    <string name="ext_storage_error">External storage is not available</string>
-    <string name="exporting_records">Exporting records…</string>
-    <string name="backup_finished">Backup finished, XML file in the\u0020</string>
-    <string name="recover_records">Recover records (Beta)</string>
-    <string name="recover_records_summary">Choose the XML file with backup</string>
-    <string name="recover_records_error">Unable to perform action, please install file manager</string>
-    <string name="records_recovered">Records recovered</string>
+    <string name="sync_and_backup">Synchronisatie en back-up</string>
+    <string name="contacts_import_title">Contacten importeren</string>
+    <string name="contacts_import_summary">Tik hier om contacten van uw apparaat te importeren (ondersteunt ISO 8601)</string>
+    <string name="export_records">Records exporteren (Beta)</string>
+    <string name="export_records_summary">Maak het XML-bestand met de back-up</string>
+    <string name="ext_storage_error">Externe opslag is niet beschikbaar</string>
+    <string name="exporting_records">Records exporteren…</string>
+    <string name="backup_finished">Back-up voltooid, XML-bestand opgeslagen onder\u0020</string>
+    <string name="recover_records">Records herstellen (Beta)</string>
+    <string name="recover_records_summary">Kies het XML-bestand met back-up</string>
+    <string name="recover_records_error">Actie niet toegestaan, installeer de bestandsbeheerder</string>
+    <string name="records_recovered">Records hersteld</string>
     <!-- General -->
-    <string name="general">General</string>
-    <string name="night_mode">Night mode</string>
-    <string name="start_page">Start page</string>
+    <string name="general">Algemeen</string>
+    <string name="night_mode">Nachtmodus</string>
+    <string name="start_page">Startpagina</string>
 
     <string-array name="start_page_entries">
-        <item>Current month</item>
-        <item>All</item>
-        <item>Famous</item>
+        <item>Deze maand</item>
+        <item>Alle</item>
+        <item>Beroemd</item>
     </string-array>
 
-    <string-array name="start_page_entry_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-
-    <string name="displayed_age">Displayed age</string>
+    <string name="displayed_age">Getoonde leeftijd</string>
 
     <string-array name="displayed_age_entries">
-        <item>Current</item>
-        <item>Future</item>
+        <item>Huidige</item>
+        <item>Toekomst</item>
     </string-array>
 
-    <string-array name="displayed_age_entry_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-    </string-array>
-
-    <string name="displayed_age_changes">You must restart an app for these changes to take effect</string>
-    <string name="restart_now">Restart now</string>
+    <string name="displayed_age_changes">Start een toepassing opnieuw om deze wijzigingen van kracht te laten worden</string>
+    <string name="restart_now">Nu opnieuw opstarten</string>
     <string name="later">Later</string>
-    <string name="rate_app">Rate app</string>
-    <string name="share_app">Share app</string>
-    <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Birdays will remind you of an important holiday!\n\n</string>
-    <string name="play_market_app_link" translatable="false">https://play.google.com/store/apps/details?id=com.djonique.birdays</string>
+    <string name="rate_app">Beoordeel app</string>
+    <string name="share">Delen</string>
+    <string name="share_text">Vergeet u meestal uw familie, vrienden of collega\'s te feliciteren met hun verjaardag? Birdays zal u eraan herinneren!\n\n</string>
     <!-- Advertising -->
-    <string name="advertising">Advertising</string>
-    <string name="about_ad_title">Why do I see ads?</string>
-    <string name="about_ad_summary">The revenue from advertising goes to the development of the project and to translation into other languages. You can remove ads for free</string>
-    <string name="ad_interstitial_title">Interstitial ad</string>
-    <string name="ad_interstitial_summary">This type of ad is limited to 1 show per day. Not so often, isn\'t it?</string>
+    <string name="advertising">Reclame</string>
+    <string name="about_ad_title">Waarom zie ik advertenties?</string>
+    <string name="about_ad_summary">Advertentie-inkomsten gaan naar projectontwikkeling en vertaling naar andere talen. U kunt advertenties gratis verwijderen</string>
+    <string name="ad_interstitial_title">Interstitiële advertentie</string>
+    <string name="ad_interstitial_summary">Dit type advertentie is beperkt tot 1 per dag. Niet zo vaak, toch?</string>
     <string name="ad_banner">Banner</string>
     <!-- About app -->
-    <string name="about_app">About app</string>
-    <string name="menu_github">Source code</string>
-    <string name="github_url" translatable="false">https://github.com/Djonique/Birdays</string>
-    <string name="privacy_policy">Privacy policy</string>
-    <string name="privacy_policy_link" translatable="false">https://cdn.rawgit.com/Djonique/Birdays/380ec8cc/PRIVACY%20POLICY.html</string>
-    <string name="software_licenses">Open-source licenses</string>
-    <string name="licenses">Licenses</string>
+    <string name="about_app">Over de app</string>
+    <string name="menu_github">Broncode</string>
+    <string name="privacy_policy">Privacy beleid</string>
+    <string name="software_licenses">Open source licenties</string>
+    <string name="licenses">Licenties</string>
 
     <!-- HelpActivity -->
-    <string name="help_header">Why alarm is not working?</string>
-    <string name="help_description">Some devices have Power Saving Mode that could block app background processes or disable application from running on startup.\nTo make alarm work correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled for Birdays app (Settings > Apps > Birdays).\n\n2. If you have installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»), which could block app background processes, add Birdays to their whitelist.\n\n3. Turn off your power-saving mode or add Birdays to the whitelist (Settings > Battery > Battery optimization).\nOnly for devices running Android 6.0 (Marshmallow) or higher.</string>
-    <string name="help_whitelist">Open whitelist</string>
-    <string name="help_whitelist_error">Only for devices running Android 6.0 (Marshmallow) or higher</string>
-    <string name="help_delay_text">Please note that on some devices notifications could work with some delay.</string>
-    <string name="help_settings">Open settings</string>
-    <string name="huawei_header">For Huawei owners</string>
-    <string name="huawei_description">Open device «Settings», go to «Power saving» and open «Protected apps». Make sure that this feature is enabled for Birdays.</string>
-    <string name="samsung_header">For Samsung owners</string>
-    <string name="samsung_description">Open «Smart Manager», tap on «Battery», then on «Detail». Disable this feature for Birdays app.</string>
-    <string name="xiaomi_header">For Xiaomi owners</string>
-    <string name="xiaomi_description">Open device «Settings», go to «Battery &amp; performance», then «Manage apps battery usage», open «Choose apps», choose «No restrictions» for Birdays.</string>
-    <string name="show_button">Show</string>
-    <string name="help_email_description">If alarm still not working, please contact me at birdaysapp@gmail.com</string>
-    <string name="send_email">Send email</string>
-    <string name="birdays_email" translatable="false">birdaysapp@gmail.com</string>
-
-    <!-- LicensesActivity -->
-    <string name="butter_knife_by_jake_wharton" translatable="false">Butter Knife by Jake Wharton</string>
-    <string name="butter_knife_copyright" translatable="false">Copyright 2013 Jake Wharton</string>
-    <string name="mdtp_by_wouter_dullaert" translatable="false">MaterialDateTimePicker by Wouter Dullaert</string>
-    <string name="mdtp_copyright" translatable="false">Copyright 2015 Wouter Dullaert</string>
-    <string name="rta_by_keisuke_kobayashi" translatable="false">RateThisApp by Keisuke Kobayashi</string>
-    <string name="rta_copyright" translatable="false">Copyright 2013-2017 Keisuke Kobayashi</string>
-    <string name="apache_license" translatable="false">Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</string>
+    <string name="help_header">Waarom alarm werkt niet?</string>
+    <string name="help_description">Sommige apparaten hebben de energiebesparende modus die achtergrondapp-processen kan blokkeren of de toepassing uitschakelen die bij het opstarten wordt uitgevoerd.\nOm de taakwaarschuwing op de juiste manier uit te voeren, voert u een paar eenvoudige stappen uit:\n\n1. Zorg ervoor dat meldingen zijn ingeschakeld voor de Birdays-app (Instellingen > apps > Birdays).\n\n2. Als u taskmanager, taakmoordenaar of RAM-optimizers (bijvoorbeeld «Battery Saver», «Clean Master») hebt geïnstalleerd, die achtergrondappprocessen zouden kunnen blokkeren, voegt u Birdays toe aan hun witte lijst.\n\n3. Deactiveer de energiebesparende modus of voeg Birdays toe aan de witte lijst (Instellingen > Batterij > Batterij- en accu-optimalisatie).\nAlleen voor apparaten met Android 6.0 (Marshmallow) of hoger.</string>
+    <string name="help_whitelist">Open een witte lijst</string>
+    <string name="help_whitelist_error">Alleen voor apparaten met Android 6.0 (Marshmallow) of hoger</string>
+    <string name="help_delay_text">Houd er rekening mee dat meldingen op sommige apparaten mogelijk enige vertraging kunnen veroorzaken.</string>
+    <string name="help_settings">Open instellingen</string>
+    <string name="huawei_header">Voor Huawei eigenaren</string>
+    <string name="huawei_description">Open «Instellingen», ga naar «Energiebesparing» en open «Beschermde toepassingen». Zorg ervoor dat deze functie is ingeschakeld voor Birdays.</string>
+    <string name="samsung_header">Voor Samsung eigenaren</string>
+    <string name="samsung_description">Open «Smart Manager», klik op «Batterij» en vervolgens op «Detail». Schakel deze functie uit voor Birdays.</string>
+    <string name="xiaomi_header">Voor Xiaomi eigenaren</string>
+    <string name="xiaomi_description">Open de telefooninstellingen, ga naar «Batterij &amp; prestaties», klik vervolgens op «Energie besparen», klik op «Toepassing selecteren», selecteer«Geen beperkingen» voor Birdays.</string>
+    <string name="show_button">Weergeven</string>
+    <string name="help_email_description">Als het alarm nog steeds niet werkt, neem contact met me op birdaysapp@gmail.com</string>
+    <string name="send_email">E-mail verzenden</string>
 
     <!-- Famous persons -->
     <!-- 1 january -->
@@ -1634,7 +1576,6 @@
     <string name="bill_haley">Bill Haley</string>
     <string name="stallone">Sylvester Stallone</string>
     <string name="rush">Geoffrey Rush</string>
-    <string name="cent" translatable="false">50 Cent</string>
     <string name="eva_green">Eva Green</string>
     <!-- 7 july -->
     <string name="jacquard">Joseph Marie Jacquard</string>
@@ -2093,8 +2034,6 @@
     <string name="neckam">Alexander Neckam</string>
     <string name="mistral">Frédéric Mistral</string>
     <string name="martin_freeman">Martin Freeman</string>
-    <string name="pink" translatable="false">Pink</string>
-    <string name="wiz_khalifa" translatable="false">Wiz Khalifa</string>
     <!-- 9 september -->
     <string name="frederik_chapman">Fredrik Henrik af Chapman</string>
     <string name="galvani">Luigi Galvani</string>
@@ -2234,7 +2173,6 @@
     <string name="larry_wall">Larry Wall</string>
     <string name="welsh">Irvine Welsh</string>
     <string name="paltrow">Gwyneth Paltrow</string>
-    <string name="wayne" translatable="false">Lil Wayne</string>
     <!-- 28 september -->
     <string name="merimee">Prosper Mérimée</string>
     <string name="moissan">Henri Moissan</string>
@@ -2369,7 +2307,6 @@
     <string name="nietzsche">Friedrich Nietzsche</string>
     <string name="ilf">Ilya Ilf</string>
     <string name="puzo">Mario Puzo</string>
-    <string name="fm_2030" translatable="false">FM-2030</string>
     <!-- 16 october -->
     <string name="haller">Albrecht von Haller</string>
     <string name="wilde">Oscar Wilde</string>
@@ -2381,7 +2318,6 @@
     <string name="orlov">Grigory Orlov</string>
     <string name="saint_simon">Claude Henri de Rouvroy, comte de Saint-Simon</string>
     <string name="jordan">Robert Jordan</string>
-    <string name="eminem" translatable="false">Eminem</string>
     <string name="raikkonen">Kimi Räikkönen</string>
     <string name="felicity_jones">Felicity Jones</string>
     <!-- 18 october -->
@@ -2406,7 +2342,6 @@
     <string name="chadwick">James Chadwick</string>
     <string name="bernat">Enric Bernat</string>
     <string name="jelinek">Elfriede Jelinek</string>
-    <string name="snoop_dogg" translatable="false">Snoop Dogg</string>
     <!-- 21 october -->
     <string name="coleridge">Samuel Taylor Coleridge</string>
     <string name="nobel">Alfred Nobel</string>
@@ -2437,7 +2372,6 @@
     <string name="swarovski">Daniel Swarovski</string>
     <string name="raikin">Arkady Raikin</string>
     <string name="rooney">Wayne Rooney</string>
-    <string name="drake" translatable="false">Drake</string>
     <!-- 25 october -->
     <string name="galois">Évariste Galois</string>
     <string name="johann_strauss">Johann Strauss</string>
@@ -2728,7 +2662,6 @@
     <string name="adler">Robert Adler</string>
     <string name="bridges">Jeff Bridges</string>
     <string name="bubka">Sergey Bubka</string>
-    <string name="jay_z" translatable="false">Jay Z</string>
     <!-- 5 december -->
     <string name="tyutchev">Fyodor Tyutchev</string>
     <string name="lang">Fritz Lang</string>
@@ -2928,5 +2861,4 @@
     <string name="kingsley">Ben Kingsley</string>
     <string name="willis">Connie Willis</string>
     <string name="val_kilmer">Val Kilmer</string>
-    <string name="psy" translatable="false">PSY</string>
 </resources>

@@ -74,6 +74,13 @@
             android:key="@string/night_mode_key"
             android:title="@string/night_mode" />
         <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/start_page_entries"
+            android:entryValues="@array/start_page_entry_values"
+            android:key="@string/start_page_key"
+            android:summary="%s"
+            android:title="@string/start_page" />
+        <ListPreference
             android:defaultValue="0"
             android:entries="@array/displayed_age_entries"
             android:entryValues="@array/displayed_age_entry_values"

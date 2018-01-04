@@ -17,7 +17,6 @@
 package com.djonique.birdays.adapters;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,9 +25,7 @@ import android.widget.TextView;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.models.Person;
-import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +34,6 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
 
     private List<Person> famous;
     private Context context;
-    private FirebaseAnalytics mFirebaseAnalytics;
 
     public FamousFragmentAdapter() {
         famous = new ArrayList<>();
@@ -62,7 +58,6 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         View view = LayoutInflater.from(context).inflate(R.layout.description_famous_list_view,
                 parent, false);
         return new ListViewHolder(view);
@@ -81,7 +76,6 @@ public class FamousFragmentAdapter extends RecyclerView.Adapter<FamousFragmentAd
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mFirebaseAnalytics.logEvent(Constants.FAMOUS_PERSON_CLICKED, new Bundle());
                 Utils.openBrowser(context, context.getString(R.string.google_search) + name);
             }
         });

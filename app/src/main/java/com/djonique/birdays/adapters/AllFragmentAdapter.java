@@ -19,7 +19,6 @@ package com.djonique.birdays.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -37,7 +36,6 @@ import com.djonique.birdays.models.Person;
 import com.djonique.birdays.models.Separator;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +61,6 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private List<Item> items;
     private AllFragment allFragment;
     private Context context;
-    private FirebaseAnalytics mFirebaseAnalytics;
     private String displayedAge;
 
     public AllFragmentAdapter(AllFragment allFragment) {
@@ -163,7 +160,6 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         displayedAge = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(Constants.DISPLAYED_AGE_KEY, "0");
         switch (viewType) {
@@ -220,7 +216,6 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    logEvent();
                     allFragment.startActivity(new Intent(context, DetailActivity.class).
                             putExtra(Constants.TIME_STAMP, person.getTimeStamp()));
                     if (context instanceof MainActivity) {
@@ -274,12 +269,6 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         else if (age >= 60 && age < 70) colorResId = R.color.age7;
         else colorResId = R.color.age8;
         return colorResId;
-    }
-
-    private void logEvent() {
-        Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, Constants.DETAIL_ACTIVITY_TAG);
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, params);
     }
 
     @Override

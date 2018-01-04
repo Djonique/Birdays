@@ -28,8 +28,8 @@
     <string name="all">Todos</string>
     <string name="famous">Famosos</string>
     <string name="age">Edad:\u0020</string>
-    <string name="happy_birthday">¡Feliz cumpleaños!</string>
-    <string name="web_search_error">Unable to perform action, please install web browser</string>
+    <string name="happy_birthday">¡Feliz Cumpleaños!</string>
+    <string name="web_search_error">Incapaz de realizar la acción, por favor, instale el navegador web</string>
     <string name="delete_record_text">¿Seguro que quieres borrar esta entrada?:\u0020</string>
     <string name="record_deleted">Entrada eliminada</string>
     <string name="undo">Deshacer</string>
@@ -73,7 +73,7 @@
     <string name="today">Hoy</string>
     <string name="days_since_birth">Días desde su nacimiento</string>
     <string name="zodiac_sign">Signo del Zodiaco</string>
-    <string name="season_picture">Season picture</string>
+    <string name="season_picture">Foto de temporada</string>
     <string name="calendar">Calendario</string>
     <string name="call">Llamar</string>
     <string name="chat">Chat</string>
@@ -102,10 +102,10 @@
     <string name="pisces">Piscis</string>
 
     <!-- SettingsActivity -->
-    <string name="optimization_enabled">Optimization enabled!</string>
-    <string name="optimization_description">\nStarting from version 6.0, Android introduced power-saving mode Doze that manage apps behavior by deferring background CPU.\n\nTo make app work correctly disable optimization for Birdays.</string>
-    <string name="do_not_show_again">Do not show again</string>
-    <string name="disable_button">Disable</string>
+    <string name="optimization_enabled">¡Optimización activada!</string>
+    <string name="optimization_description">\nEmpezando de la versión 6.0, Android presentó ahorro de energía modo Doze que administra el comportamiento de aplicaciones al aplazar fondo CPU.\n\nPara hacer que el trabajo de la aplicación funcione correctamente deshabilite la optimización para Birdays.</string>
+    <string name="do_not_show_again">No volver a mostrar</string>
+    <string name="disable_button">Deshabilitar</string>
     <!-- Notifications -->
     <string name="notifications">Notificaciones</string>
     <string name="allow_notification">Permitir que la app te envíe notificaciones de próximos cumpleaños</string>
@@ -136,21 +136,29 @@
     <string name="help">Ayuda</string>
     <string name="tap_here">Toca aquí si no quieres recibir notificaciones</string>
     <!-- Synchronization and backup -->
-    <string name="sync_and_backup">Synchronization and backup</string>
+    <string name="sync_and_backup">Sincronización y copia de seguridad</string>
     <string name="contacts_import_title">Importar contactos</string>
     <string name="contacts_import_summary">Pulsa aquí para importar los contactos de tu dispositivo (supports ISO 8601)</string>
-    <string name="export_records">Export records (Beta)</string>
-    <string name="export_records_summary">Create the XML file with backup</string>
-    <string name="ext_storage_error">External storage is not available</string>
-    <string name="exporting_records">Exporting records…</string>
-    <string name="backup_finished">Backup finished, XML file in the\u0020</string>
-    <string name="recover_records">Recover records (Beta)</string>
-    <string name="recover_records_summary">Choose the XML file with backup</string>
-    <string name="recover_records_error">Unable to perform action, please install file manager</string>
-    <string name="records_recovered">Records recovered</string>
+    <string name="export_records">Exportar de registros (Beta)</string>
+    <string name="export_records_summary">Crear el archivo XML con la copia de seguridad</string>
+    <string name="ext_storage_error">El almacenamiento externo no está disponible</string>
+    <string name="exporting_records">Exportando registros…</string>
+    <string name="backup_finished">Copia de seguridad archivo XML terminado, en\u0020</string>
+    <string name="recover_records">Recuperar registros (Beta)</string>
+    <string name="recover_records_summary">Seleccione el archivo XML con la copia de seguridad</string>
+    <string name="recover_records_error">Incapaz de realizar la acción, por favor, instale el administrador de archivos</string>
+    <string name="records_recovered">Registros recuperados</string>
     <!-- General -->
     <string name="general">General</string>
     <string name="night_mode">Modo nocturno</string>
+    <string name="start_page">Página de inicio</string>
+
+    <string-array name="start_page_entries">
+        <item>Mes actual</item>
+        <item>Todos</item>
+        <item>Famosos</item>
+    </string-array>
+
     <string name="displayed_age">Edad mostrada</string>
 
     <string-array name="displayed_age_entries">
@@ -161,7 +169,6 @@
     <string name="displayed_age_changes">Debes reiniciar la apliación para que los cambios surtan efecto</string>
     <string name="restart_now">Reiniciar ahora</string>
     <string name="later">Después</string>
-    <string name="rate_app">Valorar la app</string>
     <string name="share_app">Compartir app</string>
     <string name="share_text">Sueles olvidar felicitar a tus familiares, amigos o compañeros en su cumpleaños? ¡Birdays te los recordará!\n\n</string>
     <!-- Advertising -->
@@ -175,22 +182,22 @@
     <string name="about_app">Acerca de la app</string>
     <string name="menu_github">Código fuente</string>
     <string name="privacy_policy">Política de privacidad</string>
-    <string name="software_licenses">Licencias de software libre</string>
+    <string name="software_licenses">Licencias de código abierto</string>
     <string name="licenses">Licencias</string>
 
     <!-- HelpActivity -->
     <string name="help_header">¿Por qué no funciona la alarma?</string>
-    <string name="help_description">Algunos dispositivos tienen una función de Ahorro de Batería que podría impedir que los procesos en segundo plano de la aplicación se inicien al endenderse el dispositivo.\nPara hacer que la alarma funcione correctamente, sigue los pasos indicados:\n\n1. Asegúrate de que las notificaciones están permitidas para la app de Birdays (Ajustes > Aplicaciones > Birdays).\n\n2. Si tienes instalados gestores de tareas, finalizadores de tareas u optimizadores de RAM (p.ej. «Battery Saver», «Clean Master»), que pueden bloquear procesos en segundo plano, añade Birdays a su lista de excepciones.\n\n3. Deshabilita la función de Ahorro de Batería o añade Birdays a su lista de excepciones (Ajustes > Batería > Optimización de batería).\n</string>
-    <string name="help_whitelist">Open whitelist</string>
-    <string name="help_whitelist_error">Only for devices running Android 6.0 (Marshmallow) or higher</string>
+    <string name="help_description">Algunos dispositivos tienen una función de Ahorro de Batería que podría impedir que los procesos en segundo plano de la aplicación se inicien al endenderse el dispositivo.\nPara hacer que la alarma funcione correctamente, sigue los pasos indicados:\n\n1. Asegúrate de que las notificaciones están permitidas para la app de Birdays (Ajustes > Aplicaciones > Birdays).\n\n2. Si tienes instalados gestores de tareas, finalizadores de tareas u optimizadores de RAM (p.ej. «Battery Saver», «Clean Master»), que pueden bloquear procesos en segundo plano, añade Birdays a su lista de excepciones.\n\n3. Deshabilita la función de Ahorro de Batería o añade Birdays a su lista de excepciones (Ajustes > Batería > Optimización de batería).\nSólo para dispositivos que ejecutan Android 6.0 (Marshmallow) o superior.\n</string>
+    <string name="help_whitelist">Abrir la lista blanca</string>
+    <string name="help_whitelist_error">Sólo para dispositivos que ejecutan Android 6.0 (Marshmallow) o superior</string>
     <string name="help_delay_text">Por favor, ten en cuenta que las notificaciones pueden tener un pequeño retraso en algunos dispositivos.</string>
     <string name="help_settings">Abrir configuración</string>
     <string name="huawei_header">Para propietarios de Huawei</string>
     <string name="huawei_description">Abre «Ajustes», ve a «Ahorro de energía» y abre «Aplicaciones protegidas». Asegúrate de que esta característica está habilitada para Birdays.</string>
     <string name="samsung_header">Para propietarios de Samsung</string>
     <string name="samsung_description">Abre «Smart Manager», pulsa en «Batería», después en «Detalle». Deshabilita esta cararacterística para Birdays.</string>
-    <string name="xiaomi_header">For Xiaomi owners</string>
-    <string name="xiaomi_description">Open device «Ajustes», go to «Batería y rendimiento», then «Gestión de uso de la batería en aplicaciones», open «Seleccionar aplicaciones», choose «Sin restricciones» for Birdays.</string>
+    <string name="xiaomi_header">Para propietarios de Xiaomi</string>
+    <string name="xiaomi_description">Abre «Ajustes», ve a «Batería y rendimiento», «Gestión de uso de la batería en aplicaciones», y abre «Seleccionar aplicaciones», elija «Sin restricciones» para Birdays.</string>
     <string name="show_button">Mostrar</string>
     <string name="help_email_description">Si la alarma sigue sin funcionar, por favor, contáctame en birdaysapp@gmail.com</string>
     <string name="send_email">Enviar email</string>
@@ -2853,4 +2860,5 @@
     <string name="kingsley">Ben Kingsley</string>
     <string name="willis">Connie Willis</string>
     <string name="val_kilmer">Val Kilmer</string>
+    <string name="rate_app">Califícanos</string>
 </resources>

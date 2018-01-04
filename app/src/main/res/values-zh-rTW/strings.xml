@@ -17,183 +17,191 @@
 -->
 
 <resources>
-    <string name="build_version">Versjon</string>
+    <string name="build_version">生成版本</string>
 
     <!-- MainActivity -->
-    <string name="loading_contacts">Laster opp kontakter…</string>
-    <string name="contacts_uploaded">Kontakter opplastet</string>
-    <string name="loading_contacts_error">Kunne ikke importere kontakter, ugyldig datoformat</string>
-    <string name="permission_required">Tillatelse kreves for å importere kontakter</string>
-    <string name="snackbar_allow_text">Tillat</string>
-    <string name="all">Alle</string>
-    <string name="famous">Berømte</string>
-    <string name="age">Alder:\u0020</string>
-    <string name="happy_birthday">Gratulerer med dagen!</string>
-    <string name="web_search_error">Kunne ikke utføre handling, vennligst installér nettleseren</string>
-    <string name="delete_record_text">Er du sikker på at du vil slette denne lappen:\u0020</string>
-    <string name="record_deleted">Lapp slettet</string>
-    <string name="undo">Angre</string>
+    <string name="loading_contacts">正在載入連絡人…</string>
+    <string name="contacts_uploaded">已上載連絡人</string>
+    <string name="loading_contacts_error">無法導入連絡人, 非標準日期格式</string>
+    <string name="permission_required">導入連絡人需要許可權</string>
+    <string name="snackbar_allow_text">允許</string>
+    <string name="all">全部</string>
+    <string name="famous">著名</string>
+    <string name="age">當前年齡:\u0020</string>
+    <string name="happy_birthday">生日快樂！</string>
+    <string name="web_search_error">無法執行操作，請安裝網頁瀏覽器</string>
+    <string name="delete_record_text">你確定要刪除這條記錄：\u0020</string>
+    <string name="record_deleted">記錄已刪除</string>
+    <string name="undo">撤銷</string>
 
     <string-array name="months">
-        <item>Januar</item>
-        <item>Februar</item>
-        <item>Mars</item>
-        <item>April</item>
-        <item>Mai</item>
-        <item>Juni</item>
-        <item>Juli</item>
-        <item>August</item>
-        <item>September</item>
-        <item>Oktober</item>
-        <item>November</item>
-        <item>Desember</item>
+        <item>一月</item>
+        <item>二月</item>
+        <item>三月</item>
+        <item>四月</item>
+        <item>五月</item>
+        <item>六月</item>
+        <item>七月</item>
+        <item>八月</item>
+        <item>九月</item>
+        <item>十月</item>
+        <item>十一月</item>
+        <item>十二月</item>
     </string-array>
 
     <!-- Menu -->
-    <string name="action_sync">Synkronisering</string>
-    <string name="action_settings">Innstillinger</string>
-    <string name="action_delete">Slett</string>
+    <string name="action_sync">同步</string>
+    <string name="action_settings">設置</string>
+    <string name="action_delete">刪除</string>
 
     <!-- NewPersonDialogFragment -->
-    <string name="new_record">Ny lapp</string>
-    <string name="add_from_contacts">Legg til fra kontakter</string>
-    <string name="open_contacts_error">Kunne ikke utføre handling grunnet enhetsfunksjoner</string>
-    <string name="name">Navn</string>
-    <string name="error_hint">Vennligst skriv inn navnet</string>
-    <string name="phone_number">Telefonnummer</string>
-    <string name="pick_date">Velg dato</string>
-    <string name="wrong_date">Feil dato</string>
-    <string name="year_unknown">Jeg kan ikke året</string>
-    <string name="cancel_button">Avbryt</string>
-    <string name="record_added">Lapp lagt til</string>
+    <string name="new_record">新記錄</string>
+    <string name="add_from_contacts">添加聯絡人</string>
+    <string name="open_contacts_error">由於設備功能無法執行操作</string>
+    <string name="name">名稱</string>
+    <string name="error_hint">請輸入名稱</string>
+    <string name="phone_number">電話號碼</string>
+    <string name="pick_date">選擇日期</string>
+    <string name="wrong_date">錯誤的日期</string>
+    <string name="year_unknown">我不知道年份</string>
+    <string name="cancel_button">取消</string>
+    <string name="record_added">添加的記錄</string>
 
     <!-- DetailActivity -->
-    <string name="birthday">Bursdag</string>
-    <string name="days_left">Dager til neste bursdag</string>
-    <string name="today">I dag</string>
-    <string name="days_since_birth">Dager siden fødsel</string>
-    <string name="zodiac_sign">Stjernetegn</string>
-    <string name="season_picture">Årstidbilde</string>
-    <string name="calendar">Kalender</string>
-    <string name="call">Ring</string>
-    <string name="chat">Chat</string>
-    <string name="born_on_this_day">Født på denne dagen</string>
+    <string name="birthday">生日</string>
+    <string name="days_left">天直到下個生日</string>
+    <string name="today">今日</string>
+    <string name="days_since_birth">出生後的天數</string>
+    <string name="zodiac_sign">星座</string>
+    <string name="season_picture">季節圖片</string>
+    <string name="calendar">日曆</string>
+    <string name="call">通話</string>
+    <string name="chat">聊天</string>
+    <string name="born_on_this_day">出生在這一天</string>
 
     <!-- EditActivity -->
-    <string name="editing_label">Redigering</string>
-    <string name="record_edited">Lapp redigert</string>
+    <string name="editing_label">編輯中</string>
+    <string name="record_edited">記錄已編輯</string>
 
     <!-- Alarm -->
-    <string name="security_exception">SecurityException, Samsung-enheter begrenser antallet numre og alarmer du kan registrere</string>
-    <string name="channel_name">Bursdager</string>
+    <string name="security_exception">SecurityException，三星設備限制您可以註冊的警報數量</string>
+    <string name="channel_name">生日</string>
 
     <!-- Zodiac signs -->
-    <string name="aries">Væren</string>
-    <string name="taurus">Tyren</string>
-    <string name="gemini">Tvillingene</string>
-    <string name="cancer">Krepsen</string>
-    <string name="leo">Løven</string>
-    <string name="virgo">Jomfruen</string>
-    <string name="libra">Vekten</string>
-    <string name="scorpio">Skorpionen</string>
-    <string name="sagittarius">Skytten</string>
-    <string name="capricorn">Steinbukken</string>
-    <string name="aquarius">Vannmannen</string>
-    <string name="pisces">Fiskene</string>
+    <string name="aries">白羊座</string>
+    <string name="taurus">金牛</string>
+    <string name="gemini">雙子</string>
+    <string name="cancer">巨蟹星座</string>
+    <string name="leo">獅子</string>
+    <string name="virgo">室女星座</string>
+    <string name="libra">天秤座</string>
+    <string name="scorpio">天蠍座</string>
+    <string name="sagittarius">人馬星座</string>
+    <string name="capricorn">魔羯座</string>
+    <string name="aquarius">寶瓶星座</string>
+    <string name="pisces">雙魚星座</string>
 
     <!-- SettingsActivity -->
-    <string name="optimization_enabled">Optimalisering aktivert!</string>
-    <string name="optimization_description">\nFra og med versjon 6.0, introduserte Android strømsparingsmodusen Doze som holder styr på appers oppførsel ved å utsette bakgrunns-CPU.\n\nFor å få appen til å virke normalt, deaktivér optimalisering av Birdays.</string>
-    <string name="do_not_show_again">Ikke vis dette igjen</string>
-    <string name="disable_button">Deaktivér</string>
+    <string name="optimization_enabled">已啟用優化!</string>
+    <string name="optimization_description">\n從6.0版開始，Android推出節電模式Doze，通過推遲後台CPU來管理應用程序行為。\n\n要使應用程序正常工作，請停用Birdays的優化。</string>
+    <string name="do_not_show_again">不要再顯示</string>
+    <string name="disable_button">禁用</string>
     <!-- Notifications -->
-    <string name="notifications">Varslinger</string>
-    <string name="allow_notification">Tillat appen å sende varslinger om kommende bursdager</string>
-    <string name="notifications_time">Varslingsklokkeslett</string>
-    <string name="additional_notification">Ytterlig varsling</string>
+    <string name="notifications">通知</string>
+    <string name="allow_notification">允許應用程式發送即將到來的生日通知</string>
+    <string name="notifications_time">通知時間</string>
+    <string name="additional_notification">附加通知</string>
 
     <string-array name="additional_notification_entries">
-        <item>Aldri</item>
-        <item>1 dag før</item>
-        <item>2 dager før</item>
-        <item>3 dager før</item>
-        <item>1 uke før</item>
-        <item>2 uker før</item>
+        <item>從來沒有</item>
+        <item>1天前</item>
+        <item>2天前</item>
+        <item>3天前</item>
+        <item>1周前</item>
+        <item>2周前</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
-        <item>I dag</item>
-        <item>I morgen</item>
-        <item>Om 2 dager</item>
-        <item>Om 3 dager</item>
-        <item>Om 1 uke</item>
-        <item>Om 2 uker</item>
+        <item>今日</item>
+        <item>明天</item>
+        <item>2 天內</item>
+        <item>3 天內</item>
+        <item>1週內</item>
+        <item>2周內</item>
     </string-array>
 
-    <string name="notification_tone">Varslingstone</string>
-    <string name="ringtone_summary">Velg en tone til varslingen. Standard er tonen fra enhetsinnstillingene</string>
-    <string name="silent">Ingen</string>
-    <string name="help">Hjelp</string>
-    <string name="tap_here">Trykk her hvis du ikke mottar varslinger</string>
+    <string name="notification_tone">通知鈴聲</string>
+    <string name="ringtone_summary">選擇聲音進行通知。 默認情況下是使用來自設備設置的音調</string>
+    <string name="silent">無</string>
+    <string name="help">説明</string>
+    <string name="tap_here">如果沒有收到通知, 請點擊此處</string>
     <!-- Synchronization and backup -->
-    <string name="sync_and_backup">Synkronisering og sikkerhetskopiering</string>
-    <string name="contacts_import_title">Importér kontakter</string>
-    <string name="contacts_import_summary">Trykk her for å importere kontaktene fra enheten din (støtter ISO 8601)</string>
-    <string name="export_records">Overfør lapper (Beta)</string>
-    <string name="export_records_summary">Lag XML-filen med sikkerhetskopi</string>
-    <string name="ext_storage_error">Ekstern lagring er ikke tilgjengelig</string>
-    <string name="exporting_records">Overfører lapper…</string>
-    <string name="backup_finished">Sikkerhetskopi fullført, XML-filen er i\u0020</string>
-    <string name="recover_records">Gjenopprett lapper (Beta)</string>
-    <string name="recover_records_summary">Velg XML-filen med sikkerhetskopi</string>
-    <string name="recover_records_error">Kunne ikke utføre handling, vennligst installér filbehandleren</string>
-    <string name="records_recovered">Lapper gjenopprettet</string>
+    <string name="sync_and_backup">同步和備份</string>
+    <string name="contacts_import_title">匯入聯絡人</string>
+    <string name="contacts_import_summary">點擊此處從設備中導入連絡人 (支援 ISO 8601)</string>
+    <string name="export_records">匯出記錄 (Beta)</string>
+    <string name="export_records_summary">使用備份創建 XML 檔</string>
+    <string name="ext_storage_error">外部存儲不可用</string>
+    <string name="exporting_records">正在匯出記錄…</string>
+    <string name="backup_finished">備份完成, 中的 XML 檔\u0020</string>
+    <string name="recover_records">恢復記錄 (Beta)</string>
+    <string name="recover_records_summary">選擇帶有備份的 XML 檔</string>
+    <string name="recover_records_error">無法執行操作，請安裝文件管理器</string>
+    <string name="records_recovered">恢復的記錄</string>
     <!-- General -->
-    <string name="general">Generelt</string>
-    <string name="night_mode">Nattmodus</string>
-    <string name="displayed_age">Vist alder</string>
+    <string name="general">一般</string>
+    <string name="night_mode">夜間模式</string>
+    <string name="start_page">首頁</string>
+
+    <string-array name="start_page_entries">
+        <item>這個月</item>
+        <item>全部</item>
+        <item>著名</item>
+    </string-array>
+
+    <string name="displayed_age">顯示年齡</string>
 
     <string-array name="displayed_age_entries">
-        <item>Nåværende</item>
-        <item>Fremtidige</item>
+        <item>目前</item>
+        <item>將來</item>
     </string-array>
 
-    <string name="displayed_age_changes">Du må omstarte appen for å merke disse effektene</string>
-    <string name="restart_now">Omstart nå</string>
-    <string name="later">Senere</string>
-    <string name="rate_app">Vurdér appen</string>
-    <string name="share">Del</string>
-    <string name="share_text">Glemmer du å gratulere slektninger, venner eller kolleger med dagen? Birdays vil hjelpe deg med å huske en viktig høytid!\n\n</string>
+    <string name="displayed_age_changes">您必須重新啟動應用才能使這些更改生效</string>
+    <string name="restart_now">現在重新啟動</string>
+    <string name="later">稍後</string>
+    <string name="rate_app">評價程式</string>
+    <string name="share_app">分享</string>
+    <string name="share_text">你忘記祝賀你的親戚，朋友或同事生日嗎？ Birdays會提醒你一個重要的假期！\n\n</string>
     <!-- Advertising -->
-    <string name="advertising">Reklamering</string>
-    <string name="about_ad_title">Hvorfor ser jeg annonser?</string>
-    <string name="about_ad_summary">Inntektene fra reklameringen går til utviklingen av prosjektet og oversettelse av det til andre språk. Du kan fjerne annonser helt gratis</string>
-    <string name="ad_interstitial_title">Interstitiell annonse</string>
-    <string name="ad_interstitial_summary">Denne typen annonse er begrenset til 1 visning om dagen. Ikke så ofte, eller?</string>
-    <string name="ad_banner">Banner</string>
+    <string name="advertising">廣告行銷</string>
+    <string name="about_ad_title">為什麼我會看到廣告？</string>
+    <string name="about_ad_summary">廣告收入用於項目的開發和翻譯成其他語言。 您可以免費移除廣告</string>
+    <string name="ad_interstitial_title">間隙廣告</string>
+    <string name="ad_interstitial_summary">這種類型的廣告僅限於每天1場。不是經常的, 不是嗎？</string>
+    <string name="ad_banner">橫幅</string>
     <!-- About app -->
-    <string name="about_app">Om appen</string>
-    <string name="menu_github">Kildekode</string>
-    <string name="privacy_policy">Personvern</string>
-    <string name="software_licenses">Fri programvare-lisenser</string>
-    <string name="licenses">Lisenser</string>
+    <string name="about_app">關於應用程式</string>
+    <string name="menu_github">原始碼</string>
+    <string name="privacy_policy">隱私權政策</string>
+    <string name="software_licenses">免費軟體許可證</string>
+    <string name="licenses">許可證</string>
 
     <!-- HelpActivity -->
-    <string name="help_header">Hvorfor virker ikke alarmen?</string>
-    <string name="help_description">Noen enheter har en strømsparingsmodus som kan blokkere appens bakgrunnsaktivitet eller hindre den fra å kjøre ved oppstart.\nFor å få alarmen til å virke ordentlig, utfør de enkle stegene under:\n\n1. Sørg for at varslinger er skrudd på for Birdays-appen (Innstillinger > apper > Birdays).\n\n2. Hvis du har installert oppgavebehandling, oppdragsmorder eller RAM-optimalisering (f.eks. «Battery Saver», «Clean Master»), noe som også kan blokkere bakgrunnsaktivitet, legg Birdays til hvitelisten deres.\n\n3. Skru av strømsparingsmodusen din eller legg Birdays til hvitelisten (Innstillinger > batteri > batterioptimalisering).\nKun for enheter som kjører Android 6.0 (Marshmallow) eller høyere.</string>
-    <string name="help_whitelist">Åpne hviteliste</string>
-    <string name="help_whitelist_error">Kun for enheter som kjører Android 6.0 (Marshmallow) eller høyere</string>
-    <string name="help_delay_text">Vennligst vær oppmerksom på at varslinger kan virke med litt forsinkelse på noen enheter.</string>
-    <string name="help_settings">Åpne innstillinger</string>
-    <string name="huawei_header">For Huawei-brukere</string>
-    <string name="huawei_description">Åpne enhets-«innstillinger», gå til «strømsparing» og åpne «beskyttede apper». Sørg for at denne funksjonen er aktivert for Birdays.</string>
-    <string name="samsung_header">For Samsung-brukere</string>
-    <string name="samsung_description">Åpne «oppgavebehandling», trykk på «batteri», så «detaljer». Deaktivér denne funksjonen for Birdays-appen.</string>
-    <string name="xiaomi_header">For Xiaomi-brukere</string>
-    <string name="xiaomi_description">Åpne enhets-«innstillinger», gå til «batteri &amp; ytelse», så «behandle appers batteriforbruk», åpne «velg apper», velg «ingen restriksjoner» for Birdays.</string>
-    <string name="show_button">Vis</string>
-    <string name="help_email_description">Hvis alarmen ikke virker, vennligst kontakt meg via birdaysapp@gmail.com (Engelsk)</string>
-    <string name="send_email">Send e-post</string>
+    <string name="help_header">為什麼警報不工作？</string>
+    <string name="help_description">某些設備具有省電模式，可以阻止應用程序後台進程或禁止應用程序在啟動時運行。\n要使鬧鍾正常工作，請執行以下幾個簡單步驟：\n\n1。 確保已為Birdays應用啟用通知（設置 > 應用 >Birdays）。\n\n2。 如果您已經安裝了任務管理器，任務殺手或RAM優化器（例如“節電器”，“清潔大師”）， 可能會阻止應用程序後台進程， 請將Birdays添加到白名單中。\n \n3。 關閉省電模式或將Birdays添加到白名單（設置 > 電池 > 電池優化）。\n 僅適用於運行Android 6.0（Marshmallow）或更高版本的設備。</string>
+    <string name="help_whitelist">打開白名單</string>
+    <string name="help_whitelist_error">僅適用於運行Android 6.0（Marshmallow）或更高版本的設備</string>
+    <string name="help_delay_text">請注意，在某些設備上，通知可能會延遲一段時間。</string>
+    <string name="help_settings">開啟設定</string>
+    <string name="huawei_header">華為的機主</string>
+    <string name="huawei_description">打開設備«設置»，進入«節電»並打開«受保護的應用程序»。 確保為 Birdays 啟用此功能。</string>
+    <string name="samsung_header">三星機主</string>
+    <string name="samsung_description">打開 «Smart Manager», 點擊«電池»， 然後點擊«細節»。 為Birdays應用停用此功能。</string>
+    <string name="xiaomi_header">小米機主</string>
+    <string name="xiaomi_description">打開設備«設置»， 進入«電池&amp;性能»， 然後 «管理應用程序的電池使用情況»， 打開«選擇應用程序»，選擇«沒有限制»的Birdays</string>
+    <string name="show_button">顯示</string>
+    <string name="help_email_description">如果鬧鐘還沒有工作，請通過 birdaysapp@gmail.com 與我聯繫</string>
+    <string name="send_email">傳送電子郵件</string>
 
     <!-- Famous persons -->
     <!-- 1 january -->
