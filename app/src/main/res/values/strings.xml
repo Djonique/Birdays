@@ -203,12 +203,14 @@
 
     <string-array name="displayed_age_entries">
         <item>Current</item>
+        <item>Turning/Turned</item>
         <item>Future</item>
     </string-array>
 
     <string-array name="displayed_age_entry_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
+        <item>CURRENT</item>
+        <item>TURNING</item>
+        <item>FUTURE</item>
     </string-array>
 
     <string name="displayed_age_changes">You must restart an app for these changes to take effect</string>

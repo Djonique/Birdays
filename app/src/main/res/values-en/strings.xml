@@ -163,6 +163,7 @@
 
     <string-array name="displayed_age_entries">
         <item>Current</item>
+        <item>Turning/Turned</item>
         <item>Future</item>
     </string-array>
 

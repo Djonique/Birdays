@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.djonique.birdays.R;
+import com.djonique.birdays.models.DisplayedAge;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.widget.WidgetProvider;
 
@@ -90,6 +91,44 @@ public class Utils {
     }
 
     /**
+     * Determines the way the age should be displayed.
+     * @param candidate
+     * @return
+     */
+    public static DisplayedAge getDisplayedAge(String candidate) {
+        //need to support both indexes and strings
+        DisplayedAge[] values = DisplayedAge.values();
+        for (DisplayedAge value : values) {
+            if (candidate.equals(value.name())) {
+                return value;
+            }
+        }
+        try {
+            //0 current, 1 future
+            Integer index = Integer.parseInt(candidate);
+            return values[index];
+        }
+        catch (NumberFormatException nfex)
+        {
+            //pass
+        }
+
+        return DisplayedAge.CURRENT;
+    }
+
+    public static int getAge(long date, DisplayedAge displayedAge) {
+        switch (displayedAge) {
+            default:
+            case CURRENT:
+                return getCurrentAge(date);
+            case TURNING:
+                return getTurningAge(date);
+            case FUTURE:
+                return getFutureAge(date);
+        }
+    }
+
+    /**
      * Returns current age
      */
     public static int getCurrentAge(long date) {
@@ -102,6 +141,11 @@ public class Utils {
             age--;
         }
         return age;
+    }
+
+    public static int getTurningAge(long date) {
+        dayOfBirthday.setTimeInMillis(date);
+        return getYear(today) - getYear(dayOfBirthday);
     }
 
     /**

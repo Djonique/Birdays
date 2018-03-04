@@ -31,6 +31,7 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.fragments.AllFragment;
+import com.djonique.birdays.models.DisplayedAge;
 import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.models.Separator;
@@ -41,27 +42,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    private static final int TYPE_PERSON = 0;
-    private static final int TYPE_SEPARATOR = 1;
-
-    public boolean containsSeparatorJanuary;
-    public boolean containsSeparatorFebruary;
-    public boolean containsSeparatorMarch;
-    public boolean containsSeparatorApril;
-    public boolean containsSeparatorMay;
-    public boolean containsSeparatorJune;
-    public boolean containsSeparatorJuly;
-    public boolean containsSeparatorAugust;
-    public boolean containsSeparatorSeptember;
-    public boolean containsSeparatorOctober;
-    public boolean containsSeparatorNovember;
-    public boolean containsSeparatorDecember;
+    public boolean[] containedSeparators = new boolean[12]; //all months
 
     private List<Item> items;
     private AllFragment allFragment;
     private Context context;
-    private String displayedAge;
+    private DisplayedAge displayedAge;
 
     public AllFragmentAdapter(AllFragment allFragment) {
         this.allFragment = allFragment;
@@ -117,57 +103,20 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     private void checkSeparator(int type) {
-        switch (type) {
-            case Separator.TYPE_JANUARY:
-                containsSeparatorJanuary = false;
-                break;
-            case Separator.TYPE_FEBRUARY:
-                containsSeparatorFebruary = false;
-                break;
-            case Separator.TYPE_MARCH:
-                containsSeparatorMarch = false;
-                break;
-            case Separator.TYPE_APRIL:
-                containsSeparatorApril = false;
-                break;
-            case Separator.TYPE_MAY:
-                containsSeparatorMay = false;
-                break;
-            case Separator.TYPE_JUNE:
-                containsSeparatorJune = false;
-                break;
-            case Separator.TYPE_JULY:
-                containsSeparatorJuly = false;
-                break;
-            case Separator.TYPE_AUGUST:
-                containsSeparatorAugust = false;
-                break;
-            case Separator.TYPE_SEPTEMBER:
-                containsSeparatorSeptember = false;
-                break;
-            case Separator.TYPE_OCTOBER:
-                containsSeparatorOctober = false;
-                break;
-            case Separator.TYPE_NOVEMBER:
-                containsSeparatorNovember = false;
-                break;
-            case Separator.TYPE_DECEMBER:
-                containsSeparatorDecember = false;
-                break;
-        }
+        containedSeparators[type] = false;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
-        displayedAge = PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(Constants.DISPLAYED_AGE_KEY, "0");
-        switch (viewType) {
-            case TYPE_PERSON:
+        displayedAge = Utils.getDisplayedAge(PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(Constants.DISPLAYED_AGE_KEY, DisplayedAge.CURRENT.name()));
+        switch (ItemType.values()[viewType]) {
+            case PERSON:
                 View view = LayoutInflater.from(context).inflate(R.layout.description_list_view,
                         parent, false);
                 return new ListViewHolder(view);
-            case TYPE_SEPARATOR:
+            case SEPARATOR:
                 View separator = LayoutInflater.from(context).inflate(R.layout.model_separator,
                         parent, false);
                 return new SeparatorViewHolder(separator);
@@ -198,7 +147,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 listViewHolder.tvDate.setText(Utils.getDateWithoutYear(date));
             } else {
                 listViewHolder.tvAge.setVisibility(View.VISIBLE);
-                final int age = (displayedAge.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date));
+                final int age = Utils.getAge(date, displayedAge);
                 listViewHolder.tvDate.setText(Utils.getDate(date));
                 GradientDrawable ageCircle = (GradientDrawable) listViewHolder.tvAge.getBackground();
                 ageCircle.setColor(ContextCompat.getColor(context, getAgeCircleColor(age)));
@@ -239,19 +188,9 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (getItemCount() != 0) {
             items = new ArrayList<>();
             notifyDataSetChanged();
-
-            containsSeparatorJanuary = false;
-            containsSeparatorFebruary = false;
-            containsSeparatorMarch = false;
-            containsSeparatorApril = false;
-            containsSeparatorMay = false;
-            containsSeparatorJune = false;
-            containsSeparatorJuly = false;
-            containsSeparatorAugust = false;
-            containsSeparatorSeptember = false;
-            containsSeparatorOctober = false;
-            containsSeparatorNovember = false;
-            containsSeparatorDecember = false;
+            for (int i = 0; i < containedSeparators.length; i++) {
+                containedSeparators[i] = false;
+            }
         }
     }
 
@@ -273,7 +212,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        return getItem(position).isPerson() ? TYPE_PERSON : TYPE_SEPARATOR;
+        return getItem(position).isPerson() ? ItemType.PERSON.ordinal() : ItemType.SEPARATOR.ordinal();
     }
 
     private static class ListViewHolder extends RecyclerView.ViewHolder {

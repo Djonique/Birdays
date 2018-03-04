@@ -137,7 +137,8 @@ public class Person implements Item, Comparable<Person> {
             return false;
         }
         Person person = (Person) obj;
-        return name.equalsIgnoreCase(person.getName());
+        return this.name.equalsIgnoreCase(person.name) &&
+                this.date == person.date;
     }
 
     @Override

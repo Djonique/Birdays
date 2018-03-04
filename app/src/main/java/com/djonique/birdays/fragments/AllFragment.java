@@ -152,80 +152,11 @@ public class AllFragment extends Fragment {
     }
 
     private Separator getSeparator(Person person) {
+        int month = person.getMonth();
         Separator separator = null;
-        switch (person.getMonth()) {
-            case Calendar.JANUARY:
-                if (!adapter.containsSeparatorJanuary) {
-                    adapter.containsSeparatorJanuary = true;
-                    separator = new Separator(Separator.TYPE_JANUARY);
-                }
-                break;
-            case Calendar.FEBRUARY:
-                if (!adapter.containsSeparatorFebruary) {
-                    adapter.containsSeparatorFebruary = true;
-                    separator = new Separator(Separator.TYPE_FEBRUARY);
-                }
-                break;
-            case Calendar.MARCH:
-                if (!adapter.containsSeparatorMarch) {
-                    adapter.containsSeparatorMarch = true;
-                    separator = new Separator(Separator.TYPE_MARCH);
-                }
-                break;
-            case Calendar.APRIL:
-                if (!adapter.containsSeparatorApril) {
-                    adapter.containsSeparatorApril = true;
-                    separator = new Separator(Separator.TYPE_APRIL);
-                }
-                break;
-            case Calendar.MAY:
-                if (!adapter.containsSeparatorMay) {
-                    adapter.containsSeparatorMay = true;
-                    separator = new Separator(Separator.TYPE_MAY);
-                }
-                break;
-            case Calendar.JUNE:
-                if (!adapter.containsSeparatorJune) {
-                    adapter.containsSeparatorJune = true;
-                    separator = new Separator(Separator.TYPE_JUNE);
-                }
-                break;
-            case Calendar.JULY:
-                if (!adapter.containsSeparatorJuly) {
-                    adapter.containsSeparatorJuly = true;
-                    separator = new Separator(Separator.TYPE_JULY);
-                }
-                break;
-            case Calendar.AUGUST:
-                if (!adapter.containsSeparatorAugust) {
-                    adapter.containsSeparatorAugust = true;
-                    separator = new Separator(Separator.TYPE_AUGUST);
-                }
-                break;
-            case Calendar.SEPTEMBER:
-                if (!adapter.containsSeparatorSeptember) {
-                    adapter.containsSeparatorSeptember = true;
-                    separator = new Separator(Separator.TYPE_SEPTEMBER);
-                }
-                break;
-            case Calendar.OCTOBER:
-                if (!adapter.containsSeparatorOctober) {
-                    adapter.containsSeparatorOctober = true;
-                    separator = new Separator(Separator.TYPE_OCTOBER);
-                }
-                break;
-            case Calendar.NOVEMBER:
-                if (!adapter.containsSeparatorNovember) {
-                    adapter.containsSeparatorNovember = true;
-                    separator = new Separator(Separator.TYPE_NOVEMBER);
-                }
-                break;
-            case Calendar.DECEMBER:
-                if (!adapter.containsSeparatorDecember) {
-                    adapter.containsSeparatorDecember = true;
-                    separator = new Separator(Separator.TYPE_DECEMBER);
-                }
-                break;
+        if (!adapter.containedSeparators[month]) {
+            adapter.containedSeparators[month] = true;
+            separator = new Separator(month);
         }
         return separator;
     }

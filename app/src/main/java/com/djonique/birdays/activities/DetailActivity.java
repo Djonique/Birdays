@@ -46,6 +46,7 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DbHelper;
+import com.djonique.birdays.models.DisplayedAge;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
@@ -103,7 +104,8 @@ public class DetailActivity extends AppCompatActivity {
     private DbHelper dbHelper;
     private Person person;
     private long timeStamp, date;
-    private String phoneNumber, email, displayedAge;
+    private String phoneNumber, email;
+    private DisplayedAge displayedAge;
     private boolean yearUnknown;
 
     @Override
@@ -114,7 +116,7 @@ public class DetailActivity extends AppCompatActivity {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean adEnabled = preferences.getBoolean(getString(R.string.ad_interstitial_key), true);
-        displayedAge = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
+        displayedAge = Utils.getDisplayedAge(preferences.getString(Constants.DISPLAYED_AGE_KEY, DisplayedAge.CURRENT.name()));
 
         /*
         * Interstitial doesn't work on Android API 26+
