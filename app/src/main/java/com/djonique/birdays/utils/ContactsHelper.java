@@ -200,6 +200,7 @@ public class ContactsHelper {
             for (Person person : contacts) {
                 if (!Utils.isPersonAlreadyInDb(person, dbPersons)) {
                     dbHelper.addRecord(person);
+                    dbPersons.add(person);
                     alarmHelper.setAlarms(person);
                 }
             }
