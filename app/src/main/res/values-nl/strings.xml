@@ -111,9 +111,9 @@
     <string name="allow_notification">Sta de toepassing toe om toekomstige verjaardagsmeldingen te verzenden</string>
     <string name="notifications_time">Meldingstijd</string>
     <string name="additional_notification">Aanvullende notificatie</string>
+    <string name="never">Nooit</string>
 
     <string-array name="additional_notification_entries">
-        <item>Nooit</item>
         <item>1dag ervoor</item>
         <item>2 dagen ervoor</item>
         <item>3 dagen ervoor</item>

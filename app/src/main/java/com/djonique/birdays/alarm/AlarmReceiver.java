@@ -108,15 +108,14 @@ public class AlarmReceiver extends BroadcastReceiver {
      * Builds default notification
      */
     private NotificationCompat.Builder buildNotification(Context context, String title, String text) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID);
-        builder.setContentTitle(title);
-        builder.setContentText(text);
-        builder.setSmallIcon(R.drawable.ic_notification);
-        builder.setColor(context.getResources().getColor(R.color.accent_green_200));
-        builder.setCategory(NotificationCompat.CATEGORY_EVENT);
-        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        return builder;
+        return new NotificationCompat.Builder(context, CHANNEL_ID)
+                .setContentTitle(title)
+                .setContentText(text)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setColor(context.getResources().getColor(R.color.accent_green_200))
+                .setCategory(NotificationCompat.CATEGORY_EVENT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
     }
 
     /**
