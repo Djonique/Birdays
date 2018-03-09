@@ -111,9 +111,9 @@
     <string name="allow_notification">Permite aplicației să trimită notificări pentru viitoarele aniversări</string>
     <string name="notifications_time">Timp notificare</string>
     <string name="additional_notification">Notificări suplimentare</string>
+    <string name="never">Niciodată</string>
 
     <string-array name="additional_notification_entries">
-        <item>Niciodată</item>
         <item>Cu o zi înainte</item>
         <item>Cu 2 zile înainte</item>
         <item>Cu 3 zile înainte</item>

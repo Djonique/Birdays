@@ -111,9 +111,9 @@
     <string name="allow_notification">允許應用程式發送即將到來的生日通知</string>
     <string name="notifications_time">通知時間</string>
     <string name="additional_notification">附加通知</string>
+    <string name="never">從來沒有</string>
 
     <string-array name="additional_notification_entries">
-        <item>從來沒有</item>
         <item>1天前</item>
         <item>2天前</item>
         <item>3天前</item>

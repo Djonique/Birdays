@@ -111,9 +111,9 @@
     <string name="allow_notification">Uygulamaya yaklaşan doğum günleri bildirimlerini göndermeye izin ver</string>
     <string name="notifications_time">Bildirim zamanı</string>
     <string name="additional_notification">Ek bildirim</string>
+    <string name="never">Hiçbir zaman</string>
 
     <string-array name="additional_notification_entries">
-        <item>Hiçbir zaman</item>
         <item>1 gün önce</item>
         <item>2 gün önce</item>
         <item>3 gün önce</item>

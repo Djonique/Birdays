@@ -111,9 +111,9 @@
     <string name="allow_notification">Permitir que o aplicativo envie notificações de aniversários futuros</string>
     <string name="notifications_time">Hora de notificação</string>
     <string name="additional_notification">Notificação adicional</string>
+    <string name="never">Nunca</string>
 
     <string-array name="additional_notification_entries">
-        <item>Nunca</item>
         <item>1 dia antes</item>
         <item>2 dias antes</item>
         <item>3 dias antes</item>

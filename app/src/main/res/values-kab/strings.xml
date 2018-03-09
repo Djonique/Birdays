@@ -111,9 +111,9 @@
     <string name="allow_notification">Sireg asnas akken ad yazen ilɣa n imulliyen i d-iteddun</string>
     <string name="notifications_time">Akud n wulɣu</string>
     <string name="additional_notification">Ilɣa nniḍen</string>
+    <string name="never">Wurǧin</string>
 
     <string-array name="additional_notification_entries">
-        <item>Wurǧin</item>
         <item>Send 1 n wass</item>
         <item>Send 2 n wussan</item>
         <item>Send 3 n wussan</item>

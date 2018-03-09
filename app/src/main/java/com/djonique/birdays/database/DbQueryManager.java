@@ -35,6 +35,7 @@ public class DbQueryManager {
         this.database = database;
     }
 
+    //FIXME: make this work with IDs instead of timestamps
     public Person getPerson(long timeStamp) {
 
         Cursor cursor = database.query(DbHelper.DB_PERSONS, null, DbHelper.SELECTION_TIME_STAMP,

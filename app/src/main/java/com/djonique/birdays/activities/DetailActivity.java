@@ -286,7 +286,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                new AlarmHelper(getApplicationContext()).removeAlarms(timeStamp);
+                new AlarmHelper(getApplicationContext()).removeAlarms(person);
                 dbHelper.removeRecord(timeStamp);
                 Utils.notifyWidget(getApplicationContext());
                 dialog.dismiss();

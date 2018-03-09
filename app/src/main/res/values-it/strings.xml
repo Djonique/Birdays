@@ -111,9 +111,9 @@
     <string name="allow_notification">Consentire all\'app di inviare notifiche dei compleanni imminenti</string>
     <string name="notifications_time">Ora di notifica</string>
     <string name="additional_notification">Ulteriori notifiche</string>
+    <string name="never">Mai</string>
 
     <string-array name="additional_notification_entries">
-        <item>Mai</item>
         <item>1 giorno prima</item>
         <item>2 giorni prima</item>
         <item>3 giorni prima</item>
