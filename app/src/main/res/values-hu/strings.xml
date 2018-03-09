@@ -111,9 +111,9 @@
     <string name="allow_notification">Engedélyezze, hogy az alkalmazás küldjön értesítéseket a következő születésnapokról</string>
     <string name="notifications_time">Értesítés idő</string>
     <string name="additional_notification">Kiegészítő értesítés</string>
+    <string name="never">Soha</string>
 
     <string-array name="additional_notification_entries">
-        <item>Soha</item>
         <item>1 nappal előtte</item>
         <item>2 nappal előtte</item>
         <item>3 nappal előtte</item>

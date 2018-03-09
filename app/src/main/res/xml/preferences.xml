@@ -30,13 +30,13 @@
             android:dependency="@string/notifications_key"
             android:key="@string/notification_time_key"
             android:title="@string/notifications_time" />
-        <ListPreference
-            android:defaultValue="0"
+        <MultiSelectListPreference
+            android:defaultValue="@string/never"
             android:dependency="@string/notifications_key"
             android:entries="@array/additional_notification_entries"
             android:entryValues="@array/additional_notification_entry_values"
             android:key="@string/additional_notification_key"
-            android:summary="%s"
+            android:summary="@string/never"
             android:title="@string/additional_notification" />
         <RingtonePreference
             android:dependency="@string/notifications_key"

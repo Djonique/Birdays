@@ -164,7 +164,7 @@ public class EditActivity extends AppCompatActivity implements
 
     private void setAlarms(Person person) {
         AlarmHelper alarmHelper = new AlarmHelper(this);
-        alarmHelper.removeAlarms(person.getTimeStamp());
+        alarmHelper.removeAlarms(person);
         alarmHelper.setAlarms(person);
     }
 

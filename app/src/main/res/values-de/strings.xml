@@ -111,9 +111,9 @@
     <string name="allow_notification">Der App erlauben, Benachrichtigungen von anstehenden Geburtstagen zu senden</string>
     <string name="notifications_time">Zeitpunkt der Benachrichtigung</string>
     <string name="additional_notification">Weitere Benachrichtigung</string>
+    <string name="never">Nie</string>
 
     <string-array name="additional_notification_entries">
-        <item>Nie</item>
         <item>1 Tag vorher</item>
         <item>2 Tage vorher</item>
         <item>3 Tage vorher</item>

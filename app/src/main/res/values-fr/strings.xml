@@ -111,9 +111,9 @@
     <string name="allow_notification">Permettre l’application envoyer des notifications d’anniversaires à venir</string>
     <string name="notifications_time">Heure de notification</string>
     <string name="additional_notification">Notification supplémentaire</string>
+    <string name="never">Jamais</string>
 
     <string-array name="additional_notification_entries">
-        <item>Jamais</item>
         <item>1 jour avant</item>
         <item>2 jours avant</item>
         <item>3 jours avant</item>
