@@ -32,15 +32,19 @@ import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
 
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+import static android.text.format.DateUtils.DAY_IN_MILLIS;
 
 public class AlarmHelper {
-
-    private static final int REQUEST_CODE_OFFSET = 99;
-    private long defaultNotificationTime = 645703200000L - Utils.getTimeOffset();
-    private long additionalNotificationOffset;
-    private Context context;
-    private AlarmManager alarmManager;
-    private SharedPreferences preferences;
+    final private long defaultNotificationTime = 645703200000L - Utils.getTimeOffset();
+    final private HashMap<Person, Set<PendingIntent>> pendingIntents = new HashMap<>();
+    final private Context context;
+    final private AlarmManager alarmManager;
+    final private SharedPreferences preferences;
 
     public AlarmHelper(Context context) {
         this.context = context;
@@ -55,9 +59,9 @@ public class AlarmHelper {
     public void setAlarms(Person person) {
         try {
             setAlarm(person);
-            additionalNotificationOffset = Long.parseLong(preferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
-            if (additionalNotificationOffset != 0) {
-                setAdditionalAlarm(person);
+            Set<Long> additionalNotificationOffsets = getAdditionalNotificationOffsets();
+            if ((additionalNotificationOffsets != null) && (!additionalNotificationOffsets.isEmpty())) {
+                setAdditionalAlarms(person);
             }
         } catch (SecurityException e) {
             if (context instanceof Activity) {
@@ -71,12 +75,21 @@ public class AlarmHelper {
         }
     }
 
+    private void addPendingIntent(Person person, PendingIntent pendingIntent) {
+        if (!pendingIntents.containsKey(person)) {
+            pendingIntents.put(person, new HashSet<PendingIntent>());
+        }
+
+        pendingIntents.get(person).add(pendingIntent);
+    }
+
     /**
      * Set up main alarm
      */
     private void setAlarm(Person person) {
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra(Constants.NAME, person.getName());
+        intent.putExtra(Constants.ANNIVERSARY_LABEL, person.getAnniversaryLabel());
         intent.putExtra(Constants.WHEN, context.getString(R.string.today));
         intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
 
@@ -85,28 +98,34 @@ public class AlarmHelper {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
                 (int) person.getTimeStamp(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        addPendingIntent(person, pendingIntent); //main alarm
+
         setAlarmDependingOnApi(alarmManager, triggerAtMillis, pendingIntent);
     }
 
     /**
-     * Set up additional alarm
+     * Set up additional alarms
      */
-    private void setAdditionalAlarm(Person person) {
-        additionalNotificationOffset = Long.parseLong(preferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
+    private void setAdditionalAlarms(Person person) {
+        Set<Long> additionalNotificationOffsets = getAdditionalNotificationOffsets();
+        for (Long additionalNotificationOffset : additionalNotificationOffsets) {
+            Intent intent = new Intent(context, AlarmReceiver.class);
+            intent.putExtra(Constants.NAME, person.getName());
+            intent.putExtra(Constants.WHEN, setWhen(additionalNotificationOffset));
+            intent.putExtra(Constants.ANNIVERSARY_LABEL, person.getAnniversaryLabel());
+            intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
 
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra(Constants.NAME, person.getName());
-        intent.putExtra(Constants.WHEN, setWhen(additionalNotificationOffset));
-        intent.putExtra(Constants.TIME_STAMP, person.getTimeStamp());
+            long triggerAtMillis = setupCalendarYear(person, additionalNotificationOffset);
 
-        long triggerAtMillis = setupCalendarYear(person, additionalNotificationOffset);
+            int requestCode = (int) (person.getTimeStamp() + additionalNotificationOffset);
 
-        int requestCode = (int) person.getTimeStamp() + REQUEST_CODE_OFFSET;
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
+                    (int) requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(),
-                requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            addPendingIntent(person, pendingIntent);
 
-        setAlarmDependingOnApi(alarmManager, triggerAtMillis, pendingIntent);
+            setAlarmDependingOnApi(alarmManager, triggerAtMillis, pendingIntent);
+        }
     }
 
     /**
@@ -128,70 +147,55 @@ public class AlarmHelper {
      * Configures text for additional notification
      */
     private String setWhen(long offset) {
-        String[] dates = context.getResources().getStringArray(R.array.additional_notification_delay);
-        String[] entryValues = context.getResources().getStringArray(R.array.additional_notification_entry_values);
-        String when = null;
-        for (int i = 1; i < entryValues.length; i++) {
-            if (offset == Long.parseLong(entryValues[i])) {
-                when = dates[i];
+        final String[] dates = context.getResources().getStringArray(R.array.additional_notification_delay);
+        final String[] entryValues = context.getResources().getStringArray(R.array.additional_notification_entry_values);
+        for (int i = 0; i < entryValues.length; i++) {
+            if (offset == (Long.parseLong(entryValues[i]) * DAY_IN_MILLIS)) {
+                return dates[i + 1];
             }
         }
-        return when;
+        return null;
+    }
+
+    private Set<Long> getAdditionalNotificationOffsets() {
+        final Set<String> strs =  preferences.getStringSet(Constants.ADDITIONAL_NOTIFICATION_KEY, Collections.<String>emptySet());
+        final Set<Long> results = new HashSet<>();
+        for (String str : strs) {
+            results.add(Long.parseLong(str) * DAY_IN_MILLIS);
+        }
+
+        return results;
     }
 
     /**
      * Removes all alarms
      */
-    public void removeAlarms(long timeStamp) {
-        removeAlarm(timeStamp);
-        additionalNotificationOffset = Long.parseLong(preferences.getString(Constants.ADDITIONAL_NOTIFICATION_KEY, "0"));
-        if (additionalNotificationOffset != 0) {
-            removeAdditionalAlarm(timeStamp);
+    public void removeAlarms(Person person) {
+        if (pendingIntents.containsKey(person)) {
+            for (PendingIntent pendingIntent : pendingIntents.get(person)) {
+                alarmManager.cancel(pendingIntent);
+            }
+
+            pendingIntents.remove(person);
         }
-    }
-
-    /**
-     * Removes main alarm
-     */
-    private void removeAlarm(long timeStamp) {
-        Intent intent = new Intent(context, AlarmReceiver.class);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, (int) timeStamp, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-
-        alarmManager.cancel(pendingIntent);
-    }
-
-    /**
-     * Removes additional alarm
-     */
-    private void removeAdditionalAlarm(long timeStamp) {
-        Intent intent = new Intent(context, AlarmReceiver.class);
-
-        int requestCode = (int) timeStamp + REQUEST_CODE_OFFSET;
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-
-        alarmManager.cancel(pendingIntent);
     }
 
     /**
      * Set up time for triggering alarm
      */
     private long setupCalendarYear(Person person, long offset) {
-        long now = Calendar.getInstance().getTimeInMillis();
-        long notificationTime = preferences.getLong(Constants.NOTIFICATION_TIME_KEY, defaultNotificationTime);
-        Calendar notificationTimeCalendar = Calendar.getInstance();
+        final long now = Calendar.getInstance().getTimeInMillis();
+        final long notificationTime = preferences.getLong(Constants.NOTIFICATION_TIME_KEY, defaultNotificationTime);
+        final Calendar notificationTimeCalendar = Calendar.getInstance();
         notificationTimeCalendar.setTimeInMillis(notificationTime);
 
-        int hour = notificationTimeCalendar.get(Calendar.HOUR_OF_DAY);
-        int minutes = notificationTimeCalendar.get(Calendar.MINUTE);
+        final int hour = notificationTimeCalendar.get(Calendar.HOUR_OF_DAY);
+        final int minutes = notificationTimeCalendar.get(Calendar.MINUTE);
 
-        long date = person.getDate() - offset;
-        int year = Calendar.getInstance().get(Calendar.YEAR);
+        final long date = person.getDate() - offset;
+        final int year = Calendar.getInstance().get(Calendar.YEAR);
 
-        Calendar calendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(date);
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.HOUR_OF_DAY, hour);

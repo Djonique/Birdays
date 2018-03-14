@@ -111,9 +111,9 @@
     <string name="allow_notification">Разрешить приложению присылать уведомления о предстоящих днях рождения</string>
     <string name="notifications_time">Время уведомления</string>
     <string name="additional_notification">Дополнительное уведомление</string>
+    <string name="never">Никогда</string>
 
     <string-array name="additional_notification_entries">
-        <item>Никогда</item>
         <item>За 1 день</item>
         <item>За 2 дня</item>
         <item>За 3 дня</item>

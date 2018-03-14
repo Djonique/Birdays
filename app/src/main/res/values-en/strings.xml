@@ -69,9 +69,9 @@
 
     <!-- DetailActivity -->
     <string name="birthday">Birthday</string>
-    <string name="days_left">Days until next birthday</string>
+    <string name="days_left">Days until next anniversary</string>
     <string name="today">Today</string>
-    <string name="days_since_birth">Days since birth</string>
+    <string name="days_since_birth">Days since anniversary started</string>
     <string name="zodiac_sign">Zodiac sign</string>
     <string name="season_picture">Season picture</string>
     <string name="calendar">Calendar</string>
@@ -110,10 +110,10 @@
     <string name="notifications">Notifications</string>
     <string name="allow_notification">Allow the app to send notifications of upcoming birthdays</string>
     <string name="notifications_time">Notification time</string>
-    <string name="additional_notification">Additional notification</string>
+    <string name="additional_notification">Additional notifications</string>
+    <string name="never">Never</string>
 
     <string-array name="additional_notification_entries">
-        <item>Never</item>
         <item>1 day before</item>
         <item>2 days before</item>
         <item>3 days before</item>
@@ -163,6 +163,7 @@
 
     <string-array name="displayed_age_entries">
         <item>Current</item>
+        <item>Turning/Turned</item>
         <item>Future</item>
     </string-array>
 

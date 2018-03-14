@@ -111,9 +111,9 @@
     <string name="allow_notification">Izinkan aplikasi mengirim notifikasi ulang tahun yang akan datang</string>
     <string name="notifications_time">Waktu notifikasi</string>
     <string name="additional_notification">Notifikasi tambahan</string>
+    <string name="never">Tidak pernah</string>
 
     <string-array name="additional_notification_entries">
-        <item>Tidak pernah</item>
         <item>Sehari sebelumnya</item>
         <item>2 hari sebelumnya</item>
         <item>3 hari sebelumnya</item>

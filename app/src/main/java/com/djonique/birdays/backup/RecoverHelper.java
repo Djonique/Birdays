@@ -133,6 +133,7 @@ public class RecoverHelper {
                         if (name.equals(PERSON) && person != null) {
                             if (!Utils.isPersonAlreadyInDb(person, dbPersons)) {
                                 dbHelper.addRecord(person);
+                                dbPersons.add(person);
                                 alarmHelper.setAlarms(person);
                             }
                         }

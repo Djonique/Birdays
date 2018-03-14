@@ -46,6 +46,8 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DbHelper;
+import com.djonique.birdays.models.AnniversaryType;
+import com.djonique.birdays.models.DisplayedAge;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
@@ -82,10 +84,14 @@ public class DetailActivity extends AppCompatActivity {
     RelativeLayout rlDaysSinceBirthday;
     @BindView(R.id.textview_detail_since)
     TextView tvDaysSinceBirthday;
+    @BindView(R.id.textview_detail_label)
+    TextView tvAnniversaryLabel;
     @BindView(R.id.imageview_detail_zodiac)
     ImageView ivZodiacSign;
     @BindView(R.id.textview_detail_zodiac)
     TextView tvZodiacSign;
+    @BindView(R.id.textview_detail_zodiac_label)
+    TextView tvZodiacSignLabel;
     @BindView(R.id.cardview_detail_info)
     CardView cardViewInfo;
     @BindView(R.id.relativelayout_detail_phone)
@@ -103,7 +109,8 @@ public class DetailActivity extends AppCompatActivity {
     private DbHelper dbHelper;
     private Person person;
     private long timeStamp, date;
-    private String phoneNumber, email, displayedAge;
+    private String phoneNumber, email;
+    private DisplayedAge displayedAge;
     private boolean yearUnknown;
 
     @Override
@@ -114,7 +121,7 @@ public class DetailActivity extends AppCompatActivity {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean adEnabled = preferences.getBoolean(getString(R.string.ad_interstitial_key), true);
-        displayedAge = preferences.getString(Constants.DISPLAYED_AGE_KEY, "0");
+        displayedAge = Utils.getDisplayedAge(preferences.getString(Constants.DISPLAYED_AGE_KEY, DisplayedAge.CURRENT.name()));
 
         /*
         * Interstitial doesn't work on Android API 26+
@@ -202,6 +209,7 @@ public class DetailActivity extends AppCompatActivity {
         setSeasonImage();
 
         tvDaysLeft.setText(Utils.daysLeft(this, date));
+        tvAnniversaryLabel.setText(person.getAnniversaryLabel());
 
         if (yearUnknown) {
             tvDate.setText(Utils.getDateWithoutYear(date));
@@ -213,9 +221,16 @@ public class DetailActivity extends AppCompatActivity {
             tvDaysSinceBirthday.setText(Utils.daysSinceBirthday(date));
         }
 
-        int zodiacId = Utils.getZodiacId(date);
-        tvZodiacSign.setText(getString(zodiacId));
-        ivZodiacSign.setImageResource(Utils.getZodiacImage(zodiacId));
+        if (person.getAnniversaryType() == AnniversaryType.BIRTHDAY) {
+            int zodiacId = Utils.getZodiacId(date);
+            tvZodiacSign.setText(getString(zodiacId));
+            ivZodiacSign.setImageResource(Utils.getZodiacImage(zodiacId));
+        }
+        else {
+            tvZodiacSign.setVisibility(View.GONE);
+            tvZodiacSignLabel.setVisibility(View.GONE);
+            ivZodiacSign.setVisibility(View.GONE);
+        }
 
         if (isEmpty(phoneNumber) && isEmpty(email))
             cardViewInfo.setVisibility(View.GONE);
@@ -284,7 +299,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                new AlarmHelper(getApplicationContext()).removeAlarms(timeStamp);
+                new AlarmHelper(getApplicationContext()).removeAlarms(person);
                 dbHelper.removeRecord(timeStamp);
                 Utils.notifyWidget(getApplicationContext());
                 dialog.dismiss();

@@ -19,15 +19,18 @@ package com.djonique.birdays.utils;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DbHelper;
+import com.djonique.birdays.models.AnniversaryType;
 import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
@@ -103,6 +106,26 @@ public class ContactsHelper {
         return email;
     }
 
+    private String getTypeLabel(Resources res, int type, String label) {
+        if (type == ContactsContract.CommonDataKinds.BaseTypes.TYPE_CUSTOM && !TextUtils.isEmpty(label)) {
+            return label;
+        } else {
+            final int labelRes = ContactsContract.CommonDataKinds.Event.getTypeResource(type);
+            return res.getText(labelRes).toString();
+        }
+    }
+
+    private AnniversaryType getAnniversaryType(int type) {
+        switch (type) {
+            case ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY:
+                return AnniversaryType.BIRTHDAY;
+
+            case ContactsContract.CommonDataKinds.Event.TYPE_ANNIVERSARY:
+            default:
+                return AnniversaryType.ANNIVERSARY;
+        }
+    }
+
     /**
      * Returns all contacts with Birthdays
      */
@@ -113,10 +136,14 @@ public class ContactsHelper {
         Cursor cursor = getContactsCursor(contentResolver);
 
         while (cursor.moveToNext()) {
-            String id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.CONTACT_ID));
-            String name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-            String dateString = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.START_DATE));
-            long date;
+            final String id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.CONTACT_ID));
+            final String name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+            final String dateString = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.START_DATE));
+            final int type = cursor.getInt(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.TYPE));
+            final String label  = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.LABEL));
+            final String anniversary = getTypeLabel(activity.getResources(), type, label);
+
+            final long date;
             try {
                 date = Utils.formatDateToLong(dateString);
             } catch (Exception e) {
@@ -128,7 +155,7 @@ public class ContactsHelper {
             String phoneNumber = getContactPhoneNumber(contentResolver, id);
             String email = getContactEmail(contentResolver, id);
 
-            Person person = new Person(name, date, yearUnknown, phoneNumber, email);
+            Person person = new Person(name, date, yearUnknown, phoneNumber, email, anniversary, getAnniversaryType(type));
             contacts.add(person);
         }
         cursor.close();
@@ -143,16 +170,16 @@ public class ContactsHelper {
 
        /* String[] projection = new String[]{
                 ContactsContract.Contacts.DISPLAY_NAME,
-                ContactsContract.CommonDataKinds.Event.CONTACT_ID,
+             /   ContactsContract.CommonDataKinds.Event.CONTACT_ID,
                 ContactsContract.CommonDataKinds.Event.START_DATE,
         };*/
 
         String where =
                 ContactsContract.Data.MIMETYPE
-                        + "= ? AND "
-                        + ContactsContract.CommonDataKinds.Event.TYPE
-                        + "="
-                        + ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY;
+                        + "= ?";
+//                        + ContactsContract.CommonDataKinds.Event.TYPE
+//                        + "="
+//                        + ContactsContract.CommonDataKinds.Event.TYPE_BIRTHDAY;
         String[] selectionArgs = new String[]{ContactsContract.CommonDataKinds.Event.CONTENT_ITEM_TYPE};
         return contentResolver.query(uri, null, where, selectionArgs, null);
     }
@@ -200,6 +227,7 @@ public class ContactsHelper {
             for (Person person : contacts) {
                 if (!Utils.isPersonAlreadyInDb(person, dbPersons)) {
                     dbHelper.addRecord(person);
+                    dbPersons.add(person);
                     alarmHelper.setAlarms(person);
                 }
             }

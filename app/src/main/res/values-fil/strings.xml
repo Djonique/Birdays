@@ -111,9 +111,9 @@
     <string name="allow_notification">Hayaan ang app na mag padala ng notipikasyon ng nalalapit na kaarawan</string>
     <string name="notifications_time">Oras ng notipikasyon</string>
     <string name="additional_notification">Karagdagang notipikasyon</string>
+    <string name="never">Hindi kailanman</string>
 
     <string-array name="additional_notification_entries">
-        <item>Hindi kailanman</item>
         <item>Bago ang 1 araw</item>
         <item>Bago ang 2 na araw</item>
         <item>Bago ang 3 na araw</item>

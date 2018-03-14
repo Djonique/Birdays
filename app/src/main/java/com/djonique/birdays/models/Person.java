@@ -22,16 +22,17 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Person implements Item, Comparable<Person> {
-
-    private String name, phoneNumber, email;
-    private long date, timeStamp;
+    private long date;
+    private long timeStamp;
+    private String name;
     private boolean yearUnknown;
+    private String anniversaryLabel;
+    private AnniversaryType anniversaryType;
+    private String phoneNumber;
+    private String email;
 
-    /**
-     * Default constructor
-     */
     public Person() {
-        this.timeStamp = new Date().getTime();
+        super();
     }
 
     /**
@@ -45,26 +46,21 @@ public class Person implements Item, Comparable<Person> {
     /**
      * Constructor for importing from Contacts
      */
-    public Person(String name, long date, boolean yearUnknown, String phoneNumber, String email) {
-        this.name = name;
-        this.date = date;
-        this.yearUnknown = yearUnknown;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.timeStamp = new Date().getTime();
+    public Person(String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType) {
+        this(name, date, yearUnknown, phoneNumber, email, anniversaryLabel, anniversaryType, new Date().getTime());
     }
 
     /**
      * Constructor for DbQueryManager
      */
-    public Person(String name, long date, boolean yearUnknown, String phoneNumber, String email,
-                  long timeStamp) {
-        this.name = name;
-        this.date = date;
+    public Person(String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType, long timeStamp) {
+        this(name, date);
         this.yearUnknown = yearUnknown;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.timeStamp = timeStamp;
+        this.anniversaryLabel = anniversaryLabel;
+        this.anniversaryType = anniversaryType;
+        this.setTimeStamp(timeStamp);
     }
 
     public String getName() {
@@ -83,12 +79,41 @@ public class Person implements Item, Comparable<Person> {
         this.date = date;
     }
 
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     public boolean isYearUnknown() {
         return yearUnknown;
     }
 
     public void setYearUnknown(boolean yearUnknown) {
         this.yearUnknown = yearUnknown;
+    }
+
+    @Override
+    public int getMonth() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(this.date);
+        return calendar.get(Calendar.MONTH);
+    }
+
+    public int getDay() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(this.date);
+        return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    public String getAnniversaryLabel() {
+        return anniversaryLabel;
+    }
+
+    public void setAnniversaryLabel(String anniversaryLabel) {
+        this.anniversaryLabel = anniversaryLabel;
     }
 
     public String getPhoneNumber() {
@@ -107,25 +132,31 @@ public class Person implements Item, Comparable<Person> {
         this.email = email;
     }
 
-    public long getTimeStamp() {
-        return timeStamp;
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", anniversaryLabel='" + anniversaryLabel + '\'' +
+                '}';
     }
 
     @Override
-    public boolean isPerson() {
-        return true;
+    public ItemType getItemType() {
+        return ItemType.PERSON;
     }
 
-    public int getMonth() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(this.date);
-        return calendar.get(Calendar.MONTH);
+    @Override
+    public AnniversaryType getAnniversaryType() {
+        return anniversaryType;
     }
 
-    public int getDay() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(this.date);
-        return calendar.get(Calendar.DAY_OF_MONTH);
+    public void setAnniversaryType(AnniversaryType anniversaryType) {
+        this.anniversaryType = anniversaryType;
+    }
+
+    @Override
+    public boolean isSeparator() {
+        return false;
     }
 
     @Override
@@ -136,18 +167,26 @@ public class Person implements Item, Comparable<Person> {
         if (!Person.class.isAssignableFrom(obj.getClass())) {
             return false;
         }
-        Person person = (Person) obj;
-        return name.equalsIgnoreCase(person.getName());
+        Person that = (Person) obj;
+        return this.getName().equalsIgnoreCase(that.getName()) &&
+                this.getAnniversaryLabel().equalsIgnoreCase(that.getAnniversaryLabel()) &&
+                this.getDate() == that.getDate();
     }
 
     @Override
     public int compareTo(@NonNull Person person) {
-        if (this.getMonth() < person.getMonth()) {
-            return -1;
-        } else if (this.getMonth() == person.getMonth()) {
-            return this.getDay() - person.getDay();
+        final Integer m1 = this.getMonth();
+        final Integer m2 = person.getMonth();
+        final Integer d1 = this.getDay();
+        final Integer d2 = person.getDay();
+        if (m1 != m2) {
+            return m1.compareTo(m2);
         } else {
-            return 1;
+            if (d1 != d2) {
+                return d1.compareTo(d2);
+            }
+
+            return this.getName().compareTo(person.getName());
         }
     }
 }

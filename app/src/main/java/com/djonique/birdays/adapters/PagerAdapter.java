@@ -115,7 +115,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
             monthFragment.addMonthPersonsFromDb();
         }
         if (allFragment != null) {
-            allFragment.addAllPersonsFromDb();
+            allFragment.refreshAllPersonsFromDb();
         }
     }
 

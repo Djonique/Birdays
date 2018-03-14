@@ -22,7 +22,7 @@
     <!-- MainActivity -->
     <string name="loading_contacts">Se încarcă contactele…</string>
     <string name="contacts_uploaded">Contacte încărcate</string>
-    <string name="loading_contacts_error">Nu se pot importa contanctele, formatul de date este nonstandard</string>
+    <string name="loading_contacts_error">Nu se pot importa contactele, formatul de date este nonstandard</string>
     <string name="permission_required">Este necesară permisiunea pentru importarea contactelor</string>
     <string name="snackbar_allow_text">Permite</string>
     <string name="all">Toate</string>
@@ -71,7 +71,7 @@
     <string name="birthday">Ziua de naștere</string>
     <string name="days_left">Numărul de zile până la următoarea aniversare</string>
     <string name="today">Astăzi</string>
-    <string name="days_since_birth">Numărul de zile de la naștere</string>
+    <string name="days_since_birth">Numărul de zile de la prima aniversare</string>
     <string name="zodiac_sign">Semn zodical</string>
     <string name="season_picture">Poză pentru sezon</string>
     <string name="calendar">Calendar</string>
@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Optimizare activată!</string>
-    <string name="optimization_description">\nÎncepând de la versiunea 6.0, Android introduce opțiunea de economisirea a batriei, care gestionează aplicațiile prin amânarea procesorului de fundal. \n\nPentru a face aplicații care dezactivează optimizarea pentu Birdays.</string>
+    <string name="optimization_description">\nÎncepând de la versiunea 6.0, Android introduce opțiunea de economisirea a bateriei, care gestionează aplicațiile prin amânarea procesorului de fundal. \n\nPentru a face aplicații care dezactivează optimizarea pentu Birdays.</string>
     <string name="do_not_show_again">Nu mai afișa</string>
     <string name="disable_button">Dezactivează</string>
     <!-- Notifications -->
@@ -111,9 +111,9 @@
     <string name="allow_notification">Permite aplicației să trimită notificări pentru viitoarele aniversări</string>
     <string name="notifications_time">Timp notificare</string>
     <string name="additional_notification">Notificări suplimentare</string>
+    <string name="never">Niciodată</string>
 
     <string-array name="additional_notification_entries">
-        <item>Niciodată</item>
         <item>Cu o zi înainte</item>
         <item>Cu 2 zile înainte</item>
         <item>Cu 3 zile înainte</item>
@@ -163,6 +163,7 @@
 
     <string-array name="displayed_age_entries">
         <item>Actuală</item>
+        <item>Împlinită anul acesta</item>
         <item>Viitor</item>
     </string-array>
 

@@ -111,9 +111,9 @@
     <string name="allow_notification">Tillat appen å sende varslinger om kommende bursdager</string>
     <string name="notifications_time">Varslingsklokkeslett</string>
     <string name="additional_notification">Ytterlig varsling</string>
+    <string name="never">Aldri</string>
 
     <string-array name="additional_notification_entries">
-        <item>Aldri</item>
         <item>1 dag før</item>
         <item>2 dager før</item>
         <item>3 dager før</item>

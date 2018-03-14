@@ -51,9 +51,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // Extras from intent
-        String name = intent.getStringExtra(Constants.NAME);
-        String when = intent.getStringExtra(Constants.WHEN);
-        long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
+        final String name = intent.getStringExtra(Constants.NAME);
+        final String when = intent.getStringExtra(Constants.WHEN);
+        final String label = intent.getStringExtra(Constants.ANNIVERSARY_LABEL);
+        final long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
 
         PendingIntent pendingIntent = TaskStackBuilder.create(context)
                 .addNextIntentWithParentStack(getResultIntent(context, timeStamp, intent))
@@ -61,7 +62,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         createNotificationChannel(context);
 
-        NotificationCompat.Builder builder = buildNotification(context, name, when);
+        NotificationCompat.Builder builder = buildNotification(context, name, label, when);
 
         setDefaultsAndRingtone(builder);
 
@@ -107,16 +108,17 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Builds default notification
      */
-    private NotificationCompat.Builder buildNotification(Context context, String title, String text) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID);
-        builder.setContentTitle(title);
-        builder.setContentText(text);
-        builder.setSmallIcon(R.drawable.ic_notification);
-        builder.setColor(context.getResources().getColor(R.color.accent_green_200));
-        builder.setCategory(NotificationCompat.CATEGORY_EVENT);
-        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        return builder;
+    private NotificationCompat.Builder buildNotification(Context context, String title, String label, String text) {
+        return new NotificationCompat.Builder(context, CHANNEL_ID)
+                .setContentTitle(title)
+                .setContentInfo(label)
+                .setSubText(label)
+                .setContentText(text)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setColor(context.getResources().getColor(R.color.accent_green_200))
+                .setCategory(NotificationCompat.CATEGORY_EVENT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
     }
 
     /**

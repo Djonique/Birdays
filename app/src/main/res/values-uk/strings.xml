@@ -111,9 +111,9 @@
     <string name="allow_notification">Дозволити застосунку присилати сповіщення про майбутні дні народження</string>
     <string name="notifications_time">Час сповіщення</string>
     <string name="additional_notification">Додаткове сповіщення</string>
+    <string name="never">Ніколи</string>
 
     <string-array name="additional_notification_entries">
-        <item>Ніколи</item>
         <item>За 1 день</item>
         <item>За 2 дні</item>
         <item>За 3 дні</item>
