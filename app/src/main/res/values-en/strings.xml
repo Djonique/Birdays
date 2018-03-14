@@ -69,9 +69,9 @@
 
     <!-- DetailActivity -->
     <string name="birthday">Birthday</string>
-    <string name="days_left">Days until next birthday</string>
+    <string name="days_left">Days until next anniversary</string>
     <string name="today">Today</string>
-    <string name="days_since_birth">Days since birth</string>
+    <string name="days_since_birth">Days since anniversary started</string>
     <string name="zodiac_sign">Zodiac sign</string>
     <string name="season_picture">Season picture</string>
     <string name="calendar">Calendar</string>

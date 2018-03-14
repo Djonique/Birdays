@@ -103,8 +103,7 @@ public class MonthFragment extends Fragment {
     public void findPerson(String name) {
         adapter.removeAllPersons();
         List<Person> persons = new ArrayList<>();
-        persons.addAll(activity.dbHelper.query().getSearchMonthPerson(DbHelper.SELECTION_LIKE_NAME,
-                new String[]{"%" + name + "%"}, DbHelper.COLUMN_NAME));
+        persons.addAll(activity.dbHelper.query().getSearchMonthPersons(DbHelper.SELECTION_LIKE_NAME, new String[]{"%" + name + "%"}, DbHelper.COLUMN_NAME));
 
         for (int i = 0; i < persons.size(); i++) {
             addPerson(persons.get(i));

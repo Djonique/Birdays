@@ -1,4 +1,4 @@
-package com.djonique.birdays.adapters;
+package com.djonique.birdays.models;
 
 public enum ItemType {
     PERSON,

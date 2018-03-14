@@ -30,6 +30,7 @@ public interface Constants {
     // Alarm
     String NAME = "NAME";
     String WHEN = "WHEN";
+    String ANNIVERSARY_LABEL = "ANNIVERSARY_LABEL";
     String TIME_STAMP = "TIME_STAMP";
 
     // Settings keys

@@ -17,17 +17,29 @@
 package com.djonique.birdays.models;
 
 public class Separator implements Item {
-    private int type;
+    private int month;
 
-    public Separator(int type) {
-        this.type = type;
+    public Separator(int month) {
+        this.month = month;
     }
 
-    public boolean isPerson() {
-        return false;
+    @Override
+    public int getMonth() {
+        return month;
     }
 
-    public int getType() {
-        return type;
+    @Override
+    public ItemType getItemType() {
+        return ItemType.SEPARATOR;
+    }
+
+    @Override
+    public AnniversaryType getAnniversaryType() {
+        return null;
+    }
+
+    @Override
+    public boolean isSeparator() {
+        return true;
     }
 }

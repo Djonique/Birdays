@@ -73,9 +73,9 @@
 
     <!-- DetailActivity -->
     <string name="birthday">Birthday</string>
-    <string name="days_left">Days until next birthday</string>
+    <string name="days_left">Days until next occurrence</string>
     <string name="today">Today</string>
-    <string name="days_since_birth">Days since birth</string>
+    <string name="days_since_birth">Days since anniversary started</string>
     <string name="zodiac_sign">Zodiac sign</string>
     <string name="season_picture">Season picture</string>
     <string name="calendar">Calendar</string>
@@ -224,7 +224,7 @@
     <string name="about_ad_title">Why do I see ads?</string>
     <string name="about_ad_summary">The revenue from advertising goes to the development of the project and to translation into other languages. You can remove ads for free</string>
     <string name="ad_interstitial_title">Interstitial ad</string>
-    <string name="ad_interstitial_summary">This type of ad is limited to 1 show per day. Not so often, isn\'t it?</string>
+    <string name="ad_interstitial_summary">This month of ad is limited to 1 show per day. Not so often, isn\'t it?</string>
     <string name="ad_banner">Banner</string>
     <!-- About app -->
     <string name="about_app">About app</string>

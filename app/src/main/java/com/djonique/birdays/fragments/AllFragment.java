@@ -35,10 +35,10 @@ import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.adapters.AllFragmentAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DbHelper;
+import com.djonique.birdays.models.Item;
 import com.djonique.birdays.models.Person;
-import com.djonique.birdays.models.Separator;
 
-import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class AllFragment extends Fragment {
@@ -63,7 +63,7 @@ public class AllFragment extends Fragment {
 
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
-            addAllPersonsFromDb();
+            refreshAllPersonsFromDb();
             alarmHelper = new AlarmHelper(activity);
         }
     }
@@ -71,94 +71,50 @@ public class AllFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        final View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        final RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new AllFragmentAdapter(this);
         recyclerView.setAdapter(adapter);
         return view;
     }
 
-    public void addPerson(Person newPerson, boolean saveToDb) {
-        int position = -1;
-        Separator separator = null;
-
-        long newPersonDate = newPerson.getDate();
-        int newPersonMonth = newPerson.getMonth();
-        int newPersonDay = newPerson.getDay();
-
-        for (int i = 0; i < adapter.getItemCount(); i++) {
-            if (adapter.getItem(i).isPerson()) {
-                Person person = ((Person) adapter.getItem(i));
-                int month = person.getMonth();
-                int day = person.getDay();
-
-                if (newPersonMonth < month) {
-                    position = i;
-                    break;
-                } else if (newPersonMonth == month) {
-                    if (newPersonDay <= day) {
-                        // If date before
-                        position = i;
-                        break;
-                    } else { // If date after
-                        if (adapter.getItemCount() > (i + 1) && adapter.getItem(i + 1).isPerson()) { // If after person, not adapter
-                            Person nextPerson = ((Person) adapter.getItem(i + 1));
-                            if (newPersonDay <= nextPerson.getDay()) {
-                                // If date before, else if date after - continue
-                                position = i + 1;
-                                break;
-                            }
-                        } else { // If after adapter, not person
-                            position = i + 1;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        if (newPersonDate != 0) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(newPersonDate);
-
-            separator = getSeparator(newPerson);
-        }
-
-        if (position != -1) {
-            if (separator != null) {
-                adapter.addItem(position - 1, separator);
-            }
-            adapter.addItem(position, newPerson);
-        } else {
-            if (separator != null) {
-                adapter.addItem(separator);
-            }
-            adapter.addItem(newPerson);
-        }
-
+    public void addPerson(Person person, boolean saveToDb) {
         if (saveToDb) {
-            activity.dbHelper.addRecord(newPerson);
+            activity.dbHelper.addRecord(person);
+            refreshAllPersonsFromDb();
         }
     }
 
-    public void addAllPersonsFromDb() {
+//    public List<Item> addSeparatorsToPersons(List<Person> persons) {
+//        List<Item> fullList = new ArrayList<>();
+//        Person last = null;
+//        //need the persons to be sorted by month
+//        Collections.sort(persons);
+//        for (Person person : persons) {
+//            //we just switched months
+//            if ((last == null) || (person.getMonth() > last.getMonth())) {
+//                fullList.add(new Separator(person.getMonth()));
+//            }
+//            fullList.add(person);
+//            last = person;
+//        }
+//
+//        return fullList;
+//    }
+
+    public void showPersons(List<Person> persons) {
+        //final List<Item> fullList = addSeparatorsToPersons(persons);
+        Collections.sort(persons);
+        for (Item item : persons) {
+            adapter.addItem(item);
+        }
+    }
+
+    public void refreshAllPersonsFromDb() {
         adapter.removeAllPersons();
-        List<Person> persons = activity.dbHelper.query().getPersons();
-
-        for (Person person : persons) {
-            addPerson(person, false);
-        }
-    }
-
-    private Separator getSeparator(Person person) {
-        int month = person.getMonth();
-        Separator separator = null;
-        if (!adapter.containedSeparators[month]) {
-            adapter.containedSeparators[month] = true;
-            separator = new Separator(month);
-        }
-        return separator;
+        final List<Person> persons = activity.dbHelper.query().getPersons();
+        showPersons(persons);
     }
 
     public void removePersonDialog(final int location) {
@@ -183,7 +139,7 @@ public class AllFragment extends Fragment {
                 snackbar.setAction(getString(R.string.undo), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        addPerson(activity.dbHelper.query().getPerson(timeStamp), false);
+                        refreshAllPersonsFromDb();
                         isRemoved[0] = false;
                     }
                 });
@@ -221,9 +177,7 @@ public class AllFragment extends Fragment {
         List<Person> persons = activity.dbHelper.query().getSearchPerson(DbHelper.SELECTION_LIKE_NAME,
                 new String[]{"%" + name + "%"}, DbHelper.COLUMN_NAME);
 
-        for (int i = 0; i < persons.size(); i++) {
-            addPerson(persons.get(i), false);
-        }
+        showPersons(persons);
     }
 
     public interface DeletingPersonListener {

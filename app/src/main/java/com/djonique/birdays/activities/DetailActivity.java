@@ -46,6 +46,7 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DbHelper;
+import com.djonique.birdays.models.AnniversaryType;
 import com.djonique.birdays.models.DisplayedAge;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
@@ -83,10 +84,14 @@ public class DetailActivity extends AppCompatActivity {
     RelativeLayout rlDaysSinceBirthday;
     @BindView(R.id.textview_detail_since)
     TextView tvDaysSinceBirthday;
+    @BindView(R.id.textview_detail_label)
+    TextView tvAnniversaryLabel;
     @BindView(R.id.imageview_detail_zodiac)
     ImageView ivZodiacSign;
     @BindView(R.id.textview_detail_zodiac)
     TextView tvZodiacSign;
+    @BindView(R.id.textview_detail_zodiac_label)
+    TextView tvZodiacSignLabel;
     @BindView(R.id.cardview_detail_info)
     CardView cardViewInfo;
     @BindView(R.id.relativelayout_detail_phone)
@@ -204,6 +209,7 @@ public class DetailActivity extends AppCompatActivity {
         setSeasonImage();
 
         tvDaysLeft.setText(Utils.daysLeft(this, date));
+        tvAnniversaryLabel.setText(person.getAnniversaryLabel());
 
         if (yearUnknown) {
             tvDate.setText(Utils.getDateWithoutYear(date));
@@ -215,9 +221,16 @@ public class DetailActivity extends AppCompatActivity {
             tvDaysSinceBirthday.setText(Utils.daysSinceBirthday(date));
         }
 
-        int zodiacId = Utils.getZodiacId(date);
-        tvZodiacSign.setText(getString(zodiacId));
-        ivZodiacSign.setImageResource(Utils.getZodiacImage(zodiacId));
+        if (person.getAnniversaryType() == AnniversaryType.BIRTHDAY) {
+            int zodiacId = Utils.getZodiacId(date);
+            tvZodiacSign.setText(getString(zodiacId));
+            ivZodiacSign.setImageResource(Utils.getZodiacImage(zodiacId));
+        }
+        else {
+            tvZodiacSign.setVisibility(View.GONE);
+            tvZodiacSignLabel.setVisibility(View.GONE);
+            ivZodiacSign.setVisibility(View.GONE);
+        }
 
         if (isEmpty(phoneNumber) && isEmpty(email))
             cardViewInfo.setVisibility(View.GONE);

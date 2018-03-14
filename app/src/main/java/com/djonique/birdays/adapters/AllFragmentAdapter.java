@@ -33,6 +33,7 @@ import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.fragments.AllFragment;
 import com.djonique.birdays.models.DisplayedAge;
 import com.djonique.birdays.models.Item;
+import com.djonique.birdays.models.ItemType;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.models.Separator;
 import com.djonique.birdays.utils.Constants;
@@ -42,8 +43,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public boolean[] containedSeparators = new boolean[12]; //all months
-
     private List<Item> items;
     private AllFragment allFragment;
     private Context context;
@@ -63,47 +62,34 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public void addItem(Item item) {
-        items.add(item);
-        notifyItemInserted(getItemCount() - 1);
-    }
+        final Item prev = items.size() > 0 ? getItem(items.size() - 1) : null;
+        //first item or the item before this one isn't within the same month
+        if ((prev == null) || (prev.getMonth() != item.getMonth())) {
+            items.add(new Separator(item.getMonth()));
+            notifyItemInserted(items.size() - 1);
+        }
 
-    public void addItem(int location, Item item) {
-        items.add(location, item);
-        notifyItemInserted(location);
+        items.add(item);
+        notifyItemInserted(items.size() - 1);
     }
 
     public void removePerson(int location) {
-        if (location >= 0 && location < getItemCount()) {
+        if ((location >= 0) && (location < items.size())) {
+            final Item item = getItem(location);
+            final Item prev = location > 0 ? getItem(location - 1) : null;
+            final Item next = location < items.size() - 1 ? getItem(location + 1) : null;
             items.remove(location);
             notifyItemRemoved(location);
-
-            if (location - 1 >= 0 && !getItem(location - 1).isPerson()) {
-
-                if (location != getItemCount() && !getItem(location).isPerson() && !getItem(location - 1).isPerson()) {
-                    Separator separator = (Separator) getItem(location - 1);
-                    checkSeparator(separator.getType());
-                    items.remove(location - 1);
-                    notifyItemRemoved(location - 1);
-
-                } else if (location == getItemCount() && !getItem(location - 1).isPerson()) {
-                    Separator separator = (Separator) getItem(location - 1);
-                    checkSeparator(separator.getType());
+            //if the previous item is a separator
+            if ((prev != null) && (prev.isSeparator())) {
+                //check the next item, if it doesn't exist then we need to remove the separator as well
+                //if it exists but it's in a different month we need to remove the separator as well
+                 if ((next == null) || (next.getMonth() != item.getMonth())) {
                     items.remove(location - 1);
                     notifyItemRemoved(location - 1);
                 }
-
-            } else if (getItemCount() - 1 >= 0 && !getItem(getItemCount() - 1).isPerson()) {
-                Separator separator = (Separator) getItem(getItemCount() - 1);
-                checkSeparator(separator.getType());
-                int locationTemp = getItemCount() - 1;
-                items.remove(locationTemp);
-                notifyItemRemoved(locationTemp);
             }
         }
-    }
-
-    private void checkSeparator(int type) {
-        containedSeparators[type] = false;
     }
 
     @Override
@@ -113,12 +99,10 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 .getString(Constants.DISPLAYED_AGE_KEY, DisplayedAge.CURRENT.name()));
         switch (ItemType.values()[viewType]) {
             case PERSON:
-                View view = LayoutInflater.from(context).inflate(R.layout.description_list_view,
-                        parent, false);
+                View view = LayoutInflater.from(context).inflate(R.layout.description_list_view, parent, false);
                 return new ListViewHolder(view);
             case SEPARATOR:
-                View separator = LayoutInflater.from(context).inflate(R.layout.model_separator,
-                        parent, false);
+                View separator = LayoutInflater.from(context).inflate(R.layout.model_separator, parent, false);
                 return new SeparatorViewHolder(separator);
             default:
                 return null;
@@ -127,21 +111,22 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
-        Item item = getItem(position);
+        Item item = items.get(position);
 
         String[] months = holder.itemView.getResources().getStringArray(R.array.months);
 
-        if (item.isPerson()) {
+        if (!item.isSeparator()) {
             holder.itemView.setEnabled(true);
-            View itemView = holder.itemView;
+            final View itemView = holder.itemView;
             final Person person = ((Person) item);
             final ListViewHolder listViewHolder = ((ListViewHolder) holder);
 
             listViewHolder.tvName.setText(person.getName());
 
-            long date = person.getDate();
+            final long date = person.getDate();
 
+            listViewHolder.tvLabel.setVisibility(View.VISIBLE);
+            listViewHolder.tvLabel.setText(person.getAnniversaryLabel());
             if (person.isYearUnknown()) {
                 listViewHolder.tvAge.setVisibility(View.GONE);
                 listViewHolder.tvDate.setText(Utils.getDateWithoutYear(date));
@@ -165,17 +150,15 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    allFragment.startActivity(new Intent(context, DetailActivity.class).
-                            putExtra(Constants.TIME_STAMP, person.getTimeStamp()));
+                    allFragment.startActivity(new Intent(context, DetailActivity.class). putExtra(Constants.TIME_STAMP, person.getTimeStamp()));
                     if (context instanceof MainActivity) {
-                        ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in,
-                                R.anim.activity_primary_out);
+                        ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
                     }
                 }
             });
         } else {
             Separator separator = ((Separator) item);
-            ((SeparatorViewHolder) holder).separatorView.setText(months[separator.getType()]);
+            ((SeparatorViewHolder) holder).separatorView.setText(months[separator.getMonth()]);
         }
     }
 
@@ -188,9 +171,6 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (getItemCount() != 0) {
             items = new ArrayList<>();
             notifyDataSetChanged();
-            for (int i = 0; i < containedSeparators.length; i++) {
-                containedSeparators[i] = false;
-            }
         }
     }
 
@@ -212,22 +192,23 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemViewType(int position) {
-        return getItem(position).isPerson() ? ItemType.PERSON.ordinal() : ItemType.SEPARATOR.ordinal();
+        return getItem(position).getItemType().ordinal();
     }
 
     private static class ListViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvDate, tvAge;
+        private final TextView tvName, tvDate, tvLabel, tvAge;
 
         ListViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.textview_all_name);
             tvDate = itemView.findViewById(R.id.textview_all_date);
+            tvLabel = itemView.findViewById(R.id.textview_all_label);
             tvAge = itemView.findViewById(R.id.textview_all_age);
         }
     }
 
     private class SeparatorViewHolder extends RecyclerView.ViewHolder {
-        TextView separatorView;
+        final TextView separatorView;
 
         SeparatorViewHolder(View itemView) {
             super(itemView);
