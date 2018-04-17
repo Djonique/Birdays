@@ -17,6 +17,7 @@
 package com.djonique.birdays.activities;
 
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -42,6 +43,7 @@ import com.crashlytics.android.Crashlytics;
 import com.djonique.birdays.R;
 import com.djonique.birdays.ad.Ad;
 import com.djonique.birdays.adapters.PagerAdapter;
+import com.djonique.birdays.alarm.AlarmHelper;
 import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.dialogs.NewPersonDialogFragment;
 import com.djonique.birdays.fragments.AllFragment;
@@ -102,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements
         Utils.setupDayNightTheme(preferences);
 
         dbHelper = new DbHelper(this);
-
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
 
         setSupportActionBar(toolbar);
@@ -132,8 +133,18 @@ public class MainActivity extends AppCompatActivity implements
             Ad.showBannerAd(container, adView, fab);
         }
 
+        startNotificationsChecker(this, preferences);
+
         // Start page
         viewPager.setCurrentItem(Integer.parseInt(preferences.getString(Constants.START_PAGE, "1")));
+    }
+
+    private void startNotificationsChecker(Context context, SharedPreferences preferences) {
+        final AlarmHelper alarmHelper = new AlarmHelper(this);
+        final boolean notificationsEnabled = preferences.getBoolean(Constants.NOTIFICATIONS_KEY, false);
+        if (notificationsEnabled) {
+            alarmHelper.setRecurringAlarm();
+        }
     }
 
     @Override
@@ -146,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements
     protected void onRestart() {
         super.onRestart();
         pagerAdapter.addPersonsFromDb();
+        startNotificationsChecker(this, preferences);
     }
 
     @Override

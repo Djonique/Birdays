@@ -24,6 +24,8 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Utils;
 
+import org.joda.time.LocalDate;
+
 import static com.djonique.birdays.database.DbHelper.COLUMN_DATE;
 import static com.djonique.birdays.database.DbHelper.COLUMN_NAME;
 import static com.djonique.birdays.database.DbHelper.DB_FAMOUS;
@@ -35,17 +37,19 @@ class DbFamous {
         cv.put(COLUMN_NAME, person.getName());
         if (Utils.getTimeOffset() <= 0) {
             // 43200000 is twelve hour offset
-            cv.put(COLUMN_DATE, person.getDate() + 43200000);
+            cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis() + 43200000);
         } else {
-            cv.put(COLUMN_DATE, person.getDate());
+            cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis());
         }
         db.insert(DB_FAMOUS, null, cv);
     }
 
     static void createFamousDb(Context context, SQLiteDatabase db) {
 
+        //FIXME: dates using timestamps are not correct
+        //FIXME: need to specify using LocalDate instead
         // 1 january
-        addFamous(db, new Person(context.getString(R.string.medici), -16440364800000L));
+        addFamous(db, new Person(context.getString(R.string.medici), new LocalDate(1449, 1, 1)));
         addFamous(db, new Person(context.getString(R.string.giordano_bruno), -13316227200000L));
         addFamous(db, new Person(context.getString(R.string.frazer), -3660595200000L));
         addFamous(db, new Person(context.getString(R.string.coubertin), -3376598400000L));
@@ -55,7 +59,7 @@ class DbFamous {
         addFamous(db, new Person(context.getString(R.string.piero_di_cosimo), -16030051200000L));
         addFamous(db, new Person(context.getString(R.string.vasily_perov), -4291660800000L));
         addFamous(db, new Person(context.getString(R.string.balakirev), -4196966400000L));
-        addFamous(db, new Person(context.getString(R.string.tippett), -2051136000000L));
+        addFamous(db, new Person(context.getString(R.string.tippett), 11-2051136000000L));
         addFamous(db, new Person(context.getString(R.string.isaac_asimov), -1577836800000L));
 
         // 3 january

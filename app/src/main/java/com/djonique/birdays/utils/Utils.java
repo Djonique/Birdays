@@ -33,57 +33,39 @@ import com.djonique.birdays.models.DisplayedAge;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.widget.WidgetProvider;
 
+import org.joda.time.LocalDate;
+import org.joda.time.Days;
+import org.joda.time.Period;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
 public class Utils {
 
-    private static final int MILLISECONDS_IN_A_DAY = 86400000;
+    public static int BIRTHDAY_CLOSE_COLORS_DAYS = 1;
     private static Calendar today = Calendar.getInstance();
-    private static Calendar dayOfBirthday = Calendar.getInstance();
 
-    public static String getDate(long date) {
-        return DateFormat.getDateInstance(DateFormat.DEFAULT, Locale.getDefault()).format(date);
+    private static String getDateFormat() {
+        Locale locale = Locale.getDefault();
+        SimpleDateFormat sdf = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.DEFAULT, locale));
+        return sdf.toPattern();
+    }
+
+    public static String getDate(LocalDate date) {
+        return date.toString(getDateFormat());
     }
 
     /**
      * Returns date without year
      */
-    public static String getDateWithoutYear(long date) {
-        Locale locale = Locale.getDefault();
-        SimpleDateFormat sdf = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.DEFAULT, locale));
-        String pattern = sdf.toPattern();
-        String yearlessPattern = pattern.replaceAll("([^\\p{Alpha}']|('[\\p{Alpha}]+'))*y+([^\\p{Alpha}']|('[\\p{Alpha}]+'))*", "");
-        SimpleDateFormat yearlessFormat = new SimpleDateFormat(yearlessPattern, locale);
-        return yearlessFormat.format(date);
-    }
-
-    private static int getYear(Calendar calendar) {
-        return calendar.get(Calendar.YEAR);
-    }
-
-    private static int getMonth(Calendar calendar) {
-        return calendar.get(Calendar.MONTH);
-    }
-
-    private static int getDay(Calendar calendar) {
-        return calendar.get(Calendar.DAY_OF_MONTH);
-    }
-
-    public static int getMonth(long date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(date);
-        return calendar.get(Calendar.MONTH);
-    }
-
-    public static int getDay(long date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(date);
-        return calendar.get(Calendar.DAY_OF_MONTH);
+    public static String getDateWithoutYear(LocalDate date) {
+        String yearlessPattern = getDateFormat().replaceAll("([^\\p{Alpha}']|('[\\p{Alpha}]+'))*y+([^\\p{Alpha}']|('[\\p{Alpha}]+'))*", "");
+        return date.toString(yearlessPattern);
     }
 
     public static long getTimeOffset() {
@@ -116,78 +98,46 @@ public class Utils {
         return DisplayedAge.CURRENT;
     }
 
-    public static int getAge(long date, DisplayedAge displayedAge) {
+    public static int getAge(LocalDate date, DisplayedAge displayedAge) {
+        final LocalDate now = new LocalDate();
         switch (displayedAge) {
             default:
             case CURRENT:
-                return getCurrentAge(date);
+                return new Period(date, now).getYears();
             case TURNING:
-                return getTurningAge(date);
+                return now.getYear() - date.getYear();
             case FUTURE:
-                return getFutureAge(date);
+                return new Period(date, now.plusYears(1)).getYears();
         }
     }
 
-    /**
-     * Returns current age
-     */
-    public static int getCurrentAge(long date) {
-        dayOfBirthday.setTimeInMillis(date);
-        int age = getYear(today) - getYear(dayOfBirthday);
-        if (getMonth(today) < getMonth(dayOfBirthday)) {
-            age--;
-        } else if (getMonth(today) == getMonth(dayOfBirthday) &&
-                getDay(today) < getDay(dayOfBirthday)) {
-            age--;
+    public static int daysUntilNextBirthday(final LocalDate dob, final LocalDate now) {
+        LocalDate today = new LocalDate(now);
+        LocalDate birthday = new LocalDate(dob).withYear(today.getYear());
+
+        int diff = Days.daysBetween(today, birthday).getDays();
+        if (diff < 0) { //birthday already passed
+            birthday = birthday.plusYears(1);
+            diff = Days.daysBetween(today, birthday).getDays();
         }
-        return age;
+        return diff;
     }
 
-    public static int getTurningAge(long date) {
-        dayOfBirthday.setTimeInMillis(date);
-        return getYear(today) - getYear(dayOfBirthday);
+    public static int daysLeft(final Person person) {
+        return daysUntilNextBirthday(person.getDate(), new LocalDate());
     }
 
-    /**
-     * Returns future age
-     */
-    public static int getFutureAge(long date) {
-        dayOfBirthday.setTimeInMillis(date);
-        int age = getYear(today) - getYear(dayOfBirthday);
-        if (getMonth(today) < getMonth(dayOfBirthday)) {
-            age--;
-        } else if (getMonth(today) == getMonth(dayOfBirthday) &&
-                getDay(today) <= getDay(dayOfBirthday)) {
-            age--;
-        }
-        return age + 1;
-    }
-
-    public static String daysLeft(Context context, long date) {
-        Calendar birthday = Calendar.getInstance();
-        birthday.setTimeInMillis(date);
-        if (getMonth(today) == getMonth(birthday) && getDay(today) == getDay(birthday)) {
+    public static String daysLeftPretty(Context context, Person person) {
+        int daysToBirthday = daysLeft(person);
+        if (daysToBirthday == 0) {
             return context.getString(R.string.today);
         }
-        birthday.set(Calendar.HOUR_OF_DAY, 10);
-        today.set(Calendar.HOUR_OF_DAY, 9);
-        if (getMonth(today) < getMonth(birthday)
-                || (getMonth(today) == getMonth(birthday) && getDay(today) <= getDay(birthday))) {
-            birthday.set(Calendar.YEAR, today.get(Calendar.YEAR));
-        } else {
-            birthday.set(Calendar.YEAR, today.get(Calendar.YEAR) + 1);
-        }
-        long diffDays = (birthday.getTimeInMillis() - today.getTimeInMillis()) / MILLISECONDS_IN_A_DAY;
-        return String.valueOf(diffDays);
+        return String.valueOf(daysToBirthday);
     }
 
-    public static String daysSinceBirthday(long date) {
-        Calendar birthday = Calendar.getInstance();
-        birthday.setTimeInMillis(date);
-        birthday.set(Calendar.HOUR_OF_DAY, 9);
-        today.set(Calendar.HOUR_OF_DAY, 10);
-        long diffDays = (today.getTimeInMillis() - birthday.getTimeInMillis()) / MILLISECONDS_IN_A_DAY;
-        return String.valueOf(diffDays);
+    public static String daysSinceBirthday(LocalDate date) {
+        final LocalDate today = new LocalDate();
+        return String.valueOf(Days.daysBetween(date, today).getDays());
     }
 
     public static boolean isEmptyDate(EditText editText) {
@@ -204,64 +154,58 @@ public class Utils {
     /**
      * Checks if today is the same month with given date
      */
-    public static boolean isCurrentMonth(long date) {
-        boolean thisMonth = false;
-
-        dayOfBirthday.setTimeInMillis(date);
-
-        if (getMonth(dayOfBirthday) == getMonth(today)) {
-            thisMonth = true;
-        }
-        return thisMonth;
+    public static boolean isCurrentMonth(LocalDate date) {
+        final LocalDate now = new LocalDate();
+        return now.getMonthOfYear() == date.getMonthOfYear();
     }
 
-    public static boolean isBirthdayPassed(long date) {
-        return getDay(today) > getDay(date);
+    public static boolean isBirthdayPassed(LocalDate date) {
+        LocalDate now = new LocalDate();
+        return now.compareTo(date.withYear(now.getYear())) > 0;
     }
 
     /**
      * Returns zodiac name of certain date
      */
-    public static int getZodiacId(long date) {
+    public static int getZodiacId(LocalDate date) {
         int resId = 0;
-        dayOfBirthday.setTimeInMillis(date);
-
-        switch (getMonth(dayOfBirthday)) {
-            case Calendar.JANUARY:
-                resId = getDay(dayOfBirthday) < 21 ? R.string.capricorn : R.string.aquarius;
+        final int dayOfBirthday = date.getDayOfMonth();
+        switch (date.getMonthOfYear()) {
+            case 1:
+                resId = dayOfBirthday < 21 ? R.string.capricorn : R.string.aquarius;
                 break;
-            case Calendar.FEBRUARY:
-                resId = getDay(dayOfBirthday) < 20 ? R.string.aquarius : R.string.pisces;
+            case 2:
+                resId = dayOfBirthday < 20 ? R.string.aquarius : R.string.pisces;
                 break;
-            case Calendar.MARCH:
-                resId = getDay(dayOfBirthday) < 21 ? R.string.pisces : R.string.aries;
+            case 3:
+                resId = dayOfBirthday < 21 ? R.string.pisces : R.string.aries;
                 break;
-            case Calendar.APRIL:
-                resId = getDay(dayOfBirthday) < 21 ? R.string.aries : R.string.taurus;
+            case 4:
+                resId = dayOfBirthday < 21 ? R.string.aries : R.string.taurus;
                 break;
-            case Calendar.MAY:
-                resId = getDay(dayOfBirthday) < 22 ? R.string.taurus : R.string.gemini;
+            case 5:
+                resId = dayOfBirthday < 22 ? R.string.taurus : R.string.gemini;
                 break;
-            case Calendar.JUNE:
-                resId = getDay(dayOfBirthday) < 22 ? R.string.gemini : R.string.cancer;
+            case 6:
+                resId = dayOfBirthday < 22 ? R.string.gemini : R.string.cancer;
                 break;
-            case Calendar.JULY:
-                resId = getDay(dayOfBirthday) < 23 ? R.string.cancer : R.string.leo;
+            case 7:
+                resId = dayOfBirthday < 23 ? R.string.cancer : R.string.leo;
                 break;
-            case Calendar.AUGUST:
-                resId = getDay(dayOfBirthday) < 23 ? R.string.leo : R.string.virgo;
+            case 8:
+                resId = dayOfBirthday < 23 ? R.string.leo : R.string.virgo;
                 break;
-            case Calendar.SEPTEMBER:
-                resId = getDay(dayOfBirthday) < 24 ? R.string.virgo : R.string.libra;
+            case 9:
+                resId = dayOfBirthday < 24 ? R.string.virgo : R.string.libra;
                 break;
-            case Calendar.OCTOBER:
-                resId = getDay(dayOfBirthday) < 24 ? R.string.libra : R.string.scorpio;
+            case 10:
+                resId = dayOfBirthday < 24 ? R.string.libra : R.string.scorpio;
                 break;
-            case Calendar.NOVEMBER:
-                resId = getDay(dayOfBirthday) < 23 ? R.string.scorpio : R.string.sagittarius;
+            case 11:
+                resId = dayOfBirthday < 23 ? R.string.scorpio : R.string.sagittarius;
                 break;
-            case Calendar.DECEMBER:
-                resId = getDay(dayOfBirthday) < 22 ? R.string.sagittarius : R.string.capricorn;
+            case 12:
+                resId = dayOfBirthday < 22 ? R.string.sagittarius : R.string.capricorn;
                 break;
         }
         return resId;
@@ -318,6 +262,39 @@ public class Utils {
      */
     public static int boolToInt(boolean isYearKnown) {
         return isYearKnown ? 1 : 0;
+    }
+
+    public static int getBackgroundColor(Context context, int daysToBirthday) {
+        final int resource;
+        switch ((daysToBirthday)) {
+            case 0:
+                resource = R.color.cardview_birthday;
+                break;
+            case 1:
+                resource = R.color.cardview_tomorrow;
+                break;
+            default:
+                resource = R.color.cardview_background;
+                break;
+        }
+        return context.getResources().getColor(resource);
+
+    }
+
+    public static int getNotificationColor(Context context, int daysToBirthday) {
+        final int resource;
+        switch ((daysToBirthday)) {
+            case 0:
+                resource = R.color.birthday_today;
+                break;
+            case 1:
+                resource = R.color.birthday_tomorrow;
+                break;
+            default:
+                resource = R.color.birthday_near;
+                break;
+        }
+        return context.getResources().getColor(resource);
     }
 
     /**

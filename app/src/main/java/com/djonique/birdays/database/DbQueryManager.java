@@ -23,6 +23,8 @@ import com.djonique.birdays.models.AnniversaryType;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Utils;
 
+import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +104,7 @@ public class DbQueryManager {
         });
     }
 
-    public List<Person> getFamousBornThisDay(long dayOfBirthday) {
+    public List<Person> getFamousBornThisDay(LocalDate dayOfBirthday) {
         final List<Person> persons = new ArrayList<>();
 
         final Cursor cursor = database.query(DbHelper.DB_FAMOUS, null, null, null, null, null, null);
@@ -110,9 +112,9 @@ public class DbQueryManager {
         if (cursor.moveToFirst()) {
             do {
                 final String name = getName(cursor);
-                final long date = getDate(cursor);
+                final LocalDate date = new LocalDate(getDate(cursor));
 
-                if (Utils.getMonth(date) == Utils.getMonth(dayOfBirthday) && Utils.getDay(date) == Utils.getDay(dayOfBirthday)) {
+                if (date.getMonthOfYear() == dayOfBirthday.getMonthOfYear() && date.getDayOfMonth() == dayOfBirthday.getDayOfMonth()) {
                     final Person person = new Person(name, date);
                     persons.add(person);
                 }

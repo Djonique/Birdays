@@ -18,18 +18,20 @@ package com.djonique.birdays.models;
 
 import android.support.annotation.NonNull;
 
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDate;
+
 import java.util.Calendar;
 import java.util.Date;
 
 public class Person implements Item, Comparable<Person> {
-    private long date;
+
+    private String name, phoneNumber, email;
     private long timeStamp;
-    private String name;
+    private LocalDate date;
     private boolean yearUnknown;
     private String anniversaryLabel;
     private AnniversaryType anniversaryType;
-    private String phoneNumber;
-    private String email;
 
     public Person() {
         super();
@@ -39,8 +41,12 @@ public class Person implements Item, Comparable<Person> {
      * Constructor for database with famous persons
      */
     public Person(String name, long date) {
-        this.name = name;
-        this.date = date;
+        this(name, new LocalDate(date));
+    }
+
+    public Person(String name, LocalDate date) {
+        setName(name);
+        setDate(date);
     }
 
     /**
@@ -71,11 +77,11 @@ public class Person implements Item, Comparable<Person> {
         this.name = name;
     }
 
-    public long getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -97,15 +103,11 @@ public class Person implements Item, Comparable<Person> {
 
     @Override
     public int getMonth() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(this.date);
-        return calendar.get(Calendar.MONTH);
+        return date.getMonthOfYear();
     }
 
     public int getDay() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(this.date);
-        return calendar.get(Calendar.DAY_OF_MONTH);
+        return date.getDayOfMonth();
     }
 
     public String getAnniversaryLabel() {
@@ -170,23 +172,16 @@ public class Person implements Item, Comparable<Person> {
         Person that = (Person) obj;
         return this.getName().equalsIgnoreCase(that.getName()) &&
                 this.getAnniversaryLabel().equalsIgnoreCase(that.getAnniversaryLabel()) &&
-                this.getDate() == that.getDate();
+                this.getDate().equals(that.getDate());
     }
 
     @Override
     public int compareTo(@NonNull Person person) {
-        final Integer m1 = this.getMonth();
-        final Integer m2 = person.getMonth();
-        final Integer d1 = this.getDay();
-        final Integer d2 = person.getDay();
-        if (m1 != m2) {
-            return m1.compareTo(m2);
-        } else {
-            if (d1 != d2) {
-                return d1.compareTo(d2);
-            }
-
-            return this.getName().compareTo(person.getName());
+        //we're only interested in the day/month, assume both persons have same year
+        int compare = this.date.withYear(2000).compareTo(person.date.withYear(2000));
+        if (compare != 0) {
+            return compare; 
         }
+        return this.getName().compareTo(person.getName());
     }
 }

@@ -30,6 +30,8 @@ import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
 
+import org.joda.time.LocalDate;
+
 import java.util.Calendar;
 
 public class WidgetProvider extends AppWidgetProvider {
@@ -54,7 +56,7 @@ public class WidgetProvider extends AppWidgetProvider {
             remoteViews.setRemoteAdapter(R.id.listview_widget, serviceIntent);
 
             remoteViews.setTextViewText(R.id.textview_widget_header_date,
-                    Utils.getDateWithoutYear(Calendar.getInstance().getTimeInMillis()));
+                    Utils.getDateWithoutYear(new LocalDate()));
 
             Intent clickIntent = new Intent(context, WidgetProvider.class);
             clickIntent.setAction(ACTION_ON_CLICK);

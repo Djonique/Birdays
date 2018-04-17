@@ -35,6 +35,7 @@ import android.widget.TextView;
 import com.djonique.birdays.R;
 import com.djonique.birdays.activities.DetailActivity;
 import com.djonique.birdays.activities.MainActivity;
+import com.djonique.birdays.models.DisplayedAge;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
@@ -82,22 +83,19 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
     @Override
     public void onBindViewHolder(final CardViewHolder holder, int position) {
         final Person person = persons.get(position);
-        long date = person.getDate();
-        final String email = person.getEmail();
-        final String phoneNumber = person.getPhoneNumber();
 
         holder.tvName.setText(person.getName());
 
         if (person.isYearUnknown()) {
-            holder.tvDate.setText(Utils.getDateWithoutYear(date));
+            holder.tvDate.setText(Utils.getDateWithoutYear(person.getDate()));
             holder.tvAge.setVisibility(View.GONE);
-            changeCardViewBackgroundColor(date, holder.cardView, holder.tvDaysLeft);
+            changeCardViewBackgroundColor(person, holder.cardView, holder.tvDaysLeft);
         } else {
-            holder.tvDate.setText(Utils.getDate(date));
+            holder.tvDate.setText(Utils.getDate(person.getDate()));
             holder.tvAge.setVisibility(View.VISIBLE);
-            String age = context.getString(R.string.age) + Utils.getCurrentAge(date);
+            String age = context.getString(R.string.age) + Utils.getAge(person.getDate(), DisplayedAge.CURRENT);
             holder.tvAge.setText(age);
-            changeCardViewBackgroundColor(date, holder.cardView, holder.tvDaysLeft);
+            changeCardViewBackgroundColor(person, holder.cardView, holder.tvDaysLeft);
         }
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +109,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             }
         });
 
+        final String email = person.getEmail();
         if (email != null && !email.equals("")) {
             enableButton(holder.btnEmail);
             holder.btnEmail.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +126,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             disableButton(holder.btnEmail);
         }
 
+        final String phoneNumber = person.getPhoneNumber();
         if (phoneNumber != null && !phoneNumber.equals("")) {
             enableButton(holder.btnCall);
             enableButton(holder.btnChat);
@@ -198,22 +198,17 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         return preferences.getBoolean(Constants.NIGHT_MODE_KEY, false);
     }
 
-    private void changeCardViewBackgroundColor(long date, CardView cardView, TextView textView) {
-        String daysLeft = Utils.daysLeft(context, date);
-        if (Utils.isBirthdayPassed(date)) {
+    private void changeCardViewBackgroundColor(Person person, CardView cardView, TextView textView) {
+        final String daysLeft = Utils.daysLeftPretty(context, person);
+        if (Utils.isBirthdayPassed(person.getDate())) {
             textView.setVisibility(View.GONE);
             cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardview_background));
         } else {
+            int daysToBirthday = Utils.daysLeft(person);
+            cardView.setCardBackgroundColor(Utils.getBackgroundColor(context, daysToBirthday));
             textView.setVisibility(View.VISIBLE);
-            String today = context.getString(R.string.today);
-            if (daysLeft.equals(today)) {
-                cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardview_birthday));
-                textView.setText(today);
-            } else {
-                cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.cardview_background));
-                String summary = context.getString(R.string.days_left) + ": " + daysLeft;
-                textView.setText(summary);
-            }
+            final String summary = daysToBirthday == 0 ? daysLeft : context.getString(R.string.days_left) + ": " + daysLeft;
+            textView.setText(summary);
         }
     }
 

@@ -447,28 +447,25 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             final AlarmHelper alarmHelper = new AlarmHelper(getActivity());
             DbHelper dbHelper = new DbHelper(getActivity());
-            final List<Person> persons = dbHelper.query().getPersons();
             switch (key) {
                 case Constants.NOTIFICATIONS_KEY:
                     final boolean isChecked = sharedPreferences.getBoolean(Constants.NOTIFICATIONS_KEY, false);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            for (Person person : persons) {
-                                if (isChecked) {
-                                    alarmHelper.setAlarms(person);
-                                } else {
-                                    alarmHelper.removeAlarms(person);
-                                }
+                            if (isChecked) {
+                                alarmHelper.setRecurringAlarm();
+                            }
+                            else {
+                                alarmHelper.removeRecurringAlarm();
                             }
                         }
                     }).start();
                     break;
                 case Constants.NOTIFICATION_TIME_KEY:
-                    restartAlarms(alarmHelper, persons);
-                    break;
                 case Constants.ADDITIONAL_NOTIFICATION_KEY:
-                    restartAlarms(alarmHelper, persons);
+                    alarmHelper.removeRecurringAlarm();
+                    alarmHelper.setRecurringAlarm();
                     break;
                 case Constants.NIGHT_MODE_KEY:
                     Utils.setupDayNightTheme(sharedPreferences);
@@ -487,18 +484,6 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         public void onPause() {
             super.onPause();
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-        }
-
-        private void restartAlarms(final AlarmHelper alarmHelper, final List<Person> persons) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (Person person : persons) {
-                        alarmHelper.removeAlarms(person);
-                        alarmHelper.setAlarms(person);
-                    }
-                }
-            }).start();
         }
 
         private void restartApp() {

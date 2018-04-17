@@ -39,6 +39,8 @@ import com.djonique.birdays.models.Separator;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
 
+import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,6 +111,32 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
+    private int getClosestItem() {
+        int daysToBirthday = 999;
+        int itemPos = 0;
+        for (int i = 0; i < items.size(); i++) {
+            Item item = items.get(i);
+            if (!item.isSeparator()) {
+                int candidate = Utils.daysLeft((Person) item);
+                if (candidate < daysToBirthday) {
+                    daysToBirthday = candidate;
+                    itemPos = i;
+                }
+            }
+        }
+
+        return itemPos;
+    }
+
+    public void scrollToClosestPerson() {
+        View view = getAllFragment().getView();
+        if (view != null) {
+            final RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+            int itemPos = getClosestItem();
+            recyclerView.scrollToPosition(itemPos);
+        }
+    }
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Item item = items.get(position);
@@ -119,11 +147,14 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             holder.itemView.setEnabled(true);
             final View itemView = holder.itemView;
             final Person person = ((Person) item);
+            final int daysToBirthday = Utils.daysLeft(person);
+            itemView.setBackgroundColor(Utils.getBackgroundColor(context, daysToBirthday));
+
             final ListViewHolder listViewHolder = ((ListViewHolder) holder);
 
             listViewHolder.tvName.setText(person.getName());
 
-            final long date = person.getDate();
+            final LocalDate date = person.getDate();
 
             listViewHolder.tvLabel.setVisibility(View.VISIBLE);
             listViewHolder.tvLabel.setText(person.getAnniversaryLabel());
@@ -158,7 +189,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             });
         } else {
             Separator separator = ((Separator) item);
-            ((SeparatorViewHolder) holder).separatorView.setText(months[separator.getMonth()]);
+            ((SeparatorViewHolder) holder).separatorView.setText(months[separator.getMonth() - 1]);
         }
     }
 

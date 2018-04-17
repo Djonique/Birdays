@@ -33,20 +33,8 @@ public class AlarmSetter extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-            DbHelper dbHelper = new DbHelper(context);
-
             AlarmHelper alarmHelper = new AlarmHelper(context);
-
-            List<Person> persons = new ArrayList<>();
-            persons.addAll(dbHelper.query().getPersons());
-
-            for (Person person : persons) {
-                try {
-                    alarmHelper.setAlarms(person);
-                } catch (SecurityException e) {
-                    Toast.makeText(context, R.string.security_exception, Toast.LENGTH_LONG).show();
-                }
-            }
+            alarmHelper.setRecurringAlarm();
         }
     }
 }

@@ -30,6 +30,7 @@ import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Utils;
 
+import org.joda.time.LocalDate;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -93,7 +94,6 @@ public class RecoverHelper {
     private void parseXml(XmlPullParser parser) {
         DbHelper dbHelper = new DbHelper(context);
         List<Person> dbPersons = dbHelper.query().getPersons();
-        AlarmHelper alarmHelper = new AlarmHelper(context);
         Person person = null;
 
         try {
@@ -114,7 +114,7 @@ public class RecoverHelper {
                                     person.setName(parser.nextText());
                                     break;
                                 case DATE:
-                                    person.setDate(Long.valueOf(parser.nextText()));
+                                    person.setDate(new LocalDate(Long.valueOf(parser.nextText())));
                                     break;
                                 case YEAR_UNKNOWN:
                                     person.setYearUnknown(Boolean.valueOf(parser.nextText()));
@@ -134,7 +134,6 @@ public class RecoverHelper {
                             if (!Utils.isPersonAlreadyInDb(person, dbPersons)) {
                                 dbHelper.addRecord(person);
                                 dbPersons.add(person);
-                                alarmHelper.setAlarms(person);
                             }
                         }
                         break;

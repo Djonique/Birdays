@@ -86,29 +86,13 @@ public class AllFragment extends Fragment {
         }
     }
 
-//    public List<Item> addSeparatorsToPersons(List<Person> persons) {
-//        List<Item> fullList = new ArrayList<>();
-//        Person last = null;
-//        //need the persons to be sorted by month
-//        Collections.sort(persons);
-//        for (Person person : persons) {
-//            //we just switched months
-//            if ((last == null) || (person.getMonth() > last.getMonth())) {
-//                fullList.add(new Separator(person.getMonth()));
-//            }
-//            fullList.add(person);
-//            last = person;
-//        }
-//
-//        return fullList;
-//    }
-
-    public void showPersons(List<Person> persons) {
+    private void showPersons(List<Person> persons) {
         //final List<Item> fullList = addSeparatorsToPersons(persons);
         Collections.sort(persons);
         for (Item item : persons) {
             adapter.addItem(item);
         }
+        adapter.scrollToClosestPerson();
     }
 
     public void refreshAllPersonsFromDb() {
@@ -153,7 +137,6 @@ public class AllFragment extends Fragment {
                             @Override
                             public void onViewDetachedFromWindow(View v) {
                                 if (isRemoved[0]) {
-                                    alarmHelper.removeAlarms(person);
                                     activity.dbHelper.removeRecord(timeStamp);
                                     deletingPersonListener.onPersonDeleted(timeStamp);
                                 }

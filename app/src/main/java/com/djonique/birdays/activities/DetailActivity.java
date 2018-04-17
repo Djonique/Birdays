@@ -108,10 +108,8 @@ public class DetailActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     private DbHelper dbHelper;
     private Person person;
-    private long timeStamp, date;
-    private String phoneNumber, email;
+    private long timeStamp;
     private DisplayedAge displayedAge;
-    private boolean yearUnknown;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -140,10 +138,6 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
         person = dbHelper.query().getPerson(timeStamp);
-        date = person.getDate();
-        yearUnknown = person.isYearUnknown();
-        phoneNumber = person.getPhoneNumber();
-        email = person.getEmail();
 
         toolbar.setTitle(person.getName());
         setSupportActionBar(toolbar);
@@ -208,21 +202,21 @@ public class DetailActivity extends AppCompatActivity {
     private void setupUI() {
         setSeasonImage();
 
-        tvDaysLeft.setText(Utils.daysLeft(this, date));
+        tvDaysLeft.setText(Utils.daysLeftPretty(this, person));
         tvAnniversaryLabel.setText(person.getAnniversaryLabel());
 
-        if (yearUnknown) {
-            tvDate.setText(Utils.getDateWithoutYear(date));
+        if (person.isYearUnknown()) {
+            tvDate.setText(Utils.getDateWithoutYear(person.getDate()));
             tvAge.setVisibility(View.GONE);
             rlDaysSinceBirthday.setVisibility(View.GONE);
         } else {
-            tvDate.setText(Utils.getDate(date));
-            tvAge.setText(String.valueOf(displayedAge.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date)));
-            tvDaysSinceBirthday.setText(Utils.daysSinceBirthday(date));
+            tvDate.setText(Utils.getDate(person.getDate()));
+            tvAge.setText(String.valueOf(Utils.getAge(person.getDate(), displayedAge)));
+            tvDaysSinceBirthday.setText(Utils.daysSinceBirthday(person.getDate()));
         }
 
         if (person.getAnniversaryType() == AnniversaryType.BIRTHDAY) {
-            int zodiacId = Utils.getZodiacId(date);
+            int zodiacId = Utils.getZodiacId(person.getDate());
             tvZodiacSign.setText(getString(zodiacId));
             ivZodiacSign.setImageResource(Utils.getZodiacImage(zodiacId));
         }
@@ -232,6 +226,8 @@ public class DetailActivity extends AppCompatActivity {
             ivZodiacSign.setVisibility(View.GONE);
         }
 
+        final String phoneNumber = person.getPhoneNumber();
+        final String email = person.getEmail();
         if (isEmpty(phoneNumber) && isEmpty(email))
             cardViewInfo.setVisibility(View.GONE);
 
@@ -262,7 +258,7 @@ public class DetailActivity extends AppCompatActivity {
         FamousFragmentAdapter adapter = new FamousFragmentAdapter();
         recyclerView.setAdapter(adapter);
 
-        List<Person> famousPersons = dbHelper.query().getFamousBornThisDay(date);
+        List<Person> famousPersons = dbHelper.query().getFamousBornThisDay(person.getDate());
         for (int i = 0; i < famousPersons.size(); i++) {
             adapter.addPerson(famousPersons.get(i));
         }
@@ -280,16 +276,30 @@ public class DetailActivity extends AppCompatActivity {
      * Set up image depending on month
      */
     private void setSeasonImage() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(date);
-        int month = calendar.get(Calendar.MONTH);
-        if (month >= 0 && month < 2 || month == 11) {
-            ivSeasonPicture.setImageResource(R.drawable.img_winter);
-        } else if (month >= 2 && month < 5) {
-            ivSeasonPicture.setImageResource(R.drawable.img_spring);
-        } else if (month >= 5 && month < 8) {
-            ivSeasonPicture.setImageResource(R.drawable.img_summer);
-        } else ivSeasonPicture.setImageResource(R.drawable.img_autumn);
+        final int month = person.getMonth();
+        //probably better with if's and ranges, but i find this easier to see what's going on
+        switch (month) {
+            case 12:
+            case 1:
+            case 2:
+                ivSeasonPicture.setImageResource(R.drawable.img_winter);
+                break;
+            case 3:
+            case 4:
+            case 5:
+                ivSeasonPicture.setImageResource(R.drawable.img_spring);
+                break;
+            case 6:
+            case 7:
+            case 8:
+                ivSeasonPicture.setImageResource(R.drawable.img_summer);
+                break;
+            case 9:
+            case 10:
+            case 11:
+                ivSeasonPicture.setImageResource(R.drawable.img_autumn);
+                break;
+        }
     }
 
     private void deletePersonDialog(final Person person) {
@@ -298,8 +308,6 @@ public class DetailActivity extends AppCompatActivity {
         builder.setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                new AlarmHelper(getApplicationContext()).removeAlarms(person);
                 dbHelper.removeRecord(timeStamp);
                 Utils.notifyWidget(getApplicationContext());
                 dialog.dismiss();
@@ -329,15 +337,15 @@ public class DetailActivity extends AppCompatActivity {
     @OnClick(R.id.imagebutton_detail_phone)
     void makeCall() {
         startActivity(Intent.createChooser(new Intent(Intent.ACTION_DIAL,
-                Uri.parse(Constants.TEL + phoneNumber)), null));
+                Uri.parse(Constants.TEL + person.getPhoneNumber())), null));
     }
 
     @OnClick(R.id.imagebutton_detail_chat)
     void sendMessage() {
         Intent intent = new Intent(Intent.ACTION_VIEW)
                 .setType(Constants.TYPE_SMS)
-                .putExtra(Constants.ADDRESS, phoneNumber)
-                .setData(Uri.parse(Constants.SMSTO + phoneNumber));
+                .putExtra(Constants.ADDRESS, person.getPhoneNumber())
+                .setData(Uri.parse(Constants.SMSTO + person.getPhoneNumber()));
         startActivity(Intent.createChooser(intent, null));
     }
 
@@ -345,9 +353,9 @@ public class DetailActivity extends AppCompatActivity {
     void sendEmail() {
         Intent intent = new Intent(Intent.ACTION_SENDTO)
                 .setType(Constants.TYPE_EMAIL)
-                .putExtra(Intent.EXTRA_EMAIL, new String[]{email})
+                .putExtra(Intent.EXTRA_EMAIL, new String[]{person.getEmail()})
                 .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.happy_birthday))
-                .setData(Uri.parse(Constants.MAILTO + email));
+                .setData(Uri.parse(Constants.MAILTO + person.getEmail()));
         startActivity(Intent.createChooser(intent, null));
     }
 }

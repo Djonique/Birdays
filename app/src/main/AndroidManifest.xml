@@ -46,7 +46,6 @@
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification" />
 
-        <!-- Fabric Crashlytics -->
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="${fabric_api_key}" />

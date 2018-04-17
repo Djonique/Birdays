@@ -219,7 +219,6 @@ public class ContactsHelper {
         @Override
         protected Void doInBackground(Void... params) {
             DbHelper dbHelper = new DbHelper(activity);
-            AlarmHelper alarmHelper = new AlarmHelper(activity);
 
             List<Person> dbPersons = dbHelper.query().getPersons();
             List<Person> contacts = getAllContactsWithBirthdays(contentResolver);
@@ -228,7 +227,6 @@ public class ContactsHelper {
                 if (!Utils.isPersonAlreadyInDb(person, dbPersons)) {
                     dbHelper.addRecord(person);
                     dbPersons.add(person);
-                    alarmHelper.setAlarms(person);
                 }
             }
             return null;
