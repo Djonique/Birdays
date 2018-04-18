@@ -28,6 +28,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.preference.ListPreference;
+import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -53,7 +54,10 @@ import com.djonique.birdays.utils.ContactsHelper;
 import com.djonique.birdays.utils.PermissionManager;
 import com.djonique.birdays.utils.Utils;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity implements ContactsHelper.LoadingContactsListener {
 
@@ -182,6 +186,28 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
         private SharedPreferences preferences;
 
+        private String getAdditionalNotificationsSelectedValues(MultiSelectListPreference preference) {
+            final Map<CharSequence, CharSequence> names = new LinkedHashMap<>();
+
+            for (int i = 0; i < preference.getEntryValues().length; i++) {
+                names.put(preference.getEntryValues()[i], preference.getEntries()[i]);
+            }
+            StringBuilder sb = new StringBuilder();
+            for (CharSequence candidate : names.keySet()) {
+                if (preference.getValues().contains(candidate)) {
+                    sb.append(names.get(candidate)).append(", ");
+                }
+            }
+            if (sb.length() > 2) {
+                sb.setLength(sb.length() - 2); //remove last ', '
+            }
+            else {
+                sb.append(getActivity().getApplicationContext().getText(R.string.never));
+            }
+
+            return sb.toString();
+        }
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -189,14 +215,18 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
             preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
+            MultiSelectListPreference multi = (MultiSelectListPreference) findPreference(Constants.ADDITIONAL_NOTIFICATION_KEY);
+            multi.setSummary(getAdditionalNotificationsSelectedValues(multi));
+
             /*
             * Set summary for additional notification
             */
             findPreference(Constants.ADDITIONAL_NOTIFICATION_KEY).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    ((ListPreference) preference).setValue(newValue.toString());
-                    preference.setSummary(((ListPreference) preference).getEntry());
+                public boolean onPreferenceChange(Preference uncastPreference, Object newValue) {
+                    final MultiSelectListPreference preference = (MultiSelectListPreference) uncastPreference;
+                    preference.setValues((Set<String>) newValue);
+                    preference.setSummary(getAdditionalNotificationsSelectedValues(preference));
                     return true;
                 }
             });
@@ -417,7 +447,6 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             final AlarmHelper alarmHelper = new AlarmHelper(getActivity());
             DbHelper dbHelper = new DbHelper(getActivity());
-            final List<Person> persons = dbHelper.query().getPersons();
             switch (key) {
                 case Constants.NOTIFICATIONS_KEY:
                     final boolean isChecked = sharedPreferences.getBoolean(Constants.NOTIFICATIONS_KEY, false);
@@ -425,22 +454,18 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                         @Override
                         public void run() {
                             if (isChecked) {
-                                for (Person person : persons) {
-                                    alarmHelper.setAlarms(person);
-                                }
-                            } else {
-                                for (Person person : persons) {
-                                    alarmHelper.removeAlarms(person.getTimeStamp());
-                                }
+                                alarmHelper.setRecurringAlarm();
+                            }
+                            else {
+                                alarmHelper.removeRecurringAlarm();
                             }
                         }
                     }).start();
                     break;
                 case Constants.NOTIFICATION_TIME_KEY:
-                    restartAlarms(alarmHelper, persons);
-                    break;
                 case Constants.ADDITIONAL_NOTIFICATION_KEY:
-                    restartAlarms(alarmHelper, persons);
+                    alarmHelper.removeRecurringAlarm();
+                    alarmHelper.setRecurringAlarm();
                     break;
                 case Constants.NIGHT_MODE_KEY:
                     Utils.setupDayNightTheme(sharedPreferences);
@@ -452,32 +477,17 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         @Override
         public void onResume() {
             super.onResume();
-            getPreferenceScreen().getSharedPreferences()
-                    .registerOnSharedPreferenceChangeListener(this);
+            getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         }
 
         @Override
         public void onPause() {
             super.onPause();
-            getPreferenceScreen().getSharedPreferences()
-                    .unregisterOnSharedPreferenceChangeListener(this);
-        }
-
-        private void restartAlarms(final AlarmHelper alarmHelper, final List<Person> persons) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    for (Person person : persons) {
-                        alarmHelper.removeAlarms(person.getTimeStamp());
-                        alarmHelper.setAlarms(person);
-                    }
-                }
-            }).start();
+            getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
         }
 
         private void restartApp() {
-            Intent intent = getActivity().getPackageManager()
-                    .getLaunchIntentForPackage(getActivity().getPackageName());
+            Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(getActivity().getPackageName());
             if (intent != null) {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

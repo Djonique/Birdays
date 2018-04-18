@@ -19,8 +19,11 @@ package com.djonique.birdays.database;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.djonique.birdays.models.AnniversaryType;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Utils;
+
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +31,6 @@ import java.util.List;
 public class DbQueryManager {
 
     private SQLiteDatabase database;
-    private Person person;
-    private List<Person> persons;
 
     DbQueryManager(SQLiteDatabase database) {
         this.database = database;
@@ -37,138 +38,84 @@ public class DbQueryManager {
 
     public Person getPerson(long timeStamp) {
 
-        Cursor cursor = database.query(DbHelper.DB_PERSONS, null, DbHelper.SELECTION_TIME_STAMP,
-                new String[]{Long.toString(timeStamp)}, null, null, null);
+        final List<Person> candidates = getPersons(DbHelper.DB_PERSONS, null, DbHelper.SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)}, null, null, null, null);
 
-        if (cursor.moveToFirst()) {
-            String name = getName(cursor);
-            long date = getDate(cursor);
-            boolean isYearKnown = getYearUnknown(cursor);
-            String phoneNumber = getPhoneNumber(cursor);
-            String email = getEmail(cursor);
-
-            person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
+        if (candidates.size() > 0) {
+            return candidates.get(0);
         }
-        cursor.close();
 
-        return person;
+        return null;
     }
 
     public List<Person> getPersons() {
-        persons = new ArrayList<>();
+        return getPersons(DbHelper.DB_PERSONS, null, null, null, null, null, null, null);
+    }
 
-        Cursor cursor = database.query(DbHelper.DB_PERSONS, null, null, null, null,
-                null, null);
+    public interface Matches {
+        public boolean match(Person person);
+    }
+
+    private List<Person> getPersons(final String db, final String[] columns, final String selection, final String[] selectionArgs, final String groupBy, final String having, final String orderBy, final Matches matcher) {
+        final List<Person> persons = new ArrayList<>();
+
+        final Cursor cursor = database.query(db, columns, selection, selectionArgs, groupBy, having, orderBy);
 
         if (cursor.moveToFirst()) {
             do {
-                String name = getName(cursor);
-                long date = getDate(cursor);
-                boolean isYearKnown = getYearUnknown(cursor);
-                String phoneNumber = getPhoneNumber(cursor);
-                String email = getEmail(cursor);
-                long timeStamp = getTimeStamp(cursor);
-
-                person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
-                persons.add(person);
+                final Person person = getPerson(cursor);
+                if ((matcher == null) || (matcher.match(person))) {
+                    persons.add(getPerson(cursor));
+                }
 
             } while (cursor.moveToNext());
         }
         cursor.close();
 
         return persons;
+    }
+
+    private Person getPerson(final Cursor cursor) {
+        final String name = getName(cursor);
+        final long date = getDate(cursor);
+        final boolean isYearKnown = getYearUnknown(cursor);
+        final String phoneNumber = getPhoneNumber(cursor);
+        final AnniversaryType anniversaryType = getAnniversaryType(cursor);
+        final String label = getAnniversaryLabel(cursor);
+        final String email = getEmail(cursor);
+        final long timeStamp = getTimeStamp(cursor);
+
+        return new Person(name, date, isYearKnown, phoneNumber, email, label, anniversaryType, timeStamp);
     }
 
     public List<Person> getSearchPerson(String selection, String[] selectionArgs, String orderBy) {
-        persons = new ArrayList<>();
-
-        Cursor cursor = database.query(DbHelper.DB_PERSONS, null, selection, selectionArgs, null,
-                null, orderBy);
-
-        if (cursor.moveToFirst()) {
-            do {
-                String name = getName(cursor);
-                long date = getDate(cursor);
-                boolean isYearKnown = getYearUnknown(cursor);
-                String phoneNumber = getPhoneNumber(cursor);
-                String email = getEmail(cursor);
-                long timeStamp = getTimeStamp(cursor);
-
-                person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
-                persons.add(person);
-
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-
-        return persons;
+        return getPersons(DbHelper.DB_PERSONS, null, selection, selectionArgs, null, null, orderBy, null);
     }
 
     public List<Person> getThisMonthPersons() {
-        persons = new ArrayList<>();
-
-        Cursor cursor = database.query(DbHelper.DB_PERSONS, null, null, null, null, null, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                String name = getName(cursor);
-                long date = getDate(cursor);
-                boolean isYearKnown = getYearUnknown(cursor);
-                String phoneNumber = getPhoneNumber(cursor);
-                String email = getEmail(cursor);
-                long timeStamp = getTimeStamp(cursor);
-
-                if (Utils.isCurrentMonth(date)) {
-                    person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
-                    persons.add(person);
-                }
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-
-        return persons;
+        return getSearchMonthPersons(null, null, null);
     }
 
-    public List<Person> getSearchMonthPerson(String selection, String[] selectionArgs,
-                                             String orderBy) {
-        persons = new ArrayList<>();
-
-        Cursor cursor = database.query(DbHelper.DB_PERSONS, null, selection, selectionArgs, null,
-                null, orderBy);
-
-        if (cursor.moveToFirst()) {
-            do {
-                String name = getName(cursor);
-                long date = getDate(cursor);
-                boolean isYearKnown = getYearUnknown(cursor);
-                String phoneNumber = getPhoneNumber(cursor);
-                String email = getEmail(cursor);
-                long timeStamp = getTimeStamp(cursor);
-
-                if (Utils.isCurrentMonth(date)) {
-                    person = new Person(name, date, isYearKnown, phoneNumber, email, timeStamp);
-                    persons.add(person);
-                }
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-
-        return persons;
+    public List<Person> getSearchMonthPersons(String selection, String[] selectionArgs, String orderBy) {
+        return getPersons(DbHelper.DB_PERSONS, null, selection, selectionArgs, null, null, orderBy, new Matches() {
+            @Override
+            public boolean match(Person person) {
+                return Utils.isCurrentMonth(person.getDate());
+            }
+        });
     }
 
-    public List<Person> getFamousBornThisDay(long dayOfBirthday) {
-        persons = new ArrayList<>();
+    public List<Person> getFamousBornThisDay(LocalDate dayOfBirthday) {
+        final List<Person> persons = new ArrayList<>();
 
-        Cursor cursor = database.query(DbHelper.DB_FAMOUS, null, null, null, null, null, null);
+        final Cursor cursor = database.query(DbHelper.DB_FAMOUS, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
-                String name = getName(cursor);
-                long date = getDate(cursor);
+                final String name = getName(cursor);
+                final LocalDate date = new LocalDate(getDate(cursor));
 
-                if (Utils.getMonth(date) == Utils.getMonth(dayOfBirthday) &&
-                        Utils.getDay(date) == Utils.getDay(dayOfBirthday)) {
-                    person = new Person(name, date);
+                if (date.getMonthOfYear() == dayOfBirthday.getMonthOfYear() && date.getDayOfMonth() == dayOfBirthday.getDayOfMonth()) {
+                    final Person person = new Person(name, date);
                     persons.add(person);
                 }
             } while (cursor.moveToNext());
@@ -192,6 +139,14 @@ public class DbQueryManager {
 
     private String getPhoneNumber(Cursor cursor) {
         return cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_PHONE_NUMBER));
+    }
+
+    private String getAnniversaryLabel(Cursor cursor) {
+        return cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_ANNIVERSARY_LABEL));
+    }
+
+    private AnniversaryType getAnniversaryType(Cursor cursor) {
+        return AnniversaryType.valueOf(cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_ANNIVERSARY_TYPE)));
     }
 
     private String getEmail(Cursor cursor) {

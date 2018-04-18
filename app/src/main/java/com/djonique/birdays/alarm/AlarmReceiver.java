@@ -33,37 +33,37 @@ import android.support.v4.app.TaskStackBuilder;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.activities.DetailActivity;
+import com.djonique.birdays.database.DbHelper;
+import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.BirdaysApplication;
 import com.djonique.birdays.utils.Constants;
+import com.djonique.birdays.utils.Utils;
+
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import static android.text.format.DateUtils.DAY_IN_MILLIS;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
     private static final String CHANNEL_ID = "com.djonique.birdays";
 
-    private NotificationManager manager;
-    private SharedPreferences preferences;
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-
-        manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
-
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-        // Extras from intent
-        String name = intent.getStringExtra(Constants.NAME);
-        String when = intent.getStringExtra(Constants.WHEN);
-        long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
+    private void addNotification(Context context, NotificationManager manager, SharedPreferences preferences, Intent intent, Person person, int daysToBirthday) {
+        final String name = person.getName();
+        final String when = getWhen(context, daysToBirthday);
+        final long timeStamp = person.getTimeStamp();
 
         PendingIntent pendingIntent = TaskStackBuilder.create(context)
                 .addNextIntentWithParentStack(getResultIntent(context, timeStamp, intent))
                 .getPendingIntent(((int) timeStamp), PendingIntent.FLAG_UPDATE_CURRENT);
 
-        createNotificationChannel(context);
+        NotificationCompat.Builder builder = buildNotification(context, name, when, daysToBirthday);
 
-        NotificationCompat.Builder builder = buildNotification(context, name, when);
-
-        setDefaultsAndRingtone(builder);
+        setDefaultsAndRingtone(preferences, builder);
 
         builder.setContentIntent(pendingIntent);
 
@@ -73,6 +73,50 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (manager != null) {
             manager.notify((int) timeStamp, notification);
         }
+    }
+
+    private String getWhen(Context context, int daysToBirthday) {
+        if (daysToBirthday == 0) {
+            return "Today";
+        }
+
+        final String[] dates = context.getResources().getStringArray(R.array.additional_notification_delay);
+        final String[] entryValues = context.getResources().getStringArray(R.array.additional_notification_entry_values);
+        for (int i = 0; i < entryValues.length; i++) {
+            if (daysToBirthday == (Long.parseLong(entryValues[i]))) {
+                return dates[i + 1];
+            }
+        }
+        return null;
+
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        final NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+        final DbHelper dbHelper = new DbHelper(context);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        createNotificationChannel(context, manager);
+
+        Set<Long> additionalNotificationOffsets = getAdditionalNotificationOffsets(preferences);
+        List<Person> persons = dbHelper.query().getPersons();
+        for (Person person : persons) {
+            final Integer daysToBirthday = shouldNotify(person, additionalNotificationOffsets);
+            if (daysToBirthday != null) {
+                addNotification(context, manager, preferences, intent, person, daysToBirthday);
+            }
+        }
+    }
+
+    private Integer shouldNotify(Person person, Set<Long> additionalNotificationOffsets) {
+        final int daysToBirthday = Utils.daysLeft(person);
+        if (daysToBirthday == 0 || additionalNotificationOffsets.contains((long) daysToBirthday)) {
+            return daysToBirthday;
+        }
+
+        //null means we shouldn't notify
+        return null;
     }
 
     /**
@@ -88,10 +132,21 @@ public class AlarmReceiver extends BroadcastReceiver {
         return resultIntent;
     }
 
+    private Set<Long> getAdditionalNotificationOffsets(SharedPreferences preferences) {
+        final Set<String> strs =  preferences.getStringSet(Constants.ADDITIONAL_NOTIFICATION_KEY, Collections.<String>emptySet());
+        final Set<Long> results = new HashSet<>();
+        for (String str : strs) {
+            results.add(Long.parseLong(str));
+        }
+
+        return results;
+    }
+
+
     /**
      * Creates notification channel for Android API 26+
      */
-    private void createNotificationChannel(Context context) {
+    private void createNotificationChannel(Context context, NotificationManager manager) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
                     context.getString(R.string.channel_name), NotificationManager.IMPORTANCE_HIGH);
@@ -107,22 +162,22 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Builds default notification
      */
-    private NotificationCompat.Builder buildNotification(Context context, String title, String text) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID);
-        builder.setContentTitle(title);
-        builder.setContentText(text);
-        builder.setSmallIcon(R.drawable.ic_notification);
-        builder.setColor(context.getResources().getColor(R.color.accent_green_200));
-        builder.setCategory(NotificationCompat.CATEGORY_EVENT);
-        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        return builder;
+    private NotificationCompat.Builder buildNotification(Context context, String title, String text, int daysToBirthday) {
+        final int color = Utils.getNotificationColor(context, daysToBirthday);
+        return new NotificationCompat.Builder(context, CHANNEL_ID)
+                .setContentTitle(title)
+                .setContentText(text)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setColor(color)
+                .setCategory(NotificationCompat.CATEGORY_EVENT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
     }
 
     /**
      * Avoids FileUriExposedException on Android API 24+
      */
-    private void setDefaultsAndRingtone(NotificationCompat.Builder builder) {
+    private void setDefaultsAndRingtone(SharedPreferences preferences, NotificationCompat.Builder builder) {
         String ringtone = preferences.getString(Constants.RINGTONE_KEY,
                 Settings.System.DEFAULT_NOTIFICATION_URI.toString());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

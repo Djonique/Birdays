@@ -31,6 +31,8 @@ import com.djonique.birdays.activities.MainActivity;
 import com.djonique.birdays.adapters.FamousFragmentAdapter;
 import com.djonique.birdays.models.Person;
 
+import org.joda.time.LocalDate;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -69,7 +71,7 @@ public class FamousFragment extends Fragment {
     private void addFamousPersonsFromDb() {
         adapter.removeAllPersons();
         List<Person> famous = activity.dbHelper.query()
-                .getFamousBornThisDay(Calendar.getInstance().getTimeInMillis());
+                .getFamousBornThisDay(new LocalDate());
 
         for (int i = 0; i < famous.size(); i++) {
             adapter.addPerson(famous.get(i));

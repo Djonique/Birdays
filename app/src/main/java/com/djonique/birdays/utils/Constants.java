@@ -30,12 +30,13 @@ public interface Constants {
     // Alarm
     String NAME = "NAME";
     String WHEN = "WHEN";
+    String ANNIVERSARY_LABEL = "ANNIVERSARY_LABEL";
     String TIME_STAMP = "TIME_STAMP";
 
     // Settings keys
     String NOTIFICATIONS_KEY = "notifications_key";
     String NOTIFICATION_TIME_KEY = "notification_time_key";
-    String ADDITIONAL_NOTIFICATION_KEY = "additional_notification_key";
+    String ADDITIONAL_NOTIFICATION_KEY = "additional_notification_key_multi";
     String RINGTONE_KEY = "ringtone_key";
     String NIGHT_MODE_KEY = "night_mode_key";
     String START_PAGE = "start_page_key";

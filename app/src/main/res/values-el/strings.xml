@@ -111,9 +111,9 @@
     <string name="allow_notification">Αφήστε την εφαρμογή να στείλει ειδοποιήσεις για τα επερχόμενα γενέθλια</string>
     <string name="notifications_time">Χρόνος ειδοποίησης</string>
     <string name="additional_notification">Πρόσθετη ειδοποίηση</string>
+    <string name="never">Ποτέ</string>
 
     <string-array name="additional_notification_entries">
-        <item>Ποτέ</item>
         <item>Mία ηέρα πριν</item>
         <item>Δύο μέρες πριν</item>
         <item>Τρεις ημέρες πριν</item>

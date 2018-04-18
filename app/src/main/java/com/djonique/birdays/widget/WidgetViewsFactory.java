@@ -25,9 +25,12 @@ import android.widget.RemoteViewsService;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.database.DbHelper;
+import com.djonique.birdays.models.DisplayedAge;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.Utils;
+
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,16 +60,13 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
         List<Person> persons = dbHelper.query().getPersons();
         Collections.sort(persons);
 
-        Calendar today = Calendar.getInstance();
-        int month = today.get(Calendar.MONTH);
-        int day = today.get(Calendar.DAY_OF_MONTH);
-
+        final LocalDate now = new LocalDate();
         int position = 0;
 
         // Finds the position of the Person with closest date
         for (int i = 0; i < persons.size(); i++) {
             Person person = persons.get(i);
-            if (person.getMonth() == month && person.getDay() >= day || person.getMonth() > month) {
+            if (person.getMonth() == now.getMonthOfYear() && person.getDay() >= now.getDayOfMonth() || person.getMonth() > now.getMonthOfYear()) {
                 position = i;
                 break;
             }
@@ -95,15 +95,16 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
         RemoteViews view = new RemoteViews(context.getPackageName(),
                 R.layout.description_widget_list_view);
 
-        String name = widgetList.get(i).getName();
-        long date = widgetList.get(i).getDate();
-        boolean yearUnknown = widgetList.get(i).isYearUnknown();
+        final Person person = widgetList.get(i);
+        final String name = person.getName();
+        final LocalDate date = person.getDate();
+        final boolean yearUnknown = person.isYearUnknown();
 
         // Age column
         if (!yearUnknown) {
-            String displayedAge = PreferenceManager.getDefaultSharedPreferences(context)
-                    .getString(Constants.DISPLAYED_AGE_KEY, "0");
-            int age = (displayedAge.equals("0") ? Utils.getCurrentAge(date) : Utils.getFutureAge(date));
+            DisplayedAge displayedAge = Utils.getDisplayedAge(PreferenceManager.getDefaultSharedPreferences(context)
+                    .getString(Constants.DISPLAYED_AGE_KEY, DisplayedAge.CURRENT.name()));
+            int age = Utils.getAge(date, displayedAge);
             view.setTextViewText(R.id.textview_widget_age, String.valueOf(age));
         } else {
             view.setTextViewText(R.id.textview_widget_age, "");
@@ -114,7 +115,7 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
 
         // Date column
         String today = context.getString(R.string.today);
-        if (Utils.daysLeft(context, date).equals(today)) {
+        if (Utils.daysLeftPretty(context, person).equals(today)) {
             view.setTextViewText(R.id.textview_widget_date, today);
             setTextColor(view, ContextCompat.getColor(context, R.color.red_alert));
         } else {

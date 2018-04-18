@@ -36,7 +36,10 @@ import com.djonique.birdays.utils.DatePickerManager;
 import com.djonique.birdays.utils.Utils;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.joda.time.LocalDate;
+
 import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,8 +69,6 @@ public class EditActivity extends AppCompatActivity implements
     private DbHelper dbHelper;
     private Person person;
     private Calendar calendar;
-    private long date;
-    private boolean yearUnknown;
     private boolean hideOkButton = false;
 
     @Override
@@ -81,10 +82,7 @@ public class EditActivity extends AppCompatActivity implements
 
         dbHelper = new DbHelper(this);
         person = dbHelper.query().getPerson(timeStamp);
-        yearUnknown = person.isYearUnknown();
-
-        calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(person.getDate());
+        calendar = person.getDate().toDateTimeAtCurrentTime().toCalendar(Locale.getDefault());
 
         setupUI();
     }
@@ -104,7 +102,6 @@ public class EditActivity extends AppCompatActivity implements
                 return true;
             case R.id.menu_edit_ok:
                 updatePerson();
-                setAlarms(person);
                 Utils.notifyWidget(this);
                 setResult(RESULT_OK, new Intent());
                 finish();
@@ -127,14 +124,13 @@ public class EditActivity extends AppCompatActivity implements
         etName.setText(person.getName());
         etName.setSelection(etName.getText().length());
 
-        date = person.getDate();
-        if (yearUnknown) {
-            etDate.setText(Utils.getDateWithoutYear(date));
+        if (person.isYearUnknown()) {
+            etDate.setText(Utils.getDateWithoutYear(person.getDate()));
         } else {
-            etDate.setText(Utils.getDate(date));
+            etDate.setText(Utils.getDate(person.getDate()));
         }
 
-        checkBox.setChecked(yearUnknown);
+        checkBox.setChecked(person.isYearUnknown());
         etPhoneNumber.setText(person.getPhoneNumber());
         etEmail.setText(person.getEmail());
     }
@@ -144,7 +140,7 @@ public class EditActivity extends AppCompatActivity implements
      */
     private void updatePerson() {
         person.setName(updateText(etName));
-        person.setDate(calendar.getTimeInMillis());
+        person.setDate(new LocalDate(calendar));
         person.setYearUnknown(checkBox.isChecked());
         person.setPhoneNumber(updateText(etPhoneNumber));
         person.setEmail(updateText(etEmail));
@@ -160,12 +156,6 @@ public class EditActivity extends AppCompatActivity implements
             result = editText.getText().toString();
         }
         return result;
-    }
-
-    private void setAlarms(Person person) {
-        AlarmHelper alarmHelper = new AlarmHelper(this);
-        alarmHelper.removeAlarms(person.getTimeStamp());
-        alarmHelper.setAlarms(person);
     }
 
     @OnClick(R.id.edittext_edit_date)
@@ -187,7 +177,7 @@ public class EditActivity extends AppCompatActivity implements
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        date = calendar.getTimeInMillis();
+        LocalDate date = new LocalDate(calendar);
         // Checks state of CheckBox whenever date is picked
         if (!checkBox.isChecked()) {
             etDate.setText(Utils.getDate(date));
@@ -227,9 +217,9 @@ public class EditActivity extends AppCompatActivity implements
     @OnCheckedChanged(R.id.checkbox_edit)
     void checkBoxListener() {
         if (checkBox.isChecked()) {
-            etDate.setText(Utils.getDateWithoutYear(date));
+            etDate.setText(Utils.getDateWithoutYear(person.getDate()));
         } else {
-            etDate.setText(Utils.getDate(date));
+            etDate.setText(Utils.getDate(person.getDate()));
         }
         if (fieldsValid()) {
             tilEditDate.setErrorEnabled(false);

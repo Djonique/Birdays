@@ -24,6 +24,8 @@ import com.djonique.birdays.R;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Utils;
 
+import org.joda.time.LocalDate;
+
 import static com.djonique.birdays.database.DbHelper.COLUMN_DATE;
 import static com.djonique.birdays.database.DbHelper.COLUMN_NAME;
 import static com.djonique.birdays.database.DbHelper.DB_FAMOUS;
@@ -35,3046 +37,3057 @@ class DbFamous {
         cv.put(COLUMN_NAME, person.getName());
         if (Utils.getTimeOffset() <= 0) {
             // 43200000 is twelve hour offset
-            cv.put(COLUMN_DATE, person.getDate() + 43200000);
+            cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis() + 43200000);
         } else {
-            cv.put(COLUMN_DATE, person.getDate());
+            cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis());
         }
         db.insert(DB_FAMOUS, null, cv);
     }
 
+    static void createFamousDbPart1(Context context, SQLiteDatabase db) {
+//January 1
+        addFamous(db, new Person(context.getString(R.string.medici), new LocalDate(1449, 1, 1)));
+        addFamous(db, new Person(context.getString(R.string.giordano_bruno), new LocalDate(1548, 1, 1)));
+        addFamous(db, new Person(context.getString(R.string.frazer), new LocalDate(1854, 1, 1)));
+        addFamous(db, new Person(context.getString(R.string.coubertin), new LocalDate(1863, 1, 1)));
+        addFamous(db, new Person(context.getString(R.string.william_fox), new LocalDate(1879, 1, 1)));
+
+//January 2
+        addFamous(db, new Person(context.getString(R.string.piero_di_cosimo), new LocalDate(1462, 1, 2)));
+        addFamous(db, new Person(context.getString(R.string.vasily_perov), new LocalDate(1834, 1, 2)));
+        addFamous(db, new Person(context.getString(R.string.balakirev), new LocalDate(1837, 1, 2)));
+        addFamous(db, new Person(context.getString(R.string.tippett), new LocalDate(1905, 1, 2)));
+        addFamous(db, new Person(context.getString(R.string.isaac_asimov), new LocalDate(1920, 1, 2)));
+
+//January 3
+        addFamous(db, new Person(context.getString(R.string.louis_poinsot), new LocalDate(1777, 1, 3)));
+        addFamous(db, new Person(context.getString(R.string.dabbadie), new LocalDate(1810, 1, 3)));
+        addFamous(db, new Person(context.getString(R.string.fletcher), new LocalDate(1886, 1, 3)));
+        addFamous(db, new Person(context.getString(R.string.tolkien), new LocalDate(1892, 1, 3)));
+        addFamous(db, new Person(context.getString(R.string.moore), new LocalDate(1929, 1, 3)));
+        addFamous(db, new Person(context.getString(R.string.mel_gibson), new LocalDate(1956, 1, 3)));
+        addFamous(db, new Person(context.getString(R.string.schumacher), new LocalDate(1969, 1, 3)));
+
+//January 4
+        addFamous(db, new Person(context.getString(R.string.isaac_newton), new LocalDate(1643, 1, 4)));
+        addFamous(db, new Person(context.getString(R.string.pergolesi), new LocalDate(1710, 1, 4)));
+        addFamous(db, new Person(context.getString(R.string.jacob_grimm), new LocalDate(1785, 1, 4)));
+        addFamous(db, new Person(context.getString(R.string.braille), new LocalDate(1809, 1, 4)));
+        addFamous(db, new Person(context.getString(R.string.tsereteli), new LocalDate(1934, 1, 4)));
+        addFamous(db, new Person(context.getString(R.string.josephson), new LocalDate(1940, 1, 4)));
+
+//January 5
+        addFamous(db, new Person(context.getString(R.string.eucken), new LocalDate(1846, 1, 5)));
+        addFamous(db, new Person(context.getString(R.string.gillette), new LocalDate(1855, 1, 5)));
+        addFamous(db, new Person(context.getString(R.string.erlanger), new LocalDate(1874, 1, 5)));
+        addFamous(db, new Person(context.getString(R.string.umberto_eco), new LocalDate(1932, 1, 5)));
+        addFamous(db, new Person(context.getString(R.string.manson), new LocalDate(1969, 1, 5)));
+        addFamous(db, new Person(context.getString(R.string.bradley_cooper), new LocalDate(1975, 1, 5)));
+
+//January 6
+        addFamous(db, new Person(context.getString(R.string.darc), new LocalDate(1412, 1, 6)));
+        addFamous(db, new Person(context.getString(R.string.jakob_bernoulli), new LocalDate(1655, 1, 6)));
+        addFamous(db, new Person(context.getString(R.string.montgolfier), new LocalDate(1745, 1, 6)));
+        addFamous(db, new Person(context.getString(R.string.schliemann), new LocalDate(1822, 1, 6)));
+        addFamous(db, new Person(context.getString(R.string.scriabin), new LocalDate(1871, 1, 6)));
+        addFamous(db, new Person(context.getString(R.string.celentano), new LocalDate(1938, 1, 6)));
+        addFamous(db, new Person(context.getString(R.string.atkinson), new LocalDate(1955, 1, 6)));
+        addFamous(db, new Person(context.getString(R.string.redmayne), new LocalDate(1982, 1, 6)));
+
+//January 7
+        addFamous(db, new Person(context.getString(R.string.pope_gregory), new LocalDate(1502, 1, 7)));
+        addFamous(db, new Person(context.getString(R.string.fleming), new LocalDate(1827, 1, 7)));
+        addFamous(db, new Person(context.getString(R.string.eliezer), new LocalDate(1858, 1, 7)));
+        addFamous(db, new Person(context.getString(R.string.borel), new LocalDate(1871, 1, 7)));
+        addFamous(db, new Person(context.getString(R.string.nicolas_cage), new LocalDate(1964, 1, 7)));
+
+//January 8
+        addFamous(db, new Person(context.getString(R.string.sirani), new LocalDate(1638, 1, 8)));
+        addFamous(db, new Person(context.getString(R.string.nijinska), new LocalDate(1891, 1, 8)));
+        addFamous(db, new Person(context.getString(R.string.presley), new LocalDate(1935, 1, 8)));
+        addFamous(db, new Person(context.getString(R.string.hawking), new LocalDate(1942, 1, 8)));
+        addFamous(db, new Person(context.getString(R.string.daviw_bowie), new LocalDate(1947, 1, 8)));
+
+//January 9
+        addFamous(db, new Person(context.getString(R.string.simon_vouet), new LocalDate(1590, 1, 9)));
+        addFamous(db, new Person(context.getString(R.string.wrangel), new LocalDate(1797, 1, 9)));
+        addFamous(db, new Person(context.getString(R.string.watson), new LocalDate(1878, 1, 9)));
+        addFamous(db, new Person(context.getString(R.string.capek), new LocalDate(1890, 1, 9)));
+        addFamous(db, new Person(context.getString(R.string.beauvoir), new LocalDate(1908, 1, 9)));
+
+//January 10
+        addFamous(db, new Person(context.getString(R.string.birkbeck), new LocalDate(1776, 1, 10)));
+        addFamous(db, new Person(context.getString(R.string.tolstoy), new LocalDate(1883, 1, 10)));
+        addFamous(db, new Person(context.getString(R.string.bertoni), new LocalDate(1903, 1, 10)));
+        addFamous(db, new Person(context.getString(R.string.wilson), new LocalDate(1936, 1, 10)));
+        addFamous(db, new Person(context.getString(R.string.knuth), new LocalDate(1938, 1, 10)));
+
+//January 11
+        addFamous(db, new Person(context.getString(R.string.parmigianino), new LocalDate(1503, 1, 11)));
+        addFamous(db, new Person(context.getString(R.string.guidobaldo), new LocalDate(1545, 1, 11)));
+        addFamous(db, new Person(context.getString(R.string.stensen), new LocalDate(1638, 1, 11)));
+        addFamous(db, new Person(context.getString(R.string.hofmann), new LocalDate(1906, 1, 11)));
+        addFamous(db, new Person(context.getString(R.string.mendoza), new LocalDate(1943, 1, 11)));
+
+//January 12
+        addFamous(db, new Person(context.getString(R.string.helmont), new LocalDate(1580, 1, 12)));
+        addFamous(db, new Person(context.getString(R.string.perrault), new LocalDate(1628, 1, 12)));
+        addFamous(db, new Person(context.getString(R.string.jack_london), new LocalDate(1876, 1, 12)));
+        addFamous(db, new Person(context.getString(R.string.kurchatov), new LocalDate(1903, 1, 12)));
+        addFamous(db, new Person(context.getString(R.string.korolev), new LocalDate(1907, 1, 12)));
+        addFamous(db, new Person(context.getString(R.string.maharishi), new LocalDate(1917, 1, 12)));
+        addFamous(db, new Person(context.getString(R.string.murakami), new LocalDate(1949, 1, 12)));
+
+//January 13
+        addFamous(db, new Person(context.getString(R.string.beketov), new LocalDate(1827, 1, 13)));
+        addFamous(db, new Person(context.getString(R.string.wien), new LocalDate(1864, 1, 13)));
+        addFamous(db, new Person(context.getString(R.string.soutine), new LocalDate(1893, 1, 13)));
+        addFamous(db, new Person(context.getString(R.string.lifshitz), new LocalDate(1917, 1, 13)));
+        addFamous(db, new Person(context.getString(R.string.feyerabend), new LocalDate(1924, 1, 13)));
+
+//January 14
+        addFamous(db, new Person(context.getString(R.string.semyonov), new LocalDate(1827, 1, 14)));
+        addFamous(db, new Person(context.getString(R.string.morisot), new LocalDate(1841, 1, 14)));
+        addFamous(db, new Person(context.getString(R.string.schweitzer), new LocalDate(1875, 1, 14)));
+        addFamous(db, new Person(context.getString(R.string.mishima), new LocalDate(1925, 1, 14)));
+        addFamous(db, new Person(context.getString(R.string.kharlamov), new LocalDate(1948, 1, 14)));
+
+//January 15
+        addFamous(db, new Person(context.getString(R.string.moliere), new LocalDate(1622, 1, 15)));
+        addFamous(db, new Person(context.getString(R.string.griboyedov), new LocalDate(1795, 1, 15)));
+        addFamous(db, new Person(context.getString(R.string.virtanen), new LocalDate(1895, 1, 15)));
+        addFamous(db, new Person(context.getString(R.string.teller), new LocalDate(1908, 1, 15)));
+        addFamous(db, new Person(context.getString(R.string.luther_king), new LocalDate(1929, 1, 15)));
+
+//January 16
+        addFamous(db, new Person(context.getString(R.string.schoner), new LocalDate(1477, 1, 16)));
+        addFamous(db, new Person(context.getString(R.string.piccinni), new LocalDate(1728, 1, 16)));
+        addFamous(db, new Person(context.getString(R.string.alfieri), new LocalDate(1749, 1, 16)));
+        addFamous(db, new Person(context.getString(R.string.veresaev), new LocalDate(1867, 1, 16)));
+        addFamous(db, new Person(context.getString(R.string.roy_jones), new LocalDate(1969, 1, 16)));
+
+//January 17
+        addFamous(db, new Person(context.getString(R.string.franklin), new LocalDate(1706, 1, 17)));
+        addFamous(db, new Person(context.getString(R.string.zhukovsky), new LocalDate(1847, 1, 17)));
+        addFamous(db, new Person(context.getString(R.string.stanislavski), new LocalDate(1863, 1, 17)));
+        addFamous(db, new Person(context.getString(R.string.al_capone), new LocalDate(1899, 1, 17)));
+        addFamous(db, new Person(context.getString(R.string.muhammad_ali), new LocalDate(1942, 1, 17)));
+        addFamous(db, new Person(context.getString(R.string.jim_carrey), new LocalDate(1962, 1, 17)));
+
+//January 18
+        addFamous(db, new Person(context.getString(R.string.montesquieu), new LocalDate(1689, 1, 18)));
+        addFamous(db, new Person(context.getString(R.string.cesar_cui), new LocalDate(1835, 1, 18)));
+        addFamous(db, new Person(context.getString(R.string.ehrenfest), new LocalDate(1880, 1, 18)));
+        addFamous(db, new Person(context.getString(R.string.milne), new LocalDate(1882, 1, 18)));
+        addFamous(db, new Person(context.getString(R.string.kitano), new LocalDate(1947, 1, 18)));
+        addFamous(db, new Person(context.getString(R.string.costner), new LocalDate(1955, 1, 18)));
+        addFamous(db, new Person(context.getString(R.string.guardiola), new LocalDate(1971, 1, 18)));
+
+//January 19
+        addFamous(db, new Person(context.getString(R.string.cagnacci), new LocalDate(1601, 1, 19)));
+        addFamous(db, new Person(context.getString(R.string.comte), new LocalDate(1798, 1, 19)));
+        addFamous(db, new Person(context.getString(R.string.edgar_poe), new LocalDate(1809, 1, 19)));
+        addFamous(db, new Person(context.getString(R.string.kapteyn), new LocalDate(1851, 1, 19)));
+        addFamous(db, new Person(context.getString(R.string.serov), new LocalDate(1865, 1, 19)));
+        addFamous(db, new Person(context.getString(R.string.kantorovich), new LocalDate(1912, 1, 19)));
+
+//January 20
+        addFamous(db, new Person(context.getString(R.string.gessi), new LocalDate(1588, 1, 20)));
+        addFamous(db, new Person(context.getString(R.string.ampere), new LocalDate(1775, 1, 20)));
+        addFamous(db, new Person(context.getString(R.string.chausson), new LocalDate(1855, 1, 20)));
+        addFamous(db, new Person(context.getString(R.string.onassis), new LocalDate(1906, 1, 20)));
+        addFamous(db, new Person(context.getString(R.string.fellini), new LocalDate(1920, 1, 20)));
+
+//January 21
+        addFamous(db, new Person(context.getString(R.string.browning), new LocalDate(1855, 1, 21)));
+        addFamous(db, new Person(context.getString(R.string.florensky), new LocalDate(1882, 1, 21)));
+        addFamous(db, new Person(context.getString(R.string.dior), new LocalDate(1905, 1, 21)));
+        addFamous(db, new Person(context.getString(R.string.benny_hill), new LocalDate(1924, 1, 21)));
+        addFamous(db, new Person(context.getString(R.string.domingo), new LocalDate(1941, 1, 21)));
+
+//January 22
+        addFamous(db, new Person(context.getString(R.string.bacon), new LocalDate(1561, 1, 22)));
+        addFamous(db, new Person(context.getString(R.string.byron), new LocalDate(1788, 1, 22)));
+        addFamous(db, new Person(context.getString(R.string.scoville), new LocalDate(1865, 1, 22)));
+        addFamous(db, new Person(context.getString(R.string.picabia), new LocalDate(1879, 1, 22)));
+        addFamous(db, new Person(context.getString(R.string.landau), new LocalDate(1908, 1, 22)));
+
+//January 23
+        addFamous(db, new Person(context.getString(R.string.stendhal), new LocalDate(1783, 1, 23)));
+        addFamous(db, new Person(context.getString(R.string.manet), new LocalDate(1832, 1, 23)));
+        addFamous(db, new Person(context.getString(R.string.abbe), new LocalDate(1840, 1, 23)));
+        addFamous(db, new Person(context.getString(R.string.hilbert), new LocalDate(1862, 1, 23)));
+        addFamous(db, new Person(context.getString(R.string.yukawa), new LocalDate(1907, 1, 23)));
+        addFamous(db, new Person(context.getString(R.string.hauer), new LocalDate(1944, 1, 23)));
+
+//January 24
+        addFamous(db, new Person(context.getString(R.string.congreve), new LocalDate(1670, 1, 24)));
+        addFamous(db, new Person(context.getString(R.string.beaumarchais), new LocalDate(1732, 1, 24)));
+        addFamous(db, new Person(context.getString(R.string.hoffmann), new LocalDate(1776, 1, 24)));
+        addFamous(db, new Person(context.getString(R.string.surikov), new LocalDate(1848, 1, 24)));
+        addFamous(db, new Person(context.getString(R.string.shechtman), new LocalDate(1941, 1, 24)));
+        addFamous(db, new Person(context.getString(R.string.kinski), new LocalDate(1961, 1, 24)));
+
+//January 25
+        addFamous(db, new Person(context.getString(R.string.lagrange), new LocalDate(1736, 1, 25)));
+        addFamous(db, new Person(context.getString(R.string.burns), new LocalDate(1759, 1, 25)));
+        addFamous(db, new Person(context.getString(R.string.shishkin), new LocalDate(1832, 1, 25)));
+        addFamous(db, new Person(context.getString(R.string.maugham), new LocalDate(1874, 1, 25)));
+        addFamous(db, new Person(context.getString(R.string.woolf), new LocalDate(1882, 1, 25)));
+        addFamous(db, new Person(context.getString(R.string.prigogine), new LocalDate(1917, 1, 25)));
+        addFamous(db, new Person(context.getString(R.string.eusebio), new LocalDate(1942, 1, 25)));
+
+//January 26
+        addFamous(db, new Person(context.getString(R.string.morita), new LocalDate(1921, 1, 26)));
+        addFamous(db, new Person(context.getString(R.string.newman), new LocalDate(1925, 1, 26)));
+        addFamous(db, new Person(context.getString(R.string.davis), new LocalDate(1944, 1, 26)));
+        addFamous(db, new Person(context.getString(R.string.gretzky), new LocalDate(1961, 1, 26)));
+        addFamous(db, new Person(context.getString(R.string.mourinho), new LocalDate(1963, 1, 26)));
+
+//January 27
+        addFamous(db, new Person(context.getString(R.string.neumann), new LocalDate(1687, 1, 27)));
+        addFamous(db, new Person(context.getString(R.string.mozart), new LocalDate(1756, 1, 27)));
+        addFamous(db, new Person(context.getString(R.string.schelling), new LocalDate(1775, 1, 27)));
+        addFamous(db, new Person(context.getString(R.string.saltykov_shchedrin), new LocalDate(1826, 1, 27)));
+        addFamous(db, new Person(context.getString(R.string.carroll), new LocalDate(1832, 1, 27)));
+        addFamous(db, new Person(context.getString(R.string.bjorndalen), new LocalDate(1974, 1, 27)));
+
+//January 28
+        addFamous(db, new Person(context.getString(R.string.borelli), new LocalDate(1608, 1, 28)));
+        addFamous(db, new Person(context.getString(R.string.heweliusz), new LocalDate(1611, 1, 28)));
+        addFamous(db, new Person(context.getString(R.string.baskerville), new LocalDate(1706, 1, 28)));
+        addFamous(db, new Person(context.getString(R.string.rubinstein), new LocalDate(1887, 1, 28)));
+        addFamous(db, new Person(context.getString(R.string.buffon), new LocalDate(1978, 1, 28)));
+
+//January 29
+        addFamous(db, new Person(context.getString(R.string.swedenborg), new LocalDate(1688, 1, 29)));
+        addFamous(db, new Person(context.getString(R.string.mohs), new LocalDate(1773, 1, 29)));
+        addFamous(db, new Person(context.getString(R.string.auber), new LocalDate(1782, 1, 29)));
+        addFamous(db, new Person(context.getString(R.string.shibasaburo), new LocalDate(1853, 1, 29)));
+        addFamous(db, new Person(context.getString(R.string.chekhov), new LocalDate(1860, 1, 29)));
+        addFamous(db, new Person(context.getString(R.string.rolland), new LocalDate(1886, 1, 29)));
+
+//January 30
+        addFamous(db, new Person(context.getString(R.string.watt), new LocalDate(1736, 1, 30)));
+        addFamous(db, new Person(context.getString(R.string.chamisso), new LocalDate(1781, 1, 30)));
+        addFamous(db, new Person(context.getString(R.string.kotelnikov), new LocalDate(1872, 1, 30)));
+        addFamous(db, new Person(context.getString(R.string.gaidai), new LocalDate(1923, 1, 30)));
+        addFamous(db, new Person(context.getString(R.string.engelbart), new LocalDate(1925, 1, 30)));
+        addFamous(db, new Person(context.getString(R.string.brown), new LocalDate(1928, 1, 30)));
+
+//January 31
+        addFamous(db, new Person(context.getString(R.string.schubert), new LocalDate(1797, 1, 31)));
+        addFamous(db, new Person(context.getString(R.string.richards), new LocalDate(1868, 1, 31)));
+        addFamous(db, new Person(context.getString(R.string.langmuir), new LocalDate(1881, 1, 31)));
+        addFamous(db, new Person(context.getString(R.string.vanga), new LocalDate(1911, 1, 31)));
+        addFamous(db, new Person(context.getString(R.string.timberlake), new LocalDate(1981, 1, 31)));
+
+//February 1
+        addFamous(db, new Person(context.getString(R.string.bekhterev), new LocalDate(1857, 2, 1)));
+        addFamous(db, new Person(context.getString(R.string.john_ford), new LocalDate(1894, 2, 1)));
+        addFamous(db, new Person(context.getString(R.string.gable), new LocalDate(1901, 2, 1)));
+        addFamous(db, new Person(context.getString(R.string.segre), new LocalDate(1905, 2, 1)));
+        addFamous(db, new Person(context.getString(R.string.brandon_lee), new LocalDate(1965, 2, 1)));
+
+//February 2
+        addFamous(db, new Person(context.getString(R.string.bourdon), new LocalDate(1616, 2, 2)));
+        addFamous(db, new Person(context.getString(R.string.boussingault), new LocalDate(1802, 2, 2)));
+        addFamous(db, new Person(context.getString(R.string.forel), new LocalDate(1841, 2, 2)));
+        addFamous(db, new Person(context.getString(R.string.chkalov), new LocalDate(1904, 2, 2)));
+        addFamous(db, new Person(context.getString(R.string.haasse), new LocalDate(1918, 2, 2)));
+        addFamous(db, new Person(context.getString(R.string.holland), new LocalDate(1929, 2, 2)));
+
+//February 3
+        addFamous(db, new Person(context.getString(R.string.mendelssohn), new LocalDate(1809, 2, 3)));
+        addFamous(db, new Person(context.getString(R.string.trubner), new LocalDate(1851, 2, 3)));
+        addFamous(db, new Person(context.getString(R.string.fomin), new LocalDate(1872, 2, 3)));
+        addFamous(db, new Person(context.getString(R.string.stein), new LocalDate(1874, 2, 3)));
+        addFamous(db, new Person(context.getString(R.string.joachim_low), new LocalDate(1960, 2, 3)));
+
+//February 4
+        addFamous(db, new Person(context.getString(R.string.bottger), new LocalDate(1682, 2, 4)));
+        addFamous(db, new Person(context.getString(R.string.nemcova), new LocalDate(1820, 2, 4)));
+        addFamous(db, new Person(context.getString(R.string.prandtl), new LocalDate(1875, 2, 4)));
+        addFamous(db, new Person(context.getString(R.string.maillard), new LocalDate(1878, 2, 4)));
+        addFamous(db, new Person(context.getString(R.string.tombaugh), new LocalDate(1906, 2, 4)));
+
+//February 5
+        addFamous(db, new Person(context.getString(R.string.runeberg), new LocalDate(1804, 2, 5)));
+        addFamous(db, new Person(context.getString(R.string.maxim), new LocalDate(1840, 2, 5)));
+        addFamous(db, new Person(context.getString(R.string.dunlop), new LocalDate(1840, 2, 5)));
+        addFamous(db, new Person(context.getString(R.string.teike), new LocalDate(1864, 2, 5)));
+        addFamous(db, new Person(context.getString(R.string.citroen), new LocalDate(1878, 2, 5)));
+        addFamous(db, new Person(context.getString(R.string.voisin), new LocalDate(1880, 2, 5)));
+        addFamous(db, new Person(context.getString(R.string.cristiano_ronaldo), new LocalDate(1985, 2, 5)));
+        addFamous(db, new Person(context.getString(R.string.neymar), new LocalDate(1992, 2, 5)));
+
+//February 6
+        addFamous(db, new Person(context.getString(R.string.heinecken), new LocalDate(1721, 2, 6)));
+        addFamous(db, new Person(context.getString(R.string.zelinsky), new LocalDate(1861, 2, 6)));
+        addFamous(db, new Person(context.getString(R.string.bragg), new LocalDate(1895, 2, 6)));
+        addFamous(db, new Person(context.getString(R.string.truffaut), new LocalDate(1932, 2, 6)));
+        addFamous(db, new Person(context.getString(R.string.bob_marley), new LocalDate(1945, 2, 6)));
+
+//February 7
+        addFamous(db, new Person(context.getString(R.string.dickens), new LocalDate(1812, 2, 7)));
+        addFamous(db, new Person(context.getString(R.string.alfred_adler), new LocalDate(1870, 2, 7)));
+        addFamous(db, new Person(context.getString(R.string.sinclair_lewis), new LocalDate(1885, 2, 7)));
+        addFamous(db, new Person(context.getString(R.string.chizhevsky), new LocalDate(1897, 2, 7)));
+        addFamous(db, new Person(context.getString(R.string.euler), new LocalDate(1905, 2, 7)));
+        addFamous(db, new Person(context.getString(R.string.desmond_doss), new LocalDate(1919, 2, 7)));
+        addFamous(db, new Person(context.getString(R.string.kutcher), new LocalDate(1978, 2, 7)));
+
+//February 8
+        addFamous(db, new Person(context.getString(R.string.bernoulli), new LocalDate(1700, 2, 8)));
+        addFamous(db, new Person(context.getString(R.string.courtois), new LocalDate(1777, 2, 8)));
+        addFamous(db, new Person(context.getString(R.string.jules_verne), new LocalDate(1828, 2, 8)));
+        addFamous(db, new Person(context.getString(R.string.mendeleev), new LocalDate(1828, 2, 8)));
+        addFamous(db, new Person(context.getString(R.string.carlson), new LocalDate(1906, 2, 8)));
+        addFamous(db, new Person(context.getString(R.string.williams), new LocalDate(1932, 2, 8)));
+
+//February 9
+        addFamous(db, new Person(context.getString(R.string.navai), new LocalDate(1441, 2, 9)));
+        addFamous(db, new Person(context.getString(R.string.valisy_zhukovsky), new LocalDate(1783, 2, 9)));
+        addFamous(db, new Person(context.getString(R.string.maybach), new LocalDate(1846, 2, 9)));
+        addFamous(db, new Person(context.getString(R.string.soseki), new LocalDate(1867, 2, 9)));
+        addFamous(db, new Person(context.getString(R.string.berg), new LocalDate(1885, 2, 9)));
+        addFamous(db, new Person(context.getString(R.string.valier), new LocalDate(1895, 2, 9)));
+        addFamous(db, new Person(context.getString(R.string.monod), new LocalDate(1910, 2, 9)));
+
+//February 10
+        addFamous(db, new Person(context.getString(R.string.molter), new LocalDate(1696, 2, 10)));
+        addFamous(db, new Person(context.getString(R.string.lamb), new LocalDate(1775, 2, 10)));
+        addFamous(db, new Person(context.getString(R.string.navier), new LocalDate(1785, 2, 10)));
+        addFamous(db, new Person(context.getString(R.string.pasternak), new LocalDate(1890, 2, 10)));
+        addFamous(db, new Person(context.getString(R.string.brecht), new LocalDate(1898, 2, 10)));
+
+//February 11
+        addFamous(db, new Person(context.getString(R.string.talbot), new LocalDate(1800, 2, 11)));
+        addFamous(db, new Person(context.getString(R.string.edison), new LocalDate(1847, 2, 11)));
+        addFamous(db, new Person(context.getString(R.string.henry), new LocalDate(1887, 2, 11)));
+        addFamous(db, new Person(context.getString(R.string.sheldon), new LocalDate(1917, 2, 11)));
+        addFamous(db, new Person(context.getString(R.string.nielsen), new LocalDate(1926, 2, 11)));
+        addFamous(db, new Person(context.getString(R.string.aniston), new LocalDate(1969, 2, 11)));
+
+//February 12
+        addFamous(db, new Person(context.getString(R.string.gottsched), new LocalDate(1700, 2, 12)));
+        addFamous(db, new Person(context.getString(R.string.darwin), new LocalDate(1809, 2, 12)));
+        addFamous(db, new Person(context.getString(R.string.lincoln), new LocalDate(1809, 2, 12)));
+        addFamous(db, new Person(context.getString(R.string.roerich), new LocalDate(1879, 2, 12)));
+        addFamous(db, new Person(context.getString(R.string.anna_pavlova), new LocalDate(1881, 2, 12)));
+        addFamous(db, new Person(context.getString(R.string.byung_chul), new LocalDate(1910, 2, 12)));
+
+//February 13
+        addFamous(db, new Person(context.getString(R.string.malthus), new LocalDate(1766, 2, 13)));
+        addFamous(db, new Person(context.getString(R.string.krylov), new LocalDate(1769, 2, 13)));
+        addFamous(db, new Person(context.getString(R.string.chaliapin), new LocalDate(1873, 2, 13)));
+        addFamous(db, new Person(context.getString(R.string.shockley), new LocalDate(1910, 2, 13)));
+        addFamous(db, new Person(context.getString(R.string.collina), new LocalDate(1960, 2, 13)));
+        addFamous(db, new Person(context.getString(R.string.robbie_williams), new LocalDate(1974, 2, 13)));
+
+//February 14
+        addFamous(db, new Person(context.getString(R.string.alberti), new LocalDate(1404, 2, 14)));
+        addFamous(db, new Person(context.getString(R.string.babur), new LocalDate(1483, 2, 14)));
+        addFamous(db, new Person(context.getString(R.string.ferris), new LocalDate(1859, 2, 14)));
+        addFamous(db, new Person(context.getString(R.string.germi), new LocalDate(1914, 2, 14)));
+        addFamous(db, new Person(context.getString(R.string.sergey_kapitsa), new LocalDate(1928, 2, 14)));
+        addFamous(db, new Person(context.getString(R.string.alan_parker), new LocalDate(1944, 2, 14)));
+
+//February 15
+        addFamous(db, new Person(context.getString(R.string.galilei), new LocalDate(1564, 2, 15)));
+        addFamous(db, new Person(context.getString(R.string.praetorius), new LocalDate(1571, 2, 15)));
+        addFamous(db, new Person(context.getString(R.string.bentham), new LocalDate(1748, 2, 15)));
+        addFamous(db, new Person(context.getString(R.string.stoney), new LocalDate(1826, 2, 15)));
+        addFamous(db, new Person(context.getString(R.string.guillaume), new LocalDate(1861, 2, 15)));
+        addFamous(db, new Person(context.getString(R.string.whitehead), new LocalDate(1861, 2, 15)));
+        addFamous(db, new Person(context.getString(R.string.barrymore), new LocalDate(1882, 2, 15)));
+
+//February 16
+        addFamous(db, new Person(context.getString(R.string.bouguer), new LocalDate(1698, 2, 16)));
+        addFamous(db, new Person(context.getString(R.string.bodoni), new LocalDate(1740, 2, 16)));
+        addFamous(db, new Person(context.getString(R.string.galton), new LocalDate(1822, 2, 16)));
+        addFamous(db, new Person(context.getString(R.string.haeckel), new LocalDate(1834, 2, 16)));
+        addFamous(db, new Person(context.getString(R.string.rossi), new LocalDate(1979, 2, 16)));
+
+//February 17
+        addFamous(db, new Person(context.getString(R.string.laennec), new LocalDate(1781, 2, 17)));
+        addFamous(db, new Person(context.getString(R.string.beilstein), new LocalDate(1838, 2, 17)));
+        addFamous(db, new Person(context.getString(R.string.john_watson), new LocalDate(1874, 2, 17)));
+        addFamous(db, new Person(context.getString(R.string.fisher), new LocalDate(1890, 2, 17)));
+        addFamous(db, new Person(context.getString(R.string.michael_bay), new LocalDate(1965, 2, 17)));
+        addFamous(db, new Person(context.getString(R.string.denise_richards), new LocalDate(1971, 2, 17)));
+
+//February 18
+        addFamous(db, new Person(context.getString(R.string.volta), new LocalDate(1745, 2, 18)));
+        addFamous(db, new Person(context.getString(R.string.bates), new LocalDate(1825, 2, 18)));
+        addFamous(db, new Person(context.getString(R.string.ernst_mach), new LocalDate(1838, 2, 18)));
+        addFamous(db, new Person(context.getString(R.string.ferrari), new LocalDate(1898, 2, 18)));
+        addFamous(db, new Person(context.getString(R.string.yoko_ono), new LocalDate(1933, 2, 18)));
+        addFamous(db, new Person(context.getString(R.string.travolta), new LocalDate(1954, 2, 18)));
+
+//February 19
+        addFamous(db, new Person(context.getString(R.string.copernicus), new LocalDate(1473, 2, 19)));
+        addFamous(db, new Person(context.getString(R.string.boccherini), new LocalDate(1743, 2, 19)));
+        addFamous(db, new Person(context.getString(R.string.murchison), new LocalDate(1792, 2, 19)));
+        addFamous(db, new Person(context.getString(R.string.ducommun), new LocalDate(1833, 2, 19)));
+        addFamous(db, new Person(context.getString(R.string.arrhenius), new LocalDate(1859, 2, 19)));
+        addFamous(db, new Person(context.getString(R.string.del_toro), new LocalDate(1967, 2, 19)));
+
+//February 20
+        addFamous(db, new Person(context.getString(R.string.reil), new LocalDate(1759, 2, 20)));
+        addFamous(db, new Person(context.getString(R.string.boltzmann), new LocalDate(1844, 2, 20)));
+        addFamous(db, new Person(context.getString(R.string.crawford), new LocalDate(1966, 2, 20)));
+        addFamous(db, new Person(context.getString(R.string.cobain), new LocalDate(1967, 2, 20)));
+        addFamous(db, new Person(context.getString(R.string.rihanna), new LocalDate(1988, 2, 20)));
+
+//February 21
+        addFamous(db, new Person(context.getString(R.string.delibes), new LocalDate(1836, 2, 21)));
+        addFamous(db, new Person(context.getString(R.string.calment), new LocalDate(1875, 2, 21)));
+        addFamous(db, new Person(context.getString(R.string.sullivan), new LocalDate(1892, 2, 21)));
+        addFamous(db, new Person(context.getString(R.string.henrik_dam), new LocalDate(1895, 2, 21)));
+        addFamous(db, new Person(context.getString(R.string.givenchy), new LocalDate(1927, 2, 21)));
+        addFamous(db, new Person(context.getString(R.string.palahniuk), new LocalDate(1962, 2, 21)));
+
+//February 22
+        addFamous(db, new Person(context.getString(R.string.washington), new LocalDate(1732, 2, 22)));
+        addFamous(db, new Person(context.getString(R.string.schopenhauer), new LocalDate(1788, 2, 22)));
+        addFamous(db, new Person(context.getString(R.string.quetelet), new LocalDate(1796, 2, 22)));
+        addFamous(db, new Person(context.getString(R.string.janssen), new LocalDate(1824, 2, 22)));
+        addFamous(db, new Person(context.getString(R.string.hertz), new LocalDate(1857, 2, 22)));
+        addFamous(db, new Person(context.getString(R.string.bronsted), new LocalDate(1879, 2, 22)));
+        addFamous(db, new Person(context.getString(R.string.drew_barrymore), new LocalDate(1975, 2, 22)));
+
+//February 23
+        addFamous(db, new Person(context.getString(R.string.handel), new LocalDate(1685, 2, 23)));
+        addFamous(db, new Person(context.getString(R.string.chambers), new LocalDate(1723, 2, 23)));
+        addFamous(db, new Person(context.getString(R.string.rothschild), new LocalDate(1744, 2, 23)));
+        addFamous(db, new Person(context.getString(R.string.malevich), new LocalDate(1879, 2, 23)));
+        addFamous(db, new Person(context.getString(R.string.jaspers), new LocalDate(1883, 2, 23)));
+        addFamous(db, new Person(context.getString(R.string.blunt), new LocalDate(1983, 2, 23)));
+
+//February 24
+        addFamous(db, new Person(context.getString(R.string.banks), new LocalDate(1743, 2, 24)));
+        addFamous(db, new Person(context.getString(R.string.grimm), new LocalDate(1768, 2, 24)));
+        addFamous(db, new Person(context.getString(R.string.borgman), new LocalDate(1849, 2, 24)));
+        addFamous(db, new Person(context.getString(R.string.freda), new LocalDate(1909, 2, 24)));
+        addFamous(db, new Person(context.getString(R.string.legrand), new LocalDate(1932, 2, 24)));
+        addFamous(db, new Person(context.getString(R.string.steve_jobs), new LocalDate(1955, 2, 24)));
+
+//February 25
+        addFamous(db, new Person(context.getString(R.string.battuta), new LocalDate(1304, 2, 25)));
+        addFamous(db, new Person(context.getString(R.string.goldoni), new LocalDate(1707, 2, 25)));
+        addFamous(db, new Person(context.getString(R.string.renoir), new LocalDate(1841, 2, 25)));
+        addFamous(db, new Person(context.getString(R.string.karl_may), new LocalDate(1842, 2, 25)));
+        addFamous(db, new Person(context.getString(R.string.caruso), new LocalDate(1873, 2, 25)));
+        addFamous(db, new Person(context.getString(R.string.burgess), new LocalDate(1917, 2, 25)));
+
+//February 26
+        addFamous(db, new Person(context.getString(R.string.marlowe), new LocalDate(1564, 2, 26)));
+        addFamous(db, new Person(context.getString(R.string.arago), new LocalDate(1786, 2, 26)));
+        addFamous(db, new Person(context.getString(R.string.hugo), new LocalDate(1802, 2, 26)));
+        addFamous(db, new Person(context.getString(R.string.levi_strauss), new LocalDate(1829, 2, 26)));
+        addFamous(db, new Person(context.getString(R.string.flammarion), new LocalDate(1842, 2, 26)));
+
+//February 27
+        addFamous(db, new Person(context.getString(R.string.constantine), new LocalDate(272, 2, 27)));
+        addFamous(db, new Person(context.getString(R.string.longfellow), new LocalDate(1807, 2, 27)));
+        addFamous(db, new Person(context.getString(R.string.ge), new LocalDate(1831, 2, 27)));
+        addFamous(db, new Person(context.getString(R.string.best), new LocalDate(1899, 2, 27)));
+        addFamous(db, new Person(context.getString(R.string.steinbeck), new LocalDate(1902, 2, 27)));
+        addFamous(db, new Person(context.getString(R.string.taylor), new LocalDate(1932, 2, 27)));
+
+//February 28
+        addFamous(db, new Person(context.getString(R.string.montaigne), new LocalDate(1533, 2, 28)));
+        addFamous(db, new Person(context.getString(R.string.reaumur), new LocalDate(1683, 2, 28)));
+        addFamous(db, new Person(context.getString(R.string.renan), new LocalDate(1823, 2, 28)));
+        addFamous(db, new Person(context.getString(R.string.pauling), new LocalDate(1901, 2, 28)));
+        addFamous(db, new Person(context.getString(R.string.gehry), new LocalDate(1929, 2, 28)));
+        addFamous(db, new Person(context.getString(R.string.cooper), new LocalDate(1930, 2, 28)));
+        addFamous(db, new Person(context.getString(R.string.vodianova), new LocalDate(1982, 2, 28)));
+
+//February 29
+        addFamous(db, new Person(context.getString(R.string.klenze), new LocalDate(1784, 2, 29)));
+        addFamous(db, new Person(context.getString(R.string.rossini), new LocalDate(1792, 2, 29)));
+        addFamous(db, new Person(context.getString(R.string.john_holland), new LocalDate(1840, 2, 29)));
+        addFamous(db, new Person(context.getString(R.string.рollerith), new LocalDate(1860, 2, 29)));
+        addFamous(db, new Person(context.getString(R.string.papert), new LocalDate(1928, 2, 29)));
+
+//March 1
+        addFamous(db, new Person(context.getString(R.string.botticelli), new LocalDate(1445, 3, 1)));
+        addFamous(db, new Person(context.getString(R.string.chopin), new LocalDate(1810, 3, 1)));
+        addFamous(db, new Person(context.getString(R.string.akutagawa), new LocalDate(1892, 3, 1)));
+        addFamous(db, new Person(context.getString(R.string.miller), new LocalDate(1904, 3, 1)));
+        addFamous(db, new Person(context.getString(R.string.snyder), new LocalDate(1966, 3, 1)));
+        addFamous(db, new Person(context.getString(R.string.bieber), new LocalDate(1994, 3, 1)));
+
+//March 2
+        addFamous(db, new Person(context.getString(R.string.dekker), new LocalDate(1820, 3, 2)));
+        addFamous(db, new Person(context.getString(R.string.smetana), new LocalDate(1824, 3, 2)));
+        addFamous(db, new Person(context.getString(R.string.irving), new LocalDate(1942, 3, 2)));
+        addFamous(db, new Person(context.getString(R.string.bon_jovi), new LocalDate(1962, 3, 2)));
+        addFamous(db, new Person(context.getString(R.string.craig), new LocalDate(1968, 3, 2)));
+
+//March 3
+        addFamous(db, new Person(context.getString(R.string.pullman), new LocalDate(1831, 3, 3)));
+        addFamous(db, new Person(context.getString(R.string.cantor), new LocalDate(1845, 3, 3)));
+        addFamous(db, new Person(context.getString(R.string.bell), new LocalDate(1847, 3, 3)));
+        addFamous(db, new Person(context.getString(R.string.frisch), new LocalDate(1895, 3, 3)));
+        addFamous(db, new Person(context.getString(R.string.kornberg), new LocalDate(1918, 3, 3)));
+
+//March 4
+        addFamous(db, new Person(context.getString(R.string.vivaldi), new LocalDate(1678, 3, 4)));
+        addFamous(db, new Person(context.getString(R.string.raeburn), new LocalDate(1756, 3, 4)));
+        addFamous(db, new Person(context.getString(R.string.gamow), new LocalDate(1904, 3, 4)));
+        addFamous(db, new Person(context.getString(R.string.veksler), new LocalDate(1907, 3, 4)));
+        addFamous(db, new Person(context.getString(R.string.mauriat), new LocalDate(1925, 3, 4)));
+
+//March 5
+        addFamous(db, new Person(context.getString(R.string.mercator), new LocalDate(1512, 3, 5)));
+        addFamous(db, new Person(context.getString(R.string.tiepolo), new LocalDate(1696, 3, 5)));
+        addFamous(db, new Person(context.getString(R.string.marey), new LocalDate(1830, 3, 5)));
+        addFamous(db, new Person(context.getString(R.string.tarrasch), new LocalDate(1862, 3, 5)));
+        addFamous(db, new Person(context.getString(R.string.ando), new LocalDate(1910, 3, 5)));
+        addFamous(db, new Person(context.getString(R.string.tobin), new LocalDate(1918, 3, 5)));
+
+//March 6
+        addFamous(db, new Person(context.getString(R.string.michelangelo), new LocalDate(1475, 3, 6)));
+        addFamous(db, new Person(context.getString(R.string.bergerac), new LocalDate(1619, 3, 6)));
+        addFamous(db, new Person(context.getString(R.string.elizabeth_browning), new LocalDate(1806, 3, 6)));
+        addFamous(db, new Person(context.getString(R.string.jerzy_lec), new LocalDate(1909, 3, 6)));
+        addFamous(db, new Person(context.getString(R.string.marquez), new LocalDate(1927, 3, 6)));
+        addFamous(db, new Person(context.getString(R.string.tereshkova), new LocalDate(1937, 3, 6)));
+        addFamous(db, new Person(context.getString(R.string.shaquille), new LocalDate(1972, 3, 6)));
+
+//March 7
+        addFamous(db, new Person(context.getString(R.string.rob_roy), new LocalDate(1671, 3, 7)));
+        addFamous(db, new Person(context.getString(R.string.niepce), new LocalDate(1765, 3, 7)));
+        addFamous(db, new Person(context.getString(R.string.palmer), new LocalDate(1845, 3, 7)));
+        addFamous(db, new Person(context.getString(R.string.montesquiou), new LocalDate(1855, 3, 7)));
+        addFamous(db, new Person(context.getString(R.string.mondrian), new LocalDate(1872, 3, 7)));
+        addFamous(db, new Person(context.getString(R.string.ravel), new LocalDate(1875, 3, 7)));
+        addFamous(db, new Person(context.getString(R.string.kobo_abe), new LocalDate(1924, 3, 7)));
+
+//March 8
+        addFamous(db, new Person(context.getString(R.string.fothergill), new LocalDate(1712, 3, 8)));
+        addFamous(db, new Person(context.getString(R.string.potocki), new LocalDate(1761, 3, 8)));
+        addFamous(db, new Person(context.getString(R.string.ignacy), new LocalDate(1822, 3, 8)));
+        addFamous(db, new Person(context.getString(R.string.thompson), new LocalDate(1848, 3, 8)));
+        addFamous(db, new Person(context.getString(R.string.otto_hahn), new LocalDate(1879, 3, 8)));
+        addFamous(db, new Person(context.getString(R.string.kendall), new LocalDate(1886, 3, 8)));
+        addFamous(db, new Person(context.getString(R.string.aiken), new LocalDate(1900, 3, 8)));
+
+//March 9
+        addFamous(db, new Person(context.getString(R.string.vespucci), new LocalDate(1454, 3, 9)));
+        addFamous(db, new Person(context.getString(R.string.shevchenko), new LocalDate(1814, 3, 9)));
+        addFamous(db, new Person(context.getString(R.string.barragan), new LocalDate(1902, 3, 9)));
+        addFamous(db, new Person(context.getString(R.string.kohn), new LocalDate(1923, 3, 9)));
+        addFamous(db, new Person(context.getString(R.string.gagarin), new LocalDate(1934, 3, 9)));
+        addFamous(db, new Person(context.getString(R.string.binoche), new LocalDate(1964, 3, 9)));
+
+//March 10
+        addFamous(db, new Person(context.getString(R.string.schlegel), new LocalDate(1772, 3, 10)));
+        addFamous(db, new Person(context.getString(R.string.eichendorff), new LocalDate(1788, 3, 10)));
+        addFamous(db, new Person(context.getString(R.string.blatter), new LocalDate(1936, 3, 10)));
+        addFamous(db, new Person(context.getString(R.string.norris), new LocalDate(1940, 3, 10)));
+        addFamous(db, new Person(context.getString(R.string.bin_laden), new LocalDate(1957, 3, 10)));
+        addFamous(db, new Person(context.getString(R.string.stone), new LocalDate(1958, 3, 10)));
+
+//March 11
+        addFamous(db, new Person(context.getString(R.string.tasso), new LocalDate(1544, 3, 11)));
+        addFamous(db, new Person(context.getString(R.string.verrier), new LocalDate(1811, 3, 11)));
+        addFamous(db, new Person(context.getString(R.string.bertrand), new LocalDate(1822, 3, 11)));
+        addFamous(db, new Person(context.getString(R.string.vannevar_bush), new LocalDate(1890, 3, 11)));
+        addFamous(db, new Person(context.getString(R.string.bloembergen), new LocalDate(1920, 3, 11)));
+        addFamous(db, new Person(context.getString(R.string.adams), new LocalDate(1952, 3, 11)));
+        addFamous(db, new Person(context.getString(R.string.knoxville), new LocalDate(1971, 3, 11)));
+
+//March 12
+        addFamous(db, new Person(context.getString(R.string.notre), new LocalDate(1613, 3, 12)));
+        addFamous(db, new Person(context.getString(R.string.berkeley), new LocalDate(1685, 3, 12)));
+        addFamous(db, new Person(context.getString(R.string.bazhenov), new LocalDate(1737, 3, 12)));
+        addFamous(db, new Person(context.getString(R.string.kirchhoff), new LocalDate(1824, 3, 12)));
+        addFamous(db, new Person(context.getString(R.string.newcomb), new LocalDate(1835, 3, 12)));
+        addFamous(db, new Person(context.getString(R.string.perkin), new LocalDate(1838, 3, 12)));
+        addFamous(db, new Person(context.getString(R.string.vernadsky), new LocalDate(1863, 3, 12)));
+
+//March 13
+        addFamous(db, new Person(context.getString(R.string.bonnet), new LocalDate(1720, 3, 13)));
+        addFamous(db, new Person(context.getString(R.string.lowell), new LocalDate(1855, 3, 13)));
+        addFamous(db, new Person(context.getString(R.string.eliade), new LocalDate(1907, 3, 13)));
+        addFamous(db, new Person(context.getString(R.string.hubbard), new LocalDate(1911, 3, 13)));
+        addFamous(db, new Person(context.getString(R.string.scatman), new LocalDate(1942, 3, 13)));
+
+//March 14
+        addFamous(db, new Person(context.getString(R.string.telemann), new LocalDate(1681, 3, 14)));
+        addFamous(db, new Person(context.getString(R.string.strauss), new LocalDate(1804, 3, 14)));
+        addFamous(db, new Person(context.getString(R.string.banville), new LocalDate(1823, 3, 14)));
+        addFamous(db, new Person(context.getString(R.string.schiaparelli), new LocalDate(1835, 3, 14)));
+        addFamous(db, new Person(context.getString(R.string.ehrlich), new LocalDate(1854, 3, 14)));
+        addFamous(db, new Person(context.getString(R.string.einstein), new LocalDate(1879, 3, 14)));
+        addFamous(db, new Person(context.getString(R.string.caine), new LocalDate(1933, 3, 14)));
+
+//March 15
+        addFamous(db, new Person(context.getString(R.string.sylvius), new LocalDate(1614, 3, 15)));
+        addFamous(db, new Person(context.getString(R.string.loschmidt), new LocalDate(1821, 3, 15)));
+        addFamous(db, new Person(context.getString(R.string.heyse), new LocalDate(1830, 3, 15)));
+        addFamous(db, new Person(context.getString(R.string.behring), new LocalDate(1854, 3, 15)));
+        addFamous(db, new Person(context.getString(R.string.haffkine), new LocalDate(1860, 3, 15)));
+        addFamous(db, new Person(context.getString(R.string.alferov), new LocalDate(1930, 3, 15)));
+
+//March 16
+        addFamous(db, new Person(context.getString(R.string.georg_ohm), new LocalDate(1789, 3, 16)));
+        addFamous(db, new Person(context.getString(R.string.prudhomme), new LocalDate(1839, 3, 16)));
+        addFamous(db, new Person(context.getString(R.string.beijerinck), new LocalDate(1851, 3, 16)));
+        addFamous(db, new Person(context.getString(R.string.yayser), new LocalDate(1853, 3, 16)));
+        addFamous(db, new Person(context.getString(R.string.damadian), new LocalDate(1936, 3, 16)));
+        addFamous(db, new Person(context.getString(R.string.bertolucci), new LocalDate(1940, 3, 16)));
+        addFamous(db, new Person(context.getString(R.string.stallman), new LocalDate(1953, 3, 16)));
+
+//March 17
+        addFamous(db, new Person(context.getString(R.string.daimler), new LocalDate(1834, 3, 17)));
+        addFamous(db, new Person(context.getString(R.string.vrubel), new LocalDate(1856, 3, 17)));
+        addFamous(db, new Person(context.getString(R.string.hess), new LocalDate(1881, 3, 17)));
+        addFamous(db, new Person(context.getString(R.string.nureyev), new LocalDate(1938, 3, 17)));
+        addFamous(db, new Person(context.getString(R.string.gibson), new LocalDate(1948, 3, 17)));
+        addFamous(db, new Person(context.getString(R.string.russell), new LocalDate(1951, 3, 17)));
+
+//March 18
+        addFamous(db, new Person(context.getString(R.string.steiner), new LocalDate(1796, 3, 18)));
+        addFamous(db, new Person(context.getString(R.string.hebbel), new LocalDate(1813, 3, 18)));
+        addFamous(db, new Person(context.getString(R.string.diesel), new LocalDate(1858, 3, 18)));
+        addFamous(db, new Person(context.getString(R.string.stekel), new LocalDate(1868, 3, 18)));
+        addFamous(db, new Person(context.getString(R.string.koffka), new LocalDate(1886, 3, 18)));
+        addFamous(db, new Person(context.getString(R.string.besson), new LocalDate(1959, 3, 18)));
+
+//March 19
+        addFamous(db, new Person(context.getString(R.string.burton), new LocalDate(1821, 3, 19)));
+        addFamous(db, new Person(context.getString(R.string.wheeler), new LocalDate(1865, 3, 19)));
+        addFamous(db, new Person(context.getString(R.string.reger), new LocalDate(1873, 3, 19)));
+        addFamous(db, new Person(context.getString(R.string.haworth), new LocalDate(1883, 3, 19)));
+        addFamous(db, new Person(context.getString(R.string.joliot_curie), new LocalDate(1900, 3, 19)));
+        addFamous(db, new Person(context.getString(R.string.molina), new LocalDate(1943, 3, 19)));
+        addFamous(db, new Person(context.getString(R.string.bruce_willis), new LocalDate(1955, 3, 19)));
+
+//March 20
+        addFamous(db, new Person(context.getString(R.string.ibsen), new LocalDate(1828, 3, 20)));
+        addFamous(db, new Person(context.getString(R.string.gigli), new LocalDate(1890, 3, 20)));
+        addFamous(db, new Person(context.getString(R.string.skinner), new LocalDate(1904, 3, 20)));
+        addFamous(db, new Person(context.getString(R.string.cattell), new LocalDate(1905, 3, 20)));
+        addFamous(db, new Person(context.getString(R.string.neher), new LocalDate(1944, 3, 20)));
+        addFamous(db, new Person(context.getString(R.string.bennington), new LocalDate(1976, 3, 20)));
+
+//March 21
+        addFamous(db, new Person(context.getString(R.string.fourier), new LocalDate(1768, 3, 21)));
+        addFamous(db, new Person(context.getString(R.string.mozhaysky), new LocalDate(1825, 3, 21)));
+        addFamous(db, new Person(context.getString(R.string.gilbert), new LocalDate(1932, 3, 21)));
+        addFamous(db, new Person(context.getString(R.string.oldman), new LocalDate(1958, 3, 21)));
+        addFamous(db, new Person(context.getString(R.string.senna), new LocalDate(1960, 3, 21)));
+        addFamous(db, new Person(context.getString(R.string.ronaldinho), new LocalDate(1980, 3, 21)));
+
+//March 22
+        addFamous(db, new Person(context.getString(R.string.van_dyck), new LocalDate(1599, 3, 22)));
+        addFamous(db, new Person(context.getString(R.string.pelletier), new LocalDate(1788, 3, 22)));
+        addFamous(db, new Person(context.getString(R.string.lysenko), new LocalDate(1842, 3, 22)));
+        addFamous(db, new Person(context.getString(R.string.millikan), new LocalDate(1868, 3, 22)));
+        addFamous(db, new Person(context.getString(R.string.richter), new LocalDate(1931, 3, 22)));
+        addFamous(db, new Person(context.getString(R.string.webber), new LocalDate(1948, 3, 22)));
+
+//March 23
+        addFamous(db, new Person(context.getString(R.string.laplace), new LocalDate(1749, 3, 23)));
+        addFamous(db, new Person(context.getString(R.string.du_gard), new LocalDate(1881, 3, 23)));
+        addFamous(db, new Person(context.getString(R.string.noether), new LocalDate(1882, 3, 23)));
+        addFamous(db, new Person(context.getString(R.string.juan_gris), new LocalDate(1887, 3, 23)));
+        addFamous(db, new Person(context.getString(R.string.fromm), new LocalDate(1900, 3, 23)));
+        addFamous(db, new Person(context.getString(R.string.kurosawa), new LocalDate(1910, 3, 23)));
+        addFamous(db, new Person(context.getString(R.string.von_braun), new LocalDate(1912, 3, 23)));
+
+//March 24
+        addFamous(db, new Person(context.getString(R.string.agricola), new LocalDate(1494, 3, 24)));
+        addFamous(db, new Person(context.getString(R.string.priestley), new LocalDate(1733, 3, 24)));
+        addFamous(db, new Person(context.getString(R.string.morris), new LocalDate(1834, 3, 24)));
+        addFamous(db, new Person(context.getString(R.string.houdini), new LocalDate(1874, 3, 24)));
+        addFamous(db, new Person(context.getString(R.string.dario_fo), new LocalDate(1926, 3, 24)));
+        addFamous(db, new Person(context.getString(R.string.ballmer), new LocalDate(1956, 3, 24)));
+        addFamous(db, new Person(context.getString(R.string.jim_parsons), new LocalDate(1973, 3, 24)));
+
+//March 25
+        addFamous(db, new Person(context.getString(R.string.amici), new LocalDate(1786, 3, 25)));
+        addFamous(db, new Person(context.getString(R.string.toscanini), new LocalDate(1867, 3, 25)));
+        addFamous(db, new Person(context.getString(R.string.aretha_franklin), new LocalDate(1942, 3, 25)));
+        addFamous(db, new Person(context.getString(R.string.elton_john), new LocalDate(1947, 3, 25)));
+        addFamous(db, new Person(context.getString(R.string.parker), new LocalDate(1965, 3, 25)));
+
+//March 26
+        addFamous(db, new Person(context.getString(R.string.gesner), new LocalDate(1516, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.prorok_divis), new LocalDate(1698, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.benjamin_thompson), new LocalDate(1753, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.feddersen), new LocalDate(1832, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.frost), new LocalDate(1874, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.tennessee_williams), new LocalDate(1911, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.katz), new LocalDate(1911, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.anfinsen), new LocalDate(1916, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.nimoy), new LocalDate(1931, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.tinto_brass), new LocalDate(1933, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.tyler), new LocalDate(1948, 3, 26)));
+        addFamous(db, new Person(context.getString(R.string.knightley), new LocalDate(1985, 3, 26)));
+
+//March 27
+        addFamous(db, new Person(context.getString(R.string.hittorf), new LocalDate(1824, 3, 27)));
+        addFamous(db, new Person(context.getString(R.string.rontgen), new LocalDate(1845, 3, 27)));
+        addFamous(db, new Person(context.getString(R.string.wallach), new LocalDate(1847, 3, 27)));
+        addFamous(db, new Person(context.getString(R.string.pearson), new LocalDate(1857, 3, 27)));
+        addFamous(db, new Person(context.getString(R.string.henry_royce), new LocalDate(1863, 3, 27)));
+        addFamous(db, new Person(context.getString(R.string.steichen), new LocalDate(1879, 3, 27)));
+        addFamous(db, new Person(context.getString(R.string.tarantino), new LocalDate(1963, 3, 27)));
+
+//March 28
+        addFamous(db, new Person(context.getString(R.string.raphael), new LocalDate(1483, 3, 28)));
+        addFamous(db, new Person(context.getString(R.string.comenius), new LocalDate(1592, 3, 28)));
+        addFamous(db, new Person(context.getString(R.string.tamburini), new LocalDate(1800, 3, 28)));
+        addFamous(db, new Person(context.getString(R.string.maxim_gorky), new LocalDate(1868, 3, 28)));
+        addFamous(db, new Person(context.getString(R.string.heymans), new LocalDate(1892, 3, 28)));
+        addFamous(db, new Person(context.getString(R.string.brzezinski), new LocalDate(1928, 3, 28)));
+        addFamous(db, new Person(context.getString(R.string.friedman), new LocalDate(1930, 3, 28)));
+        addFamous(db, new Person(context.getString(R.string.lady_gaga), new LocalDate(1986, 3, 28)));
+
+//March 29
+        addFamous(db, new Person(context.getString(R.string.santorio), new LocalDate(1561, 3, 29)));
+        addFamous(db, new Person(context.getString(R.string.musaus), new LocalDate(1735, 3, 29)));
+        addFamous(db, new Person(context.getString(R.string.schneider), new LocalDate(1805, 3, 29)));
+        addFamous(db, new Person(context.getString(R.string.walton), new LocalDate(1918, 3, 29)));
+        addFamous(db, new Person(context.getString(R.string.vane), new LocalDate(1927, 3, 29)));
+        addFamous(db, new Person(context.getString(R.string.gleeson), new LocalDate(1955, 3, 29)));
+
+//March 30
+        addFamous(db, new Person(context.getString(R.string.goya), new LocalDate(1746, 3, 30)));
+        addFamous(db, new Person(context.getString(R.string.rozier), new LocalDate(1754, 3, 30)));
+        addFamous(db, new Person(context.getString(R.string.bunsen), new LocalDate(1811, 3, 30)));
+        addFamous(db, new Person(context.getString(R.string.verlaine), new LocalDate(1844, 3, 30)));
+        addFamous(db, new Person(context.getString(R.string.van_gogh), new LocalDate(1853, 3, 30)));
+        addFamous(db, new Person(context.getString(R.string.sharpe), new LocalDate(1928, 3, 30)));
+        addFamous(db, new Person(context.getString(R.string.dion), new LocalDate(1968, 3, 30)));
+
+//March 31
+        addFamous(db, new Person(context.getString(R.string.descartes), new LocalDate(1596, 3, 31)));
+        addFamous(db, new Person(context.getString(R.string.marvell), new LocalDate(1621, 3, 31)));
+        addFamous(db, new Person(context.getString(R.string.bach), new LocalDate(1685, 3, 31)));
+        addFamous(db, new Person(context.getString(R.string.haydn), new LocalDate(1732, 3, 31)));
+        addFamous(db, new Person(context.getString(R.string.chukovsky), new LocalDate(1882, 3, 31)));
+        addFamous(db, new Person(context.getString(R.string.william_bragg), new LocalDate(1890, 3, 31)));
+        addFamous(db, new Person(context.getString(R.string.walken), new LocalDate(1943, 3, 31)));
+
+    }
+
+    static void createFamousDbPart2(Context context, SQLiteDatabase db) {
+//April 1
+        addFamous(db, new Person(context.getString(R.string.harvey), new LocalDate(1578, 4, 1)));
+        addFamous(db, new Person(context.getString(R.string.germain), new LocalDate(1776, 4, 1)));
+        addFamous(db, new Person(context.getString(R.string.gogol), new LocalDate(1809, 4, 1)));
+        addFamous(db, new Person(context.getString(R.string.zsigmondy), new LocalDate(1865, 4, 1)));
+        addFamous(db, new Person(context.getString(R.string.busoni), new LocalDate(1866, 4, 1)));
+        addFamous(db, new Person(context.getString(R.string.rachmaninoff), new LocalDate(1873, 4, 1)));
+        addFamous(db, new Person(context.getString(R.string.lon_chaney), new LocalDate(1883, 4, 1)));
+        addFamous(db, new Person(context.getString(R.string.maslow), new LocalDate(1908, 4, 1)));
+
+//April 2
+        addFamous(db, new Person(context.getString(R.string.grimaldi), new LocalDate(1618, 4, 2)));
+        addFamous(db, new Person(context.getString(R.string.casanova), new LocalDate(1725, 4, 2)));
+        addFamous(db, new Person(context.getString(R.string.andersen), new LocalDate(1805, 4, 2)));
+        addFamous(db, new Person(context.getString(R.string.butler), new LocalDate(1862, 4, 2)));
+        addFamous(db, new Person(context.getString(R.string.chrysler), new LocalDate(1875, 4, 2)));
+        addFamous(db, new Person(context.getString(R.string.fassbender), new LocalDate(1977, 4, 2)));
+
+//April 3
+        addFamous(db, new Person(context.getString(R.string.washington_irving), new LocalDate(1783, 4, 3)));
+        addFamous(db, new Person(context.getString(R.string.velde), new LocalDate(1863, 4, 3)));
+        addFamous(db, new Person(context.getString(R.string.jansky), new LocalDate(1873, 4, 3)));
+        addFamous(db, new Person(context.getString(R.string.brando), new LocalDate(1924, 4, 3)));
+        addFamous(db, new Person(context.getString(R.string.baldwin), new LocalDate(1958, 4, 3)));
+        addFamous(db, new Person(context.getString(R.string.murphy), new LocalDate(1961, 4, 3)));
+
+//April 4
+        addFamous(db, new Person(context.getString(R.string.reid), new LocalDate(1818, 4, 4)));
+        addFamous(db, new Person(context.getString(R.string.siemens), new LocalDate(1823, 4, 4)));
+        addFamous(db, new Person(context.getString(R.string.simmons), new LocalDate(1848, 4, 4)));
+        addFamous(db, new Person(context.getString(R.string.weaving), new LocalDate(1960, 4, 4)));
+        addFamous(db, new Person(context.getString(R.string.robert_downey), new LocalDate(1965, 4, 4)));
+        addFamous(db, new Person(context.getString(R.string.ledger), new LocalDate(1979, 4, 4)));
+
+//April 5
+        addFamous(db, new Person(context.getString(R.string.hobbes), new LocalDate(1588, 4, 5)));
+        addFamous(db, new Person(context.getString(R.string.viviani), new LocalDate(1622, 4, 5)));
+        addFamous(db, new Person(context.getString(R.string.yale), new LocalDate(1649, 4, 5)));
+        addFamous(db, new Person(context.getString(R.string.spohr), new LocalDate(1784, 4, 5)));
+        addFamous(db, new Person(context.getString(R.string.dupre), new LocalDate(1811, 4, 5)));
+        addFamous(db, new Person(context.getString(R.string.nadar), new LocalDate(1820, 4, 5)));
+        addFamous(db, new Person(context.getString(R.string.lister), new LocalDate(1827, 4, 5)));
+        addFamous(db, new Person(context.getString(R.string.hailey), new LocalDate(1920, 4, 5)));
+
+//April 6
+        addFamous(db, new Person(context.getString(R.string.gosse), new LocalDate(1810, 4, 6)));
+        addFamous(db, new Person(context.getString(R.string.moreau), new LocalDate(1826, 4, 6)));
+        addFamous(db, new Person(context.getString(R.string.douglas), new LocalDate(1892, 4, 6)));
+        addFamous(db, new Person(context.getString(R.string.lynen), new LocalDate(1911, 4, 6)));
+        addFamous(db, new Person(context.getString(R.string.fischer), new LocalDate(1920, 4, 6)));
+        addFamous(db, new Person(context.getString(R.string.james_watson), new LocalDate(1928, 4, 6)));
+
+//April 7
+        addFamous(db, new Person(context.getString(R.string.gerard_dou), new LocalDate(1613, 4, 7)));
+        addFamous(db, new Person(context.getString(R.string.wordsworth), new LocalDate(1770, 4, 7)));
+        addFamous(db, new Person(context.getString(R.string.selmi), new LocalDate(1817, 4, 7)));
+        addFamous(db, new Person(context.getString(R.string.christiansen), new LocalDate(1891, 4, 7)));
+        addFamous(db, new Person(context.getString(R.string.holiday), new LocalDate(1915, 4, 7)));
+        addFamous(db, new Person(context.getString(R.string.coppola), new LocalDate(1939, 4, 7)));
+        addFamous(db, new Person(context.getString(R.string.chan), new LocalDate(1954, 4, 7)));
+        addFamous(db, new Person(context.getString(R.string.crowe), new LocalDate(1964, 4, 7)));
+
+//April 8
+        addFamous(db, new Person(context.getString(R.string.tartini), new LocalDate(1692, 4, 8)));
+        addFamous(db, new Person(context.getString(R.string.von_hofmann), new LocalDate(1818, 4, 8)));
+        addFamous(db, new Person(context.getString(R.string.husserl), new LocalDate(1859, 4, 8)));
+        addFamous(db, new Person(context.getString(R.string.hicks), new LocalDate(1904, 4, 8)));
+        addFamous(db, new Person(context.getString(R.string.calvin), new LocalDate(1911, 4, 8)));
+
+//April 9
+        addFamous(db, new Person(context.getString(R.string.timur), new LocalDate(1336, 4, 9)));
+        addFamous(db, new Person(context.getString(R.string.boehm), new LocalDate(1794, 4, 9)));
+        addFamous(db, new Person(context.getString(R.string.brunel), new LocalDate(1806, 4, 9)));
+        addFamous(db, new Person(context.getString(R.string.muybridge), new LocalDate(1830, 4, 9)));
+        addFamous(db, new Person(context.getString(R.string.pincus), new LocalDate(1903, 4, 9)));
+        addFamous(db, new Person(context.getString(R.string.eckert), new LocalDate(1919, 4, 9)));
+        addFamous(db, new Person(context.getString(R.string.hefner), new LocalDate(1926, 4, 9)));
+        addFamous(db, new Person(context.getString(R.string.belmondo), new LocalDate(1933, 4, 9)));
+        addFamous(db, new Person(context.getString(R.string.stewart), new LocalDate(1990, 4, 9)));
+
+//April 10
+        addFamous(db, new Person(context.getString(R.string.grotius), new LocalDate(1583, 4, 10)));
+        addFamous(db, new Person(context.getString(R.string.tschirnhaus), new LocalDate(1651, 4, 10)));
+        addFamous(db, new Person(context.getString(R.string.heinicke), new LocalDate(1727, 4, 10)));
+        addFamous(db, new Person(context.getString(R.string.pulitzer), new LocalDate(1847, 4, 10)));
+        addFamous(db, new Person(context.getString(R.string.seagal), new LocalDate(1952, 4, 10)));
+        addFamous(db, new Person(context.getString(R.string.canet), new LocalDate(1973, 4, 10)));
+
+//April 11
+        addFamous(db, new Person(context.getString(R.string.parkinson), new LocalDate(1775, 4, 11)));
+        addFamous(db, new Person(context.getString(R.string.bertini), new LocalDate(1888, 4, 11)));
+        addFamous(db, new Person(context.getString(R.string.julian), new LocalDate(1899, 4, 11)));
+        addFamous(db, new Person(context.getString(R.string.lavey), new LocalDate(1930, 4, 11)));
+        addFamous(db, new Person(context.getString(R.string.wiles), new LocalDate(1953, 4, 11)));
+
+//April 12
+        addFamous(db, new Person(context.getString(R.string.meyerhof), new LocalDate(1884, 4, 12)));
+        addFamous(db, new Person(context.getString(R.string.lily_pons), new LocalDate(1898, 4, 12)));
+        addFamous(db, new Person(context.getString(R.string.tinbergen), new LocalDate(1903, 4, 12)));
+        addFamous(db, new Person(context.getString(R.string.cabalie), new LocalDate(1933, 4, 12)));
+        addFamous(db, new Person(context.getString(R.string.hancock), new LocalDate(1940, 4, 12)));
+        addFamous(db, new Person(context.getString(R.string.garcia), new LocalDate(1956, 4, 12)));
+
+//April 13
+        addFamous(db, new Person(context.getString(R.string.favre), new LocalDate(1506, 4, 13)));
+        addFamous(db, new Person(context.getString(R.string.fawkes), new LocalDate(1570, 4, 13)));
+        addFamous(db, new Person(context.getString(R.string.bramah), new LocalDate(1748, 4, 13)));
+        addFamous(db, new Person(context.getString(R.string.trevithick), new LocalDate(1771, 4, 13)));
+        addFamous(db, new Person(context.getString(R.string.meucci), new LocalDate(1808, 4, 13)));
+        addFamous(db, new Person(context.getString(R.string.lacan), new LocalDate(1901, 4, 13)));
+        addFamous(db, new Person(context.getString(R.string.beckett), new LocalDate(1906, 4, 13)));
+
+//April 14
+        addFamous(db, new Person(context.getString(R.string.ortelius), new LocalDate(1527, 4, 14)));
+        addFamous(db, new Person(context.getString(R.string.huygens), new LocalDate(1629, 4, 14)));
+        addFamous(db, new Person(context.getString(R.string.fonvizin), new LocalDate(1745, 4, 14)));
+        addFamous(db, new Person(context.getString(R.string.rohlfs), new LocalDate(1831, 4, 14)));
+        addFamous(db, new Person(context.getString(R.string.horsley), new LocalDate(1857, 4, 14)));
+        addFamous(db, new Person(context.getString(R.string.matsumoto), new LocalDate(1965, 4, 14)));
+
+//April 15
+        addFamous(db, new Person(context.getString(R.string.da_vinci), new LocalDate(1452, 4, 15)));
+        addFamous(db, new Person(context.getString(R.string.leonhard_euler), new LocalDate(1707, 4, 15)));
+        addFamous(db, new Person(context.getString(R.string.cullen), new LocalDate(1710, 4, 15)));
+        addFamous(db, new Person(context.getString(R.string.busch), new LocalDate(1832, 4, 15)));
+        addFamous(db, new Person(context.getString(R.string.gumilyov), new LocalDate(1886, 4, 15)));
+        addFamous(db, new Person(context.getString(R.string.emma_thompson), new LocalDate(1959, 4, 15)));
+        addFamous(db, new Person(context.getString(R.string.emma_watson), new LocalDate(1990, 4, 15)));
+
+//April 16
+        addFamous(db, new Person(context.getString(R.string.apianus), new LocalDate(1495, 4, 16)));
+        addFamous(db, new Person(context.getString(R.string.hadley), new LocalDate(1682, 4, 16)));
+        addFamous(db, new Person(context.getString(R.string.eisenstein), new LocalDate(1823, 4, 16)));
+        addFamous(db, new Person(context.getString(R.string.france), new LocalDate(1844, 4, 16)));
+        addFamous(db, new Person(context.getString(R.string.wright), new LocalDate(1867, 4, 16)));
+        addFamous(db, new Person(context.getString(R.string.chaplin), new LocalDate(1889, 4, 16)));
+
+//April 17
+        addFamous(db, new Person(context.getString(R.string.morgan), new LocalDate(1837, 4, 17)));
+        addFamous(db, new Person(context.getString(R.string.starling), new LocalDate(1866, 4, 17)));
+        addFamous(db, new Person(context.getString(R.string.saeverud), new LocalDate(1897, 4, 17)));
+        addFamous(db, new Person(context.getString(R.string.kohler), new LocalDate(1946, 4, 17)));
+        addFamous(db, new Person(context.getString(R.string.garner), new LocalDate(1972, 4, 17)));
+        addFamous(db, new Person(context.getString(R.string.beckham), new LocalDate(1974, 4, 17)));
+
+//April 18
+        addFamous(db, new Person(context.getString(R.string.ricardo), new LocalDate(1772, 4, 18)));
+        addFamous(db, new Person(context.getString(R.string.boisbaudran), new LocalDate(1838, 4, 18)));
+        addFamous(db, new Person(context.getString(R.string.goldstein), new LocalDate(1940, 4, 18)));
+        addFamous(db, new Person(context.getString(R.string.sokolov), new LocalDate(1950, 4, 18)));
+        addFamous(db, new Person(context.getString(R.string.eric_roberts), new LocalDate(1956, 4, 18)));
+        addFamous(db, new Person(context.getString(R.string.tennant), new LocalDate(1971, 4, 18)));
+
+//April 19
+        addFamous(db, new Person(context.getString(R.string.ehrenberg), new LocalDate(1795, 4, 19)));
+        addFamous(db, new Person(context.getString(R.string.gerstner), new LocalDate(1796, 4, 19)));
+        addFamous(db, new Person(context.getString(R.string.fechner), new LocalDate(1801, 4, 19)));
+        addFamous(db, new Person(context.getString(R.string.hughes), new LocalDate(1900, 4, 19)));
+        addFamous(db, new Person(context.getString(R.string.seaborg), new LocalDate(1912, 4, 19)));
+        addFamous(db, new Person(context.getString(R.string.judd), new LocalDate(1968, 4, 19)));
+        addFamous(db, new Person(context.getString(R.string.christensen), new LocalDate(1981, 4, 19)));
+
+//April 20
+        addFamous(db, new Person(context.getString(R.string.aretino), new LocalDate(1492, 4, 20)));
+        addFamous(db, new Person(context.getString(R.string.pinel), new LocalDate(1745, 4, 20)));
+        addFamous(db, new Person(context.getString(R.string.raffaelli), new LocalDate(1850, 4, 20)));
+        addFamous(db, new Person(context.getString(R.string.hitler), new LocalDate(1889, 4, 20)));
+        addFamous(db, new Person(context.getString(R.string.lloyd), new LocalDate(1893, 4, 20)));
+        addFamous(db, new Person(context.getString(R.string.leiris), new LocalDate(1901, 4, 20)));
+        addFamous(db, new Person(context.getString(R.string.muller), new LocalDate(1927, 4, 20)));
+        addFamous(db, new Person(context.getString(R.string.sedgwick), new LocalDate(1943, 4, 20)));
+
+//April 21
+        addFamous(db, new Person(context.getString(R.string.riebeeck), new LocalDate(1619, 4, 21)));
+        addFamous(db, new Person(context.getString(R.string.kulibin), new LocalDate(1735, 4, 21)));
+        addFamous(db, new Person(context.getString(R.string.frobel), new LocalDate(1782, 4, 21)));
+        addFamous(db, new Person(context.getString(R.string.starley), new LocalDate(1830, 4, 21)));
+        addFamous(db, new Person(context.getString(R.string.flemming), new LocalDate(1843, 4, 21)));
+        addFamous(db, new Person(context.getString(R.string.weber), new LocalDate(1864, 4, 21)));
+        addFamous(db, new Person(context.getString(R.string.bridgman), new LocalDate(1882, 4, 21)));
+        addFamous(db, new Person(context.getString(R.string.karrer), new LocalDate(1889, 4, 21)));
+
+//April 22
+        addFamous(db, new Person(context.getString(R.string.fielding), new LocalDate(1707, 4, 22)));
+        addFamous(db, new Person(context.getString(R.string.kant), new LocalDate(1724, 4, 22)));
+        addFamous(db, new Person(context.getString(R.string.plante), new LocalDate(1834, 4, 22)));
+        addFamous(db, new Person(context.getString(R.string.eichler), new LocalDate(1839, 4, 22)));
+        addFamous(db, new Person(context.getString(R.string.bohr), new LocalDate(1887, 4, 22)));
+        addFamous(db, new Person(context.getString(R.string.mabokov), new LocalDate(1899, 4, 22)));
+        addFamous(db, new Person(context.getString(R.string.oppenheimer), new LocalDate(1904, 4, 22)));
+        addFamous(db, new Person(context.getString(R.string.mingus), new LocalDate(1922, 4, 22)));
+        addFamous(db, new Person(context.getString(R.string.nicholson), new LocalDate(1937, 4, 22)));
+
+//April 23
+        addFamous(db, new Person(context.getString(R.string.planck), new LocalDate(1858, 4, 23)));
+        addFamous(db, new Person(context.getString(R.string.fibiger), new LocalDate(1867, 4, 23)));
+        addFamous(db, new Person(context.getString(R.string.marsh), new LocalDate(1895, 4, 23)));
+        addFamous(db, new Person(context.getString(R.string.ohlin), new LocalDate(1899, 4, 23)));
+        addFamous(db, new Person(context.getString(R.string.laxness), new LocalDate(1902, 4, 23)));
+        addFamous(db, new Person(context.getString(R.string.cena), new LocalDate(1977, 4, 23)));
+        addFamous(db, new Person(context.getString(R.string.patel), new LocalDate(1990, 4, 23)));
+
+//April 24
+        addFamous(db, new Person(context.getString(R.string.martini), new LocalDate(1706, 4, 24)));
+        addFamous(db, new Person(context.getString(R.string.cartwright), new LocalDate(1743, 4, 24)));
+        addFamous(db, new Person(context.getString(R.string.spitteler), new LocalDate(1845, 4, 24)));
+        addFamous(db, new Person(context.getString(R.string.bertillon), new LocalDate(1853, 4, 24)));
+        addFamous(db, new Person(context.getString(R.string.sundback), new LocalDate(1880, 4, 24)));
+        addFamous(db, new Person(context.getString(R.string.streisand), new LocalDate(1942, 4, 24)));
+
+//April 25
+        addFamous(db, new Person(context.getString(R.string.marc_brunel), new LocalDate(1769, 4, 25)));
+        addFamous(db, new Person(context.getString(R.string.klein), new LocalDate(1849, 4, 25)));
+        addFamous(db, new Person(context.getString(R.string.felix_dherelle), new LocalDate(1873, 4, 25)));
+        addFamous(db, new Person(context.getString(R.string.marconi), new LocalDate(1874, 4, 25)));
+        addFamous(db, new Person(context.getString(R.string.pauli), new LocalDate(1900, 4, 25)));
+        addFamous(db, new Person(context.getString(R.string.fitzgerald), new LocalDate(1917, 4, 25)));
+        addFamous(db, new Person(context.getString(R.string.al_pacino), new LocalDate(1940, 4, 25)));
+        addFamous(db, new Person(context.getString(R.string.cruyff), new LocalDate(1947, 4, 25)));
+        addFamous(db, new Person(context.getString(R.string.zellweger), new LocalDate(1969, 4, 25)));
+
+//April 26
+        addFamous(db, new Person(context.getString(R.string.aurelius), new LocalDate(121, 4, 26)));
+        addFamous(db, new Person(context.getString(R.string.shakespeare), new LocalDate(1564, 4, 26)));
+        addFamous(db, new Person(context.getString(R.string.uhland), new LocalDate(1787, 4, 26)));
+        addFamous(db, new Person(context.getString(R.string.delacroix), new LocalDate(1798, 4, 26)));
+        addFamous(db, new Person(context.getString(R.string.krupp), new LocalDate(1812, 4, 26)));
+        addFamous(db, new Person(context.getString(R.string.billroth), new LocalDate(1829, 4, 26)));
+        addFamous(db, new Person(context.getString(R.string.richardson), new LocalDate(1879, 4, 26)));
+        addFamous(db, new Person(context.getString(R.string.wittgenstein), new LocalDate(1889, 4, 26)));
+        addFamous(db, new Person(context.getString(R.string.charles_richter), new LocalDate(1900, 4, 26)));
+
+//April 27
+        addFamous(db, new Person(context.getString(R.string.kolreuter), new LocalDate(1733, 4, 27)));
+        addFamous(db, new Person(context.getString(R.string.wollstonecraft), new LocalDate(1759, 4, 27)));
+        addFamous(db, new Person(context.getString(R.string.morse), new LocalDate(1791, 4, 27)));
+        addFamous(db, new Person(context.getString(R.string.carothers), new LocalDate(1896, 4, 27)));
+        addFamous(db, new Person(context.getString(R.string.lantz), new LocalDate(1899, 4, 27)));
+
+//April 28
+        addFamous(db, new Person(context.getString(R.string.achard), new LocalDate(1753, 4, 28)));
+        addFamous(db, new Person(context.getString(R.string.kraus), new LocalDate(1874, 4, 28)));
+        addFamous(db, new Person(context.getString(R.string.godel), new LocalDate(1906, 4, 28)));
+        addFamous(db, new Person(context.getString(R.string.schindler), new LocalDate(1908, 4, 28)));
+        addFamous(db, new Person(context.getString(R.string.lamborghini), new LocalDate(1916, 4, 28)));
+        addFamous(db, new Person(context.getString(R.string.harper_lee), new LocalDate(1926, 4, 28)));
+        addFamous(db, new Person(context.getString(R.string.yves_klein), new LocalDate(1928, 4, 28)));
+        addFamous(db, new Person(context.getString(R.string.cruz), new LocalDate(1974, 4, 28)));
+
+//April 29
+        addFamous(db, new Person(context.getString(R.string.drais), new LocalDate(1785, 4, 29)));
+        addFamous(db, new Person(context.getString(R.string.poincare), new LocalDate(1854, 4, 29)));
+        addFamous(db, new Person(context.getString(R.string.hearst), new LocalDate(1863, 4, 29)));
+        addFamous(db, new Person(context.getString(R.string.urey), new LocalDate(1893, 4, 29)));
+        addFamous(db, new Person(context.getString(R.string.jack_williamson), new LocalDate(1908, 4, 29)));
+        addFamous(db, new Person(context.getString(R.string.pfeiffer), new LocalDate(1958, 4, 29)));
+        addFamous(db, new Person(context.getString(R.string.thurman), new LocalDate(1970, 4, 29)));
+
+//April 30
+        addFamous(db, new Person(context.getString(R.string.gauss), new LocalDate(1777, 4, 30)));
+        addFamous(db, new Person(context.getString(R.string.bleuler), new LocalDate(1857, 4, 30)));
+        addFamous(db, new Person(context.getString(R.string.kuznets), new LocalDate(1901, 4, 30)));
+        addFamous(db, new Person(context.getString(R.string.schultz), new LocalDate(1902, 4, 30)));
+        addFamous(db, new Person(context.getString(R.string.shannon), new LocalDate(1916, 4, 30)));
+        addFamous(db, new Person(context.getString(R.string.gal_gadot), new LocalDate(1985, 4, 30)));
+
+//May 1
+        addFamous(db, new Person(context.getString(R.string.addison), new LocalDate(1672, 5, 1)));
+        addFamous(db, new Person(context.getString(R.string.cajal), new LocalDate(1852, 5, 1)));
+        addFamous(db, new Person(context.getString(R.string.chardin), new LocalDate(1881, 5, 1)));
+        addFamous(db, new Person(context.getString(R.string.woo), new LocalDate(1946, 5, 1)));
+        addFamous(db, new Person(context.getString(R.string.dornan), new LocalDate(1982, 5, 1)));
+
+//May 2
+        addFamous(db, new Person(context.getString(R.string.kirche), new LocalDate(1602, 5, 2)));
+        addFamous(db, new Person(context.getString(R.string.jerome), new LocalDate(1859, 5, 2)));
+        addFamous(db, new Person(context.getString(R.string.wood), new LocalDate(1868, 5, 2)));
+        addFamous(db, new Person(context.getString(R.string.marshall), new LocalDate(1902, 5, 2)));
+        addFamous(db, new Person(context.getString(R.string.springer), new LocalDate(1912, 5, 2)));
+        addFamous(db, new Person(context.getString(R.string.johnson), new LocalDate(1972, 5, 2)));
+        addFamous(db, new Person(context.getString(R.string.david_beckham), new LocalDate(1975, 5, 2)));
+
+//May 3
+        addFamous(db, new Person(context.getString(R.string.machiavelli), new LocalDate(1469, 5, 3)));
+        addFamous(db, new Person(context.getString(R.string.haldane), new LocalDate(1860, 5, 3)));
+        addFamous(db, new Person(context.getString(R.string.ekman), new LocalDate(1874, 5, 3)));
+        addFamous(db, new Person(context.getString(R.string.coty), new LocalDate(1874, 5, 3)));
+        addFamous(db, new Person(context.getString(R.string.thomson), new LocalDate(1892, 5, 3)));
+        addFamous(db, new Person(context.getString(R.string.kastler), new LocalDate(1902, 5, 3)));
+
+//May 4
+        addFamous(db, new Person(context.getString(R.string.cristofori), new LocalDate(1655, 5, 4)));
+        addFamous(db, new Person(context.getString(R.string.borda), new LocalDate(1733, 5, 4)));
+        addFamous(db, new Person(context.getString(R.string.brockhaus), new LocalDate(1772, 5, 4)));
+        addFamous(db, new Person(context.getString(R.string.thenard), new LocalDate(1777, 5, 4)));
+        addFamous(db, new Person(context.getString(R.string.liddell), new LocalDate(1852, 5, 4)));
+        addFamous(db, new Person(context.getString(R.string.mandelstam), new LocalDate(1879, 5, 4)));
+        addFamous(db, new Person(context.getString(R.string.hepburn), new LocalDate(1929, 5, 4)));
+
+//May 5
+        addFamous(db, new Person(context.getString(R.string.kierkegaard), new LocalDate(1813, 5, 5)));
+        addFamous(db, new Person(context.getString(R.string.marx), new LocalDate(1818, 5, 5)));
+        addFamous(db, new Person(context.getString(R.string.sienkiewicz), new LocalDate(1846, 5, 5)));
+        addFamous(db, new Person(context.getString(R.string.schawlow), new LocalDate(1921, 5, 5)));
+        addFamous(db, new Person(context.getString(R.string.adele), new LocalDate(1988, 5, 5)));
+
+//May 6
+        addFamous(db, new Person(context.getString(R.string.freud), new LocalDate(1856, 5, 6)));
+        addFamous(db, new Person(context.getString(R.string.peary), new LocalDate(1856, 5, 6)));
+        addFamous(db, new Person(context.getString(R.string.grignard), new LocalDate(1871, 5, 6)));
+        addFamous(db, new Person(context.getString(R.string.martinson), new LocalDate(1904, 5, 6)));
+        addFamous(db, new Person(context.getString(R.string.clooney), new LocalDate(1961, 5, 6)));
+
+//May 7
+        addFamous(db, new Person(context.getString(R.string.clairaut), new LocalDate(1713, 5, 7)));
+        addFamous(db, new Person(context.getString(R.string.robert_browning), new LocalDate(1812, 5, 7)));
+        addFamous(db, new Person(context.getString(R.string.tchaikovsky), new LocalDate(1840, 5, 7)));
+        addFamous(db, new Person(context.getString(R.string.tagore), new LocalDate(1861, 5, 7)));
+        addFamous(db, new Person(context.getString(R.string.reymont), new LocalDate(1867, 5, 7)));
+        addFamous(db, new Person(context.getString(R.string.land), new LocalDate(1909, 5, 7)));
+
+//May 8
+        addFamous(db, new Person(context.getString(R.string.dunant), new LocalDate(1828, 5, 8)));
+        addFamous(db, new Person(context.getString(R.string.lwoff), new LocalDate(1902, 5, 8)));
+        addFamous(db, new Person(context.getString(R.string.fernandel), new LocalDate(1903, 5, 8)));
+        addFamous(db, new Person(context.getString(R.string.rossellini), new LocalDate(1906, 5, 8)));
+        addFamous(db, new Person(context.getString(R.string.iglesias), new LocalDate(1975, 5, 8)));
+
+//May 9
+        addFamous(db, new Person(context.getString(R.string.monge), new LocalDate(1746, 5, 9)));
+        addFamous(db, new Person(context.getString(R.string.opel), new LocalDate(1837, 5, 9)));
+        addFamous(db, new Person(context.getString(R.string.laval), new LocalDate(1845, 5, 9)));
+        addFamous(db, new Person(context.getString(R.string.carter), new LocalDate(1874, 5, 9)));
+        addFamous(db, new Person(context.getString(R.string.gasset), new LocalDate(1883, 5, 9)));
+        addFamous(db, new Person(context.getString(R.string.richard_day), new LocalDate(1896, 5, 9)));
+        addFamous(db, new Person(context.getString(R.string.eigen), new LocalDate(1927, 5, 9)));
+
+//May 10
+        addFamous(db, new Person(context.getString(R.string.lisle), new LocalDate(1760, 5, 10)));
+        addFamous(db, new Person(context.getString(R.string.fresnel), new LocalDate(1788, 5, 10)));
+        addFamous(db, new Person(context.getString(R.string.killing), new LocalDate(1847, 5, 10)));
+        addFamous(db, new Person(context.getString(R.string.lipton), new LocalDate(1848, 5, 10)));
+        addFamous(db, new Person(context.getString(R.string.gaumont), new LocalDate(1864, 5, 10)));
+        addFamous(db, new Person(context.getString(R.string.barth), new LocalDate(1886, 5, 10)));
+        addFamous(db, new Person(context.getString(R.string.selznick), new LocalDate(1902, 5, 10)));
+        addFamous(db, new Person(context.getString(R.string.chapman), new LocalDate(1955, 5, 10)));
+
+//May 11
+        addFamous(db, new Person(context.getString(R.string.munchhausen), new LocalDate(1720, 5, 11)));
+        addFamous(db, new Person(context.getString(R.string.blumenbach), new LocalDate(1752, 5, 11)));
+        addFamous(db, new Person(context.getString(R.string.voynich), new LocalDate(1864, 5, 11)));
+        addFamous(db, new Person(context.getString(R.string.dali), new LocalDate(1904, 5, 11)));
+        addFamous(db, new Person(context.getString(R.string.feynman), new LocalDate(1918, 5, 11)));
+        addFamous(db, new Person(context.getString(R.string.dijkstra), new LocalDate(1930, 5, 11)));
+        addFamous(db, new Person(context.getString(R.string.iniesta), new LocalDate(1984, 5, 11)));
+
+//May 12
+        addFamous(db, new Person(context.getString(R.string.lear), new LocalDate(1812, 5, 12)));
+        addFamous(db, new Person(context.getString(R.string.hind), new LocalDate(1823, 5, 12)));
+        addFamous(db, new Person(context.getString(R.string.pirquet), new LocalDate(1874, 5, 12)));
+        addFamous(db, new Person(context.getString(R.string.giauque), new LocalDate(1895, 5, 12)));
+        addFamous(db, new Person(context.getString(R.string.devi), new LocalDate(1899, 5, 12)));
+        addFamous(db, new Person(context.getString(R.string.voznesensky), new LocalDate(1933, 5, 12)));
+
+//May 13
+        addFamous(db, new Person(context.getString(R.string.nevsky), new LocalDate(1221, 5, 13)));
+        addFamous(db, new Person(context.getString(R.string.daudet), new LocalDate(1840, 5, 13)));
+        addFamous(db, new Person(context.getString(R.string.ross), new LocalDate(1857, 5, 13)));
+        addFamous(db, new Person(context.getString(R.string.braque), new LocalDate(1882, 5, 13)));
+        addFamous(db, new Person(context.getString(R.string.wonder), new LocalDate(1950, 5, 13)));
+        addFamous(db, new Person(context.getString(R.string.rodman), new LocalDate(1961, 5, 13)));
+        addFamous(db, new Person(context.getString(R.string.pattinson), new LocalDate(1986, 5, 13)));
+
+//May 14
+        addFamous(db, new Person(context.getString(R.string.gainsborough), new LocalDate(1727, 5, 14)));
+        addFamous(db, new Person(context.getString(R.string.steinitz), new LocalDate(1836, 5, 14)));
+        addFamous(db, new Person(context.getString(R.string.tsvet), new LocalDate(1872, 5, 14)));
+        addFamous(db, new Person(context.getString(R.string.lucas), new LocalDate(1944, 5, 14)));
+        addFamous(db, new Person(context.getString(R.string.zemeckis), new LocalDate(1952, 5, 14)));
+        addFamous(db, new Person(context.getString(R.string.tim_roth), new LocalDate(1961, 5, 14)));
+        addFamous(db, new Person(context.getString(R.string.blanchett), new LocalDate(1969, 5, 14)));
+        addFamous(db, new Person(context.getString(R.string.zuckerberg), new LocalDate(1984, 5, 14)));
+
+//May 15
+        addFamous(db, new Person(context.getString(R.string.mechnikov), new LocalDate(1845, 5, 15)));
+        addFamous(db, new Person(context.getString(R.string.vasnetsov), new LocalDate(1848, 5, 15)));
+        addFamous(db, new Person(context.getString(R.string.wernicke), new LocalDate(1848, 5, 15)));
+        addFamous(db, new Person(context.getString(R.string.baum), new LocalDate(1856, 5, 15)));
+        addFamous(db, new Person(context.getString(R.string.curie), new LocalDate(1859, 5, 15)));
+        addFamous(db, new Person(context.getString(R.string.bulgakov), new LocalDate(1891, 5, 15)));
+
+//May 16
+        addFamous(db, new Person(context.getString(R.string.agnesi), new LocalDate(1718, 5, 16)));
+        addFamous(db, new Person(context.getString(R.string.vauquelin), new LocalDate(1763, 5, 16)));
+        addFamous(db, new Person(context.getString(R.string.david_hughes), new LocalDate(1831, 5, 16)));
+        addFamous(db, new Person(context.getString(R.string.fonda), new LocalDate(1905, 5, 16)));
+        addFamous(db, new Person(context.getString(R.string.herman), new LocalDate(1913, 5, 16)));
+        addFamous(db, new Person(context.getString(R.string.trejo), new LocalDate(1944, 5, 16)));
+        addFamous(db, new Person(context.getString(R.string.brosnan), new LocalDate(1953, 5, 16)));
+        addFamous(db, new Person(context.getString(R.string.megan_fox), new LocalDate(1986, 5, 16)));
+
+//May 17
+        addFamous(db, new Person(context.getString(R.string.jenner), new LocalDate(1749, 5, 17)));
+        addFamous(db, new Person(context.getString(R.string.lockyer), new LocalDate(1836, 5, 17)));
+        addFamous(db, new Person(context.getString(R.string.hassel), new LocalDate(1897, 5, 17)));
+        addFamous(db, new Person(context.getString(R.string.gabin), new LocalDate(1904, 5, 17)));
+        addFamous(db, new Person(context.getString(R.string.nilsson), new LocalDate(1918, 5, 17)));
+        addFamous(db, new Person(context.getString(R.string.hopper), new LocalDate(1936, 5, 17)));
+
+//May 18
+        addFamous(db, new Person(context.getString(R.string.khayyam), new LocalDate(1048, 5, 18)));
+        addFamous(db, new Person(context.getString(R.string.clapperton), new LocalDate(1788, 5, 18)));
+        addFamous(db, new Person(context.getString(R.string.hofmeister), new LocalDate(1824, 5, 18)));
+        addFamous(db, new Person(context.getString(R.string.heaviside), new LocalDate(1850, 5, 18)));
+        addFamous(db, new Person(context.getString(R.string.bertrand_russell), new LocalDate(1872, 5, 18)));
+        addFamous(db, new Person(context.getString(R.string.vigneaud), new LocalDate(1901, 5, 18)));
+        addFamous(db, new Person(context.getString(R.string.cretu), new LocalDate(1957, 5, 18)));
+
+//May 19
+        addFamous(db, new Person(context.getString(R.string.evola), new LocalDate(1898, 5, 19)));
+        addFamous(db, new Person(context.getString(R.string.colin_chapman), new LocalDate(1928, 5, 19)));
+        addFamous(db, new Person(context.getString(R.string.placido), new LocalDate(1946, 5, 19)));
+        addFamous(db, new Person(context.getString(R.string.karapetyan), new LocalDate(1953, 5, 19)));
+        addFamous(db, new Person(context.getString(R.string.oreiro), new LocalDate(1977, 5, 19)));
+        addFamous(db, new Person(context.getString(R.string.pirlo), new LocalDate(1979, 5, 19)));
+        addFamous(db, new Person(context.getString(R.string.sam_smith), new LocalDate(1992, 5, 19)));
+
+//May 20
+        addFamous(db, new Person(context.getString(R.string.fabricius), new LocalDate(1533, 5, 20)));
+        addFamous(db, new Person(context.getString(R.string.balzac), new LocalDate(1799, 5, 20)));
+        addFamous(db, new Person(context.getString(R.string.passy), new LocalDate(1822, 5, 20)));
+        addFamous(db, new Person(context.getString(R.string.berliner), new LocalDate(1851, 5, 20)));
+        addFamous(db, new Person(context.getString(R.string.hewlett), new LocalDate(1913, 5, 20)));
+        addFamous(db, new Person(context.getString(R.string.edward_lewis), new LocalDate(1918, 5, 20)));
+        addFamous(db, new Person(context.getString(R.string.cher), new LocalDate(1946, 5, 20)));
+
+//May 21
+        addFamous(db, new Person(context.getString(R.string.durer), new LocalDate(1471, 5, 21)));
+        addFamous(db, new Person(context.getString(R.string.coriolis), new LocalDate(1792, 5, 21)));
+        addFamous(db, new Person(context.getString(R.string.kock), new LocalDate(1793, 5, 21)));
+        addFamous(db, new Person(context.getString(R.string.renault), new LocalDate(1843, 5, 21)));
+        addFamous(db, new Person(context.getString(R.string.einthoven), new LocalDate(1860, 5, 21)));
+        addFamous(db, new Person(context.getString(R.string.sakharov), new LocalDate(1921, 5, 21)));
+
+//May 22
+        addFamous(db, new Person(context.getString(R.string.wagner), new LocalDate(1813, 5, 22)));
+        addFamous(db, new Person(context.getString(R.string.doyle), new LocalDate(1859, 5, 22)));
+        addFamous(db, new Person(context.getString(R.string.olivier), new LocalDate(1907, 5, 22)));
+        addFamous(db, new Person(context.getString(R.string.herge), new LocalDate(1907, 5, 22)));
+        addFamous(db, new Person(context.getString(R.string.herbert_brown), new LocalDate(1912, 5, 22)));
+        addFamous(db, new Person(context.getString(R.string.campbell), new LocalDate(1970, 5, 22)));
+
+//May 23
+        addFamous(db, new Person(context.getString(R.string.linnaeus), new LocalDate(1707, 5, 23)));
+        addFamous(db, new Person(context.getString(R.string.mesmer), new LocalDate(1734, 5, 23)));
+        addFamous(db, new Person(context.getString(R.string.lilienthal), new LocalDate(1848, 5, 23)));
+        addFamous(db, new Person(context.getString(R.string.fairbanks), new LocalDate(1883, 5, 23)));
+        addFamous(db, new Person(context.getString(R.string.lagerkvist), new LocalDate(1891, 5, 23)));
+        addFamous(db, new Person(context.getString(R.string.bardeen), new LocalDate(1908, 5, 23)));
+        addFamous(db, new Person(context.getString(R.string.moog), new LocalDate(1934, 5, 23)));
+
+//May 24
+        addFamous(db, new Person(context.getString(R.string.pontormo), new LocalDate(1494, 5, 24)));
+        addFamous(db, new Person(context.getString(R.string.fahrenheit), new LocalDate(1686, 5, 24)));
+        addFamous(db, new Person(context.getString(R.string.sholokhov), new LocalDate(1905, 5, 24)));
+        addFamous(db, new Person(context.getString(R.string.brodsky), new LocalDate(1940, 5, 24)));
+        addFamous(db, new Person(context.getString(R.string.dylan), new LocalDate(1941, 5, 24)));
+        addFamous(db, new Person(context.getString(R.string.deakins), new LocalDate(1949, 5, 24)));
+
+//May 25
+        addFamous(db, new Person(context.getString(R.string.emerson), new LocalDate(1803, 5, 25)));
+        addFamous(db, new Person(context.getString(R.string.burckhardt), new LocalDate(1818, 5, 25)));
+        addFamous(db, new Person(context.getString(R.string.zeeman), new LocalDate(1865, 5, 25)));
+        addFamous(db, new Person(context.getString(R.string.steinberger), new LocalDate(1921, 5, 25)));
+        addFamous(db, new Person(context.getString(R.string.mckellen), new LocalDate(1939, 5, 25)));
+        addFamous(db, new Person(context.getString(R.string.myers), new LocalDate(1963, 5, 25)));
+
+//May 26
+        addFamous(db, new Person(context.getString(R.string.petty), new LocalDate(1623, 5, 26)));
+        addFamous(db, new Person(context.getString(R.string.moivre), new LocalDate(1667, 5, 26)));
+        addFamous(db, new Person(context.getString(R.string.john_wayne), new LocalDate(1907, 5, 26)));
+        addFamous(db, new Person(context.getString(R.string.miles_davis), new LocalDate(1926, 5, 26)));
+        addFamous(db, new Person(context.getString(R.string.kevorkian), new LocalDate(1928, 5, 26)));
+        addFamous(db, new Person(context.getString(R.string.kravitz), new LocalDate(1964, 5, 26)));
+        addFamous(db, new Person(context.getString(R.string.helena_carter), new LocalDate(1966, 5, 26)));
+
+//May 27
+        addFamous(db, new Person(context.getString(R.string.vanderbilt), new LocalDate(1794, 5, 27)));
+        addFamous(db, new Person(context.getString(R.string.duncan), new LocalDate(1877, 5, 27)));
+        addFamous(db, new Person(context.getString(R.string.cockcroft), new LocalDate(1897, 5, 27)));
+        addFamous(db, new Person(context.getString(R.string.christopher_lee), new LocalDate(1922, 5, 27)));
+        addFamous(db, new Person(context.getString(R.string.bettany), new LocalDate(1971, 5, 27)));
+
+//May 28
+        addFamous(db, new Person(context.getString(R.string.guillotin), new LocalDate(1738, 5, 28)));
+        addFamous(db, new Person(context.getString(R.string.thomas_moore), new LocalDate(1779, 5, 28)));
+        addFamous(db, new Person(context.getString(R.string.agassiz), new LocalDate(1807, 5, 28)));
+        addFamous(db, new Person(context.getString(R.string.milankovic), new LocalDate(1879, 5, 28)));
+        addFamous(db, new Person(context.getString(R.string.ian_fleming), new LocalDate(1908, 5, 28)));
+        addFamous(db, new Person(context.getString(R.string.minogue), new LocalDate(1968, 5, 28)));
+
+//May 29
+        addFamous(db, new Person(context.getString(R.string.david_bruce), new LocalDate(1855, 5, 29)));
+        addFamous(db, new Person(context.getString(R.string.chesterton), new LocalDate(1874, 5, 29)));
+        addFamous(db, new Person(context.getString(R.string.spengler), new LocalDate(1880, 5, 29)));
+        addFamous(db, new Person(context.getString(R.string.bob_hope), new LocalDate(1903, 5, 29)));
+        addFamous(db, new Person(context.getString(R.string.goldberg), new LocalDate(1911, 5, 29)));
+        addFamous(db, new Person(context.getString(R.string.kennedy), new LocalDate(1917, 5, 29)));
+
+//May 30
+        addFamous(db, new Person(context.getString(R.string.hagen), new LocalDate(1817, 5, 30)));
+        addFamous(db, new Person(context.getString(R.string.faberge), new LocalDate(1846, 5, 30)));
+        addFamous(db, new Person(context.getString(R.string.thalberg), new LocalDate(1899, 5, 30)));
+        addFamous(db, new Person(context.getString(R.string.alfven), new LocalDate(1908, 5, 30)));
+        addFamous(db, new Person(context.getString(R.string.blanc), new LocalDate(1908, 5, 30)));
+        addFamous(db, new Person(context.getString(R.string.gerrard), new LocalDate(1980, 5, 30)));
+
+//May 31
+        addFamous(db, new Person(context.getString(R.string.tieck), new LocalDate(1773, 5, 31)));
+        addFamous(db, new Person(context.getString(R.string.pugni), new LocalDate(1802, 5, 31)));
+        addFamous(db, new Person(context.getString(R.string.pirrie), new LocalDate(1847, 5, 31)));
+        addFamous(db, new Person(context.getString(R.string.perse), new LocalDate(1887, 5, 31)));
+        addFamous(db, new Person(context.getString(R.string.allais), new LocalDate(1887, 5, 31)));
+        addFamous(db, new Person(context.getString(R.string.eastwood), new LocalDate(1930, 5, 31)));
+        addFamous(db, new Person(context.getString(R.string.jay_miner), new LocalDate(1932, 5, 31)));
+
+//June 1
+        addFamous(db, new Person(context.getString(R.string.paer), new LocalDate(1771, 6, 1)));
+        addFamous(db, new Person(context.getString(R.string.carnot), new LocalDate(1796, 6, 1)));
+        addFamous(db, new Person(context.getString(R.string.glinka), new LocalDate(1804, 6, 1)));
+        addFamous(db, new Person(context.getString(R.string.monroe), new LocalDate(1926, 6, 1)));
+        addFamous(db, new Person(context.getString(R.string.foster), new LocalDate(1935, 6, 1)));
+        addFamous(db, new Person(context.getString(R.string.freeman), new LocalDate(1937, 6, 1)));
+        addFamous(db, new Person(context.getString(R.string.persson), new LocalDate(1979, 6, 1)));
+
+//June 2
+        addFamous(db, new Person(context.getString(R.string.de_sade), new LocalDate(1740, 6, 2)));
+        addFamous(db, new Person(context.getString(R.string.cagliostro), new LocalDate(1743, 6, 2)));
+        addFamous(db, new Person(context.getString(R.string.akimov), new LocalDate(1755, 6, 2)));
+        addFamous(db, new Person(context.getString(R.string.hardy), new LocalDate(1840, 6, 2)));
+        addFamous(db, new Person(context.getString(R.string.weissmüller), new LocalDate(1904, 6, 2)));
+        addFamous(db, new Person(context.getString(R.string.quinto), new LocalDate(1977, 6, 2)));
+
+//June 3
+        addFamous(db, new Person(context.getString(R.string.hutton), new LocalDate(1726, 6, 3)));
+        addFamous(db, new Person(context.getString(R.string.shrapnel), new LocalDate(1761, 6, 3)));
+        addFamous(db, new Person(context.getString(R.string.cobden), new LocalDate(1804, 6, 3)));
+        addFamous(db, new Person(context.getString(R.string.timiryazev), new LocalDate(1843, 6, 3)));
+        addFamous(db, new Person(context.getString(R.string.pearl), new LocalDate(1879, 6, 3)));
+        addFamous(db, new Person(context.getString(R.string.arber), new LocalDate(1929, 6, 3)));
+        addFamous(db, new Person(context.getString(R.string.nadal), new LocalDate(1986, 6, 3)));
+
+//June 4
+        addFamous(db, new Person(context.getString(R.string.quesnay), new LocalDate(1694, 6, 4)));
+        addFamous(db, new Person(context.getString(R.string.nazimova), new LocalDate(1879, 6, 4)));
+        addFamous(db, new Person(context.getString(R.string.cockerell), new LocalDate(1910, 6, 4)));
+        addFamous(db, new Person(context.getString(R.string.bartoli), new LocalDate(1966, 6, 4)));
+        addFamous(db, new Person(context.getString(R.string.jolie), new LocalDate(1975, 6, 4)));
+
+//June 5
+        addFamous(db, new Person(context.getString(R.string.chippendale), new LocalDate(1718, 6, 5)));
+        addFamous(db, new Person(context.getString(R.string.keynes), new LocalDate(1883, 6, 5)));
+        addFamous(db, new Person(context.getString(R.string.lorca), new LocalDate(1898, 6, 5)));
+        addFamous(db, new Person(context.getString(R.string.gabor), new LocalDate(1900, 6, 5)));
+        addFamous(db, new Person(context.getString(R.string.peierls), new LocalDate(1907, 6, 5)));
+        addFamous(db, new Person(context.getString(R.string.wahlberg), new LocalDate(1971, 6, 5)));
+
+//June 6
+        addFamous(db, new Person(context.getString(R.string.regiomontanus), new LocalDate(1436, 6, 6)));
+        addFamous(db, new Person(context.getString(R.string.velazquez), new LocalDate(1599, 6, 6)));
+        addFamous(db, new Person(context.getString(R.string.corneille), new LocalDate(1606, 6, 6)));
+        addFamous(db, new Person(context.getString(R.string.pushkin), new LocalDate(1799, 6, 6)));
+        addFamous(db, new Person(context.getString(R.string.braun), new LocalDate(1850, 6, 6)));
+        addFamous(db, new Person(context.getString(R.string.mann), new LocalDate(1875, 6, 6)));
+
+//June 7
+        addFamous(db, new Person(context.getString(R.string.brummell), new LocalDate(1778, 6, 7)));
+        addFamous(db, new Person(context.getString(R.string.auer), new LocalDate(1845, 6, 7)));
+        addFamous(db, new Person(context.getString(R.string.mackintosh), new LocalDate(1868, 6, 7)));
+        addFamous(db, new Person(context.getString(R.string.barkla), new LocalDate(1877, 6, 7)));
+        addFamous(db, new Person(context.getString(R.string.mulliken), new LocalDate(1896, 6, 7)));
+        addFamous(db, new Person(context.getString(R.string.apgar), new LocalDate(1909, 6, 7)));
+        addFamous(db, new Person(context.getString(R.string.martin), new LocalDate(1917, 6, 7)));
+        addFamous(db, new Person(context.getString(R.string.neeson), new LocalDate(1952, 6, 7)));
+
+//June 8
+        addFamous(db, new Person(context.getString(R.string.cassini), new LocalDate(1625, 6, 8)));
+        addFamous(db, new Person(context.getString(R.string.albinoni), new LocalDate(1671, 6, 8)));
+        addFamous(db, new Person(context.getString(R.string.careme), new LocalDate(1784, 6, 8)));
+        addFamous(db, new Person(context.getString(R.string.schumann), new LocalDate(1810, 6, 8)));
+        addFamous(db, new Person(context.getString(R.string.yeste), new LocalDate(1895, 6, 8)));
+        addFamous(db, new Person(context.getString(R.string.john_campbell), new LocalDate(1910, 6, 8)));
+        addFamous(db, new Person(context.getString(R.string.kanye_west), new LocalDate(1977, 6, 8)));
+
+//June 9
+        addFamous(db, new Person(context.getString(R.string.stephenson), new LocalDate(1781, 6, 9)));
+        addFamous(db, new Person(context.getString(R.string.galle), new LocalDate(1812, 6, 9)));
+        addFamous(db, new Person(context.getString(R.string.suttner), new LocalDate(1843, 6, 9)));
+        addFamous(db, new Person(context.getString(R.string.dale), new LocalDate(1875, 6, 9)));
+        addFamous(db, new Person(context.getString(R.string.fox), new LocalDate(1961, 6, 9)));
+        addFamous(db, new Person(context.getString(R.string.depp), new LocalDate(1963, 6, 9)));
+        addFamous(db, new Person(context.getString(R.string.portman), new LocalDate(1981, 6, 9)));
+
+//June 10
+        addFamous(db, new Person(context.getString(R.string.courbet), new LocalDate(1819, 6, 10)));
+        addFamous(db, new Person(context.getString(R.string.otto), new LocalDate(1832, 6, 10)));
+        addFamous(db, new Person(context.getString(R.string.cook), new LocalDate(1865, 6, 10)));
+        addFamous(db, new Person(context.getString(R.string.mcdaniel), new LocalDate(1895, 6, 10)));
+        addFamous(db, new Person(context.getString(R.string.bellow), new LocalDate(1915, 6, 10)));
+        addFamous(db, new Person(context.getString(R.string.garland), new LocalDate(1922, 6, 10)));
+
+//June 11
+        addFamous(db, new Person(context.getString(R.string.constable), new LocalDate(1776, 6, 11)));
+        addFamous(db, new Person(context.getString(R.string.fortuny), new LocalDate(1838, 6, 11)));
+        addFamous(db, new Person(context.getString(R.string.richard_strauss), new LocalDate(1864, 6, 11)));
+        addFamous(db, new Person(context.getString(R.string.cousteau), new LocalDate(1910, 6, 11)));
+        addFamous(db, new Person(context.getString(R.string.styron), new LocalDate(1925, 6, 11)));
+        addFamous(db, new Person(context.getString(R.string.laurie), new LocalDate(1959, 6, 11)));
+        addFamous(db, new Person(context.getString(R.string.dinklage), new LocalDate(1969, 6, 11)));
+        addFamous(db, new Person(context.getString(R.string.labeouf), new LocalDate(1986, 6, 11)));
+
+//June 12
+        addFamous(db, new Person(context.getString(R.string.roebling), new LocalDate(1806, 6, 12)));
+        addFamous(db, new Person(context.getString(R.string.lipmann), new LocalDate(1899, 6, 12)));
+        addFamous(db, new Person(context.getString(R.string.frank), new LocalDate(1929, 6, 12)));
+        addFamous(db, new Person(context.getString(R.string.sakmann), new LocalDate(1942, 6, 12)));
+        addFamous(db, new Person(context.getString(R.string.lima), new LocalDate(1981, 6, 12)));
+
+//June 13
+        addFamous(db, new Person(context.getString(R.string.young), new LocalDate(1773, 6, 13)));
+        addFamous(db, new Person(context.getString(R.string.maxwell), new LocalDate(1831, 6, 13)));
+        addFamous(db, new Person(context.getString(R.string.yeats), new LocalDate(1865, 6, 13)));
+        addFamous(db, new Person(context.getString(R.string.john_nash), new LocalDate(1928, 6, 13)));
+        addFamous(db, new Person(context.getString(R.string.mcdowell), new LocalDate(1943, 6, 13)));
+        addFamous(db, new Person(context.getString(R.string.perelman), new LocalDate(1966, 6, 13)));
+        addFamous(db, new Person(context.getString(R.string.evans), new LocalDate(1981, 6, 13)));
+
+//June 14
+        addFamous(db, new Person(context.getString(R.string.coulomb), new LocalDate(1736, 6, 14)));
+        addFamous(db, new Person(context.getString(R.string.stowe), new LocalDate(1811, 6, 14)));
+        addFamous(db, new Person(context.getString(R.string.landsteiner), new LocalDate(1868, 6, 14)));
+        addFamous(db, new Person(context.getString(R.string.tokarev), new LocalDate(1871, 6, 14)));
+        addFamous(db, new Person(context.getString(R.string.church), new LocalDate(1903, 6, 14)));
+        addFamous(db, new Person(context.getString(R.string.guevara), new LocalDate(1928, 6, 14)));
+        addFamous(db, new Person(context.getString(R.string.graf), new LocalDate(1969, 6, 14)));
+
+//June 15
+        addFamous(db, new Person(context.getString(R.string.poussin), new LocalDate(1594, 6, 15)));
+        addFamous(db, new Person(context.getString(R.string.fourcroy), new LocalDate(1755, 6, 15)));
+        addFamous(db, new Person(context.getString(R.string.balmont), new LocalDate(1867, 6, 15)));
+        addFamous(db, new Person(context.getString(R.string.belushi), new LocalDate(1954, 6, 15)));
+        addFamous(db, new Person(context.getString(R.string.helen_hunt), new LocalDate(1963, 6, 15)));
+        addFamous(db, new Person(context.getString(R.string.kahn), new LocalDate(1969, 6, 15)));
+        addFamous(db, new Person(context.getString(R.string.harris), new LocalDate(1973, 6, 15)));
+
+//June 16
+        addFamous(db, new Person(context.getString(R.string.boccaccio), new LocalDate(1313, 6, 16)));
+        addFamous(db, new Person(context.getString(R.string.plucker), new LocalDate(1801, 6, 16)));
+        addFamous(db, new Person(context.getString(R.string.friedmann), new LocalDate(1888, 6, 16)));
+        addFamous(db, new Person(context.getString(R.string.leinster), new LocalDate(1896, 6, 16)));
+        addFamous(db, new Person(context.getString(R.string.chakraborty), new LocalDate(1950, 6, 16)));
+        addFamous(db, new Person(context.getString(R.string.shakur), new LocalDate(1971, 6, 16)));
+        addFamous(db, new Person(context.getString(R.string.john_newman), new LocalDate(1990, 6, 16)));
+
+//June 17
+        addFamous(db, new Person(context.getString(R.string.panini), new LocalDate(1691, 6, 17)));
+        addFamous(db, new Person(context.getString(R.string.gounod), new LocalDate(1818, 6, 17)));
+        addFamous(db, new Person(context.getString(R.string.stravinsky), new LocalDate(1882, 6, 17)));
+        addFamous(db, new Person(context.getString(R.string.escher), new LocalDate(1898, 6, 17)));
+        addFamous(db, new Person(context.getString(R.string.wakefield), new LocalDate(1903, 6, 17)));
+        addFamous(db, new Person(context.getString(R.string.jacob), new LocalDate(1920, 6, 17)));
+
+//June 18
+        addFamous(db, new Person(context.getString(R.string.goncharov), new LocalDate(1812, 6, 18)));
+        addFamous(db, new Person(context.getString(R.string.laveran), new LocalDate(1845, 6, 18)));
+        addFamous(db, new Person(context.getString(R.string.flagg), new LocalDate(1877, 6, 18)));
+        addFamous(db, new Person(context.getString(R.string.macdonald), new LocalDate(1903, 6, 18)));
+        addFamous(db, new Person(context.getString(R.string.mccartney), new LocalDate(1942, 6, 18)));
+        addFamous(db, new Person(context.getString(R.string.capello), new LocalDate(1946, 6, 18)));
+
+//June 19
+        addFamous(db, new Person(context.getString(R.string.pascal), new LocalDate(1623, 6, 19)));
+        addFamous(db, new Person(context.getString(R.string.dazai), new LocalDate(1909, 6, 19)));
+        addFamous(db, new Person(context.getString(R.string.flory), new LocalDate(1910, 6, 19)));
+        addFamous(db, new Person(context.getString(R.string.aage_bohr), new LocalDate(1922, 6, 19)));
+        addFamous(db, new Person(context.getString(R.string.rushdie), new LocalDate(1947, 6, 19)));
+        addFamous(db, new Person(context.getString(R.string.dujardin), new LocalDate(1972, 6, 19)));
+
+//June 20
+        addFamous(db, new Person(context.getString(R.string.rosa), new LocalDate(1615, 6, 20)));
+        addFamous(db, new Person(context.getString(R.string.offenbach), new LocalDate(1819, 6, 20)));
+        addFamous(db, new Person(context.getString(R.string.bonnat), new LocalDate(1833, 6, 20)));
+        addFamous(db, new Person(context.getString(R.string.kidman), new LocalDate(1967, 6, 20)));
+        addFamous(db, new Person(context.getString(R.string.rodriguez), new LocalDate(1968, 6, 20)));
+
+//June 21
+        addFamous(db, new Person(context.getString(R.string.poisson), new LocalDate(1781, 6, 21)));
+        addFamous(db, new Person(context.getString(R.string.sartre), new LocalDate(1905, 6, 21)));
+        addFamous(db, new Person(context.getString(R.string.mcewan), new LocalDate(1948, 6, 21)));
+        addFamous(db, new Person(context.getString(R.string.platini), new LocalDate(1955, 6, 21)));
+        addFamous(db, new Person(context.getString(R.string.tsoi), new LocalDate(1962, 6, 21)));
+        addFamous(db, new Person(context.getString(R.string.lana_del_rey), new LocalDate(1985, 6, 21)));
+
+//June 22
+        addFamous(db, new Person(context.getString(R.string.haggard), new LocalDate(1856, 6, 22)));
+        addFamous(db, new Person(context.getString(R.string.minkowski), new LocalDate(1864, 6, 22)));
+        addFamous(db, new Person(context.getString(R.string.huxley), new LocalDate(1887, 6, 22)));
+        addFamous(db, new Person(context.getString(R.string.remarque), new LocalDate(1898, 6, 22)));
+        addFamous(db, new Person(context.getString(R.string.dillinger), new LocalDate(1903, 6, 22)));
+        addFamous(db, new Person(context.getString(R.string.wilder), new LocalDate(1906, 6, 22)));
+        addFamous(db, new Person(context.getString(R.string.streep), new LocalDate(1949, 6, 22)));
+        addFamous(db, new Person(context.getString(R.string.dan_brown), new LocalDate(1964, 6, 22)));
+
+//June 23
+        addFamous(db, new Person(context.getString(R.string.vico), new LocalDate(1668, 6, 23)));
+        addFamous(db, new Person(context.getString(R.string.beauharnais), new LocalDate(1763, 6, 23)));
+        addFamous(db, new Person(context.getString(R.string.akhmatova), new LocalDate(1889, 6, 23)));
+        addFamous(db, new Person(context.getString(R.string.turing), new LocalDate(1912, 6, 23)));
+        addFamous(db, new Person(context.getString(R.string.fosse), new LocalDate(1927, 6, 23)));
+        addFamous(db, new Person(context.getString(R.string.zidane), new LocalDate(1972, 6, 23)));
+
+//June 24
+        addFamous(db, new Person(context.getString(R.string.victor_hess), new LocalDate(1883, 6, 24)));
+        addFamous(db, new Person(context.getString(R.string.fangio), new LocalDate(1911, 6, 24)));
+        addFamous(db, new Person(context.getString(R.string.perl), new LocalDate(1927, 6, 24)));
+        addFamous(db, new Person(context.getString(R.string.chabrol), new LocalDate(1930, 6, 24)));
+        addFamous(db, new Person(context.getString(R.string.messi), new LocalDate(1987, 6, 24)));
+
+//June 25
+        addFamous(db, new Person(context.getString(R.string.gaudi), new LocalDate(1852, 6, 25)));
+        addFamous(db, new Person(context.getString(R.string.nernst), new LocalDate(1864, 6, 25)));
+        addFamous(db, new Person(context.getString(R.string.orwell), new LocalDate(1903, 6, 25)));
+        addFamous(db, new Person(context.getString(R.string.lumet), new LocalDate(1924, 6, 25)));
+        addFamous(db, new Person(context.getString(R.string.abrikosov), new LocalDate(1928, 6, 25)));
+        addFamous(db, new Person(context.getString(R.string.michael), new LocalDate(1963, 6, 25)));
+
+//June 26
+        addFamous(db, new Person(context.getString(R.string.brandt), new LocalDate(1694, 6, 26)));
+        addFamous(db, new Person(context.getString(R.string.kelvin), new LocalDate(1824, 6, 26)));
+        addFamous(db, new Person(context.getString(R.string.buck), new LocalDate(1892, 6, 26)));
+        addFamous(db, new Person(context.getString(R.string.bill_lear), new LocalDate(1902, 6, 26)));
+        addFamous(db, new Person(context.getString(R.string.robert_richardson), new LocalDate(1937, 6, 26)));
+
+//June 27
+        addFamous(db, new Person(context.getString(R.string.mauser), new LocalDate(1838, 6, 27)));
+        addFamous(db, new Person(context.getString(R.string.spemann), new LocalDate(1869, 6, 27)));
+        addFamous(db, new Person(context.getString(R.string.keller), new LocalDate(1880, 6, 27)));
+        addFamous(db, new Person(context.getString(R.string.abrams), new LocalDate(1966, 6, 27)));
+        addFamous(db, new Person(context.getString(R.string.maguire), new LocalDate(1975, 6, 27)));
+        addFamous(db, new Person(context.getString(R.string.raul), new LocalDate(1977, 6, 27)));
+
+//June 28
+        addFamous(db, new Person(context.getString(R.string.rubens), new LocalDate(1577, 6, 28)));
+        addFamous(db, new Person(context.getString(R.string.rousseau), new LocalDate(1712, 6, 28)));
+        addFamous(db, new Person(context.getString(R.string.broca), new LocalDate(1824, 6, 28)));
+        addFamous(db, new Person(context.getString(R.string.pirandello), new LocalDate(1867, 6, 28)));
+        addFamous(db, new Person(context.getString(R.string.carrel), new LocalDate(1873, 6, 28)));
+        addFamous(db, new Person(context.getString(R.string.goeppert_mayer), new LocalDate(1906, 6, 28)));
+        addFamous(db, new Person(context.getString(R.string.kathy_bates), new LocalDate(1948, 6, 28)));
+        addFamous(db, new Person(context.getString(R.string.cusack), new LocalDate(1966, 6, 28)));
+        addFamous(db, new Person(context.getString(R.string.musk), new LocalDate(1971, 6, 28)));
+
+//June 29
+        addFamous(db, new Person(context.getString(R.string.dodoens), new LocalDate(1517, 6, 29)));
+        addFamous(db, new Person(context.getString(R.string.ressel), new LocalDate(1793, 6, 29)));
+        addFamous(db, new Person(context.getString(R.string.leopardi), new LocalDate(1798, 6, 29)));
+        addFamous(db, new Person(context.getString(R.string.exupery), new LocalDate(1900, 6, 29)));
+        addFamous(db, new Person(context.getString(R.string.fallaci), new LocalDate(1929, 6, 29)));
+        addFamous(db, new Person(context.getString(R.string.scherzinger), new LocalDate(1978, 6, 29)));
+
+//June 30
+        addFamous(db, new Person(context.getString(R.string.vernet), new LocalDate(1789, 6, 30)));
+        addFamous(db, new Person(context.getString(R.string.hooker), new LocalDate(1817, 6, 30)));
+        addFamous(db, new Person(context.getString(R.string.duhamel), new LocalDate(1884, 6, 30)));
+        addFamous(db, new Person(context.getString(R.string.milosz), new LocalDate(1911, 6, 30)));
+        addFamous(db, new Person(context.getString(R.string.ballard), new LocalDate(1942, 6, 30)));
+        addFamous(db, new Person(context.getString(R.string.tyson), new LocalDate(1966, 6, 30)));
+        addFamous(db, new Person(context.getString(R.string.phelps), new LocalDate(1985, 6, 30)));
+
+//July 1
+        addFamous(db, new Person(context.getString(R.string.leibniz), new LocalDate(1646, 7, 1)));
+        addFamous(db, new Person(context.getString(R.string.poncelet), new LocalDate(1788, 7, 1)));
+        addFamous(db, new Person(context.getString(R.string.george_sand), new LocalDate(1804, 7, 1)));
+        addFamous(db, new Person(context.getString(R.string.vierordt), new LocalDate(1818, 7, 1)));
+        addFamous(db, new Person(context.getString(R.string.bleriot), new LocalDate(1872, 7, 1)));
+        addFamous(db, new Person(context.getString(R.string.lauder), new LocalDate(1908, 7, 1)));
+        addFamous(db, new Person(context.getString(R.string.diana), new LocalDate(1961, 7, 1)));
+        addFamous(db, new Person(context.getString(R.string.pamela_anderson), new LocalDate(1967, 7, 1)));
+
+//July 2
+        addFamous(db, new Person(context.getString(R.string.gluck), new LocalDate(1714, 7, 2)));
+        addFamous(db, new Person(context.getString(R.string.henry_bragg), new LocalDate(1862, 7, 2)));
+        addFamous(db, new Person(context.getString(R.string.hesse), new LocalDate(1877, 7, 2)));
+        addFamous(db, new Person(context.getString(R.string.lacoste), new LocalDate(1904, 7, 2)));
+        addFamous(db, new Person(context.getString(R.string.cardin), new LocalDate(1922, 7, 2)));
+        addFamous(db, new Person(context.getString(R.string.lumumba), new LocalDate(1925, 7, 2)));
+        addFamous(db, new Person(context.getString(R.string.naceri), new LocalDate(1961, 7, 2)));
+        addFamous(db, new Person(context.getString(R.string.robbie), new LocalDate(1990, 7, 2)));
+
+//July 3
+        addFamous(db, new Person(context.getString(R.string.adam), new LocalDate(1728, 7, 3)));
+        addFamous(db, new Person(context.getString(R.string.kafka), new LocalDate(1883, 7, 3)));
+        addFamous(db, new Person(context.getString(R.string.stoppard), new LocalDate(1937, 7, 3)));
+        addFamous(db, new Person(context.getString(R.string.cruise), new LocalDate(1962, 7, 3)));
+        addFamous(db, new Person(context.getString(R.string.selanne), new LocalDate(1970, 7, 3)));
+
+//July 4
+        addFamous(db, new Person(context.getString(R.string.blanchard), new LocalDate(1753, 7, 4)));
+        addFamous(db, new Person(context.getString(R.string.everest), new LocalDate(1790, 7, 4)));
+        addFamous(db, new Person(context.getString(R.string.garibaldi), new LocalDate(1807, 7, 4)));
+        addFamous(db, new Person(context.getString(R.string.manolete), new LocalDate(1917, 7, 4)));
+        addFamous(db, new Person(context.getString(R.string.lollobrigida), new LocalDate(1927, 7, 4)));
+
+//July 5
+        addFamous(db, new Person(context.getString(R.string.bulgarin), new LocalDate(1789, 7, 5)));
+        addFamous(db, new Person(context.getString(R.string.fitzroy), new LocalDate(1805, 7, 5)));
+        addFamous(db, new Person(context.getString(R.string.rankine), new LocalDate(1820, 7, 5)));
+        addFamous(db, new Person(context.getString(R.string.zetkin), new LocalDate(1857, 7, 5)));
+        addFamous(db, new Person(context.getString(R.string.gasser), new LocalDate(1888, 7, 5)));
+        addFamous(db, new Person(context.getString(R.string.cocteau), new LocalDate(1889, 7, 5)));
+
+//July 6
+        addFamous(db, new Person(context.getString(R.string.raffles), new LocalDate(1781, 7, 6)));
+        addFamous(db, new Person(context.getString(R.string.heidenstam), new LocalDate(1859, 7, 6)));
+        addFamous(db, new Person(context.getString(R.string.chagall), new LocalDate(1887, 7, 6)));
+        addFamous(db, new Person(context.getString(R.string.bill_haley), new LocalDate(1925, 7, 6)));
+        addFamous(db, new Person(context.getString(R.string.stallone), new LocalDate(1946, 7, 6)));
+        addFamous(db, new Person(context.getString(R.string.rush), new LocalDate(1951, 7, 6)));
+        addFamous(db, new Person(context.getString(R.string.cent), new LocalDate(1975, 7, 6)));
+        addFamous(db, new Person(context.getString(R.string.eva_green), new LocalDate(1980, 7, 6)));
+
+//July 7
+        addFamous(db, new Person(context.getString(R.string.jacquard), new LocalDate(1752, 7, 7)));
+        addFamous(db, new Person(context.getString(R.string.golgi), new LocalDate(1843, 7, 7)));
+        addFamous(db, new Person(context.getString(R.string.mahler), new LocalDate(1860, 7, 7)));
+        addFamous(db, new Person(context.getString(R.string.feuchtwanger), new LocalDate(1884, 7, 7)));
+        addFamous(db, new Person(context.getString(R.string.ringo_starr), new LocalDate(1940, 7, 7)));
+        addFamous(db, new Person(context.getString(R.string.cutugno), new LocalDate(1943, 7, 7)));
+
+//July 8
+        addFamous(db, new Person(context.getString(R.string.fontaine), new LocalDate(1621, 7, 8)));
+        addFamous(db, new Person(context.getString(R.string.zeppelin), new LocalDate(1838, 7, 8)));
+        addFamous(db, new Person(context.getString(R.string.rockefeller), new LocalDate(1839, 7, 8)));
+        addFamous(db, new Person(context.getString(R.string.benardos), new LocalDate(1842, 7, 8)));
+        addFamous(db, new Person(context.getString(R.string.arthus_evans), new LocalDate(1851, 7, 8)));
+        addFamous(db, new Person(context.getString(R.string.perls), new LocalDate(1893, 7, 8)));
+        addFamous(db, new Person(context.getString(R.string.kapitsa), new LocalDate(1894, 7, 8)));
+
+//July 9
+        addFamous(db, new Person(context.getString(R.string.radcliffe), new LocalDate(1764, 7, 9)));
+        addFamous(db, new Person(context.getString(R.string.davenport), new LocalDate(1802, 7, 9)));
+        addFamous(db, new Person(context.getString(R.string.elias_howe), new LocalDate(1819, 7, 9)));
+        addFamous(db, new Person(context.getString(R.string.boas), new LocalDate(1858, 7, 9)));
+        addFamous(db, new Person(context.getString(R.string.chagas), new LocalDate(1879, 7, 9)));
+        addFamous(db, new Person(context.getString(R.string.tom_hanks), new LocalDate(1956, 7, 9)));
+        addFamous(db, new Person(context.getString(R.string.love), new LocalDate(1964, 7, 9)));
+
+//July 10
+        addFamous(db, new Person(context.getString(R.string.jean_calvin), new LocalDate(1509, 7, 10)));
+        addFamous(db, new Person(context.getString(R.string.marryat), new LocalDate(1792, 7, 10)));
+        addFamous(db, new Person(context.getString(R.string.pissarro), new LocalDate(1830, 7, 10)));
+        addFamous(db, new Person(context.getString(R.string.tesla), new LocalDate(1856, 7, 10)));
+        addFamous(db, new Person(context.getString(R.string.proust), new LocalDate(1871, 7, 10)));
+        addFamous(db, new Person(context.getString(R.string.chamberlain), new LocalDate(1920, 7, 10)));
+
+//July 11
+        addFamous(db, new Person(context.getString(R.string.gondora), new LocalDate(1561, 7, 11)));
+        addFamous(db, new Person(context.getString(R.string.lalande), new LocalDate(1732, 7, 11)));
+        addFamous(db, new Person(context.getString(R.string.nelson), new LocalDate(1882, 7, 11)));
+        addFamous(db, new Person(context.getString(R.string.abel), new LocalDate(1903, 7, 11)));
+        addFamous(db, new Person(context.getString(R.string.brynner), new LocalDate(1920, 7, 11)));
+        addFamous(db, new Person(context.getString(R.string.armani), new LocalDate(1934, 7, 11)));
+
+//July 12
+        addFamous(db, new Person(context.getString(R.string.bernard), new LocalDate(1813, 7, 12)));
+        addFamous(db, new Person(context.getString(R.string.eastman), new LocalDate(1854, 7, 12)));
+        addFamous(db, new Person(context.getString(R.string.tod_browning), new LocalDate(1880, 7, 12)));
+        addFamous(db, new Person(context.getString(R.string.modigliani), new LocalDate(1884, 7, 12)));
+        addFamous(db, new Person(context.getString(R.string.meruda), new LocalDate(1904, 7, 12)));
+        addFamous(db, new Person(context.getString(R.string.wyeth), new LocalDate(1917, 7, 12)));
+        addFamous(db, new Person(context.getString(R.string.michelle_rodriguez), new LocalDate(1978, 7, 12)));
+
+//July 13
+        addFamous(db, new Person(context.getString(R.string.john_dee), new LocalDate(1527, 7, 13)));
+        addFamous(db, new Person(context.getString(R.string.cannizzaro), new LocalDate(1826, 7, 13)));
+        addFamous(db, new Person(context.getString(R.string.otto_wagner), new LocalDate(1841, 7, 13)));
+        addFamous(db, new Person(context.getString(R.string.babel), new LocalDate(1894, 7, 13)));
+        addFamous(db, new Person(context.getString(R.string.ascari), new LocalDate(1918, 7, 13)));
+        addFamous(db, new Person(context.getString(R.string.ford), new LocalDate(1942, 7, 13)));
+        addFamous(db, new Person(context.getString(R.string.rubik), new LocalDate(1944, 7, 13)));
+        addFamous(db, new Person(context.getString(R.string.benassi), new LocalDate(1967, 7, 13)));
+
+//July 14
+        addFamous(db, new Person(context.getString(R.string.dumas), new LocalDate(1800, 7, 14)));
+        addFamous(db, new Person(context.getString(R.string.klimt), new LocalDate(1862, 7, 14)));
+        addFamous(db, new Person(context.getString(R.string.irving_stone), new LocalDate(1903, 7, 14)));
+        addFamous(db, new Person(context.getString(R.string.bergman), new LocalDate(1918, 7, 14)));
+        addFamous(db, new Person(context.getString(R.string.forrester), new LocalDate(1918, 7, 14)));
+
+//July 15
+        addFamous(db, new Person(context.getString(R.string.rembrandt), new LocalDate(1606, 7, 15)));
+        addFamous(db, new Person(context.getString(R.string.pareto), new LocalDate(1848, 7, 15)));
+        addFamous(db, new Person(context.getString(R.string.harmsworth), new LocalDate(1865, 7, 15)));
+        addFamous(db, new Person(context.getString(R.string.brockhouse), new LocalDate(1918, 7, 15)));
+        addFamous(db, new Person(context.getString(R.string.savage), new LocalDate(1967, 7, 15)));
+        addFamous(db, new Person(context.getString(R.string.kruger), new LocalDate(1976, 7, 15)));
+
+//July 16
+        addFamous(db, new Person(context.getString(R.string.assisi), new LocalDate(1194, 7, 16)));
+        addFamous(db, new Person(context.getString(R.string.amundsen), new LocalDate(1872, 7, 16)));
+        addFamous(db, new Person(context.getString(R.string.stanwyck), new LocalDate(1907, 7, 16)));
+        addFamous(db, new Person(context.getString(R.string.laroche), new LocalDate(1921, 7, 16)));
+        addFamous(db, new Person(context.getString(R.string.sheckley), new LocalDate(1928, 7, 16)));
+
+//July 17
+        addFamous(db, new Person(context.getString(R.string.friedrich_krupp), new LocalDate(1787, 7, 17)));
+        addFamous(db, new Person(context.getString(R.string.corot), new LocalDate(1796, 7, 17)));
+        addFamous(db, new Person(context.getString(R.string.nicholas), new LocalDate(1846, 7, 17)));
+        addFamous(db, new Person(context.getString(R.string.lamaitre), new LocalDate(1894, 7, 17)));
+        addFamous(db, new Person(context.getString(R.string.abbott), new LocalDate(1898, 7, 17)));
+        addFamous(db, new Person(context.getString(R.string.sutherland), new LocalDate(1935, 7, 17)));
+
+//July 18
+        addFamous(db, new Person(context.getString(R.string.thackeray), new LocalDate(1811, 7, 18)));
+        addFamous(db, new Person(context.getString(R.string.viardot), new LocalDate(1821, 7, 18)));
+        addFamous(db, new Person(context.getString(R.string.lorentz), new LocalDate(1853, 7, 18)));
+        addFamous(db, new Person(context.getString(R.string.mandela), new LocalDate(1918, 7, 18)));
+        addFamous(db, new Person(context.getString(R.string.hunter_thompson), new LocalDate(1937, 7, 18)));
+        addFamous(db, new Person(context.getString(R.string.branson), new LocalDate(1950, 7, 18)));
+        addFamous(db, new Person(context.getString(R.string.vin_diesel), new LocalDate(1967, 7, 18)));
+
+//July 19
+        addFamous(db, new Person(context.getString(R.string.colt), new LocalDate(1814, 7, 19)));
+        addFamous(db, new Person(context.getString(R.string.degas), new LocalDate(1834, 7, 19)));
+        addFamous(db, new Person(context.getString(R.string.mayakovsky), new LocalDate(1893, 7, 19)));
+        addFamous(db, new Person(context.getString(R.string.cronin), new LocalDate(1896, 7, 19)));
+        addFamous(db, new Person(context.getString(R.string.coloane), new LocalDate(1910, 7, 19)));
+        addFamous(db, new Person(context.getString(R.string.yalow), new LocalDate(1921, 7, 19)));
+        addFamous(db, new Person(context.getString(R.string.cumberbatch), new LocalDate(1976, 7, 19)));
+
+//July 20
+        addFamous(db, new Person(context.getString(R.string.petrarca), new LocalDate(1304, 7, 20)));
+        addFamous(db, new Person(context.getString(R.string.owen), new LocalDate(1804, 7, 20)));
+        addFamous(db, new Person(context.getString(R.string.mendel), new LocalDate(1822, 7, 20)));
+        addFamous(db, new Person(context.getString(R.string.georg_muller), new LocalDate(1850, 7, 20)));
+        addFamous(db, new Person(context.getString(R.string.morandi), new LocalDate(1890, 7, 20)));
+        addFamous(db, new Person(context.getString(R.string.dobrev), new LocalDate(1914, 7, 20)));
+        addFamous(db, new Person(context.getString(R.string.bundchen), new LocalDate(1980, 7, 20)));
+
+//July 21
+        addFamous(db, new Person(context.getString(R.string.picard), new LocalDate(1620, 7, 21)));
+        addFamous(db, new Person(context.getString(R.string.regnault), new LocalDate(1810, 7, 21)));
+        addFamous(db, new Person(context.getString(R.string.reuter), new LocalDate(1816, 7, 21)));
+        addFamous(db, new Person(context.getString(R.string.hemingway), new LocalDate(1899, 7, 21)));
+        addFamous(db, new Person(context.getString(R.string.robin_williams), new LocalDate(1951, 7, 21)));
+        addFamous(db, new Person(context.getString(R.string.josh_hartnett), new LocalDate(1978, 7, 21)));
+
+//July 22
+        addFamous(db, new Person(context.getString(R.string.soufflot), new LocalDate(1713, 7, 22)));
+        addFamous(db, new Person(context.getString(R.string.gustav_hertz), new LocalDate(1887, 7, 22)));
+        addFamous(db, new Person(context.getString(R.string.mathieu), new LocalDate(1946, 7, 22)));
+        addFamous(db, new Person(context.getString(R.string.dafoe), new LocalDate(1955, 7, 22)));
+        addFamous(db, new Person(context.getString(R.string.selena_gomez), new LocalDate(1992, 7, 22)));
+
+//July 23
+        addFamous(db, new Person(context.getString(R.string.vyazemsky), new LocalDate(1792, 7, 23)));
+        addFamous(db, new Person(context.getString(R.string.cilea), new LocalDate(1866, 7, 23)));
+        addFamous(db, new Person(context.getString(R.string.harrelson), new LocalDate(1961, 7, 23)));
+        addFamous(db, new Person(context.getString(R.string.hoffman), new LocalDate(1967, 7, 23)));
+        addFamous(db, new Person(context.getString(R.string.lewinsky), new LocalDate(1973, 7, 23)));
+        addFamous(db, new Person(context.getString(R.string.daniel_radcliffe), new LocalDate(1989, 7, 23)));
+
+//July 24
+        addFamous(db, new Person(context.getString(R.string.vidocq), new LocalDate(1775, 7, 24)));
+        addFamous(db, new Person(context.getString(R.string.alexandre_dumas), new LocalDate(1802, 7, 24)));
+        addFamous(db, new Person(context.getString(R.string.mucha), new LocalDate(1860, 7, 24)));
+        addFamous(db, new Person(context.getString(R.string.benson), new LocalDate(1867, 7, 24)));
+        addFamous(db, new Person(context.getString(R.string.lopez), new LocalDate(1969, 7, 24)));
+
+//July 25
+        addFamous(db, new Person(context.getString(R.string.scheiner), new LocalDate(1575, 7, 25)));
+        addFamous(db, new Person(context.getString(R.string.eakins), new LocalDate(1844, 7, 25)));
+        addFamous(db, new Person(context.getString(R.string.davidson_black), new LocalDate(1884, 7, 25)));
+        addFamous(db, new Person(context.getString(R.string.canetti), new LocalDate(1905, 7, 25)));
+        addFamous(db, new Person(context.getString(R.string.leblanc), new LocalDate(1967, 7, 25)));
+
+//July 26
+        addFamous(db, new Person(context.getString(R.string.remak), new LocalDate(1815, 7, 26)));
+        addFamous(db, new Person(context.getString(R.string.shaw), new LocalDate(1856, 7, 26)));
+        addFamous(db, new Person(context.getString(R.string.jung), new LocalDate(1875, 7, 26)));
+        addFamous(db, new Person(context.getString(R.string.maurois), new LocalDate(1885, 7, 26)));
+        addFamous(db, new Person(context.getString(R.string.kubrick), new LocalDate(1928, 7, 26)));
+        addFamous(db, new Person(context.getString(R.string.jagger), new LocalDate(1943, 7, 26)));
+        addFamous(db, new Person(context.getString(R.string.spacey), new LocalDate(1959, 7, 26)));
+        addFamous(db, new Person(context.getString(R.string.bullock), new LocalDate(1964, 7, 26)));
+        addFamous(db, new Person(context.getString(R.string.statham), new LocalDate(1967, 7, 26)));
+
+//July 27
+        addFamous(db, new Person(context.getString(R.string.corday), new LocalDate(1768, 7, 27)));
+        addFamous(db, new Person(context.getString(R.string.carducci), new LocalDate(1835, 7, 27)));
+        addFamous(db, new Person(context.getString(R.string.hans_fischer), new LocalDate(1881, 7, 27)));
+        addFamous(db, new Person(context.getString(R.string.monaco), new LocalDate(1915, 7, 27)));
+        addFamous(db, new Person(context.getString(R.string.nikolaj), new LocalDate(1970, 7, 27)));
+
+//July 28
+        addFamous(db, new Person(context.getString(R.string.hooke), new LocalDate(1635, 7, 28)));
+        addFamous(db, new Person(context.getString(R.string.feuerbach), new LocalDate(1804, 7, 28)));
+        addFamous(db, new Person(context.getString(R.string.grisi), new LocalDate(1811, 7, 28)));
+        addFamous(db, new Person(context.getString(R.string.duchamp), new LocalDate(1887, 7, 28)));
+        addFamous(db, new Person(context.getString(R.string.popper), new LocalDate(1902, 7, 28)));
+        addFamous(db, new Person(context.getString(R.string.burda), new LocalDate(1909, 7, 28)));
+        addFamous(db, new Person(context.getString(R.string.chavez), new LocalDate(1954, 7, 28)));
+
+//July 29
+        addFamous(db, new Person(context.getString(R.string.aivazovsky), new LocalDate(1817, 7, 29)));
+        addFamous(db, new Person(context.getString(R.string.mussolini), new LocalDate(1883, 7, 29)));
+        addFamous(db, new Person(context.getString(R.string.theda_bara), new LocalDate(1885, 7, 29)));
+        addFamous(db, new Person(context.getString(R.string.clara_bow), new LocalDate(1905, 7, 29)));
+        addFamous(db, new Person(context.getString(R.string.alonso), new LocalDate(1981, 7, 29)));
+
+//July 30
+        addFamous(db, new Person(context.getString(R.string.vasari), new LocalDate(1511, 7, 30)));
+        addFamous(db, new Person(context.getString(R.string.bronte), new LocalDate(1818, 7, 30)));
+        addFamous(db, new Person(context.getString(R.string.henry_ford), new LocalDate(1863, 7, 30)));
+        addFamous(db, new Person(context.getString(R.string.cyril_parkinson), new LocalDate(1909, 7, 30)));
+        addFamous(db, new Person(context.getString(R.string.schwarzenegger), new LocalDate(1947, 7, 30)));
+        addFamous(db, new Person(context.getString(R.string.jean_reno), new LocalDate(1948, 7, 30)));
+        addFamous(db, new Person(context.getString(R.string.nolan), new LocalDate(1970, 7, 30)));
+
+//July 31
+        addFamous(db, new Person(context.getString(R.string.cramer), new LocalDate(1704, 7, 31)));
+        addFamous(db, new Person(context.getString(R.string.wohler), new LocalDate(1800, 7, 31)));
+        addFamous(db, new Person(context.getString(R.string.planquette), new LocalDate(1848, 7, 31)));
+        addFamous(db, new Person(context.getString(R.string.milton_friedman), new LocalDate(1912, 7, 31)));
+        addFamous(db, new Person(context.getString(R.string.de_funes), new LocalDate(1914, 7, 31)));
+        addFamous(db, new Person(context.getString(R.string.primo_levi), new LocalDate(1919, 7, 31)));
+        addFamous(db, new Person(context.getString(R.string.rowling), new LocalDate(1965, 7, 31)));
+    }
+
+    static void createFamousDbPart3(Context context, SQLiteDatabase db) {
+
+//August 1
+        addFamous(db, new Person(context.getString(R.string.lamarck), new LocalDate(1744, 8, 1)));
+        addFamous(db, new Person(context.getString(R.string.melville), new LocalDate(1819, 8, 1)));
+        addFamous(db, new Person(context.getString(R.string.taro), new LocalDate(1910, 8, 1)));
+        addFamous(db, new Person(context.getString(R.string.laurent), new LocalDate(1936, 8, 1)));
+        addFamous(db, new Person(context.getString(R.string.mendes), new LocalDate(1965, 8, 1)));
+        addFamous(db, new Person(context.getString(R.string.momoa), new LocalDate(1979, 8, 1)));
+
+//August 2
+        addFamous(db, new Person(context.getString(R.string.hoogstraten), new LocalDate(1627, 8, 2)));
+        addFamous(db, new Person(context.getString(R.string.tyndall), new LocalDate(1820, 8, 2)));
+        addFamous(db, new Person(context.getString(R.string.olcott), new LocalDate(1832, 8, 2)));
+        addFamous(db, new Person(context.getString(R.string.bartholdi), new LocalDate(1834, 8, 2)));
+        addFamous(db, new Person(context.getString(R.string.loy), new LocalDate(1905, 8, 2)));
+        addFamous(db, new Person(context.getString(R.string.worthington), new LocalDate(1976, 8, 2)));
+
+//August 3
+        addFamous(db, new Person(context.getString(R.string.otis), new LocalDate(1811, 8, 3)));
+        addFamous(db, new Person(context.getString(R.string.simak), new LocalDate(1904, 8, 3)));
+        addFamous(db, new Person(context.getString(R.string.james), new LocalDate(1920, 8, 3)));
+        addFamous(db, new Person(context.getString(R.string.sheen), new LocalDate(1940, 8, 3)));
+        addFamous(db, new Person(context.getString(R.string.lilly), new LocalDate(1979, 8, 3)));
+
+//August 4
+        addFamous(db, new Person(context.getString(R.string.shelley), new LocalDate(1792, 8, 4)));
+        addFamous(db, new Person(context.getString(R.string.john_venn), new LocalDate(1834, 8, 4)));
+        addFamous(db, new Person(context.getString(R.string.hamsun), new LocalDate(1859, 8, 4)));
+        addFamous(db, new Person(context.getString(R.string.armstrong), new LocalDate(1900, 8, 4)));
+        addFamous(db, new Person(context.getString(R.string.thornton), new LocalDate(1955, 8, 4)));
+
+//August 5
+        addFamous(db, new Person(context.getString(R.string.niels_abel), new LocalDate(1802, 8, 5)));
+        addFamous(db, new Person(context.getString(R.string.repin), new LocalDate(1844, 8, 5)));
+        addFamous(db, new Person(context.getString(R.string.maupassant), new LocalDate(1850, 8, 5)));
+        addFamous(db, new Person(context.getString(R.string.wain), new LocalDate(1860, 8, 5)));
+        addFamous(db, new Person(context.getString(R.string.huston), new LocalDate(1906, 8, 5)));
+        addFamous(db, new Person(context.getString(R.string.neil_armstrong), new LocalDate(1930, 8, 5)));
+
+//August 6
+        addFamous(db, new Person(context.getString(R.string.malebranche), new LocalDate(1638, 8, 6)));
+        addFamous(db, new Person(context.getString(R.string.johann_bernoulli), new LocalDate(1667, 8, 6)));
+        addFamous(db, new Person(context.getString(R.string.alexander_fleming), new LocalDate(1881, 8, 6)));
+        addFamous(db, new Person(context.getString(R.string.lucille_ball), new LocalDate(1911, 8, 6)));
+        addFamous(db, new Person(context.getString(R.string.andy_warhol), new LocalDate(1928, 8, 6)));
+        addFamous(db, new Person(context.getString(R.string.shyamalan), new LocalDate(1970, 8, 6)));
+
+//August 7
+        addFamous(db, new Person(context.getString(R.string.bathory), new LocalDate(1560, 8, 7)));
+        addFamous(db, new Person(context.getString(R.string.mata_hari), new LocalDate(1876, 8, 7)));
+        addFamous(db, new Person(context.getString(R.string.tobin_bell), new LocalDate(1942, 8, 7)));
+        addFamous(db, new Person(context.getString(R.string.duchovny), new LocalDate(1960, 8, 7)));
+        addFamous(db, new Person(context.getString(R.string.jimmy_wales), new LocalDate(1966, 8, 7)));
+        addFamous(db, new Person(context.getString(R.string.theron), new LocalDate(1975, 8, 7)));
+
+//August 8
+        addFamous(db, new Person(context.getString(R.string.bateson), new LocalDate(1861, 8, 8)));
+        addFamous(db, new Person(context.getString(R.string.lawrence), new LocalDate(1901, 8, 8)));
+        addFamous(db, new Person(context.getString(R.string.dirac), new LocalDate(1902, 8, 8)));
+        addFamous(db, new Person(context.getString(R.string.dustin_hoffman), new LocalDate(1937, 8, 8)));
+        addFamous(db, new Person(context.getString(R.string.federer), new LocalDate(1981, 8, 8)));
+
+//August 9
+        addFamous(db, new Person(context.getString(R.string.avogadro), new LocalDate(1776, 8, 9)));
+        addFamous(db, new Person(context.getString(R.string.morton_william), new LocalDate(1819, 8, 9)));
+        addFamous(db, new Person(context.getString(R.string.huckel), new LocalDate(1896, 8, 9)));
+        addFamous(db, new Person(context.getString(R.string.piaget), new LocalDate(1896, 8, 9)));
+        addFamous(db, new Person(context.getString(R.string.travers), new LocalDate(1899, 8, 9)));
+        addFamous(db, new Person(context.getString(R.string.jansson), new LocalDate(1914, 8, 9)));
+        addFamous(db, new Person(context.getString(R.string.griffith), new LocalDate(1957, 8, 9)));
+        addFamous(db, new Person(context.getString(R.string.houston), new LocalDate(1963, 8, 9)));
+        addFamous(db, new Person(context.getString(R.string.tautou), new LocalDate(1976, 8, 9)));
+
+//August 10
+        addFamous(db, new Person(context.getString(R.string.nestle), new LocalDate(1814, 8, 10)));
+        addFamous(db, new Person(context.getString(R.string.qunanbaiuli), new LocalDate(1845, 8, 10)));
+        addFamous(db, new Person(context.getString(R.string.darrow), new LocalDate(1889, 8, 10)));
+        addFamous(db, new Person(context.getString(R.string.shearer), new LocalDate(1902, 8, 10)));
+        addFamous(db, new Person(context.getString(R.string.tiselius), new LocalDate(1902, 8, 10)));
+        addFamous(db, new Person(context.getString(R.string.banderas), new LocalDate(1960, 8, 10)));
+
+//August 11
+        addFamous(db, new Person(context.getString(R.string.andrew_davis), new LocalDate(1826, 8, 11)));
+        addFamous(db, new Person(context.getString(R.string.savant), new LocalDate(1946, 8, 11)));
+        addFamous(db, new Person(context.getString(R.string.wozniak), new LocalDate(1950, 8, 11)));
+        addFamous(db, new Person(context.getString(R.string.hogan), new LocalDate(1953, 8, 11)));
+        addFamous(db, new Person(context.getString(R.string.hemsworth), new LocalDate(1983, 8, 11)));
+
+//August 12
+        addFamous(db, new Person(context.getString(R.string.bering), new LocalDate(1681, 8, 12)));
+        addFamous(db, new Person(context.getString(R.string.demille), new LocalDate(1881, 8, 12)));
+        addFamous(db, new Person(context.getString(R.string.bendix), new LocalDate(1881, 8, 12)));
+        addFamous(db, new Person(context.getString(R.string.schrodinger), new LocalDate(1887, 8, 12)));
+        addFamous(db, new Person(context.getString(R.string.soros), new LocalDate(1930, 8, 12)));
+        addFamous(db, new Person(context.getString(R.string.delevingne), new LocalDate(1992, 8, 12)));
+
+//August 13
+        addFamous(db, new Person(context.getString(R.string.angstrom), new LocalDate(1814, 8, 13)));
+        addFamous(db, new Person(context.getString(R.string.miescher), new LocalDate(1844, 8, 13)));
+        addFamous(db, new Person(context.getString(R.string.agnelli), new LocalDate(1866, 8, 13)));
+        addFamous(db, new Person(context.getString(R.string.hitchcock), new LocalDate(1899, 8, 13)));
+        addFamous(db, new Person(context.getString(R.string.wankel), new LocalDate(1902, 8, 13)));
+        addFamous(db, new Person(context.getString(R.string.castro), new LocalDate(1926, 8, 13)));
+
+//August 14
+        addFamous(db, new Person(context.getString(R.string.orsted), new LocalDate(1777, 8, 14)));
+        addFamous(db, new Person(context.getString(R.string.holliday), new LocalDate(1851, 8, 14)));
+        addFamous(db, new Person(context.getString(R.string.merezhkovsky), new LocalDate(1866, 8, 14)));
+        addFamous(db, new Person(context.getString(R.string.galsworthy), new LocalDate(1867, 8, 14)));
+        addFamous(db, new Person(context.getString(R.string.dempster), new LocalDate(1886, 8, 14)));
+        addFamous(db, new Person(context.getString(R.string.steve_martin), new LocalDate(1945, 8, 14)));
+        addFamous(db, new Person(context.getString(R.string.berry), new LocalDate(1966, 8, 14)));
+        addFamous(db, new Person(context.getString(R.string.kunis), new LocalDate(1983, 8, 14)));
+
+//August 15
+        addFamous(db, new Person(context.getString(R.string.carmontelle), new LocalDate(1717, 8, 15)));
+        addFamous(db, new Person(context.getString(R.string.napoleon), new LocalDate(1769, 8, 15)));
+        addFamous(db, new Person(context.getString(R.string.scott), new LocalDate(1771, 8, 15)));
+        addFamous(db, new Person(context.getString(R.string.broglie), new LocalDate(1892, 8, 15)));
+        addFamous(db, new Person(context.getString(R.string.inarritu), new LocalDate(1963, 8, 15)));
+        addFamous(db, new Person(context.getString(R.string.affleck), new LocalDate(1972, 8, 15)));
+        addFamous(db, new Person(context.getString(R.string.jennifer_lawrence), new LocalDate(1990, 8, 15)));
+
+//August 16
+        addFamous(db, new Person(context.getString(R.string.bruyere), new LocalDate(1645, 8, 16)));
+        addFamous(db, new Person(context.getString(R.string.lippmann), new LocalDate(1845, 8, 16)));
+        addFamous(db, new Person(context.getString(R.string.bukowski), new LocalDate(1920, 8, 16)));
+        addFamous(db, new Person(context.getString(R.string.richard), new LocalDate(1934, 8, 16)));
+        addFamous(db, new Person(context.getString(R.string.cameron), new LocalDate(1954, 8, 16)));
+        addFamous(db, new Person(context.getString(R.string.madonna), new LocalDate(1958, 8, 16)));
+
+//August 17
+        addFamous(db, new Person(context.getString(R.string.fermat), new LocalDate(1601, 8, 17)));
+        addFamous(db, new Person(context.getString(R.string.hodgkin), new LocalDate(1798, 8, 17)));
+        addFamous(db, new Person(context.getString(R.string.fokker), new LocalDate(1887, 8, 17)));
+        addFamous(db, new Person(context.getString(R.string.naipaul), new LocalDate(1932, 8, 17)));
+        addFamous(db, new Person(context.getString(R.string.de_niro), new LocalDate(1943, 8, 17)));
+        addFamous(db, new Person(context.getString(R.string.penn), new LocalDate(1960, 8, 17)));
+
+//August 18
+        addFamous(db, new Person(context.getString(R.string.brook_taylor), new LocalDate(1685, 8, 18)));
+        addFamous(db, new Person(context.getString(R.string.salieri), new LocalDate(1750, 8, 18)));
+        addFamous(db, new Person(context.getString(R.string.pierre_martin), new LocalDate(1824, 8, 18)));
+        addFamous(db, new Person(context.getString(R.string.swayze), new LocalDate(1952, 8, 18)));
+        addFamous(db, new Person(context.getString(R.string.norton), new LocalDate(1969, 8, 18)));
+        addFamous(db, new Person(context.getString(R.string.slater), new LocalDate(1969, 8, 18)));
+
+//August 19
+        addFamous(db, new Person(context.getString(R.string.samuel_richardson), new LocalDate(1689, 8, 19)));
+        addFamous(db, new Person(context.getString(R.string.platov), new LocalDate(1753, 8, 19)));
+        addFamous(db, new Person(context.getString(R.string.nasmyth), new LocalDate(1808, 8, 19)));
+        addFamous(db, new Person(context.getString(R.string.meyer), new LocalDate(1830, 8, 19)));
+        addFamous(db, new Person(context.getString(R.string.enescu), new LocalDate(1881, 8, 19)));
+        addFamous(db, new Person(context.getString(R.string.chanel), new LocalDate(1883, 8, 19)));
+        addFamous(db, new Person(context.getString(R.string.perry), new LocalDate(1969, 8, 19)));
+
+//August 20
+        addFamous(db, new Person(context.getString(R.string.berzelius), new LocalDate(1779, 8, 20)));
+        addFamous(db, new Person(context.getString(R.string.quasimodo), new LocalDate(1901, 8, 20)));
+        addFamous(db, new Person(context.getString(R.string.susann), new LocalDate(1918, 8, 20)));
+        addFamous(db, new Person(context.getString(R.string.durst), new LocalDate(1970, 8, 20)));
+        addFamous(db, new Person(context.getString(R.string.amy_adams), new LocalDate(1974, 8, 20)));
+        addFamous(db, new Person(context.getString(R.string.garfield), new LocalDate(1983, 8, 20)));
+
+//August 21
+        addFamous(db, new Person(context.getString(R.string.murdoch), new LocalDate(1754, 8, 21)));
+        addFamous(db, new Person(context.getString(R.string.basie), new LocalDate(1904, 8, 21)));
+        addFamous(db, new Person(context.getString(R.string.consuelo_velazquez), new LocalDate(1916, 8, 21)));
+        addFamous(db, new Person(context.getString(R.string.wilt_chamberlain), new LocalDate(1936, 8, 21)));
+        addFamous(db, new Person(context.getString(R.string.brin), new LocalDate(1973, 8, 21)));
+        addFamous(db, new Person(context.getString(R.string.bolt), new LocalDate(1986, 8, 21)));
+
+//August 22
+        addFamous(db, new Person(context.getString(R.string.papin), new LocalDate(1647, 8, 22)));
+        addFamous(db, new Person(context.getString(R.string.maudslay), new LocalDate(1771, 8, 22)));
+        addFamous(db, new Person(context.getString(R.string.nipkow), new LocalDate(1860, 8, 22)));
+        addFamous(db, new Person(context.getString(R.string.debussy), new LocalDate(1862, 8, 22)));
+        addFamous(db, new Person(context.getString(R.string.scheler), new LocalDate(1874, 8, 22)));
+        addFamous(db, new Person(context.getString(R.string.bradbury), new LocalDate(1920, 8, 22)));
+
+//August 23
+        addFamous(db, new Person(context.getString(R.string.laperouse), new LocalDate(1741, 8, 23)));
+        addFamous(db, new Person(context.getString(R.string.cuvier), new LocalDate(1769, 8, 23)));
+        addFamous(db, new Person(context.getString(R.string.jirasek), new LocalDate(1851, 8, 23)));
+        addFamous(db, new Person(context.getString(R.string.arrow), new LocalDate(1921, 8, 23)));
+        addFamous(db, new Person(context.getString(R.string.phoenix), new LocalDate(1970, 8, 23)));
+
+//August 24
+        addFamous(db, new Person(context.getString(R.string.weddell), new LocalDate(1787, 8, 24)));
+        addFamous(db, new Person(context.getString(R.string.borges), new LocalDate(1899, 8, 24)));
+        addFamous(db, new Person(context.getString(R.string.coelho), new LocalDate(1947, 8, 24)));
+        addFamous(db, new Person(context.getString(R.string.jarre), new LocalDate(1948, 8, 24)));
+        addFamous(db, new Person(context.getString(R.string.fry), new LocalDate(1957, 8, 24)));
+        addFamous(db, new Person(context.getString(R.string.guttenberg), new LocalDate(1958, 8, 24)));
+        addFamous(db, new Person(context.getString(R.string.grint), new LocalDate(1988, 8, 24)));
+
+//August 25
+        addFamous(db, new Person(context.getString(R.string.pinkerton), new LocalDate(1819, 8, 25)));
+        addFamous(db, new Person(context.getString(R.string.elo), new LocalDate(1903, 8, 25)));
+        addFamous(db, new Person(context.getString(R.string.brian_moore), new LocalDate(1921, 8, 25)));
+        addFamous(db, new Person(context.getString(R.string.connery), new LocalDate(1930, 8, 25)));
+        addFamous(db, new Person(context.getString(R.string.tim_burton), new LocalDate(1958, 8, 25)));
+        addFamous(db, new Person(context.getString(R.string.schiffer), new LocalDate(1970, 8, 25)));
+
+//August 26
+        addFamous(db, new Person(context.getString(R.string.lambert), new LocalDate(1728, 8, 26)));
+        addFamous(db, new Person(context.getString(R.string.joseph_montgolfier), new LocalDate(1740, 8, 26)));
+        addFamous(db, new Person(context.getString(R.string.lavoisier), new LocalDate(1743, 8, 26)));
+        addFamous(db, new Person(context.getString(R.string.forest), new LocalDate(1873, 8, 26)));
+        addFamous(db, new Person(context.getString(R.string.teresa), new LocalDate(1910, 8, 26)));
+        addFamous(db, new Person(context.getString(R.string.culkin), new LocalDate(1980, 8, 26)));
+
+//August 27
+        addFamous(db, new Person(context.getString(R.string.hegel), new LocalDate(1770, 8, 27)));
+        addFamous(db, new Person(context.getString(R.string.niebuhr), new LocalDate(1776, 8, 27)));
+        addFamous(db, new Person(context.getString(R.string.bosch), new LocalDate(1874, 8, 27)));
+        addFamous(db, new Person(context.getString(R.string.rolls), new LocalDate(1877, 8, 27)));
+        addFamous(db, new Person(context.getString(R.string.ranevskaya), new LocalDate(1896, 8, 27)));
+        addFamous(db, new Person(context.getString(R.string.chalke), new LocalDate(1976, 8, 27)));
+        addFamous(db, new Person(context.getString(R.string.aaron_paul), new LocalDate(1979, 8, 27)));
+
+//August 28
+        addFamous(db, new Person(context.getString(R.string.goethe), new LocalDate(1749, 8, 28)));
+        addFamous(db, new Person(context.getString(R.string.blondel), new LocalDate(1863, 8, 28)));
+        addFamous(db, new Person(context.getString(R.string.whipple), new LocalDate(1878, 8, 28)));
+        addFamous(db, new Person(context.getString(R.string.theremin), new LocalDate(1896, 8, 28)));
+        addFamous(db, new Person(context.getString(R.string.fincher), new LocalDate(1962, 8, 28)));
+        addFamous(db, new Person(context.getString(R.string.jack_black), new LocalDate(1969, 8, 28)));
+
+//August 29
+        addFamous(db, new Person(context.getString(R.string.locke), new LocalDate(1632, 8, 29)));
+        addFamous(db, new Person(context.getString(R.string.maeterlinck), new LocalDate(1862, 8, 29)));
+        addFamous(db, new Person(context.getString(R.string.forssmann), new LocalDate(1904, 8, 29)));
+        addFamous(db, new Person(context.getString(R.string.ingrid_bergman), new LocalDate(1915, 8, 29)));
+        addFamous(db, new Person(context.getString(R.string.charlie_parker), new LocalDate(1920, 8, 29)));
+        addFamous(db, new Person(context.getString(R.string.michael_jackson), new LocalDate(1958, 8, 29)));
+
+//August 30
+        addFamous(db, new Person(context.getString(R.string.mary_shelley), new LocalDate(1797, 8, 30)));
+        addFamous(db, new Person(context.getString(R.string.adolf_hesse), new LocalDate(1809, 8, 30)));
+        addFamous(db, new Person(context.getString(R.string.hoff), new LocalDate(1852, 8, 30)));
+        addFamous(db, new Person(context.getString(R.string.rutherford), new LocalDate(1871, 8, 30)));
+        addFamous(db, new Person(context.getString(R.string.cummings), new LocalDate(1887, 8, 30)));
+        addFamous(db, new Person(context.getString(R.string.mclaren), new LocalDate(1937, 8, 30)));
+        addFamous(db, new Person(context.getString(R.string.diaz), new LocalDate(1972, 8, 30)));
+
+//August 31
+        addFamous(db, new Person(context.getString(R.string.helmholtz), new LocalDate(1821, 8, 31)));
+        addFamous(db, new Person(context.getString(R.string.paneth), new LocalDate(1887, 8, 31)));
+        addFamous(db, new Person(context.getString(R.string.fredric_march), new LocalDate(1897, 8, 31)));
+        addFamous(db, new Person(context.getString(R.string.gere), new LocalDate(1949, 8, 31)));
+        addFamous(db, new Person(context.getString(R.string.tucker), new LocalDate(1971, 8, 31)));
+
+//September 1
+        addFamous(db, new Person(context.getString(R.string.jevons), new LocalDate(1835, 9, 1)));
+        addFamous(db, new Person(context.getString(R.string.auguste_forel), new LocalDate(1848, 9, 1)));
+        addFamous(db, new Person(context.getString(R.string.burroughs), new LocalDate(1875, 9, 1)));
+        addFamous(db, new Person(context.getString(R.string.marilyn_miller), new LocalDate(1898, 9, 1)));
+        addFamous(db, new Person(context.getString(R.string.marciano), new LocalDate(1923, 9, 1)));
+        addFamous(db, new Person(context.getString(R.string.estefan), new LocalDate(1957, 9, 1)));
+
+//September 2
+        addFamous(db, new Person(context.getString(R.string.howard), new LocalDate(1726, 9, 2)));
+        addFamous(db, new Person(context.getString(R.string.echeverria), new LocalDate(1805, 9, 2)));
+        addFamous(db, new Person(context.getString(R.string.field), new LocalDate(1850, 9, 2)));
+        addFamous(db, new Person(context.getString(R.string.soddy), new LocalDate(1877, 9, 2)));
+        addFamous(db, new Person(context.getString(R.string.reeves), new LocalDate(1964, 9, 2)));
+        addFamous(db, new Person(context.getString(R.string.hayek), new LocalDate(1966, 9, 2)));
+
+//September 3
+        addFamous(db, new Person(context.getString(R.string.louis_sullivan), new LocalDate(1856, 9, 3)));
+        addFamous(db, new Person(context.getString(R.string.pregl), new LocalDate(1869, 9, 3)));
+        addFamous(db, new Person(context.getString(R.string.porsche), new LocalDate(1875, 9, 3)));
+        addFamous(db, new Person(context.getString(R.string.anderson), new LocalDate(1905, 9, 3)));
+        addFamous(db, new Person(context.getString(R.string.dovlatov), new LocalDate(1941, 9, 3)));
+        addFamous(db, new Person(context.getString(R.string.jeunet), new LocalDate(1953, 9, 3)));
+        addFamous(db, new Person(context.getString(R.string.charlie_sheen), new LocalDate(1965, 9, 3)));
+
+//September 4
+        addFamous(db, new Person(context.getString(R.string.constantijn_huygens), new LocalDate(1596, 9, 4)));
+        addFamous(db, new Person(context.getString(R.string.chateaubriand), new LocalDate(1768, 9, 4)));
+        addFamous(db, new Person(context.getString(R.string.richard_wright), new LocalDate(1908, 9, 4)));
+        addFamous(db, new Person(context.getString(R.string.tange), new LocalDate(1913, 9, 4)));
+        addFamous(db, new Person(context.getString(R.string.beyonce), new LocalDate(1981, 9, 4)));
+
+//September 5
+        addFamous(db, new Person(context.getString(R.string.campanella), new LocalDate(1568, 9, 5)));
+        addFamous(db, new Person(context.getString(R.string.meyerbeer), new LocalDate(1791, 9, 5)));
+        addFamous(db, new Person(context.getString(R.string.aleksey_tolstoy), new LocalDate(1817, 9, 5)));
+        addFamous(db, new Person(context.getString(R.string.jesse_james), new LocalDate(1847, 9, 5)));
+        addFamous(db, new Person(context.getString(R.string.mercury), new LocalDate(1946, 9, 5)));
+        addFamous(db, new Person(context.getString(R.string.keaton), new LocalDate(1951, 9, 5)));
+
+//September 6
+        addFamous(db, new Person(context.getString(R.string.serlio), new LocalDate(1475, 9, 6)));
+        addFamous(db, new Person(context.getString(R.string.moses_mendelssohn), new LocalDate(1729, 9, 6)));
+        addFamous(db, new Person(context.getString(R.string.dalton), new LocalDate(1766, 9, 6)));
+        addFamous(db, new Person(context.getString(R.string.berdan), new LocalDate(1824, 9, 6)));
+        addFamous(db, new Person(context.getString(R.string.addams), new LocalDate(1860, 9, 6)));
+        addFamous(db, new Person(context.getString(R.string.essen), new LocalDate(1908, 9, 6)));
+
+//September 7
+        addFamous(db, new Person(context.getString(R.string.leclerc), new LocalDate(1707, 9, 7)));
+        addFamous(db, new Person(context.getString(R.string.gossen), new LocalDate(1810, 9, 7)));
+        addFamous(db, new Person(context.getString(R.string.kuprin), new LocalDate(1870, 9, 7)));
+        addFamous(db, new Person(context.getString(R.string.gala_dali), new LocalDate(1894, 9, 7)));
+        addFamous(db, new Person(context.getString(R.string.debakey), new LocalDate(1908, 9, 7)));
+        addFamous(db, new Person(context.getString(R.string.packard), new LocalDate(1912, 9, 7)));
+
+//September 8
+        addFamous(db, new Person(context.getString(R.string.lionheart), new LocalDate(1157, 9, 8)));
+        addFamous(db, new Person(context.getString(R.string.neckam), new LocalDate(1157, 9, 8)));
+        addFamous(db, new Person(context.getString(R.string.mistral), new LocalDate(1830, 9, 8)));
+        addFamous(db, new Person(context.getString(R.string.martin_freeman), new LocalDate(1971, 9, 8)));
+        addFamous(db, new Person(context.getString(R.string.pink), new LocalDate(1971, 9, 8)));
+        addFamous(db, new Person(context.getString(R.string.wiz_khalifa), new LocalDate(1987, 9, 8)));
+
+//September 9
+        addFamous(db, new Person(context.getString(R.string.frederik_chapman), new LocalDate(1721, 9, 9)));
+        addFamous(db, new Person(context.getString(R.string.galvani), new LocalDate(1737, 9, 9)));
+        addFamous(db, new Person(context.getString(R.string.leo_tolstoy), new LocalDate(1828, 9, 9)));
+        addFamous(db, new Person(context.getString(R.string.usmanov), new LocalDate(1953, 9, 9)));
+        addFamous(db, new Person(context.getString(R.string.hugh_grant), new LocalDate(1960, 9, 9)));
+        addFamous(db, new Person(context.getString(R.string.sandler), new LocalDate(1966, 9, 9)));
+
+//September 10
+        addFamous(db, new Person(context.getString(R.string.peirce), new LocalDate(1839, 9, 10)));
+        addFamous(db, new Person(context.getString(R.string.elsa_schiaparelli), new LocalDate(1890, 9, 10)));
+        addFamous(db, new Person(context.getString(R.string.compton), new LocalDate(1892, 9, 10)));
+        addFamous(db, new Person(context.getString(R.string.messing), new LocalDate(1899, 9, 10)));
+        addFamous(db, new Person(context.getString(R.string.lagerfeld), new LocalDate(1933, 9, 10)));
+        addFamous(db, new Person(context.getString(R.string.joe_perry), new LocalDate(1950, 9, 10)));
+        addFamous(db, new Person(context.getString(R.string.firth), new LocalDate(1960, 9, 10)));
+        addFamous(db, new Person(context.getString(R.string.ritchie), new LocalDate(1968, 9, 10)));
+
+//September 11
+        addFamous(db, new Person(context.getString(R.string.james_thomson), new LocalDate(1700, 9, 11)));
+        addFamous(db, new Person(context.getString(R.string.zeiss), new LocalDate(1816, 9, 11)));
+        addFamous(db, new Person(context.getString(R.string.o_henry), new LocalDate(1862, 9, 11)));
+        addFamous(db, new Person(context.getString(R.string.jeans), new LocalDate(1877, 9, 11)));
+        addFamous(db, new Person(context.getString(R.string.beckenbauer), new LocalDate(1945, 9, 11)));
+
+//September 12
+        addFamous(db, new Person(context.getString(R.string.breitner), new LocalDate(1857, 9, 12)));
+        addFamous(db, new Person(context.getString(R.string.irene_curie), new LocalDate(1897, 9, 12)));
+        addFamous(db, new Person(context.getString(R.string.lem), new LocalDate(1921, 9, 12)));
+        addFamous(db, new Person(context.getString(R.string.barry_white), new LocalDate(1944, 9, 12)));
+        addFamous(db, new Person(context.getString(R.string.farmer), new LocalDate(1961, 9, 12)));
+        addFamous(db, new Person(context.getString(R.string.walker), new LocalDate(1973, 9, 12)));
+
+//September 13
+        addFamous(db, new Person(context.getString(R.string.samuel_wilson), new LocalDate(1766, 9, 13)));
+        addFamous(db, new Person(context.getString(R.string.reed), new LocalDate(1851, 9, 13)));
+        addFamous(db, new Person(context.getString(R.string.john_priestley), new LocalDate(1894, 9, 13)));
+        addFamous(db, new Person(context.getString(R.string.dahl), new LocalDate(1916, 9, 13)));
+        addFamous(db, new Person(context.getString(R.string.maurice_jarre), new LocalDate(1924, 9, 13)));
+        addFamous(db, new Person(context.getString(R.string.bisset), new LocalDate(1944, 9, 13)));
+
+//September 14
+        addFamous(db, new Person(context.getString(R.string.agrippa), new LocalDate(1486, 9, 14)));
+        addFamous(db, new Person(context.getString(R.string.lely), new LocalDate(1618, 9, 14)));
+        addFamous(db, new Person(context.getString(R.string.cecil), new LocalDate(1864, 9, 14)));
+        addFamous(db, new Person(context.getString(R.string.dana_gibson), new LocalDate(1867, 9, 14)));
+        addFamous(db, new Person(context.getString(R.string.neill), new LocalDate(1947, 9, 14)));
+        addFamous(db, new Person(context.getString(R.string.winehouse), new LocalDate(1983, 9, 14)));
+
+//September 15
+        addFamous(db, new Person(context.getString(R.string.marco_polo), new LocalDate(1254, 9, 15)));
+        addFamous(db, new Person(context.getString(R.string.james_cooper), new LocalDate(1789, 9, 15)));
+        addFamous(db, new Person(context.getString(R.string.bugatti), new LocalDate(1881, 9, 15)));
+        addFamous(db, new Person(context.getString(R.string.christie), new LocalDate(1890, 9, 15)));
+        addFamous(db, new Person(context.getString(R.string.jean_renoir), new LocalDate(1894, 9, 15)));
+        addFamous(db, new Person(context.getString(R.string.tommy_lee_jones), new LocalDate(1946, 9, 15)));
+        addFamous(db, new Person(context.getString(R.string.oliver_stone), new LocalDate(1946, 9, 15)));
+        addFamous(db, new Person(context.getString(R.string.tom_hardy), new LocalDate(1977, 9, 15)));
+
+//September 16
+        addFamous(db, new Person(context.getString(R.string.kossel), new LocalDate(1853, 9, 16)));
+        addFamous(db, new Person(context.getString(R.string.boyd), new LocalDate(1887, 9, 16)));
+        addFamous(db, new Person(context.getString(R.string.jellinek), new LocalDate(1889, 9, 16)));
+        addFamous(db, new Person(context.getString(R.string.korda), new LocalDate(1893, 9, 16)));
+        addFamous(db, new Person(context.getString(R.string.bbking), new LocalDate(1925, 9, 16)));
+        addFamous(db, new Person(context.getString(R.string.rourke), new LocalDate(1952, 9, 16)));
+        addFamous(db, new Person(context.getString(R.string.copperfield), new LocalDate(1956, 9, 16)));
+
+//September 17
+        addFamous(db, new Person(context.getString(R.string.riemann), new LocalDate(1826, 9, 17)));
+        addFamous(db, new Person(context.getString(R.string.buick), new LocalDate(1854, 9, 17)));
+        addFamous(db, new Person(context.getString(R.string.tsiolkovsky), new LocalDate(1857, 9, 17)));
+        addFamous(db, new Person(context.getString(R.string.kesey), new LocalDate(1935, 9, 17)));
+        addFamous(db, new Person(context.getString(R.string.messner), new LocalDate(1944, 9, 17)));
+        addFamous(db, new Person(context.getString(R.string.anastacia), new LocalDate(1968, 9, 17)));
+        addFamous(db, new Person(context.getString(R.string.ovechkin), new LocalDate(1985, 9, 17)));
+
+//September 18
+        addFamous(db, new Person(context.getString(R.string.samuel_johnson), new LocalDate(1709, 9, 18)));
+        addFamous(db, new Person(context.getString(R.string.foucault), new LocalDate(1819, 9, 18)));
+        addFamous(db, new Person(context.getString(R.string.garbo), new LocalDate(1905, 9, 18)));
+        addFamous(db, new Person(context.getString(R.string.mcmillan), new LocalDate(1907, 9, 18)));
+        addFamous(db, new Person(context.getString(R.string.werber), new LocalDate(1961, 9, 18)));
+        addFamous(db, new Person(context.getString(R.string.gandolfini), new LocalDate(1961, 9, 18)));
+        addFamous(db, new Person(context.getString(R.string.shuttleworth), new LocalDate(1973, 9, 18)));
+
+//September 19
+        addFamous(db, new Person(context.getString(R.string.pajou), new LocalDate(1730, 9, 19)));
+        addFamous(db, new Person(context.getString(R.string.golding), new LocalDate(1911, 9, 19)));
+        addFamous(db, new Person(context.getString(R.string.irons), new LocalDate(1948, 9, 19)));
+        addFamous(db, new Person(context.getString(R.string.hornby), new LocalDate(1949, 9, 19)));
+        addFamous(db, new Person(context.getString(R.string.karelin), new LocalDate(1967, 9, 19)));
+
+//September 20
+        addFamous(db, new Person(context.getString(R.string.moneta), new LocalDate(1833, 9, 20)));
+        addFamous(db, new Person(context.getString(R.string.dewar), new LocalDate(1842, 9, 20)));
+        addFamous(db, new Person(context.getString(R.string.leo_strauss), new LocalDate(1899, 9, 20)));
+        addFamous(db, new Person(context.getString(R.string.loren), new LocalDate(1934, 9, 20)));
+        addFamous(db, new Person(context.getString(R.string.george_martin), new LocalDate(1948, 9, 20)));
+
+//September 21
+        addFamous(db, new Person(context.getString(R.string.mcadam), new LocalDate(1756, 9, 21)));
+        addFamous(db, new Person(context.getString(R.string.onnes), new LocalDate(1853, 9, 21)));
+        addFamous(db, new Person(context.getString(R.string.wells), new LocalDate(1866, 9, 21)));
+        addFamous(db, new Person(context.getString(R.string.nicolle), new LocalDate(1866, 9, 21)));
+        addFamous(db, new Person(context.getString(R.string.stephen_king), new LocalDate(1947, 9, 21)));
+        addFamous(db, new Person(context.getString(R.string.murray), new LocalDate(1950, 9, 21)));
+        addFamous(db, new Person(context.getString(R.string.beigbeder), new LocalDate(1965, 9, 21)));
+
+//September 22
+        addFamous(db, new Person(context.getString(R.string.faraday), new LocalDate(1791, 9, 22)));
+        addFamous(db, new Person(context.getString(R.string.george_bentham), new LocalDate(1800, 9, 22)));
+        addFamous(db, new Person(context.getString(R.string.ciurlionis), new LocalDate(1875, 9, 22)));
+        addFamous(db, new Person(context.getString(R.string.muni), new LocalDate(1895, 9, 22)));
+        addFamous(db, new Person(context.getString(R.string.huggins), new LocalDate(1901, 9, 22)));
+        addFamous(db, new Person(context.getString(R.string.dean_reed), new LocalDate(1938, 9, 22)));
+
+//September 23
+        addFamous(db, new Person(context.getString(R.string.fizeau), new LocalDate(1819, 9, 23)));
+        addFamous(db, new Person(context.getString(R.string.robert_bosch), new LocalDate(1861, 9, 23)));
+        addFamous(db, new Person(context.getString(R.string.orr), new LocalDate(1880, 9, 23)));
+        addFamous(db, new Person(context.getString(R.string.coltrane), new LocalDate(1926, 9, 23)));
+        addFamous(db, new Person(context.getString(R.string.romy_schneider), new LocalDate(1938, 9, 23)));
+        addFamous(db, new Person(context.getString(R.string.julio_iglesias), new LocalDate(1943, 9, 23)));
+        addFamous(db, new Person(context.getString(R.string.springsteen), new LocalDate(1949, 9, 23)));
+
+//September 24
+        addFamous(db, new Person(context.getString(R.string.cardano), new LocalDate(1501, 9, 24)));
+        addFamous(db, new Person(context.getString(R.string.walpole), new LocalDate(1717, 9, 24)));
+        addFamous(db, new Person(context.getString(R.string.triolet), new LocalDate(1896, 9, 24)));
+        addFamous(db, new Person(context.getString(R.string.f_s_fitzgerald), new LocalDate(1896, 9, 24)));
+        addFamous(db, new Person(context.getString(R.string.ochoa), new LocalDate(1905, 9, 24)));
+        addFamous(db, new Person(context.getString(R.string.brunner), new LocalDate(1934, 9, 24)));
+
+//September 25
+        addFamous(db, new Person(context.getString(R.string.thomas_morgan), new LocalDate(1866, 9, 25)));
+        addFamous(db, new Person(context.getString(R.string.faulkner), new LocalDate(1897, 9, 25)));
+        addFamous(db, new Person(context.getString(R.string.shostakovich), new LocalDate(1906, 9, 25)));
+        addFamous(db, new Person(context.getString(R.string.michael_douglas), new LocalDate(1944, 9, 25)));
+        addFamous(db, new Person(context.getString(R.string.almodovar), new LocalDate(1949, 9, 25)));
+        addFamous(db, new Person(context.getString(R.string.will_smith), new LocalDate(1968, 9, 25)));
+        addFamous(db, new Person(context.getString(R.string.zeta_jones), new LocalDate(1969, 9, 25)));
+
+//September 26
+        addFamous(db, new Person(context.getString(R.string.grew), new LocalDate(1641, 9, 26)));
+        addFamous(db, new Person(context.getString(R.string.joseph_proust), new LocalDate(1754, 9, 26)));
+        addFamous(db, new Person(context.getString(R.string.pavlov), new LocalDate(1849, 9, 26)));
+        addFamous(db, new Person(context.getString(R.string.hine), new LocalDate(1874, 9, 26)));
+        addFamous(db, new Person(context.getString(R.string.wallis), new LocalDate(1887, 9, 26)));
+        addFamous(db, new Person(context.getString(R.string.eliot), new LocalDate(1888, 9, 26)));
+
+//September 27
+        addFamous(db, new Person(context.getString(R.string.bossuet), new LocalDate(1628, 9, 27)));
+        addFamous(db, new Person(context.getString(R.string.deledda), new LocalDate(1871, 9, 27)));
+        addFamous(db, new Person(context.getString(R.string.larry_wall), new LocalDate(1954, 9, 27)));
+        addFamous(db, new Person(context.getString(R.string.welsh), new LocalDate(1958, 9, 27)));
+        addFamous(db, new Person(context.getString(R.string.paltrow), new LocalDate(1972, 9, 27)));
+        addFamous(db, new Person(context.getString(R.string.wayne), new LocalDate(1982, 9, 27)));
+
+//September 28
+        addFamous(db, new Person(context.getString(R.string.merimee), new LocalDate(1803, 9, 28)));
+        addFamous(db, new Person(context.getString(R.string.moissan), new LocalDate(1852, 9, 28)));
+        addFamous(db, new Person(context.getString(R.string.finch), new LocalDate(1916, 9, 28)));
+        addFamous(db, new Person(context.getString(R.string.mastroianni), new LocalDate(1924, 9, 28)));
+        addFamous(db, new Person(context.getString(R.string.bardot), new LocalDate(1934, 9, 28)));
+        addFamous(db, new Person(context.getString(R.string.watts), new LocalDate(1968, 9, 28)));
+        addFamous(db, new Person(context.getString(R.string.dita_von_teese), new LocalDate(1972, 9, 28)));
+        addFamous(db, new Person(context.getString(R.string.emelianenko), new LocalDate(1976, 9, 28)));
+
+//September 29
+        addFamous(db, new Person(context.getString(R.string.caravaggio), new LocalDate(1571, 9, 29)));
+        addFamous(db, new Person(context.getString(R.string.horatio_nelson), new LocalDate(1758, 9, 29)));
+        addFamous(db, new Person(context.getString(R.string.gaskell), new LocalDate(1810, 9, 29)));
+        addFamous(db, new Person(context.getString(R.string.fermi), new LocalDate(1901, 9, 29)));
+        addFamous(db, new Person(context.getString(R.string.ostrovsky), new LocalDate(1904, 9, 29)));
+        addFamous(db, new Person(context.getString(R.string.antonioni), new LocalDate(1912, 9, 29)));
+
+//September 30
+        addFamous(db, new Person(context.getString(R.string.condillac), new LocalDate(1714, 9, 30)));
+        addFamous(db, new Person(context.getString(R.string.wrigley), new LocalDate(1861, 9, 30)));
+        addFamous(db, new Person(context.getString(R.string.perrin), new LocalDate(1870, 9, 30)));
+        addFamous(db, new Person(context.getString(R.string.geiger), new LocalDate(1882, 9, 30)));
+        addFamous(db, new Person(context.getString(R.string.kerr), new LocalDate(1921, 9, 30)));
+        addFamous(db, new Person(context.getString(R.string.capote), new LocalDate(1924, 9, 30)));
+        addFamous(db, new Person(context.getString(R.string.bellucci), new LocalDate(1964, 9, 30)));
+        addFamous(db, new Person(context.getString(R.string.cotillard), new LocalDate(1975, 9, 30)));
+
+//October 1
+        addFamous(db, new Person(context.getString(R.string.boeing), new LocalDate(1881, 10, 1)));
+        addFamous(db, new Person(context.getString(R.string.richard_harris), new LocalDate(1930, 10, 1)));
+        addFamous(db, new Person(context.getString(R.string.andrews), new LocalDate(1935, 10, 1)));
+        addFamous(db, new Person(context.getString(R.string.annaud), new LocalDate(1943, 10, 1)));
+        addFamous(db, new Person(context.getString(R.string.galifianakis), new LocalDate(1969, 10, 1)));
+        addFamous(db, new Person(context.getString(R.string.brie_larson), new LocalDate(1989, 10, 1)));
+
+//October 2
+        addFamous(db, new Person(context.getString(R.string.ramsay), new LocalDate(1852, 10, 2)));
+        addFamous(db, new Person(context.getString(R.string.gandhi), new LocalDate(1869, 10, 2)));
+        addFamous(db, new Person(context.getString(R.string.greene), new LocalDate(1904, 10, 2)));
+        addFamous(db, new Person(context.getString(R.string.willy_ley), new LocalDate(1906, 10, 2)));
+        addFamous(db, new Person(context.getString(R.string.karan), new LocalDate(1948, 10, 2)));
+        addFamous(db, new Person(context.getString(R.string.sting), new LocalDate(1951, 10, 2)));
+
+//October 3
+        addFamous(db, new Person(context.getString(R.string.shmelyov), new LocalDate(1873, 10, 3)));
+        addFamous(db, new Person(context.getString(R.string.yesenin), new LocalDate(1895, 10, 3)));
+        addFamous(db, new Person(context.getString(R.string.aragon), new LocalDate(1897, 10, 3)));
+        addFamous(db, new Person(context.getString(R.string.wolfe), new LocalDate(1900, 10, 3)));
+        addFamous(db, new Person(context.getString(R.string.stefani), new LocalDate(1969, 10, 3)));
+        addFamous(db, new Person(context.getString(R.string.headey), new LocalDate(1973, 10, 3)));
+        addFamous(db, new Person(context.getString(R.string.ibrahimovic), new LocalDate(1981, 10, 3)));
+        addFamous(db, new Person(context.getString(R.string.vikander), new LocalDate(1988, 10, 3)));
+
+//October 4
+        addFamous(db, new Person(context.getString(R.string.piranesi), new LocalDate(1720, 10, 4)));
+        addFamous(db, new Person(context.getString(R.string.pottier), new LocalDate(1816, 10, 4)));
+        addFamous(db, new Person(context.getString(R.string.boussenard), new LocalDate(1847, 10, 4)));
+        addFamous(db, new Person(context.getString(R.string.sarandon), new LocalDate(1946, 10, 4)));
+        addFamous(db, new Person(context.getString(R.string.waltz), new LocalDate(1956, 10, 4)));
+        addFamous(db, new Person(context.getString(R.string.silverstone), new LocalDate(1976, 10, 4)));
+        addFamous(db, new Person(context.getString(R.string.dakota_johnson), new LocalDate(1989, 10, 4)));
+
+//October 5
+        addFamous(db, new Person(context.getString(R.string.diderot), new LocalDate(1713, 10, 5)));
+        addFamous(db, new Person(context.getString(R.string.lumiere), new LocalDate(1864, 10, 5)));
+        addFamous(db, new Person(context.getString(R.string.rous), new LocalDate(1879, 10, 5)));
+        addFamous(db, new Person(context.getString(R.string.kroc), new LocalDate(1902, 10, 5)));
+        addFamous(db, new Person(context.getString(R.string.lemieux), new LocalDate(1965, 10, 5)));
+        addFamous(db, new Person(context.getString(R.string.pearce), new LocalDate(1967, 10, 5)));
+        addFamous(db, new Person(context.getString(R.string.winslet), new LocalDate(1975, 10, 5)));
+        addFamous(db, new Person(context.getString(R.string.eisenberg), new LocalDate(1983, 10, 5)));
+
+//October 6
+        addFamous(db, new Person(context.getString(R.string.maskelyne), new LocalDate(1732, 10, 6)));
+        addFamous(db, new Person(context.getString(R.string.smuglewicz), new LocalDate(1745, 10, 6)));
+        addFamous(db, new Person(context.getString(R.string.westinghouse), new LocalDate(1846, 10, 6)));
+        addFamous(db, new Person(context.getString(R.string.fessenden), new LocalDate(1866, 10, 6)));
+        addFamous(db, new Person(context.getString(R.string.corbusier), new LocalDate(1887, 10, 6)));
+        addFamous(db, new Person(context.getString(R.string.ernest_walton), new LocalDate(1903, 10, 6)));
+        addFamous(db, new Person(context.getString(R.string.heyerdahl), new LocalDate(1914, 10, 6)));
+
+//October 7
+        addFamous(db, new Person(context.getString(R.string.niels_bohr), new LocalDate(1885, 10, 7)));
+        addFamous(db, new Person(context.getString(R.string.alcantara), new LocalDate(1896, 10, 7)));
+        addFamous(db, new Person(context.getString(R.string.keneally), new LocalDate(1935, 10, 7)));
+        addFamous(db, new Person(context.getString(R.string.putin), new LocalDate(1952, 10, 7)));
+        addFamous(db, new Person(context.getString(R.string.braxton), new LocalDate(1967, 10, 7)));
+
+//October 8
+        addFamous(db, new Person(context.getString(R.string.geyter), new LocalDate(1848, 10, 8)));
+        addFamous(db, new Person(context.getString(R.string.poddubny), new LocalDate(1871, 10, 8)));
+        addFamous(db, new Person(context.getString(R.string.tsvetaeva), new LocalDate(1892, 10, 8)));
+        addFamous(db, new Person(context.getString(R.string.voicu), new LocalDate(1923, 10, 8)));
+        addFamous(db, new Person(context.getString(R.string.louise_hay), new LocalDate(1926, 10, 8)));
+        addFamous(db, new Person(context.getString(R.string.weaver), new LocalDate(1949, 10, 8)));
+        addFamous(db, new Person(context.getString(R.string.matt_damon), new LocalDate(1970, 10, 8)));
+
+//October 9
+        addFamous(db, new Person(context.getString(R.string.sorbon), new LocalDate(1201, 10, 9)));
+        addFamous(db, new Person(context.getString(R.string.segner), new LocalDate(1704, 10, 9)));
+        addFamous(db, new Person(context.getString(R.string.saint_saens), new LocalDate(1835, 10, 9)));
+        addFamous(db, new Person(context.getString(R.string.lennon), new LocalDate(1940, 10, 9)));
+        addFamous(db, new Person(context.getString(R.string.mcqueen), new LocalDate(1969, 10, 9)));
+
+//October 10
+        addFamous(db, new Person(context.getString(R.string.watteau), new LocalDate(1684, 10, 10)));
+        addFamous(db, new Person(context.getString(R.string.cavendish), new LocalDate(1731, 10, 10)));
+        addFamous(db, new Person(context.getString(R.string.verdi), new LocalDate(1813, 10, 10)));
+        addFamous(db, new Person(context.getString(R.string.nansen), new LocalDate(1861, 10, 10)));
+        addFamous(db, new Person(context.getString(R.string.andric), new LocalDate(1892, 10, 10)));
+        addFamous(db, new Person(context.getString(R.string.giacometti), new LocalDate(1901, 10, 10)));
+        addFamous(db, new Person(context.getString(R.string.pavel_durov), new LocalDate(1984, 10, 10)));
+
+//October 11
+        addFamous(db, new Person(context.getString(R.string.olbers), new LocalDate(1758, 10, 11)));
+        addFamous(db, new Person(context.getString(R.string.berlier), new LocalDate(1841, 10, 11)));
+        addFamous(db, new Person(context.getString(R.string.heinz), new LocalDate(1844, 10, 11)));
+        addFamous(db, new Person(context.getString(R.string.roosevelt), new LocalDate(1884, 10, 11)));
+        addFamous(db, new Person(context.getString(R.string.mauriac), new LocalDate(1885, 10, 11)));
+
+//October 12
+        addFamous(db, new Person(context.getString(R.string.sperry), new LocalDate(1860, 10, 12)));
+        addFamous(db, new Person(context.getString(R.string.harden), new LocalDate(1865, 10, 12)));
+        addFamous(db, new Person(context.getString(R.string.horch), new LocalDate(1868, 10, 12)));
+        addFamous(db, new Person(context.getString(R.string.crowley), new LocalDate(1875, 10, 12)));
+        addFamous(db, new Person(context.getString(R.string.montale), new LocalDate(1896, 10, 12)));
+        addFamous(db, new Person(context.getString(R.string.pavarotti), new LocalDate(1935, 10, 12)));
+        addFamous(db, new Person(context.getString(R.string.jackman), new LocalDate(1968, 10, 12)));
+
+//October 13
+        addFamous(db, new Person(context.getString(R.string.tatum), new LocalDate(1909, 10, 13)));
+        addFamous(db, new Person(context.getString(R.string.thatcher), new LocalDate(1925, 10, 13)));
+        addFamous(db, new Person(context.getString(R.string.hunter), new LocalDate(1941, 10, 13)));
+        addFamous(db, new Person(context.getString(R.string.simon), new LocalDate(1941, 10, 13)));
+        addFamous(db, new Person(context.getString(R.string.cohen), new LocalDate(1971, 10, 13)));
+
+//October 14
+        addFamous(db, new Person(context.getString(R.string.william_penn), new LocalDate(1644, 10, 14)));
+        addFamous(db, new Person(context.getString(R.string.gish), new LocalDate(1893, 10, 14)));
+        addFamous(db, new Person(context.getString(R.string.roger_moore), new LocalDate(1927, 10, 14)));
+        addFamous(db, new Person(context.getString(R.string.lauren), new LocalDate(1939, 10, 14)));
+        addFamous(db, new Person(context.getString(R.string.wasikowska), new LocalDate(1989, 10, 14)));
+
+//October 15
+        addFamous(db, new Person(context.getString(R.string.torricelli), new LocalDate(1608, 10, 15)));
+        addFamous(db, new Person(context.getString(R.string.lermontov), new LocalDate(1814, 10, 15)));
+        addFamous(db, new Person(context.getString(R.string.asaph_hall), new LocalDate(1829, 10, 15)));
+        addFamous(db, new Person(context.getString(R.string.nietzsche), new LocalDate(1844, 10, 15)));
+        addFamous(db, new Person(context.getString(R.string.ilf), new LocalDate(1897, 10, 15)));
+        addFamous(db, new Person(context.getString(R.string.puzo), new LocalDate(1920, 10, 15)));
+        addFamous(db, new Person(context.getString(R.string.fm_2030), new LocalDate(1930, 10, 15)));
+
+//October 16
+        addFamous(db, new Person(context.getString(R.string.haller), new LocalDate(1708, 10, 16)));
+        addFamous(db, new Person(context.getString(R.string.wilde), new LocalDate(1854, 10, 16)));
+        addFamous(db, new Person(context.getString(R.string.oneill), new LocalDate(1888, 10, 16)));
+        addFamous(db, new Person(context.getString(R.string.grass), new LocalDate(1927, 10, 16)));
+        addFamous(db, new Person(context.getString(R.string.paffgen), new LocalDate(1938, 10, 16)));
+        addFamous(db, new Person(context.getString(R.string.robbins), new LocalDate(1958, 10, 16)));
+
+//October 17
+        addFamous(db, new Person(context.getString(R.string.orlov), new LocalDate(1734, 10, 17)));
+        addFamous(db, new Person(context.getString(R.string.saint_simon), new LocalDate(1760, 10, 17)));
+        addFamous(db, new Person(context.getString(R.string.jordan), new LocalDate(1948, 10, 17)));
+        addFamous(db, new Person(context.getString(R.string.eminem), new LocalDate(1972, 10, 17)));
+        addFamous(db, new Person(context.getString(R.string.raikkonen), new LocalDate(1979, 10, 17)));
+        addFamous(db, new Person(context.getString(R.string.felicity_jones), new LocalDate(1983, 10, 17)));
+
+//October 18
+        addFamous(db, new Person(context.getString(R.string.schonbein), new LocalDate(1799, 10, 18)));
+        addFamous(db, new Person(context.getString(R.string.glumer), new LocalDate(1825, 10, 18)));
+        addFamous(db, new Person(context.getString(R.string.lodygin), new LocalDate(1847, 10, 18)));
+        addFamous(db, new Person(context.getString(R.string.bergson), new LocalDate(1859, 10, 18)));
+        addFamous(db, new Person(context.getString(R.string.chuck_berry), new LocalDate(1926, 10, 18)));
+        addFamous(db, new Person(context.getString(R.string.george_scott), new LocalDate(1927, 10, 18)));
+        addFamous(db, new Person(context.getString(R.string.van_damme), new LocalDate(1960, 10, 18)));
+
+//October 19
+        addFamous(db, new Person(context.getString(R.string.ficino), new LocalDate(1433, 10, 19)));
+        addFamous(db, new Person(context.getString(R.string.auguste_lumiere), new LocalDate(1862, 10, 19)));
+        addFamous(db, new Person(context.getString(R.string.boccioni), new LocalDate(1882, 10, 19)));
+        addFamous(db, new Person(context.getString(R.string.gilels), new LocalDate(1916, 10, 19)));
+        addFamous(db, new Person(context.getString(R.string.holyfield), new LocalDate(1962, 10, 19)));
+        addFamous(db, new Person(context.getString(R.string.trey_parker), new LocalDate(1969, 10, 19)));
+
+//October 20
+        addFamous(db, new Person(context.getString(R.string.bartholin), new LocalDate(1616, 10, 20)));
+        addFamous(db, new Person(context.getString(R.string.wren), new LocalDate(1632, 10, 20)));
+        addFamous(db, new Person(context.getString(R.string.rimbaud), new LocalDate(1854, 10, 20)));
+        addFamous(db, new Person(context.getString(R.string.chadwick), new LocalDate(1891, 10, 20)));
+        addFamous(db, new Person(context.getString(R.string.bernat), new LocalDate(1923, 10, 20)));
+        addFamous(db, new Person(context.getString(R.string.jelinek), new LocalDate(1946, 10, 20)));
+        addFamous(db, new Person(context.getString(R.string.snoop_dogg), new LocalDate(1971, 10, 20)));
+
+//October 21
+        addFamous(db, new Person(context.getString(R.string.coleridge), new LocalDate(1772, 10, 21)));
+        addFamous(db, new Person(context.getString(R.string.nobel), new LocalDate(1833, 10, 21)));
+        addFamous(db, new Person(context.getString(R.string.mikhalkov), new LocalDate(1945, 10, 21)));
+        addFamous(db, new Person(context.getString(R.string.carrie_fisher), new LocalDate(1956, 10, 21)));
+        addFamous(db, new Person(context.getString(R.string.geim), new LocalDate(1958, 10, 21)));
+        addFamous(db, new Person(context.getString(R.string.kardashian), new LocalDate(1980, 10, 21)));
+
+//October 22
+        addFamous(db, new Person(context.getString(R.string.liszt), new LocalDate(1811, 10, 22)));
+        addFamous(db, new Person(context.getString(R.string.bernhardt), new LocalDate(1844, 10, 22)));
+        addFamous(db, new Person(context.getString(R.string.bunin), new LocalDate(1870, 10, 22)));
+        addFamous(db, new Person(context.getString(R.string.yashin), new LocalDate(1929, 10, 22)));
+        addFamous(db, new Person(context.getString(R.string.christopher_lloyd), new LocalDate(1938, 10, 22)));
+        addFamous(db, new Person(context.getString(R.string.deneuve), new LocalDate(1943, 10, 22)));
+        addFamous(db, new Person(context.getString(R.string.wenger), new LocalDate(1949, 10, 22)));
+
+//October 23
+        addFamous(db, new Person(context.getString(R.string.larousse), new LocalDate(1817, 10, 23)));
+        addFamous(db, new Person(context.getString(R.string.lanchester), new LocalDate(1868, 10, 23)));
+        addFamous(db, new Person(context.getString(R.string.lewis), new LocalDate(1875, 10, 23)));
+        addFamous(db, new Person(context.getString(R.string.bloch), new LocalDate(1905, 10, 23)));
+        addFamous(db, new Person(context.getString(R.string.pele), new LocalDate(1940, 10, 23)));
+        addFamous(db, new Person(context.getString(R.string.reynolds), new LocalDate(1976, 10, 23)));
+        addFamous(db, new Person(context.getString(R.string.clarke), new LocalDate(1986, 10, 23)));
+
+//October 24
+        addFamous(db, new Person(context.getString(R.string.robbia), new LocalDate(1435, 10, 24)));
+        addFamous(db, new Person(context.getString(R.string.leeuwenhoek), new LocalDate(1632, 10, 24)));
+        addFamous(db, new Person(context.getString(R.string.wilhelm_weber), new LocalDate(1804, 10, 24)));
+        addFamous(db, new Person(context.getString(R.string.swarovski), new LocalDate(1862, 10, 24)));
+        addFamous(db, new Person(context.getString(R.string.raikin), new LocalDate(1911, 10, 24)));
+        addFamous(db, new Person(context.getString(R.string.rooney), new LocalDate(1985, 10, 24)));
+        addFamous(db, new Person(context.getString(R.string.drake), new LocalDate(1986, 10, 24)));
+
+//October 25
+        addFamous(db, new Person(context.getString(R.string.galois), new LocalDate(1811, 10, 25)));
+        addFamous(db, new Person(context.getString(R.string.johann_strauss), new LocalDate(1825, 10, 25)));
+        addFamous(db, new Person(context.getString(R.string.bizet), new LocalDate(1838, 10, 25)));
+        addFamous(db, new Person(context.getString(R.string.picasso), new LocalDate(1881, 10, 25)));
+        addFamous(db, new Person(context.getString(R.string.gance), new LocalDate(1889, 10, 25)));
+        addFamous(db, new Person(context.getString(R.string.katy_perry), new LocalDate(1984, 10, 25)));
+
+//October 26
+        addFamous(db, new Person(context.getString(R.string.scarlatti), new LocalDate(1685, 10, 26)));
+        addFamous(db, new Person(context.getString(R.string.goldschmidt), new LocalDate(1819, 10, 26)));
+        addFamous(db, new Person(context.getString(R.string.vereshchagin), new LocalDate(1842, 10, 26)));
+        addFamous(db, new Person(context.getString(R.string.bely), new LocalDate(1880, 10, 26)));
+        addFamous(db, new Person(context.getString(R.string.napoleon_hill), new LocalDate(1883, 10, 26)));
+
+//October 27
+        addFamous(db, new Person(context.getString(R.string.paganini), new LocalDate(1782, 10, 27)));
+        addFamous(db, new Person(context.getString(R.string.falk), new LocalDate(1886, 10, 27)));
+        addFamous(db, new Person(context.getString(R.string.cleese), new LocalDate(1939, 10, 27)));
+        addFamous(db, new Person(context.getString(R.string.simon_le_bon), new LocalDate(1958, 10, 27)));
+        addFamous(db, new Person(context.getString(R.string.vanessa_mae), new LocalDate(1978, 10, 27)));
+
+//October 28
+        addFamous(db, new Person(context.getString(R.string.edith_head), new LocalDate(1897, 10, 28)));
+        addFamous(db, new Person(context.getString(R.string.waugh), new LocalDate(1903, 10, 28)));
+        addFamous(db, new Person(context.getString(R.string.garrincha), new LocalDate(1933, 10, 28)));
+        addFamous(db, new Person(context.getString(R.string.bill_gates), new LocalDate(1955, 10, 28)));
+        addFamous(db, new Person(context.getString(R.string.ramazzotti), new LocalDate(1963, 10, 28)));
+        addFamous(db, new Person(context.getString(R.string.julia_roberts), new LocalDate(1967, 10, 28)));
+        addFamous(db, new Person(context.getString(R.string.joaquin_phoenix), new LocalDate(1974, 10, 28)));
+
+//October 29
+        addFamous(db, new Person(context.getString(R.string.stur), new LocalDate(1815, 10, 29)));
+        addFamous(db, new Person(context.getString(R.string.ioffe), new LocalDate(1880, 10, 29)));
+        addFamous(db, new Person(context.getString(R.string.phalle), new LocalDate(1930, 10, 29)));
+        addFamous(db, new Person(context.getString(R.string.dreyfuss), new LocalDate(1947, 10, 29)));
+        addFamous(db, new Person(context.getString(R.string.ryder), new LocalDate(1971, 10, 29)));
+
+//October 30
+        addFamous(db, new Person(context.getString(R.string.kauffmann), new LocalDate(1741, 10, 30)));
+        addFamous(db, new Person(context.getString(R.string.sheridan), new LocalDate(1751, 10, 30)));
+        addFamous(db, new Person(context.getString(R.string.chenier), new LocalDate(1762, 10, 30)));
+        addFamous(db, new Person(context.getString(R.string.valery), new LocalDate(1871, 10, 30)));
+        addFamous(db, new Person(context.getString(R.string.maradona), new LocalDate(1960, 10, 30)));
+        addFamous(db, new Person(context.getString(R.string.belleci), new LocalDate(1970, 10, 30)));
+
+//October 31
+        addFamous(db, new Person(context.getString(R.string.vermeer), new LocalDate(1632, 10, 31)));
+        addFamous(db, new Person(context.getString(R.string.keats), new LocalDate(1795, 10, 31)));
+        addFamous(db, new Person(context.getString(R.string.weierstrass), new LocalDate(1815, 10, 31)));
+        addFamous(db, new Person(context.getString(R.string.baeyer), new LocalDate(1835, 10, 31)));
+        addFamous(db, new Person(context.getString(R.string.helmut_newton), new LocalDate(1920, 10, 31)));
+        addFamous(db, new Person(context.getString(R.string.peter_jackson), new LocalDate(1961, 10, 31)));
+        addFamous(db, new Person(context.getString(R.string.rob_schneider), new LocalDate(1963, 10, 31)));
+
+//November 1
+        addFamous(db, new Person(context.getString(R.string.cortona), new LocalDate(1596, 11, 1)));
+        addFamous(db, new Person(context.getString(R.string.canova), new LocalDate(1757, 11, 1)));
+        addFamous(db, new Person(context.getString(R.string.grieg), new LocalDate(1902, 11, 1)));
+        addFamous(db, new Person(context.getString(R.string.flynt), new LocalDate(1942, 11, 1)));
+        addFamous(db, new Person(context.getString(R.string.kiedis), new LocalDate(1962, 11, 1)));
+        addFamous(db, new Person(context.getString(R.string.rai), new LocalDate(1973, 11, 1)));
+
+//November 2
+        addFamous(db, new Person(context.getString(R.string.antoinette), new LocalDate(1755, 11, 2)));
+        addFamous(db, new Person(context.getString(R.string.boole), new LocalDate(1815, 11, 2)));
+        addFamous(db, new Person(context.getString(R.string.sorel), new LocalDate(1847, 11, 2)));
+        addFamous(db, new Person(context.getString(R.string.visconti), new LocalDate(1906, 11, 2)));
+        addFamous(db, new Person(context.getString(R.string.keith_emerson), new LocalDate(1944, 11, 2)));
+        addFamous(db, new Person(context.getString(R.string.khan), new LocalDate(1965, 11, 2)));
+        addFamous(db, new Person(context.getString(R.string.schwimmer), new LocalDate(1966, 11, 2)));
+
+//November 3
+        addFamous(db, new Person(context.getString(R.string.cellini), new LocalDate(1500, 11, 3)));
+        addFamous(db, new Person(context.getString(R.string.marshak), new LocalDate(1887, 11, 3)));
+        addFamous(db, new Person(context.getString(R.string.dassler), new LocalDate(1900, 11, 3)));
+        addFamous(db, new Person(context.getString(R.string.gerd_muller), new LocalDate(1945, 11, 3)));
+        addFamous(db, new Person(context.getString(R.string.lundgren), new LocalDate(1957, 11, 3)));
+        addFamous(db, new Person(context.getString(R.string.newell), new LocalDate(1962, 11, 3)));
+
+//November 4
+        addFamous(db, new Person(context.getString(R.string.reni), new LocalDate(1575, 11, 4)));
+        addFamous(db, new Person(context.getString(R.string.bove), new LocalDate(1784, 11, 4)));
+        addFamous(db, new Person(context.getString(R.string.shakurantala_devi), new LocalDate(1929, 11, 4)));
+        addFamous(db, new Person(context.getString(R.string.mcconaughey), new LocalDate(1969, 11, 4)));
+        addFamous(db, new Person(context.getString(R.string.figo), new LocalDate(1972, 11, 4)));
+
+//November 5
+        addFamous(db, new Person(context.getString(R.string.petrov_vodkin), new LocalDate(1878, 11, 5)));
+        addFamous(db, new Person(context.getString(R.string.leigh), new LocalDate(1913, 11, 5)));
+        addFamous(db, new Person(context.getString(R.string.dassin), new LocalDate(1938, 11, 5)));
+        addFamous(db, new Person(context.getString(R.string.patrick), new LocalDate(1958, 11, 5)));
+        addFamous(db, new Person(context.getString(R.string.bryan_adams), new LocalDate(1959, 11, 5)));
+        addFamous(db, new Person(context.getString(R.string.swinton), new LocalDate(1960, 11, 5)));
+
+//November 6
+        addFamous(db, new Person(context.getString(R.string.sax), new LocalDate(1814, 11, 6)));
+        addFamous(db, new Person(context.getString(R.string.charles_dow), new LocalDate(1851, 11, 6)));
+        addFamous(db, new Person(context.getString(R.string.sousa), new LocalDate(1854, 11, 6)));
+        addFamous(db, new Person(context.getString(R.string.nailsmith), new LocalDate(1861, 11, 6)));
+        addFamous(db, new Person(context.getString(R.string.emma_stone), new LocalDate(1988, 11, 6)));
+
+//November 7
+        addFamous(db, new Person(context.getString(R.string.stukeley), new LocalDate(1687, 11, 7)));
+        addFamous(db, new Person(context.getString(R.string.james_cook), new LocalDate(1728, 11, 7)));
+        addFamous(db, new Person(context.getString(R.string.erkel), new LocalDate(1810, 11, 7)));
+        addFamous(db, new Person(context.getString(R.string.casal), new LocalDate(1863, 11, 7)));
+        addFamous(db, new Person(context.getString(R.string.marie_curie), new LocalDate(1867, 11, 7)));
+        addFamous(db, new Person(context.getString(R.string.camus), new LocalDate(1913, 11, 7)));
+        addFamous(db, new Person(context.getString(R.string.guetta), new LocalDate(1967, 11, 7)));
+
+//November 8
+        addFamous(db, new Person(context.getString(R.string.stoker), new LocalDate(1847, 11, 8)));
+        addFamous(db, new Person(context.getString(R.string.hausdorff), new LocalDate(1868, 11, 8)));
+        addFamous(db, new Person(context.getString(R.string.rorschach), new LocalDate(1884, 11, 8)));
+        addFamous(db, new Person(context.getString(R.string.mitchell), new LocalDate(1900, 11, 8)));
+        addFamous(db, new Person(context.getString(R.string.barnard), new LocalDate(1922, 11, 8)));
+        addFamous(db, new Person(context.getString(R.string.kilby), new LocalDate(1923, 11, 8)));
+        addFamous(db, new Person(context.getString(R.string.delon), new LocalDate(1935, 11, 8)));
+        addFamous(db, new Person(context.getString(R.string.hiddink), new LocalDate(1946, 11, 8)));
+
+//November 9
+        addFamous(db, new Person(context.getString(R.string.borden), new LocalDate(1801, 11, 9)));
+        addFamous(db, new Person(context.getString(R.string.turgenev), new LocalDate(1818, 11, 9)));
+        addFamous(db, new Person(context.getString(R.string.gaboriau), new LocalDate(1832, 11, 9)));
+        addFamous(db, new Person(context.getString(R.string.monnet), new LocalDate(1888, 11, 9)));
+        addFamous(db, new Person(context.getString(R.string.sagan), new LocalDate(1934, 11, 9)));
+        addFamous(db, new Person(context.getString(R.string.del_piero), new LocalDate(1974, 11, 9)));
+
+//November 10
+        addFamous(db, new Person(context.getString(R.string.luther), new LocalDate(1483, 11, 10)));
+        addFamous(db, new Person(context.getString(R.string.hogarth), new LocalDate(1697, 11, 10)));
+        addFamous(db, new Person(context.getString(R.string.schiller), new LocalDate(1759, 11, 10)));
+        addFamous(db, new Person(context.getString(R.string.innes), new LocalDate(1861, 11, 10)));
+        addFamous(db, new Person(context.getString(R.string.morricone), new LocalDate(1928, 11, 10)));
+        addFamous(db, new Person(context.getString(R.string.brittany_murphy), new LocalDate(1977, 11, 10)));
+
+//November 11
+        addFamous(db, new Person(context.getString(R.string.dostoyevsky), new LocalDate(1821, 11, 11)));
+        addFamous(db, new Person(context.getString(R.string.maurice_leblanc), new LocalDate(1864, 11, 11)));
+        addFamous(db, new Person(context.getString(R.string.vonnegut), new LocalDate(1922, 11, 11)));
+        addFamous(db, new Person(context.getString(R.string.brugiroux), new LocalDate(1937, 11, 11)));
+        addFamous(db, new Person(context.getString(R.string.demi_moore), new LocalDate(1962, 11, 11)));
+        addFamous(db, new Person(context.getString(R.string.dicaprio), new LocalDate(1974, 11, 11)));
+
+//November 12
+        addFamous(db, new Person(context.getString(R.string.rodin), new LocalDate(1840, 11, 12)));
+        addFamous(db, new Person(context.getString(R.string.grace_kelly), new LocalDate(1929, 11, 12)));
+        addFamous(db, new Person(context.getString(R.string.gurchenko), new LocalDate(1935, 11, 12)));
+        addFamous(db, new Person(context.getString(R.string.gosling), new LocalDate(1980, 11, 12)));
+        addFamous(db, new Person(context.getString(R.string.hathaway), new LocalDate(1982, 11, 12)));
+
+//November 13
+        addFamous(db, new Person(context.getString(R.string.montagu), new LocalDate(1718, 11, 13)));
+        addFamous(db, new Person(context.getString(R.string.hauy), new LocalDate(1745, 11, 13)));
+        addFamous(db, new Person(context.getString(R.string.stevenson), new LocalDate(1850, 11, 13)));
+        addFamous(db, new Person(context.getString(R.string.kokkonen), new LocalDate(1921, 11, 13)));
+        addFamous(db, new Person(context.getString(R.string.whoopi_goldberg), new LocalDate(1955, 11, 13)));
+        addFamous(db, new Person(context.getString(R.string.gerard_butler), new LocalDate(1969, 11, 13)));
+
+//November 14
+        addFamous(db, new Person(context.getString(R.string.fulton), new LocalDate(1765, 11, 14)));
+        addFamous(db, new Person(context.getString(R.string.bichat), new LocalDate(1771, 11, 14)));
+        addFamous(db, new Person(context.getString(R.string.lyell), new LocalDate(1797, 11, 14)));
+        addFamous(db, new Person(context.getString(R.string.monet), new LocalDate(1840, 11, 14)));
+        addFamous(db, new Person(context.getString(R.string.banting), new LocalDate(1891, 11, 14)));
+        addFamous(db, new Person(context.getString(R.string.lindgren), new LocalDate(1907, 11, 14)));
+
+//November 15
+        addFamous(db, new Person(context.getString(R.string.lavater), new LocalDate(1741, 11, 15)));
+        addFamous(db, new Person(context.getString(R.string.chasles), new LocalDate(1793, 11, 15)));
+        addFamous(db, new Person(context.getString(R.string.hauptmann), new LocalDate(1862, 11, 15)));
+        addFamous(db, new Person(context.getString(R.string.krogh), new LocalDate(1874, 11, 15)));
+        addFamous(db, new Person(context.getString(R.string.kroeger), new LocalDate(1974, 11, 15)));
+
+//November 16
+        addFamous(db, new Person(context.getString(R.string.kreutzer), new LocalDate(1766, 11, 16)));
+        addFamous(db, new Person(context.getString(R.string.saramago), new LocalDate(1922, 11, 16)));
+        addFamous(db, new Person(context.getString(R.string.achebe), new LocalDate(1930, 11, 16)));
+        addFamous(db, new Person(context.getString(R.string.krall), new LocalDate(1964, 11, 16)));
+        addFamous(db, new Person(context.getString(R.string.gyllenhaal), new LocalDate(1977, 11, 16)));
+
+//November 17
+        addFamous(db, new Person(context.getString(R.string.bronzino), new LocalDate(1503, 11, 17)));
+        addFamous(db, new Person(context.getString(R.string.mobius), new LocalDate(1790, 11, 17)));
+        addFamous(db, new Person(context.getString(R.string.wigner), new LocalDate(1902, 11, 17)));
+        addFamous(db, new Person(context.getString(R.string.honda), new LocalDate(1906, 11, 17)));
+        addFamous(db, new Person(context.getString(R.string.scorsese), new LocalDate(1942, 11, 17)));
+        addFamous(db, new Person(context.getString(R.string.devito), new LocalDate(1944, 11, 17)));
+        addFamous(db, new Person(context.getString(R.string.marceau), new LocalDate(1966, 11, 17)));
+        addFamous(db, new Person(context.getString(R.string.mcadams), new LocalDate(1978, 11, 17)));
+
+//November 18
+        addFamous(db, new Person(context.getString(R.string.down), new LocalDate(1828, 11, 18)));
+        addFamous(db, new Person(context.getString(R.string.nordenskiold), new LocalDate(1832, 11, 18)));
+        addFamous(db, new Person(context.getString(R.string.gallup), new LocalDate(1901, 11, 18)));
+        addFamous(db, new Person(context.getString(R.string.issigonis), new LocalDate(1906, 11, 18)));
+        addFamous(db, new Person(context.getString(R.string.ryazanov), new LocalDate(1927, 11, 18)));
+        addFamous(db, new Person(context.getString(R.string.owen_wilson), new LocalDate(1968, 11, 18)));
+
+//November 19
+        addFamous(db, new Person(context.getString(R.string.lomonosov), new LocalDate(1711, 11, 19)));
+        addFamous(db, new Person(context.getString(R.string.skoda), new LocalDate(1839, 11, 19)));
+        addFamous(db, new Person(context.getString(R.string.avenarius), new LocalDate(1843, 11, 19)));
+        addFamous(db, new Person(context.getString(R.string.drucker), new LocalDate(1909, 11, 19)));
+        addFamous(db, new Person(context.getString(R.string.calvin_klein), new LocalDate(1942, 11, 19)));
+        addFamous(db, new Person(context.getString(R.string.ryan), new LocalDate(1961, 11, 19)));
+        addFamous(db, new Person(context.getString(R.string.jodie_foster), new LocalDate(1962, 11, 19)));
+
+//November 20
+        addFamous(db, new Person(context.getString(R.string.guericke), new LocalDate(1602, 11, 20)));
+        addFamous(db, new Person(context.getString(R.string.lagerlof), new LocalDate(1858, 11, 20)));
+        addFamous(db, new Person(context.getString(R.string.karl_von_frisch), new LocalDate(1886, 11, 20)));
+        addFamous(db, new Person(context.getString(R.string.hubble), new LocalDate(1889, 11, 20)));
+        addFamous(db, new Person(context.getString(R.string.osgood), new LocalDate(1916, 11, 20)));
+
+//November 21
+        addFamous(db, new Person(context.getString(R.string.voltaire), new LocalDate(1694, 11, 21)));
+        addFamous(db, new Person(context.getString(R.string.schleiermacher), new LocalDate(1768, 11, 21)));
+        addFamous(db, new Person(context.getString(R.string.lewis_morgan), new LocalDate(1818, 11, 21)));
+        addFamous(db, new Person(context.getString(R.string.makarova), new LocalDate(1940, 11, 21)));
+        addFamous(db, new Person(context.getString(R.string.hawn), new LocalDate(1945, 11, 21)));
+        addFamous(db, new Person(context.getString(R.string.bjork), new LocalDate(1965, 11, 21)));
+
+//November 22
+        addFamous(db, new Person(context.getString(R.string.vladimir_dal), new LocalDate(1801, 11, 22)));
+        addFamous(db, new Person(context.getString(R.string.thomas_cook), new LocalDate(1808, 11, 22)));
+        addFamous(db, new Person(context.getString(R.string.gide), new LocalDate(1869, 11, 22)));
+        addFamous(db, new Person(context.getString(R.string.gaulle), new LocalDate(1890, 11, 22)));
+        addFamous(db, new Person(context.getString(R.string.pelevin), new LocalDate(1962, 11, 22)));
+        addFamous(db, new Person(context.getString(R.string.mikkelsen), new LocalDate(1965, 11, 22)));
+        addFamous(db, new Person(context.getString(R.string.ruffalo), new LocalDate(1967, 11, 22)));
+        addFamous(db, new Person(context.getString(R.string.ville_valo), new LocalDate(1976, 11, 22)));
+        addFamous(db, new Person(context.getString(R.string.scarlett_johansson), new LocalDate(1984, 11, 22)));
+
+//November 23
+        addFamous(db, new Person(context.getString(R.string.waals), new LocalDate(1837, 11, 23)));
+        addFamous(db, new Person(context.getString(R.string.karloff), new LocalDate(1887, 11, 23)));
+        addFamous(db, new Person(context.getString(R.string.moseley), new LocalDate(1887, 11, 23)));
+        addFamous(db, new Person(context.getString(R.string.nosov), new LocalDate(1908, 11, 23)));
+        addFamous(db, new Person(context.getString(R.string.cyrus), new LocalDate(1992, 11, 23)));
+
+//November 24
+        addFamous(db, new Person(context.getString(R.string.spinoza), new LocalDate(1632, 11, 24)));
+        addFamous(db, new Person(context.getString(R.string.suvorov), new LocalDate(1729, 11, 24)));
+        addFamous(db, new Person(context.getString(R.string.ellis), new LocalDate(1806, 11, 24)));
+        addFamous(db, new Person(context.getString(R.string.collodi), new LocalDate(1826, 11, 24)));
+        addFamous(db, new Person(context.getString(R.string.carnegie), new LocalDate(1888, 11, 24)));
+        addFamous(db, new Person(context.getString(R.string.kusturica), new LocalDate(1954, 11, 24)));
+        addFamous(db, new Person(context.getString(R.string.heigl), new LocalDate(1978, 11, 24)));
+
+//November 25
+        addFamous(db, new Person(context.getString(R.string.vega), new LocalDate(1562, 11, 25)));
+        addFamous(db, new Person(context.getString(R.string.sumarokov), new LocalDate(1717, 11, 25)));
+        addFamous(db, new Person(context.getString(R.string.pirogov), new LocalDate(1810, 11, 25)));
+        addFamous(db, new Person(context.getString(R.string.benz), new LocalDate(1844, 11, 25)));
+        addFamous(db, new Person(context.getString(R.string.vavilov), new LocalDate(1887, 11, 25)));
+        addFamous(db, new Person(context.getString(R.string.poul_anderson), new LocalDate(1926, 11, 25)));
+
+//November 26
+        addFamous(db, new Person(context.getString(R.string.harvard), new LocalDate(1607, 11, 26)));
+        addFamous(db, new Person(context.getString(R.string.saussure), new LocalDate(1857, 11, 26)));
+        addFamous(db, new Person(context.getString(R.string.leck), new LocalDate(1876, 11, 26)));
+        addFamous(db, new Person(context.getString(R.string.wiener), new LocalDate(1894, 11, 26)));
+        addFamous(db, new Person(context.getString(R.string.ionesco), new LocalDate(1909, 11, 26)));
+        addFamous(db, new Person(context.getString(R.string.tina_turner), new LocalDate(1939, 11, 26)));
+
+//November 27
+        addFamous(db, new Person(context.getString(R.string.celsius), new LocalDate(1701, 11, 27)));
+        addFamous(db, new Person(context.getString(R.string.weizmann), new LocalDate(1874, 11, 27)));
+        addFamous(db, new Person(context.getString(R.string.matsushita), new LocalDate(1894, 11, 27)));
+        addFamous(db, new Person(context.getString(R.string.bruce_lee), new LocalDate(1940, 11, 27)));
+        addFamous(db, new Person(context.getString(R.string.mashkov), new LocalDate(1963, 11, 27)));
+
+//November 28
+        addFamous(db, new Person(context.getString(R.string.lully), new LocalDate(1632, 11, 28)));
+        addFamous(db, new Person(context.getString(R.string.blake), new LocalDate(1757, 11, 28)));
+        addFamous(db, new Person(context.getString(R.string.cousin), new LocalDate(1792, 11, 28)));
+        addFamous(db, new Person(context.getString(R.string.engels), new LocalDate(1820, 11, 28)));
+        addFamous(db, new Person(context.getString(R.string.anton_rubinstein), new LocalDate(1829, 11, 28)));
+        addFamous(db, new Person(context.getString(R.string.blok), new LocalDate(1880, 11, 28)));
+        addFamous(db, new Person(context.getString(R.string.zanetti), new LocalDate(1956, 11, 28)));
+        addFamous(db, new Person(context.getString(R.string.galliano), new LocalDate(1960, 11, 28)));
+
+//November 29
+        addFamous(db, new Person(context.getString(R.string.donizetti), new LocalDate(1797, 11, 29)));
+        addFamous(db, new Person(context.getString(R.string.hauff), new LocalDate(1802, 11, 29)));
+        addFamous(db, new Person(context.getString(R.string.charcot), new LocalDate(1825, 11, 29)));
+        addFamous(db, new Person(context.getString(R.string.john_fleming), new LocalDate(1849, 11, 29)));
+        addFamous(db, new Person(context.getString(R.string.giggs), new LocalDate(1973, 11, 29)));
+        addFamous(db, new Person(context.getString(R.string.faris), new LocalDate(1976, 11, 29)));
+
+//November 30
+        addFamous(db, new Person(context.getString(R.string.swift), new LocalDate(1667, 11, 30)));
+        addFamous(db, new Person(context.getString(R.string.twain), new LocalDate(1835, 11, 30)));
+        addFamous(db, new Person(context.getString(R.string.churchill), new LocalDate(1874, 11, 30)));
+        addFamous(db, new Person(context.getString(R.string.ridley_scott), new LocalDate(1937, 11, 30)));
+        addFamous(db, new Person(context.getString(R.string.idol), new LocalDate(1955, 11, 30)));
+        addFamous(db, new Person(context.getString(R.string.stiller), new LocalDate(1965, 11, 30)));
+
+//December 1
+        addFamous(db, new Person(context.getString(R.string.falconet), new LocalDate(1716, 12, 1)));
+        addFamous(db, new Person(context.getString(R.string.tussaud), new LocalDate(1761, 12, 1)));
+        addFamous(db, new Person(context.getString(R.string.lobachevsky), new LocalDate(1792, 12, 1)));
+        addFamous(db, new Person(context.getString(R.string.zhukov), new LocalDate(1896, 12, 1)));
+        addFamous(db, new Person(context.getString(R.string.allen), new LocalDate(1935, 12, 1)));
+        addFamous(db, new Person(context.getString(R.string.escobar), new LocalDate(1949, 12, 1)));
+
+//December 2
+        addFamous(db, new Person(context.getString(R.string.joseph_bell), new LocalDate(1837, 12, 2)));
+        addFamous(db, new Person(context.getString(R.string.seuratl), new LocalDate(1859, 12, 2)));
+        addFamous(db, new Person(context.getString(R.string.callas), new LocalDate(1923, 12, 2)));
+        addFamous(db, new Person(context.getString(R.string.versace), new LocalDate(1946, 12, 2)));
+        addFamous(db, new Person(context.getString(R.string.liu), new LocalDate(1968, 12, 2)));
+        addFamous(db, new Person(context.getString(R.string.furtado), new LocalDate(1978, 12, 2)));
+        addFamous(db, new Person(context.getString(R.string.spears), new LocalDate(1981, 12, 2)));
+
+//December 3
+        addFamous(db, new Person(context.getString(R.string.hill), new LocalDate(1795, 12, 3)));
+        addFamous(db, new Person(context.getString(R.string.rota), new LocalDate(1911, 12, 3)));
+        addFamous(db, new Person(context.getString(R.string.osbourne), new LocalDate(1948, 12, 3)));
+        addFamous(db, new Person(context.getString(R.string.julianne_moore), new LocalDate(1960, 12, 3)));
+        addFamous(db, new Person(context.getString(R.string.seyfried), new LocalDate(1985, 12, 3)));
+
+//December 4
+        addFamous(db, new Person(context.getString(R.string.chapelain), new LocalDate(1595, 12, 4)));
+        addFamous(db, new Person(context.getString(R.string.carlyle), new LocalDate(1795, 12, 4)));
+        addFamous(db, new Person(context.getString(R.string.adler), new LocalDate(1913, 12, 4)));
+        addFamous(db, new Person(context.getString(R.string.bridges), new LocalDate(1949, 12, 4)));
+        addFamous(db, new Person(context.getString(R.string.bubka), new LocalDate(1963, 12, 4)));
+        addFamous(db, new Person(context.getString(R.string.jay_z), new LocalDate(1969, 12, 4)));
+
+//December 5
+        addFamous(db, new Person(context.getString(R.string.tyutchev), new LocalDate(1803, 12, 5)));
+        addFamous(db, new Person(context.getString(R.string.lang), new LocalDate(1890, 12, 5)));
+        addFamous(db, new Person(context.getString(R.string.disney), new LocalDate(1901, 12, 5)));
+        addFamous(db, new Person(context.getString(R.string.heisenberg), new LocalDate(1901, 12, 5)));
+        addFamous(db, new Person(context.getString(R.string.carreras), new LocalDate(1946, 12, 5)));
+        addFamous(db, new Person(context.getString(R.string.kaas), new LocalDate(1966, 12, 5)));
+
+//December 6
+        addFamous(db, new Person(context.getString(R.string.nicolas_leblanc), new LocalDate(1742, 12, 6)));
+        addFamous(db, new Person(context.getString(R.string.gay_lussac), new LocalDate(1778, 12, 6)));
+        addFamous(db, new Person(context.getString(R.string.veqilharxhi), new LocalDate(1797, 12, 6)));
+        addFamous(db, new Person(context.getString(R.string.bazille), new LocalDate(1841, 12, 6)));
+        addFamous(db, new Person(context.getString(R.string.crali), new LocalDate(1910, 12, 6)));
+        addFamous(db, new Person(context.getString(R.string.nick_park), new LocalDate(1958, 12, 6)));
+
+//December 7
+        addFamous(db, new Person(context.getString(R.string.bernini), new LocalDate(1598, 12, 7)));
+        addFamous(db, new Person(context.getString(R.string.schwann), new LocalDate(1810, 12, 7)));
+        addFamous(db, new Person(context.getString(R.string.mascagni), new LocalDate(1863, 12, 7)));
+        addFamous(db, new Person(context.getString(R.string.yosano), new LocalDate(1878, 12, 7)));
+        addFamous(db, new Person(context.getString(R.string.waits), new LocalDate(1949, 12, 7)));
+        addFamous(db, new Person(context.getString(R.string.emily_browning), new LocalDate(1988, 12, 7)));
+
+//December 8
+        addFamous(db, new Person(context.getString(R.string.dholbach), new LocalDate(1723, 12, 8)));
+        addFamous(db, new Person(context.getString(R.string.menzel), new LocalDate(1815, 12, 8)));
+        addFamous(db, new Person(context.getString(R.string.bjornson), new LocalDate(1832, 12, 8)));
+        addFamous(db, new Person(context.getString(R.string.reynaud), new LocalDate(1844, 12, 8)));
+        addFamous(db, new Person(context.getString(R.string.melies), new LocalDate(1861, 12, 8)));
+        addFamous(db, new Person(context.getString(R.string.morrison), new LocalDate(1943, 12, 8)));
+        addFamous(db, new Person(context.getString(R.string.basinger), new LocalDate(1953, 12, 8)));
+        addFamous(db, new Person(context.getString(R.string.somerhalder), new LocalDate(1978, 12, 8)));
+
+//December 9
+        addFamous(db, new Person(context.getString(R.string.milton), new LocalDate(1608, 12, 9)));
+        addFamous(db, new Person(context.getString(R.string.winckelmann), new LocalDate(1717, 12, 9)));
+        addFamous(db, new Person(context.getString(R.string.scheele), new LocalDate(1742, 12, 9)));
+        addFamous(db, new Person(context.getString(R.string.berthollet), new LocalDate(1748, 12, 9)));
+        addFamous(db, new Person(context.getString(R.string.grace_hopper), new LocalDate(1906, 12, 9)));
+        addFamous(db, new Person(context.getString(R.string.dench), new LocalDate(1934, 12, 9)));
+        addFamous(db, new Person(context.getString(R.string.malkovich), new LocalDate(1953, 12, 9)));
+
+//December 10
+        addFamous(db, new Person(context.getString(R.string.lovelace), new LocalDate(1815, 12, 10)));
+        addFamous(db, new Person(context.getString(R.string.nekrasov), new LocalDate(1821, 12, 10)));
+        addFamous(db, new Person(context.getString(R.string.sachs), new LocalDate(1891, 12, 10)));
+        addFamous(db, new Person(context.getString(R.string.tarasov), new LocalDate(1918, 12, 10)));
+        addFamous(db, new Person(context.getString(R.string.michael_duncan), new LocalDate(1957, 12, 10)));
+        addFamous(db, new Person(context.getString(R.string.branagh), new LocalDate(1960, 12, 10)));
+        addFamous(db, new Person(context.getString(R.string.molko), new LocalDate(1972, 12, 10)));
+
+//December 11
+        addFamous(db, new Person(context.getString(R.string.berlioz), new LocalDate(1803, 12, 11)));
+        addFamous(db, new Person(context.getString(R.string.musset), new LocalDate(1810, 12, 11)));
+        addFamous(db, new Person(context.getString(R.string.koch), new LocalDate(1843, 12, 11)));
+        addFamous(db, new Person(context.getString(R.string.born), new LocalDate(1882, 12, 11)));
+        addFamous(db, new Person(context.getString(R.string.gardel), new LocalDate(1890, 12, 11)));
+        addFamous(db, new Person(context.getString(R.string.marais), new LocalDate(1913, 12, 11)));
+
+//December 12
+        addFamous(db, new Person(context.getString(R.string.karamzin), new LocalDate(1766, 12, 12)));
+        addFamous(db, new Person(context.getString(R.string.serebriakova), new LocalDate(1884, 12, 12)));
+        addFamous(db, new Person(context.getString(R.string.ozu), new LocalDate(1903, 12, 12)));
+        addFamous(db, new Person(context.getString(R.string.sinatra), new LocalDate(1915, 12, 12)));
+        addFamous(db, new Person(context.getString(R.string.noyce), new LocalDate(1927, 12, 12)));
+        addFamous(db, new Person(context.getString(R.string.konyukhov), new LocalDate(1951, 12, 12)));
+
+//December 13
+        addFamous(db, new Person(context.getString(R.string.gozzi), new LocalDate(1720, 12, 13)));
+        addFamous(db, new Person(context.getString(R.string.heine), new LocalDate(1797, 12, 13)));
+        addFamous(db, new Person(context.getString(R.string.werner_siemens), new LocalDate(1816, 12, 13)));
+        addFamous(db, new Person(context.getString(R.string.birkeland), new LocalDate(1867, 12, 13)));
+        addFamous(db, new Person(context.getString(R.string.buscemi), new LocalDate(1957, 12, 13)));
+        addFamous(db, new Person(context.getString(R.string.foxx), new LocalDate(1967, 12, 13)));
+        addFamous(db, new Person(context.getString(R.string.amy_lee), new LocalDate(1981, 12, 13)));
+        addFamous(db, new Person(context.getString(R.string.taylor_swift), new LocalDate(1989, 12, 13)));
+
+//December 14
+        addFamous(db, new Person(context.getString(R.string.nostradamus), new LocalDate(1503, 12, 14)));
+        addFamous(db, new Person(context.getString(R.string.brahe), new LocalDate(1546, 12, 14)));
+        addFamous(db, new Person(context.getString(R.string.ueshiba), new LocalDate(1883, 12, 14)));
+        addFamous(db, new Person(context.getString(R.string.basov), new LocalDate(1922, 12, 14)));
+        addFamous(db, new Person(context.getString(R.string.kapoor), new LocalDate(1924, 12, 14)));
+
+//December 15
+        addFamous(db, new Person(context.getString(R.string.carey), new LocalDate(1793, 12, 15)));
+        addFamous(db, new Person(context.getString(R.string.bolyai), new LocalDate(1802, 12, 15)));
+        addFamous(db, new Person(context.getString(R.string.eiffel), new LocalDate(1832, 12, 15)));
+        addFamous(db, new Person(context.getString(R.string.becquerel), new LocalDate(1852, 12, 15)));
+        addFamous(db, new Person(context.getString(R.string.zamenhof), new LocalDate(1859, 12, 15)));
+        addFamous(db, new Person(context.getString(R.string.getty), new LocalDate(1892, 12, 15)));
+
+//December 16
+        addFamous(db, new Person(context.getString(R.string.austen), new LocalDate(1775, 12, 16)));
+        addFamous(db, new Person(context.getString(R.string.walras), new LocalDate(1834, 12, 16)));
+        addFamous(db, new Person(context.getString(R.string.bergmann), new LocalDate(1836, 12, 16)));
+        addFamous(db, new Person(context.getString(R.string.kandinsky), new LocalDate(1866, 12, 16)));
+        addFamous(db, new Person(context.getString(R.string.linder), new LocalDate(1883, 12, 16)));
+        addFamous(db, new Person(context.getString(R.string.arthur_clarke), new LocalDate(1917, 12, 16)));
+        addFamous(db, new Person(context.getString(R.string.paul_van_dyk), new LocalDate(1971, 12, 16)));
+
+//December 17
+        addFamous(db, new Person(context.getString(R.string.cimarosa), new LocalDate(1749, 12, 17)));
+        addFamous(db, new Person(context.getString(R.string.beethoven), new LocalDate(1770, 12, 17)));
+        addFamous(db, new Person(context.getString(R.string.davy), new LocalDate(1778, 12, 17)));
+        addFamous(db, new Person(context.getString(R.string.ganelin), new LocalDate(1944, 12, 17)));
+        addFamous(db, new Person(context.getString(R.string.darryl_way), new LocalDate(1948, 12, 17)));
+        addFamous(db, new Person(context.getString(R.string.jovovich), new LocalDate(1975, 12, 17)));
+
+//December 18
+        addFamous(db, new Person(context.getString(R.string.polhem), new LocalDate(1661, 12, 18)));
+        addFamous(db, new Person(context.getString(R.string.joseph_thomson), new LocalDate(1856, 12, 18)));
+        addFamous(db, new Person(context.getString(R.string.stalin), new LocalDate(1878, 12, 18)));
+        addFamous(db, new Person(context.getString(R.string.spielberg), new LocalDate(1946, 12, 18)));
+        addFamous(db, new Person(context.getString(R.string.liotta), new LocalDate(1954, 12, 18)));
+        addFamous(db, new Person(context.getString(R.string.brad_pitt), new LocalDate(1963, 12, 18)));
+        addFamous(db, new Person(context.getString(R.string.holmes), new LocalDate(1978, 12, 18)));
+        addFamous(db, new Person(context.getString(R.string.aguilera), new LocalDate(1980, 12, 18)));
+
+//December 19
+        addFamous(db, new Person(context.getString(R.string.michelson), new LocalDate(1852, 12, 19)));
+        addFamous(db, new Person(context.getString(R.string.joze_lima), new LocalDate(1910, 12, 19)));
+        addFamous(db, new Person(context.getString(R.string.piaf), new LocalDate(1915, 12, 19)));
+        addFamous(db, new Person(context.getString(R.string.schweiger), new LocalDate(1963, 12, 19)));
+        addFamous(db, new Person(context.getString(R.string.milano), new LocalDate(1972, 12, 19)));
+        addFamous(db, new Person(context.getString(R.string.jake_gyllenhaal), new LocalDate(1980, 12, 19)));
+
+//December 20
+        addFamous(db, new Person(context.getString(R.string.heyrovsky), new LocalDate(1890, 12, 20)));
+        addFamous(db, new Person(context.getString(R.string.balandin), new LocalDate(1898, 12, 20)));
+        addFamous(db, new Person(context.getString(R.string.graaff), new LocalDate(1901, 12, 20)));
+        addFamous(db, new Person(context.getString(R.string.bohm), new LocalDate(1917, 12, 20)));
+        addFamous(db, new Person(context.getString(R.string.uri_geller), new LocalDate(1946, 12, 20)));
+        addFamous(db, new Person(context.getString(R.string.jonah_hill), new LocalDate(1983, 12, 20)));
+
+//December 21
+        addFamous(db, new Person(context.getString(R.string.robert_brown), new LocalDate(1773, 12, 21)));
+        addFamous(db, new Person(context.getString(R.string.hermann_muller), new LocalDate(1890, 12, 21)));
+        addFamous(db, new Person(context.getString(R.string.boll), new LocalDate(1917, 12, 21)));
+        addFamous(db, new Person(context.getString(R.string.monterroso), new LocalDate(1921, 12, 21)));
+        addFamous(db, new Person(context.getString(R.string.jane_fonda), new LocalDate(1937, 12, 21)));
+        addFamous(db, new Person(context.getString(R.string.zappa), new LocalDate(1940, 12, 21)));
+        addFamous(db, new Person(context.getString(R.string.samuel_jackson), new LocalDate(1948, 12, 21)));
+
+//December 22
+        addFamous(db, new Person(context.getString(R.string.liotard), new LocalDate(1702, 12, 22)));
+        addFamous(db, new Person(context.getString(R.string.fabre), new LocalDate(1823, 12, 22)));
+        addFamous(db, new Person(context.getString(R.string.puccini), new LocalDate(1858, 12, 22)));
+        addFamous(db, new Person(context.getString(R.string.elizondo), new LocalDate(1936, 12, 22)));
+        addFamous(db, new Person(context.getString(R.string.fiennes), new LocalDate(1962, 12, 22)));
+        addFamous(db, new Person(context.getString(R.string.paradis), new LocalDate(1972, 12, 22)));
+
+//December 23
+        addFamous(db, new Person(context.getString(R.string.champollion), new LocalDate(1790, 12, 23)));
+        addFamous(db, new Person(context.getString(R.string.bryullov), new LocalDate(1799, 12, 23)));
+        addFamous(db, new Person(context.getString(R.string.dino_risi), new LocalDate(1916, 12, 23)));
+        addFamous(db, new Person(context.getString(R.string.baker), new LocalDate(1929, 12, 23)));
+        addFamous(db, new Person(context.getString(R.string.bosque), new LocalDate(1950, 12, 23)));
+        addFamous(db, new Person(context.getString(R.string.bruni), new LocalDate(1967, 12, 23)));
+
+//December 24
+        addFamous(db, new Person(context.getString(R.string.joule), new LocalDate(1818, 12, 24)));
+        addFamous(db, new Person(context.getString(R.string.howard_hughes), new LocalDate(1905, 12, 24)));
+        addFamous(db, new Person(context.getString(R.string.chase), new LocalDate(1906, 12, 24)));
+        addFamous(db, new Person(context.getString(R.string.gardner), new LocalDate(1922, 12, 24)));
+        addFamous(db, new Person(context.getString(R.string.ricky_martin), new LocalDate(1971, 12, 24)));
+        addFamous(db, new Person(context.getString(R.string.stephenie_meyer), new LocalDate(1973, 12, 24)));
+
+//December 25
+        addFamous(db, new Person(context.getString(R.string.chevrolet), new LocalDate(1878, 12, 25)));
+        addFamous(db, new Person(context.getString(R.string.rosenzweig), new LocalDate(1886, 12, 25)));
+        addFamous(db, new Person(context.getString(R.string.hilton), new LocalDate(1887, 12, 25)));
+        addFamous(db, new Person(context.getString(R.string.bogart), new LocalDate(1899, 12, 25)));
+        addFamous(db, new Person(context.getString(R.string.castaneda), new LocalDate(1925, 12, 25)));
+        addFamous(db, new Person(context.getString(R.string.lennox), new LocalDate(1954, 12, 25)));
+        addFamous(db, new Person(context.getString(R.string.buuren), new LocalDate(1976, 12, 25)));
+
+//December 26
+        addFamous(db, new Person(context.getString(R.string.dinglinger), new LocalDate(1664, 12, 26)));
+        addFamous(db, new Person(context.getString(R.string.babbage), new LocalDate(1791, 12, 26)));
+        addFamous(db, new Person(context.getString(R.string.henry_miller), new LocalDate(1891, 12, 26)));
+        addFamous(db, new Person(context.getString(R.string.zedong), new LocalDate(1893, 12, 26)));
+        addFamous(db, new Person(context.getString(R.string.ulrich), new LocalDate(1963, 12, 26)));
+        addFamous(db, new Person(context.getString(R.string.jared_leto), new LocalDate(1971, 12, 26)));
+
+//December 27
+        addFamous(db, new Person(context.getString(R.string.kepler), new LocalDate(1571, 12, 27)));
+        addFamous(db, new Person(context.getString(R.string.cayley), new LocalDate(1773, 12, 27)));
+        addFamous(db, new Person(context.getString(R.string.pasteur), new LocalDate(1822, 12, 27)));
+        addFamous(db, new Person(context.getString(R.string.tretyakov), new LocalDate(1832, 12, 27)));
+        addFamous(db, new Person(context.getString(R.string.dietrich), new LocalDate(1901, 12, 27)));
+        addFamous(db, new Person(context.getString(R.string.depardieu), new LocalDate(1948, 12, 27)));
+
+//December 28
+        addFamous(db, new Person(context.getString(R.string.eddington), new LocalDate(1882, 12, 28)));
+        addFamous(db, new Person(context.getString(R.string.murnau), new LocalDate(1888, 12, 28)));
+        addFamous(db, new Person(context.getString(R.string.john_neumann), new LocalDate(1903, 12, 28)));
+        addFamous(db, new Person(context.getString(R.string.denzel_washington), new LocalDate(1954, 12, 28)));
+        addFamous(db, new Person(context.getString(R.string.torvalds), new LocalDate(1969, 12, 28)));
+        addFamous(db, new Person(context.getString(R.string.sienna_miller), new LocalDate(1981, 12, 28)));
+
+//December 29
+        addFamous(db, new Person(context.getString(R.string.pompadour), new LocalDate(1721, 12, 29)));
+        addFamous(db, new Person(context.getString(R.string.siqueiros), new LocalDate(1896, 12, 29)));
+        addFamous(db, new Person(context.getString(R.string.voight), new LocalDate(1938, 12, 29)));
+        addFamous(db, new Person(context.getString(R.string.dexter_holland), new LocalDate(1965, 12, 29)));
+        addFamous(db, new Person(context.getString(R.string.jude_law), new LocalDate(1972, 12, 29)));
+
+//December 30
+        addFamous(db, new Person(context.getString(R.string.jablonskis), new LocalDate(1860, 12, 30)));
+        addFamous(db, new Person(context.getString(R.string.kipling), new LocalDate(1865, 12, 30)));
+        addFamous(db, new Person(context.getString(R.string.patti_smith), new LocalDate(1946, 12, 30)));
+        addFamous(db, new Person(context.getString(R.string.jay_kay), new LocalDate(1969, 12, 30)));
+        addFamous(db, new Person(context.getString(R.string.tiger_woods), new LocalDate(1975, 12, 30)));
+        addFamous(db, new Person(context.getString(R.string.lebron_james), new LocalDate(1984, 12, 30)));
+
+//December 31
+        addFamous(db, new Person(context.getString(R.string.boldini), new LocalDate(1842, 12, 31)));
+        addFamous(db, new Person(context.getString(R.string.matisse), new LocalDate(1869, 12, 31)));
+        addFamous(db, new Person(context.getString(R.string.hopkins), new LocalDate(1937, 12, 31)));
+        addFamous(db, new Person(context.getString(R.string.ferguson), new LocalDate(1941, 12, 31)));
+        addFamous(db, new Person(context.getString(R.string.kingsley), new LocalDate(1943, 12, 31)));
+        addFamous(db, new Person(context.getString(R.string.willis), new LocalDate(1945, 12, 31)));
+        addFamous(db, new Person(context.getString(R.string.val_kilmer), new LocalDate(1959, 12, 31)));
+        addFamous(db, new Person(context.getString(R.string.psy), new LocalDate(1977, 12, 31)));
+    }
+
     static void createFamousDb(Context context, SQLiteDatabase db) {
-
-        // 1 january
-        addFamous(db, new Person(context.getString(R.string.medici), -16440364800000L));
-        addFamous(db, new Person(context.getString(R.string.giordano_bruno), -13316227200000L));
-        addFamous(db, new Person(context.getString(R.string.frazer), -3660595200000L));
-        addFamous(db, new Person(context.getString(R.string.coubertin), -3376598400000L));
-        addFamous(db, new Person(context.getString(R.string.william_fox), -2871676800000L));
-
-        // 2 january
-        addFamous(db, new Person(context.getString(R.string.piero_di_cosimo), -16030051200000L));
-        addFamous(db, new Person(context.getString(R.string.vasily_perov), -4291660800000L));
-        addFamous(db, new Person(context.getString(R.string.balakirev), -4196966400000L));
-        addFamous(db, new Person(context.getString(R.string.tippett), -2051136000000L));
-        addFamous(db, new Person(context.getString(R.string.isaac_asimov), -1577836800000L));
-
-        // 3 january
-        addFamous(db, new Person(context.getString(R.string.louis_poinsot), -6090249600000L));
-        addFamous(db, new Person(context.getString(R.string.dabbadie), -5048956800000L));
-        addFamous(db, new Person(context.getString(R.string.fletcher), -2650579200000L));
-        addFamous(db, new Person(context.getString(R.string.tolkien), -2461276800000L));
-        addFamous(db, new Person(context.getString(R.string.moore), -1293667200000L));
-        addFamous(db, new Person(context.getString(R.string.mel_gibson), -441676800000L));
-        addFamous(db, new Person(context.getString(R.string.schumacher), -31363200000L));
-
-        // 4 january
-        addFamous(db, new Person(context.getString(R.string.isaac_newton), -10318838400000L));
-        addFamous(db, new Person(context.getString(R.string.pergolesi), -8204544000000L));
-        addFamous(db, new Person(context.getString(R.string.jacob_grimm), -5837702400000L));
-        addFamous(db, new Person(context.getString(R.string.braille), -5080406400000L));
-        addFamous(db, new Person(context.getString(R.string.tsereteli), -1135814400000L));
-        addFamous(db, new Person(context.getString(R.string.josephson), -946512000000L));
-
-        // 5 january
-        addFamous(db, new Person(context.getString(R.string.eucken), -3912710400000L));
-        addFamous(db, new Person(context.getString(R.string.gillette), -3628713600000L));
-        addFamous(db, new Person(context.getString(R.string.erlanger), -3029097600000L));
-        addFamous(db, new Person(context.getString(R.string.umberto_eco), -1198886400000L));
-        addFamous(db, new Person(context.getString(R.string.manson), -31190400000L));
-        addFamous(db, new Person(context.getString(R.string.bradley_cooper), 158112000000L));
-
-        // 6 january
-        addFamous(db, new Person(context.getString(R.string.darc), -17607628800000L));
-        addFamous(db, new Person(context.getString(R.string.jakob_bernoulli), -9939974400000L));
-        addFamous(db, new Person(context.getString(R.string.montgolfier), -7099833600000L));
-        addFamous(db, new Person(context.getString(R.string.schliemann), -4670006400000L));
-        addFamous(db, new Person(context.getString(R.string.scriabin), -3123705600000L));
-        addFamous(db, new Person(context.getString(R.string.celentano), -1009411200000L));
-        addFamous(db, new Person(context.getString(R.string.atkinson), -472953600000L));
-        addFamous(db, new Person(context.getString(R.string.redmayne), 379123200000L));
-
-        // 7 january
-        addFamous(db, new Person(context.getString(R.string.pope_gregory), -14767315200000L));
-        addFamous(db, new Person(context.getString(R.string.fleming), -4512153600000L));
-        addFamous(db, new Person(context.getString(R.string.eliezer), -3533846400000L));
-        addFamous(db, new Person(context.getString(R.string.borel), -3123619200000L));
-        addFamous(db, new Person(context.getString(R.string.nicolas_cage), -188870400000L));
-
-        // 8 january
-        addFamous(db, new Person(context.getString(R.string.sirani), -10476259200000L));
-        addFamous(db, new Person(context.getString(R.string.nijinska), -2492380800000L));
-        addFamous(db, new Person(context.getString(R.string.presley), -1103932800000L));
-        addFamous(db, new Person(context.getString(R.string.hawking), -883008000000L));
-        addFamous(db, new Person(context.getString(R.string.daviw_bowie), -725241600000L));
-
-        // 9 january
-        addFamous(db, new Person(context.getString(R.string.simon_vouet), -11990937600000L));
-        addFamous(db, new Person(context.getString(R.string.wrangel), -5458579200000L));
-        addFamous(db, new Person(context.getString(R.string.watson), -2902521600000L));
-        addFamous(db, new Person(context.getString(R.string.capek), -2523830400000L));
-        addFamous(db, new Person(context.getString(R.string.beauvoir), -1955923200000L));
-
-        // 10 january
-        addFamous(db, new Person(context.getString(R.string.birkbeck), -6121267200000L));
-        addFamous(db, new Person(context.getString(R.string.tolstoy), -2744668800000L));
-        addFamous(db, new Person(context.getString(R.string.bertoni), -2113603200000L));
-        addFamous(db, new Person(context.getString(R.string.wilson), -1072224000000L));
-        addFamous(db, new Person(context.getString(R.string.knuth), -1009065600000L));
-
-        // 11 january
-        addFamous(db, new Person(context.getString(R.string.parmigianino), -14735433600000L));
-        addFamous(db, new Person(context.getString(R.string.guidobaldo), -13409971200000L));
-        addFamous(db, new Person(context.getString(R.string.stensen), -10476000000000L));
-        addFamous(db, new Person(context.getString(R.string.hofmann), -2018822400000L));
-        addFamous(db, new Person(context.getString(R.string.mendoza), -851212800000L));
-
-        // 12 january
-        addFamous(db, new Person(context.getString(R.string.helmont), -12305433600000L));
-        addFamous(db, new Person(context.getString(R.string.perrault), -10791532800000L));
-        addFamous(db, new Person(context.getString(R.string.jack_london), -2965420800000L));
-        addFamous(db, new Person(context.getString(R.string.kurchatov), -2113430400000L));
-        addFamous(db, new Person(context.getString(R.string.korolev), -1987200000000L));
-        addFamous(db, new Person(context.getString(R.string.maharishi), -1671580800000L));
-        addFamous(db, new Person(context.getString(R.string.murakami), -661737600000L));
-
-        // 13 january
-        addFamous(db, new Person(context.getString(R.string.beketov), -4511635200000L));
-        addFamous(db, new Person(context.getString(R.string.wien), -3344025600000L));
-        addFamous(db, new Person(context.getString(R.string.soutine), -2428790400000L));
-        addFamous(db, new Person(context.getString(R.string.lifshitz), -1671494400000L));
-        addFamous(db, new Person(context.getString(R.string.feyerabend), -1450656000000L));
-
-        // 14 january
-        addFamous(db, new Person(context.getString(R.string.semyonov), -4511548800000L));
-        addFamous(db, new Person(context.getString(R.string.morisot), -4069699200000L));
-        addFamous(db, new Person(context.getString(R.string.schweitzer), -2996784000000L));
-        addFamous(db, new Person(context.getString(R.string.mishima), -1418947200000L));
-        addFamous(db, new Person(context.getString(R.string.kharlamov), -693187200000L));
-
-        // 15 january
-        addFamous(db, new Person(context.getString(R.string.moliere), -10980576000000L));
-        addFamous(db, new Person(context.getString(R.string.griboyedov), -5521219200000L));
-        addFamous(db, new Person(context.getString(R.string.virtanen), -2365545600000L));
-        addFamous(db, new Person(context.getString(R.string.teller), -1955404800000L));
-        addFamous(db, new Person(context.getString(R.string.luther_king), -1292630400000L));
-
-        // 16 january
-        addFamous(db, new Person(context.getString(R.string.schoner), -15555456000000L));
-        addFamous(db, new Person(context.getString(R.string.piccinni), -7635513600000L));
-        addFamous(db, new Person(context.getString(R.string.alfieri), -6972739200000L));
-        addFamous(db, new Person(context.getString(R.string.veresaev), -3249072000000L));
-        addFamous(db, new Person(context.getString(R.string.roy_jones), -30240000000L));
-
-        // 17 january
-        addFamous(db, new Person(context.getString(R.string.franklin), -8329651200000L));
-        addFamous(db, new Person(context.getString(R.string.zhukovsky), -3880137600000L));
-        addFamous(db, new Person(context.getString(R.string.stanislavski), -3375216000000L));
-        addFamous(db, new Person(context.getString(R.string.al_capone), -2239142400000L));
-        addFamous(db, new Person(context.getString(R.string.muhammad_ali), -882230400000L));
-        addFamous(db, new Person(context.getString(R.string.jim_carrey), -251078400000L));
-
-        // 18 january
-        addFamous(db, new Person(context.getString(R.string.montesquieu), -8865936000000L));
-        addFamous(db, new Person(context.getString(R.string.cesar_cui), -4258742400000L));
-        addFamous(db, new Person(context.getString(R.string.ehrenfest), -2838672000000L));
-        addFamous(db, new Person(context.getString(R.string.milne), -2775513600000L));
-        addFamous(db, new Person(context.getString(R.string.kitano), -724377600000L));
-        addFamous(db, new Person(context.getString(R.string.costner), -471916800000L));
-        addFamous(db, new Person(context.getString(R.string.guardiola), 33004800000L));
-
-        // 19 january
-        addFamous(db, new Person(context.getString(R.string.cagnacci), -11642918400000L));
-        addFamous(db, new Person(context.getString(R.string.comte), -5426179200000L));
-        addFamous(db, new Person(context.getString(R.string.edgar_poe), -5079110400000L));
-        addFamous(db, new Person(context.getString(R.string.kapteyn), -3753734400000L));
-        addFamous(db, new Person(context.getString(R.string.serov), -3311884800000L));
-        addFamous(db, new Person(context.getString(R.string.kantorovich), -1828828800000L));
-
-        // 20 january
-        addFamous(db, new Person(context.getString(R.string.gessi), -12053145600000L));
-        addFamous(db, new Person(context.getString(R.string.ampere), -6151939200000L));
-        addFamous(db, new Person(context.getString(R.string.chausson), -3627417600000L));
-        addFamous(db, new Person(context.getString(R.string.onassis), -2018044800000L));
-        addFamous(db, new Person(context.getString(R.string.fellini), -1576281600000L));
-
-        // 21 january
-        addFamous(db, new Person(context.getString(R.string.browning), -3627331200000L));
-        addFamous(db, new Person(context.getString(R.string.florensky), -2775254400000L));
-        addFamous(db, new Person(context.getString(R.string.dior), -2049494400000L));
-        addFamous(db, new Person(context.getString(R.string.benny_hill), -1449964800000L));
-        addFamous(db, new Person(context.getString(R.string.domingo), -913420800000L));
-
-        // 22 january
-        addFamous(db, new Person(context.getString(R.string.bacon), -12904099200000L));
-        addFamous(db, new Person(context.getString(R.string.byron), -5741539200000L));
-        addFamous(db, new Person(context.getString(R.string.scoville), -3311625600000L));
-        addFamous(db, new Person(context.getString(R.string.picabia), -2869862400000L));
-        addFamous(db, new Person(context.getString(R.string.landau), -1954800000000L));
-
-        // 23 january
-        addFamous(db, new Person(context.getString(R.string.stendhal), -5899219200000L));
-        addFamous(db, new Person(context.getString(R.string.manet), -4353004800000L));
-        addFamous(db, new Person(context.getString(R.string.abbe), -4100544000000L));
-        addFamous(db, new Person(context.getString(R.string.hilbert), -3406233600000L));
-        addFamous(db, new Person(context.getString(R.string.yukawa), -1986249600000L));
-        addFamous(db, new Person(context.getString(R.string.hauer), -818640000000L));
-
-        // 24 january
-        addFamous(db, new Person(context.getString(R.string.congreve), -9465033600000L));
-        addFamous(db, new Person(context.getString(R.string.beaumarchais), -7508592000000L));
-        addFamous(db, new Person(context.getString(R.string.hoffmann), -6120057600000L));
-        addFamous(db, new Person(context.getString(R.string.surikov), -3847996800000L));
-        addFamous(db, new Person(context.getString(R.string.shechtman), -913161600000L));
-        addFamous(db, new Person(context.getString(R.string.kinski), -282009600000L));
-
-        // 25 january
-        addFamous(db, new Person(context.getString(R.string.lagrange), -7382275200000L));
-        addFamous(db, new Person(context.getString(R.string.burns), -6656428800000L));
-        addFamous(db, new Person(context.getString(R.string.shishkin), -4352832000000L));
-        addFamous(db, new Person(context.getString(R.string.maugham), -3027369600000L));
-        addFamous(db, new Person(context.getString(R.string.woolf), -2774908800000L));
-        addFamous(db, new Person(context.getString(R.string.prigogine), -1670457600000L));
-        addFamous(db, new Person(context.getString(R.string.eusebio), -881539200000L));
-
-        // 26 january
-        addFamous(db, new Person(context.getString(R.string.morita), -1544140800000L));
-        addFamous(db, new Person(context.getString(R.string.newman), -1417910400000L));
-        addFamous(db, new Person(context.getString(R.string.davis), -818380800000L));
-        addFamous(db, new Person(context.getString(R.string.gretzky), -281836800000L));
-        addFamous(db, new Person(context.getString(R.string.mourinho), -218764800000L));
-
-        // 27 january
-        addFamous(db, new Person(context.getString(R.string.neumann), -8928316800000L));
-        addFamous(db, new Person(context.getString(R.string.mozart), -6750950400000L));
-        addFamous(db, new Person(context.getString(R.string.schelling), -6151334400000L));
-        addFamous(db, new Person(context.getString(R.string.saltykov_shchedrin), -4541961600000L));
-        addFamous(db, new Person(context.getString(R.string.carroll), -4352659200000L));
-        addFamous(db, new Person(context.getString(R.string.bjorndalen), 128476800000L));
-
-        // 28 january
-        addFamous(db, new Person(context.getString(R.string.borelli), -11421302400000L));
-        addFamous(db, new Person(context.getString(R.string.heweliusz), -11326608000000L));
-        addFamous(db, new Person(context.getString(R.string.baskerville), -8328700800000L));
-        addFamous(db, new Person(context.getString(R.string.rubinstein), -2616883200000L));
-        addFamous(db, new Person(context.getString(R.string.buffon), 254793600000L));
-
-        // 29 january
-        addFamous(db, new Person(context.getString(R.string.swedenborg), -8896608000000L));
-        addFamous(db, new Person(context.getString(R.string.mohs), -6214233600000L));
-        addFamous(db, new Person(context.getString(R.string.auber), -5930236800000L));
-        addFamous(db, new Person(context.getString(R.string.shibasaburo), -3689712000000L));
-        addFamous(db, new Person(context.getString(R.string.chekhov), -3468873600000L));
-        addFamous(db, new Person(context.getString(R.string.rolland), -2648332800000L));
-
-        // 30 january
-        addFamous(db, new Person(context.getString(R.string.watt), -7381843200000L));
-        addFamous(db, new Person(context.getString(R.string.chamisso), -5961686400000L));
-        addFamous(db, new Person(context.getString(R.string.kotelnikov), -3090096000000L));
-        addFamous(db, new Person(context.getString(R.string.gaidai), -1480723200000L));
-        addFamous(db, new Person(context.getString(R.string.engelbart), -1417564800000L));
-        addFamous(db, new Person(context.getString(R.string.brown), -1322956800000L));
-
-        // 31 january
-        addFamous(db, new Person(context.getString(R.string.schubert), -5456678400000L));
-        addFamous(db, new Person(context.getString(R.string.richards), -3216240000000L));
-        addFamous(db, new Person(context.getString(R.string.langmuir), -2805926400000L));
-        addFamous(db, new Person(context.getString(R.string.vanga), -1859328000000L));
-        addFamous(db, new Person(context.getString(R.string.timberlake), 349747200000L));
-
-        // 1 february
-        addFamous(db, new Person(context.getString(R.string.bekhterev), -3563222400000L));
-        addFamous(db, new Person(context.getString(R.string.john_ford), -2395612800000L));
-        addFamous(db, new Person(context.getString(R.string.gable), -2174774400000L));
-        addFamous(db, new Person(context.getString(R.string.segre), -2048544000000L));
-        addFamous(db, new Person(context.getString(R.string.brandon_lee), -155088000000L));
-
-        // 2 february
-        addFamous(db, new Person(context.getString(R.string.bourdon), -11168409600000L));
-        addFamous(db, new Person(context.getString(R.string.boussingault), -5298825600000L));
-        addFamous(db, new Person(context.getString(R.string.forel), -4068057600000L));
-        addFamous(db, new Person(context.getString(R.string.chkalov), -2080080000000L));
-        addFamous(db, new Person(context.getString(R.string.haasse), -1638230400000L));
-        addFamous(db, new Person(context.getString(R.string.holland), -1291075200000L));
-
-        // 3 february
-        addFamous(db, new Person(context.getString(R.string.mendelssohn), -5077814400000L));
-        addFamous(db, new Person(context.getString(R.string.trubner), -3752438400000L));
-        addFamous(db, new Person(context.getString(R.string.fomin), -3089750400000L));
-        addFamous(db, new Person(context.getString(R.string.stein), -3026592000000L));
-        addFamous(db, new Person(context.getString(R.string.joachim_low), -312768000000L));
-
-        // 4 february
-        addFamous(db, new Person(context.getString(R.string.bottger), -9085392000000L));
-        addFamous(db, new Person(context.getString(R.string.nemcova), -4730659200000L));
-        addFamous(db, new Person(context.getString(R.string.prandtl), -2994969600000L));
-        addFamous(db, new Person(context.getString(R.string.maillard), -2900275200000L));
-        addFamous(db, new Person(context.getString(R.string.tombaugh), -2016748800000L));
-
-        // 5 february
-        addFamous(db, new Person(context.getString(R.string.runeberg), -5235494400000L));
-        addFamous(db, new Person(context.getString(R.string.maxim), -4099420800000L));
-        addFamous(db, new Person(context.getString(R.string.dunlop), -4099420800000L));
-        addFamous(db, new Person(context.getString(R.string.teike), -3342038400000L));
-        addFamous(db, new Person(context.getString(R.string.citroen), -2900188800000L));
-        addFamous(db, new Person(context.getString(R.string.voisin), -2837116800000L));
-        addFamous(db, new Person(context.getString(R.string.cristiano_ronaldo), 476409600000L));
-        addFamous(db, new Person(context.getString(R.string.neymar), 697248000000L));
-
-        // 6 february
-        addFamous(db, new Person(context.getString(R.string.heinecken), -7854537600000L));
-        addFamous(db, new Person(context.getString(R.string.zelinsky), -3436560000000L));
-        addFamous(db, new Person(context.getString(R.string.bragg), -2363644800000L));
-        addFamous(db, new Person(context.getString(R.string.truffaut), -1196121600000L));
-        addFamous(db, new Person(context.getString(R.string.bob_marley), -785808000000L));
-
-        // 7 february
-        addFamous(db, new Person(context.getString(R.string.dickens), -4982860800000L));
-        addFamous(db, new Person(context.getString(R.string.alfred_adler), -3152476800000L));
-        addFamous(db, new Person(context.getString(R.string.sinclair_lewis), -2679091200000L));
-        addFamous(db, new Person(context.getString(R.string.chizhevsky), -2300400000000L));
-        addFamous(db, new Person(context.getString(R.string.euler), -2048025600000L));
-        addFamous(db, new Person(context.getString(R.string.desmond_doss), -1606262400000L));
-        addFamous(db, new Person(context.getString(R.string.kutcher), 255657600000L));
-
-        // 8 february
-        addFamous(db, new Person(context.getString(R.string.bernoulli), -8517052800000L));
-        addFamous(db, new Person(context.getString(R.string.courtois), -6087139200000L));
-        addFamous(db, new Person(context.getString(R.string.jules_verne), -4477852800000L));
-        addFamous(db, new Person(context.getString(R.string.mendeleev), -4477852800000L));
-        addFamous(db, new Person(context.getString(R.string.carlson), -2016403200000L));
-        addFamous(db, new Person(context.getString(R.string.williams), -1195948800000L));
-
-        // 9 february
-        addFamous(db, new Person(context.getString(R.string.navai), -16689456000000L));
-        addFamous(db, new Person(context.getString(R.string.valisy_zhukovsky), -5897750400000L));
-        addFamous(db, new Person(context.getString(R.string.maybach), -3909686400000L));
-        addFamous(db, new Person(context.getString(R.string.soseki), -3246998400000L));
-        addFamous(db, new Person(context.getString(R.string.berg), -2678918400000L));
-        addFamous(db, new Person(context.getString(R.string.valier), -2363385600000L));
-        addFamous(db, new Person(context.getString(R.string.monod), -1890086400000L));
-
-        // 10 february
-        addFamous(db, new Person(context.getString(R.string.molter), -8643110400000L));
-        addFamous(db, new Person(context.getString(R.string.lamb), -6150124800000L));
-        addFamous(db, new Person(context.getString(R.string.navier), -5834505600000L));
-        addFamous(db, new Person(context.getString(R.string.pasternak), -2521065600000L));
-        addFamous(db, new Person(context.getString(R.string.brecht), -2268604800000L));
-
-        // 11 february
-        addFamous(db, new Person(context.getString(R.string.talbot), -5361120000000L));
-        addFamous(db, new Person(context.getString(R.string.edison), -3877977600000L));
-        addFamous(db, new Person(context.getString(R.string.henry), -2615673600000L));
-        addFamous(db, new Person(context.getString(R.string.sheldon), -1668988800000L));
-        addFamous(db, new Person(context.getString(R.string.nielsen), -1384992000000L));
-        addFamous(db, new Person(context.getString(R.string.aniston), -27993600000L));
-
-        // 12 february
-        addFamous(db, new Person(context.getString(R.string.gottsched), -8516707200000L));
-        addFamous(db, new Person(context.getString(R.string.darwin), -5077036800000L));
-        addFamous(db, new Person(context.getString(R.string.lincoln), -5077036800000L));
-        addFamous(db, new Person(context.getString(R.string.roerich), -2868048000000L));
-        addFamous(db, new Person(context.getString(R.string.anna_pavlova), -2804889600000L));
-        addFamous(db, new Person(context.getString(R.string.byung_chul), -1889827200000L));
-
-        // 13 february
-        addFamous(db, new Person(context.getString(R.string.malthus), -6433862400000L));
-        addFamous(db, new Person(context.getString(R.string.krylov), -6339168000000L));
-        addFamous(db, new Person(context.getString(R.string.chaliapin), -3057264000000L));
-        addFamous(db, new Person(context.getString(R.string.shockley), -1889740800000L));
-        addFamous(db, new Person(context.getString(R.string.collina), -311904000000L));
-        addFamous(db, new Person(context.getString(R.string.robbie_williams), 129945600000L));
-
-        // 14 february
-        addFamous(db, new Person(context.getString(R.string.alberti), -17856720000000L));
-        addFamous(db, new Person(context.getString(R.string.babur), -15363648000000L));
-        addFamous(db, new Person(context.getString(R.string.ferris), -3499027200000L));
-        addFamous(db, new Person(context.getString(R.string.germi), -1763424000000L));
-        addFamous(db, new Person(context.getString(R.string.sergey_kapitsa), -1321660800000L));
-        addFamous(db, new Person(context.getString(R.string.alan_parker), -816739200000L));
-
-        // 15 february
-        addFamous(db, new Person(context.getString(R.string.galilei), -12807417600000L));
-        addFamous(db, new Person(context.getString(R.string.praetorius), -12586492800000L));
-        addFamous(db, new Person(context.getString(R.string.bentham), -7001769600000L));
-        addFamous(db, new Person(context.getString(R.string.stoney), -4540320000000L));
-        addFamous(db, new Person(context.getString(R.string.guillaume), -3435782400000L));
-        addFamous(db, new Person(context.getString(R.string.whitehead), -3435782400000L));
-        addFamous(db, new Person(context.getString(R.string.barrymore), -2773094400000L));
-
-        // 16 february
-        addFamous(db, new Person(context.getString(R.string.bouguer), -8579433600000L));
-        addFamous(db, new Person(context.getString(R.string.bodoni), -7254144000000L));
-        addFamous(db, new Person(context.getString(R.string.galton), -4666464000000L));
-        addFamous(db, new Person(context.getString(R.string.haeckel), -4287772800000L));
-        addFamous(db, new Person(context.getString(R.string.rossi), 287971200000L));
-
-        // 17 february
-        addFamous(db, new Person(context.getString(R.string.laennec), -5960131200000L));
-        addFamous(db, new Person(context.getString(R.string.beilstein), -4161456000000L));
-        addFamous(db, new Person(context.getString(R.string.john_watson), -3025382400000L));
-        addFamous(db, new Person(context.getString(R.string.fisher), -2520460800000L));
-        addFamous(db, new Person(context.getString(R.string.michael_bay), -153705600000L));
-        addFamous(db, new Person(context.getString(R.string.denise_richards), 35596800000L));
-
-        // 18 february
-        addFamous(db, new Person(context.getString(R.string.volta), -7096118400000L));
-        addFamous(db, new Person(context.getString(R.string.bates), -4571596800000L));
-        addFamous(db, new Person(context.getString(R.string.ernst_mach), -4161369600000L));
-        addFamous(db, new Person(context.getString(R.string.ferrari), -2267913600000L));
-        addFamous(db, new Person(context.getString(R.string.yoko_ono), -1163462400000L));
-        addFamous(db, new Person(context.getString(R.string.travolta), -500774400000L));
-
-        // 19 february
-        addFamous(db, new Person(context.getString(R.string.copernicus), -15678748800000L));
-        addFamous(db, new Person(context.getString(R.string.boccherini), -7159190400000L));
-        addFamous(db, new Person(context.getString(R.string.murchison), -5612889600000L));
-        addFamous(db, new Person(context.getString(R.string.ducommun), -4319049600000L));
-        addFamous(db, new Person(context.getString(R.string.arrhenius), -3498595200000L));
-        addFamous(db, new Person(context.getString(R.string.del_toro), -90460800000L));
-
-        // 20 february
-        addFamous(db, new Person(context.getString(R.string.reil), -6654182400000L));
-        addFamous(db, new Person(context.getString(R.string.boltzmann), -3971894400000L));
-        addFamous(db, new Person(context.getString(R.string.crawford), -121910400000L));
-        addFamous(db, new Person(context.getString(R.string.cobain), -90374400000L));
-        addFamous(db, new Person(context.getString(R.string.rihanna), 572313600000L));
-
-        // 21 february
-        addFamous(db, new Person(context.getString(R.string.delibes), -4224268800000L));
-        addFamous(db, new Person(context.getString(R.string.calment), -2993500800000L));
-        addFamous(db, new Person(context.getString(R.string.sullivan), -2457043200000L));
-        addFamous(db, new Person(context.getString(R.string.henrik_dam), -2362348800000L));
-        addFamous(db, new Person(context.getString(R.string.givenchy), -1352592000000L));
-        addFamous(db, new Person(context.getString(R.string.palahniuk), -248054400000L));
-
-        // 22 february
-        addFamous(db, new Person(context.getString(R.string.washington), -7506086400000L));
-        addFamous(db, new Person(context.getString(R.string.schopenhauer), -5738860800000L));
-        addFamous(db, new Person(context.getString(R.string.quetelet), -5486400000000L));
-        addFamous(db, new Person(context.getString(R.string.janssen), -4602873600000L));
-        addFamous(db, new Person(context.getString(R.string.hertz), -3561408000000L));
-        addFamous(db, new Person(context.getString(R.string.bronsted), -2867184000000L));
-        addFamous(db, new Person(context.getString(R.string.drew_barrymore), 162259200000L));
-
-        // 23 february
-        addFamous(db, new Person(context.getString(R.string.handel), -8989056000000L));
-        addFamous(db, new Person(context.getString(R.string.chambers), -7789996800000L));
-        addFamous(db, new Person(context.getString(R.string.rothschild), -7127308800000L));
-        addFamous(db, new Person(context.getString(R.string.malevich), -2867097600000L));
-        addFamous(db, new Person(context.getString(R.string.jaspers), -2740867200000L));
-        addFamous(db, new Person(context.getString(R.string.blunt), 414806400000L));
-
-        // 24 february
-        addFamous(db, new Person(context.getString(R.string.banks), -7158758400000L));
-        addFamous(db, new Person(context.getString(R.string.grimm), -6369840000000L));
-        addFamous(db, new Person(context.getString(R.string.borgman), -3813696000000L));
-        addFamous(db, new Person(context.getString(R.string.freda), -1920326400000L));
-        addFamous(db, new Person(context.getString(R.string.legrand), -1194566400000L));
-        addFamous(db, new Person(context.getString(R.string.steve_jobs), -468720000000L));
-
-        // 25 february
-        addFamous(db, new Person(context.getString(R.string.battuta), -21011529600000L));
-        addFamous(db, new Person(context.getString(R.string.goldoni), -8294745600000L));
-        addFamous(db, new Person(context.getString(R.string.renoir), -4066070400000L));
-        addFamous(db, new Person(context.getString(R.string.karl_may), -4034534400000L));
-        addFamous(db, new Person(context.getString(R.string.caruso), -3056227200000L));
-        addFamous(db, new Person(context.getString(R.string.burgess), -1667779200000L));
-
-        // 26 february
-        addFamous(db, new Person(context.getString(R.string.marlowe), -12806467200000L));
-        addFamous(db, new Person(context.getString(R.string.arago), -5801587200000L));
-        addFamous(db, new Person(context.getString(R.string.hugo), -5296752000000L));
-        addFamous(db, new Person(context.getString(R.string.levi_strauss), -4444675200000L));
-        addFamous(db, new Person(context.getString(R.string.flammarion), -4034448000000L));
-
-        // 27 february
-        addFamous(db, new Person(context.getString(R.string.constantine), -53578800000000L));
-        addFamous(db, new Person(context.getString(R.string.longfellow), -5138899200000L));
-        addFamous(db, new Person(context.getString(R.string.ge), -4381516800000L));
-        addFamous(db, new Person(context.getString(R.string.best), -2235600000000L));
-        addFamous(db, new Person(context.getString(R.string.steinbeck), -2140992000000L));
-        addFamous(db, new Person(context.getString(R.string.taylor), -1194307200000L));
-
-        // 28 february
-        addFamous(db, new Person(context.getString(R.string.montaigne), -13784515200000L));
-        addFamous(db, new Person(context.getString(R.string.reaumur), -9051782400000L));
-        addFamous(db, new Person(context.getString(R.string.renan), -4633891200000L));
-        addFamous(db, new Person(context.getString(R.string.pauling), -2172441600000L));
-        addFamous(db, new Person(context.getString(R.string.gehry), -1288828800000L));
-        addFamous(db, new Person(context.getString(R.string.cooper), -1257292800000L));
-        addFamous(db, new Person(context.getString(R.string.vodianova), 383702400000L));
-
-        // 29 february
-        addFamous(db, new Person(context.getString(R.string.klenze), -5864486400000L));
-        addFamous(db, new Person(context.getString(R.string.rossini), -5612025600000L));
-        addFamous(db, new Person(context.getString(R.string.john_holland), -4097347200000L));
-        addFamous(db, new Person(context.getString(R.string.рollerith), -3466195200000L));
-        addFamous(db, new Person(context.getString(R.string.papert), -1320364800000L));
-
-        // 1 march
-        addFamous(db, new Person(context.getString(R.string.botticelli), -16561497600000L));
-        addFamous(db, new Person(context.getString(R.string.chopin), -5044032000000L));
-        addFamous(db, new Person(context.getString(R.string.akutagawa), -2456265600000L));
-        addFamous(db, new Person(context.getString(R.string.miller), -2077660800000L));
-        addFamous(db, new Person(context.getString(R.string.snyder), -121132800000L));
-        addFamous(db, new Person(context.getString(R.string.bieber), 762480000000L));
-
-        // 2 march
-        addFamous(db, new Person(context.getString(R.string.dekker), -4728326400000L));
-        addFamous(db, new Person(context.getString(R.string.smetana), -4602096000000L));
-        addFamous(db, new Person(context.getString(R.string.irving), -878428800000L));
-        addFamous(db, new Person(context.getString(R.string.bon_jovi), -247276800000L));
-        addFamous(db, new Person(context.getString(R.string.craig), -57888000000L));
-
-        // 3 march
-        addFamous(db, new Person(context.getString(R.string.pullman), -4381171200000L));
-        addFamous(db, new Person(context.getString(R.string.cantor), -3939321600000L));
-        addFamous(db, new Person(context.getString(R.string.bell), -3876249600000L));
-        addFamous(db, new Person(context.getString(R.string.frisch), -2361484800000L));
-        addFamous(db, new Person(context.getString(R.string.kornberg), -1635724800000L));
-
-        // 4 march
-        addFamous(db, new Person(context.getString(R.string.vivaldi), -9209203200000L));
-        addFamous(db, new Person(context.getString(R.string.raeburn), -6747753600000L));
-        addFamous(db, new Person(context.getString(R.string.gamow), -2077401600000L));
-        addFamous(db, new Person(context.getString(R.string.veksler), -1982793600000L));
-        addFamous(db, new Person(context.getString(R.string.mauriat), -1414713600000L));
-
-        // 5 march
-        addFamous(db, new Person(context.getString(R.string.mercator), -14446771200000L));
-        addFamous(db, new Person(context.getString(R.string.tiepolo), -8641036800000L));
-        addFamous(db, new Person(context.getString(R.string.marey), -4412534400000L));
-        addFamous(db, new Person(context.getString(R.string.tarrasch), -3402691200000L));
-        addFamous(db, new Person(context.getString(R.string.ando), -1888012800000L));
-        addFamous(db, new Person(context.getString(R.string.tobin), -1635552000000L));
-
-        // 6 march
-        addFamous(db, new Person(context.getString(R.string.michelangelo), -15614380800000L));
-        addFamous(db, new Person(context.getString(R.string.bergerac), -11070950400000L));
-        addFamous(db, new Person(context.getString(R.string.elizabeth_browning), -5169830400000L));
-        addFamous(db, new Person(context.getString(R.string.jerzy_lec), -1919462400000L));
-        addFamous(db, new Person(context.getString(R.string.marquez), -1351468800000L));
-        addFamous(db, new Person(context.getString(R.string.tereshkova), -1035849600000L));
-        addFamous(db, new Person(context.getString(R.string.shaquille), 68688000000L));
-
-        // 7 march
-        addFamous(db, new Person(context.getString(R.string.rob_roy), -9429868800000L));
-        addFamous(db, new Person(context.getString(R.string.niepce), -6463497600000L));
-        addFamous(db, new Person(context.getString(R.string.palmer), -3938976000000L));
-        addFamous(db, new Person(context.getString(R.string.montesquiou), -3623443200000L));
-        addFamous(db, new Person(context.getString(R.string.mondrian), -3086899200000L));
-        addFamous(db, new Person(context.getString(R.string.ravel), -2992291200000L));
-        addFamous(db, new Person(context.getString(R.string.kobo_abe), -1445990400000L));
-
-        // 8 march
-        addFamous(db, new Person(context.getString(R.string.fothergill), -8135942400000L));
-        addFamous(db, new Person(context.getString(R.string.potocki), -6589641600000L));
-        addFamous(db, new Person(context.getString(R.string.ignacy), -4664736000000L));
-        addFamous(db, new Person(context.getString(R.string.thompson), -3844195200000L));
-        addFamous(db, new Person(context.getString(R.string.otto_hahn), -2865974400000L));
-        addFamous(db, new Person(context.getString(R.string.kendall), -2645049600000L));
-        addFamous(db, new Person(context.getString(R.string.aiken), -2203286400000L));
-
-        // 9 march
-        addFamous(db, new Person(context.getString(R.string.vespucci), -16276809600000L));
-        addFamous(db, new Person(context.getString(R.string.shevchenko), -4917110400000L));
-        addFamous(db, new Person(context.getString(R.string.barragan), -2140128000000L));
-        addFamous(db, new Person(context.getString(R.string.kohn), -1477440000000L));
-        addFamous(db, new Person(context.getString(R.string.gagarin), -1130284800000L));
-        addFamous(db, new Person(context.getString(R.string.binoche), -183513600000L));
-
-        // 10 march
-        addFamous(db, new Person(context.getString(R.string.schlegel), -6242313600000L));
-        addFamous(db, new Person(context.getString(R.string.eichendorff), -5737392000000L));
-        addFamous(db, new Person(context.getString(R.string.blatter), -1067040000000L));
-        addFamous(db, new Person(context.getString(R.string.norris), -940809600000L));
-        addFamous(db, new Person(context.getString(R.string.bin_laden), -404352000000L));
-        addFamous(db, new Person(context.getString(R.string.stone), -372816000000L));
-
-        // 11 march
-        addFamous(db, new Person(context.getString(R.string.tasso), -13436409600000L));
-        addFamous(db, new Person(context.getString(R.string.verrier), -5011632000000L));
-        addFamous(db, new Person(context.getString(R.string.bertrand), -4664476800000L));
-        addFamous(db, new Person(context.getString(R.string.vannevar_bush), -2518560000000L));
-        addFamous(db, new Person(context.getString(R.string.bloembergen), -1571875200000L));
-        addFamous(db, new Person(context.getString(R.string.adams), -562032000000L));
-        addFamous(db, new Person(context.getString(R.string.knoxville), 37497600000L));
-
-        // 12 march
-        addFamous(db, new Person(context.getString(R.string.notre), -11259734400000L));
-        addFamous(db, new Person(context.getString(R.string.berkeley), -8987587200000L));
-        addFamous(db, new Person(context.getString(R.string.bazhenov), -7346678400000L));
-        addFamous(db, new Person(context.getString(R.string.kirchhoff), -4601232000000L));
-        addFamous(db, new Person(context.getString(R.string.newcomb), -4254163200000L));
-        addFamous(db, new Person(context.getString(R.string.perkin), -4159468800000L));
-        addFamous(db, new Person(context.getString(R.string.vernadsky), -3370550400000L));
-
-        // 13 march
-        addFamous(db, new Person(context.getString(R.string.bonnet), -7883049600000L));
-        addFamous(db, new Person(context.getString(R.string.lowell), -3622924800000L));
-        addFamous(db, new Person(context.getString(R.string.eliade), -1982016000000L));
-        addFamous(db, new Person(context.getString(R.string.hubbard), -1855785600000L));
-        addFamous(db, new Person(context.getString(R.string.scatman), -877478400000L));
-
-        // 14 march
-        addFamous(db, new Person(context.getString(R.string.telemann), -9113644800000L));
-        addFamous(db, new Person(context.getString(R.string.strauss), -5232211200000L));
-        addFamous(db, new Person(context.getString(R.string.banville), -4632681600000L));
-        addFamous(db, new Person(context.getString(R.string.schiaparelli), -4253990400000L));
-        addFamous(db, new Person(context.getString(R.string.ehrlich), -3654374400000L));
-        addFamous(db, new Person(context.getString(R.string.einstein), -2865456000000L));
-        addFamous(db, new Person(context.getString(R.string.caine), -1161388800000L));
-
-        // 15 march
-        addFamous(db, new Person(context.getString(R.string.sylvius), -11227939200000L));
-        addFamous(db, new Person(context.getString(R.string.loschmidt), -4695667200000L));
-        addFamous(db, new Person(context.getString(R.string.heyse), -4411670400000L));
-        addFamous(db, new Person(context.getString(R.string.behring), -3654288000000L));
-        addFamous(db, new Person(context.getString(R.string.haffkine), -3464899200000L));
-        addFamous(db, new Person(context.getString(R.string.alferov), -1255996800000L));
-
-        // 16 march
-        addFamous(db, new Person(context.getString(R.string.georg_ohm), -5705337600000L));
-        addFamous(db, new Person(context.getString(R.string.prudhomme), -4127587200000L));
-        addFamous(db, new Person(context.getString(R.string.beijerinck), -3748896000000L));
-        addFamous(db, new Person(context.getString(R.string.yayser), -3685737600000L));
-        addFamous(db, new Person(context.getString(R.string.damadian), -1066521600000L));
-        addFamous(db, new Person(context.getString(R.string.bertolucci), -940291200000L));
-        addFamous(db, new Person(context.getString(R.string.stallman), -530064000000L));
-
-        // 17 march
-        addFamous(db, new Person(context.getString(R.string.daimler), -4285267200000L));
-        addFamous(db, new Person(context.getString(R.string.vrubel), -3590956800000L));
-        addFamous(db, new Person(context.getString(R.string.hess), -2802038400000L));
-        addFamous(db, new Person(context.getString(R.string.nureyev), -1003363200000L));
-        addFamous(db, new Person(context.getString(R.string.gibson), -687744000000L));
-        addFamous(db, new Person(context.getString(R.string.russell), -593136000000L));
-
-        // 18 march
-        addFamous(db, new Person(context.getString(R.string.steiner), -5484240000000L));
-        addFamous(db, new Person(context.getString(R.string.hebbel), -4947868800000L));
-        addFamous(db, new Person(context.getString(R.string.diesel), -3527798400000L));
-        addFamous(db, new Person(context.getString(R.string.stekel), -3212179200000L));
-        addFamous(db, new Person(context.getString(R.string.koffka), -2644185600000L));
-        addFamous(db, new Person(context.getString(R.string.besson), -340588800000L));
-
-        // 19 march
-        addFamous(db, new Person(context.getString(R.string.burton), -4695321600000L));
-        addFamous(db, new Person(context.getString(R.string.wheeler), -3306787200000L));
-        addFamous(db, new Person(context.getString(R.string.reger), -3054326400000L));
-        addFamous(db, new Person(context.getString(R.string.haworth), -2738793600000L));
-        addFamous(db, new Person(context.getString(R.string.joliot_curie), -2202336000000L));
-        addFamous(db, new Person(context.getString(R.string.molina), -845424000000L));
-        addFamous(db, new Person(context.getString(R.string.bruce_willis), -466732800000L));
-
-        // 20 march
-        addFamous(db, new Person(context.getString(R.string.ibsen), -4474310400000L));
-        addFamous(db, new Person(context.getString(R.string.gigli), -2517782400000L));
-        addFamous(db, new Person(context.getString(R.string.skinner), -2076019200000L));
-        addFamous(db, new Person(context.getString(R.string.cattell), -2044483200000L));
-        addFamous(db, new Person(context.getString(R.string.neher), -813715200000L));
-        addFamous(db, new Person(context.getString(R.string.bennington), 196128000000L));
-
-        // 21 march
-        addFamous(db, new Person(context.getString(R.string.fourier), -6367593600000L));
-        addFamous(db, new Person(context.getString(R.string.mozhaysky), -4568918400000L));
-        addFamous(db, new Person(context.getString(R.string.gilbert), -1192320000000L));
-        addFamous(db, new Person(context.getString(R.string.oldman), -371865600000L));
-        addFamous(db, new Person(context.getString(R.string.senna), -308707200000L));
-        addFamous(db, new Person(context.getString(R.string.ronaldinho), 322444800000L));
-
-        // 22 march
-        addFamous(db, new Person(context.getString(R.string.van_dyck), -11700720000000L));
-        addFamous(db, new Person(context.getString(R.string.pelletier), -5736355200000L));
-        addFamous(db, new Person(context.getString(R.string.lysenko), -4032374400000L));
-        addFamous(db, new Person(context.getString(R.string.millikan), -3211833600000L));
-        addFamous(db, new Person(context.getString(R.string.richter), -1223856000000L));
-        addFamous(db, new Person(context.getString(R.string.webber), -687312000000L));
-
-        // 23 march
-        addFamous(db, new Person(context.getString(R.string.laplace), -6967036800000L));
-        addFamous(db, new Person(context.getString(R.string.du_gard), -2801520000000L));
-        addFamous(db, new Person(context.getString(R.string.noether), -2769984000000L));
-        addFamous(db, new Person(context.getString(R.string.juan_gris), -2612217600000L));
-        addFamous(db, new Person(context.getString(R.string.fromm), -2201990400000L));
-        addFamous(db, new Person(context.getString(R.string.kurosawa), -1886457600000L));
-        addFamous(db, new Person(context.getString(R.string.von_braun), -1823299200000L));
-
-        // 24 march
-        addFamous(db, new Person(context.getString(R.string.agricola), -15013209600000L));
-        addFamous(db, new Person(context.getString(R.string.priestley), -7471872000000L));
-        addFamous(db, new Person(context.getString(R.string.morris), -4284662400000L));
-        addFamous(db, new Person(context.getString(R.string.houdini), -3022358400000L));
-        addFamous(db, new Person(context.getString(R.string.dario_fo), -1381449600000L));
-        addFamous(db, new Person(context.getString(R.string.ballmer), -434678400000L));
-        addFamous(db, new Person(context.getString(R.string.jim_parsons), 101779200000L));
-
-        // 25 march
-        addFamous(db, new Person(context.getString(R.string.amici), -5799254400000L));
-        addFamous(db, new Person(context.getString(R.string.toscanini), -3243196800000L));
-        addFamous(db, new Person(context.getString(R.string.aretha_franklin), -876441600000L));
-        addFamous(db, new Person(context.getString(R.string.elton_john), -718675200000L));
-        addFamous(db, new Person(context.getString(R.string.parker), -150595200000L));
-
-        // 26 march
-        addFamous(db, new Person(context.getString(R.string.gesner), -14318726400000L));
-        addFamous(db, new Person(context.getString(R.string.prorok_divis), -8576150400000L));
-        addFamous(db, new Person(context.getString(R.string.benjamin_thompson), -6840547200000L));
-        addFamous(db, new Person(context.getString(R.string.feddersen), -4347561600000L));
-        addFamous(db, new Person(context.getString(R.string.frost), -3022185600000L));
-        addFamous(db, new Person(context.getString(R.string.tennessee_williams), -1854662400000L));
-        addFamous(db, new Person(context.getString(R.string.katz), -1854662400000L));
-        addFamous(db, new Person(context.getString(R.string.anfinsen), -1696809600000L));
-        addFamous(db, new Person(context.getString(R.string.nimoy), -1223510400000L));
-        addFamous(db, new Person(context.getString(R.string.tinto_brass), -1160352000000L));
-        addFamous(db, new Person(context.getString(R.string.tyler), -686966400000L));
-        addFamous(db, new Person(context.getString(R.string.knightley), 480643200000L));
-
-        // 27 march
-        addFamous(db, new Person(context.getString(R.string.hittorf), -4599936000000L));
-        addFamous(db, new Person(context.getString(R.string.rontgen), -3937248000000L));
-        addFamous(db, new Person(context.getString(R.string.wallach), -3874176000000L));
-        addFamous(db, new Person(context.getString(R.string.pearson), -3558556800000L));
-        addFamous(db, new Person(context.getString(R.string.henry_royce), -3369254400000L));
-        addFamous(db, new Person(context.getString(R.string.steichen), -2864332800000L));
-        addFamous(db, new Person(context.getString(R.string.tarantino), -213580800000L));
-
-        // 28 march
-        addFamous(db, new Person(context.getString(R.string.raphael), -15360019200000L));
-        addFamous(db, new Person(context.getString(R.string.comenius), -11921040000000L));
-        addFamous(db, new Person(context.getString(R.string.tamburini), -5357232000000L));
-        addFamous(db, new Person(context.getString(R.string.maxim_gorky), -3211315200000L));
-        addFamous(db, new Person(context.getString(R.string.heymans), -2453932800000L));
-        addFamous(db, new Person(context.getString(R.string.brzezinski), -1317945600000L));
-        addFamous(db, new Person(context.getString(R.string.friedman), -1254873600000L));
-        addFamous(db, new Person(context.getString(R.string.lady_gaga), 512352000000L));
-
-        // 29 march
-        addFamous(db, new Person(context.getString(R.string.santorio), -12898396800000L));
-        addFamous(db, new Person(context.getString(R.string.musaus), -7408368000000L));
-        addFamous(db, new Person(context.getString(R.string.schneider), -5199379200000L));
-        addFamous(db, new Person(context.getString(R.string.walton), -1633478400000L));
-        addFamous(db, new Person(context.getString(R.string.vane), -1349481600000L));
-        addFamous(db, new Person(context.getString(R.string.gleeson), -465868800000L));
-
-        // 30 march
-        addFamous(db, new Person(context.getString(R.string.goya), -7061126400000L));
-        addFamous(db, new Person(context.getString(R.string.rozier), -6808665600000L));
-        addFamous(db, new Person(context.getString(R.string.bunsen), -5009990400000L));
-        addFamous(db, new Person(context.getString(R.string.verlaine), -3968524800000L));
-        addFamous(db, new Person(context.getString(R.string.van_gogh), -3684528000000L));
-        addFamous(db, new Person(context.getString(R.string.sharpe), -1317772800000L));
-        addFamous(db, new Person(context.getString(R.string.dion), -55468800000L));
-
-        // 31 march
-        addFamous(db, new Person(context.getString(R.string.descartes), -11794550400000L));
-        addFamous(db, new Person(context.getString(R.string.marvell), -11005632000000L));
-        addFamous(db, new Person(context.getString(R.string.bach), -8985945600000L));
-        addFamous(db, new Person(context.getString(R.string.haydn), -7502803200000L));
-        addFamous(db, new Person(context.getString(R.string.chukovsky), -2769292800000L));
-        addFamous(db, new Person(context.getString(R.string.william_bragg), -2516832000000L));
-        addFamous(db, new Person(context.getString(R.string.walken), -844387200000L));
-
-        // 1 april
-        addFamous(db, new Person(context.getString(R.string.harvey), -12361680000000L));
-        addFamous(db, new Person(context.getString(R.string.germain), -6114182400000L));
-        addFamous(db, new Person(context.getString(R.string.gogol), -5072889600000L));
-        addFamous(db, new Person(context.getString(R.string.zsigmondy), -3305664000000L));
-        addFamous(db, new Person(context.getString(R.string.busoni), -3274128000000L));
-        addFamous(db, new Person(context.getString(R.string.rachmaninoff), -3053203200000L));
-        addFamous(db, new Person(context.getString(R.string.lon_chaney), -2737670400000L));
-        addFamous(db, new Person(context.getString(R.string.maslow), -1948752000000L));
-
-        // 2 april
-        addFamous(db, new Person(context.getString(R.string.grimaldi), -11100153600000L));
-        addFamous(db, new Person(context.getString(R.string.casanova), -7723555200000L));
-        addFamous(db, new Person(context.getString(R.string.andersen), -5199033600000L));
-        addFamous(db, new Person(context.getString(R.string.butler), -3400272000000L));
-        addFamous(db, new Person(context.getString(R.string.chrysler), -2990044800000L));
-        addFamous(db, new Person(context.getString(R.string.fassbender), 228787200000L));
-
-        // 3 april
-        addFamous(db, new Person(context.getString(R.string.washington_irving), -5893171200000L));
-        addFamous(db, new Person(context.getString(R.string.velde), -3368649600000L));
-        addFamous(db, new Person(context.getString(R.string.jansky), -3053030400000L));
-        addFamous(db, new Person(context.getString(R.string.brando), -1443657600000L));
-        addFamous(db, new Person(context.getString(R.string.baldwin), -370742400000L));
-        addFamous(db, new Person(context.getString(R.string.murphy), -276048000000L));
-
-        // 4 april
-        addFamous(db, new Person(context.getString(R.string.reid), -4788633600000L));
-        addFamous(db, new Person(context.getString(R.string.siemens), -4630867200000L));
-        addFamous(db, new Person(context.getString(R.string.simmons), -3841862400000L));
-        addFamous(db, new Person(context.getString(R.string.weaving), -307497600000L));
-        addFamous(db, new Person(context.getString(R.string.robert_downey), -149731200000L));
-        addFamous(db, new Person(context.getString(R.string.ledger), 292032000000L));
-
-        // 5 april
-        addFamous(db, new Person(context.getString(R.string.hobbes), -12046579200000L));
-        addFamous(db, new Person(context.getString(R.string.viviani), -10973664000000L));
-        addFamous(db, new Person(context.getString(R.string.yale), -10121587200000L));
-        addFamous(db, new Person(context.getString(R.string.spohr), -5861376000000L));
-        addFamous(db, new Person(context.getString(R.string.dupre), -5009472000000L));
-        addFamous(db, new Person(context.getString(R.string.nadar), -4725388800000L));
-        addFamous(db, new Person(context.getString(R.string.lister), -4504550400000L));
-        addFamous(db, new Person(context.getString(R.string.hailey), -1569715200000L));
-
-        // 6 april
-        addFamous(db, new Person(context.getString(R.string.gosse), -5040921600000L));
-        addFamous(db, new Person(context.getString(R.string.moreau), -4536000000000L));
-        addFamous(db, new Person(context.getString(R.string.douglas), -2453155200000L));
-        addFamous(db, new Person(context.getString(R.string.lynen), -1853712000000L));
-        addFamous(db, new Person(context.getString(R.string.fischer), -1569628800000L));
-        addFamous(db, new Person(context.getString(R.string.james_watson), -1317168000000L));
-
-        // 7 april
-        addFamous(db, new Person(context.getString(R.string.gerard_dou), -11257488000000L));
-        addFamous(db, new Person(context.getString(R.string.wordsworth), -6303052800000L));
-        addFamous(db, new Person(context.getString(R.string.selmi), -4819910400000L));
-        addFamous(db, new Person(context.getString(R.string.christiansen), -2484691200000L));
-        addFamous(db, new Person(context.getString(R.string.holiday), -1727395200000L));
-        addFamous(db, new Person(context.getString(R.string.coppola), -970012800000L));
-        addFamous(db, new Person(context.getString(R.string.chan), -496627200000L));
-        addFamous(db, new Person(context.getString(R.string.crowe), -181008000000L));
-
-        // 8 april
-        addFamous(db, new Person(context.getString(R.string.tartini), -8764329600000L));
-        addFamous(db, new Person(context.getString(R.string.von_hofmann), -4788288000000L));
-        addFamous(db, new Person(context.getString(R.string.husserl), -3494448000000L));
-        addFamous(db, new Person(context.getString(R.string.hicks), -2074377600000L));
-        addFamous(db, new Person(context.getString(R.string.calvin), -1853539200000L));
-
-        // 9 april
-        addFamous(db, new Person(context.getString(R.string.timur), -19997884800000L));
-        addFamous(db, new Person(context.getString(R.string.boehm), -5545497600000L));
-        addFamous(db, new Person(context.getString(R.string.brunel), -5166892800000L));
-        addFamous(db, new Person(context.getString(R.string.muybridge), -4409510400000L));
-        addFamous(db, new Person(context.getString(R.string.pincus), -2105913600000L));
-        addFamous(db, new Person(context.getString(R.string.eckert), -1600992000000L));
-        addFamous(db, new Person(context.getString(R.string.hefner), -1380067200000L));
-        addFamous(db, new Person(context.getString(R.string.belmondo), -1159142400000L));
-        addFamous(db, new Person(context.getString(R.string.stewart), 639619200000L));
-
-        // 10 april
-        addFamous(db, new Person(context.getString(R.string.grotius), -12204000000000L));
-        addFamous(db, new Person(context.getString(R.string.tschirnhaus), -10058083200000L));
-        addFamous(db, new Person(context.getString(R.string.heinicke), -7659792000000L));
-        addFamous(db, new Person(context.getString(R.string.pulitzer), -3872966400000L));
-        addFamous(db, new Person(context.getString(R.string.seagal), -559440000000L));
-        addFamous(db, new Person(context.getString(R.string.canet), 103248000000L));
-
-        // 11 april
-        addFamous(db, new Person(context.getString(R.string.parkinson), -6144940800000L));
-        addFamous(db, new Person(context.getString(R.string.bertini), -2578953600000L));
-        addFamous(db, new Person(context.getString(R.string.julian), -2231884800000L));
-        addFamous(db, new Person(context.getString(R.string.lavey), -1253664000000L));
-        addFamous(db, new Person(context.getString(R.string.wiles), -527817600000L));
-
-        // 12 april
-        addFamous(db, new Person(context.getString(R.string.meyerhof), -2705097600000L));
-        addFamous(db, new Person(context.getString(R.string.lily_pons), -2263334400000L));
-        addFamous(db, new Person(context.getString(R.string.tinbergen), -2105654400000L));
-        addFamous(db, new Person(context.getString(R.string.cabalie), -1158883200000L));
-        addFamous(db, new Person(context.getString(R.string.hancock), -937958400000L));
-        addFamous(db, new Person(context.getString(R.string.garcia), -433036800000L));
-
-        // 13 april
-        addFamous(db, new Person(context.getString(R.string.favre), -14632790400000L));
-        addFamous(db, new Person(context.getString(R.string.fawkes), -12613104000000L));
-        addFamous(db, new Person(context.getString(R.string.bramah), -6996758400000L));
-        addFamous(db, new Person(context.getString(R.string.trevithick), -6270998400000L));
-        addFamous(db, new Person(context.getString(R.string.meucci), -5103388800000L));
-        addFamous(db, new Person(context.getString(R.string.lacan), -2168640000000L));
-        addFamous(db, new Person(context.getString(R.string.beckett), -2010873600000L));
-
-        // 14 april
-        addFamous(db, new Person(context.getString(R.string.ortelius), -13970016000000L));
-        addFamous(db, new Person(context.getString(R.string.huygens), -10751961600000L));
-        addFamous(db, new Person(context.getString(R.string.fonvizin), -7091366400000L));
-        addFamous(db, new Person(context.getString(R.string.rohlfs), -4377542400000L));
-        addFamous(db, new Person(context.getString(R.string.horsley), -3557001600000L));
-        addFamous(db, new Person(context.getString(R.string.matsumoto), -148867200000L));
-
-        // 15 april
-        addFamous(db, new Person(context.getString(R.string.da_vinci), -16336684800000L));
-        addFamous(db, new Person(context.getString(R.string.leonhard_euler), -8290512000000L));
-        addFamous(db, new Person(context.getString(R.string.cullen), -8195817600000L));
-        addFamous(db, new Person(context.getString(R.string.busch), -4345833600000L));
-        addFamous(db, new Person(context.getString(R.string.gumilyov), -2641766400000L));
-        addFamous(db, new Person(context.getString(R.string.emma_thompson), -338169600000L));
-        addFamous(db, new Person(context.getString(R.string.emma_watson), 640137600000L));
-
-        // 16 april
-        addFamous(db, new Person(context.getString(R.string.apianus), -14979686400000L));
-        addFamous(db, new Person(context.getString(R.string.hadley), -9079257600000L));
-        addFamous(db, new Person(context.getString(R.string.eisenstein), -4629830400000L));
-        addFamous(db, new Person(context.getString(R.string.france), -3967056000000L));
-        addFamous(db, new Person(context.getString(R.string.wright), -3241296000000L));
-        addFamous(db, new Person(context.getString(R.string.chaplin), -2546985600000L));
-
-        // 17 april
-        addFamous(db, new Person(context.getString(R.string.morgan), -4187894400000L));
-        addFamous(db, new Person(context.getString(R.string.starling), -3272745600000L));
-        addFamous(db, new Person(context.getString(R.string.saeverud), -2294438400000L));
-        addFamous(db, new Person(context.getString(R.string.kohler), -748224000000L));
-        addFamous(db, new Person(context.getString(R.string.garner), 72316800000L));
-        addFamous(db, new Person(context.getString(R.string.beckham), 135388800000L));
-
-        // 18 april
-        addFamous(db, new Person(context.getString(R.string.ricardo), -6238944000000L));
-        addFamous(db, new Person(context.getString(R.string.boisbaudran), -4156272000000L));
-        addFamous(db, new Person(context.getString(R.string.goldstein), -937440000000L));
-        addFamous(db, new Person(context.getString(R.string.sokolov), -621907200000L));
-        addFamous(db, new Person(context.getString(R.string.eric_roberts), -432518400000L));
-        addFamous(db, new Person(context.getString(R.string.tennant), 40780800000L));
-
-        // 19 april
-        addFamous(db, new Person(context.getString(R.string.ehrenberg), -5513097600000L));
-        addFamous(db, new Person(context.getString(R.string.gerstner), -5481475200000L));
-        addFamous(db, new Person(context.getString(R.string.fechner), -5323795200000L));
-        addFamous(db, new Person(context.getString(R.string.hughes), -2199657600000L));
-        addFamous(db, new Person(context.getString(R.string.seaborg), -1820966400000L));
-        addFamous(db, new Person(context.getString(R.string.judd), -53740800000L));
-        addFamous(db, new Person(context.getString(R.string.christensen), 356486400000L));
-
-        // 20 april
-        addFamous(db, new Person(context.getString(R.string.aretino), -15073948800000L));
-        addFamous(db, new Person(context.getString(R.string.pinel), -7090848000000L));
-        addFamous(db, new Person(context.getString(R.string.raffaelli), -3777408000000L));
-        addFamous(db, new Person(context.getString(R.string.hitler), -2546640000000L));
-        addFamous(db, new Person(context.getString(R.string.lloyd), -2420409600000L));
-        addFamous(db, new Person(context.getString(R.string.leiris), -2168035200000L));
-        addFamous(db, new Person(context.getString(R.string.muller), -1347580800000L));
-        addFamous(db, new Person(context.getString(R.string.sedgwick), -842659200000L));
-
-        // 21 april
-        addFamous(db, new Person(context.getString(R.string.riebeeck), -11066976000000L));
-        addFamous(db, new Person(context.getString(R.string.kulibin), -7406380800000L));
-        addFamous(db, new Person(context.getString(R.string.frobel), -5923152000000L));
-        addFamous(db, new Person(context.getString(R.string.starley), -4408473600000L));
-        addFamous(db, new Person(context.getString(R.string.flemming), -3998246400000L));
-        addFamous(db, new Person(context.getString(R.string.weber), -3335472000000L));
-        addFamous(db, new Person(context.getString(R.string.bridgman), -2767478400000L));
-        addFamous(db, new Person(context.getString(R.string.karrer), -2546553600000L));
-
-        // 22 april
-        addFamous(db, new Person(context.getString(R.string.fielding), -8289907200000L));
-        addFamous(db, new Person(context.getString(R.string.kant), -7753363200000L));
-        addFamous(db, new Person(context.getString(R.string.plante), -4282156800000L));
-        addFamous(db, new Person(context.getString(R.string.eichler), -4124390400000L));
-        addFamous(db, new Person(context.getString(R.string.bohr), -2609625600000L));
-        addFamous(db, new Person(context.getString(R.string.mabokov), -2230934400000L));
-        addFamous(db, new Person(context.getString(R.string.oppenheimer), -2073168000000L));
-        addFamous(db, new Person(context.getString(R.string.mingus), -1505174400000L));
-        addFamous(db, new Person(context.getString(R.string.nicholson), -1031788800000L));
-
-        // 23 april
-        addFamous(db, new Person(context.getString(R.string.planck), -3524688000000L));
-        addFamous(db, new Person(context.getString(R.string.fibiger), -3240691200000L));
-        addFamous(db, new Person(context.getString(R.string.marsh), -2357078400000L));
-        addFamous(db, new Person(context.getString(R.string.ohlin), -2230848000000L));
-        addFamous(db, new Person(context.getString(R.string.laxness), -2136240000000L));
-        addFamous(db, new Person(context.getString(R.string.cena), 230601600000L));
-        addFamous(db, new Person(context.getString(R.string.patel), 640828800000L));
-
-        // 24 april
-        addFamous(db, new Person(context.getString(R.string.martini), -8321270400000L));
-        addFamous(db, new Person(context.getString(R.string.cartwright), -7153660800000L));
-        addFamous(db, new Person(context.getString(R.string.spitteler), -3934828800000L));
-        addFamous(db, new Person(context.getString(R.string.bertillon), -3682368000000L));
-        addFamous(db, new Person(context.getString(R.string.sundback), -2830291200000L));
-        addFamous(db, new Person(context.getString(R.string.streisand), -873849600000L));
-
-        // 25 april
-        addFamous(db, new Person(context.getString(R.string.marc_brunel), -6333033600000L));
-        addFamous(db, new Person(context.getString(R.string.klein), -3808512000000L));
-        addFamous(db, new Person(context.getString(R.string.felix_dherelle), -3051129600000L));
-        addFamous(db, new Person(context.getString(R.string.marconi), -3019593600000L));
-        addFamous(db, new Person(context.getString(R.string.pauli), -2199139200000L));
-        addFamous(db, new Person(context.getString(R.string.fitzgerald), -1662681600000L));
-        addFamous(db, new Person(context.getString(R.string.al_pacino), -936835200000L));
-        addFamous(db, new Person(context.getString(R.string.cruyff), -715996800000L));
-        addFamous(db, new Person(context.getString(R.string.zellweger), -21686400000L));
-
-        // 26 april
-        addFamous(db, new Person(context.getString(R.string.aurelius), -58338921600000L));
-        addFamous(db, new Person(context.getString(R.string.shakespeare), -12801283200000L));
-        addFamous(db, new Person(context.getString(R.string.uhland), -5764953600000L));
-        addFamous(db, new Person(context.getString(R.string.delacroix), -5417798400000L));
-        addFamous(db, new Person(context.getString(R.string.krupp), -4976035200000L));
-        addFamous(db, new Person(context.getString(R.string.billroth), -4439577600000L));
-        addFamous(db, new Person(context.getString(R.string.richardson), -2861740800000L));
-        addFamous(db, new Person(context.getString(R.string.wittgenstein), -2546121600000L));
-        addFamous(db, new Person(context.getString(R.string.charles_richter), -2199052800000L));
-
-        // 27 april
-        addFamous(db, new Person(context.getString(R.string.kolreuter), -7468934400000L));
-        addFamous(db, new Person(context.getString(R.string.wollstonecraft), -6648480000000L));
-        addFamous(db, new Person(context.getString(R.string.morse), -5638636800000L));
-        addFamous(db, new Person(context.getString(R.string.carothers), -2325110400000L));
-        addFamous(db, new Person(context.getString(R.string.lantz), -2230502400000L));
-
-        // 28 april
-        addFamous(db, new Person(context.getString(R.string.achard), -6837696000000L));
-        addFamous(db, new Person(context.getString(R.string.kraus), -3019334400000L));
-        addFamous(db, new Person(context.getString(R.string.godel), -2009577600000L));
-        addFamous(db, new Person(context.getString(R.string.schindler), -1946419200000L));
-        addFamous(db, new Person(context.getString(R.string.lamborghini), -1693958400000L));
-        addFamous(db, new Person(context.getString(R.string.harper_lee), -1378425600000L));
-        addFamous(db, new Person(context.getString(R.string.yves_klein), -1315267200000L));
-        addFamous(db, new Person(context.getString(R.string.cruz), 136339200000L));
-
-        // 29 april
-        addFamous(db, new Person(context.getString(R.string.drais), -5827766400000L));
-        addFamous(db, new Person(context.getString(R.string.poincare), -3650400000000L));
-        addFamous(db, new Person(context.getString(R.string.hearst), -3366403200000L));
-        addFamous(db, new Person(context.getString(R.string.urey), -2419632000000L));
-        addFamous(db, new Person(context.getString(R.string.jack_williamson), -1946332800000L));
-        addFamous(db, new Person(context.getString(R.string.pfeiffer), -368496000000L));
-        addFamous(db, new Person(context.getString(R.string.thurman), 10195200000L));
-
-        // 30 april
-        addFamous(db, new Person(context.getString(R.string.gauss), -6080140800000L));
-        addFamous(db, new Person(context.getString(R.string.bleuler), -3555619200000L));
-        addFamous(db, new Person(context.getString(R.string.kuznets), -2167171200000L));
-        addFamous(db, new Person(context.getString(R.string.schultz), -2135635200000L));
-        addFamous(db, new Person(context.getString(R.string.shannon), -1693785600000L));
-        addFamous(db, new Person(context.getString(R.string.gal_gadot), 483667200000L));
-
-        // 1 may
-        addFamous(db, new Person(context.getString(R.string.addison), -9393494400000L));
-        addFamous(db, new Person(context.getString(R.string.cajal), -3713299200000L));
-        addFamous(db, new Person(context.getString(R.string.chardin), -2798150400000L));
-        addFamous(db, new Person(context.getString(R.string.woo), -747014400000L));
-        addFamous(db, new Person(context.getString(R.string.dornan), 389059200000L));
-
-        // 2 may
-        addFamous(db, new Person(context.getString(R.string.kirche), -11602483200000L));
-        addFamous(db, new Person(context.getString(R.string.jerome), -3492374400000L));
-        addFamous(db, new Person(context.getString(R.string.wood), -3208291200000L));
-        addFamous(db, new Person(context.getString(R.string.marshall), -2135462400000L));
-        addFamous(db, new Person(context.getString(R.string.springer), -1819843200000L));
-        addFamous(db, new Person(context.getString(R.string.johnson), 73612800000L));
-        addFamous(db, new Person(context.getString(R.string.david_beckham), 168220800000L));
-
-        // 3 may
-        addFamous(db, new Person(context.getString(R.string.machiavelli), -15798672000000L));
-        addFamous(db, new Person(context.getString(R.string.haldane), -3460665600000L));
-        addFamous(db, new Person(context.getString(R.string.ekman), -3018902400000L));
-        addFamous(db, new Person(context.getString(R.string.coty), -3018902400000L));
-        addFamous(db, new Person(context.getString(R.string.thomson), -2450822400000L));
-        addFamous(db, new Person(context.getString(R.string.kastler), -2135376000000L));
-
-        // 4 may
-        addFamous(db, new Person(context.getString(R.string.cristofori), -9929779200000L));
-        addFamous(db, new Person(context.getString(R.string.borda), -7468329600000L));
-        addFamous(db, new Person(context.getString(R.string.brockhaus), -6237561600000L));
-        addFamous(db, new Person(context.getString(R.string.thenard), -6079795200000L));
-        addFamous(db, new Person(context.getString(R.string.liddell), -3713040000000L));
-        addFamous(db, new Person(context.getString(R.string.mandelstam), -2861049600000L));
-        addFamous(db, new Person(context.getString(R.string.hepburn), -1283212800000L));
-
-        // 5 may
-        addFamous(db, new Person(context.getString(R.string.kierkegaard), -4943721600000L));
-        addFamous(db, new Person(context.getString(R.string.marx), -4785955200000L));
-        addFamous(db, new Person(context.getString(R.string.sienkiewicz), -3902342400000L));
-        addFamous(db, new Person(context.getString(R.string.schawlow), -1535587200000L));
-        addFamous(db, new Person(context.getString(R.string.adele), 578793600000L));
-
-        // 6 may
-        addFamous(db, new Person(context.getString(R.string.freud), -3586636800000L));
-        addFamous(db, new Person(context.getString(R.string.peary), -3586636800000L));
-        addFamous(db, new Person(context.getString(R.string.grignard), -3113337600000L));
-        addFamous(db, new Person(context.getString(R.string.martinson), -2071958400000L));
-        addFamous(db, new Person(context.getString(R.string.clooney), -273196800000L));
-
-        // 7 may
-        addFamous(db, new Person(context.getString(R.string.clairaut), -8099222400000L));
-        addFamous(db, new Person(context.getString(R.string.robert_browning), -4975084800000L));
-        addFamous(db, new Person(context.getString(R.string.tchaikovsky), -4091472000000L));
-        addFamous(db, new Person(context.getString(R.string.tagore), -3428784000000L));
-        addFamous(db, new Person(context.getString(R.string.reymont), -3239481600000L));
-        addFamous(db, new Person(context.getString(R.string.land), -1914105600000L));
-
-        // 8 may
-        addFamous(db, new Person(context.getString(R.string.dunant), -4470076800000L));
-        addFamous(db, new Person(context.getString(R.string.lwoff), -2134944000000L));
-        addFamous(db, new Person(context.getString(R.string.fernandel), -2103408000000L));
-        addFamous(db, new Person(context.getString(R.string.rossellini), -2008713600000L));
-        addFamous(db, new Person(context.getString(R.string.iglesias), 168739200000L));
-
-        // 9 may
-        addFamous(db, new Person(context.getString(R.string.monge), -7057670400000L));
-        addFamous(db, new Person(context.getString(R.string.opel), -4185993600000L));
-        addFamous(db, new Person(context.getString(R.string.laval), -3933532800000L));
-        addFamous(db, new Person(context.getString(R.string.carter), -3018384000000L));
-        addFamous(db, new Person(context.getString(R.string.gasset), -2734387200000L));
-        addFamous(db, new Person(context.getString(R.string.richard_day), -2324073600000L));
-        addFamous(db, new Person(context.getString(R.string.eigen), -1345939200000L));
-
-        // 10 may
-        addFamous(db, new Person(context.getString(R.string.lisle), -6615734400000L));
-        addFamous(db, new Person(context.getString(R.string.fresnel), -5732121600000L));
-        addFamous(db, new Person(context.getString(R.string.killing), -3870374400000L));
-        addFamous(db, new Person(context.getString(R.string.lipton), -3838752000000L));
-        addFamous(db, new Person(context.getString(R.string.gaumont), -3333830400000L));
-        addFamous(db, new Person(context.getString(R.string.barth), -2639606400000L));
-        addFamous(db, new Person(context.getString(R.string.selznick), -2134771200000L));
-        addFamous(db, new Person(context.getString(R.string.chapman), -462240000000L));
-
-        // 11 may
-        addFamous(db, new Person(context.getString(R.string.munchhausen), -7877952000000L));
-        addFamous(db, new Person(context.getString(R.string.blumenbach), -6868108800000L));
-        addFamous(db, new Person(context.getString(R.string.voynich), -3333744000000L));
-        addFamous(db, new Person(context.getString(R.string.dali), -2071526400000L));
-        addFamous(db, new Person(context.getString(R.string.feynman), -1629763200000L));
-        addFamous(db, new Person(context.getString(R.string.dijkstra), -1251072000000L));
-        addFamous(db, new Person(context.getString(R.string.iniesta), 453081600000L));
-
-        // 12 may
-        addFamous(db, new Person(context.getString(R.string.lear), -4974652800000L));
-        addFamous(db, new Person(context.getString(R.string.hind), -4627584000000L));
-        addFamous(db, new Person(context.getString(R.string.pirquet), -3018124800000L));
-        addFamous(db, new Person(context.getString(R.string.giauque), -2355436800000L));
-        addFamous(db, new Person(context.getString(R.string.devi), -2229206400000L));
-        addFamous(db, new Person(context.getString(R.string.voznesensky), -1156291200000L));
-
-        // 13 may
-        addFamous(db, new Person(context.getString(R.string.nevsky), -23624092800000L));
-        addFamous(db, new Person(context.getString(R.string.daudet), -4090953600000L));
-        addFamous(db, new Person(context.getString(R.string.ross), -3554496000000L));
-        addFamous(db, new Person(context.getString(R.string.braque), -2765577600000L));
-        addFamous(db, new Person(context.getString(R.string.wonder), -619747200000L));
-        addFamous(db, new Person(context.getString(R.string.rodman), -272592000000L));
-        addFamous(db, new Person(context.getString(R.string.pattinson), 516326400000L));
-
-        // 14 may
-        addFamous(db, new Person(context.getString(R.string.gainsborough), -7656854400000L));
-        addFamous(db, new Person(context.getString(R.string.steinitz), -4217097600000L));
-        addFamous(db, new Person(context.getString(R.string.tsvet), -3081024000000L));
-        addFamous(db, new Person(context.getString(R.string.lucas), -808963200000L));
-        addFamous(db, new Person(context.getString(R.string.zemeckis), -556502400000L));
-        addFamous(db, new Person(context.getString(R.string.tim_roth), -272505600000L));
-        addFamous(db, new Person(context.getString(R.string.blanchett), -20044800000L));
-        addFamous(db, new Person(context.getString(R.string.zuckerberg), 453340800000L));
-
-        // 15 may
-        addFamous(db, new Person(context.getString(R.string.mechnikov), -3933014400000L));
-        addFamous(db, new Person(context.getString(R.string.vasnetsov), -3838320000000L));
-        addFamous(db, new Person(context.getString(R.string.wernicke), -3838320000000L));
-        addFamous(db, new Person(context.getString(R.string.baum), -3585859200000L));
-        addFamous(db, new Person(context.getString(R.string.curie), -3491251200000L));
-        addFamous(db, new Person(context.getString(R.string.bulgakov), -2481408000000L));
-
-        // 16 may
-        addFamous(db, new Person(context.getString(R.string.agnesi), -7940678400000L));
-        addFamous(db, new Person(context.getString(R.string.vauquelin), -6520608000000L));
-        addFamous(db, new Person(context.getString(R.string.david_hughes), -4374777600000L));
-        addFamous(db, new Person(context.getString(R.string.fonda), -2039558400000L));
-        addFamous(db, new Person(context.getString(R.string.herman), -1787097600000L));
-        addFamous(db, new Person(context.getString(R.string.trejo), -808790400000L));
-        addFamous(db, new Person(context.getString(R.string.brosnan), -524793600000L));
-        addFamous(db, new Person(context.getString(R.string.megan_fox), 516585600000L));
-
-        // 17 may
-        addFamous(db, new Person(context.getString(R.string.jenner), -6962284800000L));
-        addFamous(db, new Person(context.getString(R.string.lockyer), -4216838400000L));
-        addFamous(db, new Person(context.getString(R.string.hassel), -2291846400000L));
-        addFamous(db, new Person(context.getString(R.string.gabin), -2071008000000L));
-        addFamous(db, new Person(context.getString(R.string.nilsson), -1629244800000L));
-        addFamous(db, new Person(context.getString(R.string.hopper), -1061164800000L));
-
-        // 18 may
-        addFamous(db, new Person(context.getString(R.string.khayyam), -29083104000000L));
-        addFamous(db, new Person(context.getString(R.string.clapperton), -5731430400000L));
-        addFamous(db, new Person(context.getString(R.string.hofmeister), -4595443200000L));
-        addFamous(db, new Person(context.getString(R.string.heaviside), -3774988800000L));
-        addFamous(db, new Person(context.getString(R.string.bertrand_russell), -3080678400000L));
-        addFamous(db, new Person(context.getString(R.string.vigneaud), -2165616000000L));
-        addFamous(db, new Person(context.getString(R.string.cretu), -398390400000L));
-
-        // 19 may
-        addFamous(db, new Person(context.getString(R.string.evola), -2260137600000L));
-        addFamous(db, new Person(context.getString(R.string.colin_chapman), -1313452800000L));
-        addFamous(db, new Person(context.getString(R.string.placido), -745459200000L));
-        addFamous(db, new Person(context.getString(R.string.karapetyan), -524534400000L));
-        addFamous(db, new Person(context.getString(R.string.oreiro), 232848000000L));
-        addFamous(db, new Person(context.getString(R.string.pirlo), 295920000000L));
-        addFamous(db, new Person(context.getString(R.string.sam_smith), 706233600000L));
-
-        // 20 may
-        addFamous(db, new Person(context.getString(R.string.fabricius), -13777516800000L));
-        addFamous(db, new Person(context.getString(R.string.balzac), -5384188800000L));
-        addFamous(db, new Person(context.getString(R.string.passy), -4658428800000L));
-        addFamous(db, new Person(context.getString(R.string.berliner), -3743280000000L));
-        addFamous(db, new Person(context.getString(R.string.hewlett), -1786752000000L));
-        addFamous(db, new Person(context.getString(R.string.edward_lewis), -1628985600000L));
-        addFamous(db, new Person(context.getString(R.string.cher), -745372800000L));
-
-        // 21 may
-        addFamous(db, new Person(context.getString(R.string.durer), -15734044800000L));
-        addFamous(db, new Person(context.getString(R.string.coriolis), -5604940800000L));
-        addFamous(db, new Person(context.getString(R.string.kock), -5573404800000L));
-        addFamous(db, new Person(context.getString(R.string.renault), -3995654400000L));
-        addFamous(db, new Person(context.getString(R.string.einthoven), -3459110400000L));
-        addFamous(db, new Person(context.getString(R.string.sakharov), -1534204800000L));
-
-        // 22 may
-        addFamous(db, new Person(context.getString(R.string.wagner), -4942252800000L));
-        addFamous(db, new Person(context.getString(R.string.doyle), -3490646400000L));
-        addFamous(db, new Person(context.getString(R.string.olivier), -1975968000000L));
-        addFamous(db, new Person(context.getString(R.string.herge), -1975968000000L));
-        addFamous(db, new Person(context.getString(R.string.herbert_brown), -1818115200000L));
-        addFamous(db, new Person(context.getString(R.string.campbell), 12182400000L));
-
-        // 23 may
-        addFamous(db, new Person(context.getString(R.string.linnaeus), -8287228800000L));
-        addFamous(db, new Person(context.getString(R.string.mesmer), -7435152000000L));
-        addFamous(db, new Person(context.getString(R.string.lilienthal), -3837628800000L));
-        addFamous(db, new Person(context.getString(R.string.fairbanks), -2733177600000L));
-        addFamous(db, new Person(context.getString(R.string.lagerkvist), -2480716800000L));
-        addFamous(db, new Person(context.getString(R.string.bardeen), -1944259200000L));
-        addFamous(db, new Person(context.getString(R.string.moog), -1123804800000L));
-
-        // 24 may
-        addFamous(db, new Person(context.getString(R.string.pontormo), -15007939200000L));
-        addFamous(db, new Person(context.getString(R.string.fahrenheit), -8949744000000L));
-        addFamous(db, new Person(context.getString(R.string.sholokhov), -2038867200000L));
-        addFamous(db, new Person(context.getString(R.string.brodsky), -934329600000L));
-        addFamous(db, new Person(context.getString(R.string.dylan), -902793600000L));
-        addFamous(db, new Person(context.getString(R.string.deakins), -650332800000L));
-
-        // 25 may
-        addFamous(db, new Person(context.getString(R.string.emerson), -5257612800000L));
-        addFamous(db, new Person(context.getString(R.string.burckhardt), -4784227200000L));
-        addFamous(db, new Person(context.getString(R.string.zeeman), -3300998400000L));
-        addFamous(db, new Person(context.getString(R.string.steinberger), -1533859200000L));
-        addFamous(db, new Person(context.getString(R.string.mckellen), -965865600000L));
-        addFamous(db, new Person(context.getString(R.string.myers), -208483200000L));
-
-        // 26 may
-        addFamous(db, new Person(context.getString(R.string.petty), -10937721600000L));
-        addFamous(db, new Person(context.getString(R.string.moivre), -9549187200000L));
-        addFamous(db, new Person(context.getString(R.string.john_wayne), -1975622400000L));
-        addFamous(db, new Person(context.getString(R.string.miles_davis), -1376006400000L));
-        addFamous(db, new Person(context.getString(R.string.kevorkian), -1312848000000L));
-        addFamous(db, new Person(context.getString(R.string.kravitz), -176774400000L));
-        addFamous(db, new Person(context.getString(R.string.helena_carter), -113702400000L));
-
-        // 27 may
-        addFamous(db, new Person(context.getString(R.string.vanderbilt), -5541350400000L));
-        addFamous(db, new Person(context.getString(R.string.duncan), -2922134400000L));
-        addFamous(db, new Person(context.getString(R.string.cockcroft), -2290982400000L));
-        addFamous(db, new Person(context.getString(R.string.christopher_lee), -1502150400000L));
-        addFamous(db, new Person(context.getString(R.string.bettany), 44150400000L));
-
-        // 28 may
-        addFamous(db, new Person(context.getString(R.string.guillotin), -7308489600000L));
-        addFamous(db, new Person(context.getString(R.string.thomas_moore), -6014649600000L));
-        addFamous(db, new Person(context.getString(R.string.agassiz), -5131123200000L));
-        addFamous(db, new Person(context.getString(R.string.milankovic), -2858976000000L));
-        addFamous(db, new Person(context.getString(R.string.ian_fleming), -1943827200000L));
-        addFamous(db, new Person(context.getString(R.string.minogue), -50371200000L));
-
-        // 29 may
-        addFamous(db, new Person(context.getString(R.string.david_bruce), -3616272000000L));
-        addFamous(db, new Person(context.getString(R.string.chesterton), -3016656000000L));
-        addFamous(db, new Person(context.getString(R.string.spengler), -2827267200000L));
-        addFamous(db, new Person(context.getString(R.string.bob_hope), -2101593600000L));
-        addFamous(db, new Person(context.getString(R.string.goldberg), -1849132800000L));
-        addFamous(db, new Person(context.getString(R.string.kennedy), -1659744000000L));
-
-        // 30 may
-        addFamous(db, new Person(context.getString(R.string.hagen), -4815331200000L));
-        addFamous(db, new Person(context.getString(R.string.faberge), -3900182400000L));
-        addFamous(db, new Person(context.getString(R.string.thalberg), -2227651200000L));
-        addFamous(db, new Person(context.getString(R.string.alfven), -1943654400000L));
-        addFamous(db, new Person(context.getString(R.string.blanc), -1943654400000L));
-        addFamous(db, new Person(context.getString(R.string.gerrard), 328492800000L));
-
-        // 31 may
-        addFamous(db, new Person(context.getString(R.string.tieck), -6203692800000L));
-        addFamous(db, new Person(context.getString(R.string.pugni), -5288630400000L));
-        addFamous(db, new Person(context.getString(R.string.pirrie), -3868560000000L));
-        addFamous(db, new Person(context.getString(R.string.perse), -2606256000000L));
-        addFamous(db, new Person(context.getString(R.string.allais), -2606256000000L));
-        addFamous(db, new Person(context.getString(R.string.eastwood), -1249344000000L));
-        addFamous(db, new Person(context.getString(R.string.jay_miner), -1186185600000L));
-
-        // 1 june
-        addFamous(db, new Person(context.getString(R.string.paer), -6266764800000L));
-        addFamous(db, new Person(context.getString(R.string.carnot), -5477760000000L));
-        addFamous(db, new Person(context.getString(R.string.glinka), -5225385600000L));
-        addFamous(db, new Person(context.getString(R.string.monroe), -1375488000000L));
-        addFamous(db, new Person(context.getString(R.string.foster), -1091491200000L));
-        addFamous(db, new Person(context.getString(R.string.freeman), -1028332800000L));
-        addFamous(db, new Person(context.getString(R.string.persson), 297043200000L));
-
-        // 2 june
-        addFamous(db, new Person(context.getString(R.string.de_sade), -7244899200000L));
-        addFamous(db, new Person(context.getString(R.string.cagliostro), -7150291200000L));
-        addFamous(db, new Person(context.getString(R.string.akimov), -6771600000000L));
-        addFamous(db, new Person(context.getString(R.string.hardy), -4089225600000L));
-        addFamous(db, new Person(context.getString(R.string.weissmüller), -2069625600000L));
-        addFamous(db, new Person(context.getString(R.string.quinto), 234057600000L));
-
-        // 3 june
-        addFamous(db, new Person(context.getString(R.string.hutton), -7686662400000L));
-        addFamous(db, new Person(context.getString(R.string.shrapnel), -6582124800000L));
-        addFamous(db, new Person(context.getString(R.string.cobden), -5225212800000L));
-        addFamous(db, new Person(context.getString(R.string.timiryazev), -3994531200000L));
-        addFamous(db, new Person(context.getString(R.string.pearl), -2858457600000L));
-        addFamous(db, new Person(context.getString(R.string.arber), -1280620800000L));
-        addFamous(db, new Person(context.getString(R.string.nadal), 518140800000L));
-
-        // 4 june
-        addFamous(db, new Person(context.getString(R.string.quesnay), -8696332800000L));
-        addFamous(db, new Person(context.getString(R.string.nazimova), -2858371200000L));
-        addFamous(db, new Person(context.getString(R.string.cockerell), -1880150400000L));
-        addFamous(db, new Person(context.getString(R.string.bartoli), -112924800000L));
-        addFamous(db, new Person(context.getString(R.string.jolie), 171072000000L));
-
-        // 5 june
-        addFamous(db, new Person(context.getString(R.string.chippendale), -7938950400000L));
-        addFamous(db, new Person(context.getString(R.string.keynes), -2732054400000L));
-        addFamous(db, new Person(context.getString(R.string.lorca), -2258668800000L));
-        addFamous(db, new Person(context.getString(R.string.gabor), -2195596800000L));
-        addFamous(db, new Person(context.getString(R.string.peierls), -1974758400000L));
-        addFamous(db, new Person(context.getString(R.string.wahlberg), 44928000000L));
-
-        // 6 june
-        addFamous(db, new Person(context.getString(R.string.regiomontanus), -16837113600000L));
-        addFamous(db, new Person(context.getString(R.string.velazquez), -11694153600000L));
-        addFamous(db, new Person(context.getString(R.string.corneille), -11473228800000L));
-        addFamous(db, new Person(context.getString(R.string.pushkin), -5382720000000L));
-        addFamous(db, new Person(context.getString(R.string.braun), -3773347200000L));
-        addFamous(db, new Person(context.getString(R.string.mann), -2984428800000L));
-
-        // 7 june
-        addFamous(db, new Person(context.getString(R.string.brummell), -6045321600000L));
-        addFamous(db, new Person(context.getString(R.string.auer), -3931027200000L));
-        addFamous(db, new Person(context.getString(R.string.mackintosh), -3205180800000L));
-        addFamous(db, new Person(context.getString(R.string.barkla), -2921184000000L));
-        addFamous(db, new Person(context.getString(R.string.mulliken), -2321568000000L));
-        addFamous(db, new Person(context.getString(R.string.apgar), -1911427200000L));
-        addFamous(db, new Person(context.getString(R.string.martin), -1658966400000L));
-        addFamous(db, new Person(context.getString(R.string.neeson), -554428800000L));
-
-        // 8 june
-        addFamous(db, new Person(context.getString(R.string.cassini), -10873440000000L));
-        addFamous(db, new Person(context.getString(R.string.albinoni), -9421833600000L));
-        addFamous(db, new Person(context.getString(R.string.careme), -5855846400000L));
-        addFamous(db, new Person(context.getString(R.string.schumann), -5035478400000L));
-        addFamous(db, new Person(context.getString(R.string.yeste), -2353104000000L));
-        addFamous(db, new Person(context.getString(R.string.john_campbell), -1879804800000L));
-        addFamous(db, new Person(context.getString(R.string.kanye_west), 234576000000L));
-
-        // 9 june
-        addFamous(db, new Person(context.getString(R.string.stephenson), -5950454400000L));
-        addFamous(db, new Person(context.getString(R.string.galle), -4972233600000L));
-        addFamous(db, new Person(context.getString(R.string.suttner), -3994012800000L));
-        addFamous(db, new Person(context.getString(R.string.dale), -2984169600000L));
-        addFamous(db, new Person(context.getString(R.string.fox), -270259200000L));
-        addFamous(db, new Person(context.getString(R.string.depp), -207187200000L));
-        addFamous(db, new Person(context.getString(R.string.portman), 360892800000L));
-
-        // 10 june
-        addFamous(db, new Person(context.getString(R.string.courbet), -4751308800000L));
-        addFamous(db, new Person(context.getString(R.string.otto), -4340995200000L));
-        addFamous(db, new Person(context.getString(R.string.cook), -3299616000000L));
-        addFamous(db, new Person(context.getString(R.string.mcdaniel), -2352931200000L));
-        addFamous(db, new Person(context.getString(R.string.bellow), -1721865600000L));
-        addFamous(db, new Person(context.getString(R.string.garland), -1500940800000L));
-
-        // 11 june
-        addFamous(db, new Person(context.getString(R.string.constable), -6108048000000L));
-        addFamous(db, new Person(context.getString(R.string.fortuny), -4151606400000L));
-        addFamous(db, new Person(context.getString(R.string.richard_strauss), -3331065600000L));
-        addFamous(db, new Person(context.getString(R.string.cousteau), -1879545600000L));
-        addFamous(db, new Person(context.getString(R.string.styron), -1406160000000L));
-        addFamous(db, new Person(context.getString(R.string.laurie), -333244800000L));
-        addFamous(db, new Person(context.getString(R.string.dinklage), -17625600000L));
-        addFamous(db, new Person(context.getString(R.string.labeouf), 518832000000L));
-
-        // 12 june
-        addFamous(db, new Person(context.getString(R.string.roebling), -5161363200000L));
-        addFamous(db, new Person(context.getString(R.string.lipmann), -2226528000000L));
-        addFamous(db, new Person(context.getString(R.string.frank), -1279843200000L));
-        addFamous(db, new Person(context.getString(R.string.sakmann), -869616000000L));
-        addFamous(db, new Person(context.getString(R.string.lima), 361152000000L));
-
-        // 13 june
-        addFamous(db, new Person(context.getString(R.string.young), -6202569600000L));
-        addFamous(db, new Person(context.getString(R.string.maxwell), -4372358400000L));
-        addFamous(db, new Person(context.getString(R.string.yeats), -3299356800000L));
-        addFamous(db, new Person(context.getString(R.string.john_nash), -1311292800000L));
-        addFamous(db, new Person(context.getString(R.string.mcdowell), -837993600000L));
-        addFamous(db, new Person(context.getString(R.string.perelman), -112147200000L));
-        addFamous(db, new Person(context.getString(R.string.evans), 361238400000L));
-
-        // 14 june
-        addFamous(db, new Person(context.getString(R.string.coulomb), -7370092800000L));
-        addFamous(db, new Person(context.getString(R.string.stowe), -5003424000000L));
-        addFamous(db, new Person(context.getString(R.string.landsteiner), -3204576000000L));
-        addFamous(db, new Person(context.getString(R.string.tokarev), -3109968000000L));
-        addFamous(db, new Person(context.getString(R.string.church), -2100211200000L));
-        addFamous(db, new Person(context.getString(R.string.guevara), -1311206400000L));
-        addFamous(db, new Person(context.getString(R.string.graf), -17366400000L));
-
-        // 15 june
-        addFamous(db, new Person(context.getString(R.string.poussin), -11851142400000L));
-        addFamous(db, new Person(context.getString(R.string.fourcroy), -6770476800000L));
-        addFamous(db, new Person(context.getString(R.string.balmont), -3236112000000L));
-        addFamous(db, new Person(context.getString(R.string.belushi), -490665600000L));
-        addFamous(db, new Person(context.getString(R.string.helen_hunt), -206668800000L));
-        addFamous(db, new Person(context.getString(R.string.kahn), -17280000000L));
-        addFamous(db, new Person(context.getString(R.string.harris), 108950400000L));
-
-        // 16 june
-        addFamous(db, new Person(context.getString(R.string.boccaccio), -20717856000000L));
-        addFamous(db, new Person(context.getString(R.string.plucker), -5318784000000L));
-        addFamous(db, new Person(context.getString(R.string.friedmann), -2573251200000L));
-        addFamous(db, new Person(context.getString(R.string.leinster), -2320790400000L));
-        addFamous(db, new Person(context.getString(R.string.chakraborty), -616809600000L));
-        addFamous(db, new Person(context.getString(R.string.shakur), 45878400000L));
-        addFamous(db, new Person(context.getString(R.string.john_newman), 645494400000L));
-
-        // 17 june
-        addFamous(db, new Person(context.getString(R.string.panini), -8789904000000L));
-        addFamous(db, new Person(context.getString(R.string.gounod), -4782240000000L));
-        addFamous(db, new Person(context.getString(R.string.stravinsky), -2762553600000L));
-        addFamous(db, new Person(context.getString(R.string.escher), -2257632000000L));
-        addFamous(db, new Person(context.getString(R.string.wakefield), -2099952000000L));
-        addFamous(db, new Person(context.getString(R.string.jacob), -1563408000000L));
-
-        // 18 june
-        addFamous(db, new Person(context.getString(R.string.goncharov), -4971456000000L));
-        addFamous(db, new Person(context.getString(R.string.laveran), -3930076800000L));
-        addFamous(db, new Person(context.getString(R.string.flagg), -2920233600000L));
-        addFamous(db, new Person(context.getString(R.string.macdonald), -2099865600000L));
-        addFamous(db, new Person(context.getString(R.string.mccartney), -869097600000L));
-        addFamous(db, new Person(context.getString(R.string.capello), -742867200000L));
-
-        // 19 june
-        addFamous(db, new Person(context.getString(R.string.pascal), -10935648000000L));
-        addFamous(db, new Person(context.getString(R.string.dazai), -1910390400000L));
-        addFamous(db, new Person(context.getString(R.string.flory), -1878854400000L));
-        addFamous(db, new Person(context.getString(R.string.aage_bohr), -1500163200000L));
-        addFamous(db, new Person(context.getString(R.string.rushdie), -711244800000L));
-        addFamous(db, new Person(context.getString(R.string.dujardin), 77760000000L));
-
-        // 20 june
-        addFamous(db, new Person(context.getString(R.string.rosa), -11188022400000L));
-        addFamous(db, new Person(context.getString(R.string.offenbach), -4750444800000L));
-        addFamous(db, new Person(context.getString(R.string.bonnat), -4308595200000L));
-        addFamous(db, new Person(context.getString(R.string.kidman), -80006400000L));
-        addFamous(db, new Person(context.getString(R.string.rodriguez), -48384000000L));
-
-        // 21 june
-        addFamous(db, new Person(context.getString(R.string.poisson), -5949417600000L));
-        addFamous(db, new Person(context.getString(R.string.sartre), -2036448000000L));
-        addFamous(db, new Person(context.getString(R.string.mcewan), -679449600000L));
-        addFamous(db, new Person(context.getString(R.string.platini), -458611200000L));
-        addFamous(db, new Person(context.getString(R.string.tsoi), -237686400000L));
-        addFamous(db, new Person(context.getString(R.string.lana_del_rey), 488160000000L));
-
-        // 22 june
-        addFamous(db, new Person(context.getString(R.string.haggard), -3582576000000L));
-        addFamous(db, new Person(context.getString(R.string.minkowski), -3330115200000L));
-        addFamous(db, new Person(context.getString(R.string.huxley), -2604355200000L));
-        addFamous(db, new Person(context.getString(R.string.remarque), -2257200000000L));
-        addFamous(db, new Person(context.getString(R.string.dillinger), -2099520000000L));
-        addFamous(db, new Person(context.getString(R.string.wilder), -2004825600000L));
-        addFamous(db, new Person(context.getString(R.string.streep), -647827200000L));
-        addFamous(db, new Person(context.getString(R.string.dan_brown), -174441600000L));
-
-        // 23 june
-        addFamous(db, new Person(context.getString(R.string.vico), -9515145600000L));
-        addFamous(db, new Person(context.getString(R.string.beauharnais), -6517324800000L));
-        addFamous(db, new Person(context.getString(R.string.akhmatova), -2541110400000L));
-        addFamous(db, new Person(context.getString(R.string.turing), -1815350400000L));
-        addFamous(db, new Person(context.getString(R.string.fosse), -1342051200000L));
-        addFamous(db, new Person(context.getString(R.string.zidane), 78105600000L));
-
-        // 24 june
-        addFamous(db, new Person(context.getString(R.string.victor_hess), -2730412800000L));
-        addFamous(db, new Person(context.getString(R.string.fangio), -1846886400000L));
-        addFamous(db, new Person(context.getString(R.string.perl), -1341964800000L));
-        addFamous(db, new Person(context.getString(R.string.chabrol), -1247270400000L));
-        addFamous(db, new Person(context.getString(R.string.messi), 551491200000L));
-
-        // 25 june
-        addFamous(db, new Person(context.getString(R.string.gaudi), -3708547200000L));
-        addFamous(db, new Person(context.getString(R.string.nernst), -3329856000000L));
-        addFamous(db, new Person(context.getString(R.string.orwell), -2099260800000L));
-        addFamous(db, new Person(context.getString(R.string.lumet), -1436486400000L));
-        addFamous(db, new Person(context.getString(R.string.abrikosov), -1310256000000L));
-        addFamous(db, new Person(context.getString(R.string.michael), -205804800000L));
-
-        // 26 june
-        addFamous(db, new Person(context.getString(R.string.brandt), -8694432000000L));
-        addFamous(db, new Person(context.getString(R.string.kelvin), -4592073600000L));
-        addFamous(db, new Person(context.getString(R.string.buck), -2446156800000L));
-        addFamous(db, new Person(context.getString(R.string.bill_lear), -2130710400000L));
-        addFamous(db, new Person(context.getString(R.string.robert_richardson), -1026172800000L));
-
-        // 27 june
-        addFamous(db, new Person(context.getString(R.string.mauser), -4150224000000L));
-        addFamous(db, new Person(context.getString(R.string.spemann), -3171916800000L));
-        addFamous(db, new Person(context.getString(R.string.keller), -2824761600000L));
-        addFamous(db, new Person(context.getString(R.string.abrams), -110937600000L));
-        addFamous(db, new Person(context.getString(R.string.maguire), 173059200000L));
-        addFamous(db, new Person(context.getString(R.string.raul), 236217600000L));
-
-        // 28 june
-        addFamous(db, new Person(context.getString(R.string.rubens), -12385612800000L));
-        addFamous(db, new Person(context.getString(R.string.rousseau), -8126265600000L));
-        addFamous(db, new Person(context.getString(R.string.broca), -4591900800000L));
-        addFamous(db, new Person(context.getString(R.string.pirandello), -3234988800000L));
-        addFamous(db, new Person(context.getString(R.string.carrel), -3045600000000L));
-        addFamous(db, new Person(context.getString(R.string.goeppert_mayer), -2004307200000L));
-        addFamous(db, new Person(context.getString(R.string.kathy_bates), -678844800000L));
-        addFamous(db, new Person(context.getString(R.string.cusack), -110851200000L));
-        addFamous(db, new Person(context.getString(R.string.musk), 46915200000L));
-
-        // 29 june
-        addFamous(db, new Person(context.getString(R.string.dodoens), -14278982400000L));
-        addFamous(db, new Person(context.getString(R.string.ressel), -5570035200000L));
-        addFamous(db, new Person(context.getString(R.string.leopardi), -5412268800000L));
-        addFamous(db, new Person(context.getString(R.string.exupery), -2193523200000L));
-        addFamous(db, new Person(context.getString(R.string.fallaci), -1278374400000L));
-        addFamous(db, new Person(context.getString(R.string.scherzinger), 267926400000L));
-
-        // 30 june
-        addFamous(db, new Person(context.getString(R.string.vernet), -5696179200000L));
-        addFamous(db, new Person(context.getString(R.string.hooker), -4812652800000L));
-        addFamous(db, new Person(context.getString(R.string.duhamel), -2698272000000L));
-        addFamous(db, new Person(context.getString(R.string.milosz), -1846368000000L));
-        addFamous(db, new Person(context.getString(R.string.ballard), -868060800000L));
-        addFamous(db, new Person(context.getString(R.string.tyson), -110678400000L));
-        addFamous(db, new Person(context.getString(R.string.phelps), 488937600000L));
-
-        // 1 july
-        addFamous(db, new Person(context.getString(R.string.leibniz), -10208764800000L));
-        addFamous(db, new Person(context.getString(R.string.poncelet), -5727628800000L));
-        addFamous(db, new Person(context.getString(R.string.george_sand), -5222793600000L));
-        addFamous(db, new Person(context.getString(R.string.vierordt), -4781030400000L));
-        addFamous(db, new Person(context.getString(R.string.bleriot), -3076876800000L));
-        addFamous(db, new Person(context.getString(R.string.lauder), -1940889600000L));
-        addFamous(db, new Person(context.getString(R.string.diana), -268358400000L));
-        addFamous(db, new Person(context.getString(R.string.pamela_anderson), -79056000000L));
-
-        // 2 july
-        addFamous(db, new Person(context.getString(R.string.gluck), -8062848000000L));
-        addFamous(db, new Person(context.getString(R.string.henry_bragg), -3392409600000L));
-        addFamous(db, new Person(context.getString(R.string.hesse), -2919024000000L));
-        addFamous(db, new Person(context.getString(R.string.lacoste), -2067033600000L));
-        addFamous(db, new Person(context.getString(R.string.cardin), -1499040000000L));
-        addFamous(db, new Person(context.getString(R.string.lumumba), -1404345600000L));
-        addFamous(db, new Person(context.getString(R.string.naceri), -268272000000L));
-        addFamous(db, new Person(context.getString(R.string.robbie), 646876800000L));
-
-        // 3 july
-        addFamous(db, new Person(context.getString(R.string.adam), -7620912000000L));
-        addFamous(db, new Person(context.getString(R.string.kafka), -2729635200000L));
-        addFamous(db, new Person(context.getString(R.string.stoppard), -1025568000000L));
-        addFamous(db, new Person(context.getString(R.string.cruise), -236649600000L));
-        addFamous(db, new Person(context.getString(R.string.selanne), 15811200000L));
-
-        // 4 july
-        addFamous(db, new Person(context.getString(R.string.blanchard), -6831907200000L));
-        addFamous(db, new Person(context.getString(R.string.everest), -5664297600000L));
-        addFamous(db, new Person(context.getString(R.string.garibaldi), -5127926400000L));
-        addFamous(db, new Person(context.getString(R.string.manolete), -1656633600000L));
-        addFamous(db, new Person(context.getString(R.string.lollobrigida), -1341100800000L));
-
-        // 5 july
-        addFamous(db, new Person(context.getString(R.string.bulgarin), -5695747200000L));
-        addFamous(db, new Person(context.getString(R.string.fitzroy), -5190912000000L));
-        addFamous(db, new Person(context.getString(R.string.rankine), -4717526400000L));
-        addFamous(db, new Person(context.getString(R.string.zetkin), -3549916800000L));
-        addFamous(db, new Person(context.getString(R.string.gasser), -2571609600000L));
-        addFamous(db, new Person(context.getString(R.string.cocteau), -2540073600000L));
-
-        // 6 july
-        addFamous(db, new Person(context.getString(R.string.raffles), -5948121600000L));
-        addFamous(db, new Person(context.getString(R.string.heidenstam), -3486758400000L));
-        addFamous(db, new Person(context.getString(R.string.chagall), -2603145600000L));
-        addFamous(db, new Person(context.getString(R.string.bill_haley), -1404000000000L));
-        addFamous(db, new Person(context.getString(R.string.stallone), -741312000000L));
-        addFamous(db, new Person(context.getString(R.string.rush), -583545600000L));
-        addFamous(db, new Person(context.getString(R.string.cent), 173836800000L));
-        addFamous(db, new Person(context.getString(R.string.eva_green), 331689600000L));
-
-        // 7 july
-        addFamous(db, new Person(context.getString(R.string.jacquard), -6863184000000L));
-        addFamous(db, new Person(context.getString(R.string.golgi), -3991593600000L));
-        addFamous(db, new Person(context.getString(R.string.mahler), -3455049600000L));
-        addFamous(db, new Person(context.getString(R.string.feuchtwanger), -2697667200000L));
-        addFamous(db, new Person(context.getString(R.string.ringo_starr), -930528000000L));
-        addFamous(db, new Person(context.getString(R.string.cutugno), -835920000000L));
-
-        // 8 july
-        addFamous(db, new Person(context.getString(R.string.fontaine), -10997078400000L));
-        addFamous(db, new Person(context.getString(R.string.zeppelin), -4149273600000L));
-        addFamous(db, new Person(context.getString(R.string.rockefeller), -4117737600000L));
-        addFamous(db, new Person(context.getString(R.string.benardos), -4023043200000L));
-        addFamous(db, new Person(context.getString(R.string.arthus_evans), -3739046400000L));
-        addFamous(db, new Person(context.getString(R.string.perls), -2413584000000L));
-        addFamous(db, new Person(context.getString(R.string.kapitsa), -2382048000000L));
-
-        // 9 july
-        addFamous(db, new Person(context.getString(R.string.radcliffe), -6484320000000L));
-        addFamous(db, new Person(context.getString(R.string.davenport), -5285260800000L));
-        addFamous(db, new Person(context.getString(R.string.elias_howe), -4748803200000L));
-        addFamous(db, new Person(context.getString(R.string.boas), -3518035200000L));
-        addFamous(db, new Person(context.getString(R.string.chagas), -2855347200000L));
-        addFamous(db, new Person(context.getString(R.string.tom_hanks), -425433600000L));
-        addFamous(db, new Person(context.getString(R.string.love), -172972800000L));
-
-        // 10 july
-        addFamous(db, new Person(context.getString(R.string.jean_calvin), -14530492800000L));
-        addFamous(db, new Person(context.getString(R.string.marryat), -5600620800000L));
-        addFamous(db, new Person(context.getString(R.string.pissarro), -4401561600000L));
-        addFamous(db, new Person(context.getString(R.string.tesla), -3581020800000L));
-        addFamous(db, new Person(context.getString(R.string.proust), -3107721600000L));
-        addFamous(db, new Person(context.getString(R.string.chamberlain), -1561420800000L));
-
-        // 11 july
-        addFamous(db, new Person(context.getString(R.string.gondora), -12889411200000L));
-        addFamous(db, new Person(context.getString(R.string.lalande), -7493990400000L));
-        addFamous(db, new Person(context.getString(R.string.nelson), -2760480000000L));
-        addFamous(db, new Person(context.getString(R.string.abel), -2097878400000L));
-        addFamous(db, new Person(context.getString(R.string.brynner), -1561334400000L));
-        addFamous(db, new Person(context.getString(R.string.armani), -1119571200000L));
-
-        // 12 july
-        addFamous(db, new Person(context.getString(R.string.bernard), -4937846400000L));
-        addFamous(db, new Person(context.getString(R.string.eastman), -3644006400000L));
-        addFamous(db, new Person(context.getString(R.string.tod_browning), -2823465600000L));
-        addFamous(db, new Person(context.getString(R.string.modigliani), -2697235200000L));
-        addFamous(db, new Person(context.getString(R.string.meruda), -2066169600000L));
-        addFamous(db, new Person(context.getString(R.string.wyeth), -1655942400000L));
-        addFamous(db, new Person(context.getString(R.string.michelle_rodriguez), 269049600000L));
-
-        // 13 july
-        addFamous(db, new Person(context.getString(R.string.john_dee), -13962240000000L));
-        addFamous(db, new Person(context.getString(R.string.cannizzaro), -4527532800000L));
-        addFamous(db, new Person(context.getString(R.string.otto_wagner), -4054147200000L));
-        addFamous(db, new Person(context.getString(R.string.babel), -2381616000000L));
-        addFamous(db, new Person(context.getString(R.string.ascari), -1624320000000L));
-        addFamous(db, new Person(context.getString(R.string.ford), -866937600000L));
-        addFamous(db, new Person(context.getString(R.string.rubik), -803779200000L));
-        addFamous(db, new Person(context.getString(R.string.benassi), -78019200000L));
-
-        // 14 july
-        addFamous(db, new Person(context.getString(R.string.dumas), -5347900800000L));
-        addFamous(db, new Person(context.getString(R.string.klimt), -3391372800000L));
-        addFamous(db, new Person(context.getString(R.string.irving_stone), -2097619200000L));
-        addFamous(db, new Person(context.getString(R.string.bergman), -1624233600000L));
-        addFamous(db, new Person(context.getString(R.string.forrester), -1624233600000L));
-
-        // 15 july
-        addFamous(db, new Person(context.getString(R.string.rembrandt), -11469859200000L));
-        addFamous(db, new Person(context.getString(R.string.pareto), -3833049600000L));
-        addFamous(db, new Person(context.getString(R.string.harmsworth), -3296592000000L));
-        addFamous(db, new Person(context.getString(R.string.brockhouse), -1624147200000L));
-        addFamous(db, new Person(context.getString(R.string.savage), -77846400000L));
-        addFamous(db, new Person(context.getString(R.string.kruger), 206236800000L));
-
-        // 16 july
-        addFamous(db, new Person(context.getString(R.string.assisi), -24470640000000L));
-        addFamous(db, new Person(context.getString(R.string.amundsen), -3075580800000L));
-        addFamous(db, new Person(context.getString(R.string.stanwyck), -1971216000000L));
-        addFamous(db, new Person(context.getString(R.string.laroche), -1529366400000L));
-        addFamous(db, new Person(context.getString(R.string.sheckley), -1308441600000L));
-
-        // 17 july
-        addFamous(db, new Person(context.getString(R.string.friedrich_krupp), -5757868800000L));
-        addFamous(db, new Person(context.getString(R.string.corot), -5473785600000L));
-        addFamous(db, new Person(context.getString(R.string.nicholas), -3896035200000L));
-        addFamous(db, new Person(context.getString(R.string.lamaitre), -2381270400000L));
-        addFamous(db, new Person(context.getString(R.string.abbott), -2255040000000L));
-        addFamous(db, new Person(context.getString(R.string.sutherland), -1087516800000L));
-
-        // 18 july
-        addFamous(db, new Person(context.getString(R.string.thackeray), -5000486400000L));
-        addFamous(db, new Person(context.getString(R.string.viardot), -4684867200000L));
-        addFamous(db, new Person(context.getString(R.string.lorentz), -3675024000000L));
-        addFamous(db, new Person(context.getString(R.string.mandela), -1623888000000L));
-        addFamous(db, new Person(context.getString(R.string.hunter_thompson), -1024272000000L));
-        addFamous(db, new Person(context.getString(R.string.branson), -614044800000L));
-        addFamous(db, new Person(context.getString(R.string.vin_diesel), -77587200000L));
-
-        // 19 july
-        addFamous(db, new Person(context.getString(R.string.colt), -4905705600000L));
-        addFamous(db, new Person(context.getString(R.string.degas), -4274553600000L));
-        addFamous(db, new Person(context.getString(R.string.mayakovsky), -2412633600000L));
-        addFamous(db, new Person(context.getString(R.string.cronin), -2317939200000L));
-        addFamous(db, new Person(context.getString(R.string.coloane), -1876262400000L));
-        addFamous(db, new Person(context.getString(R.string.yalow), -1529107200000L));
-        addFamous(db, new Person(context.getString(R.string.cumberbatch), 206582400000L));
-
-        // 20 july
-        addFamous(db, new Person(context.getString(R.string.petrarca), -20998915200000L));
-        addFamous(db, new Person(context.getString(R.string.owen), -5221152000000L));
-        addFamous(db, new Person(context.getString(R.string.mendel), -4653158400000L));
-        addFamous(db, new Person(context.getString(R.string.georg_muller), -3769545600000L));
-        addFamous(db, new Person(context.getString(R.string.morandi), -2507241600000L));
-        addFamous(db, new Person(context.getString(R.string.dobrev), -1749945600000L));
-        addFamous(db, new Person(context.getString(R.string.bundchen), 332899200000L));
-
-        // 21 july
-        addFamous(db, new Person(context.getString(R.string.picard), -11027491200000L));
-        addFamous(db, new Person(context.getString(R.string.regnault), -5031763200000L));
-        addFamous(db, new Person(context.getString(R.string.reuter), -4842374400000L));
-        addFamous(db, new Person(context.getString(R.string.hemingway), -2223158400000L));
-        addFamous(db, new Person(context.getString(R.string.robin_williams), -582249600000L));
-        addFamous(db, new Person(context.getString(R.string.josh_hartnett), 269827200000L));
-
-        // 22 july
-        addFamous(db, new Person(context.getString(R.string.soufflot), -8092656000000L));
-        addFamous(db, new Person(context.getString(R.string.gustav_hertz), -2601763200000L));
-        addFamous(db, new Person(context.getString(R.string.mathieu), -739929600000L));
-        addFamous(db, new Person(context.getString(R.string.dafoe), -455932800000L));
-        addFamous(db, new Person(context.getString(R.string.selena_gomez), 711763200000L));
-
-        // 23 july
-        addFamous(db, new Person(context.getString(R.string.vyazemsky), -5599497600000L));
-        addFamous(db, new Person(context.getString(R.string.cilea), -3264364800000L));
-        addFamous(db, new Person(context.getString(R.string.harrelson), -266457600000L));
-        addFamous(db, new Person(context.getString(R.string.hoffman), -77155200000L));
-        addFamous(db, new Person(context.getString(R.string.lewinsky), 112233600000L));
-        addFamous(db, new Person(context.getString(R.string.daniel_radcliffe), 617155200000L));
-
-        // 24 july
-        addFamous(db, new Person(context.getString(R.string.vidocq), -6135955200000L));
-        addFamous(db, new Person(context.getString(R.string.alexandre_dumas), -5283964800000L));
-        addFamous(db, new Person(context.getString(R.string.mucha), -3453580800000L));
-        addFamous(db, new Person(context.getString(R.string.benson), -3232742400000L));
-        addFamous(db, new Person(context.getString(R.string.lopez), -13910400000L));
-
-        // 25 july
-        addFamous(db, new Person(context.getString(R.string.scheiner), -12446438400000L));
-        addFamous(db, new Person(context.getString(R.string.eakins), -3958416000000L));
-        addFamous(db, new Person(context.getString(R.string.davidson_black), -2696112000000L));
-        addFamous(db, new Person(context.getString(R.string.canetti), -2033510400000L));
-        addFamous(db, new Person(context.getString(R.string.leblanc), -76982400000L));
-
-        // 26 july
-        addFamous(db, new Person(context.getString(R.string.remak), -4873564800000L));
-        addFamous(db, new Person(context.getString(R.string.shaw), -3579638400000L));
-        addFamous(db, new Person(context.getString(R.string.jung), -2980108800000L));
-        addFamous(db, new Person(context.getString(R.string.maurois), -2664489600000L));
-        addFamous(db, new Person(context.getString(R.string.kubrick), -1307577600000L));
-        addFamous(db, new Person(context.getString(R.string.jagger), -834278400000L));
-        addFamous(db, new Person(context.getString(R.string.spacey), -329356800000L));
-        addFamous(db, new Person(context.getString(R.string.bullock), -171504000000L));
-        addFamous(db, new Person(context.getString(R.string.statham), -76896000000L));
-
-        // 27 july
-        addFamous(db, new Person(context.getString(R.string.corday), -6356534400000L));
-        addFamous(db, new Person(context.getString(R.string.carducci), -4242326400000L));
-        addFamous(db, new Person(context.getString(R.string.hans_fischer), -2790633600000L));
-        addFamous(db, new Person(context.getString(R.string.monaco), -1717804800000L));
-        addFamous(db, new Person(context.getString(R.string.nikolaj), 17884800000L));
-
-        // 28 july
-        addFamous(db, new Person(context.getString(R.string.hooke), -10553587200000L));
-        addFamous(db, new Person(context.getString(R.string.feuerbach), -5220460800000L));
-        addFamous(db, new Person(context.getString(R.string.grisi), -4999622400000L));
-        addFamous(db, new Person(context.getString(R.string.duchamp), -2601244800000L));
-        addFamous(db, new Person(context.getString(R.string.popper), -2127945600000L));
-        addFamous(db, new Person(context.getString(R.string.burda), -1907020800000L));
-        addFamous(db, new Person(context.getString(R.string.chavez), -486950400000L));
-
-        // 29 july
-        addFamous(db, new Person(context.getString(R.string.aivazovsky), -4810147200000L));
-        addFamous(db, new Person(context.getString(R.string.mussolini), -2727388800000L));
-        addFamous(db, new Person(context.getString(R.string.theda_bara), -2664230400000L));
-        addFamous(db, new Person(context.getString(R.string.clara_bow), -2033164800000L));
-        addFamous(db, new Person(context.getString(R.string.alonso), 365212800000L));
-
-        // 30 july
-        addFamous(db, new Person(context.getString(R.string.vasari), -14465692800000L));
-        addFamous(db, new Person(context.getString(R.string.bronte), -4778524800000L));
-        addFamous(db, new Person(context.getString(R.string.henry_ford), -3358454400000L));
-        addFamous(db, new Person(context.getString(R.string.cyril_parkinson), -1906848000000L));
-        addFamous(db, new Person(context.getString(R.string.schwarzenegger), -707702400000L));
-        addFamous(db, new Person(context.getString(R.string.jean_reno), -676080000000L));
-        addFamous(db, new Person(context.getString(R.string.nolan), 18144000000L));
-
-        // 31 july
-        addFamous(db, new Person(context.getString(R.string.cramer), -8375875200000L));
-        addFamous(db, new Person(context.getString(R.string.wohler), -5346432000000L));
-        addFamous(db, new Person(context.getString(R.string.planquette), -3831667200000L));
-        addFamous(db, new Person(context.getString(R.string.milton_friedman), -1812067200000L));
-        addFamous(db, new Person(context.getString(R.string.de_funes), -1748995200000L));
-        addFamous(db, new Person(context.getString(R.string.primo_levi), -1591228800000L));
-        addFamous(db, new Person(context.getString(R.string.rowling), -139536000000L));
-
-        // 1 august
-        addFamous(db, new Person(context.getString(R.string.lamarck), -7113484800000L));
-        addFamous(db, new Person(context.getString(R.string.melville), -4746816000000L));
-        addFamous(db, new Person(context.getString(R.string.taro), -1875139200000L));
-        addFamous(db, new Person(context.getString(R.string.laurent), -1054598400000L));
-        addFamous(db, new Person(context.getString(R.string.mendes), -139449600000L));
-        addFamous(db, new Person(context.getString(R.string.momoa), 302313600000L));
-
-        // 2 august
-        addFamous(db, new Person(context.getString(R.string.hoogstraten), -10805616000000L));
-        addFamous(db, new Person(context.getString(R.string.tyndall), -4715107200000L));
-        addFamous(db, new Person(context.getString(R.string.olcott), -4336416000000L));
-        addFamous(db, new Person(context.getString(R.string.bartholdi), -4273344000000L));
-        addFamous(db, new Person(context.getString(R.string.loy), -2032819200000L));
-        addFamous(db, new Person(context.getString(R.string.worthington), 207792000000L));
-
-        // 3 august
-        addFamous(db, new Person(context.getString(R.string.otis), -4999104000000L));
-        addFamous(db, new Person(context.getString(R.string.simak), -2064268800000L));
-        addFamous(db, new Person(context.getString(R.string.james), -1559347200000L));
-        addFamous(db, new Person(context.getString(R.string.sheen), -928195200000L));
-        addFamous(db, new Person(context.getString(R.string.lilly), 302486400000L));
-
-        // 4 august
-        addFamous(db, new Person(context.getString(R.string.shelley), -5598460800000L));
-        addFamous(db, new Person(context.getString(R.string.john_venn), -4273171200000L));
-        addFamous(db, new Person(context.getString(R.string.hamsun), -3484252800000L));
-        addFamous(db, new Person(context.getString(R.string.armstrong), -2190412800000L));
-        addFamous(db, new Person(context.getString(R.string.thornton), -454809600000L));
-
-        // 5 august
-        addFamous(db, new Person(context.getString(R.string.niels_abel), -5282928000000L));
-        addFamous(db, new Person(context.getString(R.string.repin), -3957465600000L));
-        addFamous(db, new Person(context.getString(R.string.maupassant), -3768163200000L));
-        addFamous(db, new Person(context.getString(R.string.wain), -3452544000000L));
-        addFamous(db, new Person(context.getString(R.string.huston), -2001024000000L));
-        addFamous(db, new Person(context.getString(R.string.neil_armstrong), -1243641600000L));
-
-        // 6 august
-        addFamous(db, new Person(context.getString(R.string.malebranche), -10458115200000L));
-        addFamous(db, new Person(context.getString(R.string.johann_bernoulli), -9542966400000L));
-        addFamous(db, new Person(context.getString(R.string.alexander_fleming), -2789769600000L));
-        addFamous(db, new Person(context.getString(R.string.lucille_ball), -1843171200000L));
-        addFamous(db, new Person(context.getString(R.string.andy_warhol), -1306627200000L));
-        addFamous(db, new Person(context.getString(R.string.shyamalan), 18748800000L));
-
-        // 7 august
-        addFamous(db, new Person(context.getString(R.string.bathory), -12918614400000L));
-        addFamous(db, new Person(context.getString(R.string.mata_hari), -2947449600000L));
-        addFamous(db, new Person(context.getString(R.string.tobin_bell), -864777600000L));
-        addFamous(db, new Person(context.getString(R.string.duchovny), -296697600000L));
-        addFamous(db, new Person(context.getString(R.string.jimmy_wales), -107395200000L));
-        addFamous(db, new Person(context.getString(R.string.theron), 176601600000L));
-
-        // 8 august
-        addFamous(db, new Person(context.getString(R.string.bateson), -3420748800000L));
-        addFamous(db, new Person(context.getString(R.string.lawrence), -2158531200000L));
-        addFamous(db, new Person(context.getString(R.string.dirac), -2126995200000L));
-        addFamous(db, new Person(context.getString(R.string.dustin_hoffman), -1022457600000L));
-        addFamous(db, new Person(context.getString(R.string.federer), 366076800000L));
-
-        // 9 august
-        addFamous(db, new Person(context.getString(R.string.avogadro), -6102950400000L));
-        addFamous(db, new Person(context.getString(R.string.morton_william), -4746124800000L));
-        addFamous(db, new Person(context.getString(R.string.huckel), -2316124800000L));
-        addFamous(db, new Person(context.getString(R.string.piaget), -2316124800000L));
-        addFamous(db, new Person(context.getString(R.string.travers), -2221516800000L));
-        addFamous(db, new Person(context.getString(R.string.jansson), -1748217600000L));
-        addFamous(db, new Person(context.getString(R.string.griffith), -391219200000L));
-        addFamous(db, new Person(context.getString(R.string.houston), -201916800000L));
-        addFamous(db, new Person(context.getString(R.string.tautou), 208396800000L));
-
-        // 10 august
-        addFamous(db, new Person(context.getString(R.string.nestle), -4903804800000L));
-        addFamous(db, new Person(context.getString(R.string.qunanbaiuli), -3925497600000L));
-        addFamous(db, new Person(context.getString(R.string.darrow), -2536963200000L));
-        addFamous(db, new Person(context.getString(R.string.shearer), -2126822400000L));
-        addFamous(db, new Person(context.getString(R.string.tiselius), -2126822400000L));
-        addFamous(db, new Person(context.getString(R.string.banderas), -296438400000L));
-
-        // 11 august
-        addFamous(db, new Person(context.getString(R.string.andrew_davis), -4525027200000L));
-        addFamous(db, new Person(context.getString(R.string.savant), -738201600000L));
-        addFamous(db, new Person(context.getString(R.string.wozniak), -611971200000L));
-        addFamous(db, new Person(context.getString(R.string.hogan), -517276800000L));
-        addFamous(db, new Person(context.getString(R.string.hemsworth), 429408000000L));
-
-        // 12 august
-        addFamous(db, new Person(context.getString(R.string.bering), -9100598400000L));
-        addFamous(db, new Person(context.getString(R.string.demille), -2789251200000L));
-        addFamous(db, new Person(context.getString(R.string.bendix), -2789251200000L));
-        addFamous(db, new Person(context.getString(R.string.schrodinger), -2599948800000L));
-        addFamous(db, new Person(context.getString(R.string.soros), -1243036800000L));
-        addFamous(db, new Person(context.getString(R.string.delevingne), 713577600000L));
-
-        // 13 august
-        addFamous(db, new Person(context.getString(R.string.angstrom), -4903545600000L));
-        addFamous(db, new Person(context.getString(R.string.miescher), -3956774400000L));
-        addFamous(db, new Person(context.getString(R.string.agnelli), -3262550400000L));
-        addFamous(db, new Person(context.getString(R.string.hitchcock), -2221171200000L));
-        addFamous(db, new Person(context.getString(R.string.wankel), -2126563200000L));
-        addFamous(db, new Person(context.getString(R.string.castro), -1369180800000L));
-
-        // 14 august
-        addFamous(db, new Person(context.getString(R.string.orsted), -6070982400000L));
-        addFamous(db, new Person(context.getString(R.string.holliday), -3735849600000L));
-        addFamous(db, new Person(context.getString(R.string.merezhkovsky), -3262464000000L));
-        addFamous(db, new Person(context.getString(R.string.galsworthy), -3230928000000L));
-        addFamous(db, new Person(context.getString(R.string.dempster), -2631312000000L));
-        addFamous(db, new Person(context.getString(R.string.steve_martin), -769478400000L));
-        addFamous(db, new Person(context.getString(R.string.berry), -106790400000L));
-        addFamous(db, new Person(context.getString(R.string.kunis), 429667200000L));
-
-        // 15 august
-        addFamous(db, new Person(context.getString(R.string.carmontelle), -7964352000000L));
-        addFamous(db, new Person(context.getString(R.string.napoleon), -6323356800000L));
-        addFamous(db, new Person(context.getString(R.string.scott), -6260284800000L));
-        addFamous(db, new Person(context.getString(R.string.broglie), -2441836800000L));
-        addFamous(db, new Person(context.getString(R.string.inarritu), -201398400000L));
-        addFamous(db, new Person(context.getString(R.string.affleck), 82684800000L));
-        addFamous(db, new Person(context.getString(R.string.jennifer_lawrence), 650678400000L));
-
-        // 16 august
-        addFamous(db, new Person(context.getString(R.string.bruyere), -10236326400000L));
-        addFamous(db, new Person(context.getString(R.string.lippmann), -3924979200000L));
-        addFamous(db, new Person(context.getString(R.string.bukowski), -1558224000000L));
-        addFamous(db, new Person(context.getString(R.string.richard), -1116460800000L));
-        addFamous(db, new Person(context.getString(R.string.cameron), -485308800000L));
-        addFamous(db, new Person(context.getString(R.string.madonna), -359078400000L));
-
-        // 17 august
-        addFamous(db, new Person(context.getString(R.string.fermat), -11624774400000L));
-        addFamous(db, new Person(context.getString(R.string.hodgkin), -5408035200000L));
-        addFamous(db, new Person(context.getString(R.string.fokker), -2599516800000L));
-        addFamous(db, new Person(context.getString(R.string.naipaul), -1179446400000L));
-        addFamous(db, new Person(context.getString(R.string.de_niro), -832377600000L));
-        addFamous(db, new Person(context.getString(R.string.penn), -295833600000L));
-
-        // 18 august
-        addFamous(db, new Person(context.getString(R.string.brook_taylor), -8973849600000L));
-        addFamous(db, new Person(context.getString(R.string.salieri), -6922713600000L));
-        addFamous(db, new Person(context.getString(R.string.pierre_martin), -4587494400000L));
-        addFamous(db, new Person(context.getString(R.string.swayze), -548208000000L));
-        addFamous(db, new Person(context.getString(R.string.norton), -11750400000L));
-        addFamous(db, new Person(context.getString(R.string.slater), -11750400000L));
-
-        // 19 august
-        addFamous(db, new Person(context.getString(R.string.samuel_richardson), -8847532800000L));
-        addFamous(db, new Person(context.getString(R.string.platov), -6827932800000L));
-        addFamous(db, new Person(context.getString(R.string.nasmyth), -5092329600000L));
-        addFamous(db, new Person(context.getString(R.string.meyer), -4398105600000L));
-        addFamous(db, new Person(context.getString(R.string.enescu), -2788646400000L));
-        addFamous(db, new Person(context.getString(R.string.chanel), -2725574400000L));
-        addFamous(db, new Person(context.getString(R.string.perry), -11664000000L));
-
-        // 20 august
-        addFamous(db, new Person(context.getString(R.string.berzelius), -6007392000000L));
-        addFamous(db, new Person(context.getString(R.string.quasimodo), -2157494400000L));
-        addFamous(db, new Person(context.getString(R.string.susann), -1621036800000L));
-        addFamous(db, new Person(context.getString(R.string.durst), 19958400000L));
-        addFamous(db, new Person(context.getString(R.string.amy_adams), 146188800000L));
-        addFamous(db, new Person(context.getString(R.string.garfield), 430185600000L));
-
-        // 21 august
-        addFamous(db, new Person(context.getString(R.string.murdoch), -6796224000000L));
-        addFamous(db, new Person(context.getString(R.string.basie), -2062713600000L));
-        addFamous(db, new Person(context.getString(R.string.consuelo_velazquez), -1684022400000L));
-        addFamous(db, new Person(context.getString(R.string.wilt_chamberlain), -1052870400000L));
-        addFamous(db, new Person(context.getString(R.string.brin), 114739200000L));
-        addFamous(db, new Person(context.getString(R.string.bolt), 524966400000L));
-
-        // 22 august
-        addFamous(db, new Person(context.getString(R.string.papin), -10172736000000L));
-        addFamous(db, new Person(context.getString(R.string.maudslay), -6259680000000L));
-        addFamous(db, new Person(context.getString(R.string.nipkow), -3451075200000L));
-        addFamous(db, new Person(context.getString(R.string.debussy), -3388003200000L));
-        addFamous(db, new Person(context.getString(R.string.scheler), -3009312000000L));
-        addFamous(db, new Person(context.getString(R.string.bradbury), -1557705600000L));
-
-        // 23 august
-        addFamous(db, new Person(context.getString(R.string.laperouse), -7206278400000L));
-        addFamous(db, new Person(context.getString(R.string.cuvier), -6322665600000L));
-        addFamous(db, new Person(context.getString(R.string.jirasek), -3735072000000L));
-        addFamous(db, new Person(context.getString(R.string.arrow), -1526083200000L));
-        addFamous(db, new Person(context.getString(R.string.phoenix), 20217600000L));
-
-        // 24 august
-        addFamous(db, new Person(context.getString(R.string.weddell), -5754585600000L));
-        addFamous(db, new Person(context.getString(R.string.borges), -2220220800000L));
-        addFamous(db, new Person(context.getString(R.string.coelho), -705542400000L));
-        addFamous(db, new Person(context.getString(R.string.jarre), -673920000000L));
-        addFamous(db, new Person(context.getString(R.string.fry), -389923200000L));
-        addFamous(db, new Person(context.getString(R.string.guttenberg), -358387200000L));
-        addFamous(db, new Person(context.getString(R.string.grint), 588384000000L));
-
-        // 25 august
-        addFamous(db, new Person(context.getString(R.string.pinkerton), -4744742400000L));
-        addFamous(db, new Person(context.getString(R.string.elo), -2093990400000L));
-        addFamous(db, new Person(context.getString(R.string.brian_moore), -1525910400000L));
-        addFamous(db, new Person(context.getString(R.string.connery), -1241913600000L));
-        addFamous(db, new Person(context.getString(R.string.tim_burton), -358300800000L));
-        addFamous(db, new Person(context.getString(R.string.schiffer), 20390400000L));
-
-        // 26 august
-        addFamous(db, new Person(context.getString(R.string.lambert), -7616246400000L));
-        addFamous(db, new Person(context.getString(R.string.joseph_montgolfier), -7237555200000L));
-        addFamous(db, new Person(context.getString(R.string.lavoisier), -7142947200000L));
-        addFamous(db, new Person(context.getString(R.string.forest), -3040502400000L));
-        addFamous(db, new Person(context.getString(R.string.teresa), -1872979200000L));
-        addFamous(db, new Person(context.getString(R.string.culkin), 336096000000L));
-
-        // 27 august
-        addFamous(db, new Person(context.getString(R.string.hegel), -6290784000000L));
-        addFamous(db, new Person(context.getString(R.string.niebuhr), -6101395200000L));
-        addFamous(db, new Person(context.getString(R.string.bosch), -3008880000000L));
-        addFamous(db, new Person(context.getString(R.string.rolls), -2914185600000L));
-        addFamous(db, new Person(context.getString(R.string.ranevskaya), -2314569600000L));
-        addFamous(db, new Person(context.getString(R.string.chalke), 209952000000L));
-        addFamous(db, new Person(context.getString(R.string.aaron_paul), 304560000000L));
-
-        // 28 august
-        addFamous(db, new Person(context.getString(R.string.goethe), -6953385600000L));
-        addFamous(db, new Person(context.getString(R.string.blondel), -3355948800000L));
-        addFamous(db, new Person(context.getString(R.string.whipple), -2882563200000L));
-        addFamous(db, new Person(context.getString(R.string.theremin), -2314483200000L));
-        addFamous(db, new Person(context.getString(R.string.fincher), -231811200000L));
-        addFamous(db, new Person(context.getString(R.string.jack_black), -10886400000L));
-
-        // 29 august
-        addFamous(db, new Person(context.getString(R.string.locke), -10645430400000L));
-        addFamous(db, new Person(context.getString(R.string.maeterlinck), -3387398400000L));
-        addFamous(db, new Person(context.getString(R.string.forssmann), -2062022400000L));
-        addFamous(db, new Person(context.getString(R.string.ingrid_bergman), -1714953600000L));
-        addFamous(db, new Person(context.getString(R.string.charlie_parker), -1557100800000L));
-        addFamous(db, new Person(context.getString(R.string.michael_jackson), -357955200000L));
-
-        // 30 august
-        addFamous(db, new Person(context.getString(R.string.mary_shelley), -5438448000000L));
-        addFamous(db, new Person(context.getString(R.string.adolf_hesse), -5059843200000L));
-        addFamous(db, new Person(context.getString(R.string.hoff), -3702844800000L));
-        addFamous(db, new Person(context.getString(R.string.rutherford), -3103315200000L));
-        addFamous(db, new Person(context.getString(R.string.cummings), -2598393600000L));
-        addFamous(db, new Person(context.getString(R.string.mclaren), -1020556800000L));
-        addFamous(db, new Person(context.getString(R.string.diaz), 83980800000L));
-
-        // 31 august
-        addFamous(db, new Person(context.getString(R.string.helmholtz), -4681065600000L));
-        addFamous(db, new Person(context.getString(R.string.paneth), -2598307200000L));
-        addFamous(db, new Person(context.getString(R.string.fredric_march), -2282688000000L));
-        addFamous(db, new Person(context.getString(R.string.gere), -641779200000L));
-        addFamous(db, new Person(context.getString(R.string.tucker), 52444800000L));
-
-        // 1 september
-        addFamous(db, new Person(context.getString(R.string.jevons), -4239216000000L));
-        addFamous(db, new Person(context.getString(R.string.auguste_forel), -3828902400000L));
-        addFamous(db, new Person(context.getString(R.string.burroughs), -2976912000000L));
-        addFamous(db, new Person(context.getString(R.string.marilyn_miller), -2251065600000L));
-        addFamous(db, new Person(context.getString(R.string.marciano), -1462233600000L));
-        addFamous(db, new Person(context.getString(R.string.estefan), -389232000000L));
-
-        // 2 september
-        addFamous(db, new Person(context.getString(R.string.howard), -7678800000000L));
-        addFamous(db, new Person(context.getString(R.string.echeverria), -5185814400000L));
-        addFamous(db, new Person(context.getString(R.string.field), -3765744000000L));
-        addFamous(db, new Person(context.getString(R.string.soddy), -2913667200000L));
-        addFamous(db, new Person(context.getString(R.string.reeves), -168220800000L));
-        addFamous(db, new Person(context.getString(R.string.hayek), -105148800000L));
-
-        // 3 september
-        addFamous(db, new Person(context.getString(R.string.louis_sullivan), -3576268800000L));
-        addFamous(db, new Person(context.getString(R.string.pregl), -3166041600000L));
-        addFamous(db, new Person(context.getString(R.string.porsche), -2976739200000L));
-        addFamous(db, new Person(context.getString(R.string.anderson), -2030054400000L));
-        addFamous(db, new Person(context.getString(R.string.dovlatov), -893980800000L));
-        addFamous(db, new Person(context.getString(R.string.jeunet), -515289600000L));
-        addFamous(db, new Person(context.getString(R.string.charlie_sheen), -136598400000L));
-
-        // 4 september
-        addFamous(db, new Person(context.getString(R.string.constantijn_huygens), -11780985600000L));
-        addFamous(db, new Person(context.getString(R.string.chateaubriand), -6353164800000L));
-        addFamous(db, new Person(context.getString(R.string.richard_wright), -1935273600000L));
-        addFamous(db, new Person(context.getString(R.string.tange), -1777507200000L));
-        addFamous(db, new Person(context.getString(R.string.beyonce), 368409600000L));
-
-        // 5 september
-        addFamous(db, new Person(context.getString(R.string.campanella), -12663648000000L));
-        addFamous(db, new Person(context.getString(R.string.meyerbeer), -5627318400000L));
-        addFamous(db, new Person(context.getString(R.string.aleksey_tolstoy), -4806864000000L));
-        addFamous(db, new Person(context.getString(R.string.jesse_james), -3860179200000L));
-        addFamous(db, new Person(context.getString(R.string.mercury), -736041600000L));
-        addFamous(db, new Person(context.getString(R.string.keaton), -578275200000L));
-
-        // 6 september
-        addFamous(db, new Person(context.getString(R.string.serlio), -15598483200000L));
-        addFamous(db, new Person(context.getString(R.string.moses_mendelssohn), -7583760000000L));
-        addFamous(db, new Person(context.getString(R.string.dalton), -6416150400000L));
-        addFamous(db, new Person(context.getString(R.string.berdan), -4585852800000L));
-        addFamous(db, new Person(context.getString(R.string.addams), -3449779200000L));
-        addFamous(db, new Person(context.getString(R.string.essen), -1935100800000L));
-
-        // 7 september
-        addFamous(db, new Person(context.getString(R.string.leclerc), -8277984000000L));
-        addFamous(db, new Person(context.getString(R.string.gossen), -5027616000000L));
-        addFamous(db, new Person(context.getString(R.string.kuprin), -3134160000000L));
-        addFamous(db, new Person(context.getString(R.string.gala_dali), -2376777600000L));
-        addFamous(db, new Person(context.getString(R.string.debakey), -1935014400000L));
-        addFamous(db, new Person(context.getString(R.string.packard), -1808784000000L));
-
-        // 8 september
-        addFamous(db, new Person(context.getString(R.string.lionheart), -25633584000000L));
-        addFamous(db, new Person(context.getString(R.string.neckam), -25633584000000L));
-        addFamous(db, new Person(context.getString(R.string.mistral), -4396377600000L));
-        addFamous(db, new Person(context.getString(R.string.martin_freeman), 53136000000L));
-        addFamous(db, new Person(context.getString(R.string.pink), 53136000000L));
-        addFamous(db, new Person(context.getString(R.string.wiz_khalifa), 558057600000L));
-
-        // 9 september
-        addFamous(db, new Person(context.getString(R.string.frederik_chapman), -7835961600000L));
-        addFamous(db, new Person(context.getString(R.string.galvani), -7331040000000L));
-        addFamous(db, new Person(context.getString(R.string.leo_tolstoy), -4459363200000L));
-        addFamous(db, new Person(context.getString(R.string.usmanov), -514771200000L));
-        addFamous(db, new Person(context.getString(R.string.hugh_grant), -293846400000L));
-        addFamous(db, new Person(context.getString(R.string.sandler), -104544000000L));
-
-        // 10 september
-        addFamous(db, new Person(context.getString(R.string.peirce), -4112208000000L));
-        addFamous(db, new Person(context.getString(R.string.elsa_schiaparelli), -2502748800000L));
-        addFamous(db, new Person(context.getString(R.string.compton), -2439590400000L));
-        addFamous(db, new Person(context.getString(R.string.messing), -2218752000000L));
-        addFamous(db, new Person(context.getString(R.string.lagerfeld), -1145836800000L));
-        addFamous(db, new Person(context.getString(R.string.joe_perry), -609379200000L));
-        addFamous(db, new Person(context.getString(R.string.firth), -293760000000L));
-        addFamous(db, new Person(context.getString(R.string.ritchie), -41299200000L));
-
-        // 11 september
-        addFamous(db, new Person(context.getString(R.string.james_thomson), -8498476800000L));
-        addFamous(db, new Person(context.getString(R.string.zeiss), -4837881600000L));
-        addFamous(db, new Person(context.getString(R.string.o_henry), -3386275200000L));
-        addFamous(db, new Person(context.getString(R.string.jeans), -2912889600000L));
-        addFamous(db, new Person(context.getString(R.string.beckenbauer), -767059200000L));
-
-        // 12 september
-        addFamous(db, new Person(context.getString(R.string.breitner), -3543955200000L));
-        addFamous(db, new Person(context.getString(R.string.irene_curie), -2281651200000L));
-        addFamous(db, new Person(context.getString(R.string.lem), -1524355200000L));
-        addFamous(db, new Person(context.getString(R.string.barry_white), -798508800000L));
-        addFamous(db, new Person(context.getString(R.string.farmer), -262051200000L));
-        addFamous(db, new Person(context.getString(R.string.walker), 116640000000L));
-
-        // 13 september
-        addFamous(db, new Person(context.getString(R.string.samuel_wilson), -6415545600000L));
-        addFamous(db, new Person(context.getString(R.string.reed), -3733257600000L));
-        addFamous(db, new Person(context.getString(R.string.john_priestley), -2376259200000L));
-        addFamous(db, new Person(context.getString(R.string.dahl), -1682035200000L));
-        addFamous(db, new Person(context.getString(R.string.maurice_jarre), -1429574400000L));
-        addFamous(db, new Person(context.getString(R.string.bisset), -798422400000L));
-
-        // 14 september
-        addFamous(db, new Person(context.getString(R.string.agrippa), -15250636800000L));
-        addFamous(db, new Person(context.getString(R.string.lely), -11085897600000L));
-        addFamous(db, new Person(context.getString(R.string.cecil), -3322857600000L));
-        addFamous(db, new Person(context.getString(R.string.dana_gibson), -3228249600000L));
-        addFamous(db, new Person(context.getString(R.string.neill), -703728000000L));
-        addFamous(db, new Person(context.getString(R.string.winehouse), 432345600000L));
-
-        // 15 september
-        addFamous(db, new Person(context.getString(R.string.marco_polo), -22571913600000L));
-        addFamous(db, new Person(context.getString(R.string.james_cooper), -5689526400000L));
-        addFamous(db, new Person(context.getString(R.string.bugatti), -2786313600000L));
-        addFamous(db, new Person(context.getString(R.string.christie), -2502316800000L));
-        addFamous(db, new Person(context.getString(R.string.jean_renoir), -2376086400000L));
-        addFamous(db, new Person(context.getString(R.string.tommy_lee_jones), -735177600000L));
-        addFamous(db, new Person(context.getString(R.string.oliver_stone), -735177600000L));
-        addFamous(db, new Person(context.getString(R.string.tom_hardy), 243129600000L));
-
-        // 16 september
-        addFamous(db, new Person(context.getString(R.string.kossel), -3669840000000L));
-        addFamous(db, new Person(context.getString(R.string.boyd), -2596924800000L));
-        addFamous(db, new Person(context.getString(R.string.jellinek), -2533766400000L));
-        addFamous(db, new Person(context.getString(R.string.korda), -2407536000000L));
-        addFamous(db, new Person(context.getString(R.string.bbking), -1397779200000L));
-        addFamous(db, new Person(context.getString(R.string.rourke), -545702400000L));
-        addFamous(db, new Person(context.getString(R.string.copperfield), -419472000000L));
-
-        // 17 september
-        addFamous(db, new Person(context.getString(R.string.riemann), -4521830400000L));
-        addFamous(db, new Person(context.getString(R.string.buick), -3638217600000L));
-        addFamous(db, new Person(context.getString(R.string.tsiolkovsky), -3543523200000L));
-        addFamous(db, new Person(context.getString(R.string.kesey), -1082160000000L));
-        addFamous(db, new Person(context.getString(R.string.messner), -798076800000L));
-        addFamous(db, new Person(context.getString(R.string.anastacia), -40694400000L));
-        addFamous(db, new Person(context.getString(R.string.ovechkin), 495763200000L));
-
-        // 18 september
-        addFamous(db, new Person(context.getString(R.string.samuel_johnson), -8213875200000L));
-        addFamous(db, new Person(context.getString(R.string.foucault), -4742668800000L));
-        addFamous(db, new Person(context.getString(R.string.garbo), -2028758400000L));
-        addFamous(db, new Person(context.getString(R.string.mcmillan), -1965686400000L));
-        addFamous(db, new Person(context.getString(R.string.werber), -261532800000L));
-        addFamous(db, new Person(context.getString(R.string.gandolfini), -261532800000L));
-        addFamous(db, new Person(context.getString(R.string.shuttleworth), 117158400000L));
-
-        // 19 september
-        addFamous(db, new Person(context.getString(R.string.pajou), -7551100800000L));
-        addFamous(db, new Person(context.getString(R.string.golding), -1839369600000L));
-        addFamous(db, new Person(context.getString(R.string.irons), -671673600000L));
-        addFamous(db, new Person(context.getString(R.string.hornby), -640137600000L));
-        addFamous(db, new Person(context.getString(R.string.karelin), -72144000000L));
-
-        // 20 september
-        addFamous(db, new Person(context.getString(R.string.moneta), -4300646400000L));
-        addFamous(db, new Person(context.getString(R.string.dewar), -4016649600000L));
-        addFamous(db, new Person(context.getString(R.string.leo_strauss), -2217888000000L));
-        addFamous(db, new Person(context.getString(R.string.loren), -1113436800000L));
-        addFamous(db, new Person(context.getString(R.string.george_martin), -671587200000L));
-
-        // 21 september
-        addFamous(db, new Person(context.getString(R.string.mcadam), -6730387200000L));
-        addFamous(db, new Person(context.getString(R.string.onnes), -3669408000000L));
-        addFamous(db, new Person(context.getString(R.string.wells), -3259180800000L));
-        addFamous(db, new Person(context.getString(R.string.nicolle), -3259180800000L));
-        addFamous(db, new Person(context.getString(R.string.stephen_king), -703123200000L));
-        addFamous(db, new Person(context.getString(R.string.murray), -608428800000L));
-        addFamous(db, new Person(context.getString(R.string.beigbeder), -135043200000L));
-
-        // 22 september
-        addFamous(db, new Person(context.getString(R.string.faraday), -5625849600000L));
-        addFamous(db, new Person(context.getString(R.string.george_bentham), -5341852800000L));
-        addFamous(db, new Person(context.getString(R.string.ciurlionis), -2975097600000L));
-        addFamous(db, new Person(context.getString(R.string.muni), -2343945600000L));
-        addFamous(db, new Person(context.getString(R.string.huggins), -2154643200000L));
-        addFamous(db, new Person(context.getString(R.string.dean_reed), -987033600000L));
-
-        // 23 september
-        addFamous(db, new Person(context.getString(R.string.fizeau), -4742236800000L));
-        addFamous(db, new Person(context.getString(R.string.robert_bosch), -3416774400000L));
-        addFamous(db, new Person(context.getString(R.string.orr), -2817158400000L));
-        addFamous(db, new Person(context.getString(R.string.coltrane), -1365638400000L));
-        addFamous(db, new Person(context.getString(R.string.romy_schneider), -986947200000L));
-        addFamous(db, new Person(context.getString(R.string.julio_iglesias), -829180800000L));
-        addFamous(db, new Person(context.getString(R.string.springsteen), -639792000000L));
-
-        // 24 september
-        addFamous(db, new Person(context.getString(R.string.cardano), -14776387200000L));
-        addFamous(db, new Person(context.getString(R.string.walpole), -7960896000000L));
-        addFamous(db, new Person(context.getString(R.string.triolet), -2312150400000L));
-        addFamous(db, new Person(context.getString(R.string.f_s_fitzgerald), -2312150400000L));
-        addFamous(db, new Person(context.getString(R.string.ochoa), -2028240000000L));
-        addFamous(db, new Person(context.getString(R.string.brunner), -1113091200000L));
-
-        // 25 september
-        addFamous(db, new Person(context.getString(R.string.thomas_morgan), -3258835200000L));
-        addFamous(db, new Person(context.getString(R.string.faulkner), -2280528000000L));
-        addFamous(db, new Person(context.getString(R.string.shostakovich), -1996617600000L));
-        addFamous(db, new Person(context.getString(R.string.michael_douglas), -797385600000L));
-        addFamous(db, new Person(context.getString(R.string.almodovar), -639619200000L));
-        addFamous(db, new Person(context.getString(R.string.will_smith), -40003200000L));
-        addFamous(db, new Person(context.getString(R.string.zeta_jones), -8467200000L));
-
-        // 26 september
-        addFamous(db, new Person(context.getString(R.string.grew), -10359014400000L));
-        addFamous(db, new Person(context.getString(R.string.joseph_proust), -6793113600000L));
-        addFamous(db, new Person(context.getString(R.string.pavlov), -3795206400000L));
-        addFamous(db, new Person(context.getString(R.string.hine), -3006288000000L));
-        addFamous(db, new Person(context.getString(R.string.wallis), -2596060800000L));
-        addFamous(db, new Person(context.getString(R.string.eliot), -2564438400000L));
-
-        // 27 september
-        addFamous(db, new Person(context.getString(R.string.bossuet), -10769155200000L));
-        addFamous(db, new Person(context.getString(R.string.deledda), -3100896000000L));
-        addFamous(db, new Person(context.getString(R.string.larry_wall), -481680000000L));
-        addFamous(db, new Person(context.getString(R.string.welsh), -355449600000L));
-        addFamous(db, new Person(context.getString(R.string.paltrow), 86400000000L));
-        addFamous(db, new Person(context.getString(R.string.wayne), 401932800000L));
-
-        // 28 september
-        addFamous(db, new Person(context.getString(R.string.merimee), -5246726400000L));
-        addFamous(db, new Person(context.getString(R.string.moissan), -3700339200000L));
-        addFamous(db, new Person(context.getString(R.string.finch), -1680739200000L));
-        addFamous(db, new Person(context.getString(R.string.mastroianni), -1428278400000L));
-        addFamous(db, new Person(context.getString(R.string.bardot), -1112745600000L));
-        addFamous(db, new Person(context.getString(R.string.watts), -39744000000L));
-        addFamous(db, new Person(context.getString(R.string.dita_von_teese), 86486400000L));
-        addFamous(db, new Person(context.getString(R.string.emelianenko), 212716800000L));
-
-        // 29 september
-        addFamous(db, new Person(context.getString(R.string.caravaggio), -12566966400000L));
-        addFamous(db, new Person(context.getString(R.string.horatio_nelson), -6666624000000L));
-        addFamous(db, new Person(context.getString(R.string.gaskell), -5025715200000L));
-        addFamous(db, new Person(context.getString(R.string.fermi), -2154038400000L));
-        addFamous(db, new Person(context.getString(R.string.ostrovsky), -2059344000000L));
-        addFamous(db, new Person(context.getString(R.string.antonioni), -1806883200000L));
-
-        // 30 september
-        addFamous(db, new Person(context.getString(R.string.condillac), -8055072000000L));
-        addFamous(db, new Person(context.getString(R.string.wrigley), -3416169600000L));
-        addFamous(db, new Person(context.getString(R.string.perrin), -3132172800000L));
-        addFamous(db, new Person(context.getString(R.string.geiger), -2753481600000L));
-        addFamous(db, new Person(context.getString(R.string.kerr), -1522800000000L));
-        addFamous(db, new Person(context.getString(R.string.capote), -1428105600000L));
-        addFamous(db, new Person(context.getString(R.string.bellucci), -165801600000L));
-        addFamous(db, new Person(context.getString(R.string.cotillard), 181267200000L));
-
-        // 1 october
-        addFamous(db, new Person(context.getString(R.string.boeing), -2784931200000L));
-        addFamous(db, new Person(context.getString(R.string.richard_harris), -1238716800000L));
-        addFamous(db, new Person(context.getString(R.string.andrews), -1080950400000L));
-        addFamous(db, new Person(context.getString(R.string.annaud), -828489600000L));
-        addFamous(db, new Person(context.getString(R.string.galifianakis), -7948800000L));
-        addFamous(db, new Person(context.getString(R.string.brie_larson), 623203200000L));
-
-        // 2 october
-        addFamous(db, new Person(context.getString(R.string.ramsay), -3699993600000L));
-        addFamous(db, new Person(context.getString(R.string.gandhi), -3163536000000L));
-        addFamous(db, new Person(context.getString(R.string.greene), -2059084800000L));
-        addFamous(db, new Person(context.getString(R.string.willy_ley), -1996012800000L));
-        addFamous(db, new Person(context.getString(R.string.karan), -670550400000L));
-        addFamous(db, new Person(context.getString(R.string.sting), -575942400000L));
-
-        // 3 october
-        addFamous(db, new Person(context.getString(R.string.shmelyov), -3037219200000L));
-        addFamous(db, new Person(context.getString(R.string.yesenin), -2342995200000L));
-        addFamous(db, new Person(context.getString(R.string.aragon), -2279836800000L));
-        addFamous(db, new Person(context.getString(R.string.wolfe), -2185228800000L));
-        addFamous(db, new Person(context.getString(R.string.stefani), -7776000000L));
-        addFamous(db, new Person(context.getString(R.string.headey), 118454400000L));
-        addFamous(db, new Person(context.getString(R.string.ibrahimovic), 370915200000L));
-        addFamous(db, new Person(context.getString(R.string.vikander), 591840000000L));
-
-        // 4 october
-        addFamous(db, new Person(context.getString(R.string.piranesi), -7865337600000L));
-        addFamous(db, new Person(context.getString(R.string.pottier), -4835894400000L));
-        addFamous(db, new Person(context.getString(R.string.boussenard), -3857673600000L));
-        addFamous(db, new Person(context.getString(R.string.sarandon), -733536000000L));
-        addFamous(db, new Person(context.getString(R.string.waltz), -417916800000L));
-        addFamous(db, new Person(context.getString(R.string.silverstone), 213235200000L));
-        addFamous(db, new Person(context.getString(R.string.dakota_johnson), 623462400000L));
-
-        // 5 october
-        addFamous(db, new Person(context.getString(R.string.diderot), -8086176000000L));
-        addFamous(db, new Person(context.getString(R.string.lumiere), -3321043200000L));
-        addFamous(db, new Person(context.getString(R.string.rous), -2847744000000L));
-        addFamous(db, new Person(context.getString(R.string.kroc), -2121984000000L));
-        addFamous(db, new Person(context.getString(R.string.lemieux), -133833600000L));
-        addFamous(db, new Person(context.getString(R.string.pearce), -70761600000L));
-        addFamous(db, new Person(context.getString(R.string.winslet), 181699200000L));
-        addFamous(db, new Person(context.getString(R.string.eisenberg), 434160000000L));
-
-        // 6 october
-        addFamous(db, new Person(context.getString(R.string.maskelyne), -7486473600000L));
-        addFamous(db, new Person(context.getString(R.string.smuglewicz), -7076246400000L));
-        addFamous(db, new Person(context.getString(R.string.westinghouse), -3889036800000L));
-        addFamous(db, new Person(context.getString(R.string.fessenden), -3257884800000L));
-        addFamous(db, new Person(context.getString(R.string.corbusier), -2595196800000L));
-        addFamous(db, new Person(context.getString(R.string.ernest_walton), -2090361600000L));
-        addFamous(db, new Person(context.getString(R.string.heyerdahl), -1743206400000L));
-
-        // 7 october
-        addFamous(db, new Person(context.getString(R.string.niels_bohr), -2658182400000L));
-        addFamous(db, new Person(context.getString(R.string.alcantara), -2311027200000L));
-        addFamous(db, new Person(context.getString(R.string.keneally), -1080432000000L));
-        addFamous(db, new Person(context.getString(R.string.putin), -543888000000L));
-        addFamous(db, new Person(context.getString(R.string.braxton), -70588800000L));
-
-        // 8 october
-        addFamous(db, new Person(context.getString(R.string.geyter), -3825705600000L));
-        addFamous(db, new Person(context.getString(R.string.poddubny), -3099945600000L));
-        addFamous(db, new Person(context.getString(R.string.tsvetaeva), -2437171200000L));
-        addFamous(db, new Person(context.getString(R.string.voicu), -1459036800000L));
-        addFamous(db, new Person(context.getString(R.string.louise_hay), -1364342400000L));
-        addFamous(db, new Person(context.getString(R.string.weaver), -638496000000L));
-        addFamous(db, new Person(context.getString(R.string.matt_damon), 24192000000L));
-
-        // 9 october
-        addFamous(db, new Person(context.getString(R.string.sorbon), -24242371200000L));
-        addFamous(db, new Person(context.getString(R.string.segner), -8369827200000L));
-        addFamous(db, new Person(context.getString(R.string.saint_saens), -4235932800000L));
-        addFamous(db, new Person(context.getString(R.string.lennon), -922406400000L));
-        addFamous(db, new Person(context.getString(R.string.mcqueen), -7257600000L));
-
-        // 10 october
-        addFamous(db, new Person(context.getString(R.string.watteau), -9000806400000L));
-        addFamous(db, new Person(context.getString(R.string.cavendish), -7517750400000L));
-        addFamous(db, new Person(context.getString(R.string.verdi), -4930070400000L));
-        addFamous(db, new Person(context.getString(R.string.nansen), -3415305600000L));
-        addFamous(db, new Person(context.getString(R.string.andric), -2436998400000L));
-        addFamous(db, new Person(context.getString(R.string.giacometti), -2153088000000L));
-        addFamous(db, new Person(context.getString(R.string.pavel_durov), 466214400000L));
-
-        // 11 october
-        addFamous(db, new Person(context.getString(R.string.olbers), -6665587200000L));
-        addFamous(db, new Person(context.getString(R.string.berlier), -4046371200000L));
-        addFamous(db, new Person(context.getString(R.string.heinz), -3951676800000L));
-        addFamous(db, new Person(context.getString(R.string.roosevelt), -2689372800000L));
-        addFamous(db, new Person(context.getString(R.string.mauriac), -2657836800000L));
-
-        // 12 october
-        addFamous(db, new Person(context.getString(R.string.sperry), -3446668800000L));
-        addFamous(db, new Person(context.getString(R.string.harden), -3288902400000L));
-        addFamous(db, new Person(context.getString(R.string.horch), -3194208000000L));
-        addFamous(db, new Person(context.getString(R.string.crowley), -2973369600000L));
-        addFamous(db, new Person(context.getString(R.string.montale), -2310595200000L));
-        addFamous(db, new Person(context.getString(R.string.pavarotti), -1080000000000L));
-        addFamous(db, new Person(context.getString(R.string.jackman), -38534400000L));
-
-        // 13 october
-        addFamous(db, new Person(context.getString(R.string.tatum), -1900368000000L));
-        addFamous(db, new Person(context.getString(R.string.thatcher), -1395446400000L));
-        addFamous(db, new Person(context.getString(R.string.hunter), -890524800000L));
-        addFamous(db, new Person(context.getString(R.string.simon), -890524800000L));
-        addFamous(db, new Person(context.getString(R.string.cohen), 56160000000L));
-
-        // 14 october
-        addFamous(db, new Person(context.getString(R.string.william_penn), -10262764800000L));
-        addFamous(db, new Person(context.getString(R.string.gish), -2405116800000L));
-        addFamous(db, new Person(context.getString(R.string.roger_moore), -1332288000000L));
-        addFamous(db, new Person(context.getString(R.string.lauren), -953596800000L));
-        addFamous(db, new Person(context.getString(R.string.wasikowska), 624326400000L));
-
-        // 15 october
-        addFamous(db, new Person(context.getString(R.string.torricelli), -11398752000000L));
-        addFamous(db, new Person(context.getString(R.string.lermontov), -4898102400000L));
-        addFamous(db, new Person(context.getString(R.string.asaph_hall), -4424716800000L));
-        addFamous(db, new Person(context.getString(R.string.nietzsche), -3951331200000L));
-        addFamous(db, new Person(context.getString(R.string.ilf), -2278800000000L));
-        addFamous(db, new Person(context.getString(R.string.puzo), -1553040000000L));
-        addFamous(db, new Person(context.getString(R.string.fm_2030), -1237507200000L));
-
-        // 16 october
-        addFamous(db, new Person(context.getString(R.string.haller), -8242992000000L));
-        addFamous(db, new Person(context.getString(R.string.wilde), -3635712000000L));
-        addFamous(db, new Person(context.getString(R.string.oneill), -2562710400000L));
-        addFamous(db, new Person(context.getString(R.string.grass), -1332115200000L));
-        addFamous(db, new Person(context.getString(R.string.paffgen), -984960000000L));
-        addFamous(db, new Person(context.getString(R.string.robbins), -353808000000L));
-
-        // 17 october
-        addFamous(db, new Person(context.getString(R.string.orlov), -7422451200000L));
-        addFamous(db, new Person(context.getString(R.string.saint_simon), -6601910400000L));
-        addFamous(db, new Person(context.getString(R.string.jordan), -669254400000L));
-        addFamous(db, new Person(context.getString(R.string.eminem), 88128000000L));
-        addFamous(db, new Person(context.getString(R.string.raikkonen), 308966400000L));
-        addFamous(db, new Person(context.getString(R.string.felicity_jones), 435196800000L));
-
-        // 18 october
-        addFamous(db, new Person(context.getString(R.string.schonbein), -5371142400000L));
-        addFamous(db, new Person(context.getString(R.string.glumer), -4550688000000L));
-        addFamous(db, new Person(context.getString(R.string.lodygin), -3856464000000L));
-        addFamous(db, new Person(context.getString(R.string.bergson), -3477772800000L));
-        addFamous(db, new Person(context.getString(R.string.chuck_berry), -1363478400000L));
-        addFamous(db, new Person(context.getString(R.string.george_scott), -1331942400000L));
-        addFamous(db, new Person(context.getString(R.string.van_damme), -290476800000L));
-
-        // 19 october
-        addFamous(db, new Person(context.getString(R.string.ficino), -16920144000000L));
-        addFamous(db, new Person(context.getString(R.string.auguste_lumiere), -3382992000000L));
-        addFamous(db, new Person(context.getString(R.string.boccioni), -2751840000000L));
-        addFamous(db, new Person(context.getString(R.string.gilels), -1678924800000L));
-        addFamous(db, new Person(context.getString(R.string.holyfield), -227318400000L));
-        addFamous(db, new Person(context.getString(R.string.trey_parker), -6393600000L));
-
-        // 20 october
-        addFamous(db, new Person(context.getString(R.string.bartholin), -11145859200000L));
-        addFamous(db, new Person(context.getString(R.string.wren), -10640937600000L));
-        addFamous(db, new Person(context.getString(R.string.rimbaud), -3635366400000L));
-        addFamous(db, new Person(context.getString(R.string.chadwick), -2467756800000L));
-        addFamous(db, new Person(context.getString(R.string.bernat), -1458000000000L));
-        addFamous(db, new Person(context.getString(R.string.jelinek), -732153600000L));
-        addFamous(db, new Person(context.getString(R.string.snoop_dogg), 56764800000L));
-
-        // 21 october
-        addFamous(db, new Person(context.getString(R.string.coleridge), -6222873600000L));
-        addFamous(db, new Person(context.getString(R.string.nobel), -4297968000000L));
-        addFamous(db, new Person(context.getString(R.string.mikhalkov), -763603200000L));
-        addFamous(db, new Person(context.getString(R.string.carrie_fisher), -416448000000L));
-        addFamous(db, new Person(context.getString(R.string.geim), -353376000000L));
-        addFamous(db, new Person(context.getString(R.string.kardashian), 340934400000L));
-
-        // 22 october
-        addFamous(db, new Person(context.getString(R.string.liszt), -4992192000000L));
-        addFamous(db, new Person(context.getString(R.string.bernhardt), -3950726400000L));
-        addFamous(db, new Person(context.getString(R.string.bunin), -3130272000000L));
-        addFamous(db, new Person(context.getString(R.string.yashin), -1268438400000L));
-        addFamous(db, new Person(context.getString(R.string.christopher_lloyd), -984441600000L));
-        addFamous(db, new Person(context.getString(R.string.deneuve), -826675200000L));
-        addFamous(db, new Person(context.getString(R.string.wenger), -637286400000L));
-
-        // 23 october
-        addFamous(db, new Person(context.getString(R.string.larousse), -4802716800000L));
-        addFamous(db, new Person(context.getString(R.string.lanchester), -3193257600000L));
-        addFamous(db, new Person(context.getString(R.string.lewis), -2972419200000L));
-        addFamous(db, new Person(context.getString(R.string.bloch), -2025734400000L));
-        addFamous(db, new Person(context.getString(R.string.pele), -921196800000L));
-        addFamous(db, new Person(context.getString(R.string.reynolds), 214876800000L));
-        addFamous(db, new Person(context.getString(R.string.clarke), 530409600000L));
-
-        // 24 october
-        addFamous(db, new Person(context.getString(R.string.robbia), -16856640000000L));
-        addFamous(db, new Person(context.getString(R.string.leeuwenhoek), -10640592000000L));
-        addFamous(db, new Person(context.getString(R.string.wilhelm_weber), -5212857600000L));
-        addFamous(db, new Person(context.getString(R.string.swarovski), -3382560000000L));
-        addFamous(db, new Person(context.getString(R.string.raikin), -1836345600000L));
-        addFamous(db, new Person(context.getString(R.string.rooney), 498960000000L));
-        addFamous(db, new Person(context.getString(R.string.drake), 530496000000L));
-
-        // 25 october
-        addFamous(db, new Person(context.getString(R.string.galois), -4991932800000L));
-        addFamous(db, new Person(context.getString(R.string.johann_strauss), -4550083200000L));
-        addFamous(db, new Person(context.getString(R.string.bizet), -4139856000000L));
-        addFamous(db, new Person(context.getString(R.string.picasso), -2782857600000L));
-        addFamous(db, new Person(context.getString(R.string.gance), -2530396800000L));
-        addFamous(db, new Person(context.getString(R.string.katy_perry), 467510400000L));
-
-        // 26 october
-        addFamous(db, new Person(context.getString(R.string.scarlatti), -8967888000000L));
-        addFamous(db, new Person(context.getString(R.string.goldschmidt), -4739385600000L));
-        addFamous(db, new Person(context.getString(R.string.vereshchagin), -4013539200000L));
-        addFamous(db, new Person(context.getString(R.string.bely), -2814307200000L));
-        addFamous(db, new Person(context.getString(R.string.napoleon_hill), -2719699200000L));
-
-        // 27 october
-        addFamous(db, new Person(context.getString(R.string.paganini), -5906822400000L));
-        addFamous(db, new Person(context.getString(R.string.falk), -2624918400000L));
-        addFamous(db, new Person(context.getString(R.string.cleese), -952473600000L));
-        addFamous(db, new Person(context.getString(R.string.simon_le_bon), -352857600000L));
-        addFamous(db, new Person(context.getString(R.string.vanessa_mae), 278294400000L));
-
-        // 28 october
-        addFamous(db, new Person(context.getString(R.string.edith_head), -2277676800000L));
-        addFamous(db, new Person(context.getString(R.string.waugh), -2088460800000L));
-        addFamous(db, new Person(context.getString(R.string.garrincha), -1141689600000L));
-        addFamous(db, new Person(context.getString(R.string.bill_gates), -447465600000L));
-        addFamous(db, new Person(context.getString(R.string.ramazzotti), -195004800000L));
-        addFamous(db, new Person(context.getString(R.string.julia_roberts), -68774400000L));
-        addFamous(db, new Person(context.getString(R.string.joaquin_phoenix), 152150400000L));
-
-        // 29 october
-        addFamous(db, new Person(context.getString(R.string.stur), -4865356800000L));
-        addFamous(db, new Person(context.getString(R.string.ioffe), -2814048000000L));
-        addFamous(db, new Person(context.getString(R.string.phalle), -1236297600000L));
-        addFamous(db, new Person(context.getString(R.string.dreyfuss), -699840000000L));
-        addFamous(db, new Person(context.getString(R.string.ryder), 57542400000L));
-
-        // 30 october
-        addFamous(db, new Person(context.getString(R.string.kauffmann), -7200403200000L));
-        addFamous(db, new Person(context.getString(R.string.sheridan), -6884870400000L));
-        addFamous(db, new Person(context.getString(R.string.chenier), -6537715200000L));
-        addFamous(db, new Person(context.getString(R.string.valery), -3098044800000L));
-        addFamous(db, new Person(context.getString(R.string.maradona), -289440000000L));
-        addFamous(db, new Person(context.getString(R.string.belleci), 26092800000L));
-
-        // 31 october
-        addFamous(db, new Person(context.getString(R.string.vermeer), -10639987200000L));
-        addFamous(db, new Person(context.getString(R.string.keats), -5496249600000L));
-        addFamous(db, new Person(context.getString(R.string.weierstrass), -4865184000000L));
-        addFamous(db, new Person(context.getString(R.string.baeyer), -4234032000000L));
-        addFamous(db, new Person(context.getString(R.string.helmut_newton), -1551657600000L));
-        addFamous(db, new Person(context.getString(R.string.peter_jackson), -257817600000L));
-        addFamous(db, new Person(context.getString(R.string.rob_schneider), -194745600000L));
-
-        // 1 november
-        addFamous(db, new Person(context.getString(R.string.cortona), -11775974400000L));
-        addFamous(db, new Person(context.getString(R.string.canova), -6695308800000L));
-        addFamous(db, new Person(context.getString(R.string.grieg), -2119651200000L));
-        addFamous(db, new Person(context.getString(R.string.flynt), -857347200000L));
-        addFamous(db, new Person(context.getString(R.string.kiedis), -226195200000L));
-        addFamous(db, new Person(context.getString(R.string.rai), 120960000000L));
-
-        // 2 november
-        addFamous(db, new Person(context.getString(R.string.antoinette), -6758380800000L));
-        addFamous(db, new Person(context.getString(R.string.boole), -4865011200000L));
-        addFamous(db, new Person(context.getString(R.string.sorel), -3855168000000L));
-        addFamous(db, new Person(context.getString(R.string.visconti), -1993334400000L));
-        addFamous(db, new Person(context.getString(R.string.keith_emerson), -794102400000L));
-        addFamous(db, new Person(context.getString(R.string.khan), -131414400000L));
-        addFamous(db, new Person(context.getString(R.string.schwimmer), -99878400000L));
-
-        // 3 november
-        addFamous(db, new Person(context.getString(R.string.cellini), -14804467200000L));
-        addFamous(db, new Person(context.getString(R.string.marshak), -2592777600000L));
-        addFamous(db, new Person(context.getString(R.string.dassler), -2182550400000L));
-        addFamous(db, new Person(context.getString(R.string.gerd_muller), -762480000000L));
-        addFamous(db, new Person(context.getString(R.string.lundgren), -383788800000L));
-        addFamous(db, new Person(context.getString(R.string.newell), -226022400000L));
-
-        // 4 november
-        addFamous(db, new Person(context.getString(R.string.reni), -12437625600000L));
-        addFamous(db, new Person(context.getString(R.string.bove), -5842972800000L));
-        addFamous(db, new Person(context.getString(R.string.shakurantala_devi), -1267315200000L));
-        addFamous(db, new Person(context.getString(R.string.mcconaughey), -5011200000L));
-        addFamous(db, new Person(context.getString(R.string.figo), 89683200000L));
-
-        // 5 november
-        addFamous(db, new Person(context.getString(R.string.petrov_vodkin), -2876601600000L));
-        addFamous(db, new Person(context.getString(R.string.leigh), -1772150400000L));
-        addFamous(db, new Person(context.getString(R.string.dassin), -983232000000L));
-        addFamous(db, new Person(context.getString(R.string.patrick), -352080000000L));
-        addFamous(db, new Person(context.getString(R.string.bryan_adams), -320544000000L));
-        addFamous(db, new Person(context.getString(R.string.swinton), -288921600000L));
-
-        // 6 november
-        addFamous(db, new Person(context.getString(R.string.sax), -4896201600000L));
-        addFamous(db, new Person(context.getString(R.string.charles_dow), -3728592000000L));
-        addFamous(db, new Person(context.getString(R.string.sousa), -3633897600000L));
-        addFamous(db, new Person(context.getString(R.string.nailsmith), -3412972800000L));
-        addFamous(db, new Person(context.getString(R.string.emma_stone), 594777600000L));
-
-        // 7 november
-        addFamous(db, new Person(context.getString(R.string.stukeley), -8903779200000L));
-        addFamous(db, new Person(context.getString(R.string.james_cook), -7609939200000L));
-        addFamous(db, new Person(context.getString(R.string.erkel), -5022345600000L));
-        addFamous(db, new Person(context.getString(R.string.casal), -3349814400000L));
-        addFamous(db, new Person(context.getString(R.string.marie_curie), -3223584000000L));
-        addFamous(db, new Person(context.getString(R.string.camus), -1771977600000L));
-        addFamous(db, new Person(context.getString(R.string.guetta), -67910400000L));
-
-        // 8 november
-        addFamous(db, new Person(context.getString(R.string.stoker), -3854649600000L));
-        addFamous(db, new Person(context.getString(R.string.hausdorff), -3191875200000L));
-        addFamous(db, new Person(context.getString(R.string.rorschach), -2686953600000L));
-        addFamous(db, new Person(context.getString(R.string.mitchell), -2182118400000L));
-        addFamous(db, new Person(context.getString(R.string.barnard), -1487894400000L));
-        addFamous(db, new Person(context.getString(R.string.kilby), -1456358400000L));
-        addFamous(db, new Person(context.getString(R.string.delon), -1077667200000L));
-        addFamous(db, new Person(context.getString(R.string.hiddink), -730512000000L));
-
-        // 9 november
-        addFamous(db, new Person(context.getString(R.string.borden), -5306169600000L));
-        addFamous(db, new Person(context.getString(R.string.turgenev), -4769712000000L));
-        addFamous(db, new Person(context.getString(R.string.gaboriau), -4327862400000L));
-        addFamous(db, new Person(context.getString(R.string.monnet), -2560636800000L));
-        addFamous(db, new Person(context.getString(R.string.sagan), -1109116800000L));
-        addFamous(db, new Person(context.getString(R.string.del_piero), 153187200000L));
-
-        // 10 november
-        addFamous(db, new Person(context.getString(R.string.luther), -15340406400000L));
-        addFamous(db, new Person(context.getString(R.string.hogarth), -8587900800000L));
-        addFamous(db, new Person(context.getString(R.string.schiller), -6631459200000L));
-        addFamous(db, new Person(context.getString(R.string.innes), -3412627200000L));
-        addFamous(db, new Person(context.getString(R.string.morricone), -1298332800000L));
-        addFamous(db, new Person(context.getString(R.string.brittany_murphy), 247968000000L));
-
-        // 11 november
-        addFamous(db, new Person(context.getString(R.string.dostoyevsky), -4674844800000L));
-        addFamous(db, new Person(context.getString(R.string.maurice_leblanc), -3317846400000L));
-        addFamous(db, new Person(context.getString(R.string.vonnegut), -1487635200000L));
-        addFamous(db, new Person(context.getString(R.string.brugiroux), -1014249600000L));
-        addFamous(db, new Person(context.getString(R.string.demi_moore), -225331200000L));
-        addFamous(db, new Person(context.getString(R.string.dicaprio), 153360000000L));
-
-        // 12 november
-        addFamous(db, new Person(context.getString(R.string.rodin), -4075142400000L));
-        addFamous(db, new Person(context.getString(R.string.grace_kelly), -1266624000000L));
-        addFamous(db, new Person(context.getString(R.string.gurchenko), -1077321600000L));
-        addFamous(db, new Person(context.getString(R.string.gosling), 342835200000L));
-        addFamous(db, new Person(context.getString(R.string.hathaway), 405907200000L));
-
-        // 13 november
-        addFamous(db, new Person(context.getString(R.string.montagu), -7925040000000L));
-        addFamous(db, new Person(context.getString(R.string.hauy), -7072963200000L));
-        addFamous(db, new Person(context.getString(R.string.stevenson), -3759523200000L));
-        addFamous(db, new Person(context.getString(R.string.kokkonen), -1518998400000L));
-        addFamous(db, new Person(context.getString(R.string.whoopi_goldberg), -446083200000L));
-        addFamous(db, new Person(context.getString(R.string.gerard_butler), -4233600000L));
-
-        // 14 november
-        addFamous(db, new Person(context.getString(R.string.fulton), -6441724800000L));
-        addFamous(db, new Person(context.getString(R.string.bichat), -6252422400000L));
-        addFamous(db, new Person(context.getString(R.string.lyell), -5431881600000L));
-        addFamous(db, new Person(context.getString(R.string.monet), -4074969600000L));
-        addFamous(db, new Person(context.getString(R.string.banting), -2465596800000L));
-        addFamous(db, new Person(context.getString(R.string.lindgren), -1960761600000L));
-
-        // 15 november
-        addFamous(db, new Person(context.getString(R.string.lavater), -7199020800000L));
-        addFamous(db, new Person(context.getString(R.string.chasles), -5558025600000L));
-        addFamous(db, new Person(context.getString(R.string.hauptmann), -3380659200000L));
-        addFamous(db, new Person(context.getString(R.string.krogh), -3001968000000L));
-        addFamous(db, new Person(context.getString(R.string.kroeger), 153705600000L));
-
-        // 16 november
-        addFamous(db, new Person(context.getString(R.string.kreutzer), -6410016000000L));
-        addFamous(db, new Person(context.getString(R.string.saramago), -1487203200000L));
-        addFamous(db, new Person(context.getString(R.string.achebe), -1234742400000L));
-        addFamous(db, new Person(context.getString(R.string.krall), -161740800000L));
-        addFamous(db, new Person(context.getString(R.string.gyllenhaal), 248486400000L));
-
-        // 17 november
-        addFamous(db, new Person(context.getString(R.string.bronzino), -14708649600000L));
-        addFamous(db, new Person(context.getString(R.string.mobius), -5652547200000L));
-        addFamous(db, new Person(context.getString(R.string.wigner), -2118268800000L));
-        addFamous(db, new Person(context.getString(R.string.honda), -1992038400000L));
-        addFamous(db, new Person(context.getString(R.string.scorsese), -855964800000L));
-        addFamous(db, new Person(context.getString(R.string.devito), -792806400000L));
-        addFamous(db, new Person(context.getString(R.string.marceau), -98582400000L));
-        addFamous(db, new Person(context.getString(R.string.mcadams), 280108800000L));
-
-        // 18 november
-        addFamous(db, new Person(context.getString(R.string.down), -4453315200000L));
-        addFamous(db, new Person(context.getString(R.string.nordenskiold), -4327084800000L));
-        addFamous(db, new Person(context.getString(R.string.gallup), -2149718400000L));
-        addFamous(db, new Person(context.getString(R.string.issigonis), -1991952000000L));
-        addFamous(db, new Person(context.getString(R.string.ryazanov), -1329264000000L));
-        addFamous(db, new Person(context.getString(R.string.owen_wilson), -35337600000L));
-
-        // 19 november
-        addFamous(db, new Person(context.getString(R.string.lomonosov), -8145446400000L));
-        addFamous(db, new Person(context.getString(R.string.skoda), -4106160000000L));
-        addFamous(db, new Person(context.getString(R.string.avenarius), -3979929600000L));
-        addFamous(db, new Person(context.getString(R.string.drucker), -1897171200000L));
-        addFamous(db, new Person(context.getString(R.string.calvin_klein), -855792000000L));
-        addFamous(db, new Person(context.getString(R.string.ryan), -256176000000L));
-        addFamous(db, new Person(context.getString(R.string.jodie_foster), -224640000000L));
-
-        // 20 november
-        addFamous(db, new Person(context.getString(R.string.guericke), -11585030400000L));
-        addFamous(db, new Person(context.getString(R.string.lagerlof), -3506457600000L));
-        addFamous(db, new Person(context.getString(R.string.karl_von_frisch), -2622844800000L));
-        addFamous(db, new Person(context.getString(R.string.hubble), -2528150400000L));
-        addFamous(db, new Person(context.getString(R.string.osgood), -1676160000000L));
-
-        // 21 november
-        addFamous(db, new Person(context.getString(R.string.voltaire), -8681644800000L));
-        addFamous(db, new Person(context.getString(R.string.schleiermacher), -6346425600000L));
-        addFamous(db, new Person(context.getString(R.string.lewis_morgan), -4768675200000L));
-        addFamous(db, new Person(context.getString(R.string.makarova), -918691200000L));
-        addFamous(db, new Person(context.getString(R.string.hawn), -760924800000L));
-        addFamous(db, new Person(context.getString(R.string.bjork), -129772800000L));
-
-        // 22 november
-        addFamous(db, new Person(context.getString(R.string.vladimir_dal), -5305046400000L));
-        addFamous(db, new Person(context.getString(R.string.thomas_cook), -5084121600000L));
-        addFamous(db, new Person(context.getString(R.string.gide), -3159129600000L));
-        addFamous(db, new Person(context.getString(R.string.gaulle), -2496441600000L));
-        addFamous(db, new Person(context.getString(R.string.pelevin), -224380800000L));
-        addFamous(db, new Person(context.getString(R.string.mikkelsen), -129686400000L));
-        addFamous(db, new Person(context.getString(R.string.ruffalo), -66614400000L));
-        addFamous(db, new Person(context.getString(R.string.ville_valo), 217468800000L));
-        addFamous(db, new Person(context.getString(R.string.scarlett_johansson), 469929600000L));
-
-        // 23 november
-        addFamous(db, new Person(context.getString(R.string.waals), -4168886400000L));
-        addFamous(db, new Person(context.getString(R.string.karloff), -2591049600000L));
-        addFamous(db, new Person(context.getString(R.string.moseley), -2591049600000L));
-        addFamous(db, new Person(context.getString(R.string.nosov), -1928361600000L));
-        addFamous(db, new Person(context.getString(R.string.cyrus), 722476800000L));
-
-        // 24 november
-        addFamous(db, new Person(context.getString(R.string.spinoza), -10637913600000L));
-        addFamous(db, new Person(context.getString(R.string.suvorov), -7576934400000L));
-        addFamous(db, new Person(context.getString(R.string.ellis), -5147107200000L));
-        addFamous(db, new Person(context.getString(R.string.collodi), -4515955200000L));
-        addFamous(db, new Person(context.getString(R.string.carnegie), -2559340800000L));
-        addFamous(db, new Person(context.getString(R.string.kusturica), -476668800000L));
-        addFamous(db, new Person(context.getString(R.string.heigl), 280713600000L));
-
-        // 25 november
-        addFamous(db, new Person(context.getString(R.string.vega), -12846038400000L));
-        addFamous(db, new Person(context.getString(R.string.sumarokov), -7955539200000L));
-        addFamous(db, new Person(context.getString(R.string.pirogov), -5020790400000L));
-        addFamous(db, new Person(context.getString(R.string.benz), -3947788800000L));
-        addFamous(db, new Person(context.getString(R.string.vavilov), -2590876800000L));
-        addFamous(db, new Person(context.getString(R.string.poul_anderson), -1360195200000L));
-
-        // 26 november
-        addFamous(db, new Person(context.getString(R.string.harvard), -11426745600000L));
-        addFamous(db, new Person(context.getString(R.string.saussure), -3537475200000L));
-        addFamous(db, new Person(context.getString(R.string.leck), -2937859200000L));
-        addFamous(db, new Person(context.getString(R.string.wiener), -2369865600000L));
-        addFamous(db, new Person(context.getString(R.string.ionesco), -1896566400000L));
-        addFamous(db, new Person(context.getString(R.string.tina_turner), -949881600000L));
-
-        // 27 november
-        addFamous(db, new Person(context.getString(R.string.celsius), -8460288000000L));
-        addFamous(db, new Person(context.getString(R.string.weizmann), -3000931200000L));
-        addFamous(db, new Person(context.getString(R.string.matsushita), -2369779200000L));
-        addFamous(db, new Person(context.getString(R.string.bruce_lee), -918172800000L));
-        addFamous(db, new Person(context.getString(R.string.mashkov), -192412800000L));
-
-        // 28 november
-        addFamous(db, new Person(context.getString(R.string.lully), -10637568000000L));
-        addFamous(db, new Person(context.getString(R.string.blake), -6692976000000L));
-        addFamous(db, new Person(context.getString(R.string.cousin), -5588438400000L));
-        addFamous(db, new Person(context.getString(R.string.engels), -4704912000000L));
-        addFamous(db, new Person(context.getString(R.string.anton_rubinstein), -4420915200000L));
-        addFamous(db, new Person(context.getString(R.string.blok), -2811456000000L));
-        addFamous(db, new Person(context.getString(R.string.zanetti), -413164800000L));
-        addFamous(db, new Person(context.getString(R.string.galliano), -286934400000L));
-
-        // 29 november
-        addFamous(db, new Person(context.getString(R.string.donizetti), -5430585600000L));
-        addFamous(db, new Person(context.getString(R.string.hauff), -5272905600000L));
-        addFamous(db, new Person(context.getString(R.string.charcot), -4547059200000L));
-        addFamous(db, new Person(context.getString(R.string.john_fleming), -3789676800000L));
-        addFamous(db, new Person(context.getString(R.string.giggs), 123379200000L));
-        addFamous(db, new Person(context.getString(R.string.faris), 218073600000L));
-
-        // 30 november
-        addFamous(db, new Person(context.getString(R.string.swift), -9532944000000L));
-        addFamous(db, new Person(context.getString(R.string.twain), -4231440000000L));
-        addFamous(db, new Person(context.getString(R.string.churchill), -3000672000000L));
-        addFamous(db, new Person(context.getString(R.string.ridley_scott), -1012608000000L));
-        addFamous(db, new Person(context.getString(R.string.idol), -444614400000L));
-        addFamous(db, new Person(context.getString(R.string.stiller), -128995200000L));
-
-        // 1 december
-        addFamous(db, new Person(context.getString(R.string.falconet), -7986556800000L));
-        addFamous(db, new Person(context.getString(R.string.tussaud), -6566486400000L));
-        addFamous(db, new Person(context.getString(R.string.lobachevsky), -5588179200000L));
-        addFamous(db, new Person(context.getString(R.string.zhukov), -2306275200000L));
-        addFamous(db, new Person(context.getString(R.string.allen), -1075680000000L));
-        addFamous(db, new Person(context.getString(R.string.escobar), -633830400000L));
-
-        // 2 december
-        addFamous(db, new Person(context.getString(R.string.joseph_bell), -4168108800000L));
-        addFamous(db, new Person(context.getString(R.string.seuratl), -3473884800000L));
-        addFamous(db, new Person(context.getString(R.string.callas), -1454284800000L));
-        addFamous(db, new Person(context.getString(R.string.versace), -728438400000L));
-        addFamous(db, new Person(context.getString(R.string.liu), -34128000000L));
-        addFamous(db, new Person(context.getString(R.string.furtado), 281404800000L));
-        addFamous(db, new Person(context.getString(R.string.spears), 376099200000L));
-
-        // 3 december
-        addFamous(db, new Person(context.getString(R.string.hill), -5493398400000L));
-        addFamous(db, new Person(context.getString(R.string.rota), -1832889600000L));
-        addFamous(db, new Person(context.getString(R.string.osbourne), -665193600000L));
-        addFamous(db, new Person(context.getString(R.string.julianne_moore), -286502400000L));
-        addFamous(db, new Person(context.getString(R.string.seyfried), 502416000000L));
-
-        // 4 december
-        addFamous(db, new Person(context.getString(R.string.chapelain), -11804745600000L));
-        addFamous(db, new Person(context.getString(R.string.carlyle), -5493312000000L));
-        addFamous(db, new Person(context.getString(R.string.adler), -1769644800000L));
-        addFamous(db, new Person(context.getString(R.string.bridges), -633571200000L));
-        addFamous(db, new Person(context.getString(R.string.bubka), -191808000000L));
-        addFamous(db, new Person(context.getString(R.string.jay_z), -2419200000L));
-
-        // 5 december
-        addFamous(db, new Person(context.getString(R.string.tyutchev), -5240851200000L));
-        addFamous(db, new Person(context.getString(R.string.lang), -2495318400000L));
-        addFamous(db, new Person(context.getString(R.string.disney), -2148249600000L));
-        addFamous(db, new Person(context.getString(R.string.heisenberg), -2148249600000L));
-        addFamous(db, new Person(context.getString(R.string.carreras), -728179200000L));
-        addFamous(db, new Person(context.getString(R.string.kaas), -97027200000L));
-
-        // 6 december
-        addFamous(db, new Person(context.getString(R.string.nicolas_leblanc), -7165670400000L));
-        addFamous(db, new Person(context.getString(R.string.gay_lussac), -6029596800000L));
-        addFamous(db, new Person(context.getString(R.string.veqilharxhi), -5429980800000L));
-        addFamous(db, new Person(context.getString(R.string.bazille), -4041532800000L));
-        addFamous(db, new Person(context.getString(R.string.crali), -1864166400000L));
-        addFamous(db, new Person(context.getString(R.string.nick_park), -349401600000L));
-
-        // 7 december
-        addFamous(db, new Person(context.getString(R.string.bernini), -11709792000000L));
-        addFamous(db, new Person(context.getString(R.string.schwann), -5019753600000L));
-        addFamous(db, new Person(context.getString(R.string.mascagni), -3347222400000L));
-        addFamous(db, new Person(context.getString(R.string.yosano), -2873836800000L));
-        addFamous(db, new Person(context.getString(R.string.waits), -633312000000L));
-        addFamous(db, new Person(context.getString(R.string.emily_browning), 597456000000L));
-
-        // 8 december
-        addFamous(db, new Person(context.getString(R.string.dholbach), -7765113600000L));
-        addFamous(db, new Person(context.getString(R.string.menzel), -4861900800000L));
-        addFamous(db, new Person(context.getString(R.string.bjornson), -4325356800000L));
-        addFamous(db, new Person(context.getString(R.string.reynaud), -3946665600000L));
-        addFamous(db, new Person(context.getString(R.string.melies), -3410208000000L));
-        addFamous(db, new Person(context.getString(R.string.morrison), -822614400000L));
-        addFamous(db, new Person(context.getString(R.string.basinger), -506995200000L));
-        addFamous(db, new Person(context.getString(R.string.somerhalder), 281923200000L));
-
-        // 9 december
-        addFamous(db, new Person(context.getString(R.string.milton), -11394000000000L));
-        addFamous(db, new Person(context.getString(R.string.winckelmann), -7954329600000L));
-        addFamous(db, new Person(context.getString(R.string.scheele), -7165411200000L));
-        addFamous(db, new Person(context.getString(R.string.berthollet), -6976022400000L));
-        addFamous(db, new Person(context.getString(R.string.grace_hopper), -1990137600000L));
-        addFamous(db, new Person(context.getString(R.string.dench), -1106524800000L));
-        addFamous(db, new Person(context.getString(R.string.malkovich), -506908800000L));
-
-        // 10 december
-        addFamous(db, new Person(context.getString(R.string.lovelace), -4861728000000L));
-        addFamous(db, new Person(context.getString(R.string.nekrasov), -4672339200000L));
-        addFamous(db, new Person(context.getString(R.string.sachs), -2463350400000L));
-        addFamous(db, new Person(context.getString(R.string.tarasov), -1611360000000L));
-        addFamous(db, new Person(context.getString(R.string.michael_duncan), -380592000000L));
-        addFamous(db, new Person(context.getString(R.string.branagh), -285897600000L));
-        addFamous(db, new Person(context.getString(R.string.molko), 92793600000L));
-
-        // 11 december
-        addFamous(db, new Person(context.getString(R.string.berlioz), -5240332800000L));
-        addFamous(db, new Person(context.getString(R.string.musset), -5019408000000L));
-        addFamous(db, new Person(context.getString(R.string.koch), -3978028800000L));
-        addFamous(db, new Person(context.getString(R.string.born), -2747260800000L));
-        addFamous(db, new Person(context.getString(R.string.gardel), -2494800000000L));
-        addFamous(db, new Person(context.getString(R.string.marais), -1769040000000L));
-
-        // 12 december
-        addFamous(db, new Person(context.getString(R.string.karamzin), -6407769600000L));
-        addFamous(db, new Person(context.getString(R.string.serebriakova), -2684016000000L));
-        addFamous(db, new Person(context.getString(R.string.ozu), -2084572800000L));
-        addFamous(db, new Person(context.getString(R.string.sinatra), -1705881600000L));
-        addFamous(db, new Person(context.getString(R.string.noyce), -1327190400000L));
-        addFamous(db, new Person(context.getString(R.string.konyukhov), -569808000000L));
-
-        // 13 december
-        addFamous(db, new Person(context.getString(R.string.gozzi), -7859289600000L));
-        addFamous(db, new Person(context.getString(R.string.heine), -5429376000000L));
-        addFamous(db, new Person(context.getString(R.string.werner_siemens), -4829846400000L));
-        addFamous(db, new Person(context.getString(R.string.birkeland), -3220473600000L));
-        addFamous(db, new Person(context.getString(R.string.buscemi), -380332800000L));
-        addFamous(db, new Person(context.getString(R.string.foxx), -64800000000L));
-        addFamous(db, new Person(context.getString(R.string.amy_lee), 377049600000L));
-        addFamous(db, new Person(context.getString(R.string.taylor_swift), 629510400000L));
-
-        // 14 december
-        addFamous(db, new Person(context.getString(R.string.nostradamus), -14706316800000L));
-        addFamous(db, new Person(context.getString(R.string.brahe), -13349318400000L));
-        addFamous(db, new Person(context.getString(R.string.ueshiba), -2715465600000L));
-        addFamous(db, new Person(context.getString(R.string.basov), -1484784000000L));
-        addFamous(db, new Person(context.getString(R.string.kapoor), -1421625600000L));
-
-        // 15 december
-        addFamous(db, new Person(context.getString(R.string.carey), -5555433600000L));
-        addFamous(db, new Person(context.getString(R.string.bolyai), -5271523200000L));
-        addFamous(db, new Person(context.getString(R.string.eiffel), -4324752000000L));
-        addFamous(db, new Person(context.getString(R.string.becquerel), -3693600000000L));
-        addFamous(db, new Person(context.getString(R.string.zamenhof), -3472761600000L));
-        addFamous(db, new Person(context.getString(R.string.getty), -2431296000000L));
-
-        // 16 december
-        addFamous(db, new Person(context.getString(R.string.austen), -6123427200000L));
-        addFamous(db, new Person(context.getString(R.string.walras), -4261593600000L));
-        addFamous(db, new Person(context.getString(R.string.bergmann), -4198435200000L));
-        addFamous(db, new Person(context.getString(R.string.kandinsky), -3251750400000L));
-        addFamous(db, new Person(context.getString(R.string.linder), -2715292800000L));
-        addFamous(db, new Person(context.getString(R.string.arthur_clarke), -1642377600000L));
-        addFamous(db, new Person(context.getString(R.string.paul_van_dyk), 61689600000L));
-
-        // 17 december
-        addFamous(db, new Person(context.getString(R.string.cimarosa), -6943795200000L));
-        addFamous(db, new Person(context.getString(R.string.beethoven), -6281107200000L));
-        addFamous(db, new Person(context.getString(R.string.davy), -6028646400000L));
-        addFamous(db, new Person(context.getString(R.string.ganelin), -790214400000L));
-        addFamous(db, new Person(context.getString(R.string.darryl_way), -663984000000L));
-        addFamous(db, new Person(context.getString(R.string.jovovich), 188006400000L));
-
-        // 18 december
-        addFamous(db, new Person(context.getString(R.string.polhem), -9720691200000L));
-        addFamous(db, new Person(context.getString(R.string.joseph_thomson), -3567110400000L));
-        addFamous(db, new Person(context.getString(R.string.stalin), -2872886400000L));
-        addFamous(db, new Person(context.getString(R.string.spielberg), -727056000000L));
-        addFamous(db, new Person(context.getString(R.string.liotta), -474595200000L));
-        addFamous(db, new Person(context.getString(R.string.brad_pitt), -190598400000L));
-        addFamous(db, new Person(context.getString(R.string.holmes), 282787200000L));
-        addFamous(db, new Person(context.getString(R.string.aguilera), 345945600000L));
-
-        // 19 december
-        addFamous(db, new Person(context.getString(R.string.michelson), -3693254400000L));
-        addFamous(db, new Person(context.getString(R.string.joze_lima), -1863043200000L));
-        addFamous(db, new Person(context.getString(R.string.piaf), -1705276800000L));
-        addFamous(db, new Person(context.getString(R.string.schweiger), -190512000000L));
-        addFamous(db, new Person(context.getString(R.string.milano), 93571200000L));
-        addFamous(db, new Person(context.getString(R.string.jake_gyllenhaal), 346032000000L));
-
-        // 20 december
-        addFamous(db, new Person(context.getString(R.string.heyrovsky), -2494022400000L));
-        addFamous(db, new Person(context.getString(R.string.balandin), -2241561600000L));
-        addFamous(db, new Person(context.getString(R.string.graaff), -2146953600000L));
-        addFamous(db, new Person(context.getString(R.string.bohm), -1642032000000L));
-        addFamous(db, new Person(context.getString(R.string.uri_geller), -726883200000L));
-        addFamous(db, new Person(context.getString(R.string.jonah_hill), 440726400000L));
-
-        // 21 december
-        addFamous(db, new Person(context.getString(R.string.robert_brown), -6186067200000L));
-        addFamous(db, new Person(context.getString(R.string.hermann_muller), -2493936000000L));
-        addFamous(db, new Person(context.getString(R.string.boll), -1641945600000L));
-        addFamous(db, new Person(context.getString(R.string.monterroso), -1515715200000L));
-        addFamous(db, new Person(context.getString(R.string.jane_fonda), -1010793600000L));
-        addFamous(db, new Person(context.getString(R.string.zappa), -916099200000L));
-        addFamous(db, new Person(context.getString(R.string.samuel_jackson), -663638400000L));
-
-        // 22 december
-        addFamous(db, new Person(context.getString(R.string.liotard), -8426592000000L));
-        addFamous(db, new Person(context.getString(R.string.fabre), -4608230400000L));
-        addFamous(db, new Person(context.getString(R.string.puccini), -3503692800000L));
-        addFamous(db, new Person(context.getString(R.string.elizondo), -1042243200000L));
-        addFamous(db, new Person(context.getString(R.string.fiennes), -221788800000L));
-        addFamous(db, new Person(context.getString(R.string.paradis), 93830400000L));
-
-        // 23 december
-        addFamous(db, new Person(context.getString(R.string.champollion), -5649436800000L));
-        addFamous(db, new Person(context.getString(R.string.bryullov), -5365440000000L));
-        addFamous(db, new Person(context.getString(R.string.dino_risi), -1673308800000L));
-        addFamous(db, new Person(context.getString(R.string.baker), -1263081600000L));
-        addFamous(db, new Person(context.getString(R.string.bosque), -600393600000L));
-        addFamous(db, new Person(context.getString(R.string.bruni), -63936000000L));
-
-        // 24 december
-        addFamous(db, new Person(context.getString(R.string.joule), -4765824000000L));
-        addFamous(db, new Person(context.getString(R.string.howard_hughes), -2020377600000L));
-        addFamous(db, new Person(context.getString(R.string.chase), -1988841600000L));
-        addFamous(db, new Person(context.getString(R.string.gardner), -1483920000000L));
-        addFamous(db, new Person(context.getString(R.string.ricky_martin), 62380800000L));
-        addFamous(db, new Person(context.getString(R.string.stephenie_meyer), 125539200000L));
-
-        // 25 december
-        addFamous(db, new Person(context.getString(R.string.chevrolet), -2872281600000L));
-        addFamous(db, new Person(context.getString(R.string.rosenzweig), -2619820800000L));
-        addFamous(db, new Person(context.getString(R.string.hilton), -2588284800000L));
-        addFamous(db, new Person(context.getString(R.string.bogart), -2209593600000L));
-        addFamous(db, new Person(context.getString(R.string.castaneda), -1389139200000L));
-        addFamous(db, new Person(context.getString(R.string.lennox), -473990400000L));
-        addFamous(db, new Person(context.getString(R.string.buuren), 220320000000L));
-
-        // 26 december
-        addFamous(db, new Person(context.getString(R.string.dinglinger), -9625305600000L));
-        addFamous(db, new Person(context.getString(R.string.babbage), -5617641600000L));
-        addFamous(db, new Person(context.getString(R.string.henry_miller), -2461968000000L));
-        addFamous(db, new Person(context.getString(R.string.zedong), -2398809600000L));
-        addFamous(db, new Person(context.getString(R.string.ulrich), -189907200000L));
-        addFamous(db, new Person(context.getString(R.string.jared_leto), 62553600000L));
-
-        // 27 december
-        addFamous(db, new Person(context.getString(R.string.kepler), -12559276800000L));
-        addFamous(db, new Person(context.getString(R.string.cayley), -6185548800000L));
-        addFamous(db, new Person(context.getString(R.string.pasteur), -4639334400000L));
-        addFamous(db, new Person(context.getString(R.string.tretyakov), -4323715200000L));
-        addFamous(db, new Person(context.getString(R.string.dietrich), -2146348800000L));
-        addFamous(db, new Person(context.getString(R.string.depardieu), -663120000000L));
-
-        // 28 december
-        addFamous(db, new Person(context.getString(R.string.eddington), -2745792000000L));
-        addFamous(db, new Person(context.getString(R.string.murnau), -2556403200000L));
-        addFamous(db, new Person(context.getString(R.string.john_neumann), -2083190400000L));
-        addFamous(db, new Person(context.getString(R.string.denzel_washington), -473731200000L));
-        addFamous(db, new Person(context.getString(R.string.torvalds), -345600000L));
-        addFamous(db, new Person(context.getString(R.string.sienna_miller), 378345600000L));
-
-        // 29 december
-        addFamous(db, new Person(context.getString(R.string.pompadour), -7826371200000L));
-        addFamous(db, new Person(context.getString(R.string.siqueiros), -2303856000000L));
-        addFamous(db, new Person(context.getString(R.string.voight), -978566400000L));
-        addFamous(db, new Person(context.getString(R.string.dexter_holland), -126489600000L));
-        addFamous(db, new Person(context.getString(R.string.jude_law), 94435200000L));
-
-        // 30 december
-        addFamous(db, new Person(context.getString(R.string.jablonskis), -3439843200000L));
-        addFamous(db, new Person(context.getString(R.string.kipling), -3282076800000L));
-        addFamous(db, new Person(context.getString(R.string.patti_smith), -726019200000L));
-        addFamous(db, new Person(context.getString(R.string.jay_kay), -172800000L));
-        addFamous(db, new Person(context.getString(R.string.tiger_woods), 189129600000L));
-        addFamous(db, new Person(context.getString(R.string.lebron_james), 473212800000L));
-
-        // 31 december
-        addFamous(db, new Person(context.getString(R.string.boldini), -4007836800000L));
-        addFamous(db, new Person(context.getString(R.string.matisse), -3155760000000L));
-        addFamous(db, new Person(context.getString(R.string.hopkins), -1009929600000L));
-        addFamous(db, new Person(context.getString(R.string.ferguson), -883699200000L));
-        addFamous(db, new Person(context.getString(R.string.kingsley), -820627200000L));
-        addFamous(db, new Person(context.getString(R.string.willis), -757468800000L));
-        addFamous(db, new Person(context.getString(R.string.val_kilmer), -315705600000L));
-        addFamous(db, new Person(context.getString(R.string.psy), 252374400000L));
+        createFamousDbPart1(context, db);
+        createFamousDbPart2(context, db);
+        createFamousDbPart3(context, db);
     }
 }

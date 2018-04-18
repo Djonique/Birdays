@@ -17,5 +17,8 @@
 package com.djonique.birdays.models;
 
 public interface Item {
-    boolean isPerson();
+    ItemType getItemType();
+    boolean isSeparator();
+    int getMonth();
+    AnniversaryType getAnniversaryType();
 }

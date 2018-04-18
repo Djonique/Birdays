@@ -44,12 +44,15 @@ import android.widget.Toast;
 
 import com.djonique.birdays.R;
 import com.djonique.birdays.alarm.AlarmHelper;
+import com.djonique.birdays.models.AnniversaryType;
 import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.Constants;
 import com.djonique.birdays.utils.ContactsHelper;
 import com.djonique.birdays.utils.DatePickerManager;
 import com.djonique.birdays.utils.PermissionManager;
 import com.djonique.birdays.utils.Utils;
+
+import org.joda.time.LocalDate;
 
 import java.util.Calendar;
 
@@ -64,7 +67,6 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private AppCompatCheckBox checkBox;
     private Calendar calendar;
     private String name;
-    private long date;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -143,8 +145,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 }
 
                 if (!Utils.isEmptyDate(etDate)) {
-                    person.setDate(calendar.getTimeInMillis());
-                    new AlarmHelper(getActivity()).setAlarms(person);
+                    person.setDate(new LocalDate(calendar));
                 }
 
                 if (checkBox != null) person.setYearUnknown(checkBox.isChecked());
@@ -160,6 +161,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 } else {
                     person.setEmail("");
                 }
+                person.setAnniversaryType(AnniversaryType.BIRTHDAY);
 
                 addingPersonListener.onPersonAdded(person);
                 dialog.dismiss();
@@ -241,9 +243,9 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                         // If date isn't picked does nothing, if picked checks state of CheckBox
                         if (checkBox.isChecked() && !Utils.isEmptyDate(etDate)) {
-                            etDate.setText(Utils.getDateWithoutYear(date));
+                            etDate.setText(Utils.getDateWithoutYear(person.getDate()));
                         } else if (!checkBox.isChecked() && !Utils.isEmptyDate(etDate)) {
-                            etDate.setText(Utils.getDate(date));
+                            etDate.setText(Utils.getDate(person.getDate()));
                         }
 
                         // Doesn't allow to add Person if conditions are not met and shows error
@@ -283,7 +285,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        date = calendar.getTimeInMillis();
+        LocalDate date = new LocalDate(calendar);
         // Checks state of CheckBox whenever date is picked
         if (!checkBox.isChecked()) {
             etDate.setText(Utils.getDate(date));

@@ -30,6 +30,7 @@ import com.djonique.birdays.models.Person;
 import com.djonique.birdays.utils.ProgressDialogHelper;
 import com.djonique.birdays.utils.Utils;
 
+import org.joda.time.LocalDate;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.File;
@@ -76,7 +77,7 @@ public class ExportHelper {
     }
 
     private String getBackupFileName() {
-        long now = Calendar.getInstance().getTimeInMillis();
+        LocalDate now = new LocalDate();
         return BACKUP + "_" + Utils.getDate(now) + "_" + String.valueOf(now) + ".xml";
     }
 

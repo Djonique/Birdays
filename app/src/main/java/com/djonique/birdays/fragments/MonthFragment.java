@@ -34,6 +34,7 @@ import com.djonique.birdays.database.DbHelper;
 import com.djonique.birdays.models.Person;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MonthFragment extends Fragment {
@@ -88,8 +89,8 @@ public class MonthFragment extends Fragment {
 
     public void addMonthPersonsFromDb() {
         adapter.removeAllPersons();
-        List<Person> persons = new ArrayList<>();
-        persons.addAll(activity.dbHelper.query().getThisMonthPersons());
+        List<Person> persons = new ArrayList<>(activity.dbHelper.query().getThisMonthPersons());
+        Collections.sort(persons);
 
         for (int i = 0; i < persons.size(); i++) {
             addPerson(persons.get(i));
@@ -102,9 +103,8 @@ public class MonthFragment extends Fragment {
 
     public void findPerson(String name) {
         adapter.removeAllPersons();
-        List<Person> persons = new ArrayList<>();
-        persons.addAll(activity.dbHelper.query().getSearchMonthPerson(DbHelper.SELECTION_LIKE_NAME,
-                new String[]{"%" + name + "%"}, DbHelper.COLUMN_NAME));
+        List<Person> persons = new ArrayList<>(activity.dbHelper.query().getSearchMonthPersons(DbHelper.SELECTION_LIKE_NAME, new String[]{"%" + name + "%"}, DbHelper.COLUMN_NAME));
+        Collections.sort(persons);
 
         for (int i = 0; i < persons.size(); i++) {
             addPerson(persons.get(i));

@@ -94,7 +94,7 @@
                             <TextView
                                 style="@style/EditActivity.Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_date"
-                                android:text="@string/birthday" />
+                                android:id="@+id/textview_detail_label" />
                         </RelativeLayout>
 
                         <!-- DaysLeft -->
@@ -153,6 +153,7 @@
                             <TextView
                                 style="@style/EditActivity.Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_zodiac"
+                                android:id="@+id/textview_detail_zodiac_label"
                                 android:text="@string/zodiac_sign" />
                         </RelativeLayout>
                     </LinearLayout>
