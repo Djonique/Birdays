@@ -34,11 +34,11 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.djonique.birdays"
+        applicationId "com.eblis.whenwasit"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 18
-        versionName "1.5.1"
+        versionName "1.0.1"
         resConfigs "auto"
         vectorDrawables.useSupportLibrary = true
         resValue "string", "version_name", versionName
@@ -52,6 +52,7 @@ android {
         debug {
             minifyEnabled false
             resValue "string", "banner_ad_id", keystoreProperties['BannerAdIdDebug']
+            buildConfigField "String", "ADMOB_ID", keystoreProperties['AdMobId']
             buildConfigField "String", "INTERSTITIAL_AD_ID", keystoreProperties['InterstitialAdIdDebug']
         }
         release {
@@ -59,6 +60,7 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             resValue "string", "banner_ad_id", keystoreProperties['BannerAdIdRelease']
+            buildConfigField "String", "ADMOB_ID", keystoreProperties['AdMobId']
             buildConfigField "String", "INTERSTITIAL_AD_ID", keystoreProperties['InterstitialAdIdRelease']
             signingConfig signingConfigs.signing
         }
@@ -86,6 +88,8 @@ dependencies {
     compile "com.google.firebase:firebase-core:${firebaseVersion}"
     compile "com.google.firebase:firebase-ads:${firebaseVersion}"
     compile "com.google.firebase:firebase-perf:${firebaseVersion}"
+    //ads
+    compile "com.google.android.gms:play-services-ads:${firebaseVersion}"
     // ButterKnife
     compile "com.jakewharton:butterknife:${butterKnifeVersion}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"

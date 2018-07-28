@@ -188,19 +188,19 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Waarom alarm werkt niet?</string>
-    <string name="help_description">Sommige apparaten hebben de energiebesparende modus die achtergrondapp-processen kan blokkeren of de toepassing uitschakelen die bij het opstarten wordt uitgevoerd.\nOm de taakwaarschuwing op de juiste manier uit te voeren, voert u een paar eenvoudige stappen uit:\n\n1. Zorg ervoor dat meldingen zijn ingeschakeld voor de Birdays-app (Instellingen > apps > Birdays).\n\n2. Als u taskmanager, taakmoordenaar of RAM-optimizers (bijvoorbeeld «Battery Saver», «Clean Master») hebt geïnstalleerd, die achtergrondappprocessen zouden kunnen blokkeren, voegt u Birdays toe aan hun witte lijst.\n\n3. Deactiveer de energiebesparende modus of voeg Birdays toe aan de witte lijst (Instellingen > Batterij > Batterij- en accu-optimalisatie).\nAlleen voor apparaten met Android 6.0 (Marshmallow) of hoger.</string>
+    <string name="help_description">Sommige apparaten hebben de energiebesparende modus die achtergrondapp-processen kan blokkeren of de toepassing uitschakelen die bij het opstarten wordt uitgevoerd.\nOm de taakwaarschuwing op de juiste manier uit te voeren, voert u een paar eenvoudige stappen uit:\n\n1. Zorg ervoor dat meldingen zijn ingeschakeld voor de Birdays-app (Instellingen > apps > WhenWasIt).\n\n2. Als u taskmanager, taakmoordenaar of RAM-optimizers (bijvoorbeeld «Battery Saver», «Clean Master») hebt geïnstalleerd, die achtergrondappprocessen zouden kunnen blokkeren, voegt u Birdays toe aan hun witte lijst.\n\n3. Deactiveer de energiebesparende modus of voeg Birdays toe aan de witte lijst (Instellingen > Batterij > Batterij- en accu-optimalisatie).\nAlleen voor apparaten met Android 6.0 (Marshmallow) of hoger.</string>
     <string name="help_whitelist">Open een witte lijst</string>
     <string name="help_whitelist_error">Alleen voor apparaten met Android 6.0 (Marshmallow) of hoger</string>
     <string name="help_delay_text">Houd er rekening mee dat meldingen op sommige apparaten mogelijk enige vertraging kunnen veroorzaken.</string>
     <string name="help_settings">Open instellingen</string>
     <string name="huawei_header">Voor Huawei eigenaren</string>
-    <string name="huawei_description">Open «Instellingen», ga naar «Energiebesparing» en open «Beschermde toepassingen». Zorg ervoor dat deze functie is ingeschakeld voor Birdays.</string>
+    <string name="huawei_description">Open «Instellingen», ga naar «Energiebesparing» en open «Beschermde toepassingen». Zorg ervoor dat deze functie is ingeschakeld voor WhenWasIt.</string>
     <string name="samsung_header">Voor Samsung eigenaren</string>
-    <string name="samsung_description">Open «Smart Manager», klik op «Batterij» en vervolgens op «Detail». Schakel deze functie uit voor Birdays.</string>
+    <string name="samsung_description">Open «Smart Manager», klik op «Batterij» en vervolgens op «Detail». Schakel deze functie uit voor WhenWasIt.</string>
     <string name="xiaomi_header">Voor Xiaomi eigenaren</string>
-    <string name="xiaomi_description">Open de telefooninstellingen, ga naar «Batterij &amp; prestaties», klik vervolgens op «Energie besparen», klik op «Toepassing selecteren», selecteer«Geen beperkingen» voor Birdays.</string>
+    <string name="xiaomi_description">Open de telefooninstellingen, ga naar «Batterij &amp; prestaties», klik vervolgens op «Energie besparen», klik op «Toepassing selecteren», selecteer«Geen beperkingen» voor WhenWasIt.</string>
     <string name="show_button">Weergeven</string>
-    <string name="help_email_description">Als het alarm nog steeds niet werkt, neem contact met me op birdaysapp@gmail.com</string>
+    <string name="help_email_description">Als het alarm nog steeds niet werkt, neem contact met me op eblis102@gmail.com</string>
     <string name="send_email">E-mail verzenden</string>
 
     <!-- Famous persons -->

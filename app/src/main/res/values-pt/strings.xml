@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Otimização ativada!</string>
-    <string name="optimization_description">\n A partir da versão 6.0, o Android introduziu o modo de economia de energia Doze que gerencia o comportamento dos aplicativos adiando a CPU em segundo plano. \n\n Para que o aplicativo funcione corretamente, desative a otimização para o Birdays.</string>
+    <string name="optimization_description">\n A partir da versão 6.0, o Android introduziu o modo de economia de energia Doze que gerencia o comportamento dos aplicativos adiando a CPU em segundo plano. \n\n Para que o aplicativo funcione corretamente, desative a otimização para o WhenWasIt.</string>
     <string name="do_not_show_again">Não mostrar novamente</string>
     <string name="disable_button">Desativar</string>
     <!-- Notifications -->
@@ -188,19 +188,19 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Por que o alarme não está funcionando?</string>
-    <string name="help_description">Alguns dispositivos possuem Modo de economia de energia que podem bloquear processos de fundo do aplicativo ou desativar o aplicativo de execução na inicialização.\nPara fazer o trabalho de alarme funcionar corretamente, estes passos simples abaixo: \n\n1. Verifique se as notificações estão ativadas para o aplicativo Birdays (Definições > Aplicações > Birdays). \n\n2. Se você instalou gerenciadores de tarefas, assasinos de tarefas ou otimizadores de RAM (por exemplo, «Battery Saver», «Clean Master»), que podem bloquear os processos de fundo do aplicativo, adicione Birdays à sua lista branca.\n\n3. Desligue o modo de poupança de energia ou adicione Birdays à lista branca (Definições > Bateria > Otimização da bateria).\nSomente para dispositivos que executam o Android 6.0 (Marshmallow) ou superior.</string>
+    <string name="help_description">Alguns dispositivos possuem Modo de economia de energia que podem bloquear processos de fundo do aplicativo ou desativar o aplicativo de execução na inicialização.\nPara fazer o trabalho de alarme funcionar corretamente, estes passos simples abaixo: \n\n1. Verifique se as notificações estão ativadas para o aplicativo WhenWasIt (Definições > Aplicações > WhenWasIt). \n\n2. Se você instalou gerenciadores de tarefas, assasinos de tarefas ou otimizadores de RAM (por exemplo, «Battery Saver», «Clean Master»), que podem bloquear os processos de fundo do aplicativo, adicione Birdays à sua lista branca.\n\n3. Desligue o modo de poupança de energia ou adicione Birdays à lista branca (Definições > Bateria > Otimização da bateria).\nSomente para dispositivos que executam o Android 6.0 (Marshmallow) ou superior.</string>
     <string name="help_whitelist">Abrir lista branca</string>
     <string name="help_whitelist_error">Somente para dispositivos que executam o Android 6.0 (Marshmallow) ou superior</string>
     <string name="help_delay_text">Por favor, note que em alguns dispositivos, notificações poderiam trabalhar com atraso.</string>
     <string name="help_settings">Abrir definições</string>
     <string name="huawei_header">Para os proprietários de Huawei</string>
-    <string name="huawei_description">Abra o dispositivo «Definições», vá para «Economia de energia» e abra «Aplicações protegidas». Certifique-se de que este recurso esteja habilitado para Birdays.</string>
+    <string name="huawei_description">Abra o dispositivo «Definições», vá para «Economia de energia» e abra «Aplicações protegidas». Certifique-se de que este recurso esteja habilitado para WhenWasIt.</string>
     <string name="samsung_header">Para os proprietários do Samsung</string>
-    <string name="samsung_description">Abra «Smart Manager», toque em «Bateria», depois em «Detalhe». Desative esse recurso para o aplicativo Birdays.</string>
+    <string name="samsung_description">Abra «Smart Manager», toque em «Bateria», depois em «Detalhe». Desative esse recurso para o aplicativo WhenWasIt.</string>
     <string name="xiaomi_header">Para os proprietários de Xiaomi</string>
-    <string name="xiaomi_description">Abra o dispositivo «Definições», vá para «Bateria e desempenho», em seguida, «Gerir utilizaçáo de bateria das aplicações», abra «Escolher aplicações», escolha« Sem restrições» para Birdays.</string>
+    <string name="xiaomi_description">Abra o dispositivo «Definições», vá para «Bateria e desempenho», em seguida, «Gerir utilizaçáo de bateria das aplicações», abra «Escolher aplicações», escolha« Sem restrições» para WhenWasIt.</string>
     <string name="show_button">Mostrar</string>
-    <string name="help_email_description">Se o alarme ainda não está funcionando, por favor contacte-me em birdaysapp@gmail.com</string>
+    <string name="help_email_description">Se o alarme ainda não está funcionando, por favor contacte-me em eblis102@gmail.com</string>
     <string name="send_email">Enviar email</string>
 
     <!-- Famous persons -->

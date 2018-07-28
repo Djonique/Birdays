@@ -188,7 +188,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">为什么闹钟没有运行？</string>
-    <string name="help_description">有些设备具有节电模式，会阻止应用程序的后台进程，或在启动时禁用程序运行。\n使闹钟正常运行，只需下面几个简单的步骤：\n\n1。请确保为 Birdays 启用了通知 (设置 > 应用程序 > Birdays)。\n\n2。如果你安装了任务管理器、任务终结者或内存优化程序 (例如«Battery Saver»、«Clean Master»)，可能会阻止应用程序的后台进程，请将 Birdays 添加到他们的白名单中。\n\n3。关闭节电模式或添加 Birdays 到白名单 (设置 > 电池 > 电池优化)。\n仅针对运行Android 6.0 (Marshmallow) 或更高的设备。</string>
+    <string name="help_description">有些设备具有节电模式，会阻止应用程序的后台进程，或在启动时禁用程序运行。\n使闹钟正常运行，只需下面几个简单的步骤：\n\n1。请确保为 Birdays 启用了通知 (设置 > 应用程序 > WhenWasIt)。\n\n2。如果你安装了任务管理器、任务终结者或内存优化程序 (例如«Battery Saver»、«Clean Master»)，可能会阻止应用程序的后台进程，请将 Birdays 添加到他们的白名单中。\n\n3。关闭节电模式或添加 Birdays 到白名单 (设置 > 电池 > 电池优化)。\n仅针对运行Android 6.0 (Marshmallow) 或更高的设备。</string>
     <string name="help_whitelist">打开白名单</string>
     <string name="help_whitelist_error">仅针对运行Android 6.0 (Marshmallow) 或更高的设备</string>
     <string name="help_delay_text">请注意，在某些设备上，通知可能会有所延迟。</string>
@@ -200,7 +200,7 @@
     <string name="xiaomi_header">小米机主</string>
     <string name="xiaomi_description">打开设备«设置»，转到«电池和性能»，然后«管理应用电池使用»，打开«选择应用程序»，将 Birdays 选择为«无限制»。</string>
     <string name="show_button">显示</string>
-    <string name="help_email_description">如果闹钟仍不工作，请与我联系 birdaysapp@gmail.com</string>
+    <string name="help_email_description">如果闹钟仍不工作，请与我联系 eblis102@gmail.com</string>
     <string name="send_email">发送邮件</string>
 
     <!-- Famous persons -->

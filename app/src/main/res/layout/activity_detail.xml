@@ -26,7 +26,7 @@
         android:id="@+id/container_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.djonique.birdays.activities.DetailActivity">
+        tools:context="com.eblis.whenwasit.activities.DetailActivity">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar_detail"

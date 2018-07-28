@@ -188,7 +188,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">なぜアラームが機能していないのですか？</string>
-    <string name="help_description">一部の端末では、アプリのバックグラウンドプロセスをブロックしたり、起動時にアプリケーションが実行されないようにする節電モードがあります。\nアラームを正常に動作させるには、以下の簡単な手順を実行します：\n\n1。Birdaysアプリの通知が有効になっていることを確認する（設定 > アプリ > Birdays）。\n\n2。もしあなたがアプリケーションのバックグラウンドプロセスをブロックする可能性のあるタスクマネージャー、タスクキラー、またはRAMオプティマイザ（例えば、«バッテリーセーバー»、«クリーンマスター»）をインストールした場合、ホワイトリストにBirdaysを追加して。\n\n3。パワーセーブモードをオフにするか、ホワイトリストにBirdaysを追加して（設定 > バッテリー > バッテリー最適化）。\nAndroid 6.0（Marshmallow）以上を搭載するデバイスのみ。</string>
+    <string name="help_description">一部の端末では、アプリのバックグラウンドプロセスをブロックしたり、起動時にアプリケーションが実行されないようにする節電モードがあります。\nアラームを正常に動作させるには、以下の簡単な手順を実行します：\n\n1。Birdaysアプリの通知が有効になっていることを確認する（設定 > アプリ > WhenWasIt）。\n\n2。もしあなたがアプリケーションのバックグラウンドプロセスをブロックする可能性のあるタスクマネージャー、タスクキラー、またはRAMオプティマイザ（例えば、«バッテリーセーバー»、«クリーンマスター»）をインストールした場合、ホワイトリストにBirdaysを追加して。\n\n3。パワーセーブモードをオフにするか、ホワイトリストにBirdaysを追加して（設定 > バッテリー > バッテリー最適化）。\nAndroid 6.0（Marshmallow）以上を搭載するデバイスのみ。</string>
     <string name="help_whitelist">オープンホワイトリスト</string>
     <string name="help_whitelist_error">Android 6.0（Marshmallow）以上を搭載するデバイスのみ</string>
     <string name="help_delay_text">一部の端末では通知が遅れることがありますのでご注意ください。</string>
@@ -200,7 +200,7 @@
     <string name="xiaomi_header">Xiaomiオーナーの場合</string>
     <string name="xiaomi_description">デバイスの«設定»を開き、«バッテリー» «アプリのバッテリー使用状況を管理する»、«アプリを選択»を開いて、Birdaysの«制限なし»を選択します。</string>
     <string name="show_button">ショー</string>
-    <string name="help_email_description">それでもアラームが作動しない場合は、私に連絡してください birdaysapp@gmail.com</string>
+    <string name="help_email_description">それでもアラームが作動しない場合は、私に連絡してください eblis102@gmail.com</string>
     <string name="send_email">メールを送る</string>
 
     <!-- Famous persons -->

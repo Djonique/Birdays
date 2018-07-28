@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Optimalisasi diaktifkan!</string>
-    <string name="optimization_description">\nMulai dari versi 6.0, Android memperkenalkan hemat daya mode Doze yang mengelola perilaku aplikasi dengan menunda latar CPU.\n\nUntuk membuat aplikasi bekerja dengan benar, nonaktifkan pengoptimalan untuk Birdays.</string>
+    <string name="optimization_description">\nMulai dari versi 6.0, Android memperkenalkan hemat daya mode Doze yang mengelola perilaku aplikasi dengan menunda latar CPU.\n\nUntuk membuat aplikasi bekerja dengan benar, nonaktifkan pengoptimalan untuk WhenWasIt.</string>
     <string name="do_not_show_again">Jangan tampilkan lagi</string>
     <string name="disable_button">Nonaktifkan</string>
     <!-- Notifications -->
@@ -188,19 +188,19 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Mengapa alarm tidak bekerja?</string>
-    <string name="help_description">Beberapa perangkat memiliki Mode Penghematan Daya yang dapat memblokir proses latar belakang aplikasi atau menonaktifkan aplikasi agar tidak berjalan.\nUntuk membuat alarm bekerja dengan benar, lakukan beberapa langkah sederhana di bawah ini:\n\n1. Pastikan notifikasi diaktifkan untuk aplikasi Birdays (Setelan > Aplikasi > Birdays).\n\n2. Jika Anda telah memasang pengelola tugas, pembunuh tugas atau pengoptimalan RAM (misalnya «Penghemat baterai», «Clean Master»), yang dapat memblokir proses latar belakang aplikasi, tambahkan Birdays ke daftar putih mereka.\n\n3. Matikan mode hemat daya Anda atau tambahkan Birdays ke daftar putih (Setelan > Baterai > Pengoptimalan baterai).\nHanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi.</string>
+    <string name="help_description">Beberapa perangkat memiliki Mode Penghematan Daya yang dapat memblokir proses latar belakang aplikasi atau menonaktifkan aplikasi agar tidak berjalan.\nUntuk membuat alarm bekerja dengan benar, lakukan beberapa langkah sederhana di bawah ini:\n\n1. Pastikan notifikasi diaktifkan untuk aplikasi WhenWasIt (Setelan > Aplikasi > WhenWasIt).\n\n2. Jika Anda telah memasang pengelola tugas, pembunuh tugas atau pengoptimalan RAM (misalnya «Penghemat baterai», «Clean Master»), yang dapat memblokir proses latar belakang aplikasi, tambahkan Birdays ke daftar putih mereka.\n\n3. Matikan mode hemat daya Anda atau tambahkan Birdays ke daftar putih (Setelan > Baterai > Pengoptimalan baterai).\nHanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi.</string>
     <string name="help_whitelist">Buka daftar putih</string>
     <string name="help_whitelist_error">Hanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi</string>
     <string name="help_delay_text">Harap diingat pada beberapa perangkat, pemberitahuan mungkin dapat bekerja dengan beberapa penundaan.</string>
     <string name="help_settings">Buka pengaturan</string>
     <string name="huawei_header">Untuk pengguna Huawei</string>
-    <string name="huawei_description">Buka perangkat «Setelan», pergi ke «Hemat daya» dan buka «Aplikasi yang dilindungi». Pastikan fitur ini diaktifkan untuk Birdays.</string>
+    <string name="huawei_description">Buka perangkat «Setelan», pergi ke «Hemat daya» dan buka «Aplikasi yang dilindungi». Pastikan fitur ini diaktifkan untuk WhenWasIt.</string>
     <string name="samsung_header">Untuk pengguna Samsung</string>
-    <string name="samsung_description">Buka «Smart Manager», ketuk «Baterai», kemudian «Detail». Nonaktifkan fitur untuk aplikasi Birdays.</string>
+    <string name="samsung_description">Buka «Smart Manager», ketuk «Baterai», kemudian «Detail». Nonaktifkan fitur untuk aplikasi WhenWasIt.</string>
     <string name="xiaomi_header">Untuk pengguna Xiaomi</string>
-    <string name="xiaomi_description">Buka perangkat «Setelan», pergi ke «Baterai &amp; performa», kemudian «Kelola penggunaan baterai apl», buka «Pilih apl», pilih «Tidak ada pembatasan» untuk Birdays.</string>
+    <string name="xiaomi_description">Buka perangkat «Setelan», pergi ke «Baterai &amp; performa», kemudian «Kelola penggunaan baterai apl», buka «Pilih apl», pilih «Tidak ada pembatasan» untuk WhenWasIt.</string>
     <string name="show_button">Tampilkan</string>
-    <string name="help_email_description">Jika alarm masih belum berfungsi, silakan hubungi saya di birdaysapp@gmail.com  </string>
+    <string name="help_email_description">Jika alarm masih belum berfungsi, silakan hubungi saya di eblis102@gmail.com  </string>
     <string name="send_email">Kirim email</string>
 
     <!-- Famous persons -->

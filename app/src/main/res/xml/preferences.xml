@@ -25,7 +25,7 @@
             android:key="@string/notifications_key"
             android:summary="@string/allow_notification"
             android:title="@string/notifications" />
-        <com.djonique.birdays.preferences.TimePreference
+        <com.eblis.whenwasit.preferences.TimePreference
             android:defaultValue="@string/default_time_preference"
             android:dependency="@string/notifications_key"
             android:key="@string/notification_time_key"

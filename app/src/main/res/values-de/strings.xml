@@ -188,7 +188,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Weshalb funktioniert der Alarm nicht?</string>
-    <string name="help_description">Manche Geräte verfügen über einen Energiesparmodus, der Hintergrundprozesse von Apps blockieren oder Programme am Starten hindern kann.\nDamit der Alarm korrekt funktioniert, sind einige einfache Schritte zu befolgen:\n\n1. Stellen Sie sicher, dass die Benachrichtigungen für die Birdays App aktiviert sind (Einstellungen > Apps > Birdays).\n\n2. Falls Sie Task Manager, Task Killer oder RAM Optimierer installiert haben (z.B. «Battery Saver», «Clean Master»), fügen Sie Birdays zu deren Whitelist hinzu.\n\n3. Deaktivieren Sie den Energiesparmodus oder fügen Sie Birdays zur Whitelist hinzu (Einstellungen > Akku > Akku-Leistungsoptimierung).\nNur für Geräte mit Android 6.0 (Marshmallow) oder höher.</string>
+    <string name="help_description">Manche Geräte verfügen über einen Energiesparmodus, der Hintergrundprozesse von Apps blockieren oder Programme am Starten hindern kann.\nDamit der Alarm korrekt funktioniert, sind einige einfache Schritte zu befolgen:\n\n1. Stellen Sie sicher, dass die Benachrichtigungen für die Birdays App aktiviert sind (Einstellungen > Apps > WhenWasIt).\n\n2. Falls Sie Task Manager, Task Killer oder RAM Optimierer installiert haben (z.B. «Battery Saver», «Clean Master»), fügen Sie Birdays zu deren Whitelist hinzu.\n\n3. Deaktivieren Sie den Energiesparmodus oder fügen Sie Birdays zur Whitelist hinzu (Einstellungen > Akku > Akku-Leistungsoptimierung).\nNur für Geräte mit Android 6.0 (Marshmallow) oder höher.</string>
     <string name="help_whitelist">Whitelist öffnen</string>
     <string name="help_whitelist_error">Nur für Geräte mit Android 6.0 (Marshmallow) oder höher</string>
     <string name="help_delay_text">Bitte beachten Sie, dass Benachrichtigungen auf manchen Geräten mit Verzögerung erscheinen können.</string>
@@ -196,11 +196,11 @@
     <string name="huawei_header">Für Huawei-Besitzer</string>
     <string name="huawei_description">Öffnen Sie «Einstellungen», wählen Sie «Energiesparen» und öffnen Sie «Geschützte Apps». Stellen Sie sicher, dass diese Einstellung für Birdays aktiviert ist.</string>
     <string name="samsung_header">Für Samsung-Besitzer</string>
-    <string name="samsung_description">Öffnen Sie «Smart Manager», wählen Sie «Akku», dann «Detail». Deaktivieren Sie diese Einstellung für Birdays.</string>
+    <string name="samsung_description">Öffnen Sie «Smart Manager», wählen Sie «Akku», dann «Detail». Deaktivieren Sie diese Einstellung für WhenWasIt.</string>
     <string name="xiaomi_header">Für Xiaomi-Besitzer</string>
-    <string name="xiaomi_description">Öffnen Sie «Einstellungen», gehen sie zu «Akku &amp; Leistung», dann zu «Akkuverbrauch verwalten» und öffnen Sie «Apps auswählen», wählen Sie «Kein Beschränkungen» für Birdays.</string>
+    <string name="xiaomi_description">Öffnen Sie «Einstellungen», gehen sie zu «Akku &amp; Leistung», dann zu «Akkuverbrauch verwalten» und öffnen Sie «Apps auswählen», wählen Sie «Kein Beschränkungen» für WhenWasIt.</string>
     <string name="show_button">Anzeigen</string>
-    <string name="help_email_description">Sollte der Alarm noch immer nicht funktionieren, kontaktieren Sie mich bitte unter birdaysapp@gmail.com</string>
+    <string name="help_email_description">Sollte der Alarm noch immer nicht funktionieren, kontaktieren Sie mich bitte unter eblis102@gmail.com</string>
     <string name="send_email">Email senden</string>
 
     <!-- Famous persons -->

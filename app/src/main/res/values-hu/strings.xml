@@ -188,7 +188,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Miért nem működik a riasztás?</string>
-    <string name="help_description">Néhány eszköz rendelkezik energiatakarékos móddal, amely megakadályozhatja az alkalmazások háttérfolyamatait, vagy letilthatja az alkalmazást indításkor.\nA riasztás megfelelő működéséhez hajtsa végre az alábbi néhány egyszerű lépést: \n\n1. Győződjön meg arról, hogy az értesítések engedélyezve vannak a Birdays alkalmazáshoz (Beállítások > Alkalmazások > Birdays).\n\n2. Ha fel van telepítve a feladatkezelők, a feladatgyilkosok vagy a RAM-optimalizátorok (pl. «Battery Saver», «Clean Master»), amelyek blokkolhatják az alkalmazás háttérfolyamatait, hozzáadhatják Birdays a engedélyező listájához.\n\n3. Kapcsolja ki energiatakarékos üzemmódját vagy hozzáadhatják Birdays a engedélyező listájához (Beállítások > Akkumulátor > Akkumulátoroptimalizálás).\nCsak az Android 6.0 (Marshmallow) vagy újabb verziójú eszközök esetében.</string>
+    <string name="help_description">Néhány eszköz rendelkezik energiatakarékos móddal, amely megakadályozhatja az alkalmazások háttérfolyamatait, vagy letilthatja az alkalmazást indításkor.\nA riasztás megfelelő működéséhez hajtsa végre az alábbi néhány egyszerű lépést: \n\n1. Győződjön meg arról, hogy az értesítések engedélyezve vannak a Birdays alkalmazáshoz (Beállítások > Alkalmazások > WhenWasIt).\n\n2. Ha fel van telepítve a feladatkezelők, a feladatgyilkosok vagy a RAM-optimalizátorok (pl. «Battery Saver», «Clean Master»), amelyek blokkolhatják az alkalmazás háttérfolyamatait, hozzáadhatják Birdays a engedélyező listájához.\n\n3. Kapcsolja ki energiatakarékos üzemmódját vagy hozzáadhatják Birdays a engedélyező listájához (Beállítások > Akkumulátor > Akkumulátoroptimalizálás).\nCsak az Android 6.0 (Marshmallow) vagy újabb verziójú eszközök esetében.</string>
     <string name="help_whitelist">Nyílt engedélylista</string>
     <string name="help_whitelist_error">Csak az Android 6.0 (Marshmallow) vagy újabb verziójú eszközök esetében</string>
     <string name="help_delay_text">Felhívjuk figyelmét, hogy egyes készülékekre vonatkozó értesítések késedelmet szenvedhetnek.</string>
@@ -198,9 +198,9 @@
     <string name="samsung_header">A Samsung tulajdonosok számára</string>
     <string name="samsung_description">Nyissa meg a «Intelligens kezelő», érintse meg az «Akkumulátor» pontot, majd a «Adatok» pontot. Tiltsa le ezt a funkciót a Birdays app.</string>
     <string name="xiaomi_header">A Xiaomi tulajdonosok számára</string>
-    <string name="xiaomi_description">Nyissa meg a készülék «Beállítások» menüpontját, folytassa az «Akkumulátor &amp; teljesítmény», majd «Alkalmazások kezelése az akkumulátorok használatával», nyissa meg az «Alkalmazások kiválasztása» lehetőséget, válassza a «Nincs korlátozás» lehetőséget a Birdays.</string>
+    <string name="xiaomi_description">Nyissa meg a készülék «Beállítások» menüpontját, folytassa az «Akkumulátor &amp; teljesítmény», majd «Alkalmazások kezelése az akkumulátorok használatával», nyissa meg az «Alkalmazások kiválasztása» lehetőséget, válassza a «Nincs korlátozás» lehetőséget a WhenWasIt.</string>
     <string name="show_button">Mutat</string>
-    <string name="help_email_description">Ha a riasztás még mindig nem működik, kérjük, lépjen velem kapcsolatba birdaysapp@gmail.com</string>
+    <string name="help_email_description">Ha a riasztás még mindig nem működik, kérjük, lépjen velem kapcsolatba eblis102@gmail.com</string>
     <string name="send_email">Küldjön email</string>
 
     <!-- Famous persons -->
