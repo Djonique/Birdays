@@ -43,19 +43,22 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.eblis.whenwasit.BuildConfig;
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.alarm.AlarmHelper;
 import com.eblis.whenwasit.backup.ExportHelper;
 import com.eblis.whenwasit.backup.RecoverHelper;
-import com.eblis.whenwasit.database.DbHelper;
-import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.ContactsHelper;
 import com.eblis.whenwasit.utils.PermissionManager;
 import com.eblis.whenwasit.utils.Utils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -72,6 +75,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         super.onCreate(savedInstanceState);
 
         BirdaysPreferenceFragment fragment = new BirdaysPreferenceFragment();
+        fragment.setContext(this);
         getFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
 
         ActionBar actionBar = getSupportActionBar();
@@ -185,6 +189,12 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             implements SharedPreferences.OnSharedPreferenceChangeListener {
 
         private SharedPreferences preferences;
+        private Context context;
+        private RewardedVideoAd rewardedVideoAd;
+
+        public void setContext(Context context) {
+            this.context = context;
+        }
 
         private String getAdditionalNotificationsSelectedValues(MultiSelectListPreference preference) {
             final Map<CharSequence, CharSequence> names = new LinkedHashMap<>();
@@ -214,6 +224,46 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             addPreferencesFromResource(R.xml.preferences);
 
             preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+            rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this.context);
+            rewardedVideoAd.loadAd(BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build());
+            rewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
+                @Override
+                public void onRewardedVideoAdLoaded() {
+                }
+
+                @Override
+                public void onRewardedVideoAdOpened() {
+                }
+
+                @Override
+                public void onRewardedVideoStarted() {
+                }
+
+                @Override
+                public void onRewardedVideoAdClosed() {
+                    rewardedVideoAd.loadAd(BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build());
+                }
+
+                @Override
+                public void onRewardedVideoAdLeftApplication() {
+                }
+
+                @Override
+                public void onRewardedVideoCompleted() {
+                }
+
+                @Override
+                public void onRewarded(RewardItem rewardItem) {
+                    Toast.makeText(context, "Thank you for watching this AD", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onRewardedVideoAdFailedToLoad(int i) {
+                    Toast.makeText(context, "Rewards AD failed to load: " + i, Toast.LENGTH_SHORT).show();
+                    rewardedVideoAd.loadAd(BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build());
+                }
+            });
 
             MultiSelectListPreference multi = (MultiSelectListPreference) findPreference(Constants.ADDITIONAL_NOTIFICATION_KEY);
             multi.setSummary(getAdditionalNotificationsSelectedValues(multi));
@@ -392,7 +442,20 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             findPreference(getString(R.string.ad_banner_key)).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if (Boolean.FALSE.equals(newValue)) {
+                        showRewardsAd();
+                    }
                     showRestartAppDialog();
+                    return true;
+                }
+            });
+
+            findPreference(getString(R.string.ad_interstitial_key)).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    if (Boolean.FALSE.equals(newValue)) {
+                        showRewardsAd();
+                    }
                     return true;
                 }
             });
@@ -446,7 +509,6 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             final AlarmHelper alarmHelper = new AlarmHelper(getActivity());
-            DbHelper dbHelper = new DbHelper(getActivity());
             switch (key) {
                 case Constants.NOTIFICATIONS_KEY:
                     final boolean isChecked = sharedPreferences.getBoolean(Constants.NOTIFICATIONS_KEY, false);
@@ -485,13 +547,20 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             super.onPause();
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
         }
-
         private void restartApp() {
             Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage(getActivity().getPackageName());
             if (intent != null) {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
+        }
+
+        private boolean showRewardsAd() {
+            if (rewardedVideoAd.isLoaded()) {
+                rewardedVideoAd.show();
+            }
+
+            return true;
         }
 
         private void showRestartAppDialog() {

@@ -53,6 +53,7 @@ android {
             minifyEnabled false
             resValue "string", "banner_ad_id", keystoreProperties['BannerAdIdDebug']
             buildConfigField "String", "ADMOB_ID", keystoreProperties['AdMobId']
+            buildConfigField "String", "REWARDS_AD_ID", keystoreProperties['RewardsAdIdDebug']
             buildConfigField "String", "INTERSTITIAL_AD_ID", keystoreProperties['InterstitialAdIdDebug']
         }
         release {
@@ -61,6 +62,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             resValue "string", "banner_ad_id", keystoreProperties['BannerAdIdRelease']
             buildConfigField "String", "ADMOB_ID", keystoreProperties['AdMobId']
+            buildConfigField "String", "REWARDS_AD_ID", keystoreProperties['RewardsAdIdRelease']
             buildConfigField "String", "INTERSTITIAL_AD_ID", keystoreProperties['InterstitialAdIdRelease']
             signingConfig signingConfigs.signing
         }
