@@ -61,6 +61,7 @@
     <string name="add_from_contacts">Add from contacts</string>
     <string name="open_contacts_error">Unable to perform action due to device features</string>
     <string name="name">Name</string>
+    <string name="anniversary_type">Anniversary type</string>
     <string name="error_hint">Please enter the name</string>
     <string name="phone_number">Phone number</string>
     <string name="email" translatable="false">Email</string>

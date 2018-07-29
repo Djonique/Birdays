@@ -28,7 +28,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.eblis.whenwasit.R;
-import com.eblis.whenwasit.alarm.AlarmHelper;
 import com.eblis.whenwasit.database.DbHelper;
 import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.utils.Constants;
@@ -65,6 +64,8 @@ public class EditActivity extends AppCompatActivity implements
     EditText etPhoneNumber;
     @BindView(R.id.edittext_edit_email)
     EditText etEmail;
+    @BindView(R.id.edittext_edit_anniversaryType)
+    EditText etAnniversaryLabel;
 
     private DbHelper dbHelper;
     private Person person;
@@ -133,6 +134,7 @@ public class EditActivity extends AppCompatActivity implements
         checkBox.setChecked(person.isYearUnknown());
         etPhoneNumber.setText(person.getPhoneNumber());
         etEmail.setText(person.getEmail());
+        etAnniversaryLabel.setText(person.getAnniversaryLabel());
     }
 
     /**
@@ -144,6 +146,7 @@ public class EditActivity extends AppCompatActivity implements
         person.setYearUnknown(checkBox.isChecked());
         person.setPhoneNumber(updateText(etPhoneNumber));
         person.setEmail(updateText(etEmail));
+        person.setAnniversaryLabel(updateText(etAnniversaryLabel));
         dbHelper.updateRecord(person);
     }
 

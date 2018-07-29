@@ -261,7 +261,6 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                 @Override
                 public void onRewardedVideoAdFailedToLoad(int i) {
                     Toast.makeText(context, "Rewards AD failed to load: " + i, Toast.LENGTH_SHORT).show();
-                    rewardedVideoAd.loadAd(BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build());
                 }
             });
 
