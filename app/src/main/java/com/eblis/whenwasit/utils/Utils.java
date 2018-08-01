@@ -57,7 +57,7 @@ public class Utils {
     }
 
     public static String getDate(LocalDate date) {
-        return date.toString(getDateFormat());
+        return date != null ? date.toString(getDateFormat()) : "";
     }
 
     /**
@@ -65,7 +65,7 @@ public class Utils {
      */
     public static String getDateWithoutYear(LocalDate date) {
         String yearlessPattern = getDateFormat().replaceAll("([^\\p{Alpha}']|('[\\p{Alpha}]+'))*y+([^\\p{Alpha}']|('[\\p{Alpha}]+'))*", "");
-        return date.toString(yearlessPattern);
+        return date != null ? date.toString(yearlessPattern) : "";
     }
 
     public static long getTimeOffset() {
