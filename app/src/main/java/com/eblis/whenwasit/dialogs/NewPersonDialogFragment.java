@@ -146,6 +146,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
 
                 if (!Utils.isEmptyDate(etDate)) {
                     person.setDate(new LocalDate(calendar));
+                    person.setTimeStamp(calendar.getTimeInMillis());
                 }
 
                 if (checkBox != null) person.setYearUnknown(checkBox.isChecked());
