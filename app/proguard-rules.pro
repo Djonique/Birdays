@@ -20,3 +20,4 @@
 -dontwarn com.google.android.gms.**
 -dontwarn com.google.ads.**
 -dontwarn org.joda.time.**
+-keep public class * extends android.support.v7.preference.Preference

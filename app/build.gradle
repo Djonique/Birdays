@@ -37,7 +37,7 @@ android {
         applicationId "com.eblis.whenwasit"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 23
+        versionCode 24
         versionName "1.0.${versionCode}"
         resConfigs "auto"
         vectorDrawables.useSupportLibrary = true
