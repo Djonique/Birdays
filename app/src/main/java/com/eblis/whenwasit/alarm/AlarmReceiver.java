@@ -21,12 +21,16 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
@@ -40,6 +44,7 @@ import com.eblis.whenwasit.utils.BirdaysApplication;
 import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.Utils;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -47,13 +52,62 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import static android.text.format.DateUtils.DAY_IN_MILLIS;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
     private static final String CHANNEL_ID = "com.eblis.whenwasit";
+
+//    private void addNotifications(Context context, NotificationManager manager, SharedPreferences preferences, Intent intent, SortedMap<Integer, List<Person>> notifications) {
+//        for (Map.Entry<Integer, List<Person>> entry : notifications.entrySet()) {
+////            NotificationManager nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+////            Notification.Builder builder = new Notification.Builder(this);
+////            builder.setContentTitle("Lanes");
+////            builder.setContentText("Notification from Lanes"+value);
+////            builder.setSmallIcon(R.drawable.ic_launcher);
+////            builder.setLargeIcon(bitmap);
+////            builder.setAutoCancel(true);
+////            inboxStyle.setBigContentTitle("Enter Content Text");
+////            inboxStyle.addLine("hi events "+value);
+////            builder.setStyle(inboxStyle);
+////            nManager.notify("App Name",NOTIFICATION_ID,builder.build());
+//
+//            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+//            inboxStyle.setBigContentTitle("WhenWasIt notifications");
+//            inboxStyle.setSummaryText("The following notifications");
+//            for (Person person : entry.getValue()) {
+//                final String name = person.getName();
+//                final String anniversaryLabel = person.getAnniversaryLabel();
+//                final int daysToBirthday = entry.getKey();
+//                final String when = getWhen(context, daysToBirthday);
+//                final long timeStamp = person.getTimeStamp();
+//
+//
+//                PendingIntent pendingIntent = TaskStackBuilder.create(context)
+//                        .addNextIntentWithParentStack(getResultIntent(context, timeStamp, intent))
+//                        .getPendingIntent(((int) timeStamp), PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//                NotificationCompat.Builder builder = buildNotification(context, name, anniversaryLabel, when, daysToBirthday);
+//                builder.setStyle(inboxStyle);
+//
+//                setDefaultsAndRingtone(preferences, builder);
+//
+//                builder.setContentIntent(pendingIntent);
+//
+//                Notification notification = builder.build();
+//                notification.flags |= Notification.FLAG_AUTO_CANCEL;
+//
+//                if (manager != null) {
+//                    manager.notify((int) timeStamp, notification);
+//                }
+//            }
+//        }
+//    }
 
     private void addNotification(Context context, NotificationManager manager, SharedPreferences preferences, Intent intent, Person person, int daysToBirthday) {
         final String name = person.getName();
@@ -65,7 +119,21 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .addNextIntentWithParentStack(getResultIntent(context, timeStamp, intent))
                 .getPendingIntent(((int) timeStamp), PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder builder = buildNotification(context, name, anniversaryLabel, when, daysToBirthday);
+        Bitmap picture = null;
+        try {
+            InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(),
+                    ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, person.getContactId()));
+
+            if (inputStream != null) {
+                picture = BitmapFactory.decodeStream(inputStream);
+                inputStream.close();
+            }
+        }
+        catch (Exception ex) {
+            //pass
+        }
+
+        NotificationCompat.Builder builder = buildNotification(context, name, anniversaryLabel, when, daysToBirthday, picture);
 
         setDefaultsAndRingtone(preferences, builder);
 
@@ -105,13 +173,19 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         final Set<Long> additionalNotificationOffsets = getAdditionalNotificationOffsets(preferences);
         final List<Person> persons = dbHelper.query().getPersons();
+        final SortedMap<Integer, List<Person>> notifications = new TreeMap<>();
         Collections.sort(persons, Collections.<Person>reverseOrder());
         for (Person person : persons) {
             final Integer daysToBirthday = shouldNotify(person, additionalNotificationOffsets);
             if (daysToBirthday != null) {
+                if (!notifications.containsKey(daysToBirthday)) {
+                    notifications.put(daysToBirthday, new ArrayList<Person>());
+                }
+                notifications.get(daysToBirthday).add(person);
                 addNotification(context, manager, preferences, intent, person, daysToBirthday);
             }
         }
+        //addNotifications(context, manager, preferences, intent, notifications);
     }
 
     private Integer shouldNotify(Person person, Set<Long> additionalNotificationOffsets) {
@@ -167,13 +241,14 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Builds default notification
      */
-    private NotificationCompat.Builder buildNotification(Context context, String title, String anniversaryLabel, String text, int daysToBirthday) {
+    private NotificationCompat.Builder buildNotification(Context context, String title, String anniversaryLabel, String text, int daysToBirthday, Bitmap contactPicture) {
         final int color = Utils.getNotificationColor(context, daysToBirthday);
         return new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle(title)
                 .setContentText(anniversaryLabel + ": " + text)
                 .setContentInfo(anniversaryLabel)
                 .setSmallIcon(R.drawable.ic_notification)
+                .setLargeIcon(contactPicture)
                 .setColor(color)
                 .setCategory(NotificationCompat.CATEGORY_EVENT)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)

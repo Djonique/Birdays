@@ -155,7 +155,7 @@ public class ContactsHelper {
             String phoneNumber = getContactPhoneNumber(contentResolver, id);
             String email = getContactEmail(contentResolver, id);
 
-            Person person = new Person(name, date, yearUnknown, phoneNumber, email, anniversary, getAnniversaryType(type));
+            Person person = new Person(Long.valueOf(id), name, date, yearUnknown, phoneNumber, email, anniversary, getAnniversaryType(type));
             contacts.add(person);
         }
         cursor.close();
@@ -224,9 +224,14 @@ public class ContactsHelper {
             List<Person> contacts = getAllContactsWithBirthdays(contentResolver);
 
             for (Person person : contacts) {
-                if (!Utils.isPersonAlreadyInDb(person, dbPersons)) {
+                final Person existing = Utils.getPersonAlreadyInDb(person, dbPersons);
+                if (existing == null) {
                     dbHelper.addRecord(person);
                     dbPersons.add(person);
+                }
+                else {
+                    person.setTimeStamp(existing.getTimeStamp()); //make sure they're the same for update purposes
+                    dbHelper.updateRecord(person);
                 }
             }
             return null;

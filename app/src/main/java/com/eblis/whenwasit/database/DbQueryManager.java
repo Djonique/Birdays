@@ -75,6 +75,7 @@ public class DbQueryManager {
     }
 
     private Person getPerson(final Cursor cursor) {
+        final Long contactId = getContactId(cursor);
         final String name = getName(cursor);
         final long date = getDate(cursor);
         final boolean isYearKnown = getYearUnknown(cursor);
@@ -84,7 +85,7 @@ public class DbQueryManager {
         final String email = getEmail(cursor);
         final long timeStamp = getTimeStamp(cursor);
 
-        return new Person(name, date, isYearKnown, phoneNumber, email, label, anniversaryType, timeStamp);
+        return new Person(contactId, name, date, isYearKnown, phoneNumber, email, label, anniversaryType, timeStamp);
     }
 
     public List<Person> getSearchPerson(String selection, String[] selectionArgs, String orderBy) {
@@ -123,6 +124,10 @@ public class DbQueryManager {
         cursor.close();
 
         return persons;
+    }
+
+    private Long getContactId(Cursor cursor) {
+        return cursor.getLong(cursor.getColumnIndex(DbHelper.COLUMN_CONTACT_ID));
     }
 
     private String getName(Cursor cursor) {

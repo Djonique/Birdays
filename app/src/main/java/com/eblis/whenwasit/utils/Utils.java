@@ -324,15 +324,13 @@ public class Utils {
     /**
      * Checks if person with the same name already exists in database
      */
-    public static boolean isPersonAlreadyInDb(Person person, List<Person> list) {
-        boolean found = false;
+    public static Person getPersonAlreadyInDb(Person person, List<Person> list) {
         for (Person dbPerson : list) {
             if (person.equals(dbPerson)) {
-                found = true;
-                break;
+                return dbPerson;
             }
         }
-        return found;
+        return null;
     }
 
     public static void setupDayNightTheme(SharedPreferences preferences) {

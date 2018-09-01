@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Person implements Item, Comparable<Person> {
-
+    private Long contactId;
     private String name, phoneNumber, email;
     private long timeStamp;
     private LocalDate date;
@@ -52,21 +52,30 @@ public class Person implements Item, Comparable<Person> {
     /**
      * Constructor for importing from Contacts
      */
-    public Person(String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType) {
-        this(name, date, yearUnknown, phoneNumber, email, anniversaryLabel, anniversaryType, new Date().getTime());
+    public Person(Long contactId, String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType) {
+        this(contactId, name, date, yearUnknown, phoneNumber, email, anniversaryLabel, anniversaryType, new Date().getTime());
     }
 
     /**
      * Constructor for DbQueryManager
      */
-    public Person(String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType, long timeStamp) {
+    public Person(Long contactId, String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType, long timeStamp) {
         this(name, date);
+        this.contactId = contactId;
         this.yearUnknown = yearUnknown;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.anniversaryLabel = anniversaryLabel;
         this.anniversaryType = anniversaryType;
         this.setTimeStamp(timeStamp);
+    }
+
+    public Long getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(Long contactId) {
+        this.contactId = contactId;
     }
 
     public String getName() {

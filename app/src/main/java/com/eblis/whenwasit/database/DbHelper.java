@@ -29,6 +29,7 @@ import com.eblis.whenwasit.utils.Utils;
 
 public class DbHelper extends SQLiteOpenHelper {
 
+    public static final String COLUMN_CONTACT_ID = "contactId";
     public static final String COLUMN_NAME = "name";
     public static final String SELECTION_LIKE_NAME = COLUMN_NAME + " LIKE ?";
 
@@ -44,9 +45,10 @@ public class DbHelper extends SQLiteOpenHelper {
     static final String SELECTION_TIME_STAMP = COLUMN_TIME_STAMP + " = ?";
 
     private static final String DB_NAME = "my_db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String DB_PERSONS_CREATE = "CREATE TABLE " + DB_PERSONS + " ("
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + COLUMN_CONTACT_ID + " INTEGER, "
             + COLUMN_NAME + " TEXT, "
             + COLUMN_DATE + " INTEGER, "
             + COLUMN_IS_YEAR_KNOWN + " INTEGER, "
@@ -56,6 +58,7 @@ public class DbHelper extends SQLiteOpenHelper {
             + COLUMN_EMAIL + " TEXT, "
             + COLUMN_TIME_STAMP + " INTEGER"
             + ");";
+
     private static final String DB_FAMOUS_CREATE = "CREATE TABLE " + DB_FAMOUS + " ("
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_NAME + " TEXT, "
@@ -91,11 +94,21 @@ public class DbHelper extends SQLiteOpenHelper {
                 db.endTransaction();
             }
         }
-        if (newVersion == DATABASE_VERSION) {
+        if (oldVersion == 2 && newVersion == 3) {
             db.beginTransaction();
             try {
                 db.execSQL("ALTER TABLE " + DB_PERSONS +  " ADD COLUMN " + COLUMN_ANNIVERSARY_TYPE + " TEXT DEFAULT '" + AnniversaryType.BIRTHDAY.name() + "'");
                 db.execSQL("ALTER TABLE " + DB_PERSONS +  " ADD COLUMN " + COLUMN_ANNIVERSARY_LABEL + " TEXT DEFAULT '" + context.getResources().getString(R.string.birthday) + "'");
+                db.setTransactionSuccessful();
+            }
+            finally {
+                db.endTransaction();
+            }
+        }
+        if (oldVersion == 3 && newVersion == DATABASE_VERSION) {
+            db.beginTransaction();
+            try {
+                db.execSQL("ALTER TABLE " + DB_PERSONS +  " ADD COLUMN " + COLUMN_CONTACT_ID + " INTEGER DEFAULT 0");
                 db.setTransactionSuccessful();
             }
             finally {
@@ -108,8 +121,9 @@ public class DbHelper extends SQLiteOpenHelper {
         return dbQueryManager;
     }
 
-    public void addRecord(Person person) {
+    private ContentValues getValues(Person person, boolean create) {
         final ContentValues cv = new ContentValues();
+        cv.put(COLUMN_CONTACT_ID, person.getContactId());
         cv.put(COLUMN_NAME, person.getName());
         cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis());
         cv.put(COLUMN_IS_YEAR_KNOWN, Utils.boolToInt(person.isYearUnknown()));
@@ -117,20 +131,18 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_ANNIVERSARY_TYPE, person.getAnniversaryType().toString());
         cv.put(COLUMN_ANNIVERSARY_LABEL, person.getAnniversaryLabel());
         cv.put(COLUMN_EMAIL, person.getEmail());
-        cv.put(COLUMN_TIME_STAMP, person.getTimeStamp());
-        getWritableDatabase().insert(DB_PERSONS, null, cv);
+        if (create) {
+            cv.put(COLUMN_TIME_STAMP, person.getTimeStamp());
+        }
+        return cv;
+    }
+
+    public void addRecord(Person person) {
+        getWritableDatabase().insert(DB_PERSONS, null, getValues(person, true));
     }
 
     public void updateRecord(Person person) {
-        final ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME, person.getName());
-        cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis());
-        cv.put(COLUMN_IS_YEAR_KNOWN, Utils.boolToInt(person.isYearUnknown()));
-        cv.put(COLUMN_PHONE_NUMBER, person.getPhoneNumber());
-        cv.put(COLUMN_ANNIVERSARY_TYPE, person.getAnniversaryType().toString());
-        cv.put(COLUMN_ANNIVERSARY_LABEL, person.getAnniversaryLabel());
-        cv.put(COLUMN_EMAIL, person.getEmail());
-        getWritableDatabase().update(DB_PERSONS, cv, SELECTION_TIME_STAMP,
+        int updated = getWritableDatabase().update(DB_PERSONS, getValues(person, false), SELECTION_TIME_STAMP,
                 new String[]{String.valueOf(person.getTimeStamp())});
     }
 

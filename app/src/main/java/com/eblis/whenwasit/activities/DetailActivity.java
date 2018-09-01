@@ -16,14 +16,19 @@
 
 package com.eblis.whenwasit.activities;
 
+import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
@@ -56,6 +61,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.kobakei.ratethisapp.RateThisApp;
 
+import java.io.InputStream;
 import java.util.Calendar;
 import java.util.List;
 
@@ -214,7 +220,24 @@ public class DetailActivity extends AppCompatActivity {
      * Set up UI depending on person's data
      */
     private void setupUI() {
-        setSeasonImage();
+        final Activity activity = this;
+        if (!setContactImage()) {
+            setSeasonImage();
+        }
+
+        ivSeasonPicture.setClickable(true);
+
+        View.OnClickListener openDetails = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI,
+                        String.valueOf(person.getContactId()));
+                intent.setData(uri);
+                activity.startActivity(intent);
+            }
+        };
+        ivSeasonPicture.setOnClickListener(openDetails);
 
         tvDaysLeft.setText(Utils.daysLeftPretty(this, person));
         tvAnniversaryLabel.setText(person.getAnniversaryLabel());
@@ -225,6 +248,7 @@ public class DetailActivity extends AppCompatActivity {
             rlDaysSinceBirthday.setVisibility(View.GONE);
         } else {
             tvDate.setText(Utils.getDate(person.getDate()));
+            tvDate.setOnClickListener(openDetails);
             tvAge.setText(String.valueOf(Utils.getAge(person.getDate(), displayedAge)));
             tvDaysSinceBirthday.setText(Utils.daysSinceBirthday(person.getDate()));
         }
@@ -284,6 +308,27 @@ public class DetailActivity extends AppCompatActivity {
         intent.putExtra(Constants.TIME_STAMP, timeStamp);
         startActivityForResult(intent, EDIT_ACTIVITY);
         overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
+    }
+
+    private boolean setContactImage() {
+        Bitmap picture = null;
+        try {
+            InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(getContentResolver(),
+                    ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, person.getContactId()), true);
+
+            if (inputStream != null) {
+                picture = BitmapFactory.decodeStream(inputStream);
+                inputStream.close();
+                ivSeasonPicture.setImageBitmap(picture);
+
+                return true;
+            }
+        }
+        catch (Exception ex) {
+            //pass
+        }
+
+        return false;
     }
 
     /**
