@@ -37,7 +37,7 @@ android {
         applicationId "com.eblis.whenwasit"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 25
+        versionCode 26
         versionName "1.0.${versionCode}"
         resConfigs "auto"
         vectorDrawables.useSupportLibrary = true
@@ -73,7 +73,7 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-def androidSupportVersion = '27.0.2'
+def androidSupportVersion = '27.1.1'
 def firebaseVersion = '12.0.1'
 def butterKnifeVersion = '8.8.1'
 
@@ -84,7 +84,7 @@ dependencies {
     compile "com.android.support:design:${androidSupportVersion}"
     compile "com.android.support:recyclerview-v7:${androidSupportVersion}"
     compile "com.android.support:cardview-v7:${androidSupportVersion}"
-    compile "com.android.support:support-v4:${androidSupportVersion}"
+    compile "com.android.support:support-v13:${androidSupportVersion}"
     compile "com.android.support:support-vector-drawable:${androidSupportVersion}"
     // Firebase
     compile "com.google.firebase:firebase-core:${firebaseVersion}"
