@@ -18,13 +18,16 @@ package com.eblis.whenwasit.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.GradientDrawable;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.eblis.whenwasit.R;
@@ -94,8 +97,9 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         displayedAge = Utils.getDisplayedAge(PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(Constants.DISPLAYED_AGE_KEY, DisplayedAge.CURRENT.name()));
@@ -138,10 +142,10 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Item item = items.get(position);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        final Item item = items.get(position);
 
-        String[] months = holder.itemView.getResources().getStringArray(R.array.months);
+        final String[] months = holder.itemView.getResources().getStringArray(R.array.months);
 
         if (!item.isSeparator()) {
             holder.itemView.setEnabled(true);
@@ -168,6 +172,15 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 GradientDrawable ageCircle = (GradientDrawable) listViewHolder.tvAge.getBackground();
                 ageCircle.setColor(ContextCompat.getColor(context, getAgeCircleColor(age)));
                 listViewHolder.tvAge.setText(String.valueOf(age));
+            }
+
+            final Bitmap picture = Utils.getContactPicture(context, person);
+            if (picture != null) {
+                listViewHolder.ivProfile.setVisibility(View.VISIBLE);
+                listViewHolder.ivProfile.setImageBitmap(picture);
+            }
+            else {
+                listViewHolder.ivProfile.setVisibility(View.GONE);
             }
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -209,16 +222,16 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      * Selects certain color depending on person's age
      */
     private int getAgeCircleColor(int age) {
-        int colorResId;
-        if (age < 10) colorResId = R.color.age1;
-        else if (age >= 10 && age < 20) colorResId = R.color.age2;
-        else if (age >= 20 && age < 30) colorResId = R.color.age3;
-        else if (age >= 30 && age < 40) colorResId = R.color.age4;
-        else if (age >= 40 && age < 50) colorResId = R.color.age5;
-        else if (age >= 50 && age < 60) colorResId = R.color.age6;
-        else if (age >= 60 && age < 70) colorResId = R.color.age7;
-        else colorResId = R.color.age8;
-        return colorResId;
+        int [] colors = {R.color.age1, R.color.age2, R.color.age3, R.color.age4, R.color.age5, R.color.age6, R.color.age7, R.color.age8};
+        int index = age / 10;
+        if (index < 0) {
+            index = 0;
+        }
+        if (index >= colors.length) {
+            index = colors.length - 1;
+        }
+
+        return colors[index];
     }
 
     @Override
@@ -228,6 +241,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private static class ListViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvName, tvDate, tvLabel, tvAge;
+        private final ImageView ivProfile;
 
         ListViewHolder(View itemView) {
             super(itemView);
@@ -235,6 +249,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvDate = itemView.findViewById(R.id.textview_all_date);
             tvLabel = itemView.findViewById(R.id.textview_all_label);
             tvAge = itemView.findViewById(R.id.textview_all_age);
+            ivProfile = itemView.findViewById(R.id.profile_picture);
         }
     }
 

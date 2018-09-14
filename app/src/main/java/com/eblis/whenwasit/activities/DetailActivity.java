@@ -17,15 +17,12 @@
 package com.eblis.whenwasit.activities;
 
 import android.app.Activity;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
@@ -49,7 +46,6 @@ import android.widget.Toast;
 import com.eblis.whenwasit.BuildConfig;
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.adapters.FamousFragmentAdapter;
-import com.eblis.whenwasit.alarm.AlarmHelper;
 import com.eblis.whenwasit.database.DbHelper;
 import com.eblis.whenwasit.models.AnniversaryType;
 import com.eblis.whenwasit.models.DisplayedAge;
@@ -61,8 +57,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.kobakei.ratethisapp.RateThisApp;
 
-import java.io.InputStream;
-import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -311,24 +305,12 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private boolean setContactImage() {
-        Bitmap picture = null;
-        try {
-            InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(getContentResolver(),
-                    ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, person.getContactId()), true);
-
-            if (inputStream != null) {
-                picture = BitmapFactory.decodeStream(inputStream);
-                inputStream.close();
-                ivSeasonPicture.setImageBitmap(picture);
-
-                return true;
-            }
-        }
-        catch (Exception ex) {
-            //pass
+        final Bitmap picture = Utils.getContactPicture(this, person);
+        if (picture != null) {
+            ivSeasonPicture.setImageBitmap(picture);
         }
 
-        return false;
+        return picture != null;
     }
 
     /**

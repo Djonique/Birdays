@@ -21,18 +21,14 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
@@ -44,20 +40,13 @@ import com.eblis.whenwasit.utils.BirdaysApplication;
 import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.Utils;
 
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
-
-import static android.text.format.DateUtils.DAY_IN_MILLIS;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -119,20 +108,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .addNextIntentWithParentStack(getResultIntent(context, timeStamp, intent))
                 .getPendingIntent(((int) timeStamp), PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Bitmap picture = null;
-        try {
-            InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(),
-                    ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, person.getContactId()));
-
-            if (inputStream != null) {
-                picture = BitmapFactory.decodeStream(inputStream);
-                inputStream.close();
-            }
-        }
-        catch (Exception ex) {
-            //pass
-        }
-
+        final Bitmap picture = Utils.getContactPicture(context, person);
         NotificationCompat.Builder builder = buildNotification(context, name, anniversaryLabel, when, daysToBirthday, picture);
 
         setDefaultsAndRingtone(preferences, builder);
@@ -215,7 +191,12 @@ public class AlarmReceiver extends BroadcastReceiver {
         final Set<String> strs =  preferences.getStringSet(Constants.ADDITIONAL_NOTIFICATION_KEY, Collections.<String>emptySet());
         final Set<Long> results = new HashSet<>();
         for (String str : strs) {
-            results.add(Long.parseLong(str));
+            try {
+                results.add(Long.parseLong(str));
+            }
+            catch (NumberFormatException nfex) {
+                // ignore invalid numbers
+            }
         }
 
         return results;

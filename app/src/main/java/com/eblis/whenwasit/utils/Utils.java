@@ -19,10 +19,14 @@ package com.eblis.whenwasit.utils;
 import android.appwidget.AppWidgetManager;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -33,14 +37,14 @@ import com.eblis.whenwasit.models.DisplayedAge;
 import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.widget.WidgetProvider;
 
-import org.joda.time.LocalDate;
 import org.joda.time.Days;
+import org.joda.time.LocalDate;
 import org.joda.time.Period;
 
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -331,6 +335,24 @@ public class Utils {
             }
         }
         return null;
+    }
+
+    public static Bitmap getContactPicture(final Context context, final Person person) {
+        Bitmap picture = null;
+        try {
+            InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(),
+                    ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, person.getContactId()));
+
+            if (inputStream != null) {
+                picture = BitmapFactory.decodeStream(inputStream);
+                inputStream.close();
+            }
+        }
+        catch (Exception ex) {
+            //pass
+        }
+
+        return picture;
     }
 
     public static void setupDayNightTheme(SharedPreferences preferences) {

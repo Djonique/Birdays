@@ -19,6 +19,7 @@ package com.eblis.whenwasit.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -29,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -96,6 +98,15 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             String age = context.getString(R.string.age) + Utils.getAge(person.getDate(), DisplayedAge.CURRENT);
             holder.tvAge.setText(age);
             changeCardViewBackgroundColor(person, holder.cardView, holder.tvDaysLeft);
+        }
+
+        final Bitmap picture = Utils.getContactPicture(context, person);
+        if (picture != null) {
+            holder.ivProfile.setVisibility(View.VISIBLE);
+            holder.ivProfile.setImageBitmap(picture);
+        }
+        else {
+            holder.ivProfile.setVisibility(View.GONE);
         }
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -217,6 +228,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         RelativeLayout relativeLayout;
         TextView tvName, tvDate, tvAge, tvDaysLeft;
         ImageButton btnEmail, btnChat, btnCall;
+        ImageView ivProfile;
 
         CardViewHolder(View itemView) {
             super(itemView);
@@ -229,6 +241,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             btnEmail = itemView.findViewById(R.id.imagebutton_card_email);
             btnChat = itemView.findViewById(R.id.imagebutton_card_chat);
             btnCall = itemView.findViewById(R.id.imagebutton_card_call);
+            ivProfile = itemView.findViewById(R.id.profile_picture);
         }
     }
 }
