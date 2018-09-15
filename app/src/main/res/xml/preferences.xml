@@ -54,6 +54,12 @@
 
     <!-- Synchronization and Backup -->
     <PreferenceCategory android:title="@string/sync_and_backup">
+        <SwitchPreference
+            android:key="@string/import_contacts_automatically_key"
+            android:defaultValue="true"
+            android:title="@string/automatic_contacts_import_title"
+            android:summaryOn="@string/contacts_import_enabled_summary"
+            android:summaryOff="@string/contacts_import_disabled_summary"/>
         <Preference
             android:key="@string/import_contacts_key"
             android:summary="@string/contacts_import_summary"

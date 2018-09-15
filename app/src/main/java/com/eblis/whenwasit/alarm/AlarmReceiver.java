@@ -31,6 +31,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.widget.Toast;
 
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.activities.DetailActivity;
@@ -38,6 +39,8 @@ import com.eblis.whenwasit.database.DbHelper;
 import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.utils.BirdaysApplication;
 import com.eblis.whenwasit.utils.Constants;
+import com.eblis.whenwasit.utils.ContactsHelper;
+import com.eblis.whenwasit.utils.PermissionManager;
 import com.eblis.whenwasit.utils.Utils;
 
 import java.util.ArrayList;
@@ -144,6 +147,20 @@ public class AlarmReceiver extends BroadcastReceiver {
         final NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
         final DbHelper dbHelper = new DbHelper(context);
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        final boolean automaticImport = preferences.getBoolean(Constants.AUTOMATIC_CONTACT_IMPORT_KEY, true);
+        if (automaticImport) {
+            try {
+                if (PermissionManager.readingContactsPermissionGranted(context)) {
+                    ContactsHelper contactsHelper = new ContactsHelper(context, context.getContentResolver());
+                    contactsHelper.updateContactsNow();
+                    Toast.makeText(context, R.string.contacts_uploaded, Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch (Exception ex) {
+                Toast.makeText(context, R.string.loading_contacts_error + "\n" + ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }
 
         createNotificationChannel(context, manager);
 

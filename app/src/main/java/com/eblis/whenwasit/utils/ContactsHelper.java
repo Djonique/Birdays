@@ -18,6 +18,7 @@ package com.eblis.whenwasit.utils;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -28,7 +29,6 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.eblis.whenwasit.R;
-import com.eblis.whenwasit.alarm.AlarmHelper;
 import com.eblis.whenwasit.database.DbHelper;
 import com.eblis.whenwasit.models.AnniversaryType;
 import com.eblis.whenwasit.models.Person;
@@ -38,12 +38,19 @@ import java.util.List;
 
 public class ContactsHelper {
 
-    private Activity activity;
+    private Context context;
+    private final Activity activity;
     private ContentResolver contentResolver;
     private LoadingContactsListener loadingContactsListener;
 
-    public ContactsHelper(Activity activity, ContentResolver contentResolver) {
-        this.activity = activity;
+    public ContactsHelper(Context context, ContentResolver contentResolver) {
+        this.context = context;
+        if (context instanceof Activity) {
+            this.activity = (Activity) context;
+        }
+        else {
+            this.activity = null;
+        }
         this.contentResolver = contentResolver;
         loadingContactsListener = (LoadingContactsListener) activity;
     }
@@ -141,7 +148,7 @@ public class ContactsHelper {
             final String dateString = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.START_DATE));
             final int type = cursor.getInt(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.TYPE));
             final String label  = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.LABEL));
-            final String anniversary = getTypeLabel(activity.getResources(), type, label);
+            final String anniversary = getTypeLabel(context.getResources(), type, label);
 
             final long date;
             try {
@@ -188,17 +195,38 @@ public class ContactsHelper {
      * Loads all persons with Birthdays from Contacts, compares them with persons from Database and
      * saves them into DB, sets alarm for added persons
      */
-    public void loadContacts(SharedPreferences preferences) {
-        if (PermissionManager.readingContactsPermissionGranted(activity)) {
+    public void loadContactsWithProgress(SharedPreferences preferences) {
+        if (PermissionManager.readingContactsPermissionGranted(context)) {
             try {
                 new ContactsAsyncLoading().execute();
                 preferences.edit().putBoolean(Constants.CONTACTS_UPLOADED, true).apply();
             } catch (Exception e) {
                 preferences.edit().putBoolean(Constants.WRONG_CONTACTS_FORMAT, true).apply();
-                Toast.makeText(activity, R.string.loading_contacts_error, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.loading_contacts_error, Toast.LENGTH_LONG).show();
             }
         } else {
-            PermissionManager.requestReadingContactsPermission(activity);
+            if (activity != null) {
+                PermissionManager.requestReadingContactsPermission(activity);
+            }
+        }
+    }
+
+    public void updateContactsNow() {
+        DbHelper dbHelper = new DbHelper(context);
+
+        List<Person> dbPersons = dbHelper.query().getPersons();
+        List<Person> contacts = getAllContactsWithBirthdays(contentResolver);
+
+        for (Person person : contacts) {
+            final Person existing = Utils.getPersonAlreadyInDb(person, dbPersons);
+            if (existing == null) {
+                dbHelper.addRecord(person);
+                dbPersons.add(person);
+            }
+            else {
+                person.setTimeStamp(existing.getTimeStamp()); //make sure they're the same for update purposes
+                dbHelper.updateRecord(person);
+            }
         }
     }
 
@@ -208,32 +236,17 @@ public class ContactsHelper {
 
     private class ContactsAsyncLoading extends AsyncTask<Void, Void, Void> {
 
-        ProgressDialogHelper progressDialogHelper = new ProgressDialogHelper(activity);
+        ProgressDialogHelper progressDialogHelper = new ProgressDialogHelper(context);
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialogHelper.startProgressDialog(activity.getString(R.string.loading_contacts));
+            progressDialogHelper.startProgressDialog(context.getString(R.string.loading_contacts));
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-            DbHelper dbHelper = new DbHelper(activity);
-
-            List<Person> dbPersons = dbHelper.query().getPersons();
-            List<Person> contacts = getAllContactsWithBirthdays(contentResolver);
-
-            for (Person person : contacts) {
-                final Person existing = Utils.getPersonAlreadyInDb(person, dbPersons);
-                if (existing == null) {
-                    dbHelper.addRecord(person);
-                    dbPersons.add(person);
-                }
-                else {
-                    person.setTimeStamp(existing.getTimeStamp()); //make sure they're the same for update purposes
-                    dbHelper.updateRecord(person);
-                }
-            }
+            updateContactsNow();
             return null;
         }
 
@@ -242,8 +255,8 @@ public class ContactsHelper {
             super.onPostExecute(aVoid);
             progressDialogHelper.dismissProgressDialog();
             loadingContactsListener.onContactsUploaded();
-            Utils.notifyWidget(activity);
-            Toast.makeText(activity, R.string.contacts_uploaded, Toast.LENGTH_SHORT).show();
+            Utils.notifyWidget(context);
+            Toast.makeText(context, R.string.contacts_uploaded, Toast.LENGTH_SHORT).show();
         }
     }
 }

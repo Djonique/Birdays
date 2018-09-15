@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements
         tabLayout.setupWithViewPager(viewPager);
 
         if (!preferences.getBoolean(Constants.CONTACTS_UPLOADED, false)) {
-            new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
+            new ContactsHelper(this, getContentResolver()).loadContactsWithProgress(preferences);
         }
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (!preferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
-                    new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
+                    new ContactsHelper(this, getContentResolver()).loadContactsWithProgress(preferences);
                 }
             } else {
                 Snackbar.make(container, R.string.permission_required,

@@ -22,7 +22,7 @@
 
     <!-- MainActivity -->
     <string name="loading_contacts">Loading contacts…</string>
-    <string name="contacts_uploaded">Contacts uploaded</string>
+    <string name="contacts_uploaded">Contacts imported</string>
     <string name="loading_contacts_error">Unable to import contacts, nonstandard date format</string>
     <string name="permission_required">Permission is required for importing contacts</string>
     <string name="snackbar_allow_text">Allow</string>
@@ -113,6 +113,7 @@
     <string name="ringtone_key" translatable="false">ringtone_key</string>
     <string name="help_key" translatable="false">help_key</string>
     <string name="import_contacts_key" translatable="false">import_contacts_key</string>
+    <string name="import_contacts_automatically_key" translatable="false">import_contacts_automatically_key</string>
     <string name="export_key" translatable="false">export_key</string>
     <string name="recover_key" translatable="false">recover_key</string>
     <string name="night_mode_key" translatable="false">night_mode_key</string>
@@ -171,8 +172,11 @@
     <string name="tap_here">Tap here if you don\'t receive notifications</string>
     <!-- Synchronization and backup -->
     <string name="sync_and_backup">Synchronization and backup</string>
-    <string name="contacts_import_title">Import contacts</string>
+    <string name="contacts_import_title">Import contacts now</string>
     <string name="contacts_import_summary">Tap here to import contacts from your device (supports ISO 8601)</string>
+    <string name="automatic_contacts_import_title">Automatic contacts import</string>
+    <string name="contacts_import_enabled_summary">Automatically import contacts every day</string>
+    <string name="contacts_import_disabled_summary">Automatic import disabled</string>
     <string name="export_records">Export records (Beta)</string>
     <string name="export_records_summary">Create the XML file with backup</string>
     <string name="ext_storage_error">External storage is not available</string>

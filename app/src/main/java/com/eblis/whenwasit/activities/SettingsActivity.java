@@ -154,7 +154,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         if (requestCode == Constants.READ_CONTACTS_PERMISSION_CODE && PermissionManager.readingContactsPermissionGranted(this)) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             if (!preferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
-                new ContactsHelper(this, getContentResolver()).loadContacts(preferences);
+                new ContactsHelper(this, getContentResolver()).loadContactsWithProgress(preferences);
             }
         } else if (PermissionManager.writingSdPermissionGranted(this)) {
             if (requestCode == Constants.WRITE_EXTERNAL_STORAGE_PERMISSION_CODE) {
@@ -340,7 +340,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                 public boolean onPreferenceClick(Preference preference) {
                     if (!preferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
                         ContactsHelper contactsHelper = new ContactsHelper(getActivity(), getActivity().getContentResolver());
-                        contactsHelper.loadContacts(preferences);
+                        contactsHelper.loadContactsWithProgress(preferences);
                     }
                     return true;
                 }

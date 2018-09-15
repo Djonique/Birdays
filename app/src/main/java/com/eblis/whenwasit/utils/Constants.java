@@ -41,6 +41,7 @@ public interface Constants {
     String NIGHT_MODE_KEY = "night_mode_key";
     String START_PAGE = "start_page_key";
     String DISPLAYED_AGE_KEY = "displayed_age_key";
+    String AUTOMATIC_CONTACT_IMPORT_KEY = "import_contacts_automatically_key";
 
     // Intents
     String TYPE_EMAIL = "message/rfc822";
