@@ -142,30 +142,37 @@ public class ContactsHelper {
 
         Cursor cursor = getContactsCursor(contentResolver);
 
-        while (cursor.moveToNext()) {
-            final String id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.CONTACT_ID));
-            final String name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-            final String dateString = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.START_DATE));
-            final int type = cursor.getInt(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.TYPE));
-            final String label  = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.LABEL));
-            final String anniversary = getTypeLabel(context.getResources(), type, label);
-
-            final long date;
+        if (cursor != null) {
             try {
-                date = Utils.formatDateToLong(dateString);
-            } catch (Exception e) {
-                continue;
+                while (cursor.moveToNext()) {
+                    final String id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.CONTACT_ID));
+                    final String name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+                    final String dateString = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.START_DATE));
+                    final int type = cursor.getInt(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.TYPE));
+                    final String label = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.LABEL));
+                    final String anniversary = getTypeLabel(context.getResources(), type, label);
+
+                    final long date;
+                    try {
+                        date = Utils.formatDateToLong(dateString);
+                    } catch (Exception e) {
+                        continue;
+                    }
+                    if (date == 0) continue;
+
+                    boolean yearUnknown = Utils.isYearUnknown(dateString);
+                    String phoneNumber = getContactPhoneNumber(contentResolver, id);
+                    String email = getContactEmail(contentResolver, id);
+
+                    Person person = new Person(Long.valueOf(id), name, date, yearUnknown, phoneNumber, email, anniversary, getAnniversaryType(type));
+                    contacts.add(person);
+                }
             }
-            if (date == 0) continue;
-
-            boolean yearUnknown = Utils.isYearUnknown(dateString);
-            String phoneNumber = getContactPhoneNumber(contentResolver, id);
-            String email = getContactEmail(contentResolver, id);
-
-            Person person = new Person(Long.valueOf(id), name, date, yearUnknown, phoneNumber, email, anniversary, getAnniversaryType(type));
-            contacts.add(person);
+            finally {
+                cursor.close();
+            }
         }
-        cursor.close();
+
         return contacts;
     }
 
