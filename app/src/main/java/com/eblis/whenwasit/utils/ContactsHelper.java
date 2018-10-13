@@ -77,21 +77,32 @@ public class ContactsHelper {
     /**
      * Returns phone number from certain contact
      */
-    public String getContactPhoneNumber(ContentResolver contentResolver, String id) {
-        String phoneNumber = "";
-        Cursor phoneCursor = contentResolver.query(
+    public synchronized String getContactPhoneNumber(ContentResolver contentResolver, String id) {
+        final Cursor phoneCursor = contentResolver.query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 null,
                 ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
                 new String[]{id}, null);
-        if (phoneCursor != null && phoneCursor.moveToFirst()) {
-            phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex
-                    (ContactsContract.CommonDataKinds.Phone.NUMBER));
-        }
         if (phoneCursor != null) {
-            phoneCursor.close();
+            try {
+                phoneCursor.moveToFirst();
+                return phoneCursor.getString(phoneCursor.getColumnIndex
+                        (ContactsContract.CommonDataKinds.Phone.NUMBER));
+            }
+            catch (Exception ex) {
+                //no-op
+            }
+            finally {
+                try {
+                    phoneCursor.close();
+                }
+                catch (Exception ex) {
+                    //nothing we can do :(
+                }
+            }
         }
-        return phoneNumber;
+
+        return "";
     }
 
     /**
