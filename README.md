@@ -30,6 +30,8 @@ Omer Surer (Turkish)
 Xiupeng (Chinese traditional)
 
 Andra Fetele (Romanian) [sarmizegetusaa](https://github.com/sarmizegetusaa)
+
+Claire Dufetrelle (French) [claireduf](https://github.com/claireduf)
 ## License
 
 ```
