@@ -172,7 +172,7 @@
     <string name="later">Mai târziu</string>
     <string name="rate_app">Votați aplicația</string>
     <string name="share_app">Distribuiți aplicația</string>
-    <string name="share_text">Uitați să vă felicitați rudele, prietenii sau colegii de ziua lor? Birdays vă va aminti de o sărbătoare importantă!\n\n</string>
+    <string name="share_text">Uitați să vă felicitați rudele, prietenii sau colegii de ziua lor? WhenWasIt vă va aminti de o sărbătoare importantă!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Publicitate</string>
     <string name="about_ad_title">De ce văd reclame?</string>
@@ -189,7 +189,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">De ce nu funcționează alarma?</string>
-    <string name="help_description">La unele aparate, modul de economisirea al bateriei ar putea bloca sau dezactiva procesle de fundal ale aplicației și aceasta nu mai rulează la deschidere. \nPentru ca aplicația să funcționeze corect, vă rugăm să efectuați pașii de mai jos:\n\n1. Asigurați-vă că notificările pentru aplicația Birdays sunt activate (Setări > Aplicații > WhenWasIt).\n\n2. Dacă aveți instalate programe de gestionare pentru task-uri sau optimizări de RAM (ex «Battery Saver», «Clean Master»), care ar putea bloca procesele de fundal ale aplicației, adăugați Birdays pe lista lor albă.\n\n3. Închideți-vă modul de economisire al bateriei sau adăugați Birdays la lista lor albă (Setări > Baterie > Optimizarea bateriei).\nNumai pentru aparate care au Android 6.0 (Marshmallow) sau o versiune mai nouă.</string>
+    <string name="help_description">La unele aparate, modul de economisirea al bateriei ar putea bloca sau dezactiva procesle de fundal ale aplicației și aceasta nu mai rulează la deschidere. \nPentru ca aplicația să funcționeze corect, vă rugăm să efectuați pașii de mai jos:\n\n1. Asigurați-vă că notificările pentru aplicația WhenWasIt sunt activate (Setări > Aplicații > WhenWasIt).\n\n2. Dacă aveți instalate programe de gestionare pentru task-uri sau optimizări de RAM (ex «Battery Saver», «Clean Master»), care ar putea bloca procesele de fundal ale aplicației, adăugați WhenWasIt pe lista lor albă.\n\n3. Închideți-vă modul de economisire al bateriei sau adăugați WhenWasIt la lista lor albă (Setări > Baterie > Optimizarea bateriei).\nNumai pentru aparate care au Android 6.0 (Marshmallow) sau o versiune mai nouă.</string>
     <string name="help_whitelist">Deschide lista albă</string>
     <string name="help_whitelist_error">Doar pentru aparatele care rulează pe Android 6.0 (Marshmallow) sau pe o versiune mai nouă</string>
     <string name="help_delay_text">Se poate ca pe unele aparate, notificările să aibe întârzieri.</string>

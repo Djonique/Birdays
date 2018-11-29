@@ -170,7 +170,7 @@
     <string name="restart_now">Reiniciar ahora</string>
     <string name="later">Después</string>
     <string name="share_app">Compartir app</string>
-    <string name="share_text">Sueles olvidar felicitar a tus familiares, amigos o compañeros en su cumpleaños? ¡Birdays te los recordará!\n\n</string>
+    <string name="share_text">Sueles olvidar felicitar a tus familiares, amigos o compañeros en su cumpleaños? ¡WhenWasIt te los recordará!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Anuncios</string>
     <string name="about_ad_title">¿Por qué veo anuncios?</string>
@@ -187,7 +187,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">¿Por qué no funciona la alarma?</string>
-    <string name="help_description">Algunos dispositivos tienen una función de Ahorro de Batería que podría impedir que los procesos en segundo plano de la aplicación se inicien al endenderse el dispositivo.\nPara hacer que la alarma funcione correctamente, sigue los pasos indicados:\n\n1. Asegúrate de que las notificaciones están permitidas para la app de WhenWasIt (Ajustes > Aplicaciones > WhenWasIt).\n\n2. Si tienes instalados gestores de tareas, finalizadores de tareas u optimizadores de RAM (p.ej. «Battery Saver», «Clean Master»), que pueden bloquear procesos en segundo plano, añade Birdays a su lista de excepciones.\n\n3. Deshabilita la función de Ahorro de Batería o añade Birdays a su lista de excepciones (Ajustes > Batería > Optimización de batería).\nSólo para dispositivos que ejecutan Android 6.0 (Marshmallow) o superior.\n</string>
+    <string name="help_description">Algunos dispositivos tienen una función de Ahorro de Batería que podría impedir que los procesos en segundo plano de la aplicación se inicien al endenderse el dispositivo.\nPara hacer que la alarma funcione correctamente, sigue los pasos indicados:\n\n1. Asegúrate de que las notificaciones están permitidas para la app de WhenWasIt (Ajustes > Aplicaciones > WhenWasIt).\n\n2. Si tienes instalados gestores de tareas, finalizadores de tareas u optimizadores de RAM (p.ej. «Battery Saver», «Clean Master»), que pueden bloquear procesos en segundo plano, añade WhenWasIt a su lista de excepciones.\n\n3. Deshabilita la función de Ahorro de Batería o añade WhenWasIt a su lista de excepciones (Ajustes > Batería > Optimización de batería).\nSólo para dispositivos que ejecutan Android 6.0 (Marshmallow) o superior.\n</string>
     <string name="help_whitelist">Abrir la lista blanca</string>
     <string name="help_whitelist_error">Sólo para dispositivos que ejecutan Android 6.0 (Marshmallow) o superior</string>
     <string name="help_delay_text">Por favor, ten en cuenta que las notificaciones pueden tener un pequeño retraso en algunos dispositivos.</string>

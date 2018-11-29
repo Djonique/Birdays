@@ -171,7 +171,7 @@
     <string name="later">Nanti</string>
     <string name="rate_app">Beri nilai</string>
     <string name="share_app">Bagikan aplikasi</string>
-    <string name="share_text">Apakah Anda lupa mengucapkan selamat kepada saudara, teman atau kolega Anda di hari ulang tahun mereka? Birdays akan mengingatkan Anda pada momen yang penting!\n\n</string>
+    <string name="share_text">Apakah Anda lupa mengucapkan selamat kepada saudara, teman atau kolega Anda di hari ulang tahun mereka? WhenWasIt akan mengingatkan Anda pada momen yang penting!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Iklan</string>
     <string name="about_ad_title">Mengapa saya melihat iklan?</string>
@@ -188,7 +188,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Mengapa alarm tidak bekerja?</string>
-    <string name="help_description">Beberapa perangkat memiliki Mode Penghematan Daya yang dapat memblokir proses latar belakang aplikasi atau menonaktifkan aplikasi agar tidak berjalan.\nUntuk membuat alarm bekerja dengan benar, lakukan beberapa langkah sederhana di bawah ini:\n\n1. Pastikan notifikasi diaktifkan untuk aplikasi WhenWasIt (Setelan > Aplikasi > WhenWasIt).\n\n2. Jika Anda telah memasang pengelola tugas, pembunuh tugas atau pengoptimalan RAM (misalnya «Penghemat baterai», «Clean Master»), yang dapat memblokir proses latar belakang aplikasi, tambahkan Birdays ke daftar putih mereka.\n\n3. Matikan mode hemat daya Anda atau tambahkan Birdays ke daftar putih (Setelan > Baterai > Pengoptimalan baterai).\nHanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi.</string>
+    <string name="help_description">Beberapa perangkat memiliki Mode Penghematan Daya yang dapat memblokir proses latar belakang aplikasi atau menonaktifkan aplikasi agar tidak berjalan.\nUntuk membuat alarm bekerja dengan benar, lakukan beberapa langkah sederhana di bawah ini:\n\n1. Pastikan notifikasi diaktifkan untuk aplikasi WhenWasIt (Setelan > Aplikasi > WhenWasIt).\n\n2. Jika Anda telah memasang pengelola tugas, pembunuh tugas atau pengoptimalan RAM (misalnya «Penghemat baterai», «Clean Master»), yang dapat memblokir proses latar belakang aplikasi, tambahkan WhenWasIt ke daftar putih mereka.\n\n3. Matikan mode hemat daya Anda atau tambahkan WhenWasIt ke daftar putih (Setelan > Baterai > Pengoptimalan baterai).\nHanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi.</string>
     <string name="help_whitelist">Buka daftar putih</string>
     <string name="help_whitelist_error">Hanya beroperasi pada perangkat Android 6.0 (Marshmallow) atau lebih tinggi</string>
     <string name="help_delay_text">Harap diingat pada beberapa perangkat, pemberitahuan mungkin dapat bekerja dengan beberapa penundaan.</string>
