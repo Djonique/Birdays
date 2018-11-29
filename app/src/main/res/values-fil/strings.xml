@@ -171,7 +171,7 @@
     <string name="later">Kalaunan</string>
     <string name="rate_app">I-rate ang app</string>
     <string name="share_app">Ibahagi ang app</string>
-    <string name="share_text">Nakalimutan mo bang batiin ang iyong mga kamag-anak, kaibigan o kasamahan sa kanilang kaarawan? ang Birdays ay paaalalahanan ka sa mga importanteng holiday!\n\n</string>
+    <string name="share_text">Nakalimutan mo bang batiin ang iyong mga kamag-anak, kaibigan o kasamahan sa kanilang kaarawan? ang WhenWasIt ay paaalalahanan ka sa mga importanteng holiday!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Advertising</string>
     <string name="about_ad_title">Bakit ako nakakakita ng mga ads?</string>
@@ -188,7 +188,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Bakit hindi gumagana ang alarm?</string>
-    <string name="help_description">Ang ibang mga device ay merong Power Saving Mode na maaaring maka harang sa pagproseso ng app background o kaya ay i-disable ang pag takbo ng application sa pag-startup.\nPara mapagana ang alarm ng tama kailangan gawin ang mga simpleng hakbang na ito sa ibaba:\n\n1. Siguraduhing na ang notifikasyon ay gumagana para sa Birdays app (Mga Setting > Apps > WhenWasIt).\n\n2. Kung ikaw ay nag-install ng task managers, task killers o RAM optimizers (hal. «Battery Saver», «Clean Master»), Namaaring humarang sa pag proseso ng app background, Idagdag ang Birdays sa kanilang whitelist.\n\n3. I-Turn off ang iyong power-saving mode o kaya\'y idagdag ang Birdays sa whitelist (Mga Setting > Baterya > Pag-optimize ng baterya).\nPara lamang sa mga devices na gumagana sa Android 6.0 (Marshmallow) o mas mataas pa.</string>
+    <string name="help_description">Ang ibang mga device ay merong Power Saving Mode na maaaring maka harang sa pagproseso ng app background o kaya ay i-disable ang pag takbo ng application sa pag-startup.\nPara mapagana ang alarm ng tama kailangan gawin ang mga simpleng hakbang na ito sa ibaba:\n\n1. Siguraduhing na ang notifikasyon ay gumagana para sa WhenWasIt app (Mga Setting > Apps > WhenWasIt).\n\n2. Kung ikaw ay nag-install ng task managers, task killers o RAM optimizers (hal. «Battery Saver», «Clean Master»), Namaaring humarang sa pag proseso ng app background, Idagdag ang WhenWasIt sa kanilang whitelist.\n\n3. I-Turn off ang iyong power-saving mode o kaya\'y idagdag ang WhenWasIt sa whitelist (Mga Setting > Baterya > Pag-optimize ng baterya).\nPara lamang sa mga devices na gumagana sa Android 6.0 (Marshmallow) o mas mataas pa.</string>
     <string name="help_whitelist">Buksan ang whitelist</string>
     <string name="help_whitelist_error">Para lamang sa mga device na gumagana sa Android 6.0 (Marshmallow) or mas mataas pa</string>
     <string name="help_delay_text">Pakiusap tandaan na sa mga ilang mga notifikasyon ng device ay maaaring magkaroon ng ilang pagka-antala.</string>
@@ -196,7 +196,7 @@
     <string name="huawei_header">Para sa mga may-ari ng Huawei</string>
     <string name="huawei_description">Buksan ang device «Mga setting» go to «Power saving» at buksan ang «Protected apps». Siguraduhin na ang feature na ito ay gagana sa WhenWasIt.</string>
     <string name="samsung_header">Para sa mga may-ari ng Samsung</string>
-    <string name="samsung_description">Bukas ang «Smart Manager», i-tap sa «Battery», pagkatapos ay sa «Detalye». I-disable ang feature na ito para Birdays app.</string>
+    <string name="samsung_description">Bukas ang «Smart Manager», i-tap sa «Battery», pagkatapos ay sa «Detalye». I-disable ang feature na ito para WhenWasIt app.</string>
     <string name="xiaomi_header">Para sa mga may-ari ng Xiaomi</string>
     <string name="xiaomi_description">Buksan ang device «Mga setting» pumunta sa «Battery &amp; performance», saka «I-manage ang apps batter usage», buksan ang «Choose apps», piliin ang «No restrictions» para sa WhenWasIt.</string>
     <string name="show_button">Ipakita</string>

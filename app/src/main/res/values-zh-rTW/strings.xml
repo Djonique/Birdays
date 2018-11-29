@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">已啟用優化!</string>
-    <string name="optimization_description">\n從6.0版開始，Android推出節電模式Doze，通過推遲後台CPU來管理應用程序行為。\n\n要使應用程序正常工作，請停用Birdays的優化。</string>
+    <string name="optimization_description">\n從6.0版開始，Android推出節電模式Doze，通過推遲後台CPU來管理應用程序行為。\n\n要使應用程序正常工作，請停用WhenWasIt的優化。</string>
     <string name="do_not_show_again">不要再顯示</string>
     <string name="disable_button">禁用</string>
     <!-- Notifications -->
@@ -171,7 +171,7 @@
     <string name="later">稍後</string>
     <string name="rate_app">評價程式</string>
     <string name="share_app">分享</string>
-    <string name="share_text">你忘記祝賀你的親戚，朋友或同事生日嗎？ Birdays會提醒你一個重要的假期！\n\n</string>
+    <string name="share_text">你忘記祝賀你的親戚，朋友或同事生日嗎？ WhenWasIt會提醒你一個重要的假期！\n\n</string>
     <!-- Advertising -->
     <string name="advertising">廣告行銷</string>
     <string name="about_ad_title">為什麼我會看到廣告？</string>
@@ -188,17 +188,17 @@
 
     <!-- HelpActivity -->
     <string name="help_header">為什麼警報不工作？</string>
-    <string name="help_description">某些設備具有省電模式，可以阻止應用程序後台進程或禁止應用程序在啟動時運行。\n要使鬧鍾正常工作，請執行以下幾個簡單步驟：\n\n1。 確保已為Birdays應用啟用通知（設置 > 應用 >Birdays）。\n\n2。 如果您已經安裝了任務管理器，任務殺手或RAM優化器（例如“節電器”，“清潔大師”）， 可能會阻止應用程序後台進程， 請將Birdays添加到白名單中。\n \n3。 關閉省電模式或將Birdays添加到白名單（設置 > 電池 > 電池優化）。\n 僅適用於運行Android 6.0（Marshmallow）或更高版本的設備。</string>
+    <string name="help_description">某些設備具有省電模式，可以阻止應用程序後台進程或禁止應用程序在啟動時運行。\n要使鬧鍾正常工作，請執行以下幾個簡單步驟：\n\n1。 確保已為WhenWasIt應用啟用通知（設置 > 應用 >WhenWasIt）。\n\n2。 如果您已經安裝了任務管理器，任務殺手或RAM優化器（例如“節電器”，“清潔大師”）， 可能會阻止應用程序後台進程， 請將WhenWasIt添加到白名單中。\n \n3。 關閉省電模式或將WhenWasIt添加到白名單（設置 > 電池 > 電池優化）。\n 僅適用於運行Android 6.0（Marshmallow）或更高版本的設備。</string>
     <string name="help_whitelist">打開白名單</string>
     <string name="help_whitelist_error">僅適用於運行Android 6.0（Marshmallow）或更高版本的設備</string>
     <string name="help_delay_text">請注意，在某些設備上，通知可能會延遲一段時間。</string>
     <string name="help_settings">開啟設定</string>
     <string name="huawei_header">華為的機主</string>
-    <string name="huawei_description">打開設備«設置»，進入«節電»並打開«受保護的應用程序»。 確保為 Birdays 啟用此功能。</string>
+    <string name="huawei_description">打開設備«設置»，進入«節電»並打開«受保護的應用程序»。 確保為 WhenWasIt 啟用此功能。</string>
     <string name="samsung_header">三星機主</string>
-    <string name="samsung_description">打開 «Smart Manager», 點擊«電池»， 然後點擊«細節»。 為Birdays應用停用此功能。</string>
+    <string name="samsung_description">打開 «Smart Manager», 點擊«電池»， 然後點擊«細節»。 為WhenWasIt應用停用此功能。</string>
     <string name="xiaomi_header">小米機主</string>
-    <string name="xiaomi_description">打開設備«設置»， 進入«電池&amp;性能»， 然後 «管理應用程序的電池使用情況»， 打開«選擇應用程序»，選擇«沒有限制»的Birdays</string>
+    <string name="xiaomi_description">打開設備«設置»， 進入«電池&amp;性能»， 然後 «管理應用程序的電池使用情況»， 打開«選擇應用程序»，選擇«沒有限制»的WhenWasIt</string>
     <string name="show_button">顯示</string>
     <string name="help_email_description">如果鬧鐘還沒有工作，請通過 eblis102@gmail.com 與我聯繫</string>
     <string name="send_email">傳送電子郵件</string>

@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Optimalisatie ingeschakeld!</string>
-    <string name="optimization_description">\nVanaf versie 6.0 introduceerde Android de energiebesparende modus Doze, die de werking van de applicatie beheert door de achtergrond-CPU uit te stellen.\n\nSchakel optimalisatie van Birdays uit om het applicatie correct te laten werken.</string>
+    <string name="optimization_description">\nVanaf versie 6.0 introduceerde Android de energiebesparende modus Doze, die de werking van de applicatie beheert door de achtergrond-CPU uit te stellen.\n\nSchakel optimalisatie van WhenWasIt uit om het applicatie correct te laten werken.</string>
     <string name="do_not_show_again">Niet meer tonen</string>
     <string name="disable_button">Uitschakelen</string>
     <!-- Notifications -->
@@ -171,7 +171,7 @@
     <string name="later">Later</string>
     <string name="rate_app">Beoordeel app</string>
     <string name="share">Delen</string>
-    <string name="share_text">Vergeet u meestal uw familie, vrienden of collega\'s te feliciteren met hun verjaardag? Birdays zal u eraan herinneren!\n\n</string>
+    <string name="share_text">Vergeet u meestal uw familie, vrienden of collega\'s te feliciteren met hun verjaardag? WhenWasIt zal u eraan herinneren!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Reclame</string>
     <string name="about_ad_title">Waarom zie ik advertenties?</string>
@@ -188,7 +188,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Waarom alarm werkt niet?</string>
-    <string name="help_description">Sommige apparaten hebben de energiebesparende modus die achtergrondapp-processen kan blokkeren of de toepassing uitschakelen die bij het opstarten wordt uitgevoerd.\nOm de taakwaarschuwing op de juiste manier uit te voeren, voert u een paar eenvoudige stappen uit:\n\n1. Zorg ervoor dat meldingen zijn ingeschakeld voor de Birdays-app (Instellingen > apps > WhenWasIt).\n\n2. Als u taskmanager, taakmoordenaar of RAM-optimizers (bijvoorbeeld «Battery Saver», «Clean Master») hebt geïnstalleerd, die achtergrondappprocessen zouden kunnen blokkeren, voegt u Birdays toe aan hun witte lijst.\n\n3. Deactiveer de energiebesparende modus of voeg Birdays toe aan de witte lijst (Instellingen > Batterij > Batterij- en accu-optimalisatie).\nAlleen voor apparaten met Android 6.0 (Marshmallow) of hoger.</string>
+    <string name="help_description">Sommige apparaten hebben de energiebesparende modus die achtergrondapp-processen kan blokkeren of de toepassing uitschakelen die bij het opstarten wordt uitgevoerd.\nOm de taakwaarschuwing op de juiste manier uit te voeren, voert u een paar eenvoudige stappen uit:\n\n1. Zorg ervoor dat meldingen zijn ingeschakeld voor de WhenWasIt-app (Instellingen > apps > WhenWasIt).\n\n2. Als u taskmanager, taakmoordenaar of RAM-optimizers (bijvoorbeeld «Battery Saver», «Clean Master») hebt geïnstalleerd, die achtergrondappprocessen zouden kunnen blokkeren, voegt u WhenWasIt toe aan hun witte lijst.\n\n3. Deactiveer de energiebesparende modus of voeg WhenWasIt toe aan de witte lijst (Instellingen > Batterij > Batterij- en accu-optimalisatie).\nAlleen voor apparaten met Android 6.0 (Marshmallow) of hoger.</string>
     <string name="help_whitelist">Open een witte lijst</string>
     <string name="help_whitelist_error">Alleen voor apparaten met Android 6.0 (Marshmallow) of hoger</string>
     <string name="help_delay_text">Houd er rekening mee dat meldingen op sommige apparaten mogelijk enige vertraging kunnen veroorzaken.</string>

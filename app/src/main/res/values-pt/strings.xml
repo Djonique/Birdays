@@ -171,7 +171,7 @@
     <string name="later">Mais tarde</string>
     <string name="rate_app">Classificar a aplicação</string>
     <string name="share_app">Compartilhar</string>
-    <string name="share_text">Você esqueceu de felicitar seus parentes, amigos ou colegas no seu aniversário? Birdays irá lembrá-lo de um feriado importante! \n\n</string>
+    <string name="share_text">Você esqueceu de felicitar seus parentes, amigos ou colegas no seu aniversário? WhenWasIt irá lembrá-lo de um feriado importante! \n\n</string>
     <!-- Advertising -->
     <string name="advertising">Publicidade</string>
     <string name="about_ad_title">Por que vejo anúncios?</string>
@@ -188,7 +188,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Por que o alarme não está funcionando?</string>
-    <string name="help_description">Alguns dispositivos possuem Modo de economia de energia que podem bloquear processos de fundo do aplicativo ou desativar o aplicativo de execução na inicialização.\nPara fazer o trabalho de alarme funcionar corretamente, estes passos simples abaixo: \n\n1. Verifique se as notificações estão ativadas para o aplicativo WhenWasIt (Definições > Aplicações > WhenWasIt). \n\n2. Se você instalou gerenciadores de tarefas, assasinos de tarefas ou otimizadores de RAM (por exemplo, «Battery Saver», «Clean Master»), que podem bloquear os processos de fundo do aplicativo, adicione Birdays à sua lista branca.\n\n3. Desligue o modo de poupança de energia ou adicione Birdays à lista branca (Definições > Bateria > Otimização da bateria).\nSomente para dispositivos que executam o Android 6.0 (Marshmallow) ou superior.</string>
+    <string name="help_description">Alguns dispositivos possuem Modo de economia de energia que podem bloquear processos de fundo do aplicativo ou desativar o aplicativo de execução na inicialização.\nPara fazer o trabalho de alarme funcionar corretamente, estes passos simples abaixo: \n\n1. Verifique se as notificações estão ativadas para o aplicativo WhenWasIt (Definições > Aplicações > WhenWasIt). \n\n2. Se você instalou gerenciadores de tarefas, assasinos de tarefas ou otimizadores de RAM (por exemplo, «Battery Saver», «Clean Master»), que podem bloquear os processos de fundo do aplicativo, adicione WhenWasIt à sua lista branca.\n\n3. Desligue o modo de poupança de energia ou adicione WhenWasIt à lista branca (Definições > Bateria > Otimização da bateria).\nSomente para dispositivos que executam o Android 6.0 (Marshmallow) ou superior.</string>
     <string name="help_whitelist">Abrir lista branca</string>
     <string name="help_whitelist_error">Somente para dispositivos que executam o Android 6.0 (Marshmallow) ou superior</string>
     <string name="help_delay_text">Por favor, note que em alguns dispositivos, notificações poderiam trabalhar com atraso.</string>

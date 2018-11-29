@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Optimalizálás engedélyezve!</string>
-    <string name="optimization_description">\nA 6.0 verziótól kezdődően az Android bevezette az energiatakarékos módot Doze, amely kezeli az alkalmazások viselkedését a háttér CPU elhalasztásával.\n\nAz alkalmazások helyes működésének letiltásához a Birdays optimalizálását letiltja.</string>
+    <string name="optimization_description">\nA 6.0 verziótól kezdődően az Android bevezette az energiatakarékos módot Doze, amely kezeli az alkalmazások viselkedését a háttér CPU elhalasztásával.\n\nAz alkalmazások helyes működésének letiltásához a WhenWasIt optimalizálását letiltja.</string>
     <string name="do_not_show_again">Többet ne mutassa</string>
     <string name="disable_button">Kikapcsolja</string>
     <!-- Notifications -->
@@ -171,7 +171,7 @@
     <string name="later">Később</string>
     <string name="rate_app">Alkalmazás értékelése</string>
     <string name="share_app">Megosztás</string>
-    <string name="share_text">Elfelejtetted felköszönteni rokonaid, barátaid vagy kollégáid a születésnapjukon? A Birdays emlékeztetni fog az ilyen fontos ünnepeken! \n\n</string>
+    <string name="share_text">Elfelejtetted felköszönteni rokonaid, barátaid vagy kollégáid a születésnapjukon? A WhenWasIt emlékeztetni fog az ilyen fontos ünnepeken! \n\n</string>
     <!-- Advertising -->
     <string name="advertising">Hirdetések</string>
     <string name="about_ad_title">Miért látok hirdetéseket?</string>
@@ -188,15 +188,15 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Miért nem működik a riasztás?</string>
-    <string name="help_description">Néhány eszköz rendelkezik energiatakarékos móddal, amely megakadályozhatja az alkalmazások háttérfolyamatait, vagy letilthatja az alkalmazást indításkor.\nA riasztás megfelelő működéséhez hajtsa végre az alábbi néhány egyszerű lépést: \n\n1. Győződjön meg arról, hogy az értesítések engedélyezve vannak a Birdays alkalmazáshoz (Beállítások > Alkalmazások > WhenWasIt).\n\n2. Ha fel van telepítve a feladatkezelők, a feladatgyilkosok vagy a RAM-optimalizátorok (pl. «Battery Saver», «Clean Master»), amelyek blokkolhatják az alkalmazás háttérfolyamatait, hozzáadhatják Birdays a engedélyező listájához.\n\n3. Kapcsolja ki energiatakarékos üzemmódját vagy hozzáadhatják Birdays a engedélyező listájához (Beállítások > Akkumulátor > Akkumulátoroptimalizálás).\nCsak az Android 6.0 (Marshmallow) vagy újabb verziójú eszközök esetében.</string>
+    <string name="help_description">Néhány eszköz rendelkezik energiatakarékos móddal, amely megakadályozhatja az alkalmazások háttérfolyamatait, vagy letilthatja az alkalmazást indításkor.\nA riasztás megfelelő működéséhez hajtsa végre az alábbi néhány egyszerű lépést: \n\n1. Győződjön meg arról, hogy az értesítések engedélyezve vannak a WhenWasIt alkalmazáshoz (Beállítások > Alkalmazások > WhenWasIt).\n\n2. Ha fel van telepítve a feladatkezelők, a feladatgyilkosok vagy a RAM-optimalizátorok (pl. «Battery Saver», «Clean Master»), amelyek blokkolhatják az alkalmazás háttérfolyamatait, hozzáadhatják WhenWasIt a engedélyező listájához.\n\n3. Kapcsolja ki energiatakarékos üzemmódját vagy hozzáadhatják WhenWasIt a engedélyező listájához (Beállítások > Akkumulátor > Akkumulátoroptimalizálás).\nCsak az Android 6.0 (Marshmallow) vagy újabb verziójú eszközök esetében.</string>
     <string name="help_whitelist">Nyílt engedélylista</string>
     <string name="help_whitelist_error">Csak az Android 6.0 (Marshmallow) vagy újabb verziójú eszközök esetében</string>
     <string name="help_delay_text">Felhívjuk figyelmét, hogy egyes készülékekre vonatkozó értesítések késedelmet szenvedhetnek.</string>
     <string name="help_settings">Nyisd meg a beállításokat</string>
     <string name="huawei_header">A Huawei tulajdonosok számára</string>
-    <string name="huawei_description">Nyissa meg a készülék «Beállítások» menüpontját, lépjen az «Energiatakarékosság» pontra, és nyissa meg a «Védett alkalmazások» lehetőséget. Győződjön meg róla, hogy ez a funkció engedélyezett a Birdays esetében.</string>
+    <string name="huawei_description">Nyissa meg a készülék «Beállítások» menüpontját, lépjen az «Energiatakarékosság» pontra, és nyissa meg a «Védett alkalmazások» lehetőséget. Győződjön meg róla, hogy ez a funkció engedélyezett a WhenWasIt esetében.</string>
     <string name="samsung_header">A Samsung tulajdonosok számára</string>
-    <string name="samsung_description">Nyissa meg a «Intelligens kezelő», érintse meg az «Akkumulátor» pontot, majd a «Adatok» pontot. Tiltsa le ezt a funkciót a Birdays app.</string>
+    <string name="samsung_description">Nyissa meg a «Intelligens kezelő», érintse meg az «Akkumulátor» pontot, majd a «Adatok» pontot. Tiltsa le ezt a funkciót a WhenWasIt app.</string>
     <string name="xiaomi_header">A Xiaomi tulajdonosok számára</string>
     <string name="xiaomi_description">Nyissa meg a készülék «Beállítások» menüpontját, folytassa az «Akkumulátor &amp; teljesítmény», majd «Alkalmazások kezelése az akkumulátorok használatával», nyissa meg az «Alkalmazások kiválasztása» lehetőséget, válassza a «Nincs korlátozás» lehetőséget a WhenWasIt.</string>
     <string name="show_button">Mutat</string>

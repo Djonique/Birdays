@@ -163,7 +163,7 @@
     <string name="later">Ticki</string>
     <string name="rate_app">Rnu tazmilt i usnas</string>
     <string name="share">Bḍu</string>
-    <string name="share_text">Tettuḍ ad tazned asebɣes i yiqriben-ik, imdukal-ik neɣ wid ukud txeddmeḍ deg umulli-nsen? Birdays ad k-id-yemmekti ɣef timeɣriwin meqqren!\n\n</string>
+    <string name="share_text">Tettuḍ ad tazned asebɣes i yiqriben-ik, imdukal-ik neɣ wid ukud txeddmeḍ deg umulli-nsen? WhenWasIt ad k-id-yemmekti ɣef timeɣriwin meqqren!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Adellel</string>
     <string name="about_ad_title">Acuɣer tettwaliḍ adellel?</string>
@@ -180,7 +180,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Acuɣer ur iteddu ara uṭenṭen?</string>
-    <string name="help_description">Kra n yibenkan ɣur-sen askar n uḥraz n tfasa izemren ad isewḥel ikalan n ugulal n usnas neɣad yessens aselkem n usnas di tnkera. \n Akken ad teddu teṭenṭunt akken iwata, ddu am akka:\n\n1. Ḍmen d akken ilɣaremden i usnas WhenWasIt (iɣewwaṛen &gt; Isnasen &gt;Birdays).\n\n2. Ma yella tesbeddeḍ imsefraken n tiwuriwin,imenɣawen n tiwuriwin neɣ imseggamen n tkatut RAM (aemdya «Aḥerraz n uẓru», «Clean Master»), i yezmren ad sweḥlen akala n ugilal, rnu Birdays ar tebdart tamellalt..\n\n3. Sens askar n uḥraz n tfasa neɣ rnu Birdays ar tebdart tamellalt (Iɣewwaṛen &gt; Aẓru &gt; Aseggem n uẓru).\nAla i yibenkan uteddun s Android 6.0 (Marshmallow) neɣ ugar.</string>
+    <string name="help_description">Kra n yibenkan ɣur-sen askar n uḥraz n tfasa izemren ad isewḥel ikalan n ugulal n usnas neɣad yessens aselkem n usnas di tnkera. \n Akken ad teddu teṭenṭunt akken iwata, ddu am akka:\n\n1. Ḍmen d akken ilɣaremden i usnas WhenWasIt (iɣewwaṛen &gt; Isnasen &gt;WhenWasIt).\n\n2. Ma yella tesbeddeḍ imsefraken n tiwuriwin,imenɣawen n tiwuriwin neɣ imseggamen n tkatut RAM (aemdya «Aḥerraz n uẓru», «Clean Master»), i yezmren ad sweḥlen akala n ugilal, rnu WhenWasIt ar tebdart tamellalt..\n\n3. Sens askar n uḥraz n tfasa neɣ rnu WhenWasIt ar tebdart tamellalt (Iɣewwaṛen &gt; Aẓru &gt; Aseggem n uẓru).\nAla i yibenkan uteddun s Android 6.0 (Marshmallow) neɣ ugar.</string>
     <string name="help_whitelist">Ldi tabdart tamellalt</string>
     <string name="help_whitelist_error">Ala ibenkan iteddun s Android 6.0 (Marshmallow) neɣ ugar</string>
     <string name="help_delay_text">Ma ulac aɣilif, ẓer d akken kra n yibenkan, ilɣa zemren ur teddun ara imir imir.</string>

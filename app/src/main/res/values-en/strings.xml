@@ -172,7 +172,7 @@
     <string name="later">Later</string>
     <string name="rate_app">Rate app</string>
     <string name="share_app">Share app</string>
-    <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Birdays will remind you of an important holiday!\n\n</string>
+    <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? WhenWasIt will remind you of an important holiday!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Advertising</string>
     <string name="about_ad_title">Why do I see ads?</string>
@@ -189,7 +189,7 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Why alarm is not working?</string>
-    <string name="help_description">Some devices have Power Saving Mode that could block app background processes or disable application from running on startup.\nTo make alarm work correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled for Birdays app (Settings > Apps > WhenWasIt).\n\n2. If you have installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»), which could block app background processes, add Birdays to their whitelist.\n\n3. Turn off your power-saving mode or add Birdays to the whitelist (Settings > Battery > Battery optimization).\nOnly for devices running Android 6.0 (Marshmallow) or higher.</string>
+    <string name="help_description">Some devices have Power Saving Mode that could block app background processes or disable application from running on startup.\nTo make alarm work correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled for WhenWasIt app (Settings > Apps > WhenWasIt).\n\n2. If you have installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»), which could block app background processes, add WhenWasIt to their whitelist.\n\n3. Turn off your power-saving mode or add WhenWasIt to the whitelist (Settings > Battery > Battery optimization).\nOnly for devices running Android 6.0 (Marshmallow) or higher.</string>
     <string name="help_whitelist">Open whitelist</string>
     <string name="help_whitelist_error">Only for devices running Android 6.0 (Marshmallow) or higher</string>
     <string name="help_delay_text">Please note that on some devices notifications could work with some delay.</string>
@@ -197,7 +197,7 @@
     <string name="huawei_header">For Huawei owners</string>
     <string name="huawei_description">Open device «Settings», go to «Power saving» and open «Protected apps». Make sure that this feature is enabled for WhenWasIt.</string>
     <string name="samsung_header">For Samsung owners</string>
-    <string name="samsung_description">Open «Smart Manager», tap on «Battery», then on «Detail». Disable this feature for Birdays app.</string>
+    <string name="samsung_description">Open «Smart Manager», tap on «Battery», then on «Detail». Disable this feature for WhenWasIt app.</string>
     <string name="xiaomi_header">For Xiaomi owners</string>
     <string name="xiaomi_description">Open device «Settings», go to «Battery &amp; performance», then «Manage apps battery usage», open «Choose apps», choose «No restrictions» for WhenWasIt.</string>
     <string name="show_button">Show</string>
