@@ -225,44 +225,49 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
             preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-            rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this.context);
-            rewardedVideoAd.loadAd(BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build());
-            rewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
-                @Override
-                public void onRewardedVideoAdLoaded() {
-                }
+            try {
+                rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this.context);
+                rewardedVideoAd.loadAd(BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build());
+                rewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
+                    @Override
+                    public void onRewardedVideoAdLoaded() {
+                    }
 
-                @Override
-                public void onRewardedVideoAdOpened() {
-                }
+                    @Override
+                    public void onRewardedVideoAdOpened() {
+                    }
 
-                @Override
-                public void onRewardedVideoStarted() {
-                }
+                    @Override
+                    public void onRewardedVideoStarted() {
+                    }
 
-                @Override
-                public void onRewardedVideoAdClosed() {
-                    rewardedVideoAd.loadAd(BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build());
-                }
+                    @Override
+                    public void onRewardedVideoAdClosed() {
+                        rewardedVideoAd.loadAd(BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build());
+                    }
 
-                @Override
-                public void onRewardedVideoAdLeftApplication() {
-                }
+                    @Override
+                    public void onRewardedVideoAdLeftApplication() {
+                    }
 
-                @Override
-                public void onRewardedVideoCompleted() {
-                }
+                    @Override
+                    public void onRewardedVideoCompleted() {
+                    }
 
-                @Override
-                public void onRewarded(RewardItem rewardItem) {
-                    Toast.makeText(context, "Thank you for watching this AD", Toast.LENGTH_SHORT).show();
-                }
+                    @Override
+                    public void onRewarded(RewardItem rewardItem) {
+                        Toast.makeText(context, "Thank you for watching this AD", Toast.LENGTH_SHORT).show();
+                    }
 
-                @Override
-                public void onRewardedVideoAdFailedToLoad(int i) {
-                    Toast.makeText(context, "Rewards AD failed to load: " + i, Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @Override
+                    public void onRewardedVideoAdFailedToLoad(int i) {
+                        Toast.makeText(context, "Rewards AD failed to load: " + i, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            catch (Exception ex) {
+                //no-op, just ads here
+            }
 
             MultiSelectListPreference multi = (MultiSelectListPreference) findPreference(Constants.ADDITIONAL_NOTIFICATION_KEY);
             multi.setSummary(getAdditionalNotificationsSelectedValues(multi));
