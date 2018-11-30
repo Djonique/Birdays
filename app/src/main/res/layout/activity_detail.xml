@@ -26,7 +26,7 @@
         android:id="@+id/container_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.djonique.birdays.activities.DetailActivity">
+        tools:context="com.eblis.whenwasit.activities.DetailActivity">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar_detail"
@@ -94,7 +94,7 @@
                             <TextView
                                 style="@style/EditActivity.Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_date"
-                                android:text="@string/birthday" />
+                                android:id="@+id/textview_detail_label" />
                         </RelativeLayout>
 
                         <!-- DaysLeft -->
@@ -153,6 +153,7 @@
                             <TextView
                                 style="@style/EditActivity.Secondary.TextView"
                                 android:layout_below="@+id/textview_detail_zodiac"
+                                android:id="@+id/textview_detail_zodiac_label"
                                 android:text="@string/zodiac_sign" />
                         </RelativeLayout>
                     </LinearLayout>

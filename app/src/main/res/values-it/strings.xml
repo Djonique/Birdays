@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Attivata l\'ottimizzazione!</string>
-    <string name="optimization_description">\nA partire dalla versione 6.0, Android ha introdotto modalità di risparmio energetico Doze che gestiscono applicazioni comportamento rinviando sfondo CPU.\n\nTo fare app funzionano correttamente disattivare l\'ottimizzazione per Birdays.</string>
+    <string name="optimization_description">\nA partire dalla versione 6.0, Android ha introdotto modalità di risparmio energetico Doze che gestiscono applicazioni comportamento rinviando sfondo CPU.\n\nTo fare app funzionano correttamente disattivare l\'ottimizzazione per WhenWasIt.</string>
     <string name="do_not_show_again">Non mostrare di nuovo</string>
     <string name="disable_button">Disattiva</string>
     <!-- Notifications -->
@@ -111,9 +111,9 @@
     <string name="allow_notification">Consentire all\'app di inviare notifiche dei compleanni imminenti</string>
     <string name="notifications_time">Ora di notifica</string>
     <string name="additional_notification">Ulteriori notifiche</string>
+    <string name="never">Mai</string>
 
     <string-array name="additional_notification_entries">
-        <item>Mai</item>
         <item>1 giorno prima</item>
         <item>2 giorni prima</item>
         <item>3 giorni prima</item>
@@ -171,7 +171,7 @@
     <string name="later">Dopo</string>
     <string name="rate_app">Valuta l\'app</string>
     <string name="share_app">Condividere</string>
-    <string name="share_text">Dimenticate per congratularsi con i vostri parenti, amici o colleghi il loro compleanno? Birdays vi ricorderà di una festa importante! \n\n</string>
+    <string name="share_text">Dimenticate per congratularsi con i vostri parenti, amici o colleghi il loro compleanno? WhenWasIt vi ricorderà di una festa importante! \n\n</string>
     <!-- Advertising -->
     <string name="advertising">Pubblicità</string>
     <string name="about_ad_title">Perché vedo annunci?</string>
@@ -188,19 +188,19 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Perché allarme non funziona?</string>
-    <string name="help_description">Alcuni dispositivi hanno la modalità di risparmio energetico che potrebbero bloccare i processi in background app o disattivare l\'applicazione in esecuzione su avvio.\nTo Per rendere allarme lavoro correttamente eseguire pochi semplici passi qui sotto:\n\n1. Assicurarsi che le notifiche sono abilitate per Birdays app (Impostazioni > App > Birdays).\n\n2. Se è stato installato il task manager, task killer o ottimizzatori di RAM (per esempio «Battery Saver», «Clean Master»), che potrebbero bloccare i processi in background app, aggiungere Birdays al loro whitelist.\n\n3. Disattivare la modalità di risparmio energetico o aggiungere Birdays alla lista bianca (Impostazioni > Batteria > Ottimizzazione batteria).\nSolo per dispositivi con sistema operativo Android 6.0 (Marshmallow) o superiore.</string>
+    <string name="help_description">Alcuni dispositivi hanno la modalità di risparmio energetico che potrebbero bloccare i processi in background app o disattivare l\'applicazione in esecuzione su avvio.\nTo Per rendere allarme lavoro correttamente eseguire pochi semplici passi qui sotto:\n\n1. Assicurarsi che le notifiche sono abilitate per WhenWasIt app (Impostazioni > App > WhenWasIt).\n\n2. Se è stato installato il task manager, task killer o ottimizzatori di RAM (per esempio «Battery Saver», «Clean Master»), che potrebbero bloccare i processi in background app, aggiungere WhenWasIt al loro whitelist.\n\n3. Disattivare la modalità di risparmio energetico o aggiungere WhenWasIt alla lista bianca (Impostazioni > Batteria > Ottimizzazione batteria).\nSolo per dispositivi con sistema operativo Android 6.0 (Marshmallow) o superiore.</string>
     <string name="help_whitelist">Apri whitelist</string>
     <string name="help_whitelist_error">Solo per dispositivi con sistema operativo Android 6.0 (Marshmallow) o superiore</string>
     <string name="help_delay_text">Siete pregati di notare che su alcuni dispositivi notifiche potrebbero lavorare con un certo ritardo.</string>
     <string name="help_settings">Apri le impostazioni</string>
     <string name="huawei_header">Per i proprietari di Huawei</string>
-    <string name="huawei_description">Aprire dispositivo «Impostazioni», vai a «Risparmio energetico» e aprire «App protette». Assicurarsi che questa funzionalità è attivata per Birdays.</string>
+    <string name="huawei_description">Aprire dispositivo «Impostazioni», vai a «Risparmio energetico» e aprire «App protette». Assicurarsi che questa funzionalità è attivata per WhenWasIt.</string>
     <string name="samsung_header">Per i proprietari di Samsung</string>
-    <string name="samsung_description">Aprire «Smart Manager», tocca «Batteria», poi su «Dettaglio». Disattivare questa funzionalità per Birdays app.</string>
+    <string name="samsung_description">Aprire «Smart Manager», tocca «Batteria», poi su «Dettaglio». Disattivare questa funzionalità per WhenWasIt app.</string>
     <string name="xiaomi_header">Per i proprietari di Xiaomi</string>
-    <string name="xiaomi_description">Aprire il dispositivo «Impostazioni», vai a «Batteria», quindi «Gestisci utilizzo batteria delle app», apre «Scegli applicazioni» scegliere «Senza restrizioni» per Birdays.</string>
+    <string name="xiaomi_description">Aprire il dispositivo «Impostazioni», vai a «Batteria», quindi «Gestisci utilizzo batteria delle app», apre «Scegli applicazioni» scegliere «Senza restrizioni» per WhenWasIt.</string>
     <string name="show_button">Mostra</string>
-    <string name="help_email_description">Se l\'allarme ancora non funziona, vi prego di contattarmi a birdaysapp@gmail.com</string>
+    <string name="help_email_description">Se l\'allarme ancora non funziona, vi prego di contattarmi a eblis102@gmail.com</string>
     <string name="send_email">Invia email</string>
 
     <!-- Famous persons -->

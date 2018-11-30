@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Увімкнена оптимізація!</string>
-    <string name="optimization_description">\nПочинаючи з версії 6.0, Android увів режим енергоощадження Doze, який керує поведінкою застосунків, обмежуючи фонові процеси.\n\nЩоб застосунок працював коректно, вимкніть оптимізацію для Birdays.</string>
+    <string name="optimization_description">\nПочинаючи з версії 6.0, Android увів режим енергоощадження Doze, який керує поведінкою застосунків, обмежуючи фонові процеси.\n\nЩоб застосунок працював коректно, вимкніть оптимізацію для WhenWasIt.</string>
     <string name="do_not_show_again">Більше не показувати</string>
     <string name="disable_button">Вимкнути</string>
     <!-- Notifications -->
@@ -111,9 +111,9 @@
     <string name="allow_notification">Дозволити застосунку присилати сповіщення про майбутні дні народження</string>
     <string name="notifications_time">Час сповіщення</string>
     <string name="additional_notification">Додаткове сповіщення</string>
+    <string name="never">Ніколи</string>
 
     <string-array name="additional_notification_entries">
-        <item>Ніколи</item>
         <item>За 1 день</item>
         <item>За 2 дні</item>
         <item>За 3 дні</item>
@@ -171,7 +171,7 @@
     <string name="later">Пізніше</string>
     <string name="rate_app">Оцінить застосунок</string>
     <string name="share_app">Розкажіть про застосунок</string>
-    <string name="share_text">Забуваєте привітати родичів, друзів чи колег із днем народження? Birdays нагадає вам про важливе свято!\n\n</string>
+    <string name="share_text">Забуваєте привітати родичів, друзів чи колег із днем народження? WhenWasIt нагадає вам про важливе свято!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Реклама</string>
     <string name="about_ad_title">Чому я бачу рекламу?</string>
@@ -188,19 +188,19 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Чому мені не надходять сповіщення?</string>
-    <string name="help_description">Деякі пристрої мають режим заощадження енергії, який блокує роботу застосунку в фоновому режимі або забороняє автозапуск.\nЩоб сповіщення працювали коректно, виконайте кілька простих дій:\n\n1. Переконайтесь, що застосунку Birdays дозволено показувати сповіщення (Налаштування > Програми > Birdays).\n\n2. Якщо у вас встановлені менеджери завдань, застосунки для очищення пам\'яті чи заощадження енергії («Battery Saver», «Clean Master» та ін.), які блокують роботу в фоновому режимі, додайте застосунок Birdays в їхній список захищених програм.\n\n3. Вимкніть режим енергоощадження або додайте застосунок у білий список. (Налаштування > Акумулятор > Оптимiзациiя акумулятора).\nТільки для пристроїв що працюють на Android 6.0 (Marshmallow) або вищій.</string>
+    <string name="help_description">Деякі пристрої мають режим заощадження енергії, який блокує роботу застосунку в фоновому режимі або забороняє автозапуск.\nЩоб сповіщення працювали коректно, виконайте кілька простих дій:\n\n1. Переконайтесь, що застосунку WhenWasIt дозволено показувати сповіщення (Налаштування > Програми > WhenWasIt).\n\n2. Якщо у вас встановлені менеджери завдань, застосунки для очищення пам\'яті чи заощадження енергії («Battery Saver», «Clean Master» та ін.), які блокують роботу в фоновому режимі, додайте застосунок WhenWasIt в їхній список захищених програм.\n\n3. Вимкніть режим енергоощадження або додайте застосунок у білий список. (Налаштування > Акумулятор > Оптимiзациiя акумулятора).\nТільки для пристроїв що працюють на Android 6.0 (Marshmallow) або вищій.</string>
     <string name="help_whitelist">Відкрити білий список</string>
     <string name="help_whitelist_error">Тільки для пристроїв, що працюють на Android 6.0 (Marshmallow) або вищій</string>
     <string name="help_delay_text">Зауважте, що на деяких пристроях сповіщення надходять із затримкою.</string>
     <string name="help_settings">Відкрити налаштування</string>
     <string name="huawei_header">Для власників Huawei</string>
-    <string name="huawei_description">Відкрийте налаштування телефона, перейдіть в «Економія енергїі», потім відкрийте вкладку «Захищені програми» й позначте в списку Birdays.</string>
+    <string name="huawei_description">Відкрийте налаштування телефона, перейдіть в «Економія енергїі», потім відкрийте вкладку «Захищені програми» й позначте в списку WhenWasIt.</string>
     <string name="samsung_header">Для власників Samsung</string>
-    <string name="samsung_description">Знайдіть застосунок «Smart Manager», натисніть на «Акумулятор», потім на «Деталі». Переконайтесь, що для застосунку Birdays вимкнене енергоощадження.</string>
+    <string name="samsung_description">Знайдіть застосунок «Smart Manager», натисніть на «Акумулятор», потім на «Деталі». Переконайтесь, що для застосунку WhenWasIt вимкнене енергоощадження.</string>
     <string name="xiaomi_header">Для власників Xiaomi</string>
-    <string name="xiaomi_description">Відкрийте налаштування телефону, перейдіть в «Батарея та продуктивність», потім «Витрата заряду батареї програмами», натисніть «Вибрати програми», виберіть «Жодних обмежень» для Birdays.</string>
+    <string name="xiaomi_description">Відкрийте налаштування телефону, перейдіть в «Батарея та продуктивність», потім «Витрата заряду батареї програмами», натисніть «Вибрати програми», виберіть «Жодних обмежень» для WhenWasIt.</string>
     <string name="show_button">Показати</string>
-    <string name="help_email_description">Якщо сповіщення досі не надходять, будь ласка, напишить мені на адресу birdaysapp@gmail.com</string>
+    <string name="help_email_description">Якщо сповіщення досі не надходять, будь ласка, напишить мені на адресу eblis102@gmail.com</string>
     <string name="send_email">Надіслати листа</string>
 
     <!-- Famous persons -->

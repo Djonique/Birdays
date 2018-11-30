@@ -17,12 +17,12 @@
 -->
 
 <resources>
-    <string name="app_name" translatable="false">Birdays</string>
+    <string name="app_name" translatable="false">WhenWasIt</string>
     <string name="build_version">Build version</string>
 
     <!-- MainActivity -->
     <string name="loading_contacts">Loading contacts…</string>
-    <string name="contacts_uploaded">Contacts uploaded</string>
+    <string name="contacts_uploaded">Contacts imported</string>
     <string name="loading_contacts_error">Unable to import contacts, nonstandard date format</string>
     <string name="permission_required">Permission is required for importing contacts</string>
     <string name="snackbar_allow_text">Allow</string>
@@ -61,6 +61,7 @@
     <string name="add_from_contacts">Add from contacts</string>
     <string name="open_contacts_error">Unable to perform action due to device features</string>
     <string name="name">Name</string>
+    <string name="anniversary_type">Anniversary type</string>
     <string name="error_hint">Please enter the name</string>
     <string name="phone_number">Phone number</string>
     <string name="email" translatable="false">Email</string>
@@ -73,9 +74,9 @@
 
     <!-- DetailActivity -->
     <string name="birthday">Birthday</string>
-    <string name="days_left">Days until next birthday</string>
+    <string name="days_left">Days until next occurrence</string>
     <string name="today">Today</string>
-    <string name="days_since_birth">Days since birth</string>
+    <string name="days_since_birth">Days since anniversary started</string>
     <string name="zodiac_sign">Zodiac sign</string>
     <string name="season_picture">Season picture</string>
     <string name="calendar">Calendar</string>
@@ -108,10 +109,11 @@
     <!-- Settings keys -->
     <string name="notifications_key" translatable="false">notifications_key</string>
     <string name="notification_time_key" translatable="false">notification_time_key</string>
-    <string name="additional_notification_key" translatable="false">additional_notification_key</string>
+    <string name="additional_notification_key" translatable="false">additional_notification_key_multi</string>
     <string name="ringtone_key" translatable="false">ringtone_key</string>
     <string name="help_key" translatable="false">help_key</string>
     <string name="import_contacts_key" translatable="false">import_contacts_key</string>
+    <string name="import_contacts_automatically_key" translatable="false">import_contacts_automatically_key</string>
     <string name="export_key" translatable="false">export_key</string>
     <string name="recover_key" translatable="false">recover_key</string>
     <string name="night_mode_key" translatable="false">night_mode_key</string>
@@ -127,7 +129,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Optimization enabled!</string>
-    <string name="optimization_description">\nStarting from version 6.0, Android introduced power-saving mode Doze that manage apps behavior by deferring background CPU.\n\nTo make app work correctly disable optimization for Birdays.</string>
+    <string name="optimization_description">\nStarting from version 6.0, Android introduced power-saving mode Doze that manage apps behavior by deferring background CPU.\n\nTo make app work correctly disable optimization for WhenWasIt.</string>
     <string name="do_not_show_again">Do not show again</string>
     <string name="disable_button">Disable</string>
     <!-- Notifications -->
@@ -135,10 +137,10 @@
     <string name="allow_notification">Allow the app to send notifications of upcoming birthdays</string>
     <string name="notifications_time">Notification time</string>
     <string name="default_time_preference" translatable="false">645703200000</string>
-    <string name="additional_notification">Additional notification</string>
+    <string name="additional_notification">Additional notifications</string>
+    <string name="never">Never</string>
 
     <string-array name="additional_notification_entries">
-        <item>Never</item>
         <item>1 day before</item>
         <item>2 days before</item>
         <item>3 days before</item>
@@ -147,12 +149,11 @@
     </string-array>
 
     <string-array name="additional_notification_entry_values" translatable="false">
-        <item>0</item>
-        <item>86400000</item>
-        <item>172800000</item>
-        <item>259200000</item>
-        <item>604800000</item>
-        <item>1209600000</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>7</item>
+        <item>14</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -171,8 +172,11 @@
     <string name="tap_here">Tap here if you don\'t receive notifications</string>
     <!-- Synchronization and backup -->
     <string name="sync_and_backup">Synchronization and backup</string>
-    <string name="contacts_import_title">Import contacts</string>
+    <string name="contacts_import_title">Import contacts now</string>
     <string name="contacts_import_summary">Tap here to import contacts from your device (supports ISO 8601)</string>
+    <string name="automatic_contacts_import_title">Automatic contacts import</string>
+    <string name="contacts_import_enabled_summary">Automatically import contacts every day</string>
+    <string name="contacts_import_disabled_summary">Automatic import disabled</string>
     <string name="export_records">Export records (Beta)</string>
     <string name="export_records_summary">Create the XML file with backup</string>
     <string name="ext_storage_error">External storage is not available</string>
@@ -203,12 +207,14 @@
 
     <string-array name="displayed_age_entries">
         <item>Current</item>
+        <item>Turning/Turned</item>
         <item>Future</item>
     </string-array>
 
     <string-array name="displayed_age_entry_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
+        <item>CURRENT</item>
+        <item>TURNING</item>
+        <item>FUTURE</item>
     </string-array>
 
     <string name="displayed_age_changes">You must restart an app for these changes to take effect</string>
@@ -217,40 +223,40 @@
     <string name="rate_app">Rate app</string>
     <string name="share_app">Share app</string>
     <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Birdays will remind you of an important holiday!\n\n</string>
-    <string name="play_market_app_link" translatable="false">https://play.google.com/store/apps/details?id=com.djonique.birdays</string>
+    <string name="play_market_app_link" translatable="false">https://play.google.com/store/apps/details?id=com.eblis.whenwasit</string>
     <!-- Advertising -->
     <string name="advertising">Advertising</string>
     <string name="about_ad_title">Why do I see ads?</string>
     <string name="about_ad_summary">The revenue from advertising goes to the development of the project and to translation into other languages. You can remove ads for free</string>
     <string name="ad_interstitial_title">Interstitial ad</string>
-    <string name="ad_interstitial_summary">This type of ad is limited to 1 show per day. Not so often, isn\'t it?</string>
+    <string name="ad_interstitial_summary">This month of ad is limited to 1 show per day. Not so often, isn\'t it?</string>
     <string name="ad_banner">Banner</string>
     <!-- About app -->
     <string name="about_app">About app</string>
     <string name="menu_github">Source code</string>
-    <string name="github_url" translatable="false">https://github.com/Djonique/Birdays</string>
+    <string name="github_url" translatable="false">https://github.com/eblis/Birdays</string>
     <string name="privacy_policy">Privacy policy</string>
-    <string name="privacy_policy_link" translatable="false">https://cdn.rawgit.com/Djonique/Birdays/380ec8cc/PRIVACY%20POLICY.html</string>
+    <string name="privacy_policy_link" translatable="false">https://rawgit.com/eblis/Birdays/whenwasit/PRIVACY POLICY.html</string>
     <string name="software_licenses">Open-source licenses</string>
     <string name="licenses">Licenses</string>
 
     <!-- HelpActivity -->
     <string name="help_header">Why alarm is not working?</string>
-    <string name="help_description">Some devices have Power Saving Mode that could block app background processes or disable application from running on startup.\nTo make alarm work correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled for Birdays app (Settings > Apps > Birdays).\n\n2. If you have installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»), which could block app background processes, add Birdays to their whitelist.\n\n3. Turn off your power-saving mode or add Birdays to the whitelist (Settings > Battery > Battery optimization).\nOnly for devices running Android 6.0 (Marshmallow) or higher.</string>
+    <string name="help_description">Some devices have Power Saving Mode that could block app background processes or disable application from running on startup.\nTo make alarm work correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled for WhenWasIt app (Settings > Apps > WhenWasIt).\n\n2. If you have installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»), which could block app background processes, add WhenWasIt to their whitelist.\n\n3. Turn off your power-saving mode or add WhenWasIt to the whitelist (Settings > Battery > Battery optimization).\nOnly for devices running Android 6.0 (Marshmallow) or higher.</string>
     <string name="help_whitelist">Open whitelist</string>
     <string name="help_whitelist_error">Only for devices running Android 6.0 (Marshmallow) or higher</string>
     <string name="help_delay_text">Please note that on some devices notifications could work with some delay.</string>
     <string name="help_settings">Open settings</string>
     <string name="huawei_header">For Huawei owners</string>
-    <string name="huawei_description">Open device «Settings», go to «Power saving» and open «Protected apps». Make sure that this feature is enabled for Birdays.</string>
+    <string name="huawei_description">Open device «Settings», go to «Power saving» and open «Protected apps». Make sure that this feature is enabled for WhenWasIt.</string>
     <string name="samsung_header">For Samsung owners</string>
-    <string name="samsung_description">Open «Smart Manager», tap on «Battery», then on «Detail». Disable this feature for Birdays app.</string>
+    <string name="samsung_description">Open «Smart Manager», tap on «Battery», then on «Detail». Disable this feature for WhenWasIt app.</string>
     <string name="xiaomi_header">For Xiaomi owners</string>
-    <string name="xiaomi_description">Open device «Settings», go to «Battery &amp; performance», then «Manage apps battery usage», open «Choose apps», choose «No restrictions» for Birdays.</string>
+    <string name="xiaomi_description">Open device «Settings», go to «Battery &amp; performance», then «Manage apps battery usage», open «Choose apps», choose «No restrictions» for WhenWasIt.</string>
     <string name="show_button">Show</string>
-    <string name="help_email_description">If alarm still not working, please contact me at birdaysapp@gmail.com</string>
+    <string name="help_email_description">If alarm still not working, please contact me at eblis102@gmail.com</string>
     <string name="send_email">Send email</string>
-    <string name="birdays_email" translatable="false">birdaysapp@gmail.com</string>
+    <string name="birdays_email" translatable="false">eblis102@gmail.com</string>
 
     <!-- LicensesActivity -->
     <string name="butter_knife_by_jake_wharton" translatable="false">Butter Knife by Jake Wharton</string>

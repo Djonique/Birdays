@@ -57,6 +57,14 @@
                 android:id="@+id/textview_card_left"
                 style="@style/Secondary.TextView"
                 android:layout_below="@+id/textview_card_age" />
+            <ImageView
+                android:id="@+id/profile_picture"
+                android:layout_alignParentEnd="true"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:scaleType="fitXY"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
 
         <!--Divider-->
