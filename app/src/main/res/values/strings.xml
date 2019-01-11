@@ -176,6 +176,7 @@
     <string name="contacts_import_summary">Tap here to import contacts from your device (supports ISO 8601)</string>
     <string name="automatic_contacts_import_title">Automatic contacts import</string>
     <string name="contacts_import_enabled_summary">Automatically import contacts every day</string>
+    <string name="add_contacts_recommendation">Although it\'s possible to add contacts manually it is recommended instead to add the birthdays details via Google Contacts and enable automatic synchronization</string>
     <string name="contacts_import_disabled_summary">Automatic import disabled</string>
     <string name="export_records">Export records (Beta)</string>
     <string name="export_records_summary">Create the XML file with backup</string>

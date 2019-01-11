@@ -104,6 +104,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dialog_cb_top_margin"
                 android:text="@string/year_unknown" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="32sp"
+
+                android:text="@string/add_contacts_recommendation"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>
