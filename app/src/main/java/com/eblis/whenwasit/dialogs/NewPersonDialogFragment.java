@@ -162,7 +162,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 } else {
                     person.setEmail("");
                 }
-                person.setAnniversaryLabel("Birthday");
+                person.setAnniversaryLabel(builder.getContext().getResources().getString(R.string.birthdays));
                 person.setAnniversaryType(AnniversaryType.BIRTHDAY);
 
                 addingPersonListener.onPersonAdded(person);

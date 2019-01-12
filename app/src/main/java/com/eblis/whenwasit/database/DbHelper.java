@@ -31,7 +31,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public static final String COLUMN_CONTACT_ID = "contactId";
     public static final String COLUMN_NAME = "name";
-    public static final String SELECTION_LIKE_NAME = COLUMN_NAME + " LIKE ?";
+    static final String COLUMN_CATEGORY = "category";
+    public static final String SEARCH_QUERY = COLUMN_NAME + " LIKE ? OR " + COLUMN_CATEGORY + " LIKE ?";
 
     static final String DB_PERSONS = "persons";
     static final String DB_FAMOUS = "famous";
@@ -45,7 +46,7 @@ public class DbHelper extends SQLiteOpenHelper {
     static final String SELECTION_TIME_STAMP = COLUMN_TIME_STAMP + " = ?";
 
     private static final String DB_NAME = "my_db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     private static final String DB_PERSONS_CREATE = "CREATE TABLE " + DB_PERSONS + " ("
             + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_CONTACT_ID + " INTEGER, "
@@ -56,6 +57,7 @@ public class DbHelper extends SQLiteOpenHelper {
             + COLUMN_ANNIVERSARY_TYPE + " TEXT, "
             + COLUMN_ANNIVERSARY_LABEL + " TEXT, "
             + COLUMN_EMAIL + " TEXT, "
+            + COLUMN_CATEGORY + " TEXT, "
             + COLUMN_TIME_STAMP + " INTEGER"
             + ");";
 
@@ -105,10 +107,21 @@ public class DbHelper extends SQLiteOpenHelper {
                 db.endTransaction();
             }
         }
-        if (oldVersion == 3 && newVersion == DATABASE_VERSION) {
+        if (oldVersion == 3 && newVersion == 4) {
             db.beginTransaction();
             try {
                 db.execSQL("ALTER TABLE " + DB_PERSONS +  " ADD COLUMN " + COLUMN_CONTACT_ID + " INTEGER DEFAULT 0");
+                db.setTransactionSuccessful();
+            }
+            finally {
+                db.endTransaction();
+            }
+        }
+
+        if (oldVersion == 4 && newVersion == DATABASE_VERSION) {
+            db.beginTransaction();
+            try {
+                db.execSQL("ALTER TABLE " + DB_PERSONS + " ADD COLUMN " + COLUMN_CATEGORY + " TEXT DEFAULT 'Friends'");
                 db.setTransactionSuccessful();
             }
             finally {
@@ -130,6 +143,7 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_PHONE_NUMBER, person.getPhoneNumber());
         cv.put(COLUMN_ANNIVERSARY_TYPE, person.getAnniversaryType().toString());
         cv.put(COLUMN_ANNIVERSARY_LABEL, person.getAnniversaryLabel());
+        cv.put(COLUMN_CATEGORY, person.getContactCategory());
         cv.put(COLUMN_EMAIL, person.getEmail());
         if (create) {
             cv.put(COLUMN_TIME_STAMP, person.getTimeStamp());

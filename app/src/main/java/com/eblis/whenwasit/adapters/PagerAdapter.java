@@ -101,7 +101,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
         return months[Calendar.getInstance().get(Calendar.MONTH)];
     }
 
-    public void search(String text) {
+    public void search(final String text) {
         if (allFragment != null) {
             allFragment.findPerson(text);
         }

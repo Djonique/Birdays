@@ -43,6 +43,9 @@ public interface Constants {
     String DISPLAYED_AGE_KEY = "displayed_age_key";
     String AUTOMATIC_CONTACT_IMPORT_KEY = "import_contacts_automatically_key";
 
+    // Widget settings keys
+    String CONTACT_CATEGORY_KEY = "contact_category_key";
+
     // Intents
     String TYPE_EMAIL = "message/rfc822";
     String MAILTO = "mailto:";

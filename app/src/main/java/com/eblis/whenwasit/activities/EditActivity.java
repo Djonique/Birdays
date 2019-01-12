@@ -66,6 +66,8 @@ public class EditActivity extends AppCompatActivity implements
     EditText etEmail;
     @BindView(R.id.edittext_edit_anniversaryType)
     EditText etAnniversaryLabel;
+    @BindView(R.id.edittext_edit_contactCategory)
+    EditText etContactCategoryLabel;
 
     private DbHelper dbHelper;
     private Person person;
@@ -135,6 +137,7 @@ public class EditActivity extends AppCompatActivity implements
         etPhoneNumber.setText(person.getPhoneNumber());
         etEmail.setText(person.getEmail());
         etAnniversaryLabel.setText(person.getAnniversaryLabel());
+        etContactCategoryLabel.setText(person.getContactCategory());
     }
 
     /**
@@ -147,6 +150,7 @@ public class EditActivity extends AppCompatActivity implements
         person.setPhoneNumber(updateText(etPhoneNumber));
         person.setEmail(updateText(etEmail));
         person.setAnniversaryLabel(updateText(etAnniversaryLabel));
+        person.setContactCategory(updateText(etContactCategoryLabel));
         dbHelper.updateRecord(person);
     }
 

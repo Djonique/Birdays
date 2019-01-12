@@ -156,6 +156,19 @@
                                 android:id="@+id/textview_detail_zodiac_label"
                                 android:text="@string/zodiac_sign" />
                         </RelativeLayout>
+
+                        <!--Contact Category -->
+                        <RelativeLayout style="@style/materialRL">
+                            <TextView
+                                android:id="@+id/textview_detail_contact_category"
+                                style="@style/EditActivity.Primary.TextView" />
+
+                            <TextView
+                                style="@style/EditActivity.Secondary.TextView"
+                                android:layout_below="@+id/textview_detail_contact_category"
+                                android:id="@+id/textview_detail_contact_category_label"
+                                android:text="@string/contact_category" />
+                        </RelativeLayout>
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 

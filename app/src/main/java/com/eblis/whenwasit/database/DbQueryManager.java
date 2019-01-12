@@ -83,9 +83,10 @@ public class DbQueryManager {
         final AnniversaryType anniversaryType = getAnniversaryType(cursor);
         final String label = getAnniversaryLabel(cursor);
         final String email = getEmail(cursor);
+        final String category = getCategory(cursor);
         final long timeStamp = getTimeStamp(cursor);
 
-        return new Person(contactId, name, date, isYearKnown, phoneNumber, email, label, anniversaryType, timeStamp);
+        return new Person(contactId, name, date, isYearKnown, phoneNumber, email, label, anniversaryType, category, timeStamp);
     }
 
     public List<Person> getSearchPerson(String selection, String[] selectionArgs, String orderBy) {
@@ -148,6 +149,10 @@ public class DbQueryManager {
 
     private String getAnniversaryLabel(Cursor cursor) {
         return cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_ANNIVERSARY_LABEL));
+    }
+
+    private String getCategory(Cursor cursor) {
+        return cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_CATEGORY));
     }
 
     private AnniversaryType getAnniversaryType(Cursor cursor) {

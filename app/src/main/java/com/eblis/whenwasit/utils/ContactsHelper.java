@@ -162,6 +162,7 @@ public class ContactsHelper {
                     final int type = cursor.getInt(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.TYPE));
                     final String label = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.LABEL));
                     final String anniversary = getTypeLabel(context.getResources(), type, label);
+                    final String category = context.getResources().getString(R.string.friends);
 
                     final long date;
                     try {
@@ -175,7 +176,7 @@ public class ContactsHelper {
                     String phoneNumber = getContactPhoneNumber(contentResolver, id);
                     String email = getContactEmail(contentResolver, id);
 
-                    Person person = new Person(Long.valueOf(id), name, date, yearUnknown, phoneNumber, email, anniversary, getAnniversaryType(type));
+                    Person person = new Person(Long.valueOf(id), name, date, yearUnknown, phoneNumber, email, anniversary, getAnniversaryType(type), category);
                     contacts.add(person);
                 }
             }

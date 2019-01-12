@@ -101,9 +101,12 @@ public class MonthFragment extends Fragment {
         adapter.removePerson(timeStamp);
     }
 
-    public void findPerson(String name) {
+    public void findPerson(final String text) {
         adapter.removeAllPersons();
-        List<Person> persons = new ArrayList<>(activity.dbHelper.query().getSearchMonthPersons(DbHelper.SELECTION_LIKE_NAME, new String[]{"%" + name + "%"}, DbHelper.COLUMN_NAME));
+        List<Person> persons = new ArrayList<>(activity.dbHelper.query().getSearchMonthPersons(
+                DbHelper.SEARCH_QUERY,
+                new String[]{ "%" + text + "%", "%" + text + "%" },
+                DbHelper.COLUMN_NAME));
         Collections.sort(persons);
 
         for (int i = 0; i < persons.size(); i++) {

@@ -93,6 +93,10 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvZodiacSign;
     @BindView(R.id.textview_detail_zodiac_label)
     TextView tvZodiacSignLabel;
+    @BindView(R.id.textview_detail_contact_category)
+    TextView tvContactCategory;
+    @BindView(R.id.textview_detail_contact_category_label)
+    TextView getTvContactCategoryLabel;
     @BindView(R.id.cardview_detail_info)
     CardView cardViewInfo;
     @BindView(R.id.relativelayout_detail_phone)
@@ -235,6 +239,7 @@ public class DetailActivity extends AppCompatActivity {
 
         tvDaysLeft.setText(Utils.daysLeftPretty(this, person));
         tvAnniversaryLabel.setText(person.getAnniversaryLabel());
+        tvContactCategory.setText(person.getContactCategory());
 
         if (person.isYearUnknown()) {
             tvDate.setText(Utils.getDateWithoutYear(person.getDate()));

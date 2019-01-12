@@ -155,10 +155,10 @@ public class AllFragment extends Fragment {
         builder.show();
     }
 
-    public void findPerson(String name) {
+    public void findPerson(final String text) {
         adapter.removeAllPersons();
-        List<Person> persons = activity.dbHelper.query().getSearchPerson(DbHelper.SELECTION_LIKE_NAME,
-                new String[]{"%" + name + "%"}, DbHelper.COLUMN_NAME);
+        List<Person> persons = activity.dbHelper.query().getSearchPerson(DbHelper.SEARCH_QUERY,
+                new String[]{"%" + text + "%", "%" + text + "%"}, DbHelper.COLUMN_NAME);
 
         showPersons(persons);
     }

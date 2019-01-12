@@ -31,6 +31,7 @@ public class Person implements Item, Comparable<Person> {
     private LocalDate date;
     private boolean yearUnknown;
     private String anniversaryLabel;
+    private String contactCategory;
     private AnniversaryType anniversaryType;
 
     public Person() {
@@ -52,14 +53,14 @@ public class Person implements Item, Comparable<Person> {
     /**
      * Constructor for importing from Contacts
      */
-    public Person(Long contactId, String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType) {
-        this(contactId, name, date, yearUnknown, phoneNumber, email, anniversaryLabel, anniversaryType, new Date().getTime());
+    public Person(Long contactId, String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType, String contactCategory) {
+        this(contactId, name, date, yearUnknown, phoneNumber, email, anniversaryLabel, anniversaryType, contactCategory, new Date().getTime());
     }
 
     /**
      * Constructor for DbQueryManager
      */
-    public Person(Long contactId, String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType, long timeStamp) {
+    public Person(Long contactId, String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType, String contactCategory, long timeStamp) {
         this(name, date);
         this.contactId = contactId;
         this.yearUnknown = yearUnknown;
@@ -67,6 +68,7 @@ public class Person implements Item, Comparable<Person> {
         this.email = email;
         this.anniversaryLabel = anniversaryLabel;
         this.anniversaryType = anniversaryType;
+        this.contactCategory = contactCategory;
         this.setTimeStamp(timeStamp);
     }
 
@@ -127,6 +129,14 @@ public class Person implements Item, Comparable<Person> {
         this.anniversaryLabel = anniversaryLabel;
     }
 
+    public String getContactCategory() {
+        return contactCategory;
+    }
+
+    public void setContactCategory(String contactCategory) {
+        this.contactCategory = contactCategory;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -181,6 +191,7 @@ public class Person implements Item, Comparable<Person> {
         Person that = (Person) obj;
         return this.getName().equalsIgnoreCase(that.getName()) &&
                 this.getAnniversaryLabel().equalsIgnoreCase(that.getAnniversaryLabel()) &&
+                this.getContactCategory().equalsIgnoreCase(that.getContactCategory()) &&
                 this.getDate().equals(that.getDate());
     }
 
