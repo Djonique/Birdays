@@ -244,6 +244,7 @@ public class ContactsHelper {
             }
             else {
                 person.setTimeStamp(existing.getTimeStamp()); //make sure they're the same for update purposes
+                person.setContactCategory(existing.getContactCategory());
                 dbHelper.updateRecord(person);
             }
         }

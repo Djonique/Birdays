@@ -109,6 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="32sp"
+                android:textColor="@color/red_alert"
 
                 android:text="@string/add_contacts_recommendation"/>
         </LinearLayout>

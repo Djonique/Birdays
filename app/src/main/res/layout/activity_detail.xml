@@ -197,6 +197,18 @@
                                 app:srcCompat="@drawable/ic_call_blue_24dp" />
 
                             <ImageButton
+                                android:id="@+id/imagebutton_detail_whatsapp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toLeftOf="@id/imagebutton_detail_chat"
+                                android:layout_toStartOf="@id/imagebutton_detail_chat"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/whatsapp"
+                                android:padding="@dimen/detail_icon_padding"
+                                android:tint="@color/blue_to_green"
+                                app:srcCompat="@drawable/ic_whatsapp" />
+
+                            <ImageButton
                                 android:id="@+id/imagebutton_detail_chat"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -250,6 +262,30 @@
                                 android:layout_marginStart="@dimen/detail_textview_padding"
                                 android:text="@string/email" />
                         </RelativeLayout>
+
+                        <!--Email-->
+                        <RelativeLayout
+                            android:id="@+id/relativelayout_detail_generic_message"
+                            style="@style/contactsInfoRL">
+
+                            <ImageButton
+                                android:id="@+id/imagebutton_detail_generic_message"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/email"
+                                android:padding="@dimen/detail_icon_padding"
+                                android:tint="@color/blue_to_green"
+                                app:srcCompat="@drawable/ic_facebook_messenger" />
+
+                            <TextView
+                                android:id="@+id/textview_detail_generic_message"
+                                style="@style/Primary.TextView"
+                                android:text="@string/generic_message"
+                                android:layout_marginLeft="@dimen/detail_textview_padding"
+                                android:layout_marginStart="@dimen/detail_textview_padding" />
+                        </RelativeLayout>
+
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 

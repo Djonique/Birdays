@@ -21,7 +21,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -35,9 +38,11 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.telephony.PhoneNumberUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -50,6 +55,7 @@ import com.eblis.whenwasit.database.DbHelper;
 import com.eblis.whenwasit.models.AnniversaryType;
 import com.eblis.whenwasit.models.DisplayedAge;
 import com.eblis.whenwasit.models.Person;
+import com.eblis.whenwasit.utils.CommunicationHelper;
 import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.Utils;
 import com.google.android.gms.ads.AdListener;
@@ -109,6 +115,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvEmail;
     @BindView(R.id.recyclerview_detail)
     RecyclerView recyclerView;
+    @BindView(R.id.imagebutton_detail_whatsapp)
+    ImageButton ibWhatsapp;
 
     private InterstitialAd mInterstitialAd;
     private DbHelper dbHelper;
@@ -272,6 +280,12 @@ public class DetailActivity extends AppCompatActivity {
             rlPhoneNumber.setVisibility(View.GONE);
         } else {
             tvPhoneNumber.setText(String.valueOf(person.getPhoneNumber()));
+            if (!CommunicationHelper.hasWhatsapp(this, person)) {
+                ibWhatsapp.setEnabled(false);
+                ColorMatrix matrix = new ColorMatrix();
+                matrix.setSaturation(0);
+                ibWhatsapp.setColorFilter(new ColorMatrixColorFilter(matrix));
+            }
         }
 
         if (isEmpty(email)) {
@@ -302,7 +316,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.fab_detail)
-    void starEditActivity() {
+    void startEditActivity() {
         Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra(Constants.TIME_STAMP, timeStamp);
         startActivityForResult(intent, EDIT_ACTIVITY);
@@ -382,26 +396,36 @@ public class DetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.imagebutton_detail_phone)
     void makeCall() {
-        startActivity(Intent.createChooser(new Intent(Intent.ACTION_DIAL,
-                Uri.parse(Constants.TEL + person.getPhoneNumber())), null));
+        CommunicationHelper.call(this, person.getPhoneNumber());
     }
 
     @OnClick(R.id.imagebutton_detail_chat)
     void sendMessage() {
-        Intent intent = new Intent(Intent.ACTION_VIEW)
-                .setType(Constants.TYPE_SMS)
-                .putExtra(Constants.ADDRESS, person.getPhoneNumber())
-                .setData(Uri.parse(Constants.SMSTO + person.getPhoneNumber()));
-        startActivity(Intent.createChooser(intent, null));
+        CommunicationHelper.sms(this, person.getPhoneNumber());
+    }
+
+    @OnClick(R.id.imagebutton_detail_whatsapp)
+    void sendWhatsapp() {
+        CommunicationHelper.whatsapp(this, person);
+    }
+
+    @OnClick(R.id.imagebutton_detail_generic_message)
+    void sendMessageWithSystemPicker() {
+        CommunicationHelper.genericContact(this, person);
+    }
+
+    @OnClick(R.id.textview_detail_generic_message)
+    void sendMessageWithSystemPicker2() {
+        sendMessageWithSystemPicker();
     }
 
     @OnClick(R.id.imagebutton_detail_email)
     void sendEmail() {
-        Intent intent = new Intent(Intent.ACTION_SENDTO)
-                .setType(Constants.TYPE_EMAIL)
-                .putExtra(Intent.EXTRA_EMAIL, new String[]{person.getEmail()})
-                .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.happy_birthday))
-                .setData(Uri.parse(Constants.MAILTO + person.getEmail()));
-        startActivity(Intent.createChooser(intent, null));
+        CommunicationHelper.sendEmail(this, person.getEmail());
+    }
+
+    @OnClick(R.id.textview_detail_email)
+    void sendEmail2() {
+        sendEmail();
     }
 }

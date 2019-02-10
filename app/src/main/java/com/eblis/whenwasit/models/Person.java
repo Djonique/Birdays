@@ -191,7 +191,6 @@ public class Person implements Item, Comparable<Person> {
         Person that = (Person) obj;
         return this.getName().equalsIgnoreCase(that.getName()) &&
                 this.getAnniversaryLabel().equalsIgnoreCase(that.getAnniversaryLabel()) &&
-                this.getContactCategory().equalsIgnoreCase(that.getContactCategory()) &&
                 this.getDate().equals(that.getDate());
     }
 

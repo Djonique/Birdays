@@ -177,6 +177,29 @@
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
+            <!--Category -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/default_padding">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/edit_text_view_left_padding"
+                    android:layout_marginStart="@dimen/edit_text_view_left_padding">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/edittext_edit_contactCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textAutoComplete"
+                        android:hint="@string/contact_category"
+                        />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
             <!--Type -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -197,29 +220,6 @@
                         android:inputType="text" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
-
-            <!--Category -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/default_padding">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/edit_text_view_left_padding"
-                    android:layout_marginStart="@dimen/edit_text_view_left_padding">
-
-                    <EditText
-                        android:id="@+id/edittext_edit_contactCategory"
-                        style="@style/dialogTextStyle"
-                        android:hint="@string/contact_category"
-                        android:inputType="text" />
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-
-
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

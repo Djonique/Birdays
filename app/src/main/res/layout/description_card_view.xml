@@ -105,6 +105,19 @@
                 android:background="@color/divider_color" />
 
             <ImageButton
+                android:id="@+id/imagebutton_card_whatsapp"
+                style="@style/cardImageButtonStyle"
+                android:contentDescription="@string/whatsapp"
+                android:tint="@color/blue_to_green"
+                app:srcCompat="@drawable/ic_whatsapp" />
+
+            <!--Divider-->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/divider_color" />
+
+            <ImageButton
                 android:id="@+id/imagebutton_card_call"
                 style="@style/cardImageButtonStyle"
                 android:contentDescription="@string/call"

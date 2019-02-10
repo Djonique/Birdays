@@ -24,6 +24,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -67,7 +69,7 @@ public class EditActivity extends AppCompatActivity implements
     @BindView(R.id.edittext_edit_anniversaryType)
     EditText etAnniversaryLabel;
     @BindView(R.id.edittext_edit_contactCategory)
-    EditText etContactCategoryLabel;
+    AutoCompleteTextView actvContactCategoryLabel;
 
     private DbHelper dbHelper;
     private Person person;
@@ -86,6 +88,8 @@ public class EditActivity extends AppCompatActivity implements
         dbHelper = new DbHelper(this);
         person = dbHelper.query().getPerson(timeStamp);
         calendar = person.getDate().toDateTimeAtCurrentTime().toCalendar(Locale.getDefault());
+        final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dbHelper.getContactCategories());
+        actvContactCategoryLabel.setAdapter(adapter);
 
         setupUI();
     }
@@ -137,7 +141,7 @@ public class EditActivity extends AppCompatActivity implements
         etPhoneNumber.setText(person.getPhoneNumber());
         etEmail.setText(person.getEmail());
         etAnniversaryLabel.setText(person.getAnniversaryLabel());
-        etContactCategoryLabel.setText(person.getContactCategory());
+        actvContactCategoryLabel.setText(person.getContactCategory());
     }
 
     /**
@@ -150,7 +154,7 @@ public class EditActivity extends AppCompatActivity implements
         person.setPhoneNumber(updateText(etPhoneNumber));
         person.setEmail(updateText(etEmail));
         person.setAnniversaryLabel(updateText(etAnniversaryLabel));
-        person.setContactCategory(updateText(etContactCategoryLabel));
+        person.setContactCategory(updateText(actvContactCategoryLabel));
         dbHelper.updateRecord(person);
     }
 

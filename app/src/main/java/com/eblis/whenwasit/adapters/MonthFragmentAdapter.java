@@ -39,6 +39,7 @@ import com.eblis.whenwasit.activities.DetailActivity;
 import com.eblis.whenwasit.activities.MainActivity;
 import com.eblis.whenwasit.models.DisplayedAge;
 import com.eblis.whenwasit.models.Person;
+import com.eblis.whenwasit.utils.CommunicationHelper;
 import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.Utils;
 
@@ -126,11 +127,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             holder.btnEmail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_SENDTO)
-                            .setType(Constants.TYPE_EMAIL)
-                            .putExtra(Intent.EXTRA_EMAIL, new String[]{email})
-                            .putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.happy_birthday))
-                            .setData(Uri.parse(Constants.MAILTO + email)), null));
+                    CommunicationHelper.sendEmail(context, email);
                 }
             });
         } else {
@@ -140,27 +137,39 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         final String phoneNumber = person.getPhoneNumber();
         if (phoneNumber != null && !phoneNumber.equals("")) {
             enableButton(holder.btnCall);
-            enableButton(holder.btnChat);
-            holder.btnCall.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_DIAL,
-                            Uri.parse(Constants.TEL + phoneNumber)), null));
-                }
-            });
+                enableButton(holder.btnChat);
+                holder.btnCall.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CommunicationHelper.call(context, phoneNumber);
+                    }
+                });
 
-            holder.btnChat.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW)
-                            .setType(Constants.TYPE_SMS)
-                            .putExtra(Constants.ADDRESS, phoneNumber)
-                            .setData(Uri.parse(Constants.SMSTO + phoneNumber)), null));
+                holder.btnChat.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        context.startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW)
+                                .setType(Constants.TYPE_SMS)
+                                .putExtra(Constants.ADDRESS, phoneNumber)
+                                .setData(Uri.parse(Constants.SMSTO + phoneNumber)), null));
+                    }
+                });
+                if (CommunicationHelper.hasWhatsapp(context, person)) {
+                    enableButton(holder.btnWhatsapp);
+                    holder.btnWhatsapp.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            CommunicationHelper.whatsapp(context, person);
+                        }
+                    });
                 }
-            });
+                else {
+                    disableButton(holder.btnWhatsapp);
+                }
         } else {
             disableButton(holder.btnCall);
             disableButton(holder.btnChat);
+            disableButton(holder.btnWhatsapp);
         }
     }
 
@@ -227,7 +236,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         CardView cardView;
         RelativeLayout relativeLayout;
         TextView tvName, tvDate, tvAge, tvDaysLeft;
-        ImageButton btnEmail, btnChat, btnCall;
+        ImageButton btnEmail, btnChat, btnCall, btnWhatsapp;
         ImageView ivProfile;
 
         CardViewHolder(View itemView) {
@@ -240,6 +249,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             tvDaysLeft = itemView.findViewById(R.id.textview_card_left);
             btnEmail = itemView.findViewById(R.id.imagebutton_card_email);
             btnChat = itemView.findViewById(R.id.imagebutton_card_chat);
+            btnWhatsapp = itemView.findViewById(R.id.imagebutton_card_whatsapp);
             btnCall = itemView.findViewById(R.id.imagebutton_card_call);
             ivProfile = itemView.findViewById(R.id.profile_picture);
         }

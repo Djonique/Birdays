@@ -83,6 +83,9 @@
     <string name="calendar">Calendar</string>
     <string name="call">Call</string>
     <string name="chat">Chat</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="generic_message">Select program to wish happy birthday</string>
+
     <string name="born_on_this_day">Born on this day</string>
 
     <!-- EditActivity -->

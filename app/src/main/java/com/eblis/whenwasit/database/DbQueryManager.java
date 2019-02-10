@@ -26,7 +26,12 @@ import com.eblis.whenwasit.utils.Utils;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+
+import static com.eblis.whenwasit.database.DbHelper.COLUMN_CATEGORY;
+import static com.eblis.whenwasit.database.DbHelper.DB_PERSONS;
 
 public class DbQueryManager {
 
@@ -49,6 +54,32 @@ public class DbQueryManager {
 
     public List<Person> getPersons() {
         return getPersons(DbHelper.DB_PERSONS, null, null, null, null, null, null, null);
+    }
+
+    public List<String> getContactCategories() {
+        final Cursor cursor = database.query(true, DB_PERSONS, new String[]{COLUMN_CATEGORY}, null, null, null, null, null, null);
+        List<String> categories = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                final String category = cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY));
+                categories.add(category);
+            }
+            while (cursor.moveToNext());
+        }
+        cursor.close();
+        for (Iterator<String> iterator = categories.iterator(); iterator.hasNext();) {
+            String category = iterator.next();
+            if ((category == null) || (category.isEmpty())) {
+                iterator.remove();
+            }
+        }
+        try {
+            Collections.sort(categories);
+        }
+        catch (Exception ex) {
+            //ignore
+        }
+        return categories;
     }
 
     public interface Matches {
@@ -152,7 +183,7 @@ public class DbQueryManager {
     }
 
     private String getCategory(Cursor cursor) {
-        return cursor.getString(cursor.getColumnIndex(DbHelper.COLUMN_CATEGORY));
+        return cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY));
     }
 
     private AnniversaryType getAnniversaryType(Cursor cursor) {

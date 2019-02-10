@@ -27,6 +27,8 @@ import com.eblis.whenwasit.models.AnniversaryType;
 import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.utils.Utils;
 
+import java.util.List;
+
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String COLUMN_CONTACT_ID = "contactId";
@@ -149,6 +151,10 @@ public class DbHelper extends SQLiteOpenHelper {
             cv.put(COLUMN_TIME_STAMP, person.getTimeStamp());
         }
         return cv;
+    }
+
+    public List<String> getContactCategories() {
+        return query().getContactCategories();
     }
 
     public void addRecord(Person person) {
