@@ -53,6 +53,9 @@ public class ExportHelper {
     private static final String EMAIL = "email";
     private static final String BACKUP = "backup";
     private static final String UTF_8 = "UTF-8";
+    private static final String CATEGORY = "category";
+    private static final String ANNIVERSARY_LABEL = "anniversary_label";
+    private static final String ANNIVERSARY_TYPE = "anniversary_type";
 
     // Exceptions constants
     private static final String ILLEGAL_ARGUMENT_EXCEPTION = "IllegalArgumentException";
@@ -81,6 +84,12 @@ public class ExportHelper {
         return BACKUP + "_" + Utils.getDate(now) + "_" + String.valueOf(now) + ".xml";
     }
 
+    private void writeTag(String tag, String value, XmlSerializer xmlSerializer) throws IOException {
+        xmlSerializer.startTag(null, tag);
+        xmlSerializer.text(value);
+        xmlSerializer.endTag(null, tag);
+    }
+
     private String writeXml(List<Person> persons) {
         XmlSerializer xmlSerializer = Xml.newSerializer();
         StringWriter stringWriter = new StringWriter();
@@ -91,27 +100,21 @@ public class ExportHelper {
             for (Person person : persons) {
                 xmlSerializer.startTag(null, PERSON);
                 // name
-                xmlSerializer.startTag(null, NAME);
-                xmlSerializer.text(person.getName());
-                xmlSerializer.endTag(null, NAME);
+                writeTag(NAME, person.getName(), xmlSerializer);
                 // date
-                xmlSerializer.startTag(null, DATE);
-                xmlSerializer.text(String.valueOf(person.getDate()));
-                xmlSerializer.endTag(null, DATE);
+                writeTag(DATE, String.valueOf(person.getDate()), xmlSerializer);
                 // year unknown
-                xmlSerializer.startTag(null, YEAR_UNKNOWN);
-                xmlSerializer.text(String.valueOf(person.isYearUnknown()));
-                xmlSerializer.endTag(null, YEAR_UNKNOWN);
+                writeTag(YEAR_UNKNOWN, String.valueOf(person.isYearUnknown()), xmlSerializer);
                 // phone number
-                xmlSerializer.startTag(null, PHONE_NUMBER);
-                String phoneNumber = person.getPhoneNumber() == null ? "" : person.getPhoneNumber();
-                xmlSerializer.text(phoneNumber);
-                xmlSerializer.endTag(null, PHONE_NUMBER);
+                writeTag(PHONE_NUMBER, person.getPhoneNumber() == null ? "" : person.getPhoneNumber(), xmlSerializer);
                 // email
-                xmlSerializer.startTag(null, EMAIL);
-                String email = person.getEmail() == null ? "" : person.getEmail();
-                xmlSerializer.text(email);
-                xmlSerializer.endTag(null, EMAIL);
+                writeTag(EMAIL, person.getEmail() == null ? "" : person.getEmail(), xmlSerializer);
+                //category
+                writeTag(CATEGORY, person.getContactCategory(), xmlSerializer);
+                //label
+                writeTag(ANNIVERSARY_LABEL, person.getAnniversaryLabel(), xmlSerializer);
+                //type
+                writeTag(ANNIVERSARY_TYPE, person.getAnniversaryType().toString(), xmlSerializer);
                 xmlSerializer.endTag(null, PERSON);
             }
             xmlSerializer.endTag(null, RECORDS);

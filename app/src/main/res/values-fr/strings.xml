@@ -177,7 +177,7 @@
     <string name="about_ad_title">Pourquoi est-ce que je vois des annonces?</string>
     <string name="about_ad_summary">Les revenus tirés de la publicité vont à l’élaboration du projet et à la traduction dans d’autres langues. Vous pouvez supprimer les annonces gratuitement.</string>
     <string name="ad_interstitial_title">Annonce interstitielle</string>
-    <string name="ad_interstitial_summary">Ce type de publicité n\'est affiché qu\'une seule fois par jour. Cela soutient le projet et ce n'est pas si fréquent, non ?</string>
+    <string name="ad_interstitial_summary">Ce type de publicité n\'est affiché qu\'une seule fois par jour. Cela soutient le projet et ce n\'est pas si fréquent, non ?</string>
     <string name="ad_banner">Bannière</string>
     <!-- About app -->
     <string name="about_app">À propos de l\'app</string>

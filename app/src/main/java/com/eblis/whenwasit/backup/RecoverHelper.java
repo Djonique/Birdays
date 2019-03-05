@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.alarm.AlarmHelper;
 import com.eblis.whenwasit.database.DbHelper;
+import com.eblis.whenwasit.models.AnniversaryType;
 import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.utils.Utils;
 
@@ -51,6 +52,9 @@ public class RecoverHelper {
     private static final String YEAR_UNKNOWN = "year_unknown";
     private static final String PHONE_NUMBER = "phone_number";
     private static final String EMAIL = "email";
+    private static final String CATEGORY = "category";
+    private static final String ANNIVERSARY_LABEL = "anniversary_label";
+    private static final String ANNIVERSARY_TYPE = "anniversary_type";
 
     // Exceptions constants
     private static final String XML_PULL_PARSER_EXCEPTION = "XmlPullParserException";
@@ -114,7 +118,7 @@ public class RecoverHelper {
                                     person.setName(parser.nextText());
                                     break;
                                 case DATE:
-                                    person.setDate(new LocalDate(Long.valueOf(parser.nextText())));
+                                    person.setDate(new LocalDate(parser.nextText()));
                                     break;
                                 case YEAR_UNKNOWN:
                                     person.setYearUnknown(Boolean.valueOf(parser.nextText()));
@@ -124,6 +128,15 @@ public class RecoverHelper {
                                     break;
                                 case EMAIL:
                                     person.setEmail(parser.nextText());
+                                    break;
+                                case CATEGORY:
+                                    person.setContactCategory(parser.nextText());
+                                    break;
+                                case ANNIVERSARY_LABEL:
+                                    person.setAnniversaryLabel(parser.nextText());
+                                    break;
+                                case ANNIVERSARY_TYPE:
+                                    person.setAnniversaryType(AnniversaryType.valueOf(parser.nextText()));
                                     break;
                             }
                         }

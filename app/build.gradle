@@ -31,15 +31,15 @@ android {
             storePassword keystoreProperties['KeyPassword']
         }
     }
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.eblis.whenwasit"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 36
         versionName "1.0.${versionCode}"
-        resConfigs "auto"
+        resConfigs "en", "be", "de", "el", "es", "fil", "fr", "hu", "in", "it", "ja", "kab", "kk", "nb", "nl", "pt", "ro", "ru", "tr", "uk", "zh"
         vectorDrawables.useSupportLibrary = true
         resValue "string", "version_name", versionName
         manifestPlaceholders = [fabric_api_key: keystoreProperties['FabricApiKey']]
