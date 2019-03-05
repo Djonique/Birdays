@@ -7,6 +7,6 @@
     android:minWidth="250dp"
     android:previewImage="@drawable/widget_preview"
     android:resizeMode="horizontal|vertical"
-    android:configure="com.eblis.whenwasit.activities.WidgetSettingsActivity"
     android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen" />
+    <!--android:configure="com.eblis.whenwasit.activities.WidgetSettingsActivity"-->
