@@ -158,12 +158,16 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void addRecord(Person person) {
-        getWritableDatabase().insert(DB_PERSONS, null, getValues(person, true));
+        if (person != null && person.getDate() != null) {
+            getWritableDatabase().insert(DB_PERSONS, null, getValues(person, true));
+        }
     }
 
     public void updateRecord(Person person) {
-        int updated = getWritableDatabase().update(DB_PERSONS, getValues(person, false), SELECTION_TIME_STAMP,
-                new String[]{String.valueOf(person.getTimeStamp())});
+        if (person != null && person.getDate() != null) {
+            int updated = getWritableDatabase().update(DB_PERSONS, getValues(person, false), SELECTION_TIME_STAMP,
+                    new String[]{String.valueOf(person.getTimeStamp())});
+        }
     }
 
     public void removeRecord(long timeStamp) {

@@ -143,7 +143,7 @@ public class RecoverHelper {
                         break;
                     case XmlPullParser.END_TAG:
                         name = parser.getName();
-                        if (name.equals(PERSON) && person != null) {
+                        if (name.equals(PERSON) && person != null && person.getDate() != null) {
                             if (Utils.getPersonAlreadyInDb(person, dbPersons) == null) {
                                 dbHelper.addRecord(person);
                                 dbPersons.add(person);
