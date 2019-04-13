@@ -31,6 +31,7 @@ import com.eblis.whenwasit.models.AnniversaryType;
 import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.utils.Utils;
 
+import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -118,7 +119,7 @@ public class RecoverHelper {
                                     person.setName(parser.nextText());
                                     break;
                                 case DATE:
-                                    person.setDate(new LocalDate(parser.nextText()));
+                                    person.setDate(new LocalDate(parser.nextText(), DateTimeZone.UTC));
                                     break;
                                 case YEAR_UNKNOWN:
                                     person.setYearUnknown(Boolean.valueOf(parser.nextText()));

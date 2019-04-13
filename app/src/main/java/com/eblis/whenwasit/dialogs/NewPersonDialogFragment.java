@@ -52,6 +52,7 @@ import com.eblis.whenwasit.utils.DatePickerManager;
 import com.eblis.whenwasit.utils.PermissionManager;
 import com.eblis.whenwasit.utils.Utils;
 
+import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 
 import java.util.Calendar;
@@ -145,7 +146,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                 }
 
                 if (!Utils.isEmptyDate(etDate)) {
-                    person.setDate(new LocalDate(calendar));
+                    person.setDate(new LocalDate(calendar, DateTimeZone.UTC));
                     person.setTimeStamp(calendar.getTimeInMillis());
                 }
 

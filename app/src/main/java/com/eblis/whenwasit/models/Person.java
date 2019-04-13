@@ -18,6 +18,7 @@ package com.eblis.whenwasit.models;
 
 import android.support.annotation.NonNull;
 
+import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDate;
 
@@ -25,6 +26,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Person implements Item, Comparable<Person> {
+    public static final int DEFAULT_YEAR = 2000;
+
     private Long contactId;
     private String name, phoneNumber, email;
     private long timeStamp;
@@ -42,7 +45,7 @@ public class Person implements Item, Comparable<Person> {
      * Constructor for database with famous persons
      */
     public Person(String name, long date) {
-        this(name, new LocalDate(date));
+        this(name, new LocalDate(date, DateTimeZone.UTC));
     }
 
     public Person(String name, LocalDate date) {
@@ -158,6 +161,7 @@ public class Person implements Item, Comparable<Person> {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", anniversaryLabel='" + anniversaryLabel + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 
@@ -197,7 +201,7 @@ public class Person implements Item, Comparable<Person> {
     @Override
     public int compareTo(@NonNull Person person) {
         //we're only interested in the day/month, assume both persons have same year
-        int compare = this.date.withYear(2000).compareTo(person.date.withYear(2000));
+        int compare = this.date.withYear(DEFAULT_YEAR).compareTo(person.date.withYear(DEFAULT_YEAR));
         if (compare != 0) {
             return compare; 
         }

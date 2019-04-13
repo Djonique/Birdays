@@ -27,6 +27,8 @@ import com.eblis.whenwasit.models.AnniversaryType;
 import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.utils.Utils;
 
+import org.joda.time.DateTimeZone;
+
 import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
@@ -140,7 +142,7 @@ public class DbHelper extends SQLiteOpenHelper {
         final ContentValues cv = new ContentValues();
         cv.put(COLUMN_CONTACT_ID, person.getContactId());
         cv.put(COLUMN_NAME, person.getName());
-        cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis());
+        cv.put(COLUMN_DATE, person.getDate().toDateTimeAtStartOfDay(DateTimeZone.UTC).getMillis());
         cv.put(COLUMN_IS_YEAR_KNOWN, Utils.boolToInt(person.isYearUnknown()));
         cv.put(COLUMN_PHONE_NUMBER, person.getPhoneNumber());
         cv.put(COLUMN_ANNIVERSARY_TYPE, person.getAnniversaryType().toString());

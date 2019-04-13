@@ -37,6 +37,7 @@ import com.eblis.whenwasit.models.DisplayedAge;
 import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.widget.WidgetProvider;
 
+import org.joda.time.DateTimeZone;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
@@ -305,19 +306,12 @@ public class Utils {
      * Formats contacts birthday date from "yyyy-MM-dd" to long
      */
     static long formatDateToLong(String dateString) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(0);
         String[] dateArray = dateString.split("-");
+        final int year = (dateArray[0].isEmpty()) ? Person.DEFAULT_YEAR : Integer.parseInt(dateArray[0]);
+        final int month = Integer.parseInt(dateArray[1]);
+        final int day = Integer.parseInt(dateArray[2]);
 
-        if (dateArray[0].equals("")) {
-            calendar.set(Calendar.MONTH, Integer.parseInt(dateArray[2]) - 1);
-            calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dateArray[3]));
-        } else if (Integer.parseInt(dateArray[2]) < 32) {
-            calendar.set(Calendar.YEAR, Integer.parseInt(dateArray[0]));
-            calendar.set(Calendar.MONTH, Integer.parseInt(dateArray[1]) - 1);
-            calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dateArray[2]));
-        }
-        return calendar.getTimeInMillis();
+        return new LocalDate(year, month, day).toDateTimeAtStartOfDay(DateTimeZone.UTC).getMillis();
     }
 
     static boolean isYearUnknown(String dateString) {
