@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Aseggem yermed!</string>
-    <string name="optimization_description">\nSi lqem 6.0, Android isekcem-d askar n uḥraz n tfasa isefraken amek ara ddun yisnasen s udegger n ukala n ugilal.\n\nAkken ad yeddu usnas amek ilaq, sens aseggem i Birdays.</string>
+    <string name="optimization_description">\nSi lqem 6.0, Android isekcem-d askar n uḥraz n tfasa isefraken amek ara ddun yisnasen s udegger n ukala n ugilal.\n\nAkken ad yeddu usnas amek ilaq, sens aseggem i WhenWasIt.</string>
     <string name="do_not_show_again">Ur d-skan ara tikelt nniḍen</string>
     <string name="disable_button">Sens</string>
     <!-- Notifications -->
@@ -111,9 +111,9 @@
     <string name="allow_notification">Sireg asnas akken ad yazen ilɣa n imulliyen i d-iteddun</string>
     <string name="notifications_time">Akud n wulɣu</string>
     <string name="additional_notification">Ilɣa nniḍen</string>
+    <string name="never">Wurǧin</string>
 
     <string-array name="additional_notification_entries">
-        <item>Wurǧin</item>
         <item>Send 1 n wass</item>
         <item>Send 2 n wussan</item>
         <item>Send 3 n wussan</item>
@@ -163,7 +163,7 @@
     <string name="later">Ticki</string>
     <string name="rate_app">Rnu tazmilt i usnas</string>
     <string name="share">Bḍu</string>
-    <string name="share_text">Tettuḍ ad tazned asebɣes i yiqriben-ik, imdukal-ik neɣ wid ukud txeddmeḍ deg umulli-nsen? Birdays ad k-id-yemmekti ɣef timeɣriwin meqqren!\n\n</string>
+    <string name="share_text">Tettuḍ ad tazned asebɣes i yiqriben-ik, imdukal-ik neɣ wid ukud txeddmeḍ deg umulli-nsen? WhenWasIt ad k-id-yemmekti ɣef timeɣriwin meqqren!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Adellel</string>
     <string name="about_ad_title">Acuɣer tettwaliḍ adellel?</string>
@@ -180,18 +180,18 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Acuɣer ur iteddu ara uṭenṭen?</string>
-    <string name="help_description">Kra n yibenkan ɣur-sen askar n uḥraz n tfasa izemren ad isewḥel ikalan n ugulal n usnas neɣad yessens aselkem n usnas di tnkera. \n Akken ad teddu teṭenṭunt akken iwata, ddu am akka:\n\n1. Ḍmen d akken ilɣaremden i usnas Birdays (iɣewwaṛen &gt; Isnasen &gt;Birdays).\n\n2. Ma yella tesbeddeḍ imsefraken n tiwuriwin,imenɣawen n tiwuriwin neɣ imseggamen n tkatut RAM (aemdya «Aḥerraz n uẓru», «Clean Master»), i yezmren ad sweḥlen akala n ugilal, rnu Birdays ar tebdart tamellalt..\n\n3. Sens askar n uḥraz n tfasa neɣ rnu Birdays ar tebdart tamellalt (Iɣewwaṛen &gt; Aẓru &gt; Aseggem n uẓru).\nAla i yibenkan uteddun s Android 6.0 (Marshmallow) neɣ ugar.</string>
+    <string name="help_description">Kra n yibenkan ɣur-sen askar n uḥraz n tfasa izemren ad isewḥel ikalan n ugulal n usnas neɣad yessens aselkem n usnas di tnkera. \n Akken ad teddu teṭenṭunt akken iwata, ddu am akka:\n\n1. Ḍmen d akken ilɣaremden i usnas WhenWasIt (iɣewwaṛen &gt; Isnasen &gt;WhenWasIt).\n\n2. Ma yella tesbeddeḍ imsefraken n tiwuriwin,imenɣawen n tiwuriwin neɣ imseggamen n tkatut RAM (aemdya «Aḥerraz n uẓru», «Clean Master»), i yezmren ad sweḥlen akala n ugilal, rnu WhenWasIt ar tebdart tamellalt..\n\n3. Sens askar n uḥraz n tfasa neɣ rnu WhenWasIt ar tebdart tamellalt (Iɣewwaṛen &gt; Aẓru &gt; Aseggem n uẓru).\nAla i yibenkan uteddun s Android 6.0 (Marshmallow) neɣ ugar.</string>
     <string name="help_whitelist">Ldi tabdart tamellalt</string>
     <string name="help_whitelist_error">Ala ibenkan iteddun s Android 6.0 (Marshmallow) neɣ ugar</string>
     <string name="help_delay_text">Ma ulac aɣilif, ẓer d akken kra n yibenkan, ilɣa zemren ur teddun ara imir imir.</string>
     <string name="help_settings">Ldi iɣewwaṛen</string>
     <string name="huawei_header">I wi yesɛan Huawei</string>
-    <string name="huawei_description">Ldi «Iɣewwaṛen» n yibenk, ddu ar «Aḥraz n tfasa» sakin ldi «Isnasen yettwammestnen». Ḍmen d akken tamahilt-agi termed i Birdays.</string>
+    <string name="huawei_description">Ldi «Iɣewwaṛen» n yibenk, ddu ar «Aḥraz n tfasa» sakin ldi «Isnasen yettwammestnen». Ḍmen d akken tamahilt-agi termed i WhenWasIt.</string>
     <string name="samsung_header">I wi yesɛan Samsung</string>
-    <string name="samsung_description">Ldi «Smart Manager», Si ɣef «Aẓru», sakin ɣef «Talqayt». Sens tamahilt-agi i usnas Birdays.</string>
+    <string name="samsung_description">Ldi «Smart Manager», Si ɣef «Aẓru», sakin ɣef «Talqayt». Sens tamahilt-agi i usnas WhenWasIt.</string>
     <string name="xiaomi_header">I wi yesɛan Xiaomi</string>
-    <string name="xiaomi_description">Ldi «Iɣewwaṛen» n yibenk, ddu ar «Aẓtu &amp; Amlazmar», sakin « Sefrek aseqdec n uẓru »,« Fren isnasen », fren « Ulac talast » i Birdays.</string>
+    <string name="xiaomi_description">Ldi «Iɣewwaṛen» n yibenk, ddu ar «Aẓtu &amp; Amlazmar», sakin « Sefrek aseqdec n uẓru »,« Fren isnasen », fren « Ulac talast » i WhenWasIt.</string>
     <string name="show_button">Sken</string>
-    <string name="help_email_description">Ma tezga teṭenṭunt ur tetteddu ara, nermes-aɣ-d ar birdaysapp@gmail.com</string>
+    <string name="help_email_description">Ma tezga teṭenṭunt ur tetteddu ara, nermes-aɣ-d ar eblis102@gmail.com</string>
     <string name="send_email">Azen imayl</string>
 </resources>

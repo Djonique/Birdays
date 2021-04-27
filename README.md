@@ -1,7 +1,7 @@
-## Birdays
+## WhenWasIt
 *Simple birthday app with widget and famous people's birthdays.*
 
-**[Install on Google Play](https://play.google.com/store/apps/details?id=com.djonique.birdays)**
+**[Install on Google Play](https://play.google.com/store/apps/details?id=com.eblis.whenwasit)**
 ## Translators
 Serhii Ponomarenko (Ukrainian) [mellangr](https://github.com/mellangr)
 
@@ -30,10 +30,13 @@ Omer Surer (Turkish)
 Xiupeng (Chinese traditional)
 
 Andra Fetele (Romanian) [sarmizegetusaa](https://github.com/sarmizegetusaa)
+
+Claire Dufetrelle (French) [claireduf](https://github.com/claireduf)
 ## License
 
 ```
 Copyright 2017 Evgeny Timofeev
+Copyright 2018 Cristian Libotean
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

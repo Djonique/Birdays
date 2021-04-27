@@ -22,7 +22,7 @@
     <!-- MainActivity -->
     <string name="loading_contacts">Se încarcă contactele…</string>
     <string name="contacts_uploaded">Contacte încărcate</string>
-    <string name="loading_contacts_error">Nu se pot importa contanctele, formatul de date este nonstandard</string>
+    <string name="loading_contacts_error">Nu se pot importa contactele, formatul de date este nonstandard</string>
     <string name="permission_required">Este necesară permisiunea pentru importarea contactelor</string>
     <string name="snackbar_allow_text">Permite</string>
     <string name="all">Toate</string>
@@ -71,7 +71,7 @@
     <string name="birthday">Ziua de naștere</string>
     <string name="days_left">Numărul de zile până la următoarea aniversare</string>
     <string name="today">Astăzi</string>
-    <string name="days_since_birth">Numărul de zile de la naștere</string>
+    <string name="days_since_birth">Numărul de zile de la prima aniversare</string>
     <string name="zodiac_sign">Semn zodical</string>
     <string name="season_picture">Poză pentru sezon</string>
     <string name="calendar">Calendar</string>
@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Optimizare activată!</string>
-    <string name="optimization_description">\nÎncepând de la versiunea 6.0, Android introduce opțiunea de economisirea a batriei, care gestionează aplicațiile prin amânarea procesorului de fundal. \n\nPentru a face aplicații care dezactivează optimizarea pentu Birdays.</string>
+    <string name="optimization_description">\nÎncepând de la versiunea 6.0, Android introduce opțiunea de economisirea a bateriei, care gestionează aplicațiile prin amânarea procesorului de fundal. \n\nPentru a face aplicații care dezactivează optimizarea pentu WhenWasIt.</string>
     <string name="do_not_show_again">Nu mai afișa</string>
     <string name="disable_button">Dezactivează</string>
     <!-- Notifications -->
@@ -111,9 +111,9 @@
     <string name="allow_notification">Permite aplicației să trimită notificări pentru viitoarele aniversări</string>
     <string name="notifications_time">Timp notificare</string>
     <string name="additional_notification">Notificări suplimentare</string>
+    <string name="never">Niciodată</string>
 
     <string-array name="additional_notification_entries">
-        <item>Niciodată</item>
         <item>Cu o zi înainte</item>
         <item>Cu 2 zile înainte</item>
         <item>Cu 3 zile înainte</item>
@@ -163,6 +163,7 @@
 
     <string-array name="displayed_age_entries">
         <item>Actuală</item>
+        <item>Împlinită anul acesta</item>
         <item>Viitor</item>
     </string-array>
 
@@ -171,7 +172,7 @@
     <string name="later">Mai târziu</string>
     <string name="rate_app">Votați aplicația</string>
     <string name="share_app">Distribuiți aplicația</string>
-    <string name="share_text">Uitați să vă felicitați rudele, prietenii sau colegii de ziua lor? Birdays vă va aminti de o sărbătoare importantă!\n\n</string>
+    <string name="share_text">Uitați să vă felicitați rudele, prietenii sau colegii de ziua lor? WhenWasIt vă va aminti de o sărbătoare importantă!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Publicitate</string>
     <string name="about_ad_title">De ce văd reclame?</string>
@@ -188,19 +189,19 @@
 
     <!-- HelpActivity -->
     <string name="help_header">De ce nu funcționează alarma?</string>
-    <string name="help_description">La unele aparate, modul de economisirea al bateriei ar putea bloca sau dezactiva procesle de fundal ale aplicației și aceasta nu mai rulează la deschidere. \nPentru ca aplicația să funcționeze corect, vă rugăm să efectuați pașii de mai jos:\n\n1. Asigurați-vă că notificările pentru aplicația Birdays sunt activate (Setări > Aplicații > Birdays).\n\n2. Dacă aveți instalate programe de gestionare pentru task-uri sau optimizări de RAM (ex «Battery Saver», «Clean Master»), care ar putea bloca procesele de fundal ale aplicației, adăugați Birdays pe lista lor albă.\n\n3. Închideți-vă modul de economisire al bateriei sau adăugați Birdays la lista lor albă (Setări > Baterie > Optimizarea bateriei).\nNumai pentru aparate care au Android 6.0 (Marshmallow) sau o versiune mai nouă.</string>
+    <string name="help_description">La unele aparate, modul de economisirea al bateriei ar putea bloca sau dezactiva procesle de fundal ale aplicației și aceasta nu mai rulează la deschidere. \nPentru ca aplicația să funcționeze corect, vă rugăm să efectuați pașii de mai jos:\n\n1. Asigurați-vă că notificările pentru aplicația WhenWasIt sunt activate (Setări > Aplicații > WhenWasIt).\n\n2. Dacă aveți instalate programe de gestionare pentru task-uri sau optimizări de RAM (ex «Battery Saver», «Clean Master»), care ar putea bloca procesele de fundal ale aplicației, adăugați WhenWasIt pe lista lor albă.\n\n3. Închideți-vă modul de economisire al bateriei sau adăugați WhenWasIt la lista lor albă (Setări > Baterie > Optimizarea bateriei).\nNumai pentru aparate care au Android 6.0 (Marshmallow) sau o versiune mai nouă.</string>
     <string name="help_whitelist">Deschide lista albă</string>
     <string name="help_whitelist_error">Doar pentru aparatele care rulează pe Android 6.0 (Marshmallow) sau pe o versiune mai nouă</string>
     <string name="help_delay_text">Se poate ca pe unele aparate, notificările să aibe întârzieri.</string>
     <string name="help_settings">Deschideți Setările</string>
     <string name="huawei_header">Pentru deținători de Huawei</string>
-    <string name="huawei_description">Descideți «Setări», duceți-vă la «Economisire energie» și accesați «Aplicații protejate». Asigurați-vă că această opțiune este activată pentru Birdays.</string>
+    <string name="huawei_description">Descideți «Setări», duceți-vă la «Economisire energie» și accesați «Aplicații protejate». Asigurați-vă că această opțiune este activată pentru WhenWasIt.</string>
     <string name="samsung_header">Pentru deținători de Samsung</string>
-    <string name="samsung_description">Deschideți «Smart Manager», apăsați pe «Baterie», apoi pe «Detaliu». Dezactivați această opțiune pentru aplicația Birdays.</string>
+    <string name="samsung_description">Deschideți «Smart Manager», apăsați pe «Baterie», apoi pe «Detaliu». Dezactivați această opțiune pentru aplicația WhenWasIt.</string>
     <string name="xiaomi_header">Pentru deținători de Xiaomi</string>
-    <string name="xiaomi_description">Deschideți «Setări», duceți-vă la «Baterie», apoi «Gestionați utilizarea bateriei de către aplicații», deschideți «Alege aplicațiile», alegeți «Fără restricții» pentru Birdays.</string>
+    <string name="xiaomi_description">Deschideți «Setări», duceți-vă la «Baterie», apoi «Gestionați utilizarea bateriei de către aplicații», deschideți «Alege aplicațiile», alegeți «Fără restricții» pentru WhenWasIt.</string>
     <string name="show_button">Arată</string>
-    <string name="help_email_description">În cazul în care alarma nu funcționează, mă puteți contacta la birdaysapp@gmail.com</string>
+    <string name="help_email_description">În cazul în care alarma nu funcționează, mă puteți contacta la eblis102@gmail.com</string>
     <string name="send_email">Trimite email</string>
 
     <!-- Famous persons -->

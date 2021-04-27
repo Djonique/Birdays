@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">最適化が有効になりました！</string>
-    <string name="optimization_description">\nバージョン6.0以降、Androidは、バックグラウンドCPUを延期することによってアプリケーションの動作を管理する省電力モードDozeを導入しました。\n\nアプリの動作を正しくするために、Birdaysの最適化を無効にします。</string>
+    <string name="optimization_description">\nバージョン6.0以降、Androidは、バックグラウンドCPUを延期することによってアプリケーションの動作を管理する省電力モードDozeを導入しました。\n\nアプリの動作を正しくするために、WhenWasItの最適化を無効にします。</string>
     <string name="do_not_show_again">再び表示しない</string>
     <string name="disable_button">無効にする</string>
     <!-- Notifications -->
@@ -111,9 +111,9 @@
     <string name="allow_notification">アプリが誕生日の通知を送信することを許可します</string>
     <string name="notifications_time">通知時間</string>
     <string name="additional_notification">追加通知</string>
+    <string name="never">決して</string>
 
     <string-array name="additional_notification_entries">
-        <item>決して</item>
         <item>1日前</item>
         <item>2日前</item>
         <item>3日前</item>
@@ -171,7 +171,7 @@
     <string name="later">後で</string>
     <string name="rate_app">アプリを評価</string>
     <string name="share_app">シェア</string>
-    <string name="share_text">彼らの誕生日にあなたの親戚、友人、または同僚を祝福することを忘れますか？ Birdaysはあなたに重要な休日を思い出させます！\n\n</string>
+    <string name="share_text">彼らの誕生日にあなたの親戚、友人、または同僚を祝福することを忘れますか？ WhenWasItはあなたに重要な休日を思い出させます！\n\n</string>
     <!-- Advertising -->
     <string name="advertising">広告</string>
     <string name="about_ad_title">広告が表示されるのはなぜですか？</string>
@@ -188,19 +188,19 @@
 
     <!-- HelpActivity -->
     <string name="help_header">なぜアラームが機能していないのですか？</string>
-    <string name="help_description">一部の端末では、アプリのバックグラウンドプロセスをブロックしたり、起動時にアプリケーションが実行されないようにする節電モードがあります。\nアラームを正常に動作させるには、以下の簡単な手順を実行します：\n\n1。Birdaysアプリの通知が有効になっていることを確認する（設定 > アプリ > Birdays）。\n\n2。もしあなたがアプリケーションのバックグラウンドプロセスをブロックする可能性のあるタスクマネージャー、タスクキラー、またはRAMオプティマイザ（例えば、«バッテリーセーバー»、«クリーンマスター»）をインストールした場合、ホワイトリストにBirdaysを追加して。\n\n3。パワーセーブモードをオフにするか、ホワイトリストにBirdaysを追加して（設定 > バッテリー > バッテリー最適化）。\nAndroid 6.0（Marshmallow）以上を搭載するデバイスのみ。</string>
+    <string name="help_description">一部の端末では、アプリのバックグラウンドプロセスをブロックしたり、起動時にアプリケーションが実行されないようにする節電モードがあります。\nアラームを正常に動作させるには、以下の簡単な手順を実行します：\n\n1。WhenWasItアプリの通知が有効になっていることを確認する（設定 > アプリ > WhenWasIt）。\n\n2。もしあなたがアプリケーションのバックグラウンドプロセスをブロックする可能性のあるタスクマネージャー、タスクキラー、またはRAMオプティマイザ（例えば、«バッテリーセーバー»、«クリーンマスター»）をインストールした場合、ホワイトリストにWhenWasItを追加して。\n\n3。パワーセーブモードをオフにするか、ホワイトリストにWhenWasItを追加して（設定 > バッテリー > バッテリー最適化）。\nAndroid 6.0（Marshmallow）以上を搭載するデバイスのみ。</string>
     <string name="help_whitelist">オープンホワイトリスト</string>
     <string name="help_whitelist_error">Android 6.0（Marshmallow）以上を搭載するデバイスのみ</string>
     <string name="help_delay_text">一部の端末では通知が遅れることがありますのでご注意ください。</string>
     <string name="help_settings">設定を開く</string>
     <string name="huawei_header">Huaweiオーナーの場合</string>
-    <string name="huawei_description">デバイス«設定»を開き、«節電»に行き、«保護されたアプリケーション»を開きます。 この機能がBirdaysで有効になっていることを確認してください。</string>
+    <string name="huawei_description">デバイス«設定»を開き、«節電»に行き、«保護されたアプリケーション»を開きます。 この機能がWhenWasItで有効になっていることを確認してください。</string>
     <string name="samsung_header">Samsungオーナーの方</string>
-    <string name="samsung_description">«スマートマネージャー»を開き、«バッテリー»をタップし、«詳細»をタップします。 Birdaysアプリのこの機能を無効にします。</string>
+    <string name="samsung_description">«スマートマネージャー»を開き、«バッテリー»をタップし、«詳細»をタップします。 WhenWasItアプリのこの機能を無効にします。</string>
     <string name="xiaomi_header">Xiaomiオーナーの場合</string>
-    <string name="xiaomi_description">デバイスの«設定»を開き、«バッテリー» «アプリのバッテリー使用状況を管理する»、«アプリを選択»を開いて、Birdaysの«制限なし»を選択します。</string>
+    <string name="xiaomi_description">デバイスの«設定»を開き、«バッテリー» «アプリのバッテリー使用状況を管理する»、«アプリを選択»を開いて、WhenWasItの«制限なし»を選択します。</string>
     <string name="show_button">ショー</string>
-    <string name="help_email_description">それでもアラームが作動しない場合は、私に連絡してください birdaysapp@gmail.com</string>
+    <string name="help_email_description">それでもアラームが作動しない場合は、私に連絡してください eblis102@gmail.com</string>
     <string name="send_email">メールを送る</string>
 
     <!-- Famous persons -->

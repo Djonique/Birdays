@@ -57,6 +57,14 @@
                 android:id="@+id/textview_card_left"
                 style="@style/Secondary.TextView"
                 android:layout_below="@+id/textview_card_age" />
+            <ImageView
+                android:id="@+id/profile_picture"
+                android:layout_alignParentEnd="true"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:scaleType="fitXY"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
 
         <!--Divider-->
@@ -89,6 +97,19 @@
                 android:contentDescription="@string/chat"
                 android:tint="@color/blue_to_green"
                 app:srcCompat="@drawable/ic_chat_blue_24dp" />
+
+            <!--Divider-->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/divider_color" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_card_whatsapp"
+                style="@style/cardImageButtonStyle"
+                android:contentDescription="@string/whatsapp"
+                android:tint="@color/blue_to_green"
+                app:srcCompat="@drawable/ic_whatsapp" />
 
             <!--Divider-->
             <View
