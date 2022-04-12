@@ -43,11 +43,6 @@
 
                 <include layout="@layout/toolbar_detail_image" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/scrim_gradient" />
-
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar_detail"
                     android:layout_width="match_parent"
@@ -103,7 +98,6 @@
                             <ImageView
                                 style="@style/detailActivityIcons"
                                 android:contentDescription="@string/calendar"
-                                android:tint="@color/blue_to_green"
                                 app:srcCompat="@drawable/ic_calendar_blue_24dp" />
 
                             <TextView
@@ -125,7 +119,7 @@
                                 style="@style/detailActivityIcons"
                                 android:contentDescription="@string/calendar"
                                 android:tint="@color/blue_to_green"
-                                app:srcCompat="@drawable/ic_calendar_range_blue_24dp" />
+                                app:srcCompat="@drawable/ic_calendar_time" />
 
                             <TextView
                                 android:id="@+id/textview_detail_since"
@@ -143,8 +137,7 @@
                             <ImageView
                                 android:id="@+id/imageview_detail_zodiac"
                                 style="@style/detailActivityIcons"
-                                android:contentDescription="@string/zodiac_sign"
-                                android:tint="@color/blue_to_green" />
+                                android:contentDescription="@string/zodiac_sign" />
 
                             <TextView
                                 android:id="@+id/textview_detail_zodiac"
@@ -327,5 +320,12 @@
             app:pressedTranslationZ="12dp"
             app:rippleColor="@color/ripple"
             app:srcCompat="@drawable/ic_edit_grey_24dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/scrim_gradient"
+            app:layout_anchor="@+id/appbar_detail"
+            app:layout_anchorGravity="center" />
     </android.support.design.widget.CoordinatorLayout>
 </RelativeLayout>

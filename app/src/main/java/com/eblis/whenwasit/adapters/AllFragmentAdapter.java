@@ -19,7 +19,9 @@ package com.eblis.whenwasit.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.VectorDrawable;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -170,7 +172,9 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 final int age = Utils.getAge(date, displayedAge);
                 listViewHolder.tvDate.setText(Utils.getDate(date));
                 GradientDrawable ageCircle = (GradientDrawable) listViewHolder.tvAge.getBackground();
+                ageCircle.setAlpha(128);
                 ageCircle.setColor(ContextCompat.getColor(context, getAgeCircleColor(age)));
+                listViewHolder.tvAge.setForegroundTintMode(PorterDuff.Mode.XOR);
                 listViewHolder.tvAge.setText(String.valueOf(age));
             }
 
@@ -194,7 +198,7 @@ public class AllFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    allFragment.startActivity(new Intent(context, DetailActivity.class). putExtra(Constants.TIME_STAMP, person.getTimeStamp()));
+                    allFragment.startActivity(new Intent(context, DetailActivity.class). putExtra(Constants.RECORD_ID, person.getId()));
                     if (context instanceof MainActivity) {
                         ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
                     }

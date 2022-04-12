@@ -105,7 +105,7 @@ public class AllFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
         final Person person = (Person) adapter.getItem(location);
-        final long timeStamp = person.getTimeStamp();
+        final long recordId = person.getId();
 
         builder.setMessage(getString(R.string.delete_record_text) + person.getName() + "?");
 
@@ -137,8 +137,8 @@ public class AllFragment extends Fragment {
                             @Override
                             public void onViewDetachedFromWindow(View v) {
                                 if (isRemoved[0]) {
-                                    activity.dbHelper.removeRecord(timeStamp);
-                                    deletingPersonListener.onPersonDeleted(timeStamp);
+                                    activity.dbHelper.removeRecord(recordId);
+                                    deletingPersonListener.onPersonDeleted(recordId);
                                 }
                             }
                         });

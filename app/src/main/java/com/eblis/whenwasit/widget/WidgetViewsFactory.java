@@ -125,7 +125,7 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
 
         // OnClick handling
         Intent clickIntent = new Intent();
-        clickIntent.putExtra(Constants.TIME_STAMP, widgetList.get(i).getTimeStamp());
+        clickIntent.putExtra(Constants.RECORD_ID, widgetList.get(i).getId());
         view.setOnClickFillInIntent(R.id.relativelayout_widget, clickIntent);
 
         return view;

@@ -128,9 +128,9 @@ public class PagerAdapter extends FragmentPagerAdapter {
         }
     }
 
-    public void deletePerson(long timeStamp) {
+    public void deletePerson(long recordId) {
         if (monthFragment != null) {
-            monthFragment.deleteRecord(timeStamp);
+            monthFragment.deleteRecord(recordId);
         }
     }
 }

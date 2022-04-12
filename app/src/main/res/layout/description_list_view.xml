@@ -32,12 +32,12 @@
         android:background="@drawable/age_circle"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:shadowColor="@android:color/black"
+        android:shadowColor="@android:color/white"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="1"
         android:text="Age"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="@dimen/age_circle_text_size"
         android:layout_alignParentLeft="true" />
 

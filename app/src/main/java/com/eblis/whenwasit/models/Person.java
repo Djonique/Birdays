@@ -28,6 +28,7 @@ import java.util.Date;
 public class Person implements Item, Comparable<Person> {
     public static final int DEFAULT_YEAR = 2000;
 
+    private Long id;
     private Long contactId;
     private String name, phoneNumber, email;
     private long timeStamp;
@@ -56,15 +57,16 @@ public class Person implements Item, Comparable<Person> {
     /**
      * Constructor for importing from Contacts
      */
-    public Person(Long contactId, String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType, String contactCategory) {
-        this(contactId, name, date, yearUnknown, phoneNumber, email, anniversaryLabel, anniversaryType, contactCategory, new Date().getTime());
+    public Person(long id, Long contactId, String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType, String contactCategory) {
+        this(id, contactId, name, date, yearUnknown, phoneNumber, email, anniversaryLabel, anniversaryType, contactCategory, new Date().getTime());
     }
 
     /**
      * Constructor for DbQueryManager
      */
-    public Person(Long contactId, String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType, String contactCategory, long timeStamp) {
+    public Person(long id, Long contactId, String name, long date, boolean yearUnknown, String phoneNumber, String email, String anniversaryLabel, AnniversaryType anniversaryType, String contactCategory, long timeStamp) {
         this(name, date);
+        this.id = id;
         this.contactId = contactId;
         this.yearUnknown = yearUnknown;
         this.phoneNumber = phoneNumber;
@@ -73,6 +75,14 @@ public class Person implements Item, Comparable<Person> {
         this.anniversaryType = anniversaryType;
         this.contactCategory = contactCategory;
         this.setTimeStamp(timeStamp);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getContactId() {

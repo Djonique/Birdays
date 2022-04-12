@@ -29,6 +29,20 @@
         <TextView
             style="@style/Licenses.Primary.TextView"
             android:paddingBottom="@dimen/default_padding"
+            android:text="@string/icons" />
+
+        <TextView
+            style="@style/Licenses.Secondary.TextView"
+            android:text="@string/icons_copyright" />
+
+        <TextView
+            style="@style/Licenses.Secondary.TextView"
+            android:text="@string/icons_text" />
+
+
+        <TextView
+            style="@style/Licenses.Primary.TextView"
+            android:paddingBottom="@dimen/default_padding"
             android:text="@string/butter_knife_by_jake_wharton" />
 
         <TextView

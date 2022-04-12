@@ -56,6 +56,7 @@ public class ExportHelper {
     private static final String CATEGORY = "category";
     private static final String ANNIVERSARY_LABEL = "anniversary_label";
     private static final String ANNIVERSARY_TYPE = "anniversary_type";
+    private static final String TIMESTMAP = "timestamp";
 
     // Exceptions constants
     private static final String ILLEGAL_ARGUMENT_EXCEPTION = "IllegalArgumentException";
@@ -115,6 +116,8 @@ public class ExportHelper {
                 writeTag(ANNIVERSARY_LABEL, person.getAnniversaryLabel(), xmlSerializer);
                 //type
                 writeTag(ANNIVERSARY_TYPE, person.getAnniversaryType().toString(), xmlSerializer);
+                //timestamp
+                writeTag(TIMESTMAP, Long.toString(person.getTimeStamp()), xmlSerializer);
                 xmlSerializer.endTag(null, PERSON);
             }
             xmlSerializer.endTag(null, RECORDS);

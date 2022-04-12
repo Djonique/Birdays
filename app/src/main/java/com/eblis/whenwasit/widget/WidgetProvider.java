@@ -75,9 +75,9 @@ public class WidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         if (intent.getAction() != null && intent.getAction().equals(ACTION_ON_CLICK)) {
-            long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
+            long recordId = intent.getLongExtra(Constants.RECORD_ID, 0);
             Intent resultIntent = new Intent(context, DetailActivity.class);
-            resultIntent.putExtra(Constants.TIME_STAMP, timeStamp);
+            resultIntent.putExtra(Constants.RECORD_ID, recordId);
             resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             TaskStackBuilder.create(context).addNextIntentWithParentStack(resultIntent).startActivities();
         }

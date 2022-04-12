@@ -114,7 +114,7 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
             @Override
             public void onClick(View v) {
                 context.startActivity(new Intent(context, DetailActivity.class)
-                        .putExtra(Constants.TIME_STAMP, person.getTimeStamp()));
+                        .putExtra(Constants.RECORD_ID, person.getId()));
                 if (context instanceof MainActivity) {
                     ((MainActivity) context).overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
                 }
@@ -178,11 +178,11 @@ public class MonthFragmentAdapter extends RecyclerView.Adapter<MonthFragmentAdap
         return persons.size();
     }
 
-    public void removePerson(long timeStamp) {
+    public void removePerson(long recordId) {
         for (int i = 0; i < getItemCount(); i++) {
             Person person = getPerson(i);
 
-            if (person.getTimeStamp() == timeStamp) {
+            if (person.getId() == recordId) {
                 persons.remove(i);
                 notifyItemRemoved(i);
             }

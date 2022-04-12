@@ -82,11 +82,11 @@ public class EditActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_edit);
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        long timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
+        final Intent intent = getIntent();
+        final long recordId = intent.getLongExtra(Constants.RECORD_ID, 0);
 
         dbHelper = new DbHelper(this);
-        person = dbHelper.query().getPerson(timeStamp);
+        person = dbHelper.query().getPerson(recordId);
         calendar = person.getDate().toDateTimeAtCurrentTime().toCalendar(Locale.getDefault());
         final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dbHelper.getContactCategories());
         actvContactCategoryLabel.setAdapter(adapter);

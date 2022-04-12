@@ -32,6 +32,7 @@ public interface Constants {
     String WHEN = "WHEN";
     String ANNIVERSARY_LABEL = "ANNIVERSARY_LABEL";
     String TIME_STAMP = "TIME_STAMP";
+    String RECORD_ID = "RECORD_ID";
 
     // Settings keys
     String NOTIFICATIONS_KEY = "notifications_key";

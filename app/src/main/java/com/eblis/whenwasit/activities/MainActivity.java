@@ -200,8 +200,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onPersonDeleted(long timeStamp) {
-        pagerAdapter.deletePerson(timeStamp);
+    public void onPersonDeleted(long recordId) {
+        pagerAdapter.deletePerson(recordId);
         Utils.notifyWidget(this);
     }
 

@@ -97,8 +97,8 @@ public class MonthFragment extends Fragment {
         }
     }
 
-    public void deleteRecord(long timeStamp) {
-        adapter.removePerson(timeStamp);
+    public void deleteRecord(long recordId) {
+        adapter.removePerson(recordId);
     }
 
     public void findPerson(final String text) {

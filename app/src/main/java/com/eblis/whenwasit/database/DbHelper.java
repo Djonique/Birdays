@@ -48,6 +48,8 @@ public class DbHelper extends SQLiteOpenHelper {
     static final String COLUMN_EMAIL = "email";
     static final String COLUMN_TIME_STAMP = "time_stamp";
     static final String SELECTION_TIME_STAMP = COLUMN_TIME_STAMP + " = ?";
+    static final String SELECTION_RECORD_ID = BaseColumns._ID + " = ?";
+
 
     private static final String DB_NAME = "my_db";
     private static final int DATABASE_VERSION = 5;

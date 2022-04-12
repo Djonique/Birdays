@@ -246,7 +246,7 @@
     <string name="github_url" translatable="false">https://github.com/eblis/Birdays</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="privacy_policy_link" translatable="false">https://rawgit.com/eblis/Birdays/whenwasit/PRIVACY POLICY.html</string>
-    <string name="software_licenses">Open-source licenses</string>
+    <string name="software_licenses">Open-source and icons licenses</string>
     <string name="licenses">Licenses</string>
 
     <!-- HelpActivity -->
@@ -268,6 +268,15 @@
     <string name="birdays_email" translatable="false">eblis102@gmail.com</string>
 
     <!-- LicensesActivity -->
+    <string name="icons" translatable="false">Icons provided by FreePik and FlatIcon</string>
+    <string name="icons_copyright" translatable="false">Most icons used with attribution from FlatIcon (www.flaticon.com) and FreePik (www.freepik.com)</string>
+    <string name="icons_text" translatable="false">
+        <a href='https://www.freepik.com/vectors/background'>Background vector created by macrovector - www.freepik.com</a>
+        \nIcons made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        \nIcons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+    </string>
+
+
     <string name="butter_knife_by_jake_wharton" translatable="false">Butter Knife by Jake Wharton</string>
     <string name="butter_knife_copyright" translatable="false">Copyright 2013 Jake Wharton</string>
     <string name="mdtp_by_wouter_dullaert" translatable="false">MaterialDateTimePicker by Wouter Dullaert</string>

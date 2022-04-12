@@ -36,7 +36,7 @@ Claire Dufetrelle (French) [claireduf](https://github.com/claireduf)
 
 ```
 Copyright 2017 Evgeny Timofeev
-Copyright 2018 Cristian Libotean
+Copyright 2018-2022 Cristian Libotean
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

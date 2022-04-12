@@ -105,11 +105,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         final String name = person.getName();
         final String anniversaryLabel = person.getAnniversaryLabel();
         final String when = getWhen(context, daysToBirthday);
-        final long timeStamp = person.getTimeStamp();
+        final long recordId = person.getId();
 
         PendingIntent pendingIntent = TaskStackBuilder.create(context)
-                .addNextIntentWithParentStack(getResultIntent(context, timeStamp, intent))
-                .getPendingIntent(((int) timeStamp), PendingIntent.FLAG_UPDATE_CURRENT);
+                .addNextIntentWithParentStack(getResultIntent(context, recordId, intent))
+                .getPendingIntent(((int) recordId), PendingIntent.FLAG_UPDATE_CURRENT);
 
         final Bitmap picture = Utils.getContactPicture(context, person);
         NotificationCompat.Builder builder = buildNotification(context, name, anniversaryLabel, when, daysToBirthday, picture);
@@ -122,7 +122,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
         if (manager != null) {
-            manager.notify((int) timeStamp, notification);
+            manager.notify((int) recordId, notification);
         }
     }
 
@@ -144,6 +144,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+//        android.os.Debug.waitForDebugger();
         final NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
         final DbHelper dbHelper = new DbHelper(context);
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -194,9 +195,9 @@ public class AlarmReceiver extends BroadcastReceiver {
     /**
      * Creates intent to open DetailActivity on notification click
      */
-    private Intent getResultIntent(Context context, long timeStamp, Intent intent) {
+    private Intent getResultIntent(Context context, long recordId, Intent intent) {
         Intent resultIntent = new Intent(context, DetailActivity.class);
-        resultIntent.putExtra(Constants.TIME_STAMP, timeStamp);
+        resultIntent.putExtra(Constants.RECORD_ID, recordId);
         if (BirdaysApplication.isActivityVisible()) {
             resultIntent = intent;
         }

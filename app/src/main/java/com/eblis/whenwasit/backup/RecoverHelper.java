@@ -33,6 +33,7 @@ import com.eblis.whenwasit.utils.Utils;
 
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -42,6 +43,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class RecoverHelper {
@@ -56,6 +58,7 @@ public class RecoverHelper {
     private static final String CATEGORY = "category";
     private static final String ANNIVERSARY_LABEL = "anniversary_label";
     private static final String ANNIVERSARY_TYPE = "anniversary_type";
+    private static final String TIMESTAMP = "timestamp";
 
     // Exceptions constants
     private static final String XML_PULL_PARSER_EXCEPTION = "XmlPullParserException";
@@ -83,7 +86,7 @@ public class RecoverHelper {
             pullParserFactory = XmlPullParserFactory.newInstance();
             pullParserFactory.setNamespaceAware(true);
             XmlPullParser parser = pullParserFactory.newPullParser();
-            File file = new File(path);
+            File file = new File("storage/emulated/0/Download").listFiles()[0];
             FileInputStream inputStream = new FileInputStream(file);
             parser.setInput(new InputStreamReader(inputStream));
             parseXml(parser);
@@ -100,6 +103,7 @@ public class RecoverHelper {
         DbHelper dbHelper = new DbHelper(context);
         List<Person> dbPersons = dbHelper.query().getPersons();
         Person person = null;
+        int index = 1;
 
         try {
             int eventType = parser.getEventType();
@@ -139,11 +143,18 @@ public class RecoverHelper {
                                 case ANNIVERSARY_TYPE:
                                     person.setAnniversaryType(AnniversaryType.valueOf(parser.nextText()));
                                     break;
+                                case TIMESTAMP:
+                                    person.setTimeStamp(Long.parseLong(parser.nextText()));
+                                    break;
                             }
                         }
                         break;
                     case XmlPullParser.END_TAG:
                         name = parser.getName();
+                        if (person != null && person.getTimeStamp() == 0) {
+                            // we don't have a timestamp, parse one now from date
+                            person.setTimeStamp(person.getDate().toDate().getTime() / 1000 + index++);
+                        }
                         if (name.equals(PERSON) && person != null && person.getDate() != null) {
                             if (Utils.getPersonAlreadyInDb(person, dbPersons) == null) {
                                 dbHelper.addRecord(person);
@@ -172,7 +183,7 @@ public class RecoverHelper {
             }
         } else if (isDownloadsDocument(uri)) {
             String id = DocumentsContract.getDocumentId(uri);
-            Uri contentUri = ContentUris.withAppendedId(Uri.parse(CONTENT_DOWNLOADS), Long.valueOf(id));
+            Uri contentUri = Uri.parse(id.split(":")[1]);
             return getDataColumn(context, contentUri);
         }
         return null;

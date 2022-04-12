@@ -31,9 +31,9 @@
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_scheme"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_main_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_main_icon"
         android:supportsRtl="true"
         android:theme="@style/BirdaysTheme"
         tools:ignore="GoogleAppIndexingWarning">
@@ -138,5 +138,6 @@
         <service
             android:name=".widget.WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>
 </manifest>

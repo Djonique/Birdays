@@ -156,7 +156,7 @@ public class ContactsHelper {
         if (cursor != null) {
             try {
                 while (cursor.moveToNext()) {
-                    final String id = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.CONTACT_ID));
+                    final String contactId = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Event.CONTACT_ID));
                     final String name = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
                     final String dateString = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.START_DATE));
                     final int type = cursor.getInt(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Event.TYPE));
@@ -173,10 +173,10 @@ public class ContactsHelper {
                     if (date == 0) continue;
 
                     boolean yearUnknown = Utils.isYearUnknown(dateString);
-                    String phoneNumber = getContactPhoneNumber(contentResolver, id);
-                    String email = getContactEmail(contentResolver, id);
+                    String phoneNumber = getContactPhoneNumber(contentResolver, contactId);
+                    String email = getContactEmail(contentResolver, contactId);
 
-                    Person person = new Person(Long.valueOf(id), name, date, yearUnknown, phoneNumber, email, anniversary, getAnniversaryType(type), category);
+                    Person person = new Person(-1, Long.valueOf(contactId), name, date, yearUnknown, phoneNumber, email, anniversary, getAnniversaryType(type), category);
                     contacts.add(person);
                 }
             }
@@ -243,6 +243,7 @@ public class ContactsHelper {
                 dbPersons.add(person);
             }
             else {
+                person.setId(existing.getId());
                 person.setTimeStamp(existing.getTimeStamp()); //make sure they're the same for update purposes
                 person.setContactCategory(existing.getContactCategory());
                 dbHelper.updateRecord(person);

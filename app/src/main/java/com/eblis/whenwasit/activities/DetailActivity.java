@@ -21,7 +21,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -38,7 +37,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.telephony.PhoneNumberUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -121,7 +119,7 @@ public class DetailActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     private DbHelper dbHelper;
     private Person person;
-    private long timeStamp;
+    private long recordId;
     private DisplayedAge displayedAge;
 
     @Override
@@ -162,8 +160,8 @@ public class DetailActivity extends AppCompatActivity {
         Utils.setupDayNightTheme(preferences);
 
         Intent intent = getIntent();
-        timeStamp = intent.getLongExtra(Constants.TIME_STAMP, 0);
-        person = dbHelper.query().getPerson(timeStamp);
+        recordId = intent.getLongExtra(Constants.RECORD_ID, 0);
+        person = dbHelper.query().getPerson(recordId);
 
         toolbar.setTitle(person.getName());
         setSupportActionBar(toolbar);
@@ -216,7 +214,7 @@ public class DetailActivity extends AppCompatActivity {
             // Refreshes activity after editing
             Toast.makeText(this, R.string.record_edited, Toast.LENGTH_SHORT).show();
             Intent refresh = new Intent(this, DetailActivity.class);
-            refresh.putExtra(Constants.TIME_STAMP, timeStamp);
+            refresh.putExtra(Constants.RECORD_ID, recordId);
             startActivity(refresh);
             this.finish();
         }
@@ -318,7 +316,7 @@ public class DetailActivity extends AppCompatActivity {
     @OnClick(R.id.fab_detail)
     void startEditActivity() {
         Intent intent = new Intent(this, EditActivity.class);
-        intent.putExtra(Constants.TIME_STAMP, timeStamp);
+        intent.putExtra(Constants.RECORD_ID, recordId);
         startActivityForResult(intent, EDIT_ACTIVITY);
         overridePendingTransition(R.anim.activity_secondary_in, R.anim.activity_primary_out);
     }
@@ -368,7 +366,7 @@ public class DetailActivity extends AppCompatActivity {
         builder.setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dbHelper.removeRecord(timeStamp);
+                dbHelper.removeRecord(recordId);
                 Utils.notifyWidget(getApplicationContext());
                 dialog.dismiss();
                 finish();

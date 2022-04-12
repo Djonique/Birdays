@@ -18,6 +18,7 @@ package com.eblis.whenwasit.database;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
 
 import com.eblis.whenwasit.models.AnniversaryType;
 import com.eblis.whenwasit.models.Person;
@@ -41,7 +42,19 @@ public class DbQueryManager {
         this.database = database;
     }
 
-    public Person getPerson(long timeStamp) {
+    public Person getPerson(long contactId) {
+
+        final List<Person> candidates = getPersons(DbHelper.DB_PERSONS, null, DbHelper.SELECTION_RECORD_ID, new String[]{Long.toString(contactId)}, null, null, null, null);
+
+        if (candidates.size() > 0) {
+            return candidates.get(0);
+        }
+
+        return null;
+    }
+
+
+    public Person getPersonOld(long timeStamp) {
 
         final List<Person> candidates = getPersons(DbHelper.DB_PERSONS, null, DbHelper.SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)}, null, null, null, null);
 
@@ -106,6 +119,7 @@ public class DbQueryManager {
     }
 
     private Person getPerson(final Cursor cursor) {
+        final Long id = getRecordId(cursor);
         final Long contactId = getContactId(cursor);
         final String name = getName(cursor);
         final long date = getDate(cursor);
@@ -117,7 +131,7 @@ public class DbQueryManager {
         final String category = getCategory(cursor);
         final long timeStamp = getTimeStamp(cursor);
 
-        return new Person(contactId, name, date, isYearKnown, phoneNumber, email, label, anniversaryType, category, timeStamp);
+        return new Person(id, contactId, name, date, isYearKnown, phoneNumber, email, label, anniversaryType, category, timeStamp);
     }
 
     public List<Person> getSearchPerson(String selection, String[] selectionArgs, String orderBy) {
@@ -157,6 +171,11 @@ public class DbQueryManager {
 
         return persons;
     }
+
+    private Long getRecordId(Cursor cursor) {
+        return cursor.getLong(cursor.getColumnIndex(BaseColumns._ID));
+    }
+
 
     private Long getContactId(Cursor cursor) {
         return cursor.getLong(cursor.getColumnIndex(DbHelper.COLUMN_CONTACT_ID));
