@@ -33,4 +33,9 @@ public class BirdaysApplication extends Application {
     public static void activityPaused() {
         activityVisible = false;
     }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 }

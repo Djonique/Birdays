@@ -28,15 +28,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,7 +60,9 @@ import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.Utils;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.kobakei.ratethisapp.RateThisApp;
 
 import java.util.List;
@@ -116,7 +120,6 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.imagebutton_detail_whatsapp)
     ImageButton ibWhatsapp;
 
-    private InterstitialAd mInterstitialAd;
     private DbHelper dbHelper;
     private Person person;
     private long recordId;
@@ -136,21 +139,19 @@ public class DetailActivity extends AppCompatActivity {
         * Interstitial doesn't work on Android API 26+
         * java.lang.IllegalStateException: Only fullscreen activities can request orientation
         */
-        mInterstitialAd = new InterstitialAd(this);
         if (adEnabled) {
             final DetailActivity activity = this;
-            mInterstitialAd.setAdUnitId(BuildConfig.INTERSTITIAL_AD_ID);
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            mInterstitialAd.setAdListener(new AdListener()
+            InterstitialAd.load(this, BuildConfig.INTERSTITIAL_AD_ID, new AdRequest.Builder().build(), new InterstitialAdLoadCallback()
             {
                 @Override
-                public void onAdFailedToLoad(int i) {
-                        Toast.makeText(activity, "Interstitial AD failed to load: " + i, Toast.LENGTH_SHORT).show();
+                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                    Toast.makeText(activity, "Interstitial AD failed to load: " + loadAdError.toString(), Toast.LENGTH_SHORT).show();
                 }
 
+
                 @Override
-                public void onAdLoaded() {
-                    mInterstitialAd.show();
+                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                    super.onAdLoaded(interstitialAd);
                 }
             });
         }
@@ -163,7 +164,9 @@ public class DetailActivity extends AppCompatActivity {
         recordId = intent.getLongExtra(Constants.RECORD_ID, 0);
         person = dbHelper.query().getPerson(recordId);
 
-        toolbar.setTitle(person.getName());
+        if (person != null) {
+            toolbar.setTitle(person.getName());
+        }
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
@@ -199,9 +202,6 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        }
         finish();
         overridePendingTransition(R.anim.activity_primary_in, R.anim.activity_secondary_out);
     }

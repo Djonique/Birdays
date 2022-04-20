@@ -23,6 +23,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.widget.RemoteViews;
 
 import com.eblis.whenwasit.R;
@@ -61,8 +62,12 @@ public class WidgetProvider extends AppWidgetProvider {
             Intent clickIntent = new Intent(context, WidgetProvider.class);
             clickIntent.setAction(ACTION_ON_CLICK);
 
-            PendingIntent clickPendingIntent = PendingIntent.getBroadcast(context, 0,
-                    clickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                flags |= PendingIntent.FLAG_IMMUTABLE;
+            }
+
+            PendingIntent clickPendingIntent = PendingIntent.getBroadcast(context, 0, clickIntent, flags);
             remoteViews.setPendingIntentTemplate(R.id.listview_widget, clickPendingIntent);
 
             appWidgetManager.updateAppWidget(i, remoteViews);

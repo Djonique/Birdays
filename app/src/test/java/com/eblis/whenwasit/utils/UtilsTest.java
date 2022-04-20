@@ -1,13 +1,8 @@
 package com.eblis.whenwasit.utils;
 
-import android.support.annotation.VisibleForTesting;
-
 import org.joda.time.LocalDate;
-import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 
 import static junit.framework.Assert.assertEquals;

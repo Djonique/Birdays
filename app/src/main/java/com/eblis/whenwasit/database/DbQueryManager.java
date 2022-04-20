@@ -38,32 +38,22 @@ public class DbQueryManager {
 
     private SQLiteDatabase database;
 
+    private static final Person emptyPerson = new Person("Unknown person", LocalDate.now());
+
     DbQueryManager(SQLiteDatabase database) {
         this.database = database;
     }
 
     public Person getPerson(long contactId) {
-
         final List<Person> candidates = getPersons(DbHelper.DB_PERSONS, null, DbHelper.SELECTION_RECORD_ID, new String[]{Long.toString(contactId)}, null, null, null, null);
 
         if (candidates.size() > 0) {
             return candidates.get(0);
         }
 
-        return null;
+        return emptyPerson;
     }
 
-
-    public Person getPersonOld(long timeStamp) {
-
-        final List<Person> candidates = getPersons(DbHelper.DB_PERSONS, null, DbHelper.SELECTION_TIME_STAMP, new String[]{Long.toString(timeStamp)}, null, null, null, null);
-
-        if (candidates.size() > 0) {
-            return candidates.get(0);
-        }
-
-        return null;
-    }
 
     public List<Person> getPersons() {
         return getPersons(DbHelper.DB_PERSONS, null, null, null, null, null, null, null);

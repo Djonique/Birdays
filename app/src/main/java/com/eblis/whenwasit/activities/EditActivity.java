@@ -18,10 +18,10 @@ package com.eblis.whenwasit.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatCheckBox;
+import androidx.annotation.Nullable;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -87,7 +87,9 @@ public class EditActivity extends AppCompatActivity implements
 
         dbHelper = new DbHelper(this);
         person = dbHelper.query().getPerson(recordId);
-        calendar = person.getDate().toDateTimeAtCurrentTime().toCalendar(Locale.getDefault());
+        if (person != null && person.getDate() != null) {
+            calendar = person.getDate().toDateTimeAtCurrentTime().toCalendar(Locale.getDefault());
+        }
         final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dbHelper.getContactCategories());
         actvContactCategoryLabel.setAdapter(adapter);
 

@@ -44,10 +44,14 @@ public class AlarmHelper {
     }
 
     private PendingIntent getExistingAlarm(Intent intent) {
+        int flags = PendingIntent.FLAG_NO_CREATE;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
         return PendingIntent.getBroadcast(
                 context.getApplicationContext(),
                 BIRTHDAY_CHECKER_REQUEST_CODE,
-                intent,PendingIntent.FLAG_NO_CREATE);
+                intent, flags);
     }
 
     public void setRecurringAlarm() {
@@ -56,11 +60,15 @@ public class AlarmHelper {
 
         final PendingIntent recurringAlarm = getExistingAlarm(intent);
         if (recurringAlarm == null) {
+            int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                flags |= PendingIntent.FLAG_IMMUTABLE;
+            }
             PendingIntent alarm = PendingIntent.getBroadcast(
                     context.getApplicationContext(),
                     BIRTHDAY_CHECKER_REQUEST_CODE,
                     intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                    flags);
             setAlarmDependingOnApi(alarmManager, triggerAtMillis, alarm);
         }
     }

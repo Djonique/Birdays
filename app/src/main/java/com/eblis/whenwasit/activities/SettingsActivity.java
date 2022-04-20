@@ -33,15 +33,16 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatCheckBox;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckBox;
 
 import com.eblis.whenwasit.BuildConfig;
 import com.eblis.whenwasit.R;
@@ -53,10 +54,10 @@ import com.eblis.whenwasit.utils.ContactsHelper;
 import com.eblis.whenwasit.utils.PermissionManager;
 import com.eblis.whenwasit.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.reward.RewardItem;
-import com.google.android.gms.ads.reward.RewardedVideoAd;
-import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -151,6 +152,8 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
         if (requestCode == Constants.READ_CONTACTS_PERMISSION_CODE && PermissionManager.readingContactsPermissionGranted(this)) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             if (!preferences.getBoolean(Constants.WRONG_CONTACTS_FORMAT, false)) {
@@ -190,7 +193,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
         private SharedPreferences preferences;
         private Context context;
-        private RewardedVideoAd rewardedVideoAd;
+        private RewardedAd rewardedVideoAd;
 
         public void setContext(Context context) {
             this.context = context;
@@ -224,50 +227,6 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             addPreferencesFromResource(R.xml.preferences);
 
             preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-            try {
-                rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this.context);
-                rewardedVideoAd.loadAd(BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build());
-                rewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
-                    @Override
-                    public void onRewardedVideoAdLoaded() {
-                    }
-
-                    @Override
-                    public void onRewardedVideoAdOpened() {
-                    }
-
-                    @Override
-                    public void onRewardedVideoStarted() {
-                    }
-
-                    @Override
-                    public void onRewardedVideoAdClosed() {
-                        rewardedVideoAd.loadAd(BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build());
-                    }
-
-                    @Override
-                    public void onRewardedVideoAdLeftApplication() {
-                    }
-
-                    @Override
-                    public void onRewardedVideoCompleted() {
-                    }
-
-                    @Override
-                    public void onRewarded(RewardItem rewardItem) {
-                        Toast.makeText(context, "Thank you for watching this AD", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onRewardedVideoAdFailedToLoad(int i) {
-                        Toast.makeText(context, "Rewards AD failed to load: " + i, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-            catch (Exception ex) {
-                //no-op, just ads here
-            }
 
             MultiSelectListPreference multi = (MultiSelectListPreference) findPreference(Constants.ADDITIONAL_NOTIFICATION_KEY);
             multi.setSummary(getAdditionalNotificationsSelectedValues(multi));
@@ -429,61 +388,46 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             /*
             * Share app
             */
-            findPreference(getString(R.string.share_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + getString(R.string.play_market_app_link));
-                    startActivity(Intent.createChooser(intent, null));
-                    return true;
-                }
+            findPreference(getString(R.string.share_key)).setOnPreferenceClickListener(preference -> {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + getString(R.string.play_market_app_link));
+                startActivity(Intent.createChooser(intent, null));
+                return true;
             });
 
             /*
             * Ad banner
             */
-            findPreference(getString(R.string.ad_banner_key)).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    if (Boolean.FALSE.equals(newValue)) {
-                        showRewardsAd();
-                    }
-                    showRestartAppDialog();
-                    return true;
+            findPreference(getString(R.string.ad_banner_key)).setOnPreferenceChangeListener((preference, newValue) -> {
+                if (Boolean.FALSE.equals(newValue)) {
+                    showRewardsAd();
                 }
+                showRestartAppDialog();
+                return true;
             });
 
-            findPreference(getString(R.string.ad_interstitial_key)).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    if (Boolean.FALSE.equals(newValue)) {
-                        showRewardsAd();
-                    }
-                    return true;
+            findPreference(getString(R.string.ad_interstitial_key)).setOnPreferenceChangeListener((preference, newValue) -> {
+                if (Boolean.FALSE.equals(newValue)) {
+                    showRewardsAd();
                 }
+                return true;
             });
 
             /*
             * Source code
             */
-            findPreference(getString(R.string.source_code_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    Utils.openBrowser(getActivity(), getString(R.string.github_url));
-                    return true;
-                }
+            findPreference(getString(R.string.source_code_key)).setOnPreferenceClickListener(preference -> {
+                Utils.openBrowser(getActivity(), getString(R.string.github_url));
+                return true;
             });
 
             /*
             * Privacy policy
             */
-            findPreference(getString(R.string.privacy_policy_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    Utils.openBrowser(getActivity(), getString(R.string.privacy_policy_link));
-                    return true;
-                }
+            findPreference(getString(R.string.privacy_policy_key)).setOnPreferenceClickListener(preference -> {
+                Utils.openBrowser(getActivity(), getString(R.string.privacy_policy_link));
+                return true;
             });
 
             /*
@@ -560,8 +504,23 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
         }
 
         private boolean showRewardsAd() {
-            if (rewardedVideoAd.isLoaded()) {
-                rewardedVideoAd.show();
+            try {
+                RewardedAd.load(this.context, BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        super.onAdFailedToLoad(loadAdError);
+                        Toast.makeText(context, "Rewards AD failed to load: " + loadAdError.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                        super.onAdLoaded(rewardedAd);
+                        Toast.makeText(context, "Thank you for watching this AD", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            catch (Exception ex) {
+                //no-op, just ads here
             }
 
             return true;

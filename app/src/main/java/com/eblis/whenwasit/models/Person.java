@@ -16,13 +16,11 @@
 
 package com.eblis.whenwasit.models;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
-import org.joda.time.LocalDate;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Person implements Item, Comparable<Person> {

@@ -16,51 +16,21 @@
 
 package com.eblis.whenwasit.activities;
 
-import android.annotation.SuppressLint;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.preference.ListPreference;
-import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatCheckBox;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.eblis.whenwasit.BuildConfig;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.alarm.AlarmHelper;
-import com.eblis.whenwasit.backup.ExportHelper;
-import com.eblis.whenwasit.backup.RecoverHelper;
 import com.eblis.whenwasit.utils.Constants;
-import com.eblis.whenwasit.utils.ContactsHelper;
-import com.eblis.whenwasit.utils.PermissionManager;
-import com.eblis.whenwasit.utils.Utils;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.reward.RewardItem;
-import com.google.android.gms.ads.reward.RewardedVideoAd;
-import com.google.android.gms.ads.reward.RewardedVideoAdListener;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class WidgetSettingsActivity extends AppCompatActivity {
 

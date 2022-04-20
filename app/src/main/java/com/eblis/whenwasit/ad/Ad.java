@@ -22,9 +22,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 
 public class Ad {
 
@@ -36,8 +39,8 @@ public class Ad {
 
         banner.setAdListener(new AdListener() {
             @Override
-            public void onAdFailedToLoad(int i) {
-                Toast.makeText(activity, "Banner AD failed to load: " + i, Toast.LENGTH_SHORT).show();
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                Toast.makeText(activity, "Banner AD failed to load: " + loadAdError.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -16,14 +16,14 @@
     limitations under the License.
 -->
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.eblis.whenwasit.activities.EditActivity">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -50,7 +50,7 @@
                     android:tint="@color/blue_to_green"
                     app:srcCompat="@drawable/ic_person_blue_24dp" />
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                         style="@style/dialogTextStyle"
                         android:hint="@string/name"
                         android:inputType="textCapWords" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <!--Date-->
@@ -82,7 +82,7 @@
                     android:tint="@color/blue_to_green"
                     app:srcCompat="@drawable/ic_calendar_blue_24dp" />
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_edit_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,10 +100,10 @@
                         android:hint="@string/pick_date"
                         android:inputType="date"
                         android:textSize="@dimen/edit_date_text_size" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <android.support.v7.widget.AppCompatCheckBox
+            <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/checkbox_edit"
                 style="@style/primaryTextStyle"
                 android:layout_width="match_parent"
@@ -132,7 +132,7 @@
                     android:tint="@color/blue_to_green"
                     app:srcCompat="@drawable/ic_call_blue_24dp" />
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/edit_text_view_left_padding"
@@ -143,7 +143,7 @@
                         style="@style/dialogTextStyle"
                         android:hint="@string/phone_number"
                         android:inputType="phone" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <!--Email-->
@@ -163,7 +163,7 @@
                     android:tint="@color/blue_to_green"
                     app:srcCompat="@drawable/ic_email_blue_24dp" />
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/edit_text_view_left_padding"
@@ -174,7 +174,7 @@
                         style="@style/dialogTextStyle"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <!--Category -->
@@ -184,7 +184,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/default_padding">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/edit_text_view_left_padding"
@@ -197,7 +197,7 @@
                         android:inputType="textAutoComplete"
                         android:hint="@string/contact_category"
                         />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <!--Type -->
@@ -207,7 +207,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/default_padding">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/edit_text_view_left_padding"
@@ -218,8 +218,8 @@
                         style="@style/dialogTextStyle"
                         android:hint="@string/anniversary_type"
                         android:inputType="text" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-</android.support.design.widget.CoordinatorLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
