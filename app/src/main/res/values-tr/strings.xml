@@ -103,7 +103,7 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">En iyi duruma getirme etkin!</string>
-    <string name="optimization_description">\nSürüm 6.0 ile Android, arka plan CPU\'yu optimize ederek uygulamaların davranışını etkileyen güç tasarrufu modu Doze\'yi tanıttı.\n\nUygulamayı doğru bir şekilde gerçekleştirmek için Birdays için optimizasyonun kapatılması gerekir.</string>
+    <string name="optimization_description">\nSürüm 6.0 ile Android, arka plan CPU\'yu optimize ederek uygulamaların davranışını etkileyen güç tasarrufu modu Doze\'yi tanıttı.\n\nUygulamayı doğru bir şekilde gerçekleştirmek için WhenWasIt için optimizasyonun kapatılması gerekir.</string>
     <string name="do_not_show_again">Bir daha gösterme</string>
     <string name="disable_button">Devre Dışı Bırak</string>
     <!-- Notifications -->
@@ -111,9 +111,9 @@
     <string name="allow_notification">Uygulamaya yaklaşan doğum günleri bildirimlerini göndermeye izin ver</string>
     <string name="notifications_time">Bildirim zamanı</string>
     <string name="additional_notification">Ek bildirim</string>
+    <string name="never">Hiçbir zaman</string>
 
     <string-array name="additional_notification_entries">
-        <item>Hiçbir zaman</item>
         <item>1 gün önce</item>
         <item>2 gün önce</item>
         <item>3 gün önce</item>
@@ -171,7 +171,7 @@
     <string name="later">Daha Sonra</string>
     <string name="rate_app">Bizi değerlendirin</string>
     <string name="share_app">Uygulamayi paylaş</string>
-    <string name="share_text">Doğum günlerinde akrabalarınızı, arkadaşlarınızı ve meslektaşlarınızı tebrik etmeyi unuttunuz mu? Birdays size önemli bir tatil hatırlatacaktır!\n\n</string>
+    <string name="share_text">Doğum günlerinde akrabalarınızı, arkadaşlarınızı ve meslektaşlarınızı tebrik etmeyi unuttunuz mu? WhenWasIt size önemli bir tatil hatırlatacaktır!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Reklam</string>
     <string name="about_ad_title">Neden reklamları görüyorum?</string>
@@ -188,19 +188,19 @@
 
     <!-- HelpActivity -->
     <string name="help_header">Neden alarm çalışmıyor?</string>
-    <string name="help_description">Bazı cihazlarda, uygulama arka planı işlemlerini engelleyebilecek veya uygulamanın başlangıçta çalışmasını engelleyebilecek Güç Tasarruf Modu vardır.\nArama işini doğru yapmak için aşağıdaki birkaç basit adımı uygulayın:\n\n1. Birdays uygulaması için bildirimlerin etkinleştirildiğinden emin olun (Ayarlar > Uygulamalar > Birdays).\n\n2. Uygulama arka plan işlemlerini engelleyebilecek görev yöneticileri, görev katilleri veya RAM iyileştiricileri (ör. «Battery Saver», «Clean Master») yüklediyseniz, Beyaz listelerine Birdays ekleyin.\n \n3. Güç tasarrufu modunu kapatın veya Beyaz listedeki Birdays\'i ekleyin (Ayarlar > Pil > Pil optimizasyonu). \nYalnızca Android 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için.</string>
+    <string name="help_description">Bazı cihazlarda, uygulama arka planı işlemlerini engelleyebilecek veya uygulamanın başlangıçta çalışmasını engelleyebilecek Güç Tasarruf Modu vardır.\nArama işini doğru yapmak için aşağıdaki birkaç basit adımı uygulayın:\n\n1. WhenWasIt uygulaması için bildirimlerin etkinleştirildiğinden emin olun (Ayarlar > Uygulamalar > WhenWasIt).\n\n2. Uygulama arka plan işlemlerini engelleyebilecek görev yöneticileri, görev katilleri veya RAM iyileştiricileri (ör. «Battery Saver», «Clean Master») yüklediyseniz, Beyaz listelerine WhenWasIt ekleyin.\n \n3. Güç tasarrufu modunu kapatın veya Beyaz listedeki WhenWasIt\'i ekleyin (Ayarlar > Pil > Pil optimizasyonu). \nYalnızca Android 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için.</string>
     <string name="help_whitelist">Beyaz listeyi aç</string>
     <string name="help_whitelist_error">Yalnızca Android 6.0 (Marshmallow) veya daha üst bir sürümü çalıştıran cihazlar için</string>
     <string name="help_delay_text">Unutmayın ki bazı cihazlarda bildirimler gecikme yaşayabilir.</string>
     <string name="help_settings">Ayarlara git</string>
     <string name="huawei_header">Huawei sahipleri için</string>
-    <string name="huawei_description">«Ayarlar» ı açın, «Güç tasarrufu» nu seçin ve «Korunan uygulamalar» ı açın. Birdays için bu ayarın açık olduğundan emin olun.</string>
+    <string name="huawei_description">«Ayarlar» ı açın, «Güç tasarrufu» nu seçin ve «Korunan uygulamalar» ı açın. WhenWasIt için bu ayarın açık olduğundan emin olun.</string>
     <string name="samsung_header">Samsung sahipleri için</string>
-    <string name="samsung_description">«Smart Manager», «Pil» ve sonra «Ayrinti» dokunun. Birdays app için bu özelliği devre dışı bırakın.</string>
+    <string name="samsung_description">«Smart Manager», «Pil» ve sonra «Ayrinti» dokunun. WhenWasIt app için bu özelliği devre dışı bırakın.</string>
     <string name="xiaomi_header">Huawei sahipleri için</string>
-    <string name="xiaomi_description">«Ayarlar» \'ı açın, «Pil», ardından «Uygulamalarin pil kullanimini yönet» ve «Uygulamaları seçin» seçeneğini açın, Birdays için «Kısıtlama yok» seçeneğini seçin.</string>
+    <string name="xiaomi_description">«Ayarlar» \'ı açın, «Pil», ardından «Uygulamalarin pil kullanimini yönet» ve «Uygulamaları seçin» seçeneğini açın, WhenWasIt için «Kısıtlama yok» seçeneğini seçin.</string>
     <string name="show_button">Dizi</string>
-    <string name="help_email_description">Alarm hala çalışmıyorsa, lütfen bana birdaysapp@gmail.com ulaşın</string>
+    <string name="help_email_description">Alarm hala çalışmıyorsa, lütfen bana eblis102@gmail.com ulaşın</string>
     <string name="send_email">Eposta gönder</string>
 
     <!-- Famous persons -->

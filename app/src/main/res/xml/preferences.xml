@@ -25,18 +25,18 @@
             android:key="@string/notifications_key"
             android:summary="@string/allow_notification"
             android:title="@string/notifications" />
-        <com.djonique.birdays.preferences.TimePreference
+        <com.eblis.whenwasit.preferences.TimePreference
             android:defaultValue="@string/default_time_preference"
             android:dependency="@string/notifications_key"
             android:key="@string/notification_time_key"
             android:title="@string/notifications_time" />
-        <ListPreference
-            android:defaultValue="0"
+        <MultiSelectListPreference
+            android:defaultValue="@array/additional_notification_entries"
             android:dependency="@string/notifications_key"
             android:entries="@array/additional_notification_entries"
             android:entryValues="@array/additional_notification_entry_values"
             android:key="@string/additional_notification_key"
-            android:summary="%s"
+            android:summary="@string/never"
             android:title="@string/additional_notification" />
         <RingtonePreference
             android:dependency="@string/notifications_key"
@@ -54,6 +54,12 @@
 
     <!-- Synchronization and Backup -->
     <PreferenceCategory android:title="@string/sync_and_backup">
+        <SwitchPreference
+            android:key="@string/import_contacts_automatically_key"
+            android:defaultValue="true"
+            android:title="@string/automatic_contacts_import_title"
+            android:summaryOn="@string/contacts_import_enabled_summary"
+            android:summaryOff="@string/contacts_import_disabled_summary"/>
         <Preference
             android:key="@string/import_contacts_key"
             android:summary="@string/contacts_import_summary"
@@ -81,7 +87,7 @@
             android:summary="%s"
             android:title="@string/start_page" />
         <ListPreference
-            android:defaultValue="0"
+            android:defaultValue="CURRENT"
             android:entries="@array/displayed_age_entries"
             android:entryValues="@array/displayed_age_entry_values"
             android:key="@string/displayed_age_key"

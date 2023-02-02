@@ -36,7 +36,12 @@
     <color name="button_text_v21">#2196F3</color>
     <color name="cardview_background">@color/cardview_light_background</color>
     <color name="cardview_birthday">#EF9A9A</color>
+    <color name="cardview_tomorrow">#ffcc80</color>
     <color name="red_alert">#EF5350</color>
+    <color name="birthday_today">#ef5350</color>
+    <color name="birthday_tomorrow">#ffd180</color>
+    <color name="birthday_near">#69f0ae</color>
+
 
     <!-- age colors -->
     <color name="age1">#F06292</color>

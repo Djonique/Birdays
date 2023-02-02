@@ -16,7 +16,7 @@
     limitations under the License.
 -->
 
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -25,6 +25,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/default_padding">
+
+        <TextView
+            style="@style/Licenses.Primary.TextView"
+            android:paddingBottom="@dimen/default_padding"
+            android:text="@string/icons" />
+
+        <TextView
+            style="@style/Licenses.Secondary.TextView"
+            android:text="@string/icons_copyright" />
+
+        <TextView
+            style="@style/Licenses.Secondary.TextView"
+            android:text="@string/icons_text" />
+
 
         <TextView
             style="@style/Licenses.Primary.TextView"
@@ -67,4 +81,4 @@
             style="@style/Licenses.Secondary.TextView"
             android:text="@string/apache_license" />
     </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

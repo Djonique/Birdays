@@ -69,9 +69,9 @@
 
     <!-- DetailActivity -->
     <string name="birthday">Birthday</string>
-    <string name="days_left">Days until next birthday</string>
+    <string name="days_left">Days until next anniversary</string>
     <string name="today">Today</string>
-    <string name="days_since_birth">Days since birth</string>
+    <string name="days_since_birth">Days since anniversary started</string>
     <string name="zodiac_sign">Zodiac sign</string>
     <string name="season_picture">Season picture</string>
     <string name="calendar">Calendar</string>
@@ -103,17 +103,17 @@
 
     <!-- SettingsActivity -->
     <string name="optimization_enabled">Optimization enabled!</string>
-    <string name="optimization_description">\nStarting from version 6.0, Android introduced power-saving mode Doze that manage apps behavior by deferring background CPU.\n\nTo make app work correctly disable optimization for Birdays.</string>
+    <string name="optimization_description">\nStarting from version 6.0, Android introduced power-saving mode Doze that manage apps behavior by deferring background CPU.\n\nTo make app work correctly disable optimization for WhenWasIt.</string>
     <string name="do_not_show_again">Do not show again</string>
     <string name="disable_button">Disable</string>
     <!-- Notifications -->
     <string name="notifications">Notifications</string>
     <string name="allow_notification">Allow the app to send notifications of upcoming birthdays</string>
     <string name="notifications_time">Notification time</string>
-    <string name="additional_notification">Additional notification</string>
+    <string name="additional_notification">Additional notifications</string>
+    <string name="never">Never</string>
 
     <string-array name="additional_notification_entries">
-        <item>Never</item>
         <item>1 day before</item>
         <item>2 days before</item>
         <item>3 days before</item>
@@ -163,6 +163,7 @@
 
     <string-array name="displayed_age_entries">
         <item>Current</item>
+        <item>Turning/Turned</item>
         <item>Future</item>
     </string-array>
 
@@ -171,7 +172,7 @@
     <string name="later">Later</string>
     <string name="rate_app">Rate app</string>
     <string name="share_app">Share app</string>
-    <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? Birdays will remind you of an important holiday!\n\n</string>
+    <string name="share_text">Do you forget to congratulate your relatives, friends or colleagues on their Birthday? WhenWasIt will remind you of an important holiday!\n\n</string>
     <!-- Advertising -->
     <string name="advertising">Advertising</string>
     <string name="about_ad_title">Why do I see ads?</string>
@@ -183,24 +184,24 @@
     <string name="about_app">About app</string>
     <string name="menu_github">Source code</string>
     <string name="privacy_policy">Privacy policy</string>
-    <string name="software_licenses">Open-source licenses</string>
+    <string name="software_licenses">Open-source and icons licenses</string>
     <string name="licenses">Licenses</string>
 
     <!-- HelpActivity -->
     <string name="help_header">Why alarm is not working?</string>
-    <string name="help_description">Some devices have Power Saving Mode that could block app background processes or disable application from running on startup.\nTo make alarm work correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled for Birdays app (Settings > Apps > Birdays).\n\n2. If you have installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»), which could block app background processes, add Birdays to their whitelist.\n\n3. Turn off your power-saving mode or add Birdays to the whitelist (Settings > Battery > Battery optimization).\nOnly for devices running Android 6.0 (Marshmallow) or higher.</string>
+    <string name="help_description">Some devices have Power Saving Mode that could block app background processes or disable application from running on startup.\nTo make alarm work correctly perform a few simple steps below:\n\n1. Make sure that notifications are enabled for WhenWasIt app (Settings > Apps > WhenWasIt).\n\n2. If you have installed task managers, task killers or RAM optimizers (e.g. «Battery Saver», «Clean Master»), which could block app background processes, add WhenWasIt to their whitelist.\n\n3. Turn off your power-saving mode or add WhenWasIt to the whitelist (Settings > Battery > Battery optimization).\nOnly for devices running Android 6.0 (Marshmallow) or higher.</string>
     <string name="help_whitelist">Open whitelist</string>
     <string name="help_whitelist_error">Only for devices running Android 6.0 (Marshmallow) or higher</string>
     <string name="help_delay_text">Please note that on some devices notifications could work with some delay.</string>
     <string name="help_settings">Open settings</string>
     <string name="huawei_header">For Huawei owners</string>
-    <string name="huawei_description">Open device «Settings», go to «Power saving» and open «Protected apps». Make sure that this feature is enabled for Birdays.</string>
+    <string name="huawei_description">Open device «Settings», go to «Power saving» and open «Protected apps». Make sure that this feature is enabled for WhenWasIt.</string>
     <string name="samsung_header">For Samsung owners</string>
-    <string name="samsung_description">Open «Smart Manager», tap on «Battery», then on «Detail». Disable this feature for Birdays app.</string>
+    <string name="samsung_description">Open «Smart Manager», tap on «Battery», then on «Detail». Disable this feature for WhenWasIt app.</string>
     <string name="xiaomi_header">For Xiaomi owners</string>
-    <string name="xiaomi_description">Open device «Settings», go to «Battery &amp; performance», then «Manage apps battery usage», open «Choose apps», choose «No restrictions» for Birdays.</string>
+    <string name="xiaomi_description">Open device «Settings», go to «Battery &amp; performance», then «Manage apps battery usage», open «Choose apps», choose «No restrictions» for WhenWasIt.</string>
     <string name="show_button">Show</string>
-    <string name="help_email_description">If alarm still not working, please contact me at birdaysapp@gmail.com</string>
+    <string name="help_email_description">If alarm still not working, please contact me at eblis102@gmail.com</string>
     <string name="send_email">Send email</string>
 
     <!-- Famous persons -->

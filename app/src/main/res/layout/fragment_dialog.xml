@@ -27,7 +27,7 @@
     android:paddingStart="@dimen/dialog_horizontal_padding"
     android:paddingTop="@dimen/dialog_vertical_padding">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -40,7 +40,7 @@
             <include layout="@layout/add_from_contacts_button" />
 
             <!--Name-->
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_dialog_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -50,10 +50,10 @@
                     style="@style/dialogTextStyle"
                     android:hint="@string/name"
                     android:inputType="textCapWords" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!--Phone-->
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_dialog_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -63,10 +63,10 @@
                     style="@style/dialogTextStyle"
                     android:hint="@string/phone_number"
                     android:inputType="phone" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!--Email-->
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_dialog_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -76,10 +76,10 @@
                     style="@style/dialogTextStyle"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!--Date-->
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_dialog_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -95,15 +95,23 @@
                     android:hint="@string/pick_date"
                     android:inputType="date"
                     android:textSize="@dimen/primary_text" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatCheckBox
+            <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/checkbox_dialog"
                 style="@style/primaryTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dialog_cb_top_margin"
                 android:text="@string/year_unknown" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="32sp"
+                android:textColor="@color/red_alert"
+
+                android:text="@string/add_contacts_recommendation"/>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
