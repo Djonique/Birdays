@@ -31,12 +31,13 @@ android {
             storePassword keystoreProperties['KeyPassword']
         }
     }
-    compileSdkVersion 31
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.eblis.whenwasit"
+        multiDexEnabled true
         minSdkVersion 19
-        targetSdkVersion 31
-        versionCode 44
+        targetSdkVersion 33
+        versionCode 46
         versionName "2.1.${versionCode}"
         resConfigs 'en', 'be', 'de', 'el', 'es', 'fil', 'fr', 'hu', 'in', 'it', 'ja', 'kab', 'kk', 'nb', 'nl', 'pt', 'ro', 'ru', 'tr', 'uk', 'zh'
         vectorDrawables.useSupportLibrary = true
@@ -62,6 +63,9 @@ android {
             buildConfigField "String", "REWARDS_AD_ID", keystoreProperties['RewardsAdIdRelease']
             buildConfigField "String", "INTERSTITIAL_AD_ID", keystoreProperties['InterstitialAdIdRelease']
             signingConfig signingConfigs.signing
+            firebaseCrashlytics {
+                mappingFileUploadEnabled false
+            }
         }
     }
     lint {
@@ -73,29 +77,27 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-def firebaseVersion = '20.1.2'
-def butterKnifeVersion = '10.2.3'
-
 dependencies {
+    implementation 'com.android.support:multidex:1.0.3'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // Android support library
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     // Firebase
-    implementation "com.google.firebase:firebase-core:${firebaseVersion}"
-    implementation "com.google.firebase:firebase-ads:20.6.0"
-    implementation "com.google.firebase:firebase-perf:20.0.6"
+    implementation "com.google.firebase:firebase-core:21.1.1"
+    implementation "com.google.firebase:firebase-ads:21.5.0"
+    implementation "com.google.firebase:firebase-perf:20.3.1"
     //ads
-    implementation "com.google.android.gms:play-services-ads:20.6.0"
+    implementation "com.google.android.gms:play-services-ads:21.5.0"
     // ButterKnife
-    implementation "com.jakewharton:butterknife:${butterKnifeVersion}"
-    implementation "com.google.firebase:firebase-crashlytics:18.2.9"
-    implementation "com.google.firebase:firebase-analytics:${firebaseVersion}"
-    annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
+    implementation "com.jakewharton:butterknife:10.2.3"
+    implementation "com.google.firebase:firebase-crashlytics:18.3.3"
+    implementation "com.google.firebase:firebase-analytics:21.2.0"
+    annotationProcessor "com.jakewharton:butterknife-compiler:10.2.3"
     // Material date and time picker
     implementation 'com.wdullaer:materialdatetimepicker:3.4.1'
     // Rate this app

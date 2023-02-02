@@ -28,6 +28,17 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="oppo.permission.OPPO_COMPONENT_SAFE"/>
+    <uses-permission android:name="com.huawei.permission.external_app_settings.USE_COMPONENT"/>
+
+    <queries>
+        <package android:name="com.eblis.whenwasit" />
+        <package android:name="com.eblis.whenwasit.alarm"/>
+        <intent>
+            <action android:name="com.eblis.whenwasit.alarm.AlarmHelper"/>
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_scheme"
@@ -111,7 +122,18 @@
         <!-- AlarmReceiver -->
         <receiver
             android:name=".alarm.AlarmReceiver"
-            android:process=":remote" />
+            android:process=":process"
+            android:exported="true"
+            android:enabled="true"
+            android:permission="">
+            <intent-filter>
+                <action android:name=".alarm.AlarmHelper"/>
+            </intent-filter>
+            <meta-data
+                android:name=".alarm.AlarmReceiver"
+                android:value=".activities.DetailActivity"
+                />
+        </receiver>
 
         <!-- AlarmSetter -->
         <receiver android:name=".alarm.AlarmSetter"

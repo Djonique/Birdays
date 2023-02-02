@@ -38,7 +38,7 @@ public class DbQueryManager {
 
     private SQLiteDatabase database;
 
-    private static final Person emptyPerson = new Person("Unknown person", LocalDate.now());
+    private static final Person emptyPerson = new Person(0, 0L, "Unknown person", System.currentTimeMillis(), false, "no phone", "no email", "Birthday", AnniversaryType.BIRTHDAY, "no category");
 
     DbQueryManager(SQLiteDatabase database) {
         this.database = database;

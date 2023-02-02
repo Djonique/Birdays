@@ -19,19 +19,14 @@ package com.eblis.whenwasit.alarm;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
-
-import com.eblis.whenwasit.R;
-import com.eblis.whenwasit.database.DbHelper;
-import com.eblis.whenwasit.models.Person;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.util.Log;
 
 public class AlarmSetter extends BroadcastReceiver {
+    private static final String TAG = "WhenWasIt::AlarmSetter";
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.i(TAG, "Setting alarm after reboot");
         if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
             AlarmHelper alarmHelper = new AlarmHelper(context);
             alarmHelper.setRecurringAlarm();
