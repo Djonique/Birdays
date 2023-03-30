@@ -52,6 +52,7 @@ android {
             buildConfigField "String", "ADMOB_ID", keystoreProperties['AdMobId']
             buildConfigField "String", "REWARDS_AD_ID", keystoreProperties['RewardsAdIdDebug']
             buildConfigField "String", "INTERSTITIAL_AD_ID", keystoreProperties['InterstitialAdIdDebug']
+            buildConfigField "String", "INTERSTITIAL_REWARDS_ID", keystoreProperties['RewardsInterstitialAdIdDebug']
             signingConfig signingConfigs.signing
         }
         release {
@@ -62,6 +63,7 @@ android {
             buildConfigField "String", "ADMOB_ID", keystoreProperties['AdMobId']
             buildConfigField "String", "REWARDS_AD_ID", keystoreProperties['RewardsAdIdRelease']
             buildConfigField "String", "INTERSTITIAL_AD_ID", keystoreProperties['InterstitialAdIdRelease']
+            buildConfigField "String", "INTERSTITIAL_REWARDS_ID", keystoreProperties['RewardsInterstitialAdIdRelease']
             signingConfig signingConfigs.signing
             firebaseCrashlytics {
                 mappingFileUploadEnabled false

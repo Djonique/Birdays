@@ -55,9 +55,10 @@ import com.eblis.whenwasit.utils.PermissionManager;
 import com.eblis.whenwasit.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd;
+import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -402,6 +403,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             findPreference(getString(R.string.ad_banner_key)).setOnPreferenceChangeListener((preference, newValue) -> {
                 if (Boolean.FALSE.equals(newValue)) {
                     showRewardsAd();
+                    showInterstitialRewardsAd();
                 }
                 showRestartAppDialog();
                 return true;
@@ -410,6 +412,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
             findPreference(getString(R.string.ad_interstitial_key)).setOnPreferenceChangeListener((preference, newValue) -> {
                 if (Boolean.FALSE.equals(newValue)) {
                     showRewardsAd();
+                    showInterstitialRewardsAd();
                 }
                 return true;
             });
@@ -515,7 +518,30 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
                     @Override
                     public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
                         super.onAdLoaded(rewardedAd);
-                        Toast.makeText(context, "Thank you for watching this AD", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Thank you for watching this rewards AD", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            catch (Exception ex) {
+                //no-op, just ads here
+            }
+
+            return true;
+        }
+
+        private boolean showInterstitialRewardsAd() {
+            try {
+                RewardedInterstitialAd.load(this.context, BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build(), new RewardedInterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        super.onAdFailedToLoad(loadAdError);
+                        Toast.makeText(context, "Interstitial rewards AD failed to load: " + loadAdError.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedInterstitialAd rewardedInterstitialAd) {
+                            Toast.makeText(context, "Thank you for watching this interstitial rewards AD", Toast.LENGTH_SHORT).show();
+                            super.onAdLoaded(rewardedInterstitialAd);
                     }
                 });
             }
