@@ -33,15 +33,20 @@ import static com.eblis.whenwasit.database.DbHelper.DB_FAMOUS;
 class DbFamous {
 
     private static void addFamous(SQLiteDatabase db, Person person) {
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME, person.getName());
-        if (Utils.getTimeOffset() <= 0) {
-            // 43200000 is twelve hour offset
-            cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis() + 43200000);
-        } else {
-            cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis());
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put(COLUMN_NAME, person.getName());
+            if (Utils.getTimeOffset() <= 0) {
+                // 43200000 is twelve hour offset
+                cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis() + 43200000);
+            } else {
+                cv.put(COLUMN_DATE, person.getDate().toDateTimeAtCurrentTime().getMillis());
+            }
+            db.insert(DB_FAMOUS, null, cv);
         }
-        db.insert(DB_FAMOUS, null, cv);
+        catch (Exception ex) {
+            // ignore any errors when adding famous people, don't really care about them
+        }
     }
 
     static void createFamousDbPart1(Context context, SQLiteDatabase db) {
