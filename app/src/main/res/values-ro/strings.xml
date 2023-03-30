@@ -119,6 +119,7 @@
         <item>Cu 3 zile înainte</item>
         <item>Cu o săptămână înainte</item>
         <item>Cu două săptămâni înainte</item>
+        <item>Cu patru săptămâni înainte</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>În 3 zile</item>
         <item>Într-o săptămână</item>
         <item>În două săptămâni</item>
+        <item>În patru săptămâni</item>
     </string-array>
 
     <string name="notification_tone">Tonul notificării</string>

@@ -21,7 +21,7 @@
 
     <!-- MainActivity -->
     <string name="loading_contacts">Loading contacts…</string>
-    <string name="contacts_uploaded">Contacts uploaded</string>
+    <string name="contacts_uploaded">Contacts imported</string>
     <string name="loading_contacts_error">Unable to import contacts, nonstandard date format</string>
     <string name="permission_required">Permission is required for importing contacts</string>
     <string name="snackbar_allow_text">Allow</string>
@@ -119,6 +119,7 @@
         <item>3 days before</item>
         <item>1 week before</item>
         <item>2 weeks before</item>
+        <item>4 weeks before</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>In 3 days</item>
         <item>In a week</item>
         <item>In 2 weeks</item>
+        <item>In 4 weeks</item>
     </string-array>
 
     <string name="notification_tone">Notification tone</string>

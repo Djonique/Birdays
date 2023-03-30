@@ -119,6 +119,7 @@
         <item>3 dager før</item>
         <item>1 uke før</item>
         <item>2 uker før</item>
+        <item>4 uker før</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>Om 3 dager</item>
         <item>Om 1 uke</item>
         <item>Om 2 uker</item>
+        <item>Om 4 uker</item>
     </string-array>
 
     <string name="notification_tone">Varslingstone</string>

@@ -119,6 +119,7 @@
         <item>Bago ang 3 na araw</item>
         <item>Bago ang 1 linggo</item>
         <item>Bago ang 2 na linggo</item>
+        <item>Bago ang 4 na linggo</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>Sa 3 na araw</item>
         <item>Sa isang linggo</item>
         <item>Sa 2 na linggo</item>
+        <item>Sa 4 na linggo</item>
     </string-array>
 
     <string name="notification_tone">Tone ng notipikasyon</string>

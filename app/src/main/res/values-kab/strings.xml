@@ -119,6 +119,7 @@
         <item>Send 3 n wussan</item>
         <item>Send 1 n umalas</item>
         <item>Send 2 n imalasen</item>
+        <item>Send 4 n imalasen</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>Di 3 n wussan</item>
         <item>Deg umalas</item>
         <item>Di 2 n imalasen</item>
+        <item>Di 4 n imalasen</item>
     </string-array>
 
     <string name="notification_tone">Aṭenṭen n wulɣu</string>

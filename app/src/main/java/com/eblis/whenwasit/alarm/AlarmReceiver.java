@@ -87,10 +87,13 @@ public class AlarmReceiver extends BroadcastReceiver {
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
         if (manager != null) {
+            Log.i(TAG, "Added notification for " + name + " at " + when);
+
             manager.notify((int) recordId, notification);
         }
-
-        Log.i(TAG, "Added notification for " + name + " at " + when);
+        else {
+            Log.w(TAG, "Couldn't add a notification for " + name + " at " + when + " because manager is not available");
+        }
     }
 
     private String getWhen(Context context, int daysToBirthday) {
@@ -148,7 +151,11 @@ public class AlarmReceiver extends BroadcastReceiver {
                     notifications.put(daysToBirthday, new ArrayList<Person>());
                 }
                 notifications.get(daysToBirthday).add(person);
+                Log.d(TAG, String.format("Preparing notification for %s", person.getName()));
                 addNotification(context, manager, preferences, intent, person, daysToBirthday);
+            }
+            else {
+//                Log.d(TAG, String.format("Not adding notification for person %s", person.getName()));
             }
         }
         Log.d(TAG, "Finished adding notification for all contacts");
@@ -185,12 +192,14 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     private Set<Long> getAdditionalNotificationOffsets(SharedPreferences preferences) {
         final Set<String> strs =  preferences.getStringSet(Constants.ADDITIONAL_NOTIFICATION_KEY, Collections.<String>emptySet());
+//        final Set<String> strs = preferences.getStringSet(R.array.additional_notification_entry_values, Collections.<String>emptySet());
         final Set<Long> results = new HashSet<>();
         for (String str : strs) {
             try {
                 results.add(Long.parseLong(str));
             }
             catch (NumberFormatException nfex) {
+                Log.e(TAG, String.format("Error parsing additional notification offset %s", str));
                 // ignore invalid numbers
             }
         }

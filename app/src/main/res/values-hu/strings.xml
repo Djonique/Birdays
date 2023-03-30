@@ -119,6 +119,7 @@
         <item>3 nappal előtte</item>
         <item>1 héttel előtte</item>
         <item>2 héttel előtte</item>
+        <item>4 héttel előtte</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>3 napon belül</item>
         <item>Egy héten belül</item>
         <item>2 hét alatt</item>
+        <item>4 hét alatt</item>
     </string-array>
 
     <string name="notification_tone">Értesítés hangja</string>

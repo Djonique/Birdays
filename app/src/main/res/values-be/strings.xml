@@ -119,6 +119,7 @@
         <item>За 3 дня</item>
         <item>За неделю</item>
         <item>За 2 недели</item>
+        <item>За 4 недели</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>Через 3 дня</item>
         <item>Через неделю</item>
         <item>Через 2 недели</item>
+        <item>Через 4 недели</item>
     </string-array>
 
     <string name="notification_tone">Звук уведомления</string>

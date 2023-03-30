@@ -278,6 +278,12 @@ public class Utils {
             case 1:
                 resource = R.color.cardview_tomorrow;
                 break;
+            case 2:
+                resource = R.color.cardview_in_2_days;
+                break;
+            case 3:
+                resource = R.color.cardview_in_3_days;
+                break;
             default:
                 resource = R.color.cardview_background;
                 break;
@@ -294,6 +300,12 @@ public class Utils {
                 break;
             case 1:
                 resource = R.color.birthday_tomorrow;
+                break;
+            case 2:
+                resource = R.color.birthday_in_2_days;
+                break;
+            case 3:
+                resource = R.color.birthday_in_3_days;
                 break;
             default:
                 resource = R.color.birthday_near;

@@ -119,6 +119,7 @@
         <item>3 gün önce</item>
         <item>1 hafta önce</item>
         <item>2 hafta önce</item>
+        <item>4 hafta önce</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>3 gün içinde</item>
         <item>Bir hafta içinde</item>
         <item>2 hafta içinde</item>
+        <item>4 hafta içinde</item>
     </string-array>
 
     <string name="notification_tone">Bildirim sesi</string>

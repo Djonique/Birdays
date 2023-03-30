@@ -119,6 +119,7 @@
         <item>3 días antes</item>
         <item>1 semana antes</item>
         <item>2 semanas antes</item>
+        <item>4 semanas antes</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>En 3 días</item>
         <item>En una semana</item>
         <item>En 2 semanas</item>
+        <item>En 4 semanas</item>
     </string-array>
 
     <string name="notification_tone">Tono de la notificación</string>

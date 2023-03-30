@@ -119,6 +119,7 @@
         <item>3 hari sebelumnya</item>
         <item>Seminggu sebelumnya</item>
         <item>2 minggu sebelumnya</item>
+        <item>4 minggu sebelumnya</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>Dalam 3 hari</item>
         <item>Dalam seminggu</item>
         <item>Dalam 2 minggu</item>
+        <item>Dalam 4 minggu</item>
     </string-array>
 
     <string name="notification_tone">Nada notifikasi</string>

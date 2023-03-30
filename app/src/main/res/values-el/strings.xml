@@ -119,6 +119,7 @@
         <item>Τρεις ημέρες πριν</item>
         <item>Mία εβδομάδα πριν</item>
         <item>Δύο εβδομάδες πριν</item>
+        <item>4 εβδομάδες πριν</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>Σε 3 ημέρες</item>
         <item>Σε μία εβδομάδα</item>
         <item>Σε 2 εβδομάδες</item>
+        <item>Σε 4 εβδομάδες</item>
     </string-array>
 
     <string name="notification_tone">Ήχος ειδοποίησης</string>

@@ -31,7 +31,7 @@ import com.eblis.whenwasit.utils.Utils;
 import java.util.Calendar;
 
 public class AlarmHelper {
-    final private static String TAG = "WhenWasIt::AlarmHelper";
+    final private static String TAG = "WhenWasIt::AlrmHelper";
 
     final private static int BIRTHDAY_CHECKER_REQUEST_CODE = 9991;
     final private long defaultNotificationTime = 645703200000L - Utils.getTimeOffset();
@@ -67,10 +67,7 @@ public class AlarmHelper {
         final PendingIntent recurringAlarm = getExistingAlarm(intent);
         if (recurringAlarm == null) {
             int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                flags |= PendingIntent.FLAG_MUTABLE;
-            }
-            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 flags |= PendingIntent.FLAG_IMMUTABLE;
             }
             PendingIntent alarm = PendingIntent.getBroadcast(
@@ -80,6 +77,9 @@ public class AlarmHelper {
                     flags);
             setAlarmDependingOnApi(alarmManager, triggerAtMillis, alarm);
         }
+        else {
+            Log.i(TAG, "Not setting recurring alarm, it's already set");
+        }
     }
 
     public void removeRecurringAlarm() {
@@ -87,7 +87,11 @@ public class AlarmHelper {
         final Intent intent = new Intent(context, AlarmReceiver.class);
         final PendingIntent recurringAlarm = getExistingAlarm(intent);
         if (recurringAlarm != null) {
+            Log.i(TAG, "Cancelled recurring alarm");
             alarmManager.cancel(recurringAlarm);
+        }
+        else {
+            Log.i(TAG, "Not cancelling recurring alarm as it's not configured");
         }
     }
 
@@ -97,7 +101,7 @@ public class AlarmHelper {
     private void setAlarmDependingOnApi(AlarmManager alarmManager,
                                         long triggerAtMillis,
                                         PendingIntent pendingIntent) {
-        Log.i(TAG, "Setting alarm depending on API");
+        Log.i(TAG, String.format("Setting alarm to trigger at %d depending on API", triggerAtMillis));
         alarmManager.setInexactRepeating(AlarmManager.RTC, triggerAtMillis, AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
@@ -121,7 +125,7 @@ public class AlarmHelper {
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minutes);
         calendar.set(Calendar.MILLISECOND, 0);
-        Log.i(TAG, "Set up a notification for " + String.valueOf(calendar.getTimeInMillis()));
+        Log.i(TAG, "Prepared a notification for " + String.valueOf(calendar.getTimeInMillis()));
         return calendar.getTimeInMillis();
     }
 }

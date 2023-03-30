@@ -119,6 +119,7 @@
         <item>3天前</item>
         <item>1周前</item>
         <item>2周前</item>
+        <item>4周前</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>3天內</item>
         <item>1周内</item>
         <item>2周内</item>
+        <item>4周内</item>
     </string-array>
 
     <string name="notification_tone">通知铃声</string>

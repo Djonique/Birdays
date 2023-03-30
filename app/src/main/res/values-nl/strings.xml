@@ -119,6 +119,7 @@
         <item>3 dagen ervoor</item>
         <item>1 week ervoor</item>
         <item>2 weker ervoor</item>
+        <item>4 weker ervoor</item>
     </string-array>
 
     <string-array name="additional_notification_delay">
@@ -128,6 +129,7 @@
         <item>In 3 dagen</item>
         <item>In een week</item>
         <item>In 2 weken</item>
+        <item>In 4 weken</item>
     </string-array>
 
     <string name="notification_tone">Meldingstoon</string>
