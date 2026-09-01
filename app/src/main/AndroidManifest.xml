@@ -18,7 +18,6 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.eblis.whenwasit"
     android:installLocation="internalOnly">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -123,12 +122,10 @@
         <!-- AlarmReceiver -->
         <receiver
             android:name=".alarm.AlarmReceiver"
-            android:process=":process"
             android:exported="true"
-            android:enabled="true"
-            android:permission="">
+            android:enabled="true">
             <intent-filter>
-                <action android:name=".alarm.AlarmHelper"/>
+                <action android:name="com.eblis.whenwasit.alarm.AlarmHelper"/>
             </intent-filter>
             <meta-data
                 android:name=".alarm.AlarmReceiver"

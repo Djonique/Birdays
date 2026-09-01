@@ -26,6 +26,7 @@ public interface Constants {
     int READ_CONTACTS_PERMISSION_CODE = 1;
     int WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 2;
     int READ_EXTERNAL_STORAGE_PERMISSION_CODE = 3;
+    int NOTIFICATIONS_PERMISSION_CODE = 4;
 
     // Alarm
     String NAME = "NAME";
@@ -43,6 +44,7 @@ public interface Constants {
     String START_PAGE = "start_page_key";
     String DISPLAYED_AGE_KEY = "displayed_age_key";
     String AUTOMATIC_CONTACT_IMPORT_KEY = "import_contacts_automatically_key";
+    String LAST_ALARM_EXECUTION_DATE = "last_alarm_execution_date";
 
     // Widget settings keys
     String CONTACT_CATEGORY_KEY = "contact_category_key";

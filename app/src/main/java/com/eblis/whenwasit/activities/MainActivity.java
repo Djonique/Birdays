@@ -48,6 +48,7 @@ import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.utils.BirdaysApplication;
 import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.ContactsHelper;
+import com.eblis.whenwasit.utils.PermissionManager;
 import com.eblis.whenwasit.utils.Utils;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -155,6 +156,9 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         startNotificationsChecker(this, preferences);
+        if (!PermissionManager.notificationsPermissionGranted(this)) {
+            PermissionManager.requestNotificationsPermission(this);
+        }
 
         // Start page
         viewPager.setCurrentItem(Integer.parseInt(preferences.getString(Constants.START_PAGE, "1")));

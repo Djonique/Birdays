@@ -45,10 +45,13 @@ import com.eblis.whenwasit.utils.ContactsHelper;
 import com.eblis.whenwasit.utils.PermissionManager;
 import com.eblis.whenwasit.utils.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -114,54 +117,52 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-//        android.os.Debug.waitForDebugger();
-        Log.d(TAG,String.format("Running AlarmReceiver::onReceive() for %s", intent.getAction()));
-        final NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
-        final DbHelper dbHelper = new DbHelper(context);
+        Log.i(TAG, String.format("Running AlarmReceiver::onReceive() for %s", intent.getAction()));
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        Log.d(TAG, "About to perform automatic import, if enabled");
-        final boolean automaticImport = preferences.getBoolean(Constants.AUTOMATIC_CONTACT_IMPORT_KEY, true);
-        if (automaticImport) {
-            try {
-                Log.d(CHANNEL_ID, "Performing automatic import");
-                if (PermissionManager.readingContactsPermissionGranted(context)) {
-                    ContactsHelper contactsHelper = new ContactsHelper(context, context.getContentResolver());
-                    contactsHelper.updateContactsNow();
-                    Toast.makeText(context, R.string.contacts_uploaded, Toast.LENGTH_SHORT).show();
+        // Record execution date and reschedule immediately to prevent loops
+        String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Calendar.getInstance().getTime());
+        preferences.edit().putString(Constants.LAST_ALARM_EXECUTION_DATE, today).apply();
+        new AlarmHelper(context).setRecurringAlarm();
+
+        try {
+            final NotificationManager manager = ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE));
+            final DbHelper dbHelper = new DbHelper(context);
+
+            Log.d(TAG, "About to perform automatic import, if enabled");
+            final boolean automaticImport = preferences.getBoolean(Constants.AUTOMATIC_CONTACT_IMPORT_KEY, true);
+            if (automaticImport) {
+                try {
+                    Log.d(CHANNEL_ID, "Performing automatic import");
+                    if (PermissionManager.readingContactsPermissionGranted(context)) {
+                        ContactsHelper contactsHelper = new ContactsHelper(context, context.getContentResolver());
+                        contactsHelper.updateContactsNow();
+                    }
+                } catch (Exception ex) {
+                    Log.e(TAG, "Error during automatic contact import", ex);
                 }
             }
-            catch (Exception ex) {
-                Toast.makeText(context, R.string.loading_contacts_error + "\n" + ex.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }
 
-        Log.d(TAG, "Creating notification channel");
-        createNotificationChannel(context, manager);
+            Log.d(TAG, "Creating notification channel");
+            createNotificationChannel(context, manager);
 
-        final Set<Long> additionalNotificationOffsets = getAdditionalNotificationOffsets(preferences);
-        final List<Person> persons = dbHelper.query().getPersons();
-        final SortedMap<Integer, List<Person>> notifications = new TreeMap<>();
-        Collections.sort(persons, Collections.<Person>reverseOrder());
-        Log.d(TAG, "Checking all person birthdays for notifications to show");
-        for (Person person : persons) {
-            final Integer daysToBirthday = shouldNotify(person, additionalNotificationOffsets);
-            if (daysToBirthday != null) {
-                if (!notifications.containsKey(daysToBirthday)) {
-                    notifications.put(daysToBirthday, new ArrayList<Person>());
+            final Set<Long> additionalNotificationOffsets = getAdditionalNotificationOffsets(preferences);
+            final List<Person> persons = dbHelper.query().getPersons();
+            Collections.sort(persons, Collections.<Person>reverseOrder());
+
+            Log.d(TAG, "Checking all person birthdays for notifications to show");
+            for (Person person : persons) {
+                final Integer daysToBirthday = shouldNotify(person, additionalNotificationOffsets);
+                if (daysToBirthday != null) {
+                    Log.i(TAG, String.format("Preparing notification for %s", person.getName()));
+                    addNotification(context, manager, preferences, intent, person, daysToBirthday);
                 }
-                notifications.get(daysToBirthday).add(person);
-                Log.d(TAG, String.format("Preparing notification for %s", person.getName()));
-                addNotification(context, manager, preferences, intent, person, daysToBirthday);
             }
-            else {
-//                Log.d(TAG, String.format("Not adding notification for person %s", person.getName()));
-            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error processing notifications", e);
         }
-        Log.d(TAG, "Finished adding notification for all contacts");
-        //addNotifications(context, manager, preferences, intent, notifications);
 
-        Log.d(TAG,String.format("Finished running AlarmReceiver::onReceive() for %s", intent.getAction()));
+        Log.i(TAG, String.format("Finished running AlarmReceiver::onReceive() for %s", intent.getAction()));
     }
 
     private Integer shouldNotify(Person person, Set<Long> additionalNotificationOffsets) {

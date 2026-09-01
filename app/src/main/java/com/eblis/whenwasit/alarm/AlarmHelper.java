@@ -28,7 +28,9 @@ import android.util.Log;
 import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class AlarmHelper {
     final private static String TAG = "WhenWasIt::AlrmHelper";
@@ -60,35 +62,31 @@ public class AlarmHelper {
     public void setRecurringAlarm() {
         Log.i(TAG, "About to set recurring alarm");
         final Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.setAction(AlarmHelper.class.getName());
+        intent.setAction("com.eblis.whenwasit.alarm.AlarmHelper");
 
         final long triggerAtMillis = setupAlarmTime();
 
-        final PendingIntent recurringAlarm = getExistingAlarm(intent);
-        if (recurringAlarm == null) {
-            int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                flags |= PendingIntent.FLAG_IMMUTABLE;
-            }
-            PendingIntent alarm = PendingIntent.getBroadcast(
-                    context.getApplicationContext(),
-                    BIRTHDAY_CHECKER_REQUEST_CODE,
-                    intent,
-                    flags);
-            setAlarmDependingOnApi(alarmManager, triggerAtMillis, alarm);
+        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
         }
-        else {
-            Log.i(TAG, "Not setting recurring alarm, it's already set");
-        }
+        PendingIntent alarm = PendingIntent.getBroadcast(
+                context.getApplicationContext(),
+                BIRTHDAY_CHECKER_REQUEST_CODE,
+                intent,
+                flags);
+        setAlarmDependingOnApi(alarmManager, triggerAtMillis, alarm);
     }
 
     public void removeRecurringAlarm() {
         Log.i(TAG, "About to remove recurring alarm");
         final Intent intent = new Intent(context, AlarmReceiver.class);
+        intent.setAction("com.eblis.whenwasit.alarm.AlarmHelper");
         final PendingIntent recurringAlarm = getExistingAlarm(intent);
         if (recurringAlarm != null) {
             Log.i(TAG, "Cancelled recurring alarm");
             alarmManager.cancel(recurringAlarm);
+            recurringAlarm.cancel();
         }
         else {
             Log.i(TAG, "Not cancelling recurring alarm as it's not configured");
@@ -102,7 +100,11 @@ public class AlarmHelper {
                                         long triggerAtMillis,
                                         PendingIntent pendingIntent) {
         Log.i(TAG, String.format("Setting alarm to trigger at %d depending on API", triggerAtMillis));
-        alarmManager.setInexactRepeating(AlarmManager.RTC, triggerAtMillis, AlarmManager.INTERVAL_DAY, pendingIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        } else {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        }
     }
 
     /**
@@ -117,15 +119,23 @@ public class AlarmHelper {
         final int hour = notificationTimeCalendar.get(Calendar.HOUR_OF_DAY);
         final int minutes = notificationTimeCalendar.get(Calendar.MINUTE);
 
-        final int year = Calendar.getInstance().get(Calendar.YEAR);
-
         final Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(now);
-        calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minutes);
+        calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
-        Log.i(TAG, "Prepared a notification for " + String.valueOf(calendar.getTimeInMillis()));
+
+        if (calendar.getTimeInMillis() <= now) {
+            String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Calendar.getInstance().getTime());
+            String lastRun = preferences.getString(Constants.LAST_ALARM_EXECUTION_DATE, "");
+            if (today.equals(lastRun)) {
+                // Already ran today, schedule for tomorrow
+                calendar.add(Calendar.DAY_OF_YEAR, 1);
+            }
+            // Otherwise, keep it in the past so it triggers immediately
+        }
+
+        Log.i(TAG, "Prepared a notification for " + calendar.getTimeInMillis());
         return calendar.getTimeInMillis();
     }
 }

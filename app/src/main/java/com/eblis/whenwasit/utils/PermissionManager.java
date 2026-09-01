@@ -20,6 +20,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -63,5 +65,26 @@ public class PermissionManager {
     public static void requestReadingSdPermission(Activity activity) {
         ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 Constants.READ_EXTERNAL_STORAGE_PERMISSION_CODE);
+    }
+
+    /**
+     * Checks if notification permission is granted (for API 33+)
+     */
+    public static boolean notificationsPermissionGranted(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+                    == PackageManager.PERMISSION_GRANTED;
+        }
+        return true;
+    }
+
+    /**
+     * Requests notification permission (for API 33+)
+     */
+    public static void requestNotificationsPermission(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                    Constants.NOTIFICATIONS_PERMISSION_CODE);
+        }
     }
 }
