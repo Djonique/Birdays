@@ -17,3 +17,7 @@
 -keepattributes SourceFile,LineNumberTable
 -keep class com.crashlytics.** { *; }
 -dontwarn com.crashlytics.**
+-dontwarn com.google.android.gms.**
+-dontwarn com.google.ads.**
+-dontwarn org.joda.time.**
+-keep public class * extends android.support.*.preference.Preference
