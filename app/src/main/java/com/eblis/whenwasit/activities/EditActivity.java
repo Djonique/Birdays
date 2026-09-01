@@ -18,28 +18,22 @@ package com.eblis.whenwasit.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import com.google.android.material.textfield.TextInputLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatCheckBox;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatCheckBox;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.database.DbHelper;
+import com.eblis.whenwasit.databinding.ActivityEditBinding;
 import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.DatePickerManager;
@@ -51,37 +45,11 @@ import org.joda.time.LocalDate;
 import java.util.Calendar;
 import java.util.Locale;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
-import butterknife.OnClick;
-import butterknife.OnTextChanged;
-
 public class EditActivity extends AppCompatActivity implements
         android.app.DatePickerDialog.OnDateSetListener,
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
-    @BindView(R.id.container_edit)
-    CoordinatorLayout container;
-    @BindView(R.id.til_edit_name)
-    TextInputLayout tilEditName;
-    @BindView(R.id.edittext_edit_name)
-    EditText etName;
-    @BindView(R.id.til_edit_date)
-    TextInputLayout tilEditDate;
-    @BindView(R.id.edittext_edit_date)
-    EditText etDate;
-    @BindView(R.id.checkbox_edit)
-    AppCompatCheckBox checkBox;
-    @BindView(R.id.edittext_edit_phone)
-    EditText etPhoneNumber;
-    @BindView(R.id.edittext_edit_email)
-    EditText etEmail;
-    @BindView(R.id.edittext_edit_anniversaryType)
-    EditText etAnniversaryLabel;
-    @BindView(R.id.edittext_edit_contactCategory)
-    AutoCompleteTextView actvContactCategoryLabel;
-
+    private ActivityEditBinding binding;
     private DbHelper dbHelper;
     private Person person;
     private Calendar calendar;
@@ -91,10 +59,10 @@ public class EditActivity extends AppCompatActivity implements
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
-        ButterKnife.bind(this);
+        binding = ActivityEditBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        ViewCompat.setOnApplyWindowInsetsListener(container, (v, windowInsets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.containerEdit, (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
             return windowInsets;
@@ -109,9 +77,31 @@ public class EditActivity extends AppCompatActivity implements
             calendar = person.getDate().toDateTimeAtCurrentTime().toCalendar(Locale.getDefault());
         }
         final ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dbHelper.getContactCategories());
-        actvContactCategoryLabel.setAdapter(adapter);
+        binding.edittextEditContactCategory.setAdapter(adapter);
 
         setupUI();
+
+        binding.edittextEditDate.setOnClickListener(v -> pickDate());
+        binding.edittextEditName.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                validateName();
+            }
+        });
+        binding.edittextEditDate.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                validateDate();
+            }
+        });
+        binding.checkboxEdit.setOnCheckedChangeListener((buttonView, isChecked) -> checkBoxListener());
+    }
+
+    private abstract static class SimpleTextWatcher implements android.text.TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        @Override
+        public void afterTextChanged(android.text.Editable s) {}
     }
 
     @Override
@@ -148,33 +138,33 @@ public class EditActivity extends AppCompatActivity implements
      * Set up UI depending on person's data
      */
     private void setupUI() {
-        etName.setText(person.getName());
-        etName.setSelection(etName.getText().length());
+        binding.edittextEditName.setText(person.getName());
+        binding.edittextEditName.setSelection(binding.edittextEditName.getText().length());
 
         if (person.isYearUnknown()) {
-            etDate.setText(Utils.getDateWithoutYear(person.getDate()));
+            binding.edittextEditDate.setText(Utils.getDateWithoutYear(person.getDate()));
         } else {
-            etDate.setText(Utils.getDate(person.getDate()));
+            binding.edittextEditDate.setText(Utils.getDate(person.getDate()));
         }
 
-        checkBox.setChecked(person.isYearUnknown());
-        etPhoneNumber.setText(person.getPhoneNumber());
-        etEmail.setText(person.getEmail());
-        etAnniversaryLabel.setText(person.getAnniversaryLabel());
-        actvContactCategoryLabel.setText(person.getContactCategory());
+        binding.checkboxEdit.setChecked(person.isYearUnknown());
+        binding.edittextEditPhone.setText(person.getPhoneNumber());
+        binding.edittextEditEmail.setText(person.getEmail());
+        binding.edittextEditAnniversaryType.setText(person.getAnniversaryLabel());
+        binding.edittextEditContactCategory.setText(person.getContactCategory());
     }
 
     /**
      * Updates person's data after editing
      */
     private void updatePerson() {
-        person.setName(updateText(etName));
+        person.setName(updateText(binding.edittextEditName));
         person.setDate(new LocalDate(calendar));
-        person.setYearUnknown(checkBox.isChecked());
-        person.setPhoneNumber(updateText(etPhoneNumber));
-        person.setEmail(updateText(etEmail));
-        person.setAnniversaryLabel(updateText(etAnniversaryLabel));
-        person.setContactCategory(updateText(actvContactCategoryLabel));
+        person.setYearUnknown(binding.checkboxEdit.isChecked());
+        person.setPhoneNumber(updateText(binding.edittextEditPhone));
+        person.setEmail(updateText(binding.edittextEditEmail));
+        person.setAnniversaryLabel(updateText(binding.edittextEditAnniversaryType));
+        person.setContactCategory(updateText(binding.edittextEditContactCategory));
         dbHelper.updateRecord(person);
     }
 
@@ -189,7 +179,6 @@ public class EditActivity extends AppCompatActivity implements
         return result;
     }
 
-    @OnClick(R.id.edittext_edit_date)
     void pickDate() {
         new DatePickerManager(this, calendar).showDialog(this, this);
     }
@@ -210,62 +199,59 @@ public class EditActivity extends AppCompatActivity implements
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         LocalDate date = new LocalDate(calendar);
         // Checks state of CheckBox whenever date is picked
-        if (!checkBox.isChecked()) {
-            etDate.setText(Utils.getDate(date));
+        if (!binding.checkboxEdit.isChecked()) {
+            binding.edittextEditDate.setText(Utils.getDate(date));
         } else {
-            etDate.setText(Utils.getDateWithoutYear(date));
+            binding.edittextEditDate.setText(Utils.getDateWithoutYear(date));
         }
     }
 
-    @OnTextChanged(value = R.id.edittext_edit_name, callback = OnTextChanged.Callback.TEXT_CHANGED)
     void validateName() {
-        if (etName.length() == 0) {
-            tilEditName.setError(getString(R.string.error_hint));
+        if (binding.edittextEditName.length() == 0) {
+            binding.tilEditName.setError(getString(R.string.error_hint));
             hideOkButton = true;
         } else {
             if (fieldsValid()) {
                 hideOkButton = false;
             }
-            tilEditName.setErrorEnabled(false);
+            binding.tilEditName.setErrorEnabled(false);
         }
         invalidateOptionsMenu();
     }
 
-    @OnTextChanged(value = R.id.edittext_edit_date, callback = OnTextChanged.Callback.TEXT_CHANGED)
     void validateDate() {
         if (fieldsValid()) {
-            tilEditDate.setErrorEnabled(false);
-            if (etName.length() != 0) {
+            binding.tilEditDate.setErrorEnabled(false);
+            if (binding.edittextEditName.length() != 0) {
                 hideOkButton = false;
             }
         } else {
-            tilEditDate.setError(getString(R.string.wrong_date));
+            binding.tilEditDate.setError(getString(R.string.wrong_date));
             hideOkButton = true;
         }
         invalidateOptionsMenu();
     }
 
-    @OnCheckedChanged(R.id.checkbox_edit)
     void checkBoxListener() {
-        if (checkBox.isChecked()) {
-            etDate.setText(Utils.getDateWithoutYear(person.getDate()));
+        if (binding.checkboxEdit.isChecked()) {
+            binding.edittextEditDate.setText(Utils.getDateWithoutYear(person.getDate()));
         } else {
-            etDate.setText(Utils.getDate(person.getDate()));
+            binding.edittextEditDate.setText(Utils.getDate(person.getDate()));
         }
         if (fieldsValid()) {
-            tilEditDate.setErrorEnabled(false);
-            if (etName.length() != 0) {
+            binding.tilEditDate.setErrorEnabled(false);
+            if (binding.edittextEditName.length() != 0) {
                 hideOkButton = false;
             }
         } else {
-            tilEditDate.setError(getString(R.string.wrong_date));
+            binding.tilEditDate.setError(getString(R.string.wrong_date));
             hideOkButton = true;
         }
         invalidateOptionsMenu();
     }
 
     private boolean fieldsValid() {
-        return (!Utils.isEmptyDate(etDate) && Utils.isRightDate(calendar))
-                || (!Utils.isEmptyDate(etDate) && checkBox.isChecked());
+        return (!Utils.isEmptyDate(binding.edittextEditDate) && Utils.isRightDate(calendar))
+                || (!Utils.isEmptyDate(binding.edittextEditDate) && binding.checkboxEdit.isChecked());
     }
 }

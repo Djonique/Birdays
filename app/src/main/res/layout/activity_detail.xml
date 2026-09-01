@@ -41,7 +41,9 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <include layout="@layout/toolbar_detail_image" />
+                <include
+                    android:id="@+id/imageview_detail_picture"
+                    layout="@layout/toolbar_detail_image" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar_detail"

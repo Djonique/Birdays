@@ -34,8 +34,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -47,6 +45,7 @@ import com.eblis.whenwasit.ad.Ad;
 import com.eblis.whenwasit.adapters.PagerAdapter;
 import com.eblis.whenwasit.alarm.AlarmHelper;
 import com.eblis.whenwasit.database.DbHelper;
+import com.eblis.whenwasit.databinding.ActivityMainBinding;
 import com.eblis.whenwasit.dialogs.NewPersonDialogFragment;
 import com.eblis.whenwasit.fragments.AllFragment;
 import com.eblis.whenwasit.models.Person;
@@ -55,18 +54,9 @@ import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.ContactsHelper;
 import com.eblis.whenwasit.utils.PermissionManager;
 import com.eblis.whenwasit.utils.Utils;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnPageChange;
 
 public class MainActivity extends AppCompatActivity implements
         NewPersonDialogFragment.AddingPersonListener,
@@ -78,22 +68,7 @@ public class MainActivity extends AppCompatActivity implements
 
     public DbHelper dbHelper;
 
-    @BindView(R.id.container_main)
-    CoordinatorLayout container;
-    @BindView(R.id.appbar_main)
-    AppBarLayout appBarLayout;
-    @BindView(R.id.toolbar_main)
-    Toolbar toolbar;
-    @BindView(R.id.searchview_main)
-    SearchView searchView;
-    @BindView(R.id.tablayout_main)
-    TabLayout tabLayout;
-    @BindView(R.id.viewpager_main)
-    ViewPager viewPager;
-    @BindView(R.id.fab_main)
-    FloatingActionButton fab;
-    @BindView(R.id.banner_main)
-    AdView adView;
+    private ActivityMainBinding binding;
 
     private SharedPreferences preferences;
     private PagerAdapter pagerAdapter;
@@ -121,22 +96,22 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        ViewCompat.setOnApplyWindowInsetsListener(appBarLayout, (v, windowInsets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.appbarMain, (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(v.getPaddingLeft(), insets.top, v.getPaddingRight(), v.getPaddingBottom());
             return windowInsets;
         });
 
-        ViewCompat.setOnApplyWindowInsetsListener(adView, (v, windowInsets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.bannerMain, (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), insets.bottom);
             return windowInsets;
         });
 
-        ViewCompat.setOnApplyWindowInsetsListener(fab, (v, windowInsets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.fabMain, (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
             ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
             mlp.bottomMargin = (int) (getResources().getDimension(R.dimen.fab_margin_default) + insets.bottom);
@@ -153,17 +128,17 @@ public class MainActivity extends AppCompatActivity implements
         dbHelper = new DbHelper(this);
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
 
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbarMain);
 
-        viewPager.setAdapter(pagerAdapter);
-        viewPager.setOffscreenPageLimit(2);
-        tabLayout.setupWithViewPager(viewPager);
+        binding.viewpagerMain.setAdapter(pagerAdapter);
+        binding.viewpagerMain.setOffscreenPageLimit(2);
+        binding.tablayoutMain.setupWithViewPager(binding.viewpagerMain);
 
         if (!preferences.getBoolean(Constants.CONTACTS_UPLOADED, false)) {
             new ContactsHelper(this, getContentResolver()).loadContactsWithProgress(preferences);
         }
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        binding.searchviewMain.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -179,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements
         MobileAds.initialize(this, initializationStatus -> {});
 
         if (preferences.getBoolean(getString(R.string.ad_banner_key), true)) {
-            Ad.showBannerAd(this, container, adView, fab);
+            Ad.showBannerAd(this, binding.containerMain, binding.bannerMain, binding.fabMain);
         }
 
         startNotificationsChecker(this, preferences);
@@ -188,7 +163,16 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         // Start page
-        viewPager.setCurrentItem(Integer.parseInt(preferences.getString(Constants.START_PAGE, "1")));
+        binding.viewpagerMain.setCurrentItem(Integer.parseInt(preferences.getString(Constants.START_PAGE, "1")));
+
+        binding.viewpagerMain.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                MainActivity.this.onPageSelected(position);
+            }
+        });
+
+        binding.fabMain.setOnClickListener(v -> showDialog());
 
 //        enableBattery();
     }
@@ -263,19 +247,17 @@ public class MainActivity extends AppCompatActivity implements
         Utils.notifyWidget(this);
     }
 
-    @OnPageChange(R.id.viewpager_main)
     void onPageSelected(int position) {
-        appBarLayout.setExpanded(true, true);
+        binding.appbarMain.setExpanded(true, true);
         if (position == PagerAdapter.FAMOUS_FRAGMENT_POSITION) {
-            fab.hide();
-            searchView.setVisibility(View.GONE);
+            binding.fabMain.hide();
+            binding.searchviewMain.setVisibility(View.GONE);
         } else {
-            fab.show();
-            searchView.setVisibility(View.VISIBLE);
+            binding.fabMain.show();
+            binding.searchviewMain.setVisibility(View.VISIBLE);
         }
     }
 
-    @OnClick(R.id.fab_main)
     void showDialog() {
         DialogFragment newPersonDialogFragment = new NewPersonDialogFragment();
         newPersonDialogFragment.show(getSupportFragmentManager(), NEW_PERSON_DIALOG_TAG);
@@ -292,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements
                     new ContactsHelper(this, getContentResolver()).loadContactsWithProgress(preferences);
                 }
             } else {
-                Snackbar.make(container, R.string.permission_required,
+                Snackbar.make(binding.containerMain, R.string.permission_required,
                         Snackbar.LENGTH_LONG)
                         .setAction(R.string.snackbar_allow_text, new View.OnClickListener() {
                             @Override
@@ -315,6 +297,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onContactsUploaded() {
-        if (viewPager.getAdapter() != null) viewPager.getAdapter().notifyDataSetChanged();
+        if (binding.viewpagerMain.getAdapter() != null) binding.viewpagerMain.getAdapter().notifyDataSetChanged();
     }
 }

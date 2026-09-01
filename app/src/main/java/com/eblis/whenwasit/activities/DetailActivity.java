@@ -28,6 +28,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -35,35 +40,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.appbar.AppBarLayout;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.adapters.FamousFragmentAdapter;
 import com.eblis.whenwasit.database.DbHelper;
+import com.eblis.whenwasit.databinding.ActivityDetailBinding;
 import com.eblis.whenwasit.models.AnniversaryType;
 import com.eblis.whenwasit.models.DisplayedAge;
 import com.eblis.whenwasit.models.Person;
 import com.eblis.whenwasit.utils.CommunicationHelper;
 import com.eblis.whenwasit.utils.Constants;
 import com.eblis.whenwasit.utils.Utils;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
@@ -72,61 +63,13 @@ import com.kobakei.ratethisapp.RateThisApp;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class DetailActivity extends AppCompatActivity {
 
     private static final int INSTALL_DAYS = 7;
     private static final int LAUNCH_TIMES = 5;
     private static final int EDIT_ACTIVITY = 4;
 
-    @BindView(R.id.container_detail)
-    CoordinatorLayout container;
-    @BindView(R.id.appbar_detail)
-    AppBarLayout appBarLayout;
-    @BindView(R.id.toolbar_detail)
-    Toolbar toolbar;
-    @BindView(R.id.imageview_detail_picture)
-    ImageView ivSeasonPicture;
-    @BindView(R.id.textview_detail_age)
-    TextView tvAge;
-    @BindView(R.id.textview_detail_date)
-    TextView tvDate;
-    @BindView(R.id.textview_detail_left)
-    TextView tvDaysLeft;
-    @BindView(R.id.relativelayout_detail_since)
-    RelativeLayout rlDaysSinceBirthday;
-    @BindView(R.id.textview_detail_since)
-    TextView tvDaysSinceBirthday;
-    @BindView(R.id.textview_detail_label)
-    TextView tvAnniversaryLabel;
-    @BindView(R.id.imageview_detail_zodiac)
-    ImageView ivZodiacSign;
-    @BindView(R.id.textview_detail_zodiac)
-    TextView tvZodiacSign;
-    @BindView(R.id.textview_detail_zodiac_label)
-    TextView tvZodiacSignLabel;
-    @BindView(R.id.textview_detail_contact_category)
-    TextView tvContactCategory;
-    @BindView(R.id.textview_detail_contact_category_label)
-    TextView getTvContactCategoryLabel;
-    @BindView(R.id.cardview_detail_info)
-    CardView cardViewInfo;
-    @BindView(R.id.relativelayout_detail_phone)
-    RelativeLayout rlPhoneNumber;
-    @BindView(R.id.textview_detail_phone)
-    TextView tvPhoneNumber;
-    @BindView(R.id.relativelayout_detail_email)
-    RelativeLayout rlEmail;
-    @BindView(R.id.textview_detail_email)
-    TextView tvEmail;
-    @BindView(R.id.recyclerview_detail)
-    RecyclerView recyclerView;
-    @BindView(R.id.imagebutton_detail_whatsapp)
-    ImageButton ibWhatsapp;
-
+    private ActivityDetailBinding binding;
     private DbHelper dbHelper;
     private Person person;
     private long recordId;
@@ -136,10 +79,10 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-        ButterKnife.bind(this);
+        binding = ActivityDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        ViewCompat.setOnApplyWindowInsetsListener(appBarLayout, (v, windowInsets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.appbarDetail, (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(v.getPaddingLeft(), insets.top, v.getPaddingRight(), v.getPaddingBottom());
             return windowInsets;
@@ -178,9 +121,9 @@ public class DetailActivity extends AppCompatActivity {
         person = dbHelper.query().getPerson(recordId);
 
         if (person != null) {
-            toolbar.setTitle(person.getName());
+            binding.toolbarDetail.setTitle(person.getName());
         }
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbarDetail);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -188,7 +131,16 @@ public class DetailActivity extends AppCompatActivity {
 
         loadBornThisDay();
 
-        recyclerView.setFocusable(false);
+        binding.recyclerviewDetail.setFocusable(false);
+
+        binding.fabDetail.setOnClickListener(v -> startEditActivity());
+        binding.imagebuttonDetailPhone.setOnClickListener(v -> makeCall());
+        binding.imagebuttonDetailChat.setOnClickListener(v -> sendMessage());
+        binding.imagebuttonDetailWhatsapp.setOnClickListener(v -> sendWhatsapp());
+        binding.imagebuttonDetailGenericMessage.setOnClickListener(v -> sendMessageWithSystemPicker());
+        binding.textviewDetailGenericMessage.setOnClickListener(v -> sendMessageWithSystemPicker2());
+        binding.imagebuttonDetailEmail.setOnClickListener(v -> sendEmail());
+        binding.textviewDetailEmail.setOnClickListener(v -> sendEmail2());
 
         rateThisAppInit(this);
     }
@@ -242,7 +194,7 @@ public class DetailActivity extends AppCompatActivity {
             setSeasonImage();
         }
 
-        ivSeasonPicture.setClickable(true);
+        binding.imageviewDetailPicture.getRoot().setClickable(true);
 
         View.OnClickListener openDetails = new View.OnClickListener() {
             @Override
@@ -254,55 +206,55 @@ public class DetailActivity extends AppCompatActivity {
                 activity.startActivity(intent);
             }
         };
-        ivSeasonPicture.setOnClickListener(openDetails);
+        binding.imageviewDetailPicture.getRoot().setOnClickListener(openDetails);
 
-        tvDaysLeft.setText(Utils.daysLeftPretty(this, person));
-        tvAnniversaryLabel.setText(person.getAnniversaryLabel());
-        tvContactCategory.setText(person.getContactCategory());
+        binding.textviewDetailLeft.setText(Utils.daysLeftPretty(this, person));
+        binding.textviewDetailLabel.setText(person.getAnniversaryLabel());
+        binding.textviewDetailContactCategory.setText(person.getContactCategory());
 
         if (person.isYearUnknown()) {
-            tvDate.setText(Utils.getDateWithoutYear(person.getDate()));
-            tvAge.setVisibility(View.GONE);
-            rlDaysSinceBirthday.setVisibility(View.GONE);
+            binding.textviewDetailDate.setText(Utils.getDateWithoutYear(person.getDate()));
+            binding.textviewDetailAge.setVisibility(View.GONE);
+            binding.relativelayoutDetailSince.setVisibility(View.GONE);
         } else {
-            tvDate.setText(Utils.getDate(person.getDate()));
-            tvDate.setOnClickListener(openDetails);
-            tvAge.setText(String.valueOf(Utils.getAge(person.getDate(), displayedAge)));
-            tvDaysSinceBirthday.setText(Utils.daysSinceBirthday(person.getDate()));
+            binding.textviewDetailDate.setText(Utils.getDate(person.getDate()));
+            binding.textviewDetailDate.setOnClickListener(openDetails);
+            binding.textviewDetailAge.setText(String.valueOf(Utils.getAge(person.getDate(), displayedAge)));
+            binding.textviewDetailSince.setText(Utils.daysSinceBirthday(person.getDate()));
         }
 
         if (person.getAnniversaryType() == AnniversaryType.BIRTHDAY) {
             int zodiacId = Utils.getZodiacId(person.getDate());
-            tvZodiacSign.setText(getString(zodiacId));
-            ivZodiacSign.setImageResource(Utils.getZodiacImage(zodiacId));
+            binding.textviewDetailZodiac.setText(getString(zodiacId));
+            binding.imageviewDetailZodiac.setImageResource(Utils.getZodiacImage(zodiacId));
         }
         else {
-            tvZodiacSign.setVisibility(View.GONE);
-            tvZodiacSignLabel.setVisibility(View.GONE);
-            ivZodiacSign.setVisibility(View.GONE);
+            binding.textviewDetailZodiac.setVisibility(View.GONE);
+            binding.textviewDetailZodiacLabel.setVisibility(View.GONE);
+            binding.imageviewDetailZodiac.setVisibility(View.GONE);
         }
 
         final String phoneNumber = person.getPhoneNumber();
         final String email = person.getEmail();
         if (isEmpty(phoneNumber) && isEmpty(email))
-            cardViewInfo.setVisibility(View.GONE);
+            binding.cardviewDetailInfo.setVisibility(View.GONE);
 
         if (isEmpty(phoneNumber)) {
-            rlPhoneNumber.setVisibility(View.GONE);
+            binding.relativelayoutDetailPhone.setVisibility(View.GONE);
         } else {
-            tvPhoneNumber.setText(String.valueOf(person.getPhoneNumber()));
+            binding.textviewDetailPhone.setText(String.valueOf(person.getPhoneNumber()));
             if (!CommunicationHelper.hasWhatsapp(this, person)) {
-                ibWhatsapp.setEnabled(false);
+                binding.imagebuttonDetailWhatsapp.setEnabled(false);
                 ColorMatrix matrix = new ColorMatrix();
                 matrix.setSaturation(0);
-                ibWhatsapp.setColorFilter(new ColorMatrixColorFilter(matrix));
+                binding.imagebuttonDetailWhatsapp.setColorFilter(new ColorMatrixColorFilter(matrix));
             }
         }
 
         if (isEmpty(email)) {
-            rlEmail.setVisibility(View.GONE);
+            binding.relativelayoutDetailEmail.setVisibility(View.GONE);
         } else {
-            tvEmail.setText(person.getEmail());
+            binding.textviewDetailEmail.setText(person.getEmail());
         }
     }
 
@@ -315,10 +267,10 @@ public class DetailActivity extends AppCompatActivity {
      */
     private void loadBornThisDay() {
         LinearLayoutManager manager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(manager);
+        binding.recyclerviewDetail.setLayoutManager(manager);
 
         FamousFragmentAdapter adapter = new FamousFragmentAdapter();
-        recyclerView.setAdapter(adapter);
+        binding.recyclerviewDetail.setAdapter(adapter);
 
         List<Person> famousPersons = dbHelper.query().getFamousBornThisDay(person.getDate());
         for (int i = 0; i < famousPersons.size(); i++) {
@@ -326,7 +278,6 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.fab_detail)
     void startEditActivity() {
         Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra(Constants.RECORD_ID, recordId);
@@ -337,7 +288,7 @@ public class DetailActivity extends AppCompatActivity {
     private boolean setContactImage() {
         final Bitmap picture = Utils.getContactPicture(this, person);
         if (picture != null) {
-            ivSeasonPicture.setImageBitmap(picture);
+            ((ImageView) binding.imageviewDetailPicture.getRoot()).setImageBitmap(picture);
         }
 
         return picture != null;
@@ -353,22 +304,22 @@ public class DetailActivity extends AppCompatActivity {
             case 12:
             case 1:
             case 2:
-                ivSeasonPicture.setImageResource(R.drawable.img_winter);
+                ((ImageView) binding.imageviewDetailPicture.getRoot()).setImageResource(R.drawable.img_winter);
                 break;
             case 3:
             case 4:
             case 5:
-                ivSeasonPicture.setImageResource(R.drawable.img_spring);
+                ((ImageView) binding.imageviewDetailPicture.getRoot()).setImageResource(R.drawable.img_spring);
                 break;
             case 6:
             case 7:
             case 8:
-                ivSeasonPicture.setImageResource(R.drawable.img_summer);
+                ((ImageView) binding.imageviewDetailPicture.getRoot()).setImageResource(R.drawable.img_summer);
                 break;
             case 9:
             case 10:
             case 11:
-                ivSeasonPicture.setImageResource(R.drawable.img_autumn);
+                ((ImageView) binding.imageviewDetailPicture.getRoot()).setImageResource(R.drawable.img_autumn);
                 break;
         }
     }
@@ -405,37 +356,30 @@ public class DetailActivity extends AppCompatActivity {
         RateThisApp.showRateDialogIfNeeded(context);
     }
 
-    @OnClick(R.id.imagebutton_detail_phone)
     void makeCall() {
         CommunicationHelper.call(this, person.getPhoneNumber());
     }
 
-    @OnClick(R.id.imagebutton_detail_chat)
     void sendMessage() {
         CommunicationHelper.sms(this, person.getPhoneNumber());
     }
 
-    @OnClick(R.id.imagebutton_detail_whatsapp)
     void sendWhatsapp() {
         CommunicationHelper.whatsapp(this, person);
     }
 
-    @OnClick(R.id.imagebutton_detail_generic_message)
     void sendMessageWithSystemPicker() {
         CommunicationHelper.genericContact(this, person);
     }
 
-    @OnClick(R.id.textview_detail_generic_message)
     void sendMessageWithSystemPicker2() {
         sendMessageWithSystemPicker();
     }
 
-    @OnClick(R.id.imagebutton_detail_email)
     void sendEmail() {
         CommunicationHelper.sendEmail(this, person.getEmail());
     }
 
-    @OnClick(R.id.textview_detail_email)
     void sendEmail2() {
         sendEmail();
     }

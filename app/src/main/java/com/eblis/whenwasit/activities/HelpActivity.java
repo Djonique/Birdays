@@ -28,26 +28,22 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.core.widget.NestedScrollView;
 
 import com.eblis.whenwasit.R;
+import com.eblis.whenwasit.databinding.ActivityHelpBinding;
 import com.eblis.whenwasit.utils.Constants;
 import com.google.android.material.snackbar.Snackbar;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class HelpActivity extends AppCompatActivity {
 
@@ -57,14 +53,7 @@ public class HelpActivity extends AppCompatActivity {
     private static final String ALERT_SHOWED = "ALERT_SHOWED";
     private static final String ACTIVITY_NOT_FOUND_EXCEPTION = "ActivityNotFoundException";
 
-    @BindView(R.id.container_help)
-    NestedScrollView container;
-    @BindView(R.id.button_help_whitelist)
-    AppCompatButton btnOpenWhitelist;
-    @BindView(R.id.button_help_settings)
-    AppCompatButton btnOpenSettings;
-    @BindView(R.id.button_help_email)
-    AppCompatButton btnSendEmail;
+    private ActivityHelpBinding binding;
 
     private SharedPreferences preferences;
 
@@ -72,18 +61,22 @@ public class HelpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
-        ButterKnife.bind(this);
+        binding = ActivityHelpBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        ViewCompat.setOnApplyWindowInsetsListener(container, (v, windowInsets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.containerHelp, (v, windowInsets) -> {
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
             return windowInsets;
         });
 
-        btnOpenWhitelist.setText(R.string.help_whitelist);
-        btnOpenSettings.setText(R.string.help_settings);
-        btnSendEmail.setText(R.string.send_email);
+        ((Button) binding.buttonHelpWhitelist.getRoot()).setText(R.string.help_whitelist);
+        ((Button) binding.buttonHelpSettings.getRoot()).setText(R.string.help_settings);
+        ((Button) binding.buttonHelpEmail.getRoot()).setText(R.string.send_email);
+
+        binding.buttonHelpWhitelist.getRoot().setOnClickListener(v -> openBatteryOptimization());
+        binding.buttonHelpSettings.getRoot().setOnClickListener(v -> openSettings());
+        binding.buttonHelpEmail.getRoot().setOnClickListener(v -> sendEmail());
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -153,7 +146,6 @@ public class HelpActivity extends AppCompatActivity {
         builder.show();
     }
 
-    @OnClick(R.id.button_help_whitelist)
     void openBatteryOptimization() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
@@ -166,12 +158,10 @@ public class HelpActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.button_help_settings)
     void openSettings() {
         startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
     }
 
-    @OnClick(R.id.button_help_email)
     void sendEmail() {
         String email = getString(R.string.birdays_email);
         Intent intent = new Intent(Intent.ACTION_SENDTO);

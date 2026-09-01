@@ -37,8 +37,8 @@ android {
         multiDexEnabled true
         minSdkVersion 24
         targetSdk 37
-        versionCode 54
-        versionName "2.4.${versionCode}"
+        versionCode 55
+        versionName "3.0.${versionCode}"
         resourceConfigurations += ['en', 'be', 'de', 'el', 'es', 'fil', 'fr', 'hu', 'in', 'it', 'ja', 'kab', 'kk', 'nb', 'nl', 'pt', 'ro', 'ru', 'tr', 'uk', 'zh']
         vectorDrawables.useSupportLibrary = true
         resValue "string", "version_name", versionName
@@ -100,11 +100,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf:22.0.6'
     //ads
     implementation 'com.google.android.gms:play-services-ads:25.4.0'
-    // ButterKnife
-    implementation "com.jakewharton:butterknife:10.2.3"
     implementation 'com.google.firebase:firebase-crashlytics:20.1.0'
     implementation 'com.google.firebase:firebase-analytics:23.2.0'
-    annotationProcessor "com.jakewharton:butterknife-compiler:10.2.3"
     // Material date and time picker
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
     // Rate this app
