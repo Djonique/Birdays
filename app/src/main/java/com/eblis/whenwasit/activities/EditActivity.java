@@ -29,6 +29,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.database.DbHelper;
 import com.eblis.whenwasit.models.Person;
@@ -52,6 +61,8 @@ public class EditActivity extends AppCompatActivity implements
         android.app.DatePickerDialog.OnDateSetListener,
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
+    @BindView(R.id.container_edit)
+    CoordinatorLayout container;
     @BindView(R.id.til_edit_name)
     TextInputLayout tilEditName;
     @BindView(R.id.edittext_edit_name)
@@ -78,9 +89,16 @@ public class EditActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
         ButterKnife.bind(this);
+
+        ViewCompat.setOnApplyWindowInsetsListener(container, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+            return windowInsets;
+        });
 
         final Intent intent = getIntent();
         final long recordId = intent.getLongExtra(Constants.RECORD_ID, 0);

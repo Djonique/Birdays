@@ -26,18 +26,24 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.widget.NestedScrollView;
+
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.utils.Constants;
+import com.google.android.material.snackbar.Snackbar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +57,8 @@ public class HelpActivity extends AppCompatActivity {
     private static final String ALERT_SHOWED = "ALERT_SHOWED";
     private static final String ACTIVITY_NOT_FOUND_EXCEPTION = "ActivityNotFoundException";
 
+    @BindView(R.id.container_help)
+    NestedScrollView container;
     @BindView(R.id.button_help_whitelist)
     AppCompatButton btnOpenWhitelist;
     @BindView(R.id.button_help_settings)
@@ -62,9 +70,17 @@ public class HelpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
         ButterKnife.bind(this);
+
+        ViewCompat.setOnApplyWindowInsetsListener(container, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+            return windowInsets;
+        });
+
         btnOpenWhitelist.setText(R.string.help_whitelist);
         btnOpenSettings.setText(R.string.help_settings);
         btnSendEmail.setText(R.string.send_email);

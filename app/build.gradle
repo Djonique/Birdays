@@ -37,7 +37,7 @@ android {
         multiDexEnabled true
         minSdkVersion 24
         targetSdk 37
-        versionCode 52
+        versionCode 54
         versionName "2.4.${versionCode}"
         resourceConfigurations += ['en', 'be', 'de', 'el', 'es', 'fil', 'fr', 'hu', 'in', 'it', 'ja', 'kab', 'kk', 'nb', 'nl', 'pt', 'ro', 'ru', 'tr', 'uk', 'zh']
         vectorDrawables.useSupportLibrary = true
@@ -88,6 +88,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // Android support library
     implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'androidx.activity:activity:1.13.0'
     implementation 'com.google.android.material:material:1.14.0'
     implementation 'androidx.recyclerview:recyclerview:1.4.0'
     implementation 'androidx.cardview:cardview:1.0.0'
