@@ -48,7 +48,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eblis.whenwasit.BuildConfig;
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.adapters.FamousFragmentAdapter;
 import com.eblis.whenwasit.database.DbHelper;
@@ -141,13 +140,12 @@ public class DetailActivity extends AppCompatActivity {
         */
         if (adEnabled) {
             final DetailActivity activity = this;
-            InterstitialAd.load(this, BuildConfig.INTERSTITIAL_AD_ID, new AdRequest.Builder().build(), new InterstitialAdLoadCallback()
+            InterstitialAd.load(this, getString(R.string.interstitial_ad_id), new AdRequest.Builder().build(), new InterstitialAdLoadCallback()
             {
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     Toast.makeText(activity, "Interstitial AD failed to load: " + loadAdError.toString(), Toast.LENGTH_SHORT).show();
                 }
-
 
                 @Override
                 public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {

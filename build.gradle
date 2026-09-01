@@ -16,19 +16,19 @@
 
 buildscript {
     repositories {
-        jcenter()
         maven {
             url 'https://maven.google.com/'
             name 'Google'
         }
         google()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.13.2'
-        classpath 'com.google.gms:google-services:4.3.15'
-        classpath 'com.google.firebase:perf-plugin:1.4.2'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.4'
+        classpath 'com.android.tools.build:gradle:9.3.2'
+        classpath 'com.google.gms:google-services:4.5.0'
+        classpath 'com.google.firebase:perf-plugin:2.0.2'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.8'
     }
 }
 
@@ -37,7 +37,6 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        jcenter()
         maven {
             url 'https://maven.google.com/'
             name 'Google'

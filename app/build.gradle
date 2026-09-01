@@ -31,15 +31,15 @@ android {
             storePassword keystoreProperties['KeyPassword']
         }
     }
-    compileSdkVersion 36
+    compileSdk 37
     defaultConfig {
         applicationId "com.eblis.whenwasit"
         multiDexEnabled true
         minSdkVersion 24
-        targetSdkVersion 36
-        versionCode 51
-        versionName "2.3.${versionCode}"
-        resConfigs 'en', 'be', 'de', 'el', 'es', 'fil', 'fr', 'hu', 'in', 'it', 'ja', 'kab', 'kk', 'nb', 'nl', 'pt', 'ro', 'ru', 'tr', 'uk', 'zh'
+        targetSdk 37
+        versionCode 52
+        versionName "2.4.${versionCode}"
+        resourceConfigurations += ['en', 'be', 'de', 'el', 'es', 'fil', 'fr', 'hu', 'in', 'it', 'ja', 'kab', 'kk', 'nb', 'nl', 'pt', 'ro', 'ru', 'tr', 'uk', 'zh']
         vectorDrawables.useSupportLibrary = true
         resValue "string", "version_name", versionName
         manifestPlaceholders = [fabric_api_key: keystoreProperties['FabricApiKey']]
@@ -49,23 +49,23 @@ android {
         debug {
             minifyEnabled false
             resValue "string", "banner_ad_id", keystoreProperties['BannerAdIdDebug']
-            buildConfigField "String", "ADMOB_ID", keystoreProperties['AdMobId']
-            buildConfigField "String", "REWARDS_AD_ID", keystoreProperties['RewardsAdIdDebug']
-            buildConfigField "String", "NATIVE_REWARDS_ID", keystoreProperties['NativeAdsIdDebug']
-            buildConfigField "String", "INTERSTITIAL_AD_ID", keystoreProperties['InterstitialAdIdDebug']
-            buildConfigField "String", "INTERSTITIAL_REWARDS_ID", keystoreProperties['RewardsInterstitialAdIdDebug']
+            resValue "string", "admob_id", keystoreProperties['AdMobId']
+            resValue "string", "rewards_ad_id", keystoreProperties['RewardsAdIdDebug']
+            resValue "string", "native_rewards_id", keystoreProperties['NativeAdsIdDebug']
+            resValue "string", "interstitial_ad_id", keystoreProperties['InterstitialAdIdDebug']
+            resValue "string", "interstitial_rewards_id", keystoreProperties['RewardsInterstitialAdIdDebug']
             signingConfig signingConfigs.signing
         }
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "banner_ad_id", keystoreProperties['BannerAdIdRelease']
-            buildConfigField "String", "ADMOB_ID", keystoreProperties['AdMobId']
-            buildConfigField "String", "NATIVE_REWARDS_ID", keystoreProperties['NativeAdsIdRelease']
-            buildConfigField "String", "REWARDS_AD_ID", keystoreProperties['RewardsAdIdRelease']
-            buildConfigField "String", "INTERSTITIAL_AD_ID", keystoreProperties['InterstitialAdIdRelease']
-            buildConfigField "String", "INTERSTITIAL_REWARDS_ID", keystoreProperties['RewardsInterstitialAdIdRelease']
+            resValue "string", "admob_id", keystoreProperties['AdMobId']
+            resValue "string", "native_rewards_id", keystoreProperties['NativeAdsIdRelease']
+            resValue "string", "rewards_ad_id", keystoreProperties['RewardsAdIdRelease']
+            resValue "string", "interstitial_ad_id", keystoreProperties['InterstitialAdIdRelease']
+            resValue "string", "interstitial_rewards_id", keystoreProperties['RewardsInterstitialAdIdRelease']
             signingConfig signingConfigs.signing
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
@@ -78,6 +78,7 @@ android {
     namespace 'com.eblis.whenwasit'
     buildFeatures {
         viewBinding true
+        buildConfig false
     }
 }
 
@@ -87,28 +88,28 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // Android support library
     implementation 'androidx.appcompat:appcompat:1.8.0'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.14.0'
     implementation 'androidx.recyclerview:recyclerview:1.4.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.2.0'
     // Firebase
     implementation "com.google.firebase:firebase-core:21.1.1"
-    implementation "com.google.firebase:firebase-ads:22.0.0"
-    implementation "com.google.firebase:firebase-perf:20.3.1"
+    implementation 'com.google.firebase:firebase-ads:23.6.0'
+    implementation 'com.google.firebase:firebase-perf:22.0.6'
     //ads
-    implementation "com.google.android.gms:play-services-ads:22.0.0"
+    implementation 'com.google.android.gms:play-services-ads:25.4.0'
     // ButterKnife
     implementation "com.jakewharton:butterknife:10.2.3"
-    implementation "com.google.firebase:firebase-crashlytics:18.3.6"
-    implementation "com.google.firebase:firebase-analytics:21.2.1"
+    implementation 'com.google.firebase:firebase-crashlytics:20.1.0'
+    implementation 'com.google.firebase:firebase-analytics:23.2.0'
     annotationProcessor "com.jakewharton:butterknife-compiler:10.2.3"
     // Material date and time picker
-    implementation 'com.wdullaer:materialdatetimepicker:3.4.1'
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
     // Rate this app
     implementation 'com.github.kobakei:Android-RateThisApp:1.2.0'
     //implementation 'net.danlew:android.joda:2.9.9.3'
-    implementation 'joda-time:joda-time:2.9.9'
+    implementation 'joda-time:joda-time:2.14.3'
     // Crashlytics
     // JUnit
     testImplementation 'junit:junit:4.13.2'

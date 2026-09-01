@@ -16,12 +16,13 @@
 
 package com.eblis.whenwasit.utils;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+
+import androidx.fragment.app.FragmentActivity;
 
 import java.util.Calendar;
 
@@ -29,11 +30,11 @@ public class DatePickerManager {
 
     private static final String DATE_PICKER_FRAGMENT_TAG = "DATE_PICKER_FRAGMENT_TAG";
 
-    private Activity activity;
+    private FragmentActivity activity;
     private Calendar calendar;
     private SharedPreferences preferences;
 
-    public DatePickerManager(Activity activity, Calendar calendar) {
+    public DatePickerManager(FragmentActivity activity, Calendar calendar) {
         this.activity = activity;
         this.calendar = calendar;
         preferences = PreferenceManager.getDefaultSharedPreferences(activity);
@@ -79,7 +80,7 @@ public class DatePickerManager {
                 );
         dpd.setVersion(com.wdullaer.materialdatetimepicker.date.DatePickerDialog.Version.VERSION_1);
         dpd.setThemeDark(preferences.getBoolean(Constants.NIGHT_MODE_KEY, false));
-        dpd.show(activity.getFragmentManager(), DATE_PICKER_FRAGMENT_TAG);
+        dpd.show(activity.getSupportFragmentManager(), DATE_PICKER_FRAGMENT_TAG);
     }
 
     /**

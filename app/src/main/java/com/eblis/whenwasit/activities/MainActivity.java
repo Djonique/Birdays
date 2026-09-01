@@ -16,7 +16,6 @@
 
 package com.eblis.whenwasit.activities;
 
-import android.app.DialogFragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.DialogFragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.eblis.whenwasit.R;
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements
     @OnClick(R.id.fab_main)
     void showDialog() {
         DialogFragment newPersonDialogFragment = new NewPersonDialogFragment();
-        newPersonDialogFragment.show(getFragmentManager(), NEW_PERSON_DIALOG_TAG);
+        newPersonDialogFragment.show(getSupportFragmentManager(), NEW_PERSON_DIALOG_TAG);
     }
 
     @Override

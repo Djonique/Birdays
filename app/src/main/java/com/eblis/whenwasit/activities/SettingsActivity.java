@@ -44,7 +44,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
 
-import com.eblis.whenwasit.BuildConfig;
 import com.eblis.whenwasit.R;
 import com.eblis.whenwasit.alarm.AlarmHelper;
 import com.eblis.whenwasit.backup.ExportHelper;
@@ -508,7 +507,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
         private boolean showRewardsAd() {
             try {
-                RewardedAd.load(this.context, BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
+                RewardedAd.load(this.context, context.getString(R.string.rewards_ad_id), new AdRequest.Builder().build(), new RewardedAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         super.onAdFailedToLoad(loadAdError);
@@ -531,7 +530,7 @@ public class SettingsActivity extends AppCompatActivity implements ContactsHelpe
 
         private boolean showInterstitialRewardsAd() {
             try {
-                RewardedInterstitialAd.load(this.context, BuildConfig.REWARDS_AD_ID, new AdRequest.Builder().build(), new RewardedInterstitialAdLoadCallback() {
+                RewardedInterstitialAd.load(this.context, context.getString(R.string.rewards_ad_id), new AdRequest.Builder().build(), new RewardedInterstitialAdLoadCallback() {
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         super.onAdFailedToLoad(loadAdError);

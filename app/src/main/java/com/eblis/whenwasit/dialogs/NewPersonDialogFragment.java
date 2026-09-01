@@ -20,15 +20,18 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatCheckBox;
@@ -68,14 +71,13 @@ public class NewPersonDialogFragment extends DialogFragment implements
     private Calendar calendar;
     private String name;
 
-    @SuppressWarnings("deprecation")
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
         try {
-            addingPersonListener = (AddingPersonListener) activity;
+            addingPersonListener = (AddingPersonListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException();
+            throw new ClassCastException(context.toString() + " must implement AddingPersonListener");
         }
     }
 
@@ -100,7 +102,7 @@ public class NewPersonDialogFragment extends DialogFragment implements
                             ContactsContract.Contacts.CONTENT_URI);
                     try {
                         DialogFragment fragment = (DialogFragment)
-                                getActivity().getFragmentManager().findFragmentByTag(NEW_PERSON_DIALOG_TAG);
+                                getActivity().getSupportFragmentManager().findFragmentByTag(NEW_PERSON_DIALOG_TAG);
                         fragment.startActivityForResult(intent, Constants.READ_CONTACTS_PERMISSION_CODE);
                     } catch (ActivityNotFoundException e) {
                         Toast.makeText(getActivity(), R.string.open_contacts_error, Toast.LENGTH_LONG).show();
