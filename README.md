@@ -1,7 +1,6 @@
 ## Birdays
 *Simple birthday app with widget and famous people's birthdays.*
 
-**[Install on Google Play](https://play.google.com/store/apps/details?id=com.djonique.birdays)**
 ## Translators
 Serhii Ponomarenko (Ukrainian) [mellangr](https://github.com/mellangr)
 
